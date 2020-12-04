@@ -36,18 +36,18 @@
         <script>
             const inputLastName = document.getElementById('lastname');
 
-            // Function used to add delay on ajax request. 
-            const debounce = (func, delay) => { 
-                let debounceTimer 
-                return function() { 
+            // Function used to add delay on ajax request.
+            const debounce = (func, delay) => {
+                let debounceTimer
+                return function() {
                     const context = this
-                    const args = arguments 
-                        clearTimeout(debounceTimer) 
-                            debounceTimer 
-                        = setTimeout(() => func.apply(context, args), delay) 
-                } 
-            }  
-            
+                    const args = arguments
+                        clearTimeout(debounceTimer)
+                            debounceTimer
+                        = setTimeout(() => func.apply(context, args), delay)
+                }
+            }
+
             inputLastName.addEventListener('keyup', debounce(handleKeyUp, 500));
             let lastName;
             let resultDiv = document.getElementById('result');
@@ -61,7 +61,7 @@
                 }
 
                 function query(datas) {
-                    fetch("http://127.0.0.1:8000/api/r_p_p_s?last_name=" + lastName +"&page=1")
+                    fetch("/api/rpps?lastName=" + lastName +"&page=1")
                         .then(
                             (response) => {
                                 return response.status == 200 ?
@@ -69,7 +69,7 @@
                                         console.log(response.status + ' - opération effectué'),
                                         response.json()
                                     )
-                
+
                                     :
                                     (response.status === 204) ? response.status + ' - pas de resultats'
                                         :
@@ -77,7 +77,7 @@
                             })
                         .then(
                             (datas) => {
-                                
+
                                 if (datas['hydra:member'] !== 204) {
 
                                     datas['hydra:member'].forEach(
@@ -123,7 +123,7 @@
 
 /*
             const inputRpps = document.getElementById('rpps');
-            
+
             inputRpps.addEventListener('keyup', debounce(handleKeyUp, 500));
             let rpps;
             resultDiv.textContent = "";
@@ -145,7 +145,7 @@
                                         console.log(response.status + ' - opération effectué'),
                                         response.json()
                                     )
-                
+
                                     :
                                     (response.status === 204) ? response.status + ' - pas de resultats'
                                         :
@@ -153,7 +153,7 @@
                             })
                         .then(
                             (datas) => {
-                                
+
                                 if (datas['hydra:member'] !== 204) {
 
                                     datas['hydra:member'].forEach(
@@ -201,4 +201,3 @@
 
     {% endblock %}
 
-                                 

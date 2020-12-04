@@ -10,7 +10,7 @@ services:
     _defaults:
         autowire: true      # Automatically injects dependencies in your services.
         autoconfigure: true # Automatically registers your services as commands, event subscribers, etc.
-        bind: 
+        bind:
             $projectDir: '%kernel.project_dir%'
 
     # makes classes in src/ available to be used as services
@@ -28,3 +28,13 @@ services:
     App\Controller\:
         resource: '../src/Controller/'
         tags: ['controller.service_arguments']
+
+
+    App\Service\FileProcessor:
+        arguments:
+            $projectDir: '%kernel.project_dir%'
+
+    App\Command\RppsImport:
+        arguments:
+            $rppsUrl: '%env(RPPS_URL)%'
+            $cpsUrl: '%env(CPS_URL)%'

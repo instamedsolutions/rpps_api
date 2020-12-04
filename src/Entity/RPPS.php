@@ -3,21 +3,21 @@
 namespace App\Entity;
 
 use ApiPlatform\Core\Annotation\ApiFilter;
-use ApiPlatform\Core\Annotation\ApiResource;
 use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\SearchFilter;
-use ApiPlatform\Core\Bridge\Elasticsearch\DataProvider\Filter\OrderFilter;
-use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\RppsFilter;
 use App\Repository\RPPSRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
- * @ApiResource(
- *      collectionOperations={"get"},
- *      itemOperations={"get"},
- * )
- * @ApiFilter(SearchFilter::class, properties={"last_name", "first_name" ,"id_rpps"})
+ *
  * @ORM\Entity(repositoryClass=RPPSRepository::class)
- * @ORM\Table(name="rpps",indexes={@ORM\Index(name="rpps_index", columns={"id_rpps"})})
+ *
+ * @ORM\Table(name="rpps",indexes={
+ *     @ORM\Index(name="rpps_index", columns={"id_rpps"})
+ * })
+ *
+ * @UniqueEntity("idRpps")
+ *
  */
 class RPPS
 {
@@ -26,67 +26,81 @@ class RPPS
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
      */
-    private $id;
+    protected $id;
+
+    /**
+     *
+     * The unique RPPS identifier of the medic
+     *
+     * @ApiFilter(SearchFilter::class, strategy="exact")
+     *
+     * @ORM\Column(type="string", nullable=true,unique=true)
+     */
+    protected $idRpps;
+
+    /**
+     *
+     * The civility of the user
+     *
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    protected $title;
+
+    /**
+     *
+     * @ApiFilter(SearchFilter::class, strategy="istart")
+     *
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    protected $lastName;
+
+    /**
+     *
+     * @ApiFilter(SearchFilter::class, strategy="istart")
+     *
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    protected $firstName;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    protected $specialty;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    protected $address;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    protected $zipcode;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    protected $city;
 
     /**
      * @ORM\Column(type="string", nullable=true)
      */
-    private $id_rpps;
+    protected $phoneNumber;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
-    private $title;
+    protected $email;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
-    private $last_name;
+    protected $finessNumber;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
-    private $first_name;
-
-    /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     */
-    private $specialty;
-
-    /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     */
-    private $address;
-
-    /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     */
-    private $zipcode;
-
-    /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     */
-    private $city;
-
-    /**
-     * @ORM\Column(type="string", nullable=true)
-     */
-    private $phone_number;
-
-    /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     */
-    private $email;
-
-    /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     */
-    private $finess_number;
-
-    /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     */
-    private $cps_number;
+    protected $cpsNumber;
 
     public function getId(): ?int
     {
@@ -95,12 +109,12 @@ class RPPS
 
     public function getIdRpps(): ?string
     {
-        return $this->id_rpps;
+        return $this->idRpps;
     }
 
     public function setIdRpps(?string $id_rpps): self
     {
-        $this->id_rpps = $id_rpps;
+        $this->idRpps = $id_rpps;
 
         return $this;
     }
@@ -119,24 +133,24 @@ class RPPS
 
     public function getLastName(): ?string
     {
-        return $this->last_name;
+        return $this->lastName;
     }
 
-    public function setLastName(?string $last_name): self
+    public function setLastName(?string $lastName): self
     {
-        $this->last_name = $last_name;
+        $this->lastName = $lastName;
 
         return $this;
     }
 
     public function getFirstName(): ?string
     {
-        return $this->first_name;
+        return $this->firstName;
     }
 
-    public function setFirstName(?string $first_name): self
+    public function setFirstName(?string $firstName): self
     {
-        $this->first_name = $first_name;
+        $this->firstName = $firstName;
 
         return $this;
     }
@@ -191,12 +205,12 @@ class RPPS
 
     public function getPhoneNumber(): ?string
     {
-        return $this->phone_number;
+        return $this->phoneNumber;
     }
 
-    public function setPhoneNumber(?string $phone_number): self
+    public function setPhoneNumber(?string $phoneNumber): self
     {
-        $this->phone_number = $phone_number;
+        $this->phoneNumber = $phoneNumber;
 
         return $this;
     }
@@ -215,24 +229,24 @@ class RPPS
 
     public function getFinessNumber(): ?string
     {
-        return $this->finess_number;
+        return $this->finessNumber;
     }
 
-    public function setFinessNumber(?string $finess_number): self
+    public function setFinessNumber(?string $finessNumber): self
     {
-        $this->finess_number = $finess_number;
+        $this->finessNumber = $finessNumber;
 
         return $this;
     }
 
     public function getCpsNumber(): ?string
     {
-        return $this->cps_number;
+        return $this->cpsNumber;
     }
 
-    public function setCpsNumber(?string $cps_number): self
+    public function setCpsNumber(?string $cpsNumber): self
     {
-        $this->cps_number = $cps_number;
+        $this->cpsNumber = $cpsNumber;
 
         return $this;
     }

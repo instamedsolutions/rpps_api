@@ -1,0 +1,7 @@
+App\Entity\RPPS:
+  shortName: Rpps
+  attributes:
+  collectionOperations:
+    get: ~
+  itemOperations:
+    get: ~
