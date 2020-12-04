@@ -1,0 +1,204 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello MainController!{% endblock %}
+
+{% block body %}
+<div class="container">
+    <p id="morningDoctor">Bonjour Dr. JOLIVERT</p>
+    <img src="{{ asset('images/doctor.jpeg') }}" class="img-rounded"/>
+    <h1>Annuaire des practiciens</h1>
+    <p>Retrouvez ici les contacts de vos collaborateurs.</p>
+
+    <form action="" method="POST">
+        <div class="formInput">
+            <label for="doctorName">Recherche par <em>Nom</em></label>
+            <input type="text" name="doctorName" id="lastname" placeholder="MARI" />
+        </div>
+        <div class="formInput">
+            <label for="rpps" >Recherche par <em>numéro RPPS</em></label>
+            <input type="text" name="rpps" id="rpps" placeholder="810101723921"/>
+        </div>
+        <div class="formInput">
+            <label for="doctorId">Recherche par <em>numéro CPS</em></label>
+            <input type="doctorId" name="doctorId" id="doctorId" placeholder="2800487804" />
+        </div>
+    </form>
+
+    <div id="result"></div>
+
+</div>
+
+{% endblock %}
+
+    {% block javascripts %}
+        {{ parent() }}
+
+        <script>
+            const inputLastName = document.getElementById('lastname');
+
+            // Function used to add delay on ajax request. 
+            const debounce = (func, delay) => { 
+                let debounceTimer 
+                return function() { 
+                    const context = this
+                    const args = arguments 
+                        clearTimeout(debounceTimer) 
+                            debounceTimer 
+                        = setTimeout(() => func.apply(context, args), delay) 
+                } 
+            }  
+            
+            inputLastName.addEventListener('keyup', debounce(handleKeyUp, 500));
+            let lastName;
+            let resultDiv = document.getElementById('result');
+
+            function handleKeyUp(evt)
+            {
+                lastName = evt.target.value;
+
+                if (lastName.length > 2) {
+                    query(lastName);
+                }
+
+                function query(datas) {
+                    fetch("http://127.0.0.1:8000/api/r_p_p_s?last_name=" + lastName +"&page=1")
+                        .then(
+                            (response) => {
+                                return response.status == 200 ?
+                                    (
+                                        console.log(response.status + ' - opération effectué'),
+                                        response.json()
+                                    )
+                
+                                    :
+                                    (response.status === 204) ? response.status + ' - pas de resultats'
+                                        :
+                                        console.log('L\'opération a échoué')
+                            })
+                        .then(
+                            (datas) => {
+                                
+                                if (datas['hydra:member'] !== 204) {
+
+                                    datas['hydra:member'].forEach(
+                                        function(data)
+                                        {
+
+                                            let divInformations = document.createElement('div');
+                                            divInformations.classList.add('divInformations', 'card');
+
+                                            let name = document.createElement('p');
+                                            name.classList.add('name');
+                                            name.textContent = data.title + " " + data.firstName + " " + data.lastName;
+                                            let rpps = document.createElement('p');
+                                            rpps.textContent = "Numéro RPPS:" + data.idRpps;
+                                            let cps = document.createElement('p');
+                                            cps.textContent = "Numéro CPS:" + data.cpsNumber;
+                                            let address = document.createElement('p');
+                                            address.textContent = "Adresse:" + data.address + " - " + data.city;
+                                            let phoneNumber = document.createElement('p');
+                                            phoneNumber.textContent = "Numéro de téléphone:" + data.phoneNumber;
+                                            let emailAddress = document.createElement('p');
+                                            emailAddress.textContent = "Email:" + data.email;
+
+                                            divInformations.appendChild(name);
+                                            divInformations.appendChild(rpps);
+                                            divInformations.appendChild(cps);
+                                            divInformations.appendChild(address);
+                                            divInformations.appendChild(phoneNumber);
+                                            divInformations.appendChild(emailAddress);
+
+                                            resultDiv.appendChild(divInformations);
+
+
+
+                                        }
+                                    )
+
+                                }
+                            }
+                        );
+                }
+            }
+
+/*
+            const inputRpps = document.getElementById('rpps');
+            
+            inputRpps.addEventListener('keyup', debounce(handleKeyUp, 500));
+            let rpps;
+            resultDiv.textContent = "";
+
+            function handleKeyUp(evt)
+            {
+                rpps = evt.target.value;
+
+                if (rpps.length > 2) {
+                    query(rpps);
+                }
+
+                function query(datas) {
+                    fetch("http://127.0.0.1:8000/api/r_p_p_s?id_rpps=" + rpps +"&page=1")
+                        .then(
+                            (response) => {
+                                return response.status == 200 ?
+                                    (
+                                        console.log(response.status + ' - opération effectué'),
+                                        response.json()
+                                    )
+                
+                                    :
+                                    (response.status === 204) ? response.status + ' - pas de resultats'
+                                        :
+                                        console.log('L\'opération a échoué')
+                            })
+                        .then(
+                            (datas) => {
+                                
+                                if (datas['hydra:member'] !== 204) {
+
+                                    datas['hydra:member'].forEach(
+                                        function(data)
+                                        {
+
+                                            let divInformations = document.createElement('div');
+                                            divInformations.classList.add('divInformations', 'card');
+
+                                            let name = document.createElement('p');
+                                            name.classList.add('name');
+                                            name.textContent = data.title + " " + data.firstName + " " + data.lastName;
+                                            let rpps = document.createElement('p');
+                                            rpps.textContent = "Numéro RPPS:" + data.idRpps;
+                                            let cps = document.createElement('p');
+                                            cps.textContent = "Numéro CPS:" + data.cpsNumber;
+                                            let address = document.createElement('p');
+                                            address.textContent = "Adresse:" + data.address + " - " + data.city;
+                                            let phoneNumber = document.createElement('p');
+                                            phoneNumber.textContent = "Numéro de téléphone:" + data.phoneNumber;
+                                            let emailAddress = document.createElement('p');
+                                            emailAddress.textContent = "Email:" + data.email;
+
+                                            divInformations.appendChild(name);
+                                            divInformations.appendChild(rpps);
+                                            divInformations.appendChild(cps);
+                                            divInformations.appendChild(address);
+                                            divInformations.appendChild(phoneNumber);
+                                            divInformations.appendChild(emailAddress);
+
+                                            resultDiv.appendChild(divInformations);
+
+
+
+                                        }
+                                    )
+
+                                }
+                            }
+                        );
+                }
+            }*/
+
+        </script>
+
+    {% endblock %}
+
+                                 
