@@ -238,19 +238,19 @@ class Drug
 
     /**
      *
-     * @var string|null
+     * @var int|null
      *
      * @ApiProperty(
      *     required=true,
      *     attributes={
      *         "openapi_context"={
-     *             "type"="string",
-     *              "example"="PANTOPRAZOLE SODIQUE SESQUIHYDRATE équivalant à PANTOPRAZOLE 40 mg - EUPANTOL 40 mg, comprimé gastro-résistant - INIPOMP 40 mg, comprimé gastro-résistant - PANTIPP 40 mg, comprimé gastro-résistant."
+     *             "type"="int",
+     *              "example"="143"
      *         }
      *     }
      * )
      *
-     * @ORM\Column(type="string", length=255, nullable=true)
+     * @ORM\Column(type="integer", nullable=true)
      */
     protected $genericGroupId;
 
@@ -283,7 +283,7 @@ class Drug
      *
      * @var string|null
      *
-     * @ORM\Column(type="string", nullable=true)
+     * @ORM\Column(type="text", nullable=true)
      */
     protected $securityText;
 
@@ -444,7 +444,7 @@ class Drug
     /**
      * @return string|null
      */
-    public function getGenericGroupId(): ?string
+    public function getGenericGroupId(): ?int
     {
         return $this->genericGroupId;
     }
@@ -452,7 +452,7 @@ class Drug
     /**
      * @param string|null $genericGroupId
      */
-    public function setGenericGroupId(?string $genericGroupId): void
+    public function setGenericGroupId(?int $genericGroupId): void
     {
         $this->genericGroupId = $genericGroupId;
     }

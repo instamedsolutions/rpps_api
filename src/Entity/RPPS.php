@@ -309,24 +309,42 @@ class RPPS
         return $this;
     }
 
+
+    /**
+     * @return string|null
+     */
     public function getAddress(): ?string
     {
         $address = trim($this->address);
+        $address = preg_replace("# {2,}#"," ",$address);
 
         return $address ? $address : null;
     }
 
+    /**
+     * @param string|null $address
+     * @return self
+     */
     public function setAddress(?string $address): self
     {
-        $address = trim($this->address);
+        $address = preg_replace("# {2,}#"," ",$address);
+
+        $address = trim($address);
         if($address) {
             $this->address = $address;
         } else {
             $address = null;
         }
+
+
+        $this->address = $address;
+
         return $this;
     }
 
+    /**
+     * @return string|null
+     */
     public function getZipcode(): ?string
     {
         return $this->zipcode;
@@ -341,11 +359,13 @@ class RPPS
 
     public function getCity(): ?string
     {
-        return $this->city;
+        return trim(preg_replace("#^[0-9]{5,6}#",'',$this->city));
     }
 
     public function setCity(?string $city): self
     {
+        $city = trim(preg_replace("#^[0-9]{5,6}#",'',$city));
+
         $this->city = $city;
 
         return $this;
@@ -387,11 +407,17 @@ class RPPS
 
     public function getEmail(): ?string
     {
+        if(!$this->email) {
+            return null;
+        }
         return $this->email;
     }
 
     public function setEmail(?string $email): self
     {
+        if(!$email) {
+            $email = null;
+        }
         $this->email = $email;
 
         return $this;
@@ -399,11 +425,17 @@ class RPPS
 
     public function getFinessNumber(): ?string
     {
+        if(!$this->finessNumber) {
+           return null;
+        }
         return $this->finessNumber;
     }
 
     public function setFinessNumber(?string $finessNumber): self
     {
+        if(!$finessNumber) {
+            $finessNumber = null;
+        }
         $this->finessNumber = $finessNumber;
 
         return $this;
