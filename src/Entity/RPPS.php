@@ -40,6 +40,16 @@ class RPPS
      *
      * The unique RPPS identifier of the medic
      *
+     * @ApiProperty(
+     *     required=false,
+     *     attributes={
+     *         "openapi_context"={
+     *             "type"="string",
+     *             "example"="810003820189"
+     *         }
+     *     }
+     * )
+     *
      * @ApiFilter(SearchFilter::class, strategy="exact")
      *
      * @ORM\Column(type="string", nullable=true,unique=true)
@@ -48,7 +58,17 @@ class RPPS
 
     /**
      *
-     * The civility of the user
+     * The civility of the doctor
+     *
+     * @ApiProperty(
+     *     required=false,
+     *     attributes={
+     *         "openapi_context"={
+     *             "type"="string",
+     *              "example"="Docteur"
+     *         }
+     *     }
+     * )
      *
      * @ORM\Column(type="string", length=255, nullable=true)
      */
@@ -56,7 +76,19 @@ class RPPS
 
     /**
      *
+     * The last name of the doctor
+     *
      * @ApiFilter(SearchFilter::class, strategy="istart")
+     *
+     * @ApiProperty(
+     *     required=false,
+     *     attributes={
+     *         "openapi_context"={
+     *             "type"="string",
+     *              "example"="RENE"
+     *         }
+     *     }
+     * )
      *
      * @ORM\Column(type="string", length=255, nullable=true)
      */
@@ -66,26 +98,80 @@ class RPPS
      *
      * @ApiFilter(SearchFilter::class, strategy="istart")
      *
+     * @ApiProperty(
+     *     required=false,
+     *     attributes={
+     *         "openapi_context"={
+     *             "type"="string",
+     *              "example"="Marc"
+     *         }
+     *     }
+     * )
+     *
      * @ORM\Column(type="string", length=255, nullable=true)
      */
     protected $firstName;
 
     /**
+     *
+     * @ApiProperty(
+     *     required=false,
+     *     attributes={
+     *         "openapi_context"={
+     *             "type"="string",
+     *              "example"="Médecin"
+     *         }
+     *     }
+     * )
+     *
      * @ORM\Column(type="string", length=255, nullable=true)
      */
     protected $specialty;
 
     /**
+     *
+     * @ApiProperty(
+     *     required=false,
+     *     attributes={
+     *         "openapi_context"={
+     *             "type"="string",
+     *              "example"="12 Rue de Paris"
+     *         }
+     *     }
+     * )
+     *
      * @ORM\Column(type="string", length=255, nullable=true)
      */
     protected $address;
 
     /**
+     *
+     * @ApiProperty(
+     *     required=false,
+     *     attributes={
+     *         "openapi_context"={
+     *             "type"="string",
+     *              "example"="75019"
+     *         }
+     *     }
+     * )
+     *
      * @ORM\Column(type="string", length=255, nullable=true)
      */
     protected $zipcode;
 
     /**
+     *
+     * @ApiProperty(
+     *     required=false,
+     *     attributes={
+     *         "openapi_context"={
+     *             "type"="string",
+     *              "example"="Paris"
+     *         }
+     *     }
+     * )
+     *
      * @ORM\Column(type="string", length=255, nullable=true)
      */
     protected $city;
@@ -94,6 +180,15 @@ class RPPS
      *
      * @AssertPhoneNumber(defaultRegion="FR")
      *
+     * @ApiProperty(
+     *     required=false,
+     *     attributes={
+     *         "openapi_context"={
+     *             "type"="string",
+     *              "example"="+33144955555"
+     *         }
+     *     }
+     * )
      *
      * @ORM\Column(type="phone_number",nullable=true)
      */
@@ -101,15 +196,50 @@ class RPPS
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
+     *
+     * @ApiFilter(SearchFilter::class, strategy="exact")
+     *
+     * @ApiProperty(
+     *     required=false,
+     *     attributes={
+     *         "openapi_context"={
+     *             "type"="string",
+     *              "example"="jean.doe@free.fr"
+     *         }
+     *     }
+     * )
+     *
      */
     protected $email;
 
     /**
+     *
+     * @ApiProperty(
+     *     required=false,
+     *     attributes={
+     *         "openapi_context"={
+     *             "type"="string",
+     *              "example"="740787791"
+     *         }
+     *     }
+     * )
+     *
      * @ORM\Column(type="string", length=255, nullable=true)
      */
     protected $finessNumber;
 
     /**
+     *
+     * @ApiProperty(
+     *     required=false,
+     *     attributes={
+     *         "openapi_context"={
+     *             "type"="string",
+     *              "example"="2800089831"
+     *         }
+     *     }
+     * )
+     *
      * @ORM\Column(type="string", length=255, nullable=true)
      */
     protected $cpsNumber;
@@ -145,7 +275,7 @@ class RPPS
 
     public function getLastName(): ?string
     {
-        return $this->lastName;
+        return mb_convert_case($this->lastName,MB_CASE_UPPER);
     }
 
     public function setLastName(?string $lastName): self
@@ -157,7 +287,7 @@ class RPPS
 
     public function getFirstName(): ?string
     {
-        return $this->firstName;
+        return mb_convert_case($this->firstName,MB_CASE_TITLE);
     }
 
     public function setFirstName(?string $firstName): self
@@ -181,13 +311,19 @@ class RPPS
 
     public function getAddress(): ?string
     {
-        return $this->address;
+        $address = trim($this->address);
+
+        return $address ? $address : null;
     }
 
     public function setAddress(?string $address): self
     {
-        $this->address = $address;
-
+        $address = trim($this->address);
+        if($address) {
+            $this->address = $address;
+        } else {
+            $address = null;
+        }
         return $this;
     }
 

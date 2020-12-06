@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use ApiPlatform\Core\Annotation\ApiFilter;
+use ApiPlatform\Core\Annotation\ApiProperty;
 use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\SearchFilter;
 use App\Repository\DrugRepository;
 use Doctrine\ORM\Mapping as ORM;
@@ -21,6 +22,15 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
  */
 class Drug
 {
+
+    const GENERIC_LABEL_PRINCEPS = 1;
+
+    const GENERIC_LABEL_GENERIC = 2;
+
+    const GENERIC_LABEL_GENERIC_BY_COMPLEMENTARITY_POSOLOGIC = 3;
+
+    const GENERIC_LABEL_GENERIC_SUBSTITUABLE = 3;
+
     /**
      *
      * @var string
@@ -39,6 +49,16 @@ class Drug
      *
      * @ApiFilter(SearchFilter::class, strategy="exact")
      *
+     * @ApiProperty(
+     *     required=true,
+     *     attributes={
+     *         "openapi_context"={
+     *             "type"="string",
+     *              "example"="66595239"
+     *         }
+     *     }
+     * )
+     *
      * @ORM\Column(type="string", nullable=true,unique=true)
      */
     protected $cisId;
@@ -51,6 +71,16 @@ class Drug
      *
      * @ApiFilter(SearchFilter::class, strategy="istart")
      *
+     * @ApiProperty(
+     *     required=true,
+     *     attributes={
+     *         "openapi_context"={
+     *             "type"="string",
+     *              "example"="PANTOPRAZOLE KRKA 40 mg, comprimé gastro-résistant"
+     *         }
+     *     }
+     * )
+     *
      * @ORM\Column(type="string", length=255)
      */
     protected $name;
@@ -59,6 +89,16 @@ class Drug
      *
      * @var string|null
      *
+     * @ApiProperty(
+     *     required=true,
+     *     attributes={
+     *         "openapi_context"={
+     *             "type"="string",
+     *              "example"="comprimé gastro-résistant(e)"
+     *         }
+     *     }
+     * )
+     *
      * @ORM\Column(type="string", length=255, nullable=true)
      */
     protected $pharmaceuticalForm;
@@ -66,6 +106,19 @@ class Drug
     /**
      *
      * @var array
+     *
+     * @ApiProperty(
+     *     required=true,
+     *     attributes={
+     *         "openapi_context"={
+     *             "type"="array",
+     *              "items"={
+     *                  "type"="string",
+     *                  "example"="comprimé gastro-résistant(e)"
+     *               }
+     *            }
+     *     }
+     * )
      *
      * @ORM\Column(type="array", nullable=true)
      */
@@ -76,6 +129,17 @@ class Drug
      *
      * The pharmaceutical company owning the drug
      *
+     * @ApiProperty(
+     *     required=true,
+     *     attributes={
+     *         "openapi_context"={
+     *             "type"="string",
+     *              "example"=" BIOGARAN"
+     *         }
+     *     }
+     * )
+     *
+     *
      * @ORM\Column(type="string", length=255, nullable=true)
      */
     protected $owner;
@@ -83,12 +147,36 @@ class Drug
     /**
      * @var string|null
      *
+     * @ApiProperty(
+     *     required=true,
+     *     attributes={
+     *         "openapi_context"={
+     *             "type"="string",
+     *              "example"="plaquette(s) thermoformée(s) aluminium de 28 comprimé(s)"
+     *         }
+     *     }
+     * )
+     *
+     *
      * @ORM\Column(type="string", length=255, nullable=true)
      */
     protected $presentationLabel;
 
     /**
      * @var array|null
+     *
+     * @ApiProperty(
+     *     required=true,
+     *     attributes={
+     *         "openapi_context"={
+     *             "type"="array",
+     *              "items"={
+     *                  "type"="string",
+     *                  "example"="65%"
+     *               }
+     *         }
+     *     }
+     * )
      *
      * @ORM\Column(type="array", nullable=true)
      */
@@ -98,6 +186,16 @@ class Drug
      *
      * @var float|null
      *
+     * @ApiProperty(
+     *     required=true,
+     *     attributes={
+     *         "openapi_context"={
+     *             "type"="float",
+     *              "example"=3,90
+     *         }
+     *     }
+     * )
+     *
      * @ORM\Column(type="float", nullable=true)
      */
     protected $price;
@@ -105,6 +203,16 @@ class Drug
     /**
      *
      * @var string|null
+     *
+     * @ApiProperty(
+     *     required=true,
+     *     attributes={
+     *         "openapi_context"={
+     *             "type"="string",
+     *              "example"="liste II"
+     *         }
+     *     }
+     * )
      *
      * @ORM\Column(type="string", nullable=true)
      */
@@ -114,6 +222,16 @@ class Drug
      *
      * @var string|null
      *
+     * @ApiProperty(
+     *     required=true,
+     *     attributes={
+     *         "openapi_context"={
+     *             "type"="string",
+     *              "example"="PANTOPRAZOLE SODIQUE SESQUIHYDRATE équivalant à PANTOPRAZOLE 40 mg - EUPANTOL 40 mg, comprimé gastro-résistant - INIPOMP 40 mg, comprimé gastro-résistant - PANTIPP 40 mg, comprimé gastro-résistant."
+     *         }
+     *     }
+     * )
+     *
      * @ORM\Column(type="string", length=255, nullable=true)
      */
     protected $genericType;
@@ -121,6 +239,16 @@ class Drug
     /**
      *
      * @var string|null
+     *
+     * @ApiProperty(
+     *     required=true,
+     *     attributes={
+     *         "openapi_context"={
+     *             "type"="string",
+     *              "example"="PANTOPRAZOLE SODIQUE SESQUIHYDRATE équivalant à PANTOPRAZOLE 40 mg - EUPANTOL 40 mg, comprimé gastro-résistant - INIPOMP 40 mg, comprimé gastro-résistant - PANTIPP 40 mg, comprimé gastro-résistant."
+     *         }
+     *     }
+     * )
      *
      * @ORM\Column(type="string", length=255, nullable=true)
      */
@@ -130,7 +258,23 @@ class Drug
      *
      * @var string|null
      *
-     * @ORM\Column(type="string", length=255, nullable=true)
+     * @ApiProperty(
+     *     required=false,
+     *     attributes={
+     *         "openapi_context"={
+     *             "type"="int",
+     *              "enum"={
+     *               Drug::GENERIC_LABEL_GENERIC,
+     *               Drug::GENERIC_LABEL_PRINCEPS,
+     *               Drug::GENERIC_LABEL_GENERIC_BY_COMPLEMENTARITY_POSOLOGIC,
+     *               Drug::GENERIC_LABEL_GENERIC_SUBSTITUABLE
+     *               },
+     *              "example"=Drug::GENERIC_LABEL_GENERIC
+     *         }
+     *     }
+     * )
+     *
+     * @ORM\Column(type="smallint", nullable=true)
      */
     protected $genericLabel;
 

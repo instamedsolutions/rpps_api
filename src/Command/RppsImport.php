@@ -73,7 +73,7 @@ class RppsImport extends Command
 
 
             $rpps = true;
-       //     $rpps = $this->rppsService->importRPPSData($output);
+            $rpps = $this->rppsService->importRPPSData($output);
 
             //Checking failure
             if ($rpps !== true) {
