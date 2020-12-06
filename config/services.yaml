@@ -34,7 +34,20 @@ services:
         arguments:
             $projectDir: '%kernel.project_dir%'
 
-    App\Command\RppsImport:
+    App\Service\RPPSService:
         arguments:
             $rppsUrl: '%env(RPPS_URL)%'
             $cpsUrl: '%env(CPS_URL)%'
+
+    App\Service\DrugService:
+        arguments:
+            $DRUGS_URL_CIS_BDPM: '%env(DRUGS_URL_CIS_BDPM)%'
+            $DRUGS_URL_CIS_CIP_BDPM: '%env(DRUGS_URL_CIS_CIP_BDPM)%'
+            $DRUGS_URL_CIS_CPD_BDPM: '%env(DRUGS_URL_CIS_CPD_BDPM)%'
+            $DRUGS_URL_CIS_GENER_BDPM: '%env(DRUGS_URL_CIS_GENER_BDPM)%'
+            $DRUGS_URL_CIS_InfoImportantes: '%env(DRUGS_URL_CIS_InfoImportantes)%'
+
+    'App\Swagger\SwaggerDecorator':
+        decorates: 'api_platform.swagger.normalizer.api_gateway'
+        arguments: [ '@App\Swagger\SwaggerDecorator.inner' ]
+        autoconfigure: false

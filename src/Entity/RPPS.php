@@ -3,10 +3,15 @@
 namespace App\Entity;
 
 use ApiPlatform\Core\Annotation\ApiFilter;
+use ApiPlatform\Core\Annotation\ApiProperty;
 use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\SearchFilter;
+use App\ApiPlatform\Filter\RPPSFilter;
 use App\Repository\RPPSRepository;
 use Doctrine\ORM\Mapping as ORM;
+use libphonenumber\PhoneNumber;
+use libphonenumber\PhoneNumberUtil;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Misd\PhoneNumberBundle\Validator\Constraints\PhoneNumber as AssertPhoneNumber;
 
 /**
  *
@@ -16,15 +21,18 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
  *     @ORM\Index(name="rpps_index", columns={"id_rpps"})
  * })
  *
+ * @ApiFilter(RPPSFilter::class,properties={"search"})
+ *
+ *
  * @UniqueEntity("idRpps")
  *
  */
 class RPPS
 {
     /**
-     * @ORM\Id
-     * @ORM\GeneratedValue
-     * @ORM\Column(type="integer")
+     * @ORM\Id()
+     * @ORM\GeneratedValue(strategy="UUID")
+     * @ORM\Column(type="guid",unique=true)
      */
     protected $id;
 
@@ -83,7 +91,11 @@ class RPPS
     protected $city;
 
     /**
-     * @ORM\Column(type="string", nullable=true)
+     *
+     * @AssertPhoneNumber(defaultRegion="FR")
+     *
+     *
+     * @ORM\Column(type="phone_number",nullable=true)
      */
     protected $phoneNumber;
 
@@ -102,7 +114,7 @@ class RPPS
      */
     protected $cpsNumber;
 
-    public function getId(): ?int
+    public function getId(): ?string
     {
         return $this->id;
     }
@@ -203,14 +215,36 @@ class RPPS
         return $this;
     }
 
-    public function getPhoneNumber(): ?string
+    public function getPhoneNumber(): ?PhoneNumber
     {
         return $this->phoneNumber;
     }
 
-    public function setPhoneNumber(?string $phoneNumber): self
+
+    /**
+     * @param string|PhoneNumber|null $number
+     * @return $this
+     */
+    public function setPhoneNumber($number): self
     {
-        $this->phoneNumber = $phoneNumber;
+        if(!$number) {
+            $this->phoneNumber = null;
+            return $this;
+        }
+
+        if(is_string($number)) {
+            try {
+                $phoneUtil = PhoneNumberUtil::getInstance();
+
+                $region = strpos($number, "+") === false ? "FR" : PhoneNumberUtil::UNKNOWN_REGION;
+
+                $number = $phoneUtil->parse($number, $region);
+            }catch (\Exception $exception) {
+                $number = null;
+            }
+        }
+
+        $this->phoneNumber = $number;
 
         return $this;
     }
@@ -250,4 +284,34 @@ class RPPS
 
         return $this;
     }
+
+
+    public function getFullName() : string
+    {
+
+        return trim("{$this->shortTitle()} {$this->getFirstName()} {$this->getLastName()}");
+
+    }
+
+    /**
+     * @return string|null
+     */
+    protected function shortTitle() : ?string
+    {
+        switch ($this->title)
+        {
+            case "Docteur" :
+                return "Dr.";
+            case "Professeur":
+                return "Pr.";
+            case "Madame":
+                return "Mme";
+            case "Monsieur":
+                return "M.";
+            default:
+                return null;
+        }
+    }
+
+
 }

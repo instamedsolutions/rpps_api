@@ -1,5 +1,4 @@
-App\Entity\RPPS:
-  shortName: Rpps
+App\Entity\Drug:
   attributes:
     allow_extra_attributes: false
   collectionOperations:

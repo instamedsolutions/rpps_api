@@ -2,6 +2,7 @@
 
 namespace App\Command;
 
+use App\Service\DrugService;
 use App\Service\FileProcessor;
 use App\Service\RPPSService;
 use Doctrine\ORM\EntityManagerInterface;
@@ -13,17 +14,11 @@ use Symfony\Component\Console\Output\OutputInterface;
 /**
  * Command to import file in empty database.
  */
-class RppsImport extends Command
+class DrugsImport extends Command
 {
 
     // the name of the command (the part after "bin/console")
-    protected static $defaultName = 'app:rpps:import';
-
-
-    /**
-     * @var RPPSService
-     */
-    protected $rppsService;
+    protected static $defaultName = 'app:drugs:import';
 
 
     /**
@@ -32,17 +27,30 @@ class RppsImport extends Command
     protected $em;
 
     /**
+     * @var string
+     */
+    protected $projectDir;
+
+    /**
+     * @var DrugService
+     */
+    protected $drugService;
+
+
+    /**
      * RppsImport constructor.
      * @param RPPSService $RPPSService
+     * @param string $projectDir
+     * @param EntityManagerInterface $entityManager
+     * @param FileProcessor $fileProcessor
      */
-    public function __construct(RPPSService $RPPSService,EntityManagerInterface $em)
+    public function __construct(DrugService $drugService, EntityManagerInterface $entityManager)
     {
 
-        $this->em = $em;
         parent::__construct(self::$defaultName);
 
-        $this->rppsService = $RPPSService;
-
+        $this->drugService = $drugService;
+        $this->em = $entityManager;
     }
 
 
@@ -51,8 +59,8 @@ class RppsImport extends Command
      */
     protected function configure()
     {
-        $this->setDescription('Import RPPS File into database')
-            ->setHelp('This command will import a RPPS CSV file into your database.');
+        $this->setDescription('Import Drugs File into database')
+            ->setHelp('This command will import all drugs data.');
     }
 
 
@@ -71,22 +79,11 @@ class RppsImport extends Command
             $start = new \DateTime();
             $output->writeln('<comment>' . $start->format('d-m-Y G:i:s') . ' Start processing :---</comment>');
 
-
-            $rpps = true;
-       //     $rpps = $this->rppsService->importRPPSData($output);
-
-            //Checking failure
-            if ($rpps !== true) {
-                $output->writeln("RPPS Load Failed");
-                return Command::FAILURE;
-            }
-
-            $cps = $this->rppsService->importCPSData($output);
-
-            if($cps !== true) {
-                $output->writeln("CPS Load Failed");
-                return Command::FAILURE;
-            }
+            $this->drugService->importFile($output,"DRUGS_URL_CIS_BDPM");
+            $this->drugService->importFile($output,"DRUGS_URL_CIS_CIP_BDPM");
+            $this->drugService->importFile($output,"DRUGS_URL_CIS_CPD_BDPM");
+            $this->drugService->importFile($output,"DRUGS_URL_CIS_GENER_BDPM");
+            $this->drugService->importFile($output,"DRUGS_URL_CIS_InfoImportantes");
 
             // Showing when the cps process is launched
             $end = new \DateTime();

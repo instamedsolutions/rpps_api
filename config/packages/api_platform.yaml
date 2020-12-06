@@ -5,9 +5,11 @@ api_platform:
     show_webby: false
     enable_entrypoint: true
     enable_docs: true
+    enable_re_doc: true
     allow_plain_identifiers: true
     mapping:
         paths:
+            - '%kernel.project_dir%/src/Entity'
             - '%kernel.project_dir%/config/api_platform'
 
     collection:
