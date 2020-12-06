@@ -126,8 +126,8 @@ class RPPSService
                         $newRpps = new RPPS();
                         $newRpps->setIdRpps($data[2]);
                         $newRpps->setTitle($data[4]);
-                        $newRpps->setFirstName($data[5]);
-                        $newRpps->setLastName($data[6]);
+                        $newRpps->setLastName($data[5]);
+                        $newRpps->setFirstName($data[6]);
                         $newRpps->setSpecialty($data[8]);
                         $newRpps->setAddress($data[24] . " " . $data[25] . " " . $data[27] . " " . $data[28] . " " . $data[29]);
                         $newRpps->setZipcode($data[31]);
