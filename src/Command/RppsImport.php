@@ -72,8 +72,7 @@ class RppsImport extends Command
             $output->writeln('<comment>' . $start->format('d-m-Y G:i:s') . ' Start processing :---</comment>');
 
 
-            $rpps = true;
-            $rpps = $this->rppsService->importRPPSData($output);
+            $rpps = $this->rppsService->importFile($output,"rpps",true);
 
             //Checking failure
             if ($rpps !== true) {
@@ -81,7 +80,7 @@ class RppsImport extends Command
                 return Command::FAILURE;
             }
 
-            $cps = $this->rppsService->importCPSData($output);
+            $cps = $this->rppsService->importFile($output,"cps",true);
 
             if($cps !== true) {
                 $output->writeln("CPS Load Failed");

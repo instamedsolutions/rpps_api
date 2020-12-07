@@ -2,16 +2,18 @@
 
 namespace App\Service;
 
+use App\Entity\Drug;
 use App\Entity\RPPS;
+use App\Repository\DrugRepository;
 use App\Repository\RPPSRepository;
 use Doctrine\ORM\EntityManagerInterface;
+use Doctrine\ORM\Mapping\Entity;
 use Symfony\Component\Console\Output\OutputInterface;
-use Symfony\Component\HttpClient\HttpClient;
 
 /**
  * Contains all useful methods to process files and import them into database.
  */
-class RPPSService
+class RPPSService extends ImporterService
 {
 
 
@@ -24,17 +26,13 @@ class RPPSService
     /**
      * @var string
      */
-    protected $rppsUrl;
+    protected $cps;
 
     /**
      * @var string
      */
-    protected $cpsUrl;
+    protected $rpps;
 
-    /**
-     * @var FileProcessor
-     */
-    protected $fileProcessor;
 
     /**
      * RPPSService constructor.
@@ -45,207 +43,91 @@ class RPPSService
      */
     public function __construct(string $cpsUrl,string $rppsUrl,FileProcessor $fileProcessor,EntityManagerInterface $em)
     {
-        $this->rppsUrl = $rppsUrl;
-        $this->cpsUrl = $cpsUrl;
-        $this->fileProcessor = $fileProcessor;
-        $this->em = $em;
-    }
+        parent::__construct(RPPS::class,$fileProcessor,$em);
 
-
-    /**
-     * @param OutputInterface $output
-     * @return bool
-     * @throws \Exception
-     */
-    public function importRPPSData(OutputInterface $output) : bool
-    {
-        /** Handling RPPS File */
-        $input_rpps_file = $this->fileProcessor->getFile($this->rppsUrl,"rpps",true);
-
-        return $this->processRppsFile($output,$input_rpps_file);
+        $this->rpps = $rppsUrl;
+        $this->cps = $cpsUrl;
 
     }
 
-
     /**
-     * @param OutputInterface $output
-     * @return bool
-     * @throws \Exception
+     * @param array $data
+     * @param string $type
+     * @return RPPS|null
+     * @throws \Doctrine\ORM\NonUniqueResultException
      */
-    public function importCPSData(OutputInterface $output) : bool
+    protected function processData(array $data,string $type) : ?RPPS
     {
-        /** Handling RPPS File */
-        $file = $this->fileProcessor->getFile($this->cpsUrl,"cps",true);
-
-        return $this->processCpsFile($output,$file);
-
-    }
-
-
-    /**
-     * Parses a CSV file with ";" separator into a PHP array
-     * and persistsAdnFlushes them into the database.
-     *
-     * @param OutputInterface $output
-     * The output instance used to display message to the user.
-     *
-     * @param string $file
-     * The path of the file to be processed.
-     *
-     * @param int $batchSize
-     * The amount of data to pass before emptying doctrice cache
-     *
-     * @return integer
-     * Returns 0 if the whole process worked.
-     */
-    protected function processRppsFile(OutputInterface $output,string $file,int $batchSize = 20): int
-    {
-
-        $lineCount = $this->fileProcessor->getLinesCount($file);
-
-        // Showing when the rpps process is launched
-        $start = new \DateTime();
-        $output->writeln('<comment>Start : ' . $start->format('d-m-Y G:i:s') . ' | You have ' . $lineCount . ' lines to import from your RPPS file to your database ---</comment>');
-
-        // Will go through file by iterating on each line to save memory
-        if (($handle = fopen($file, "r")) !== FALSE) {
-
-            /** @var RPPSRepository rppsRepository */
-            $rppsRepository = $this->em->getRepository(RPPS::class);
-
-            $row = 0;
-
-            while (($data = fgetcsv($handle, 0, ";")) !== FALSE) {
-
-                if ($row > 0) { //Exits header of csv file
-
-                    $rpp = $rppsRepository->find($data[2]);
-
-                    if (null === $rpp) {
-
-                        $newRpps = new RPPS();
-                        $newRpps->setIdRpps($data[2]);
-                        $newRpps->setTitle($data[4]);
-                        $newRpps->setLastName($data[5]);
-                        $newRpps->setFirstName($data[6]);
-                        $newRpps->setSpecialty($data[8]);
-                        $newRpps->setAddress($data[24] . " " . $data[25] . " " . $data[27] . " " . $data[28] . " " . $data[29]);
-                        $newRpps->setZipcode($data[31]);
-                        $newRpps->setCity($data[30]);
-                        $newRpps->setPhoneNumber(str_replace(' ', '', $data[36]));
-                        $newRpps->setEmail($data[39]);
-                        $newRpps->setFinessNumber($data[18]);
-
-                        try {
-                            $this->em->persist($newRpps);
-                            $this->em->flush();
-                        }catch (\Exception $exception) {
-
-                            // Some rows have multiple entries
-                            if(false !== strpos($exception->getMessage()," Duplicate entry")) {
-                                continue;
-                            }
-
-                            throw $exception;
-
-                        }
-                    }
-                }
-
-                //Used to save some memory out of Doctrine every 20 lines
-                if (($row % $batchSize) === 0) {
-                    // Detaches all objects from Doctrine for memory save
-                    $this->em->clear();
-
-                    // Showing progression of the process
-                    $end = new \DateTime();
-                    $output->writeln($row . ' of lines imported out of ' . $lineCount . ' | ' . $end->format('d-m-Y G:i:s'));
-                }
-
-                $row++;
-            }
-
-            fclose($handle);
-
-            // Showing when the rpps process is done
-            $output->writeln('<comment>End of loading : (Started at ' . $start->format('d-m-Y G:i:s') . ' / Ended at ' . $end->format('d-m-Y G:i:s') . ' | You have imported all datas from your RPPS file to your database ---</comment>');
-
+        switch ($type)
+        {
+            case "cps" :
+                return $this->processCPS($data);
+            case "rpps" :
+                return $this->processRPPS($data);
         }
 
-        return true;
+        throw new \Exception("Type $type is not supported yet");
+
     }
 
     /**
-     * Parses a CSV file with "|" separator into a PHP array
-     * and check existing datas in database, to match an additionnal data.
+     * @param array $data
      *
-     * @param OutputInterface $output
-     * The output instance used to display message to the user.
+     * @return RPPS|null
      *
-     * @param string $file
-     * The path of the file to be processed.
-     *
-     * @param int $batchSize
-     * The amount of data to pass before emptying doctrice cache
-     *
-     * @return integer
-     * Returns 0 if the whole process worked.
+     * @throws \Doctrine\ORM\NonUniqueResultException
      */
-    protected function processCpsFile(OutputInterface $output,string $file,int $batchSize = 20): int
+    protected function processCPS(array $data): ?RPPS
     {
 
-        $lineCount = $this->fileProcessor->getLinesCount($file);
+        /** @var RPPS $rpps */
+        $rpps = $this->repository->find($data[1]);
 
-        // Showing when the cps process is launched
-        $start = new \DateTime();
-        $output->writeln('<comment>Start : ' . $start->format('d-m-Y G:i:s') . ' | You have ' . $lineCount . ' lines to go through on your CPS ---</comment>');
-
-        // Will go through file by iterating on each line to save memory
-        if (($handle = fopen($file, "r")) !== FALSE) {
-
-            /** @var RPPSRepository rppsRepository */
-            $rppsRepository = $this->em->getRepository(RPPS::class);
-
-            $row = 0;
-
-            while (($data = fgetcsv($handle, 1000, "|")) !== FALSE) {
-
-                if ($row > 0) { //Exits header of csv file
-
-                    //Checking if there is a match on the rpps number on both file
-                    //if so, we set the CPS number to the matching line, then
-                    //persistAndFlush
-                    if ($existingRpps = $rppsRepository->find($data[1])) {
-                        $existingRpps->setCpsNumber($data[11]);
-                        $this->em->persist($existingRpps);
-                        $this->em->flush();
-                    }
-                }
-
-                //Used to save some memory out of Doctrine every 20 lines
-                if (($row % $batchSize) === 0) {
-                    // Detaches all objects from Doctrine for memory save
-                    $this->em->clear();
-
-                    // Showing progression of the process
-                    $end = new \DateTime();
-                    $output->writeln($row . ' of lines imported out of ' . $lineCount . ' | ' . $end->format('d-m-Y G:i:s'));
-                }
-
-                $row++;
-            }
-
-            fclose($handle);
-
-            // Showing when the cps process is done
-            $output->writeln('<comment>End of loading :  (Started at ' . $start->format('d-m-Y G:i:s') . ' / Ended at ' . $end->format('d-m-Y G:i:s') . ' | You have imported all needed datas from your CPS file to your database ---</comment>');
-
+        if (null === $rpps) {
+            return null;
         }
 
-        unlink($file);
+        $rpps->setCpsNumber($data[11]);
 
-        return true;
+        return $rpps;
     }
 
+
+    /**
+     * @param array $data
+     *
+     * @return RPPS|null
+     *
+     * @throws \Doctrine\ORM\NonUniqueResultException
+     */
+    protected function processRPPS(array $data): ?RPPS
+    {
+
+        /** @var RPPS|null $rpps */
+        $rpps = $this->repository->find($data[2]);
+
+        if (null === $rpps) {
+            $rpps = new RPPS();
+        }
+
+        $rpps->setIdRpps($data[2]);
+        $rpps->setTitle($data[4]);
+        $rpps->setLastName($data[5]);
+        $rpps->setFirstName($data[6]);
+        $rpps->setSpecialty($data[8]);
+
+        if($data[12] && $data[13] == "S") {
+            $rpps->setSpecialty($data[12]);
+        }
+
+        $rpps->setAddress($data[24] . " " . $data[25] . " " . $data[27] . " " . $data[28] . " " . $data[29]);
+        $rpps->setZipcode($data[31]);
+        $rpps->setCity($data[30]);
+        $rpps->setPhoneNumber(str_replace(' ', '', $data[36]));
+        $rpps->setEmail($data[39]);
+        $rpps->setFinessNumber($data[18]);
+
+        return $rpps;
+    }
 
 }

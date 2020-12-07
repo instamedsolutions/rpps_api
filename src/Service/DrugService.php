@@ -3,7 +3,6 @@
 namespace App\Service;
 
 use App\Entity\Drug;
-use App\Entity\RPPS;
 use App\Repository\DrugRepository;
 use App\Repository\RPPSRepository;
 use Doctrine\ORM\EntityManagerInterface;
@@ -13,15 +12,8 @@ use Symfony\Component\HttpClient\HttpClient;
 /**
  * Contains all useful methods to process files and import them into database.
  */
-class DrugService
+class DrugService extends ImporterService
 {
-
-
-    /**
-     * @var EntityManagerInterface
-     */
-    protected $em;
-
 
     /**
      * @var string
@@ -49,114 +41,20 @@ class DrugService
      */
     protected $DRUGS_URL_CIS_InfoImportantes;
 
-    /**
-     * @var string
-     */
-    protected $cpsUrl;
-
-    /**
-     * @var FileProcessor
-     */
-    protected $fileProcessor;
-
-
-    /**
-     * @var DrugRepository
-     */
-    protected $repository;
 
 
     public function __construct(string $DRUGS_URL_CIS_InfoImportantes,string $DRUGS_URL_CIS_GENER_BDPM,string $DRUGS_URL_CIS_CPD_BDPM,string $DRUGS_URL_CIS_BDPM,string $DRUGS_URL_CIS_CIP_BDPM,FileProcessor $fileProcessor,EntityManagerInterface $em)
     {
+        parent::__construct(Drug::class,$fileProcessor,$em);
+
         $this->DRUGS_URL_CIS_BDPM = $DRUGS_URL_CIS_BDPM;
         $this->DRUGS_URL_CIS_CIP_BDPM = $DRUGS_URL_CIS_CIP_BDPM;
         $this->DRUGS_URL_CIS_CPD_BDPM = $DRUGS_URL_CIS_CPD_BDPM;
         $this->DRUGS_URL_CIS_GENER_BDPM = $DRUGS_URL_CIS_GENER_BDPM;
         $this->DRUGS_URL_CIS_InfoImportantes = $DRUGS_URL_CIS_InfoImportantes;
 
-        $this->fileProcessor = $fileProcessor;
-        $this->em = $em;
-        $this->repository = $this->em->getRepository(Drug::class);
     }
 
-
-    /**
-     * @param OutputInterface $output
-     * @return bool
-     * @throws \Exception
-     */
-    public function importFile(OutputInterface $output,string $type) : bool
-    {
-        /** Handling File File */
-        $file = $this->fileProcessor->getFile($this->$type,$type);
-
-        $process = $this->processFile($output,$file,$type);
-
-        unlink($file);
-
-        return $process;
-    }
-
-
-    /**
-     * @param OutputInterface $output
-     * @param string $file
-     * @param string $type
-     * @param int $batchSize
-     * @return bool
-     * @throws \Exception
-     */
-    protected function processFile(OutputInterface $output,string $file,string $type,int $batchSize = 20)
-    {
-        $lineCount = $this->fileProcessor->getLinesCount($file);
-
-        // Showing when the drugs process is launched
-        $start = new \DateTime();
-        $output->writeln('<comment>Start : ' . $start->format('d-m-Y G:i:s') . ' | You have ' . $lineCount . ' lines to import from your ' . $type . ' file to your database ---</comment>');
-
-        // Will go through file by iterating on each line to save memory
-        if (($handle = fopen($file, "r")) !== FALSE) {
-
-            /** @var DrugRepository $repo */
-            $repo = $this->em->getRepository(Drug::class);
-
-            $row = 0;
-
-            while (($data = fgetcsv($handle, 0, "\t")) !== FALSE) {
-
-                $data = array_map(function ($d) {
-                    return utf8_encode($d);
-                },$data);
-
-                $drug = $this->processData($data,$type);
-
-                if($drug instanceof Drug) {
-                    $this->em->persist($drug);
-                    $this->em->flush();
-                }
-
-                //Used to save some memory out of Doctrine every 20 lines
-                if (($row % $batchSize) === 0) {
-                    // Detaches all objects from Doctrine for memory save
-                    $this->em->clear();
-
-                    // Showing progression of the process
-                    $end = new \DateTime();
-                    $output->writeln($row . ' of lines imported out of ' . $lineCount . ' | ' . $end->format('d-m-Y G:i:s'));
-                }
-
-                $row++;
-            }
-
-            fclose($handle);
-
-            // Showing when the rpps process is done
-            $output->writeln('<comment>End of loading : (Started at ' . $start->format('d-m-Y G:i:s') . ' / Ended at ' . $end->format('d-m-Y G:i:s') . ' | You have imported all datas from your RPPS file to your database ---</comment>');
-
-        }
-
-        return true;
-    }
 
 
     /**
@@ -255,6 +153,7 @@ class DrugService
     protected function processCipBDPM(array $data): ?Drug
     {
 
+        /** @var Drug $drug */
         $drug = $this->repository->find($data[0]);
 
         if (null === $drug) {
