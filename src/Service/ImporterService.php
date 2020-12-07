@@ -59,14 +59,13 @@ abstract class ImporterService
     /**
      * @param OutputInterface $output
      * @param string $type
-     * @param false $isZip
      * @return bool
      * @throws \Doctrine\ORM\NonUniqueResultException
      */
-    public function importFile(OutputInterface $output,string $type,$isZip = false) : bool
+    public function importFile(OutputInterface $output,string $type) : bool
     {
         /** Handling File File */
-        $file = $this->fileProcessor->getFile($this->$type,$type,$isZip);
+        $file = $this->fileProcessor->getFile($this->$type,$type);
 
         $process = $this->processFile($output,$file,$type);
 

@@ -50,6 +50,34 @@ class RPPSService extends ImporterService
 
     }
 
+
+
+    /**
+     * @param OutputInterface $output
+     * @return bool
+     * @throws \Exception
+     */
+    public function importFile(OutputInterface $output,string $type) : bool
+    {
+        /** Handling File File */
+        $file = $this->fileProcessor->getFile($this->$type,$type,true);
+
+        if($type === "rpps") {
+            $options = array('delimiter' => ";", "utf8" => true, "headers" => true);
+        } else if($type === "cps") {
+            $options = array('delimiter' => "|", "utf8" => false, "headers" => true);
+        } else {
+            throw new \Exception("Type $type not working");
+        }
+
+        $process = $this->processFile($output,$file,$type,$options);
+
+        unlink($file);
+
+        return $process;
+    }
+
+
     /**
      * @param array $data
      * @param string $type
@@ -79,6 +107,7 @@ class RPPSService extends ImporterService
      */
     protected function processCPS(array $data): ?RPPS
     {
+
 
         /** @var RPPS $rpps */
         $rpps = $this->repository->find($data[1]);

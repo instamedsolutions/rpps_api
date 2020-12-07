@@ -7,6 +7,7 @@ use App\Service\RPPSService;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
+use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 
 
@@ -53,6 +54,13 @@ class RppsImport extends Command
     {
         $this->setDescription('Import RPPS File into database')
             ->setHelp('This command will import a RPPS CSV file into your database.');
+
+        $this->addOption(
+            'process',
+            'pr',
+            InputOption::VALUE_OPTIONAL,
+            'the process you want to run'
+        );
     }
 
 
@@ -63,6 +71,9 @@ class RppsImport extends Command
      */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
+
+        $process = $input->getOption("process");
+
         try {
             // Turning off doctrine default logs queries for saving memory
             $this->em->getConnection()->getConfiguration()->setSQLLogger(null);
@@ -71,20 +82,11 @@ class RppsImport extends Command
             $start = new \DateTime();
             $output->writeln('<comment>' . $start->format('d-m-Y G:i:s') . ' Start processing :---</comment>');
 
-
-            $rpps = $this->rppsService->importFile($output,"rpps",true);
-
-            //Checking failure
-            if ($rpps !== true) {
-                $output->writeln("RPPS Load Failed");
-                return Command::FAILURE;
-            }
-
-            $cps = $this->rppsService->importFile($output,"cps",true);
-
-            if($cps !== true) {
-                $output->writeln("CPS Load Failed");
-                return Command::FAILURE;
+            if($process) {
+                $this->rppsService->importFile($output, $process);
+            } else {
+                $this->rppsService->importFile($output, "rpps");
+                $this->rppsService->importFile($output,"cps");
             }
 
             // Showing when the cps process is launched
@@ -97,7 +99,7 @@ class RppsImport extends Command
 
         } catch(\Exception $e){
             error_log($e->getMessage());
-            $output->writeln($e->getMessage());
+            $output->writeln($e->getTraceAsString());
             return Command::FAILURE;
 
         }

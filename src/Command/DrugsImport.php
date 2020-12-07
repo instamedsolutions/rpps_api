@@ -68,7 +68,8 @@ class DrugsImport extends Command
             'pr',
             InputOption::VALUE_OPTIONAL,
             'the process you want to run'
-        );    }
+        );
+    }
 
 
     /**
