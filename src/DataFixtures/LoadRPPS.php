@@ -46,7 +46,9 @@ class LoadRPPS extends Fixture
             if(in_array($i,array(0,2,3))) {
                 $rpps->setFinessNumber("{$j}{$j}{$j}{$j}{$j}{$j}{$j}{$j}{$j}");
             }
-            $rpps->setEmail("$user@instamed.fr");
+            if(in_array($i,array(0,4,5))) {
+                $rpps->setEmail(strtolower("$user@instamed.fr"));
+            }
 
             if(in_array($i,array(0,1,4))) {
                 $rpps->setAddress($faker->streetAddress);

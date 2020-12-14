@@ -4,16 +4,11 @@ namespace App\Command;
 
 use App\DataFixtures\LoadRPPS;
 use App\Entity\RPPS;
-use App\Service\DrugService;
-use App\Service\FileProcessor;
-use App\Service\RPPSService;
 use Doctrine\Common\DataFixtures\Executor\ORMExecutor;
-use Doctrine\Common\DataFixtures\Purger\ORMPurger;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bridge\Doctrine\DataFixtures\ContainerAwareLoader;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
-use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\HttpKernel\KernelInterface;
 
@@ -77,9 +72,21 @@ class CreateTestData extends Command
         $data = $this->em->getRepository(RPPS::class)->find("111111111111");
 
         if($data instanceof RPPS) {
-            $output->writeln("Vous avez déjà des données de test chargées");
+            $output->writeln("Existing data, deletion of the data in progress");
 
-            return Command::FAILURE;
+            for ($j = 1;$j <= 6;$j++) {
+                $id = "{$j}{$j}{$j}{$j}{$j}{$j}{$j}{$j}{$j}{$j}{$j}{$j}";
+
+                $rpps = $this->em->getRepository(RPPS::class)->find($id);
+
+                if($rpps instanceof RPPS) {
+                    $this->em->remove($rpps);
+                }
+
+            }
+
+            $this->em->flush();
+
         }
 
         $loader = new ContainerAwareLoader($this->kernel->getContainer());
