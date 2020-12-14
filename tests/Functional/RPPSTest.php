@@ -36,8 +36,22 @@ class RPPSTest extends ApiTestCase
         $this->assertEquals("TEST",$data['hydra:member'][0]['lastName']);
 
         $this->assertCount(1,$data['hydra:member']);
+    }
 
-        self::dump($data);
+    /**
+     * @throws ClientExceptionInterface
+     * @throws RedirectionExceptionInterface
+     * @throws ServerExceptionInterface
+     * @throws TransportExceptionInterface
+     */
+    public function testGetRppsData()
+    {
+
+        $data = $this->get("rpps/111111111111");
+
+        $this->assertResponseStatusCodeSame(Response::HTTP_OK);
+        $this->assertEquals("Bastien",$data['firstName']);
+        $this->assertEquals("TEST",$data['lastName']);
 
     }
 
