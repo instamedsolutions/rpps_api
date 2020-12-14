@@ -30,7 +30,7 @@ class RppsRepositoryTest extends KernelTestCase
         // add all your fixtures classes that implement
         // Doctrine\Common\DataFixtures\FixtureInterface
         $this->loadFixtures(array(
-            'App\DataFixtures\RppsFixtures'
+            'App\DataFixtures\LoadRPPS'
         ));
 
         $rppsDatas = new RPPS();
@@ -45,7 +45,7 @@ class RppsRepositoryTest extends KernelTestCase
             }
 
             $this->assertEquals(5, $count);
-        
+
     }
 
 }

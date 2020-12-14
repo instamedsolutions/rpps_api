@@ -7,6 +7,9 @@
         "php": ">=7.2.5",
         "ext-ctype": "*",
         "ext-iconv": "*",
+        "ext-curl": "*",
+        "ext-zip": "*",
+        "ext-json": "*",
         "api-platform/core": "^2.5",
         "composer/package-versions-deprecated": "1.11.99.1",
         "doctrine/annotations": "^1.0",
@@ -29,18 +32,19 @@
         "symfony/twig-bundle": "5.1.*",
         "symfony/validator": "5.1.*",
         "symfony/yaml": "5.1.*",
-        "twig/twig": "^2.0",
-      "ext-curl": "*",
-        "ext-zip": "*"
+        "twig/twig": "^2.0"
     },
     "require-dev": {
         "doctrine/doctrine-fixtures-bundle": "^3.4",
         "liip/test-fixtures-bundle": "^1.0.0",
+        "phpunit/phpunit": "^9.5",
         "symfony/browser-kit": "5.1.*",
         "symfony/css-selector": "5.1.*",
+        "symfony/debug-bundle": "5.1.*",
         "symfony/maker-bundle": "^1.23",
         "symfony/phpunit-bridge": "^5.2",
-        "symfony/var-dumper": "5.1.*"
+        "symfony/var-dumper": "5.1.*",
+        "symfony/web-profiler-bundle": "5.1.*"
     },
     "config": {
         "optimize-autoloader": true,

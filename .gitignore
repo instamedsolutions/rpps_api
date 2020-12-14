@@ -19,3 +19,8 @@
 
 .DS_Store
 .composer.phar.icloud
+
+###> phpunit/phpunit ###
+/phpunit.xml
+.phpunit.result.cache
+###< phpunit/phpunit ###
