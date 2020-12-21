@@ -320,7 +320,13 @@ class Drug
      */
     public function getName(): ?string
     {
-        return $this->name;
+        if(null === $this->name) {
+            return null;
+        }
+
+        return explode(',',$this->name)[0];
+
+     //   return $this->name;
     }
 
     /**
