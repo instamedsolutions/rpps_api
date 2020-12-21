@@ -65,6 +65,7 @@ final class DrugsFilter extends AbstractContextAwareFilter
 
         $queryBuilder->andWhere("$alias.name LIKE :$end");
 
+        $value = trim(preg_replace('#\s+#', ' ', $value));
         $value = str_replace(" ","%",$value);
 
         $queryBuilder->setParameter($end,  "%$value%");
