@@ -12,6 +12,7 @@ use Doctrine\ORM\QueryBuilder;
 final class DrugsFilter extends AbstractContextAwareFilter
 {
 
+    use FilterTrait;
 
     /**
      * @var QueryNameGeneratorInterface
@@ -65,8 +66,7 @@ final class DrugsFilter extends AbstractContextAwareFilter
 
         $queryBuilder->andWhere("$alias.name LIKE :$end");
 
-        $value = trim(preg_replace('#\s+#', ' ', $value));
-        $value = str_replace(" ","%",$value);
+        $value = $this->cleanValue($value);
 
         $queryBuilder->setParameter($end,  "%$value%");
 

@@ -90,7 +90,7 @@ class RPPS
      *     }
      * )
      *
-     * @ORM\Column(type="string", length=255, nullable=true)
+     * @ORM\Column(type="string", length=255, nullable=true, options={"collation":"utf8mb4_0900_ai_ci"})
      */
     protected $lastName;
 
@@ -108,7 +108,7 @@ class RPPS
      *     }
      * )
      *
-     * @ORM\Column(type="string", length=255, nullable=true)
+     * @ORM\Column(type="string", length=255, nullable=true, options={"collation":"utf8mb4_0900_ai_ci"})
      */
     protected $firstName;
 

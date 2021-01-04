@@ -84,7 +84,7 @@ class Drug
      *     }
      * )
      *
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, options={"collation":"utf8mb4_0900_ai_ci"})
      */
     protected $name;
 
@@ -334,7 +334,7 @@ class Drug
      */
     public function setName(?string $name): void
     {
-        $this->name = $name;
+        $this->name = trim($name);
     }
 
     /**
@@ -374,7 +374,7 @@ class Drug
      */
     public function getOwner(): ?string
     {
-        return $this->owner;
+        return trim($this->owner);
     }
 
     /**
@@ -382,7 +382,7 @@ class Drug
      */
     public function setOwner(?string $owner): void
     {
-        $this->owner = $owner;
+        $this->owner = trim($owner);
     }
 
     /**

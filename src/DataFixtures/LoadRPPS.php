@@ -65,7 +65,7 @@ class LoadRPPS extends Fixture
         }
 
 
-        $manager->flush();
+        $this->em->flush();
     }
 
 

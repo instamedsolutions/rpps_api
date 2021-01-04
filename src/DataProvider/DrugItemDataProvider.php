@@ -55,7 +55,7 @@ final class DrugItemDataProvider implements ItemDataProviderInterface, Restricte
      * @param array $context
      * @return RPPS|null
      */
-    public function getItem(string $resourceClass, $id, string $operationName = null, array $context = []): ?RPPS
+    public function getItem(string $resourceClass, $id, string $operationName = null, array $context = []): ?Drug
     {
 
         return $this->em->getRepository(Drug::class)->find($id);

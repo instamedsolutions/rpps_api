@@ -6,6 +6,7 @@ namespace App\Tests\Functional;
 use ApiPlatform\Core\Bridge\Symfony\Bundle\Test\ApiTestCase as BaseTestCase;
 use ApiPlatform\Core\Bridge\Symfony\Bundle\Test\Client;
 use ApiPlatform\Core\Bridge\Symfony\Bundle\Test\Response;
+use App\DataFixtures\LoadDrugs;
 use App\DataFixtures\LoadRPPS;
 use App\Kernel;
 use Doctrine\Common\DataFixtures\Executor\ORMExecutor;
@@ -45,6 +46,7 @@ abstract class ApiTestCase extends BaseTestCase
      */
     public $fixtures = array(
         LoadRPPS::class,
+        LoadDrugs::class
     );
 
 

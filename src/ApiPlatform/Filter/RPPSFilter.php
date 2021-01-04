@@ -12,6 +12,8 @@ use Doctrine\ORM\QueryBuilder;
 final class RPPSFilter extends AbstractContextAwareFilter
 {
 
+    use FilterTrait;
+
 
     /**
      * @var QueryNameGeneratorInterface
@@ -63,8 +65,7 @@ final class RPPSFilter extends AbstractContextAwareFilter
         // Generate a unique parameter name to avoid collisions with other filters
         $end = $this->queryNameGenerator->generateParameterName("search");
 
-        $value = trim(preg_replace('#\s+#', ' ', $value));
-        $value = str_replace(" ","%",$value);
+        $value = $this->cleanValue($value);
 
         $query = "(
            CONCAT($alias.firstName,' ',$alias.lastName) LIKE :$end OR 
