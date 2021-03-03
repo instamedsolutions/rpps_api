@@ -27,14 +27,8 @@ use Misd\PhoneNumberBundle\Validator\Constraints\PhoneNumber as AssertPhoneNumbe
  * @UniqueEntity("idRpps")
  *
  */
-class RPPS
+class RPPS extends Thing implements Entity
 {
-    /**
-     * @ORM\Id()
-     * @ORM\GeneratedValue(strategy="UUID")
-     * @ORM\Column(type="guid",unique=true)
-     */
-    protected $id;
 
     /**
      *
@@ -244,16 +238,20 @@ class RPPS
      */
     protected $cpsNumber;
 
-    public function getId(): ?string
-    {
-        return $this->id;
-    }
 
+    /**
+     * @return string|null
+     */
     public function getIdRpps(): ?string
     {
         return $this->idRpps;
     }
 
+
+    /**
+     * @param string|null $id_rpps
+     * @return $this
+     */
     public function setIdRpps(?string $id_rpps): self
     {
         $this->idRpps = $id_rpps;
@@ -261,11 +259,20 @@ class RPPS
         return $this;
     }
 
+
+    /**
+     * @return string|null
+     */
     public function getTitle(): ?string
     {
         return $this->title;
     }
 
+
+    /**
+     * @param string|null $title
+     * @return $this
+     */
     public function setTitle(?string $title): self
     {
         $this->title = $title;
@@ -273,11 +280,20 @@ class RPPS
         return $this;
     }
 
+
+    /**
+     * @return string|null
+     */
     public function getLastName(): ?string
     {
         return mb_convert_case($this->lastName,MB_CASE_UPPER);
     }
 
+
+    /**
+     * @param string|null $lastName
+     * @return $this
+     */
     public function setLastName(?string $lastName): self
     {
         $this->lastName = $lastName;
@@ -285,11 +301,20 @@ class RPPS
         return $this;
     }
 
+
+    /**
+     * @return string|null
+     */
     public function getFirstName(): ?string
     {
         return mb_convert_case($this->firstName,MB_CASE_TITLE);
     }
 
+
+    /**
+     * @param string|null $firstName
+     * @return $this
+     */
     public function setFirstName(?string $firstName): self
     {
         $this->firstName = $firstName;
@@ -297,11 +322,20 @@ class RPPS
         return $this;
     }
 
+
+    /**
+     * @return string|null
+     */
     public function getSpecialty(): ?string
     {
         return $this->specialty;
     }
 
+
+    /**
+     * @param string|null $specialty
+     * @return $this
+     */
     public function setSpecialty(?string $specialty): self
     {
         $this->specialty = $specialty;
@@ -460,6 +494,16 @@ class RPPS
         return trim("{$this->shortTitle()} {$this->getFirstName()} {$this->getLastName()}");
 
     }
+
+
+    /**
+     * @return string
+     */
+    public function __toString() : string
+    {
+        return $this->getFullName();
+    }
+
 
     /**
      * @return string|null

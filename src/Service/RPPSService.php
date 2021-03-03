@@ -110,7 +110,7 @@ class RPPSService extends ImporterService
 
 
         /** @var RPPS $rpps */
-        $rpps = $this->repository->find($data[1]);
+        $rpps = $this->repository->find($data[0]);
 
         if (null === $rpps) {
             return null;
@@ -133,13 +133,13 @@ class RPPSService extends ImporterService
     {
 
         /** @var RPPS|null $rpps */
-        $rpps = $this->repository->find($data[2]);
+        $rpps = $this->repository->find($data[1]);
 
         if (null === $rpps) {
             $rpps = new RPPS();
         }
 
-        $rpps->setIdRpps($data[2]);
+        $rpps->setIdRpps($data[1]);
         $rpps->setTitle($data[4]);
         $rpps->setLastName($data[5]);
         $rpps->setFirstName($data[6]);

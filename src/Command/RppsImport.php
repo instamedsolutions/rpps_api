@@ -2,7 +2,6 @@
 
 namespace App\Command;
 
-use App\Service\FileProcessor;
 use App\Service\RPPSService;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Console\Command\Command;

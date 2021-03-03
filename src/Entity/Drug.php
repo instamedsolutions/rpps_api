@@ -23,7 +23,7 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
  * @ApiFilter(DrugsFilter::class,properties={"search"})
  *
  */
-class Drug
+class Drug extends Thing implements Entity
 {
 
     const GENERIC_LABEL_PRINCEPS = 1;
@@ -326,7 +326,7 @@ class Drug
 
         return explode(',',$this->name)[0];
 
-     //   return $this->name;
+        //   return $this->name;
     }
 
     /**
@@ -515,6 +515,16 @@ class Drug
     {
         $this->securityText = $securityText;
     }
+
+
+    /**
+     * @return string
+     */
+    public function __toString() : string
+    {
+        return (string)$this->getName();
+    }
+
 
 
 
