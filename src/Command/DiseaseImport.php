@@ -2,6 +2,7 @@
 
 namespace App\Command;
 
+use App\Service\DiseaseService;
 use App\Service\DrugService;
 use App\Service\FileProcessor;
 use App\Service\RPPSService;
@@ -15,11 +16,11 @@ use Symfony\Component\Console\Output\OutputInterface;
 /**
  * Command to import file in empty database.
 **/
-class DrugsImport extends Command
+class DiseaseImport extends Command
 {
 
     // the name of the command (the part after "bin/console")
-    protected static $defaultName = 'app:drugs:import';
+    protected static $defaultName = 'app:disease:import';
 
 
     /**
@@ -33,24 +34,18 @@ class DrugsImport extends Command
     protected $projectDir;
 
     /**
-     * @var DrugService
+     * @var DiseaseService
      */
-    protected $drugService;
+    protected $diseaseService;
 
 
-    /**
-     * RppsImport constructor.
-     * @param RPPSService $RPPSService
-     * @param string $projectDir
-     * @param EntityManagerInterface $entityManager
-     * @param FileProcessor $fileProcessor
-     */
-    public function __construct(DrugService $drugService, EntityManagerInterface $entityManager)
+
+    public function __construct(DiseaseService $diseaseService, EntityManagerInterface $entityManager)
     {
 
         parent::__construct(self::$defaultName);
 
-        $this->drugService = $drugService;
+        $this->diseaseService = $diseaseService;
         $this->em = $entityManager;
     }
 
@@ -60,8 +55,8 @@ class DrugsImport extends Command
      */
     protected function configure()
     {
-        $this->setDescription('Import Drugs File into database')
-            ->setHelp('This command will import all drugs data.');
+        $this->setDescription('Import all diseases File into database')
+            ->setHelp('This command will import all diseases data.');
 
         $this->addOption(
             'process',
@@ -80,6 +75,7 @@ class DrugsImport extends Command
     protected function execute(InputInterface $input, OutputInterface $output)
     {
 
+
         $process = $input->getOption("process");
 
         try {
@@ -90,15 +86,8 @@ class DrugsImport extends Command
             $start = new \DateTime();
             $output->writeln('<comment>' . $start->format('d-m-Y G:i:s') . ' Start processing :---</comment>');
 
-            if($process) {
-                $this->drugService->importFile($output, $process);
-            } else {
-                $this->drugService->importFile($output, "DRUGS_URL_CIS_BDPM");
-                $this->drugService->importFile($output, "DRUGS_URL_CIS_CIP_BDPM");
-                $this->drugService->importFile($output, "DRUGS_URL_CIS_CPD_BDPM");
-                $this->drugService->importFile($output, "DRUGS_URL_CIS_GENER_BDPM");
-                $this->drugService->importFile($output, "DRUGS_URL_CIS_InfoImportantes");
-            }
+            $this->diseaseService->importFiles($output, "cim10");
+
             // Showing when the cps process is launched
             $end = new \DateTime();
             $output->writeln('<comment>' . $end->format('d-m-Y G:i:s') . ' Stop processing :---</comment>');

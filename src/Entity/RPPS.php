@@ -12,6 +12,7 @@ use libphonenumber\PhoneNumber;
 use libphonenumber\PhoneNumberUtil;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Misd\PhoneNumberBundle\Validator\Constraints\PhoneNumber as AssertPhoneNumber;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  *
@@ -31,6 +32,8 @@ class RPPS extends Thing implements Entity
 {
 
     /**
+     *
+     * @Groups({"read"})
      *
      * The unique RPPS identifier of the medic
      *
@@ -54,6 +57,8 @@ class RPPS extends Thing implements Entity
      *
      * The civility of the doctor
      *
+     * @Groups({"read"})
+     *
      * @ApiProperty(
      *     required=false,
      *     attributes={
@@ -71,6 +76,8 @@ class RPPS extends Thing implements Entity
     /**
      *
      * The last name of the doctor
+     *
+     * @Groups({"read"})
      *
      * @ApiFilter(SearchFilter::class, strategy="istart")
      *
@@ -92,6 +99,8 @@ class RPPS extends Thing implements Entity
      *
      * @ApiFilter(SearchFilter::class, strategy="istart")
      *
+     * @Groups({"read"})
+     *
      * @ApiProperty(
      *     required=false,
      *     attributes={
@@ -107,6 +116,8 @@ class RPPS extends Thing implements Entity
     protected $firstName;
 
     /**
+     *
+     * @Groups({"read"})
      *
      * @ApiProperty(
      *     required=false,
@@ -124,6 +135,8 @@ class RPPS extends Thing implements Entity
 
     /**
      *
+     * @Groups({"read"})
+     *
      * @ApiProperty(
      *     required=false,
      *     attributes={
@@ -139,6 +152,8 @@ class RPPS extends Thing implements Entity
     protected $address;
 
     /**
+     *
+     * @Groups({"read"})
      *
      * @ApiProperty(
      *     required=false,
@@ -156,6 +171,8 @@ class RPPS extends Thing implements Entity
 
     /**
      *
+     * @Groups({"read"})
+     *
      * @ApiProperty(
      *     required=false,
      *     attributes={
@@ -171,6 +188,8 @@ class RPPS extends Thing implements Entity
     protected $city;
 
     /**
+     *
+     * @Groups({"read"})
      *
      * @AssertPhoneNumber(defaultRegion="FR")
      *
@@ -191,6 +210,8 @@ class RPPS extends Thing implements Entity
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      *
+     * @Groups({"read"})
+     *
      * @ApiFilter(SearchFilter::class, strategy="exact")
      *
      * @ApiProperty(
@@ -208,6 +229,8 @@ class RPPS extends Thing implements Entity
 
     /**
      *
+     * @Groups({"read"})
+     *
      * @ApiProperty(
      *     required=false,
      *     attributes={
@@ -223,6 +246,8 @@ class RPPS extends Thing implements Entity
     protected $finessNumber;
 
     /**
+     *
+     * @Groups({"read"})
      *
      * @ApiProperty(
      *     required=false,
@@ -488,6 +513,12 @@ class RPPS extends Thing implements Entity
     }
 
 
+    /**
+     *
+     * @Groups({"read"})
+     *
+     * @return string
+     */
     public function getFullName() : string
     {
 

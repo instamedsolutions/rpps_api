@@ -1,0 +1,7 @@
+App\Entity\DiseaseGroup:
+  attributes:
+    allow_extra_attributes: false
+  collectionOperations:
+    get: ~
+  itemOperations:
+    get: ~

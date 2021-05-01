@@ -79,9 +79,9 @@ class FileProcessor
      * @param bool $isZip
      * If the file you're getting is a zip and needs to be unzipped
      *
-     * @return string
+     * @return array
      */
-    public function getFile(string $url,$name = "file",$isZip = false) : string
+    public function getFiles(string $url,$name = "file",$isZip = false) : array
     {
 
         $ext = $isZip ? "zip" : "txt";
@@ -105,21 +105,36 @@ class FileProcessor
         fclose($fileHandler);
 
         if(!$isZip) {
-            return $filePath;
+            return [$filePath];
         }
 
         $zip = new \ZipArchive();
 
         $zip->open($filePath);
         $zip->extractTo($this->projectDir."/var/$name");
-        $fileName = $this->projectDir . "/var/$name/" . $zip->getNameIndex(0);
+        $files = [];
+        for ($i = 0; $i < $zip->numFiles; $i++) {
+            $files[] = $this->projectDir . "/var/$name/" . $zip->getNameIndex($i);
+        }
         $zip->close();
 
         // Delete zip
         unlink($filePath);
 
-        return $fileName;
+        return $files;
 
+    }
+
+
+    /**
+     * @param string $url
+     * @param string $name
+     * @param false $isZip
+     * @return string
+     */
+    public function getFile(string $url,$name = "file",$isZip = false) : string
+    {
+        return $this->getFiles($url,$name,$isZip)[0];
     }
 
 

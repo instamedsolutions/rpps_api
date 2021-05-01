@@ -39,6 +39,10 @@ services:
             $rppsUrl: '%env(RPPS_URL)%'
             $cpsUrl: '%env(CPS_URL)%'
 
+    App\Service\DiseaseService:
+        arguments:
+            $cim10Url: '%env(CIM_10_URL)%'
+
     App\Service\DrugService:
         arguments:
             $DRUGS_URL_CIS_BDPM: '%env(DRUGS_URL_CIS_BDPM)%'
@@ -51,6 +55,11 @@ services:
         decorates: 'api_platform.swagger.normalizer.api_gateway'
         arguments: [ '@App\Swagger\SwaggerDecorator.inner' ]
         autoconfigure: false
+
+    App\Serializer\GroupsContextBuilder:
+        decorates: 'api_platform.serializer.context_builder'
+        arguments:
+            $decorated: '@App\Serializer\GroupsContextBuilder.inner'
 
 
     App\Doctrine\EntityListener\ThingListener:

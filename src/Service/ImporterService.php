@@ -40,6 +40,9 @@ abstract class ImporterService
      */
     protected $entity;
 
+
+    protected $clearable = true;
+
     /**
      * ImporterService constructor.
      * @param string $entity
@@ -51,6 +54,16 @@ abstract class ImporterService
 
         $this->fileProcessor = $fileProcessor;
         $this->em = $em;
+
+        $this->init($entity);
+    }
+
+
+    /**
+     * @param string $entity
+     */
+    protected function init(string $entity)
+    {
         $this->repository = $this->em->getRepository($entity);
         $this->entity = $entity;
     }
@@ -75,6 +88,7 @@ abstract class ImporterService
     }
 
 
+
     /**
      * @param OutputInterface $output
      * @param string $file
@@ -95,7 +109,7 @@ abstract class ImporterService
         $output->writeln('<comment>Start : ' . $start->format('d-m-Y G:i:s') . ' | You have ' . $lineCount . ' lines to import from your ' . $type . ' file to your database ---</comment>');
 
         // Will go through file by iterating on each line to save memory
-        if (($handle = fopen($file, "r")) !== FALSE) {
+        if (($handle = fopen($file, "r")) !== false) {
 
             $row = 0;
 
@@ -104,6 +118,12 @@ abstract class ImporterService
                 if($options['headers'] && 0 === $row) {
                     $row++;
                     continue;
+                }
+
+                // https://stackoverflow.com/questions/20124630/strange-characters-in-first-row-of-array-after-fgetcsv
+                // Remove BOM
+                if(0 === $row) {
+                    $data[0] =  $data[0] = preg_replace('/\x{EF}\x{BB}\x{BF}/', '', $data[0]);
                 }
 
                 if(!$options['utf8']) {
@@ -121,8 +141,10 @@ abstract class ImporterService
 
                 //Used to save some memory out of Doctrine every 20 lines
                 if (($row % $batchSize) === 0) {
-                    // Detaches all objects from Doctrine for memory save
-                    $this->em->clear();
+                    if($this->isClearable()) {
+                        // Detaches all objects from Doctrine for memory save
+                        $this->em->clear();
+                    }
 
                     // Showing progression of the process
                     $end = new \DateTime();
@@ -140,6 +162,19 @@ abstract class ImporterService
         }
 
         return true;
+    }
+
+
+    /**
+     * @param bool $clearable
+     */
+    public function setClearalbe(bool $clearable){
+        $this->clearable = $clearable;
+    }
+
+    public function isClearable() : bool
+    {
+        return $this->clearable;
     }
 
 

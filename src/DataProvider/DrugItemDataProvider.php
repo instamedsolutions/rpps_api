@@ -53,7 +53,7 @@ final class DrugItemDataProvider implements ItemDataProviderInterface, Restricte
      * @param array|int|string $id
      * @param string|null $operationName
      * @param array $context
-     * @return RPPS|null
+     * @return Drug|null
      */
     public function getItem(string $resourceClass, $id, string $operationName = null, array $context = []): ?Drug
     {

@@ -9,6 +9,8 @@ use App\ApiPlatform\Filter\DrugsFilter;
 use App\Repository\DrugRepository;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Symfony\Component\Serializer\Annotation\Groups;
+use Symfony\Component\Serializer\Annotation\SerializedName;
 
 /**
  *
@@ -34,21 +36,14 @@ class Drug extends Thing implements Entity
 
     const GENERIC_LABEL_GENERIC_SUBSTITUABLE = 3;
 
-    /**
-     *
-     * @var string
-     *
-     * @ORM\Id()
-     * @ORM\GeneratedValue(strategy="UUID")
-     * @ORM\Column(type="guid",unique=true)
-     */
-    protected $id;
 
     /**
      *
      * @var string|null
      *
      * The unique CIS Id in the government database
+     *
+     * @Groups({"read"})
      *
      * @ApiFilter(SearchFilter::class, strategy="exact")
      *
@@ -92,6 +87,8 @@ class Drug extends Thing implements Entity
      *
      * @var string|null
      *
+     * @Groups({"read"})
+     *
      * @ApiProperty(
      *     required=true,
      *     attributes={
@@ -109,6 +106,8 @@ class Drug extends Thing implements Entity
     /**
      *
      * @var array
+     *
+     * @Groups({"read"})
      *
      * @ApiProperty(
      *     required=true,
@@ -130,6 +129,8 @@ class Drug extends Thing implements Entity
     /**
      * @var string|null
      *
+     * @Groups({"read"})
+     *
      * The pharmaceutical company owning the drug
      *
      * @ApiProperty(
@@ -150,6 +151,8 @@ class Drug extends Thing implements Entity
     /**
      * @var string|null
      *
+     * @Groups({"read"})
+     *
      * @ApiProperty(
      *     required=true,
      *     attributes={
@@ -167,6 +170,8 @@ class Drug extends Thing implements Entity
 
     /**
      * @var array|null
+     *
+     * @Groups({"drugs:item:read"})
      *
      * @ApiProperty(
      *     required=true,
@@ -189,6 +194,9 @@ class Drug extends Thing implements Entity
      *
      * @var float|null
      *
+     *
+     * @Groups({"drugs:item:read"})
+     *
      * @ApiProperty(
      *     required=true,
      *     attributes={
@@ -206,6 +214,8 @@ class Drug extends Thing implements Entity
     /**
      *
      * @var string|null
+     *
+     * @Groups({"drugs:item:read"})
      *
      * @ApiProperty(
      *     required=true,
@@ -225,6 +235,8 @@ class Drug extends Thing implements Entity
      *
      * @var string|null
      *
+     * @Groups({"drugs:item:read"})
+     *
      * @ApiProperty(
      *     required=true,
      *     attributes={
@@ -243,6 +255,8 @@ class Drug extends Thing implements Entity
      *
      * @var int|null
      *
+     * @Groups({"drugs:item:read"})
+     *
      * @ApiProperty(
      *     required=true,
      *     attributes={
@@ -260,6 +274,8 @@ class Drug extends Thing implements Entity
     /**
      *
      * @var string|null
+     *
+     * @Groups({"drugs:item:read"})
      *
      * @ApiProperty(
      *     required=false,
@@ -285,6 +301,8 @@ class Drug extends Thing implements Entity
     /**
      *
      * @var string|null
+     *
+     * @Groups({"drugs:item:read"})
      *
      * @ORM\Column(type="text", nullable=true)
      */
@@ -324,9 +342,31 @@ class Drug extends Thing implements Entity
             return null;
         }
 
-        return explode(',',$this->name)[0];
+        return $this->name;
+    }
 
-        //   return $this->name;
+    /**
+     *
+     * @Groups({"read"})
+     *
+     * @SerializedName("name")
+     *
+     * @return string|null
+     */
+    public function getShortName() : ?string
+    {
+        return $this->splitName()[0];
+    }
+
+    /**
+     *
+     * @Groups({"read"})
+     *
+     * @return string|null
+     */
+    public function getFormat() : ?string
+    {
+        return $this->splitName()[1];
     }
 
     /**
@@ -342,7 +382,7 @@ class Drug extends Thing implements Entity
      */
     public function getPharmaceuticalForm(): ?string
     {
-        return $this->pharmaceuticalForm;
+        return preg_replace("#\s+#"," ",$this->pharmaceuticalForm);
     }
 
     /**
@@ -522,10 +562,29 @@ class Drug extends Thing implements Entity
      */
     public function __toString() : string
     {
-        return (string)$this->getName();
+        return (string)$this->getShortName();
     }
 
 
+
+    protected function splitName()
+    {
+        $name = $this->getName();
+
+        $separator = ",";
+        // Remove last part of the name
+        $name = explode($separator,$name);
+        if(count($name) === 1) {
+            $separator = ".";
+            $name = explode($separator,$name[0]);
+        }
+
+        $format = trim(array_pop($name));
+        $name = implode($separator,$name);
+
+        return [$name,$format];
+
+    }
 
 
 

@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use DateTime;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  *
@@ -15,6 +16,8 @@ abstract class Thing implements Entity
     /**
      *
      * @var string
+     *
+     * @Groups({"read"})
      *
      * @ORM\Id()
      * @ORM\GeneratedValue(strategy="UUID")
@@ -64,6 +67,28 @@ abstract class Thing implements Entity
     {
         $this->createdDate = $createdDate;
     }
+
+    /**
+     *
+     * Function replacing Maj to dashed
+     *
+     * https://stackoverflow.com/questions/1993721/how-to-convert-pascalcase-to-pascal-case
+     *
+     * @param $word
+     * @return string
+     */
+    public static function decamelize(string $word) : string
+    {
+
+        $word = lcfirst($word);
+
+        return strtolower(preg_replace(
+            '/(^|[a-z])([A-Z])/',
+            strtolower(strlen("\\1") ? "\\1_\\2" : "\\2"),
+            $word
+        ));
+    }
+
 
     /**
      * @return string
