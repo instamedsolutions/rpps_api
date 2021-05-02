@@ -8,7 +8,7 @@ services:
     build:
       context: ./
       dockerfile: ./docker/apache/Dockerfile
-    container_name: instamed-apache-container
+    container_name: api-apache-container
     restart: always
     ports:
       - 8001:443
@@ -21,7 +21,7 @@ services:
 
   app-data:
     image: alpine:3
-    container_name: instamed-app-data-container
+    container_name: api-app-data-container
     volumes:
       - ./:/var/www/html/
       # if you are on windows, improve performance
@@ -32,7 +32,7 @@ services:
 
   mysql:
     image: mysql:5
-    container_name: instamed-mysql-container
+    container_name: api-mysql-container
     restart: always
     ports:
       - 3307:3306
@@ -48,7 +48,7 @@ services:
 
   phpmyadmin:
     image: phpmyadmin/phpmyadmin:5
-    container_name: instamed-phpmyadmin-container
+    container_name: api-phpmyadmin-container
     ports:
       - 8080:80
     links:

@@ -53,10 +53,6 @@ RUN php /usr/local/bin/composer config --global --auth github-oauth.github.com 7
 
 RUN rm -vf /var/lib/apt/lists/* && apt-get update && apt-get install -y git
 
-RUN curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add -
-RUN echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list
-RUN apt-get update && apt-get install yarn
-
 WORKDIR /var/www/html
 
 ADD https://github.com/mlocati/docker-php-extension-installer/releases/latest/download/install-php-extensions /usr/local/bin/
@@ -70,7 +66,6 @@ COPY  ./docker/apache/custom.ini /usr/local/etc/php/conf.d/custom.ini
 
 RUN openssl req -x509 -nodes -days 365 -newkey rsa:2048 -subj "/C=FR/ST=Ile-De-France/L=Paris/O=Instamed/OU=IT Department/CN=localhost" -keyout /etc/ssl/private/apache-selfsigned.key -out /etc/ssl/certs/apache-selfsigned.crt
 
-RUN chmod -R 777 /var/www/html/config/sites
 RUN composer install
 RUN php bin/console assets:install --symlink
 
