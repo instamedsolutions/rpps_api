@@ -2,10 +2,6 @@ version: '2.4'
 
 volumes:
   db-data:
-  caddy_data:
-  caddy_config:
-  elasticsearch-data:
-    driver: local
 
 services:
   apache:
