@@ -13,6 +13,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use App\Repository\DiseaseRepository;
 use Symfony\Component\Serializer\Annotation\Groups;
+use Symfony\Component\Serializer\Annotation\MaxDepth;
 
 /**
  *
@@ -88,6 +89,8 @@ class Disease extends Thing implements Entity
      *
      * @Groups({"diseases:item:read"})
      *
+     * @MaxDepth(2)
+     *
      * The parent disease (if any)
      *
      * @ORM\ManyToOne(targetEntity="Disease", inversedBy="children", cascade={"persist"})
@@ -100,7 +103,10 @@ class Disease extends Thing implements Entity
      *
      * @Groups({"diseases:read"})
      *
-     * The subgroup the disease is a part of
+     * @MaxDepth(1)
+     *
+     * The subgroup the disease is a part of.
+     * A group is itself linked to a category
      *
      * @ORM\ManyToOne(targetEntity="DiseaseGroup", cascade={"persist"})
      */
@@ -109,7 +115,9 @@ class Disease extends Thing implements Entity
     /**
      * @var DiseaseGroup|null
      *
-     * The main category the disease is a part of
+     * The main category the disease is a part of.
+     *
+     * @MaxDepth(1)
      *
      * @Groups({"diseases:read"})
      *

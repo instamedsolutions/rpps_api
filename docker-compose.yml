@@ -1,0 +1,61 @@
+version: '2.4'
+
+volumes:
+  db-data:
+  caddy_data:
+  caddy_config:
+  elasticsearch-data:
+    driver: local
+
+services:
+  apache:
+    build:
+      context: ./
+      dockerfile: ./docker/apache/Dockerfile
+    container_name: instamed-apache-container
+    restart: always
+    ports:
+      - 8001:443
+    volumes_from:
+      - app-data
+    links:
+      - mysql
+    # command: >
+    #   bash -c "yarn run encore dev --watch"
+
+  app-data:
+    image: alpine:3
+    container_name: instamed-app-data-container
+    volumes:
+      - ./:/var/www/html/
+      # if you are on windows, improve performance
+      # - vendor:/var/www/html/vendor/:delegated
+      # - var:/var/www/html/var/:delegated
+
+    command: "true"
+
+  mysql:
+    image: mysql:5
+    container_name: instamed-mysql-container
+    restart: always
+    ports:
+      - 3307:3306
+    volumes:
+      - db-data:/var/lib/mysql
+      - ./docker/mysql/:/home/mysql/
+      - ./docker/mysql/my.cnf:/etc/mysql/conf.d/mysql.cnf
+    environment:
+      MYSQL_DATABASE: ${DATABASE_NAME}
+      MYSQL_USER: ${DATABASE_USER}
+      MYSQL_PASSWORD: ${DATABASE_PASSWORD}
+      MYSQL_ROOT_PASSWORD: root
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin:5
+    container_name: instamed-phpmyadmin-container
+    ports:
+      - 8080:80
+    links:
+      - mysql
+    environment:
+      PMA_HOST: mysql

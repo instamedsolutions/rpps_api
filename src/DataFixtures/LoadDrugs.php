@@ -34,7 +34,7 @@ class LoadDrugs extends Fixture
 
         $drug2 = new Drug();
         $drug2->setOwner("ACCORD HEALTHCARE FRANCE");
-        $drug2->setName("PARACETAMOL 500 mg");
+        $drug2->setName("PARACETAMOL 50,0 mg, comprimés effervescents");
         $drug2->setCisId("68634033");
         $drug2->setPresentationLabel("16 film(s) thermosoudé(s) papier polyéthylène aluminium P-A-M-éthylène (SURLYN) unitaires prédécoupés de 1 comprimé");
         $drug2->setPharmaceuticalForm("comprimé effervescent(e)");

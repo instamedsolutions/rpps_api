@@ -32,7 +32,7 @@ class DrugsTest extends ApiTestCase
         $data = $this->get("drugs",array('search' => "Paracétamol"));
 
         $this->assertResponseStatusCodeSame(Response::HTTP_OK);
-        $this->assertEquals("PARACETAMOL 500 mg",$data['hydra:member'][0]['name']);
+        $this->assertEquals("PARACETAMOL 50,0 mg",$data['hydra:member'][0]['name']);
         $this->assertEquals("68634033",$data['hydra:member'][0]['cisId']);
 
         $this->assertCount(1,$data['hydra:member']);

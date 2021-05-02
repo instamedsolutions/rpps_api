@@ -25,6 +25,8 @@ api_platform:
             mime_types: ['application/ld+json']
         json:
             mime_types: ['application/json']
+        jsonapi:
+            mime_types: [ 'application/vnd.api+json' ]
         html:
             mime_types: ['text/html']
         csv:
