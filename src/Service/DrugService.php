@@ -101,7 +101,6 @@ class DrugService extends ImporterService
             $drug->setCisId($data[0]);
         }
 
-        $drug = new Drug();
         $drug->setName($data[1]);
         $drug->setPharmaceuticalForm($data[2]);
 

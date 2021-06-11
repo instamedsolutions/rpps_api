@@ -2,6 +2,7 @@
 
 namespace App\Command;
 
+use App\Service\AllergenService;
 use App\Service\DrugService;
 use App\Service\FileProcessor;
 use App\Service\RPPSService;
@@ -15,11 +16,11 @@ use Symfony\Component\Console\Output\OutputInterface;
 /**
  * Command to import file in empty database.
 **/
-class DrugsImport extends Command
+class AllergenImport extends Command
 {
 
     // the name of the command (the part after "bin/console")
-    protected static $defaultName = 'app:drugs:import';
+    protected static $defaultName = 'app:allergen:import';
 
 
     /**
@@ -29,17 +30,18 @@ class DrugsImport extends Command
 
 
     /**
-     * @var DrugService
+     * @var AllergenService
      */
-    protected $drugService;
+    protected $allergenService;
 
 
-    public function __construct(DrugService $drugService, EntityManagerInterface $entityManager)
+
+    public function __construct(AllergenService $allergenService,EntityManagerInterface $entityManager)
     {
 
         parent::__construct(self::$defaultName);
 
-        $this->drugService = $drugService;
+        $this->allergenService = $allergenService;
         $this->em = $entityManager;
     }
 
@@ -49,15 +51,9 @@ class DrugsImport extends Command
      */
     protected function configure()
     {
-        $this->setDescription('Import Drugs File into database')
-            ->setHelp('This command will import all drugs data.');
+        $this->setDescription('Import Allergen File into database')
+            ->setHelp('This command will import all allergens data.');
 
-        $this->addOption(
-            'process',
-            'pr',
-            InputOption::VALUE_OPTIONAL,
-            'the process you want to run'
-        );
     }
 
 
@@ -68,8 +64,7 @@ class DrugsImport extends Command
      */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-
-        $process = $input->getOption("process");
+        $this->allergenService->setOutput($output);
 
         try {
             // Turning off doctrine default logs queries for saving memory
@@ -79,15 +74,8 @@ class DrugsImport extends Command
             $start = new \DateTime();
             $output->writeln('<comment>' . $start->format('d-m-Y G:i:s') . ' Start processing :---</comment>');
 
-            if($process) {
-                $this->drugService->importFile($output, $process);
-            } else {
-                $this->drugService->importFile($output, "DRUGS_URL_CIS_BDPM");
-                $this->drugService->importFile($output, "DRUGS_URL_CIS_CIP_BDPM");
-                $this->drugService->importFile($output, "DRUGS_URL_CIS_CPD_BDPM");
-                $this->drugService->importFile($output, "DRUGS_URL_CIS_GENER_BDPM");
-                $this->drugService->importFile($output, "DRUGS_URL_CIS_InfoImportantes");
-            }
+            $this->allergenService->parse();
+
             // Showing when the cps process is launched
             $end = new \DateTime();
             $output->writeln('<comment>' . $end->format('d-m-Y G:i:s') . ' Stop processing :---</comment>');
@@ -103,4 +91,5 @@ class DrugsImport extends Command
 
         }
     }
+
 }

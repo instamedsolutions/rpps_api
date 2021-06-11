@@ -1,0 +1,472 @@
+code,name,group
+g1,Flouve odorante,Pollens de graminées
+g2,Chiendent digité,Pollens de graminées
+g3,Dactyle pelotonné,Pollens de graminées
+g4,Fétuque des prés,Pollens de graminées
+g5,Ivraie vivace,Pollens de graminées
+g6,Phéole des prés,Pollens de graminées
+g7,Roseau à balai,Pollens de graminées
+g8,Pâturin des prés,Pollens de graminées
+g9,Agrostide,Pollens de graminées
+g10, Sorgho,Pollens de graminées
+g11, Brome,Pollens de graminées
+g12, Seigle,Pollens de graminées
+g13, Houlque laineuse,Pollens de graminées
+g14, Avoine,Pollens de graminées
+g15, Froment,Pollens de graminées
+g16, Vulpin des prés,Pollens de graminées
+g17, Herbe de Bahia,Pollens de graminées
+g70, Ivraie sauvage,Pollens de graminées
+g71, Alpiste,Pollens de graminées
+g201 ,Orge,Pollens de graminées
+g202 ,Maïs,Pollens de graminées
+Rg203 ,Herbe des prés salés,Pollens de graminées
+Rg204  ,Fromental,Pollens de graminées
+w1,Ambroisie,Pollens d'herbacées
+w2,Ambroisie à épi grêle,Pollens d'herbacées
+w3,Ambroisie trilobée,Pollens d'herbacées
+w4,Fausse ambroise,Pollens d'herbacées
+w5,Absinthe,Pollens d'herbacées
+w6,Armoise commune,Pollens d'herbacées
+w7,Grande marguerite,Pollens d'herbacées
+w8,Pissenlit,Pollens d'herbacées
+w9,Plantain lancéolé,Pollens d'herbacées
+w10, Chénopode blanc,Pollens d'herbacées
+w11, Soude,Pollens d'herbacées
+w12, Solidage / Verge d'or,Pollens d'herbacées
+w13, Petite bardane,Pollens d'herbacées
+w14, Amaranthe,Pollens d'herbacées
+w15, Arroche,Pollens d'herbacées
+w16, Iva,Pollens d'herbacées
+w17, Ansérine à balais,Pollens d'herbacées
+w18, Petite oseille,Pollens d'herbacées
+w19, Pariétaire officinale,Pollens d'herbacées
+w20, Ortie,Pollens d'herbacées
+w21, Pariétaire,Pollens d'herbacées
+w22, Houblon du Japon,Pollens d'herbacées
+w203, Colza,Pollens d'herbacées
+w204, Tournesol,Pollens d'herbacées
+w206, Camomille,Pollens d'herbacées
+w207, Lupin,Pollens d'herbacées
+w210, Betterave sucrière,Pollens d'herbacées
+t1,Érable,Pollens d'arbres
+t2,Aulne,Pollens d'arbres
+t3,Bouleau,Pollens d'arbres
+t4,Noisetier,Pollens d'arbres
+t5,Hêtre,Pollens d'arbres
+t6,Genévrier,Pollens d'arbres
+t7,Chêne,Pollens d'arbres
+t8,Orme,Pollens d'arbres
+t9,Olivier,Pollens d'arbres
+t10, Noyer,Pollens d'arbres
+t11, Platane,Pollens d'arbres
+t12, Saule,Pollens d'arbres
+t14, Peuplier,Pollens d'arbres
+t15, Frêne,Pollens d'arbres
+t16, Pin blanc,Pollens d'arbres
+t17, Cèdre du Japon,Pollens d'arbres
+t18, Eucalyptus,Pollens d'arbres
+t19, Mimosa,Pollens d'arbres
+t20, Prosopis,Pollens d'arbres
+t21, Melaleuca,Pollens d'arbres
+t22, Pacanier,Pollens d'arbres
+t23, Cyprès,Pollens d'arbres
+t25, Frêne commun,Pollens d'arbres
+t70, Mûrier,Pollens d'arbres
+t72, Palmier,Pollens d'arbres
+t73, Pin australien,Pollens d'arbres
+t201, Epicéa,Pollens d'arbres
+t203, Marronnier,Pollens d'arbres
+t205, Sureau,Pollens d'arbres
+t206, Châtaignier,Pollens d'arbres
+t207, Sapin de Douglas,Pollens d'arbres
+t208, Tilleul,Pollens d'arbres
+t209, Charme,Pollens d'arbres
+t210, Troène,Pollens d'arbres
+t211, Liquidambar,Pollens d'arbres
+t212, Cèdre,Pollens d'arbres
+t213, Pin de Monterey,Pollens d'arbres
+t214, Dattier,Pollens d'arbres
+t217, Poivrier,Pollens d'arbres
+t218, Chêne de Virginie,Pollens d'arbres
+t219, Palo Verde,Pollens d'arbres
+t222, Cyprès de l’Arizona,Pollens d'arbres
+t223, Palmier à huile,Pollens d'arbres
+m1,Penicillium notatum,Microorganismes
+m2,Cladosporium herbarum,Microorganismes
+m3,Aspergillus fumigatus,Microorganismes
+m4,Mucor racemosus,Microorganismes
+m5,Candida albicans,Microorganismes
+m6,Alternaria alternata,Microorganismes
+m7,Botrytis cinerea,Microorganismes
+m8,Helminthosporium halodes,Microorganismes
+m9,Fusarium moniliforme,Microorganismes
+m10, Stemphylium botryosum,Microorganismes
+m11, Rhizopus nigricans,Microorganismes
+m12, Aureobasidium pullulans,Microorganismes
+m13, Phoma betae,Microorganismes
+m14, Epicoccum purpurascens,Microorganismes
+m15, Trichoderma viride,Microorganismes
+m16, Curvularia lunata,Microorganismes
+m36, Aspergillus terreus,Microorganismes
+m70, Pityrosporum orbiculare Malassezia furfur,Microorganismes
+m80, Staphylococcal enterotoxin A,Microorganismes
+m81, Staphylococcal enterotoxin B,Microorganismes
+m201, Ustilago tritici,Microorganismes
+m202, Cephalosporium acremonium,Microorganismes
+m203, Trychophyton pullulans,Microorganismes
+m204, Ulocladium chartarum,Microorganismes
+m205, Trichophyton rubrum,Microorganismes
+m207, Aspergillus niger,Microorganismes
+m208, Chaetomium globosum,Microorganismes
+m209, Penicillium frequentans,Microorganismes
+m210, Trichophyton mentagrophytes var. goetzii,Microorganismes
+m211, Trichophyton mentagrophytes var. interdigi,Microorganismes
+m223, Staphylococcal enterotoxin C,Microorganismes
+m226, Staphylococcal enterotoxin TSST,Microorganismes
+m227, Malassezia spp.,Microorganismes
+m228, Aspergillus flavus,Microorganismes
+d1,Dermatophagoïdes pteronyssinus,Acariens domestiques
+d2,Dermatophagoïdes farinae,Acariens domestiques
+d3,Dermatophagoïdes microceras,Acariens domestiques
+d74, Euroglyphus maynei,Acariens domestiques
+h1,Laboratoire Greer,Poussières de maison
+h2,Laboratoire Hollister Stier,Poussières de maison
+d70, Acarus siro,Acariens de stockage
+d71, Lepidoglyphus destructor,Acariens de stockage
+d72, Tyrophagus putrescentiae,Acariens de stockage
+d73, Glycyphagus domesticus,Acariens de stockage
+d201 ,Blomita tropicalis ,Acariens de stockage
+e1,Chat (poils et squames),Animaux
+e2,Chien (épithélium),Animaux
+e3,Cheval (poils et squames),Animaux
+e4,Vache (poils et squames),Animaux
+e5,Chien (poils et squames),Animaux
+e6,Cobaye (épithélium),Animaux
+e7,Pigeon (excréments),Animaux
+e70, Oie (plumes),Animaux
+e71, Souris (épithélium),Animaux
+e72, Souris (protéines urinaires),Animaux
+e73, Rat (épithélium),Animaux
+e74, Rat (protéines urinaires),Animaux
+e75, Rat (protéines sériques),Animaux
+e76, Souris (protéines sériques),Animaux
+e77, Perruche ondulée (excréments),Animaux
+e78, Perruche ondulée (plumes),Animaux
+e79, Perruche ondulée (protéines sériques),Animaux
+e80, Chèvre (épithélium),Animaux
+e81, Mouton (épithélium),Animaux
+e82, Lapin (épithélium),Animaux
+e83, Porc (épithélium),Animaux
+e84, Hamster (épithélium),Animaux
+e85, Poule (plumes),Animaux
+e86, Canard (plumes),Animaux
+e87, Rat,Animaux
+e88, Souris,Animaux
+e89, Dinde (plumes),Animaux
+e196, Perruche calopsitte (plumes),Animaux
+e197, Perruche calopsitte (déjections),Animaux
+e198, Perruche calopsitte (protéines sériques),Animaux
+e199, Canari (protéines sériques),Animaux
+e200, Canari (protéines sériques),Animaux
+e201, Canari (plumes),Animaux
+e202, Renne (épithélium),Animaux
+e203, Vison (épithélium),Animaux
+e204, Bovin (albumine sérique),Animaux
+e205, Cheval (protéines sériques),Animaux
+e206, Lapin (protéines sériques),Animaux
+e208, Chinchilla (épithélium),Animaux
+e209, Gerbille (épithélium),Animaux
+e210, Renard (épithélium),Animaux
+e211, Lapin (protéines urinaires),Animaux
+e212, Porc (protéines urinaires),Animaux
+e213, Perroquet (plumes),Animaux
+e214, Pinson (plumes),Animaux
+e215, Pigeon (plumes),Animaux
+e216, Cerf (épithélium),Animaux
+e217, Furet (épithélium),Animaux
+e218, Poulet (fientes),Animaux
+e219, Poulet (protéines sériques),Animaux
+e220, Chat (albumine sérique),Animaux
+e221, Chien (albumine sérique),Animaux
+e222, Porc (albumine sérique),Animaux
+i6,Blatte germanique,Insectes
+i8,Ver à soie (Larve de Bombyx),Insectes
+i70, Fourmi rouge,Insectes
+i71, Moustique,Insectes
+i72, Mouche du Soudan,Insectes
+i76, Scarabée,Insectes
+i202, Charançon du blé,Insectes
+i203, Ephestia,Insectes
+i204, Taon,Insectes
+i206, Blatte américaine,Insectes
+i207, Blatte orientale,Insectes
+i1,Abeille,Venins
+i2,Frelon à tête blanche,Venins
+i3,Guêpe Vespula,Venins
+i4,Guêpe Poliste,Venins
+i5,Frelon à tête jaune,Venins
+i75, Frelon européen,Venins
+i77, Guêpe,Venins
+i205  ,Bourdon,Venins
+p1,Ascaris,Parasites
+p2,Echinococcus,Parasites
+p4,Anisakis,Parasites
+o1,Coton (fibres brutes),Divers
+o70, Liquide séminal,Divers
+o201, Feuille de tabac,Divers
+o202, Artémisia salina,Divers
+o203, Tetramin (nourriture poisson),Divers
+o207, Daphnies,Divers
+o211, Ver de farine,Divers
+o212, Streptavidin,Divers
+o213, MBP (maltose binding protein),Divers
+o214, CCD ; MUXF3 de la bromeline,Divers
+f3,Poisson (Cabillaud/Morue),"Aliments - poissons, crustacés et mollusques "
+f23, Crabe,"Aliments - poissons, crustacés et mollusques "
+f24, Crevette,"Aliments - poissons, crustacés et mollusques "
+f37, Moule,"Aliments - poissons, crustacés et mollusques "
+f40, Thon,"Aliments - poissons, crustacés et mollusques "
+f41, Saumon,"Aliments - poissons, crustacés et mollusques "
+f50, Maquereau du Pacifique,"Aliments - poissons, crustacés et mollusques "
+f58, Calamar du Pacifique,"Aliments - poissons, crustacés et mollusques "
+f59, Poulpe,"Aliments - poissons, crustacés et mollusques "
+f60, Chinchard/Carangue,"Aliments - poissons, crustacés et mollusques "
+f61, Sardine,"Aliments - poissons, crustacés et mollusques "
+f80, Homard,"Aliments - poissons, crustacés et mollusques "
+f204, Truite arc-en-ciel,"Aliments - poissons, crustacés et mollusques "
+f205, Hareng,"Aliments - poissons, crustacés et mollusques "
+f206, Maquereau,"Aliments - poissons, crustacés et mollusques "
+f207, Palourde,"Aliments - poissons, crustacés et mollusques "
+f254, Carrelet,"Aliments - poissons, crustacés et mollusques "
+f258, Calamar,"Aliments - poissons, crustacés et mollusques "
+f264, Anguille,"Aliments - poissons, crustacés et mollusques "
+f290, Huître,"Aliments - poissons, crustacés et mollusques "
+f303, Flétan,"Aliments - poissons, crustacés et mollusques "
+f304, Langouste,"Aliments - poissons, crustacés et mollusques "
+f307, Merlu,"Aliments - poissons, crustacés et mollusques "
+f308, Sardine commune,"Aliments - poissons, crustacés et mollusques "
+f311, Cardine franche,"Aliments - poissons, crustacés et mollusques "
+f312, Espadon,"Aliments - poissons, crustacés et mollusques "
+f313, Anchois,"Aliments - poissons, crustacés et mollusques "
+f314, Escargot,"Aliments - poissons, crustacés et mollusques "
+f320, Ecrevisse,"Aliments - poissons, crustacés et mollusques "
+f337, Sole,"Aliments - poissons, crustacés et mollusques "
+f338, Coquille Saint-Jacques,"Aliments - poissons, crustacés et mollusques "
+f346, Ormeau,"Aliments - poissons, crustacés et mollusques "
+f1,OEuf (blanc),Aliments – œuf et volailles
+f75, OEuf (jaune),Aliments – œuf et volailles
+f83, Poulet (viande),Aliments – œuf et volailles
+f232, Ovalbumine,Aliments – œuf et volailles
+f233, Ovomucoïde,Aliments – œuf et volailles
+f245, OEuf entier,Aliments – œuf et volailles
+f284, Dinde (viande),Aliments – œuf et volailles
+f323, Conalbumine,Aliments – œuf et volailles
+f26,Porc (viande),Aliments - viandes
+f27,Boeuf (viande),Aliments - viandes
+f88,Mouton (viande),Aliments - viandes
+f213, Lapin (viande),Aliments - viandes
+f285, Elan (viande),Aliments - viandes
+f321, Cheval (viande),Aliments - viandes
+f2 ,Lait de vache,Aliments - produits laitiers
+f76,α lactalbumine,Aliments - produits laitiers
+f77,β lactoglobuline,Aliments - produits laitiers
+f78,Caséine,Aliments - produits laitiers
+f82,Fromage (fermenté),Aliments - produits laitiers
+f81,Fromage (pâte cuite),Aliments - produits laitiers
+f231, Lait de vache bouilli,Aliments - produits laitiers
+f236, Petit lait de vache,Aliments - produits laitiers
+f286, Lait de jument,Aliments - produits laitiers
+f300, Lait de chèvre,Aliments - produits laitiers
+f325, Lait de brebis,Aliments - produits laitiers
+f326, Petit lait de brebis,Aliments - produits laitiers
+f334, Lactoferrine bovine,Aliments - produits laitiers
+f25,Tomate,Aliments - fruits et légumes
+f31,Carotte,Aliments - fruits et légumes
+f33,Orange,Aliments - fruits et légumes
+f35,Pomme de terre,Aliments - fruits et légumes
+f44,Fraise,Aliments - fruits et légumes
+f47,Ail,Aliments - fruits et légumes
+f48,Oignon,Aliments - fruits et légumes
+f49,Pomme,Aliments - fruits et légumes
+f51,Pousse de bambon,Aliments - fruits et légumes
+f54,Patate douce,Aliments - fruits et légumes
+f84,Kiwi,Aliments - fruits et légumes
+f85,Céleri,Aliments - fruits et légumes
+f87,Melon,Aliments - fruits et légumes
+f91,Mangue,Aliments - fruits et légumes
+f92,Banane,Aliments - fruits et légumes
+f94,Poire,Aliments - fruits et légumes
+f95,Pêche,Aliments - fruits et légumes
+f96,Avocat,Aliments - fruits et légumes
+f208, Citron,Aliments - fruits et légumes
+f209, Pamplemousse,Aliments - fruits et légumes
+f210, Ananas,Aliments - fruits et légumes
+f211, Mûre,Aliments - fruits et légumes
+f214, Epinard,Aliments - fruits et légumes
+f215, Laitue,Aliments - fruits et légumes
+f216, Chou,Aliments - fruits et légumes
+f217, Chou de Bruxelles,Aliments - fruits et légumes
+f218, Poivron (Paprika doux),Aliments - fruits et légumes
+f225, Potiron/Citrouille,Aliments - fruits et légumes
+f237, Abricot,Aliments - fruits et légumes
+f242, Cerise,Aliments - fruits et légumes
+f244, Concombre,Aliments - fruits et légumes
+f255, Prune,Aliments - fruits et légumes
+f259, Raisin,Aliments - fruits et légumes
+f260, Brocolis,Aliments - fruits et légumes
+f261, Asperge,Aliments - fruits et légumes
+f262, Aubergine,Aliments - fruits et légumes
+f276, Fenouil,Aliments - fruits et légumes
+f288, Myrtille,Aliments - fruits et légumes
+f289, Datte,Aliments - fruits et légumes
+f291, Chou Fleur,Aliments - fruits et légumes
+f292, Goyave,Aliments - fruits et légumes
+f293, Papaye,Aliments - fruits et légumes
+f294, Fruit de la passion,Aliments - fruits et légumes
+f295, Carambole,Aliments - fruits et légumes
+f301, Kaki,Aliments - fruits et légumes
+f302, Mandarine,Aliments - fruits et légumes
+f306, Citron vert,Aliments - fruits et légumes
+f318, Arbre à pain (fruit),Aliments - fruits et légumes
+f319, Betterave,Aliments - fruits et légumes
+f322, Groseille rouge,Aliments - fruits et légumes
+f328, Figue,Aliments - fruits et légumes
+f329, Pastèque,Aliments - fruits et légumes
+f330, Cynorrhodon,Aliments - fruits et légumes
+f336, Jujube,Aliments - fruits et légumes
+f341, Canneberge,Aliments - fruits et légumes
+f342, Olive noire,Aliments - fruits et légumes
+f343, Framboise,Aliments - fruits et légumes
+f348, Litchi,Aliments - fruits et légumes
+f4,Blé,"Graines, légumineuses et noix "
+f5,Seigle,"Graines, légumineuses et noix "
+f6,Orge,"Graines, légumineuses et noix "
+f7,Avoine,"Graines, légumineuses et noix "
+f8,Maïs (grains),"Graines, légumineuses et noix "
+f9,Riz,"Graines, légumineuses et noix "
+f10,Sésame (graines),"Graines, légumineuses et noix "
+f11,Sarrasin,"Graines, légumineuses et noix "
+f12,Pois,"Graines, légumineuses et noix "
+f13,Arachide,"Graines, légumineuses et noix "
+f14,Soja (graine),"Graines, légumineuses et noix "
+f15,Haricot blanc,"Graines, légumineuses et noix "
+f17,Noisette,"Graines, légumineuses et noix "
+f18,Noix du Brésil,"Graines, légumineuses et noix "
+f20,Amande,"Graines, légumineuses et noix "
+f36,Noix de Coco,"Graines, légumineuses et noix "
+f55,Millet commun,"Graines, légumineuses et noix "
+f56,Millet italien,"Graines, légumineuses et noix "
+f57,Millet japonais,"Graines, légumineuses et noix "
+f79,Gluten,"Graines, légumineuses et noix "
+f124, Epeautre,"Graines, légumineuses et noix "
+f201, Noix de Pécan,"Graines, légumineuses et noix "
+f202, Noix de Cajou,"Graines, légumineuses et noix "
+f203, Pistache,"Graines, légumineuses et noix "
+f224, Pavot (graine),"Graines, légumineuses et noix "
+f226, Citrouille (graine),"Graines, légumineuses et noix "
+f227, Betterave sucrière,"Graines, légumineuses et noix "
+f235, Lentille,"Graines, légumineuses et noix "
+f253, Pignon de pin,"Graines, légumineuses et noix "
+f256, Noix,"Graines, légumineuses et noix "
+f287, Haricot rouge,"Graines, légumineuses et noix "
+f299, Châtaigne,"Graines, légumineuses et noix "
+f305, Fenugrec,"Graines, légumineuses et noix "
+f309, Pois chiche,"Graines, légumineuses et noix "
+f310, Vesce bleue,"Graines, légumineuses et noix "
+f315, Haricot vert,"Graines, légumineuses et noix "
+f316, Colza (graine),"Graines, légumineuses et noix "
+f333, Lin (graine),"Graines, légumineuses et noix "
+f335, Lupin (graine),"Graines, légumineuses et noix "
+f345, Noix de macadamia,"Graines, légumineuses et noix "
+f347, Quinoa,"Graines, légumineuses et noix "
+f86,Persil,Aliments - épices
+f89,Moutarde,Aliments - épices
+f219, Fenouil (graine),Aliments - épices
+f220, Cannelle,Aliments - épices
+f234, Vanille,Aliments - épices
+f263, Poivre vert,Aliments - épices
+f265, Cumin,Aliments - épices
+f266," Muscade (fleur, macis)",Aliments - épices
+f267, Cardamome,Aliments - épices
+f268, Clou de girofle,Aliments - épices
+f269, Basilic,Aliments - épices
+f270, Gingembre,Aliments - épices
+f271, Anis,Aliments - épices
+f272, Estragon,Aliments - épices
+f273, Thym,Aliments - épices
+f274, Marjolaine,Aliments - épices
+f275, Livêche,Aliments - épices
+f277, Aneth,Aliments - épices
+f278, Laurier (feuille),Aliments - épices
+f279, Piment,Aliments - épices
+f280, Poivre noir,Aliments - épices
+f281, Curry (Santa Maria),Aliments - épices
+f282, Muscade (noix),Aliments - épices
+f283, Origan,Aliments - épices
+f317, Coriandre,Aliments - épices
+f331, Safran,Aliments - épices
+f332, Menthe,Aliments - épices
+f339, Poivre de la Jamaïque,Aliments - épices
+f344, Sauge,Aliments - épices
+f45,Levure de bière,Aliments - divers
+f90,Malt,Aliments - divers
+f93,Cacao,Aliments - divers
+f212, Champignon,Aliments - divers
+f221, Café,Aliments - divers
+f222, Thé,Aliments - divers
+f247, Miel,Aliments - divers
+f324, Houblon,Aliments - divers
+f246, Gomme de Guar (Agar),Aliments - additifs
+f296, Caroube,Aliments - additifs
+f297, Gomme arabique,Aliments - additifs
+f298, Gomme tragacanthe,Aliments - additifs
+f340, Rouge carmin/extrait cochenille,Aliments - additifs
+c1,Penicilloyl G (penicilline G),Médicaments
+c2,Penicilloyl V (penicilline V),Médicaments
+c5,Ampicilloyl (ampicilline),Médicaments
+c6,Amoxicilloyl (amoxicilline),Médicaments
+c7,Cefaclor,Médicaments
+c8,Chlorhexidine,Médicaments
+c70,Insuline porcine,Médicaments
+c71,Insuline bovine,Médicaments
+c73,Insuline humaine,Médicaments
+c74,Gélatine bovine,Médicaments
+c202, Suxamethonium (Succinylcholine),Médicaments
+c206, ACTH (Adrenocorticotrophic hormone),Médicaments
+c207, Protamine,Médicaments
+c208, Tetanus toxoïd,Médicaments
+c209, Chymopapaïne,Médicaments
+c260, Ammonium quaternaire (myorelaxants),Médicaments
+c261, Pholcodine,Médicaments
+k70,Grain de café vert,Allergènes professionnels
+k71,Graine de ricin,Allergènes professionnels
+k72,Ispaghule,Allergènes professionnels
+k73,Déchets de soie,Allergènes professionnels
+k74,Soie naturelle,Allergènes professionnels
+k75,Isocyanate TDI,Allergènes professionnels
+k76,Isocyanate MDI,Allergènes professionnels
+k77,Isocyanate HDI,Allergènes professionnels
+k78,Oxyde d'éthylène,Allergènes professionnels
+k79,Anhydride Phtalique,Allergènes professionnels
+k80,Formaldéhyde,Allergènes professionnels
+k81,Ficus,Allergènes professionnels
+k82,Latex Recombi +,Allergènes professionnels
+k83,Graines de coton,Allergènes professionnels
+k84,Graines de tournesol,Allergènes professionnels
+k85,Chloramine T,Allergènes professionnels
+k86,Anhydride trimellitique,Allergènes professionnels
+k87,Alpha-amylase,Allergènes professionnels
+k201, Papaïne,Allergènes professionnels
+k202, Bromeline,Allergènes professionnels
+k203, Phospholipase,Allergènes professionnels
+k204, Maxatase,Allergènes professionnels
+k205, Alkalase,Allergènes professionnels
+k206, Savinase,Allergènes professionnels
+k208, Lysozyme,Allergènes professionnels
+k209, Anhydride Hexahydrophtalique,Allergènes professionnels
+k210, Anhydride Maléique,Allergènes professionnels
+Rk21,1 Anhydride Méthyltétrahydrophtalique,Allergènes professionnels
+Rk21,2 Poussière de bois d'Abachi,Allergènes professionnels
+Rk21,3 Pepsine,Allergènes professionnels
+k214, Bougainvillée,Allergènes professionnels

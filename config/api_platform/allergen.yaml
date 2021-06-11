@@ -1,0 +1,7 @@
+App\Entity\Allergen:
+  attributes:
+    allow_extra_attributes: false
+  collectionOperations:
+    get: ~
+  itemOperations:
+    get: ~
