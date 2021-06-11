@@ -80,7 +80,7 @@ class Disease extends Thing implements Entity
      *     }
      * )
      *
-     * @ORM\Column(type="string", length=255, options={"collation":"utf8mb4_0900_ai_ci"})
+     * @ORM\Column(type="string", length=255, options={"collation":"utf8mb4_unicode_ci"})
      */
     protected $name;
 
