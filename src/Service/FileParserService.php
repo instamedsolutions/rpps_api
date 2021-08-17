@@ -105,6 +105,13 @@ abstract class FileParserService
                     continue;
                 }
 
+                if(isset($options['first_line'])) {
+                    if($row < $options['first_line']) {
+                        $row++;
+                        continue;
+                    }
+                }
+
                 // https://stackoverflow.com/questions/20124630/strange-characters-in-first-row-of-array-after-fgetcsv
                 // Remove BOM
                 if(0 === $row) {

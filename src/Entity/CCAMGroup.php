@@ -6,32 +6,31 @@ use ApiPlatform\Core\Annotation\ApiFilter;
 use ApiPlatform\Core\Annotation\ApiProperty;
 use ApiPlatform\Core\Annotation\ApiSubresource;
 use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\SearchFilter;
-use App\Repository\DiseaseGroupRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Serializer\Annotation\Groups;
-use App\ApiPlatform\Filter\DiseaseGroupFilter;
+use App\Repository\CCAMGroupRepository;
+
 /**
  *
- * @ORM\Entity(repositoryClass=DiseaseGroupRepository::class)
+ * @ORM\Entity(repositoryClass=CCAMGroupRepository::class)
  *
- * @ORM\Table(name="diseases_group")
+ * @ORM\Table(name="ccam_group")
  *
- * @UniqueEntity("cim")
+ * @UniqueEntity("code")
  *
- * @ApiFilter(DiseaseGroupFilter::class,properties={"search"})
  *
  */
-class DiseaseGroup extends Thing implements Entity
+class CCAMGroup extends Thing implements Entity
 {
 
     /**
      *
      * @var string|null
      *
-     * The unique CIS Id in the government database
+     * The unique code in the government database
      *
      * @Groups({"read"})
      *
@@ -42,14 +41,14 @@ class DiseaseGroup extends Thing implements Entity
      *     attributes={
      *         "openapi_context"={
      *             "type"="string",
-     *              "example"="1"
+     *              "example"="01"
      *         }
      *     }
      * )
      *
      * @ORM\Column(type="string",unique=true)
      */
-    protected $cim;
+    protected $code;
 
     /**
      *
@@ -75,28 +74,52 @@ class DiseaseGroup extends Thing implements Entity
      */
     protected $name;
 
+    /**
+     *
+     * @var string|null
+     *
+     * The name of the drug
+     *
+     * @ApiFilter(SearchFilter::class, strategy="istart")
+     *
+     * @Groups({"ccam_groups:item:read"})
+     *
+     * @ApiProperty(
+     *     required=true,
+     *     attributes={
+     *         "openapi_context"={
+     *             "type"="string",
+     *              "example"="Électromyographie par électrode de surface, avec enregistrement vidéo"
+     *         }
+     *     }
+     * )
+     *
+     * @ORM\Column(type="text", options={"collation":"utf8mb4_unicode_ci"},nullable=true)
+     */
+    protected $description;
+
 
     /**
-     * @var DiseaseGroup|null
+     * @var CCAMGroup|null
      *
-     * @Groups({"diseases_groups:read"})
+     * @Groups({"ccam_groups:read"})
      *
      * All the events that are linked to the user
      *
-     * @ORM\ManyToOne(targetEntity="DiseaseGroup", inversedBy="children", cascade={"persist"}, fetch="EXTRA_LAZY")
+     * @ORM\ManyToOne(targetEntity="CCAMGroup", inversedBy="children", cascade={"persist"}, fetch="EXTRA_LAZY")
      */
     protected $parent;
 
 
     /**
      *
-     * @Groups({"diseases_groups:item:read"})
+     * @Groups({"ccam_groups:item:read"})
      *
      * @ApiSubresource(maxDepth=2)
      *
-     * @var Collection|DiseaseGroup[]
+     * @var Collection|CCAMGroup[]
      *
-     * @ORM\OneToMany(targetEntity="DiseaseGroup", mappedBy="parent", cascade={"persist"}, fetch="EXTRA_LAZY")
+     * @ORM\OneToMany(targetEntity="CCAMGroup", mappedBy="parent", cascade={"persist"}, fetch="EXTRA_LAZY")
      */
     protected $children = [];
 
@@ -111,22 +134,50 @@ class DiseaseGroup extends Thing implements Entity
     }
 
 
+    /**
+     * @return string|null
+     */
+    public function getCode(): ?string
+    {
+        return $this->code;
+    }
+
+    /**
+     * @param string|null $code
+     */
+    public function setCode(?string $code): void
+    {
+        $this->code = $code;
+    }
+
 
     /**
      * @return string|null
      */
-    public function getCim(): ?string
+    public function getDescription(): ?string
     {
-        return $this->cim;
+        return $this->description;
     }
 
     /**
-     * @param string|null $cim
+     * @param string|null $description
      */
-    public function setCim(?string $cim): void
+    public function setDescription(?string $description): void
     {
-        $this->cim = trim($cim);
+        $this->description = $description;
     }
+
+
+    /**
+     * @param string $description
+     */
+    public function addDescriptionLine(string $description)
+    {
+        if(trim($description)) {
+            $this->description .= trim(",$description");
+        }
+    }
+
 
     /**
      * @return string|null
@@ -141,29 +192,29 @@ class DiseaseGroup extends Thing implements Entity
      */
     public function setName(?string $name): void
     {
-        $this->name = $name;
+        $this->name = ucfirst(mb_strtolower($name));
     }
 
     /**
-     * @return DiseaseGroup|null
+     * @return CCAMGroup|null
      */
-    public function getParent(): ?DiseaseGroup
+    public function getParent(): ?CCAMGroup
     {
         return $this->parent;
     }
 
     /**
-     * @param DiseaseGroup|null $parent
+     * @param CCAMGroup|null $parent
      */
-    public function setParent(?DiseaseGroup $parent): void
+    public function setParent(?CCAMGroup $parent): void
     {
-        if($this->parent instanceof DiseaseGroup) {
+        if($this->parent instanceof CCAMGroup) {
             $this->parent->removeChild($this);
         }
 
         $this->parent = $parent;
 
-        if($parent instanceof DiseaseGroup) {
+        if($parent instanceof CCAMGroup) {
             $parent->addChild($this);
         }
 
@@ -191,21 +242,21 @@ class DiseaseGroup extends Thing implements Entity
 
 
     /**
-     * @param DiseaseGroup $diseaseGroup
+     * @param CCAMGroup $cCAMGroup
      */
-    public function addChild(DiseaseGroup $diseaseGroup)
+    public function addChild(CCAMGroup $cCAMGroup)
     {
-        if(!$this->getChildren()->contains($diseaseGroup)) {
-            $this->children->add($diseaseGroup);
+        if(!$this->getChildren()->contains($cCAMGroup)) {
+            $this->children->add($cCAMGroup);
         }
     }
 
     /**
-     * @param DiseaseGroup $diseaseGroup
+     * @param CCAMGroup $cCAMGroup
      */
-    public function removeChild(DiseaseGroup $diseaseGroup)
+    public function removeChild(CCAMGroup $cCAMGroup)
     {
-        $this->children->removeElement($diseaseGroup);
+        $this->children->removeElement($cCAMGroup);
     }
 
 

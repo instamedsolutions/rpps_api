@@ -9,7 +9,7 @@ use Doctrine\ORM\QueryBuilder;
 /*
  *
  */
-final class DrugsFilter extends AbstractContextAwareFilter
+final class CCAMFilter extends AbstractContextAwareFilter
 {
 
     use FilterTrait;
@@ -61,14 +61,18 @@ final class DrugsFilter extends AbstractContextAwareFilter
 
         $alias = $queryBuilder->getRootAliases()[0];
 
+        // $value = str_replace(" ","%",trim($value));
+        $value = trim($value);
+
+
         // Generate a unique parameter name to avoid collisions with other filters
-        $end = $this->queryNameGenerator->generateParameterName("search");
+        $start = $this->queryNameGenerator->generateParameterName("search");
+        $full = $this->queryNameGenerator->generateParameterName("search");
 
-        $queryBuilder->andWhere("$alias.name LIKE :$end");
+        $queryBuilder->andWhere("$alias.name LIKE :$full OR $alias.code LIKE :$start");
 
-        $value = $this->cleanValue($value,false);
-
-        $queryBuilder->setParameter($end,  "%$value%");
+        $queryBuilder->setParameter($full,  "%$value%");
+        $queryBuilder->setParameter($start,  "$value%");
 
         return $queryBuilder;
     }
@@ -91,7 +95,7 @@ final class DrugsFilter extends AbstractContextAwareFilter
                 'type' => 'string',
                 'required' => false,
                 'swagger' => array(
-                    'description' => "Search by first name, last name...",
+                    'description' => "Search by code or name...",
                     'type' => 'string',
                     'name' => $property,
                     'example' => "Jean Du",

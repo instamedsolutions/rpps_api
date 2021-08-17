@@ -1,0 +1,8 @@
+App\Entity\CCAMGroup:
+  shortName: CcamGroup
+  attributes:
+    allow_extra_attributes: false
+  collectionOperations:
+    get: ~
+  itemOperations:
+    get: ~
