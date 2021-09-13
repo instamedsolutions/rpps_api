@@ -2,6 +2,8 @@
 
 This project contains all scripts to fetch and store data as well as a fully functioning API to fetch this data.
 
+Live API is available at https://data.instamed.fr
+
 3 type of data are currently available :
 
 ## RPPS Data
