@@ -145,7 +145,7 @@ class RPPSService extends ImporterService
         $rpps->setFirstName($data[6]);
         $rpps->setSpecialty($data[8]);
 
-        if($data[12] && $data[13] == "S") {
+        if($data[12] && in_array($data[13],["S","CEX"])) {
             $rpps->setSpecialty($data[12]);
         }
 

@@ -91,6 +91,8 @@ abstract class FileParserService
 
         // Showing when the drugs process is launched
         $start = new \DateTime();
+        $end = new \DateTime();
+
         $output->writeln('<comment>Start : ' . $start->format('d-m-Y G:i:s') . ' | You have ' . $lineCount . ' lines to import from your ' . $type . ' file to your database ---</comment>');
 
         // Will go through file by iterating on each line to save memory
