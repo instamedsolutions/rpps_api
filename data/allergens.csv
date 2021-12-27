@@ -1,472 +1,899 @@
-code,name,group
-g1,Flouve odorante,Pollens de graminées
-g2,Chiendent digité,Pollens de graminées
-g3,Dactyle pelotonné,Pollens de graminées
-g4,Fétuque des prés,Pollens de graminées
-g5,Ivraie vivace,Pollens de graminées
-g6,Phéole des prés,Pollens de graminées
-g7,Roseau à balai,Pollens de graminées
-g8,Pâturin des prés,Pollens de graminées
-g9,Agrostide,Pollens de graminées
-g10, Sorgho,Pollens de graminées
-g11, Brome,Pollens de graminées
-g12, Seigle,Pollens de graminées
-g13, Houlque laineuse,Pollens de graminées
-g14, Avoine,Pollens de graminées
-g15, Froment,Pollens de graminées
-g16, Vulpin des prés,Pollens de graminées
-g17, Herbe de Bahia,Pollens de graminées
-g70, Ivraie sauvage,Pollens de graminées
-g71, Alpiste,Pollens de graminées
-g201 ,Orge,Pollens de graminées
-g202 ,Maïs,Pollens de graminées
-Rg203 ,Herbe des prés salés,Pollens de graminées
-Rg204  ,Fromental,Pollens de graminées
-w1,Ambroisie,Pollens d'herbacées
-w2,Ambroisie à épi grêle,Pollens d'herbacées
-w3,Ambroisie trilobée,Pollens d'herbacées
-w4,Fausse ambroise,Pollens d'herbacées
-w5,Absinthe,Pollens d'herbacées
-w6,Armoise commune,Pollens d'herbacées
-w7,Grande marguerite,Pollens d'herbacées
-w8,Pissenlit,Pollens d'herbacées
-w9,Plantain lancéolé,Pollens d'herbacées
-w10, Chénopode blanc,Pollens d'herbacées
-w11, Soude,Pollens d'herbacées
-w12, Solidage / Verge d'or,Pollens d'herbacées
-w13, Petite bardane,Pollens d'herbacées
-w14, Amaranthe,Pollens d'herbacées
-w15, Arroche,Pollens d'herbacées
-w16, Iva,Pollens d'herbacées
-w17, Ansérine à balais,Pollens d'herbacées
-w18, Petite oseille,Pollens d'herbacées
-w19, Pariétaire officinale,Pollens d'herbacées
-w20, Ortie,Pollens d'herbacées
-w21, Pariétaire,Pollens d'herbacées
-w22, Houblon du Japon,Pollens d'herbacées
-w203, Colza,Pollens d'herbacées
-w204, Tournesol,Pollens d'herbacées
-w206, Camomille,Pollens d'herbacées
-w207, Lupin,Pollens d'herbacées
-w210, Betterave sucrière,Pollens d'herbacées
-t1,Érable,Pollens d'arbres
-t2,Aulne,Pollens d'arbres
-t3,Bouleau,Pollens d'arbres
-t4,Noisetier,Pollens d'arbres
-t5,Hêtre,Pollens d'arbres
-t6,Genévrier,Pollens d'arbres
-t7,Chêne,Pollens d'arbres
-t8,Orme,Pollens d'arbres
-t9,Olivier,Pollens d'arbres
-t10, Noyer,Pollens d'arbres
-t11, Platane,Pollens d'arbres
-t12, Saule,Pollens d'arbres
-t14, Peuplier,Pollens d'arbres
-t15, Frêne,Pollens d'arbres
-t16, Pin blanc,Pollens d'arbres
-t17, Cèdre du Japon,Pollens d'arbres
-t18, Eucalyptus,Pollens d'arbres
-t19, Mimosa,Pollens d'arbres
-t20, Prosopis,Pollens d'arbres
-t21, Melaleuca,Pollens d'arbres
-t22, Pacanier,Pollens d'arbres
-t23, Cyprès,Pollens d'arbres
-t25, Frêne commun,Pollens d'arbres
-t70, Mûrier,Pollens d'arbres
-t72, Palmier,Pollens d'arbres
-t73, Pin australien,Pollens d'arbres
-t201, Epicéa,Pollens d'arbres
-t203, Marronnier,Pollens d'arbres
-t205, Sureau,Pollens d'arbres
-t206, Châtaignier,Pollens d'arbres
-t207, Sapin de Douglas,Pollens d'arbres
-t208, Tilleul,Pollens d'arbres
-t209, Charme,Pollens d'arbres
-t210, Troène,Pollens d'arbres
-t211, Liquidambar,Pollens d'arbres
-t212, Cèdre,Pollens d'arbres
-t213, Pin de Monterey,Pollens d'arbres
-t214, Dattier,Pollens d'arbres
-t217, Poivrier,Pollens d'arbres
-t218, Chêne de Virginie,Pollens d'arbres
-t219, Palo Verde,Pollens d'arbres
-t222, Cyprès de l’Arizona,Pollens d'arbres
-t223, Palmier à huile,Pollens d'arbres
-m1,Penicillium notatum,Microorganismes
-m2,Cladosporium herbarum,Microorganismes
-m3,Aspergillus fumigatus,Microorganismes
-m4,Mucor racemosus,Microorganismes
-m5,Candida albicans,Microorganismes
-m6,Alternaria alternata,Microorganismes
-m7,Botrytis cinerea,Microorganismes
-m8,Helminthosporium halodes,Microorganismes
-m9,Fusarium moniliforme,Microorganismes
-m10, Stemphylium botryosum,Microorganismes
-m11, Rhizopus nigricans,Microorganismes
-m12, Aureobasidium pullulans,Microorganismes
-m13, Phoma betae,Microorganismes
-m14, Epicoccum purpurascens,Microorganismes
-m15, Trichoderma viride,Microorganismes
-m16, Curvularia lunata,Microorganismes
-m36, Aspergillus terreus,Microorganismes
-m70, Pityrosporum orbiculare Malassezia furfur,Microorganismes
-m80, Staphylococcal enterotoxin A,Microorganismes
-m81, Staphylococcal enterotoxin B,Microorganismes
-m201, Ustilago tritici,Microorganismes
-m202, Cephalosporium acremonium,Microorganismes
-m203, Trychophyton pullulans,Microorganismes
-m204, Ulocladium chartarum,Microorganismes
-m205, Trichophyton rubrum,Microorganismes
-m207, Aspergillus niger,Microorganismes
-m208, Chaetomium globosum,Microorganismes
-m209, Penicillium frequentans,Microorganismes
-m210, Trichophyton mentagrophytes var. goetzii,Microorganismes
-m211, Trichophyton mentagrophytes var. interdigi,Microorganismes
-m223, Staphylococcal enterotoxin C,Microorganismes
-m226, Staphylococcal enterotoxin TSST,Microorganismes
-m227, Malassezia spp.,Microorganismes
-m228, Aspergillus flavus,Microorganismes
-d1,Dermatophagoïdes pteronyssinus,Acariens domestiques
-d2,Dermatophagoïdes farinae,Acariens domestiques
-d3,Dermatophagoïdes microceras,Acariens domestiques
-d74, Euroglyphus maynei,Acariens domestiques
-h1,Laboratoire Greer,Poussières de maison
-h2,Laboratoire Hollister Stier,Poussières de maison
-d70, Acarus siro,Acariens de stockage
-d71, Lepidoglyphus destructor,Acariens de stockage
-d72, Tyrophagus putrescentiae,Acariens de stockage
-d73, Glycyphagus domesticus,Acariens de stockage
-d201 ,Blomita tropicalis ,Acariens de stockage
-e1,Chat (poils et squames),Animaux
-e2,Chien (épithélium),Animaux
-e3,Cheval (poils et squames),Animaux
-e4,Vache (poils et squames),Animaux
-e5,Chien (poils et squames),Animaux
-e6,Cobaye (épithélium),Animaux
-e7,Pigeon (excréments),Animaux
-e70, Oie (plumes),Animaux
-e71, Souris (épithélium),Animaux
-e72, Souris (protéines urinaires),Animaux
-e73, Rat (épithélium),Animaux
-e74, Rat (protéines urinaires),Animaux
-e75, Rat (protéines sériques),Animaux
-e76, Souris (protéines sériques),Animaux
-e77, Perruche ondulée (excréments),Animaux
-e78, Perruche ondulée (plumes),Animaux
-e79, Perruche ondulée (protéines sériques),Animaux
-e80, Chèvre (épithélium),Animaux
-e81, Mouton (épithélium),Animaux
-e82, Lapin (épithélium),Animaux
-e83, Porc (épithélium),Animaux
-e84, Hamster (épithélium),Animaux
-e85, Poule (plumes),Animaux
-e86, Canard (plumes),Animaux
-e87, Rat,Animaux
-e88, Souris,Animaux
-e89, Dinde (plumes),Animaux
-e196, Perruche calopsitte (plumes),Animaux
-e197, Perruche calopsitte (déjections),Animaux
-e198, Perruche calopsitte (protéines sériques),Animaux
-e199, Canari (protéines sériques),Animaux
-e200, Canari (protéines sériques),Animaux
-e201, Canari (plumes),Animaux
-e202, Renne (épithélium),Animaux
-e203, Vison (épithélium),Animaux
-e204, Bovin (albumine sérique),Animaux
-e205, Cheval (protéines sériques),Animaux
-e206, Lapin (protéines sériques),Animaux
-e208, Chinchilla (épithélium),Animaux
-e209, Gerbille (épithélium),Animaux
-e210, Renard (épithélium),Animaux
-e211, Lapin (protéines urinaires),Animaux
-e212, Porc (protéines urinaires),Animaux
-e213, Perroquet (plumes),Animaux
-e214, Pinson (plumes),Animaux
-e215, Pigeon (plumes),Animaux
-e216, Cerf (épithélium),Animaux
-e217, Furet (épithélium),Animaux
-e218, Poulet (fientes),Animaux
-e219, Poulet (protéines sériques),Animaux
-e220, Chat (albumine sérique),Animaux
-e221, Chien (albumine sérique),Animaux
-e222, Porc (albumine sérique),Animaux
-i6,Blatte germanique,Insectes
-i8,Ver à soie (Larve de Bombyx),Insectes
-i70, Fourmi rouge,Insectes
-i71, Moustique,Insectes
-i72, Mouche du Soudan,Insectes
-i76, Scarabée,Insectes
-i202, Charançon du blé,Insectes
-i203, Ephestia,Insectes
-i204, Taon,Insectes
-i206, Blatte américaine,Insectes
-i207, Blatte orientale,Insectes
-i1,Abeille,Venins
-i2,Frelon à tête blanche,Venins
-i3,Guêpe Vespula,Venins
-i4,Guêpe Poliste,Venins
-i5,Frelon à tête jaune,Venins
-i75, Frelon européen,Venins
-i77, Guêpe,Venins
-i205  ,Bourdon,Venins
-p1,Ascaris,Parasites
-p2,Echinococcus,Parasites
-p4,Anisakis,Parasites
-o1,Coton (fibres brutes),Divers
-o70, Liquide séminal,Divers
-o201, Feuille de tabac,Divers
-o202, Artémisia salina,Divers
-o203, Tetramin (nourriture poisson),Divers
-o207, Daphnies,Divers
-o211, Ver de farine,Divers
-o212, Streptavidin,Divers
-o213, MBP (maltose binding protein),Divers
-o214, CCD ; MUXF3 de la bromeline,Divers
-f3,Poisson (Cabillaud/Morue),"Aliments - poissons, crustacés et mollusques "
-f23, Crabe,"Aliments - poissons, crustacés et mollusques "
-f24, Crevette,"Aliments - poissons, crustacés et mollusques "
-f37, Moule,"Aliments - poissons, crustacés et mollusques "
-f40, Thon,"Aliments - poissons, crustacés et mollusques "
-f41, Saumon,"Aliments - poissons, crustacés et mollusques "
-f50, Maquereau du Pacifique,"Aliments - poissons, crustacés et mollusques "
-f58, Calamar du Pacifique,"Aliments - poissons, crustacés et mollusques "
-f59, Poulpe,"Aliments - poissons, crustacés et mollusques "
-f60, Chinchard/Carangue,"Aliments - poissons, crustacés et mollusques "
-f61, Sardine,"Aliments - poissons, crustacés et mollusques "
-f80, Homard,"Aliments - poissons, crustacés et mollusques "
-f204, Truite arc-en-ciel,"Aliments - poissons, crustacés et mollusques "
-f205, Hareng,"Aliments - poissons, crustacés et mollusques "
-f206, Maquereau,"Aliments - poissons, crustacés et mollusques "
-f207, Palourde,"Aliments - poissons, crustacés et mollusques "
-f254, Carrelet,"Aliments - poissons, crustacés et mollusques "
-f258, Calamar,"Aliments - poissons, crustacés et mollusques "
-f264, Anguille,"Aliments - poissons, crustacés et mollusques "
-f290, Huître,"Aliments - poissons, crustacés et mollusques "
-f303, Flétan,"Aliments - poissons, crustacés et mollusques "
-f304, Langouste,"Aliments - poissons, crustacés et mollusques "
-f307, Merlu,"Aliments - poissons, crustacés et mollusques "
-f308, Sardine commune,"Aliments - poissons, crustacés et mollusques "
-f311, Cardine franche,"Aliments - poissons, crustacés et mollusques "
-f312, Espadon,"Aliments - poissons, crustacés et mollusques "
-f313, Anchois,"Aliments - poissons, crustacés et mollusques "
-f314, Escargot,"Aliments - poissons, crustacés et mollusques "
-f320, Ecrevisse,"Aliments - poissons, crustacés et mollusques "
-f337, Sole,"Aliments - poissons, crustacés et mollusques "
-f338, Coquille Saint-Jacques,"Aliments - poissons, crustacés et mollusques "
-f346, Ormeau,"Aliments - poissons, crustacés et mollusques "
-f1,OEuf (blanc),Aliments – œuf et volailles
-f75, OEuf (jaune),Aliments – œuf et volailles
-f83, Poulet (viande),Aliments – œuf et volailles
-f232, Ovalbumine,Aliments – œuf et volailles
-f233, Ovomucoïde,Aliments – œuf et volailles
-f245, OEuf entier,Aliments – œuf et volailles
-f284, Dinde (viande),Aliments – œuf et volailles
-f323, Conalbumine,Aliments – œuf et volailles
-f26,Porc (viande),Aliments - viandes
-f27,Boeuf (viande),Aliments - viandes
-f88,Mouton (viande),Aliments - viandes
-f213, Lapin (viande),Aliments - viandes
-f285, Elan (viande),Aliments - viandes
-f321, Cheval (viande),Aliments - viandes
-f2 ,Lait de vache,Aliments - produits laitiers
-f76,α lactalbumine,Aliments - produits laitiers
-f77,β lactoglobuline,Aliments - produits laitiers
-f78,Caséine,Aliments - produits laitiers
-f82,Fromage (fermenté),Aliments - produits laitiers
-f81,Fromage (pâte cuite),Aliments - produits laitiers
-f231, Lait de vache bouilli,Aliments - produits laitiers
-f236, Petit lait de vache,Aliments - produits laitiers
-f286, Lait de jument,Aliments - produits laitiers
-f300, Lait de chèvre,Aliments - produits laitiers
-f325, Lait de brebis,Aliments - produits laitiers
-f326, Petit lait de brebis,Aliments - produits laitiers
-f334, Lactoferrine bovine,Aliments - produits laitiers
-f25,Tomate,Aliments - fruits et légumes
-f31,Carotte,Aliments - fruits et légumes
-f33,Orange,Aliments - fruits et légumes
-f35,Pomme de terre,Aliments - fruits et légumes
-f44,Fraise,Aliments - fruits et légumes
-f47,Ail,Aliments - fruits et légumes
-f48,Oignon,Aliments - fruits et légumes
-f49,Pomme,Aliments - fruits et légumes
-f51,Pousse de bambon,Aliments - fruits et légumes
-f54,Patate douce,Aliments - fruits et légumes
-f84,Kiwi,Aliments - fruits et légumes
-f85,Céleri,Aliments - fruits et légumes
-f87,Melon,Aliments - fruits et légumes
-f91,Mangue,Aliments - fruits et légumes
-f92,Banane,Aliments - fruits et légumes
-f94,Poire,Aliments - fruits et légumes
-f95,Pêche,Aliments - fruits et légumes
-f96,Avocat,Aliments - fruits et légumes
-f208, Citron,Aliments - fruits et légumes
-f209, Pamplemousse,Aliments - fruits et légumes
-f210, Ananas,Aliments - fruits et légumes
-f211, Mûre,Aliments - fruits et légumes
-f214, Epinard,Aliments - fruits et légumes
-f215, Laitue,Aliments - fruits et légumes
-f216, Chou,Aliments - fruits et légumes
-f217, Chou de Bruxelles,Aliments - fruits et légumes
-f218, Poivron (Paprika doux),Aliments - fruits et légumes
-f225, Potiron/Citrouille,Aliments - fruits et légumes
-f237, Abricot,Aliments - fruits et légumes
-f242, Cerise,Aliments - fruits et légumes
-f244, Concombre,Aliments - fruits et légumes
-f255, Prune,Aliments - fruits et légumes
-f259, Raisin,Aliments - fruits et légumes
-f260, Brocolis,Aliments - fruits et légumes
-f261, Asperge,Aliments - fruits et légumes
-f262, Aubergine,Aliments - fruits et légumes
-f276, Fenouil,Aliments - fruits et légumes
-f288, Myrtille,Aliments - fruits et légumes
-f289, Datte,Aliments - fruits et légumes
-f291, Chou Fleur,Aliments - fruits et légumes
-f292, Goyave,Aliments - fruits et légumes
-f293, Papaye,Aliments - fruits et légumes
-f294, Fruit de la passion,Aliments - fruits et légumes
-f295, Carambole,Aliments - fruits et légumes
-f301, Kaki,Aliments - fruits et légumes
-f302, Mandarine,Aliments - fruits et légumes
-f306, Citron vert,Aliments - fruits et légumes
-f318, Arbre à pain (fruit),Aliments - fruits et légumes
-f319, Betterave,Aliments - fruits et légumes
-f322, Groseille rouge,Aliments - fruits et légumes
-f328, Figue,Aliments - fruits et légumes
-f329, Pastèque,Aliments - fruits et légumes
-f330, Cynorrhodon,Aliments - fruits et légumes
-f336, Jujube,Aliments - fruits et légumes
-f341, Canneberge,Aliments - fruits et légumes
-f342, Olive noire,Aliments - fruits et légumes
-f343, Framboise,Aliments - fruits et légumes
-f348, Litchi,Aliments - fruits et légumes
-f4,Blé,"Graines, légumineuses et noix "
-f5,Seigle,"Graines, légumineuses et noix "
-f6,Orge,"Graines, légumineuses et noix "
-f7,Avoine,"Graines, légumineuses et noix "
-f8,Maïs (grains),"Graines, légumineuses et noix "
-f9,Riz,"Graines, légumineuses et noix "
-f10,Sésame (graines),"Graines, légumineuses et noix "
-f11,Sarrasin,"Graines, légumineuses et noix "
-f12,Pois,"Graines, légumineuses et noix "
-f13,Arachide,"Graines, légumineuses et noix "
-f14,Soja (graine),"Graines, légumineuses et noix "
-f15,Haricot blanc,"Graines, légumineuses et noix "
-f17,Noisette,"Graines, légumineuses et noix "
-f18,Noix du Brésil,"Graines, légumineuses et noix "
-f20,Amande,"Graines, légumineuses et noix "
-f36,Noix de Coco,"Graines, légumineuses et noix "
-f55,Millet commun,"Graines, légumineuses et noix "
-f56,Millet italien,"Graines, légumineuses et noix "
-f57,Millet japonais,"Graines, légumineuses et noix "
-f79,Gluten,"Graines, légumineuses et noix "
-f124, Epeautre,"Graines, légumineuses et noix "
-f201, Noix de Pécan,"Graines, légumineuses et noix "
-f202, Noix de Cajou,"Graines, légumineuses et noix "
-f203, Pistache,"Graines, légumineuses et noix "
-f224, Pavot (graine),"Graines, légumineuses et noix "
-f226, Citrouille (graine),"Graines, légumineuses et noix "
-f227, Betterave sucrière,"Graines, légumineuses et noix "
-f235, Lentille,"Graines, légumineuses et noix "
-f253, Pignon de pin,"Graines, légumineuses et noix "
-f256, Noix,"Graines, légumineuses et noix "
-f287, Haricot rouge,"Graines, légumineuses et noix "
-f299, Châtaigne,"Graines, légumineuses et noix "
-f305, Fenugrec,"Graines, légumineuses et noix "
-f309, Pois chiche,"Graines, légumineuses et noix "
-f310, Vesce bleue,"Graines, légumineuses et noix "
-f315, Haricot vert,"Graines, légumineuses et noix "
-f316, Colza (graine),"Graines, légumineuses et noix "
-f333, Lin (graine),"Graines, légumineuses et noix "
-f335, Lupin (graine),"Graines, légumineuses et noix "
-f345, Noix de macadamia,"Graines, légumineuses et noix "
-f347, Quinoa,"Graines, légumineuses et noix "
-f86,Persil,Aliments - épices
-f89,Moutarde,Aliments - épices
-f219, Fenouil (graine),Aliments - épices
-f220, Cannelle,Aliments - épices
-f234, Vanille,Aliments - épices
-f263, Poivre vert,Aliments - épices
-f265, Cumin,Aliments - épices
-f266," Muscade (fleur, macis)",Aliments - épices
-f267, Cardamome,Aliments - épices
-f268, Clou de girofle,Aliments - épices
-f269, Basilic,Aliments - épices
-f270, Gingembre,Aliments - épices
-f271, Anis,Aliments - épices
-f272, Estragon,Aliments - épices
-f273, Thym,Aliments - épices
-f274, Marjolaine,Aliments - épices
-f275, Livêche,Aliments - épices
-f277, Aneth,Aliments - épices
-f278, Laurier (feuille),Aliments - épices
-f279, Piment,Aliments - épices
-f280, Poivre noir,Aliments - épices
-f281, Curry (Santa Maria),Aliments - épices
-f282, Muscade (noix),Aliments - épices
-f283, Origan,Aliments - épices
-f317, Coriandre,Aliments - épices
-f331, Safran,Aliments - épices
-f332, Menthe,Aliments - épices
-f339, Poivre de la Jamaïque,Aliments - épices
-f344, Sauge,Aliments - épices
-f45,Levure de bière,Aliments - divers
-f90,Malt,Aliments - divers
-f93,Cacao,Aliments - divers
-f212, Champignon,Aliments - divers
-f221, Café,Aliments - divers
-f222, Thé,Aliments - divers
-f247, Miel,Aliments - divers
-f324, Houblon,Aliments - divers
-f246, Gomme de Guar (Agar),Aliments - additifs
-f296, Caroube,Aliments - additifs
-f297, Gomme arabique,Aliments - additifs
-f298, Gomme tragacanthe,Aliments - additifs
-f340, Rouge carmin/extrait cochenille,Aliments - additifs
-c1,Penicilloyl G (penicilline G),Médicaments
-c2,Penicilloyl V (penicilline V),Médicaments
-c5,Ampicilloyl (ampicilline),Médicaments
-c6,Amoxicilloyl (amoxicilline),Médicaments
-c7,Cefaclor,Médicaments
-c8,Chlorhexidine,Médicaments
-c70,Insuline porcine,Médicaments
-c71,Insuline bovine,Médicaments
-c73,Insuline humaine,Médicaments
-c74,Gélatine bovine,Médicaments
-c202, Suxamethonium (Succinylcholine),Médicaments
-c206, ACTH (Adrenocorticotrophic hormone),Médicaments
-c207, Protamine,Médicaments
-c208, Tetanus toxoïd,Médicaments
-c209, Chymopapaïne,Médicaments
-c260, Ammonium quaternaire (myorelaxants),Médicaments
-c261, Pholcodine,Médicaments
-k70,Grain de café vert,Allergènes professionnels
-k71,Graine de ricin,Allergènes professionnels
-k72,Ispaghule,Allergènes professionnels
-k73,Déchets de soie,Allergènes professionnels
-k74,Soie naturelle,Allergènes professionnels
-k75,Isocyanate TDI,Allergènes professionnels
-k76,Isocyanate MDI,Allergènes professionnels
-k77,Isocyanate HDI,Allergènes professionnels
-k78,Oxyde d'éthylène,Allergènes professionnels
-k79,Anhydride Phtalique,Allergènes professionnels
-k80,Formaldéhyde,Allergènes professionnels
-k81,Ficus,Allergènes professionnels
-k82,Latex Recombi +,Allergènes professionnels
-k83,Graines de coton,Allergènes professionnels
-k84,Graines de tournesol,Allergènes professionnels
-k85,Chloramine T,Allergènes professionnels
-k86,Anhydride trimellitique,Allergènes professionnels
-k87,Alpha-amylase,Allergènes professionnels
-k201, Papaïne,Allergènes professionnels
-k202, Bromeline,Allergènes professionnels
-k203, Phospholipase,Allergènes professionnels
-k204, Maxatase,Allergènes professionnels
-k205, Alkalase,Allergènes professionnels
-k206, Savinase,Allergènes professionnels
-k208, Lysozyme,Allergènes professionnels
-k209, Anhydride Hexahydrophtalique,Allergènes professionnels
-k210, Anhydride Maléique,Allergènes professionnels
-Rk21,1 Anhydride Méthyltétrahydrophtalique,Allergènes professionnels
-Rk21,2 Poussière de bois d'Abachi,Allergènes professionnels
-Rk21,3 Pepsine,Allergènes professionnels
-k214, Bougainvillée,Allergènes professionnels
+code,name,goup,ig_type
+am4,Ammonium quaternaire ; myorelaxant,Médicaments,IgE
+c1,Pénicilline G,Médicaments,IgG
+c1,Pénicilline G,Médicaments,IgE
+c1,Pénicilline G,Médicaments,IgG4
+c2,Penicilline V,Médicaments,IgE
+c2,Pénicilline V,Médicaments,IgG4
+c2,Pénicilline V,Médicaments,IgG
+c201,"Céphalosporines-mélange (Céfaclor, Céfaxine, Céfotaxime, Céfuroxime)",Médicaments,IgE
+c202,Suxamethonium,Médicaments,IgE
+c206,ACTH,Médicaments,IgE
+c207,Protamine,Médicaments,IgE
+c208,Tétanus toxoïd,Médicaments,IgE
+c209,Chymopapaine,Médicaments,IgE
+c212,Erythromycine,Médicaments,IgE
+c213,Gentamicine,Médicaments,IgE
+c216,Doxycycline,Médicaments,IgE
+c217,Acide acétylsalicylique,Médicaments,IgE
+c222,Mélange de macrolides,Médicaments,IgE
+c223,Sulfaméthoxazol,Médicaments,IgE
+c231,Articaïne,Médicaments,IgE
+c232,Lidocaïne ; Xylocaïne®,Médicaments,IgE
+c242,Triméthoprime,Médicaments,IgE
+c251,Allopurinol ; Zyloric®,Médicaments,IgE
+c253,Tétracaïne,Médicaments,IgE
+c281,Diclofénac®,Médicaments,IgE
+c284,Procaïne,Médicaments,IgE
+c285,Bupivacaïne ; Marcaïne®,Médicaments,IgE
+c286,Ibuprofène,Médicaments,IgE
+c300,Codeïne,Médicaments,IgE
+c301,Rifampicine,Médicaments,IgE
+c304,Piroxicam,Médicaments,IgE
+c305,Acide clavulanique,Médicaments,IgE
+c308,Céfuroxime ; Zinnat,Médicaments,IgE
+c330,Chlorure de benzalconium,Médicaments,IgE
+c338,Carbamazépine,Médicaments,IgE
+c388,Kétoprofène,Médicaments,IgE
+c398,Métronidazole,Médicaments,IgE
+c409,Ofloxacine ; Oflocet®,Médicaments,IgE
+c436,Spiramycine,Médicaments,IgE
+c5,Ampicilline,Médicaments,IgE
+c6,Amoxicilline,Médicaments,IgE
+c6,Amoxicilline,Médicaments,IgG
+c7,Céfaclor,Médicaments,IgE
+c70,Insuline porcine,Médicaments,IgE
+c702,Acide ascorbique,Médicaments,IgE
+c703,Acide benzoïque,Médicaments,IgE
+c704,Quinoleine (E104),Médicaments,IgE
+c706,Colorant(jaune,Médicaments,IgE
+c707,Cyclamate de sodium,Médicaments,IgE
+c71,Insuline bovine,Médicaments,IgE
+c711,Nitrite de sodium,Médicaments,IgE
+c712,Sulfite de sodium,Médicaments,IgE
+c713,Parabène,Médicaments,IgE
+c715,Saccharose,Médicaments,IgE
+c717,Tartrazine,Médicaments,IgE
+c719,Vitamine B1,Médicaments,IgE
+c720,Vitamine B6,Médicaments,IgE
+c725,Amaranthe,Médicaments,IgE
+c73,Insuline humaine,Médicaments,IgE
+c74,Gélatine,Médicaments,IgE
+c8,Chlorexidine,Médicaments,IgE
+dip,Propofol (Diprivan®),Médicaments,IgE
+d1,DermatophagoÏdes pteronyssinus,"Acariens, poussières",IgG
+d1,DermatophagoÏdes pteronyssinus,"Acariens, poussières",IgG4
+d1,DermatophagoÏdes pteronyssinus,"Acariens, poussières",IgE
+d2,DermatophagoÏdes farinae,"Acariens, poussières",IgE
+d2,Dermatophagoïdes farinae,"Acariens, poussières",IgG4
+d2,Dermatophagoïdes farinae,"Acariens, poussières",IgG
+d201,Blomia tropicalis,"Acariens, poussières",IgE
+d201,Blomia tropicalis,"Acariens, poussières",IgG4
+d3,Dermatophagoides microceras,"Acariens, poussières",IgE
+d3,Dermatophagoides microceras,"Acariens, poussières",IgG4
+d500,Argas reflexus,"Acariens, poussières",IgE
+d70,Acarus siro,"Acariens, poussières",IgE
+d71,Lepidoglyphus destructor,"Acariens, poussières",IgE
+d71,Lepidoglyphus destructor,"Acariens, poussières",IgG4
+d71,Lepidoglyphus destructor,"Acariens, poussières",IgG
+d72,Thyrophagus putreus,"Acariens, poussières",IgG
+d72,Tyrophagus putreus,"Acariens, poussières",IgE
+d72,Tyrophagus putreus,"Acariens, poussières",IgG4
+d73,Glycyphagus domesticus,"Acariens, poussières",IgE
+d73s,Glycyphagus domesticus,"Acariens, poussières",IgG4
+d74,Euroglyphus maynei,"Acariens, poussières",IgE
+d74,Euroglyphus maynei,"Acariens, poussières",IgG4
+d74,Euroglyphyus maynei,"Acariens, poussières",IgG
+ex1,"Phanères ; e1, e5, e3, e4",Animaux,IgE
+ex2,"Animaux ; e1, e5, e6, e87, e88",Animaux,IgE
+ex70,"Animaux ; e6, e82, e84, e87, e88",Animaux,IgE
+ex71,"Mélange de plumes ; e70, e85, e86, e89",Animaux,IgE
+ex72,"Mélange de plumes ; e78, e201, Parakeet, e213, e214",Animaux,IgE
+ex73,"Mélange de plumes ; e70, e85, e86, e213",Animaux,IgE
+e1,Chat ; epithelium,Animaux,IgG4
+e1,Chat ; epithelium,Animaux,IgE
+e1,Chat,Animaux,IgG
+e101,rCan f1 Chien ; recombinant,Animaux,IgE
+e102,rCan f2 Chien ; reconbinant,Animaux,IgE
+e196,Perruche callopsitte ; plumes,Animaux,IgE
+E197,Perruche callopsitte ; déjections ,Animaux,IgE
+E198,Perruche callopsitte ; protéines,Animaux,IgE
+e199,Canari ; protéines sériques,Animaux,IgE
+e2,Chien (Epithelium),Animaux,IgG
+e2,Chien ; epithelium,Animaux,IgE
+e2,Chien ; epithelium,Animaux,IgG4
+e200,Canari ; déjections,Animaux,IgE
+e201,Canari ; plumes,Animaux,IgE
+e202,Renne ; epithelium,Animaux,IgE
+e203,Vison ; epithelium,Animaux,IgE
+e204,Sérum albumine bovine,Animaux,IgE
+e204,Sérum albumine bovine,Animaux,IgG
+e205,Cheval ; protéines du serum,Animaux,IgE
+e206,Lapin ; protéines du serum,Animaux,IgE
+e208,Chinchilla,Animaux,IgE
+e209,Gerbille,Animaux,IgE
+e210,Renard,Animaux,IgE
+e211,Lapin ; protéines urinaires,Animaux,IgE
+e212,Cochon ; protéines urinaires,Animaux,IgE
+e213,Perroquet ; plumes,Animaux,IgE
+e214,Pinson ; plumes,Animaux,IgE
+e215,PIgE,Animaux,IgE
+e216,Cerf ; epithelium,Animaux,IgE
+e217,Furet ; epithelium,Animaux,IgE
+e218,Poulet ; fientes,Animaux,IgE
+e219,Poulet ; protéines du serum,Animaux,IgE
+e220,Chat ; albumine sérique,Animaux,IgE
+e221,Chien ; albumine sérique,Animaux,IgE
+e222,Porc ; albumine sérique,Animaux,IgE
+e3,Cheval ; squames,Animaux,IgG
+e3,Cheval ; squames,Animaux,IgE
+e3,Cheval (Poils et squames),Animaux,IgG4
+e4,Vache ; squames,Animaux,IgE
+e5,Chien,Animaux,IgG4
+e5,Chien,Animaux,IgG
+e5,Chien ; squames,Animaux,IgE
+e6,Cobaye ; epithelium,Animaux,IgE
+e7,PIgE,Animaux,IgE
+e70,Plumes d&rsquo;oie,Animaux,IgG
+e70,Oie ; plumes,Animaux,IgE
+e71,Souris ; epithelium,Animaux,IgE
+e72,Souris ; protéines urinaires,Animaux,IgE
+e73,Rat ; epithelium,Animaux,IgE
+e74,Rat ; protéines urinaires,Animaux,IgE
+e75,Rat ; protéines du sérum,Animaux,IgE
+e76,Souris ; protéines du serum,Animaux,IgE
+e77,Perruche ; déjections,Animaux,IgE
+e78,Perruche ; plumes,Animaux,IgE
+e79,Perruche ; protéines du serum,Animaux,IgE
+e80,Chèvre(épithélia),Animaux,IgG4
+e80,Chèvre ; epithelium,Animaux,IgE
+e81,Mouton ; epithelium,Animaux,IgE
+e82,Lapin ; epithelium,Animaux,IgE
+e83,Porc ; epithelium,Animaux,IgE
+e84,Hamster ; epithelium,Animaux,IgE
+e84,Hamster (squames),Animaux,IgG
+e85,Poulet ; plumes,Animaux,IgE
+e86,Canard ; plumes,Animaux,IgE
+e87,Rat ; epithelium + protéines,Animaux,IgE
+e88,Souris ; epithelium + protéines,Animaux,IgE
+e89,Dinde ; plumes,Animaux,IgE
+e94,rFel d 1 Felis domesticus ; recombinant,Animaux,IgE
+fx1,"Noix ; f13, f17, f18, f20, f36",Mélanges d’aliments,IgE
+fx10,"Viandes ; f27, f26, f75, f83, f284",Mélanges d’aliments,IgE
+fx11,"Légumes ; f8, f12, f15, f31, f206",Mélanges d’aliments,IgE
+fx13,"Légumes ; f12, f15, f31, f35",Mélanges d’aliments,IgE
+fx14,Mélange légumes,Mélanges d’aliments,IgE
+fx15,"Fruits ; f33, f49, f92, f95",Mélanges d’aliments,IgE
+fx16,"Fruits ; f44, f94, f208, f210",Mélanges d’aliments,IgE
+fx17,"Fruits ; f49, f92, f94, f95",Mélanges d’aliments,IgE
+fx18,"Aliments ; f12, f13, f14",Mélanges d’aliments,IgE
+fx19,"Légumes ; f31, f35, f214, f244",Mélanges d’aliments,IgE
+fx2,"Produits de la mer ; f3, f24, f40, f41, f37",Mélanges d’aliments,IgE
+fx20,"Céréales ; f4, f5, f6, f9",Mélanges d’aliments,IgE
+fx21,"Fruits ; f84, f87, f92, f95, f210",Mélanges d’aliments,IgE
+fx22,"Noix de pécan,noix de cajou,pistache,noix",Mélanges d’aliments,IgG
+fx22,"Fruits secs ; f201, f202, f203, f256",Mélanges d’aliments,IgE
+fx23,"Trophatop 3 ; f26, f27, f83, f284",Mélanges d’aliments,IgE
+fx24,"Trophatop 2 ; f17, F24, F84, F92",Mélanges d’aliments,IgE
+fx25,"Trophatop 4 ; f10, f45, f47, f85",Mélanges d’aliments,IgE
+fx26,"Trophatop (Blanc d&rsquo;oeuf,lait,arachide,moutarde)",Mélanges d’aliments,IgE
+fx27,"Trophatop (Poisson,noisette,soja,blé)",Mélanges d’aliments,IgE
+fx28,"Trophatop (Crevette,kiwi,boeuf,sésame)",Mélanges d’aliments,IgE
+fx29,"Mélange Orange, Citron, Mandarine, Pamplemousse",Mélanges d’aliments,IgE
+fx3,"Farines ; f4, f7, f8, f10, f11",Mélanges d’aliments,IgE
+fx30,"Fruits (Kiwi, Mangue, Banane, Avocat, Papaye)",Mélanges d’aliments,IgE
+fx31,"Fruits (Pomme, Poire, Pêche, Cerise, Prune)",Mélanges d’aliments,IgE
+fx32,"Légumes (Lentille, Pois, Haricot blanc, Caroube)",Mélanges d’aliments,IgE
+fx7,"Légumes ; f25, f48, f47, f45, f85",Mélanges d’aliments,IgE
+fx70,"Aromates ; f272, f274, f273, f275",Mélanges d’aliments,IgE
+fx71,"Aromates ; f265, f266, f267, f268",Mélanges d’aliments,IgE
+fx72,"Aromates ; f269, f219, f270, f271",Mélanges d’aliments,IgE
+fx73,"Viandes ; f26, f27, f83",Mélanges d’aliments,IgE
+fx74,"Poissons ; f206, f205, f3, f254",Mélanges d’aliments,IgE
+fx8,"Fruits ; f49, f17, f18, f33, f93",Mélanges d’aliments,IgE
+fx9,"Fruits exotiques ; f84, f87, f92, f259, f20",Mélanges d’aliments,IgE
+f1,Blanc d&rsquo;oeuf,Aliments d’origine animale,IgG4
+f1,Blanc d&rsquo;oeuf,Aliments d’origine animale,IgG
+f1,Oeuf ; blanc,Aliments d’origine animale,IgE
+f10,Sésame ; graine ; aliment,Aliments d’origine végétale,IgE
+f11,Sarrasin ; graine ; aliment,Aliments d’origine végétale,IgE
+f118,Courgette,Aliments d’origine végétale,IgE
+f119,Radis,Aliments d’origine végétale,IgE
+f12,Pois ; graine,Aliments d’origine végétale,IgE
+f12,Pois,Aliments d’origine végétale,IgG4
+f13,Arachide,Aliments d’origine végétale,IgG
+f13,Arachide,Aliments d’origine végétale,IgE
+f13,Arachide,Aliments d’origine végétale,IgG4
+f14,Soja,Aliments d’origine végétale,IgG4
+f14,Soja,Aliments d’origine végétale,IgE
+f14,Soja,Aliments d’origine végétale,IgG
+f15,Haricot blanc,Aliments d’origine végétale,IgE
+f17,Noisette,Aliments d’origine végétale,IgG4
+f17,Noisette,Aliments d’origine végétale,IgE
+f178,Rhubarbe,Aliments d’origine végétale,IgE
+f18,Noix du Brésil,Aliments d’origine végétale,IgE
+f182,Haricot de Lima,Aliments d’origine végétale,IgE
+f2,Lait de vache,Aliments d’origine animale,IgG4
+f2,Lait de vache,Aliments d’origine végétale,IgE
+f20,Amande,Aliments d’origine végétale,IgG
+f20,Amande,Aliments d’origine végétale,IgE
+f201,Noix de pécan,Aliments d’origine végétale,IgE
+f202,Noix de cajou,Aliments d’origine végétale,IgE
+f203,Pistache,Aliments d’origine végétale,IgE
+f204,Truite,Aliments d’origine animale,IgE
+f205,Hareng,Aliments d’origine animale,IgE
+f206,Maquereau,Aliments d’origine animale,IgE
+f207,Palourde,Aliments d’origine animale,IgE
+f208,Citron,Aliments d’origine végétale,IgE
+f208,Citron,Aliments d’origine végétale,IgG
+f209,Pamplemousse,Aliments d’origine végétale,IgE
+f210,Ananas,Aliments d’origine végétale,IgE
+f210,Ananas,Aliments d’origine végétale,IgG
+f211,Mûre,Aliments d’origine végétale,IgE
+f212,Champignon,Aliments d’origine végétale,IgE
+f213,Lapin ; viande,Aliments d’origine animale,IgE
+f214,Epinard,Aliments d’origine végétale,IgE
+f215,Laitue,Aliments d’origine végétale,IgE
+f216,Chou,Aliments d’origine végétale,IgE
+f217,Chou de Bruxelles,Aliments d’origine végétale,IgE
+f218,Paprika,Aliments d’origine végétale,IgE
+f219,Fenouil ; graine,Aliments d’origine végétale,IgE
+f22,Framboise,Aliments d’origine végétale,IgE
+f220,Cannelle,Aliments d’origine végétale,IgE
+f221,Café,Aliments d’origine végétale,IgG
+f221,Café,Aliments d’origine végétale,IgE
+f222,Thé,Aliments d’origine végétale,IgE
+f222,Thé,Aliments d’origine végétale,IgG
+f224,Pavot ; graine ; aliment,Aliments d’origine végétale,IgE
+f225,Potiron Citrouille,Aliments d’origine végétale,IgE
+f226,Citrouille ; graine ; aliment,Aliments d’origine végétale,IgE
+f227,Bettrave à sucre,Aliments d’origine végétale,IgG4
+f227,Bettrave à sucre,Aliments d’origine végétale,IgG
+f227,Bettrave à sucre ; graine ; aliment,Aliments d’origine végétale,IgE
+f23,Crabe,Aliments d’origine animale,IgE
+f231,Lait bouilli,Aliments d’origine animale,IgE
+f232,Ovalbumine,Aliments d’origine animale,IgE
+f232,Ovalbumine,Aliments d’origine animale,IgG4
+f232,Ovalbumine,Aliments d’origine animale,IgG
+f233,Ovomucoïde,Aliments d’origine animale,IgE
+f234,Vanille,Aliments d’origine végétale,IgE
+f235,Lentille,Aliments d’origine végétale,IgE
+f235,Lentilles,Aliments d’origine végétale,IgG4
+f236,Petit lait,Aliments d’origine animale,IgE
+f237,Abricot,Aliments d’origine végétale,IgE
+f24,Crevette,Aliments d’origine animale,IgE
+f24,Crevette,Aliments d’origine animale,IgG4
+f242,Cerise,Aliments d’origine végétale,IgE
+f244,Concombre,Aliments d’origine végétale,IgE
+f245,Oeuf entier,Aliments d’origine animale,IgE
+f245,Oeuf,Aliments d’origine animale,IgG4
+f245,Oeuf,Aliments d’origine animale,IgG
+f246,Gomme de guar ; Agar,Aliments d’origine végétale,IgE
+f247,Miel,Aliments d’origine animale,IgE
+f248,Romarin,Aliments d’origine végétale,IgE
+f25,Tomate,Aliments d’origine végétale,IgG4
+f25,Tomate,Aliments d’origine végétale,IgE
+f253,Pignon de pin,Aliments d’origine végétale,IgE
+f254,Limande ; carrelet,Aliments d’origine animale,IgE
+f255,Prune,Aliments d’origine végétale,IgE
+f256,Noix,Aliments d’origine végétale,IgE
+f258,Calamar,Aliments d’origine animale,IgE
+f259,Raisin,Aliments d’origine végétale,IgE
+f26,Porc,Aliments d’origine animale,IgG4
+f26,Porc,Aliments d’origine animale,IgE
+f26,Porc,Aliments d’origine animale,IgG
+f260,Brocolis,Aliments d’origine végétale,IgE
+f261,Asperge,Aliments d’origine végétale,IgE
+f262,Aubergine,Aliments d’origine végétale,IgE
+f263,Poivre vert,Aliments d’origine végétale,IgE
+f264,Anguille,Aliments d’origine animale,IgE
+f265,Cumin,Aliments d’origine végétale,IgE
+f266,Muscade ; fleur ; aliment,Aliments d’origine végétale,IgE
+f267,Cardamome,Aliments d’origine végétale,IgE
+f268,Clou de girofle,Aliments d’origine végétale,IgE
+f269,Basilic,Aliments d’origine végétale,IgE
+f27,Boeuf,Aliments d’origine animale,IgG4
+f27,Boeuf,Aliments d’origine animale,IgG
+f27,Boeuf,Aliments d’origine animale,IgE
+f270,Gingembre,Aliments d’origine végétale,IgE
+f271,Anis,Aliments d’origine végétale,IgE
+f272,Estragon,Aliments d’origine végétale,IgE
+f273,Thym,Aliments d’origine végétale,IgE
+f274,Marjolaine,Aliments d’origine végétale,IgE
+f275,Livèche,Aliments d’origine végétale,IgE
+f276,Fenouil,Aliments d’origine végétale,IgE
+f277,Aneth,Aliments d’origine végétale,IgE
+f278,Feuille de laurier,Aliments d’origine végétale,IgE
+f279,Piment,Aliments d’origine végétale,IgE
+f280,Poivre noir,Aliments d’origine végétale,IgG
+f280,Poivre noir,Aliments d’origine végétale,IgE
+f281,Curry,Aliments d’origine végétale,IgE
+f282,Noix de muscade,Aliments d’origine végétale,IgE
+f283,Origan,Aliments d’origine végétale,IgE
+f284,Dinde ; viande,Aliments d’origine animale,IgE
+f285,Elan ; viande,Aliments d’origine animale,IgE
+f286,Lait de jument,Aliments d’origine animale,IgE
+f287,Haricot rouge,Aliments d’origine végétale,IgE
+f288,Airelle,Aliments d’origine végétale,IgE
+f289,Datte,Aliments d’origine végétale,IgE
+f290,Huître,Aliments d’origine animale,IgE
+f291,Chou fleur,Aliments d’origine végétale,IgE
+f292,Goyave,Aliments d’origine végétale,IgE
+f293,Papaye,Aliments d’origine végétale,IgE
+f294,Fruit de la passion,Aliments d’origine végétale,IgE
+f295,Carrambole,Aliments d’origine végétale,IgE
+f296,Caroube,Aliments d’origine végétale,IgE
+f297,Gomme arabique,Aliments d’origine végétale,IgE
+f298,Gomme tragacanthe,Aliments d’origine végétale,IgE
+f299,Châtaigne ; aliment,Aliments d’origine végétale,IgE
+f3,Poisson ; morue,Aliments d’origine animale,IgG
+f3,Poisson ; morue,Aliments d’origine animale,IgG4
+f3,Poisson ; morue,Aliments d’origine animale,IgE
+f300,Lait de chèvre,Aliments d’origine animale,IgE
+f300,Lait de chèvre,Aliments d’origine animale,IgG
+f301,Kaki,Aliments d’origine végétale,IgE
+f303,Flétan,Aliments d’origine animale,IgE
+f304,Langouste,Aliments d’origine animale,IgE
+f305,Fenu grec,Aliments d’origine végétale,IgE
+f306,Citron vert ; lime,Aliments d’origine végétale,IgE
+f307,"Merluche ; Merlu, colin",Aliments d’origine animale,IgE
+f308,Sardine ; S. pilchardus,Aliments d’origine animale,IgE
+f309,Pois chiche,Aliments d’origine végétale,IgE
+f31,Carotte,Aliments d’origine végétale,IgG4
+f31,Carotte,Aliments d’origine végétale,IgE
+f310,Vesce bleu,Aliments d’origine végétale,IgE
+f311,Limande,Aliments d’origine animale,IgE
+f312,Espadon,Aliments d’origine animale,IgE
+f313,Anchois,Aliments d’origine animale,IgE
+f314,Escargot ; helix aspersa,Aliments d’origine animale,IgE
+f315,Haricot vert,Aliments d’origine végétale,IgE
+f316,Colza ; graine ; aliment,Aliments d’origine végétale,IgE
+f317,Coriandre,Aliments d’origine végétale,IgE
+f318,Arbre à pain ; fruit,Aliments d’origine végétale,IgE
+f319,Betterave ; potagère,Aliments d’origine végétale,IgE
+f320,Ecrevisse,Aliments d’origine animale,IgE
+f321,Cheval ; viande,Aliments d’origine animale,IgE
+f322,Groseille,Aliments d’origine végétale,IgE
+f323,Conalbumine,Aliments d’origine animale,IgE
+f324,Houblon,Aliments d’origine végétale,IgE
+f325,Lait de brebis,Aliments d’origine animale,IgE
+f326,Petit lait de brebis,Aliments d’origine animale,IgE
+f328,Figue,Aliments d’origine végétale,IgE
+f329,Pastèque,Aliments d’origine végétale,IgE
+f33,Orange,Aliments d’origine végétale,IgG
+f33,Orange,Aliments d’origine végétale,IgG4
+f33,Orange,Aliments d’origine végétale,IgE
+f331,Safran,Aliments d’origine végétale,IgE
+f332,Menthe,Aliments d’origine végétale,IgE
+f333,Lin ; graines ; aliment,Aliments d’origine végétale,IgE
+f334g,Lactoferrine bovine,Aliments d’origine animale,IgG
+f335,Lupin ; graines ; aliment,Aliments d’origine végétale,IgE
+f337,Sole,Aliments d’origine animale,IgE
+f338,Coquille St Jacques,Aliments d’origine animale,IgE
+f340,Rouge Carmin ; cochenille,Aliments d’origine animale,IgE
+f341,Canneberge,Aliments d’origine végétale,IgE
+f342,Olive noire,Aliments d’origine végétale,IgE
+f343,Framboise,Aliments d’origine végétale,IgE
+f344,Sauge,Aliments d’origine végétale,IgE
+f345,Noix de macadamia,Aliments d’origine végétale,IgE
+f346,Ormeau,Aliments d’origine animale,IgE
+f347,Quinoa,Aliments d’origine végétale,IgE
+f347,Quinoa,Aliments d’origine végétale,IgG4
+f348,Litchi,Aliments d’origine végétale,IgE
+f35,Pomme de terre,Aliments d’origine végétale,IgE
+f35,Pomme de terre,Aliments d’origine végétale,IgG
+f351,Crevette rPen a 1 Tropomyosine (recombinant),Aliments d’origine animale,IgE
+f352,rAra h 8 Arachis hypogaea ; recombinant,Aliments d’origine végétale,IgE
+f353,rGly m 4 Glycine max ; recombinant,Aliments d’origine végétale,IgE
+f354,Noix du Brésil recombinant (rBer e1),Aliments d’origine végétale,IgE
+f355,rCyp c1 Parvalbumine ; recombinant,Aliments d’origine animale,IgE
+f356,Cassis,Aliments d’origine végétale,IgE
+f358,Artichaut,Aliments d’origine végétale,IgE
+f36,Noix de coco,Aliments d’origine végétale,IgE
+f37,Moule,Aliments d’origine animale,IgE
+f4,Blé ; aliment,Aliments d’origine végétale,IgE
+f4,Blé,Aliments d’origine végétale,IgG4
+f4,Blé ; aliment,Aliments d’origine végétale,IgG
+f40,Thon,Aliments d’origine animale,IgE
+f41,Saumon,Aliments d’origine animale,IgE
+f41,Saumon,Aliments d’origine animale,IgG4
+f412,Empereur,Aliments d’origine animale,IgE
+f413,Lieu noir,Aliments d’origine animale,IgE
+f416,rTri a 19 Oméga-5 gliadine,Aliments d’origine végétale,IgE
+f419,rPru p 1 Pêche ; recombinant ,Aliments d’origine végétale,IgE
+f420,rPru p 3 Pêche ; recombinant ,Aliments d’origine végétale,IgE
+f421,rPru p 4 Pêche ; recombinant ,Aliments d’origine végétale,IgE
+f422,r Ara h 1 Arachis hypogaea ; recombinant,Aliments d’origine végétale,IgE
+f423,r Ara h 2 Arachis hypogaea ; recombinant,Aliments d’origine végétale,IgE
+f424,r Ara h 3 Arachis hypogaea ; recombinant,Aliments d’origine végétale,IgE
+f44,Fraise,Aliments d’origine végétale,IgG4
+f44,Fraise,Aliments d’origine végétale,IgE
+f45,Levure de bière,Aliments d’origine végétale,IgE
+f47,Ail,Aliments d’origine végétale,IgG
+f47,Ail,Aliments d’origine végétale,IgE
+f47,Ail,Aliments d’origine végétale,IgG4
+f48,Oignon,Aliments d’origine végétale,IgE
+f49,Pomme,Aliments d’origine végétale,IgG4
+f49,Pomme,Aliments d’origine végétale,IgG
+f49,Pomme,Aliments d’origine végétale,IgE
+f5,Seigle,Aliments d’origine végétale,IgG
+f5,Seigle,Aliments d’origine végétale,IgE
+f50,Maquereau du pacifique,Aliments d’origine animale,IgE
+f51,Pousse de bambou,Aliments d’origine végétale,IgE
+f54,Patate douce,Aliments d’origine végétale,IgE
+f55,Millet commun,Aliments d’origine végétale,IgE
+f56,Millet italien,Aliments d’origine végétale,IgE
+f57,Millet japonais,Aliments d’origine végétale,IgE
+f58,Calmar du pacifique,Aliments d’origine animale,IgE
+f59,Pieuvre,Aliments d’origine animale,IgE
+f6,Orge ; aliment,Aliments d’origine végétale,IgE
+f6g,Orge ; aliment,Aliments d’origine végétale,IgG
+f60,Maquereau commun,Aliments d’origine animale,IgE
+f61,Sardine,Aliments d’origine animale,IgE
+f7,Avoine,Aliments d’origine végétale,IgG
+f7,Avoine ; aliment,Aliments d’origine végétale,IgE
+f75,Jaune d&rsquo;oeuf,Aliments d’origine animale,IgG4
+f75,Oeuf ; Jaune,Aliments d’origine animale,IgE
+f75,Jaune d&rsquo;oeuf,Aliments d’origine animale,IgG
+f76,A. lactalbumine ; protéines du lait,Aliments d’origine animale,IgG4
+f76,A. lactalbumine ; protéines du lait,Aliments d’origine animale,IgE
+f76,A. lactalbumine ; protéines du lait,Aliments d’origine animale,IgG
+f77,B.lactoglobuline ; protéines du lait,Aliments d’origine animale,IgE
+f77,B.lactoglobuline ; protéines du lait,Aliments d’origine animale,IgG
+f77,B.lactoglobuline ; protéines du lait,Aliments d’origine animale,IgG4
+f78,Caséine ; protéines du lait,Aliments d’origine animale,IgG4
+f78,Caséine ; protéines du lait,Aliments d’origine animale,IgG
+f78,Caséine ; protéines du lait,Aliments d’origine animale,IgE
+f79,Gluten,Aliments d’origine végétale,IgE
+f79,Gluten,Aliments d’origine végétale,IgG4
+f79,Gluten,Aliments d’origine végétale,IgG
+f8,Maïs ; aliment,Aliments d’origine végétale,IgE
+f8,Maïs,Aliments d’origine végétale,IgG
+f80,Homard,Aliments d’origine animale,IgE
+f81,Fromage ; pâte cuite,Aliments d’origine animale,IgE
+f81,Fromage (pâte cuite),Aliments d’origine animale,IgG
+f82,Fromage (fermenté),Aliments d’origine animale,IgG
+f82,Fromage ; fermenté,Aliments d’origine animale,IgE
+f83,Poulet (viande),Aliments d’origine animale,IgE
+f83,Poulet,Aliments d’origine animale,IgG4
+f83,Poulet,Aliments d’origine animale,IgG
+f84,Kiwi,Aliments d’origine végétale,IgE
+f84,Kiwi,Aliments d’origine végétale,IgG
+f84,Kiwi,Aliments d’origine végétale,IgG4
+f85,Céleri,Aliments d’origine végétale,IgG4
+f85,Céleri,Aliments d’origine végétale,IgE
+f86,Persil,Aliments d’origine végétale,IgE
+f87,Melon,Aliments d’origine végétale,IgE
+f88,Mouton,Aliments d’origine animale,IgE
+f89,Moutarde,Aliments d’origine végétale,IgE
+f9,Riz,Aliments d’origine végétale,IgG4
+f9,Riz ; grain entier ; pollen,Aliments d’origine végétale,IgE
+f9,Riz ; grain entier ; pollen,Aliments d’origine végétale,IgG
+f90,Malt,Aliments d’origine végétale,IgE
+f91,Mangue,Aliments d’origine végétale,IgE
+f92,Banane,Aliments d’origine végétale,IgE
+f92,Banane,Aliments d’origine végétale,IgG
+f92,Banane,Aliments d’origine végétale,IgG4
+f93,Cacao,Aliments d’origine végétale,IgE
+f93,Cacao,Aliments d’origine végétale,IgG4
+f93,Cacao,Aliments d’origine végétale,IgG
+f94,Poire,Aliments d’origine végétale,IgE
+f95,Pêche,Aliments d’origine végétale,IgE
+f96,Avocat,Aliments d’origine végétale,IgE
+f96,Avocat,Aliments d’origine végétale,IgG
+Ge90,Perruche ; protéines du sérum ; déjections,Perruche ; protéines du sérum ; déjections,IgG
+Gm27,Penicillium spp,Microorganismes,IgG
+gx1,"Pollens de graminées ; g3, g4, g5, g6, g8",Pollens de graminées,IgE
+gx1,"Pollens de graminées (Dactyle, fétuque, ivraie, phléole, paturin)",Pollens de graminées,IgG
+gx1,"Pollens de graminées (Dactyle, fétuque, ivraie, phléole, paturin)",Pollens de graminées,IgG4
+gx2,"Pollens de graminées ; g2, g5, g6, g8, g10",Pollens de graminées,IgE
+gx3,"Pollens de graminées ; g1, g5, g6, g12, g13",Pollens de graminées,IgE
+gx3,"Pollens de graminées (Flouve, ivraie, phléole, seigle et houlque)",Pollens de graminées,IgG4
+gx4,"Pollens de graminées ; g1, g5, g7, g12, g13",Pollens de graminées,IgE
+gx6,"Pollens de graminées ; g2, g5, g10, g11, g13, g17",Pollens de graminées,IgE
+g1,Flouve odorante,Pollens de graminées,IgE
+g1,Flouve odorante,Pollens de graminées,IgG
+g10,Sorgho,Pollens de graminées,IgE
+g11,Brome,Pollens de graminées,IgE
+g12,Seigle,Pollens de graminées,IgE
+g12,Seigle,Pollens de graminées,IgG
+g12,Seigle,Pollens de graminées,IgG4
+g13,Houlque laineuse,Pollens de graminées,IgG
+g13,Houlque laineuse,Pollens de graminées,IgE
+g14,Avoine ; pollen-,Pollens de graminées,IgG
+g14,Avoine ; pollen,Pollens de graminées,IgE
+g14,Avoine,Pollens de graminées,IgG4
+g15,Blé ; pollen,Pollens de graminées,IgE
+g15,Blé,Pollens de graminées,IgG4
+g15,Blé ; pollen,Pollens de graminées,IgG
+g16,Vulpin des prés ; Alopecurus pratensis,Pollens de graminées,IgG4
+g16,Vulpin des prés,Pollens de graminées,IgE
+g17,Herbe de Bahia,Pollens de graminées,IgE
+g2,Chiendent,Pollens de graminées,IgG4
+g2,Chiendent digité,Pollens de graminées,IgE
+g2,Chiendent,Pollens de graminées,IgG
+g201,Orge ; pollen,Pollens de graminées,IgE
+g202,Maïs ; pollen,Pollens de graminées,IgG
+g202,Maïs ; pollen,Pollens de graminées,IgE
+g202,Maïs ; pollen,Pollens de graminées,IgG4
+g203,Herbe des prés salés,Pollens de graminées,IgE
+g204,Fromental,Pollens de graminées,IgE
+g205,rPhl p 1 Phéole ; recombinant,Pollens de graminées,IgE
+g206,rPhl p 2 ; Phléole ; recombinant,Pollens de graminées,IgE
+g208,"nPhl p 4 Phéole, natif ; recombinant",Pollens de graminées,IgE
+g209,rPhl p 6 Phéole ; recombinant,Pollens de graminées,IgE
+g210,rPhl p 7 Phéole ; recombinant,Pollens de graminées,IgE
+g211,rPhl p 11 Phléole ; recombinant,Pollens de graminées,IgE
+g212,rPhl p 12 Phléole ; recombinant,Pollens de graminées,IgE
+g213,"rPhl p 1, rPhl p 5b Phléole ; recombinants",Pollens de graminées,IgE
+g214,"rPhl p 7, rPhl p 12 Phléole ; recombinants",Pollens de graminées,IgE
+g215,rPhl p 5 Phléole ; recombinant,Pollens de graminées,IgE
+g3,Dactyle,Pollens de graminées,IgG4
+g3,Dactyle,Pollens de graminées,IgG
+g3,Dactyle pelotonné,Pollens de graminées,IgE
+g4,Fétuque des prés,Pollens de graminées,IgG
+g4,Fétuque des prés,Pollens de graminées,IgG4
+g4,Fétuque des prés,Pollens de graminées,IgE
+g5,Ivraie vivace,Pollens de graminées,IgE
+g5,Ivraie,Pollens de graminées,IgG
+g5,Ivraie,Pollens de graminées,IgG4
+g6,Phléole des prés,Pollens de graminées,IgE
+g6,Phléole des prés,Pollens de graminées,IgE
+g6,Phléole des prés,Pollens de graminées,IgG4
+g6,Phléole des prés,Pollens de graminées,IgG
+g7,Roseau à balais,Pollens de graminées,IgE
+g70,Ivraie sauvage,Pollens de graminées,IgE
+g71,Alpiste,Pollens de graminées,IgE
+g8,Paturin des prés,Pollens de graminées,IgE
+g8,Paturin,Pollens de graminées,IgG
+g8,Paturin,Pollens de graminées,IgG4
+g9,Agrostide,Pollens de graminées,IgE
+g900,Fleur de canne à surcre,Pollens de graminées,IgE
+hex,Héxabrix,"Acariens, poussières",IgE
+hx2,Poussières de maison,"Acariens, poussières",IgE
+h1,Poussières ; Greer,"Acariens, poussières",IgG
+h1,Poussières ; Greer,"Acariens, poussières",IgE
+h1,Poussières ; Greer,"Acariens, poussières",IgG4
+h2,Poussières ; Hollister-Stier,"Acariens, poussières",IgE
+i1,Abeille,Venins,IgE
+i1,Abeille,Venins,IgG
+i1,Abeille,Venins,IgG4
+i2,Frelon tête blanche,Venins,IgG
+i2,Frelon tête blanche,Venins,IgE
+i2,Frelon tête blanche,Venins,IgG4
+i201,Taon du cheval ; Gasterophilus intestinalis,"Insectes, venins et parasites ",IgE
+i201,Mouche du cheval,"Insectes, venins et parasites ",IgG
+i202,Charançon du blé,"Insectes, venins et parasites ",IgE
+i202,Sitophilus granarius,"Insectes, venins et parasites ",IgG
+i203,Ephestia,"Insectes, venins et parasites ",IgE
+i204,Taon,"Insectes, venins et parasites ",IgE
+i204,Taon,"Insectes, venins et parasites ",IgG
+i204,Taon,"Insectes, venins et parasites ",IgG4
+i205,Bourdon,"Insectes, venins et parasites ",IgG
+i205,Bourdon,"Insectes, venins et parasites ",IgE
+i205,Bourdon,"Insectes, venins et parasites ",IgG4
+i206,Blatte américaine,"Insectes, venins et parasites ",IgG4
+i206,Blatte américaine,"Insectes, venins et parasites ",IgE
+i207,Blatte orientale,"Insectes, venins et parasites ",IgE
+i3,Venin de guêpe ; vespula,Venins,IgG4
+i3,Venin de guêpe ; vespula,Venins,IgG
+i3,Venin de guêpe ; vespula,Venins,IgE
+i4,Venin de guêpe ; poliste,Venins,IgG4
+i4,Venin de guêpe ; poliste,Venins,IgG
+i4,Venin de guêpe ; poliste,Venins,IgE
+i5,Frelon tête jaune,Venins,IgG
+i5,Frelon tête jaune,Venins,IgG4
+i5,Frelon tête jaune,Venins,IgE
+i6,Cafard ; Blatte germanique,"Insectes, venins et parasites ",IgG4
+i6,Cafard ; Blatte germanique,"Insectes, venins et parasites ",IgG
+i6,Cafard ; Blatte germanique,"Insectes, venins et parasites ",IgE
+i70,Fourmi rouge,"Insectes, venins et parasites ",IgE
+i70,Fourmi rouge,"Insectes, venins et parasites ",IgG4
+i70,Fourmi rouge,"Insectes, venins et parasites ",IgG
+i71,Moustique ; aedes communs,"Insectes, venins et parasites ",IgE
+i71,Moustique,"Insectes, venins et parasites ",IgG4
+i71,Moustique,"Insectes, venins et parasites ",IgG
+i72,Mouche du Soudan,"Insectes, venins et parasites ",IgE
+i72,Mouche du Soudan,"Insectes, venins et parasites ",IgG4
+i73,Larve de ver de vase,"Insectes, venins et parasites ",IgE
+i75,Venin de frelon,Venins,IgG4
+i75,Venin de frelon ; Vespa crabro,Venins,IgE
+i75,Venin de frelon,Venins,IgG
+i76,Scarabé,"Insectes, venins et parasites ",IgE
+i77,Venin de guêpe ; poliste dominulus,Venins,IgE
+i8,Ver à soie ; Bombyx mori,"Insectes, venins et parasites ",IgE
+kx4,"Mélange de bois tendres (Hêtre, Pin, Cèdre rouge, Sapin argenté)",Allergènes professionnels,IgE
+k1,Fibre acrylique,Allergènes professionnels,IgE
+k14,Kapok,Allergènes professionnels,IgE
+k17,Nylon,Allergènes professionnels,IgE
+k201,Papaïne,Allergènes professionnels,IgE
+k202,Bromeline,Allergènes professionnels,IgE
+k203,Phospholipase,Allergènes professionnels,IgE
+k204,Maxatase,Allergènes professionnels,IgE
+k205,Alkalase,Allergènes professionnels,IgE
+k206,Savinase,Allergènes professionnels,IgE
+k208,Lysozyme,Allergènes professionnels,IgE
+k209,Anhydride hexahydrophtalique,Allergènes professionnels,IgE
+k21,Laine de mouton,Allergènes professionnels,IgE
+k210,Anhydride maléique,Allergènes professionnels,IgE
+k211,Anhydride méthyltétrahydrophtalique,Allergènes professionnels,IgE
+k212,Poussière de bois ; Triphochiton scteroxylon,Allergènes professionnels,IgE
+k213,Pepsine,Allergènes professionnels,IgE
+k214,Bougainvillée,Allergènes professionnels,IgE
+k215,Latex rHev b 1 (recombinant),Allergènes professionnels,IgE
+k216,Latex rHev b 2 (recombinant),Allergènes professionnels,IgE
+k217,Latex rHev b 3 (recombinant),Allergènes professionnels,IgE
+k218,Latex rHev b 5 (recombinant),Allergènes professionnels,IgE
+k219,Latex rHev b 6.01 (recombinant),Allergènes professionnels,IgE
+k220,Latex rHev b 6.02 (recombinant),Allergènes professionnels,IgE
+k221,Latex rHev b 8 (recombinant),Allergènes professionnels,IgE
+k221,Latex rHev b 8 (recombinant),Allergènes professionnels,IgE
+k224,Latex rHev b 11(recombinant),Allergènes professionnels,IgE
+k32,Hêtre (bois),Allergènes professionnels,IgE
+k33,Chêne ; Bois ; sciure,Allergènes professionnels,IgE
+k37,Bois de Limba,Allergènes professionnels,IgE
+k40,Noyer ; Bois,Allergènes professionnels,IgE
+k43,Cèdre rouge,Allergènes professionnels,IgE
+k44,Sapin argenté,Allergènes professionnels,IgE
+k5,Lin ; graine,Allergènes professionnels,IgE
+k7,Poussière de foin,Allergènes professionnels,IgE
+k70,Café vert ; graine,Allergènes professionnels,IgE
+k71,Ricin ; graine ; allerfène professionnel,Allergènes professionnels,IgE
+k72,Ispaghule,Allergènes professionnels,IgE
+k73,Soie déchets,Allergènes professionnels,IgE
+k74,Soie naturelle,Allergènes professionnels,IgE
+k75,Isocyanate TDI,Allergènes professionnels,IgE
+k76,Isocyanate MDI,Allergènes professionnels,IgE
+k77,Isocyanate HDI,Allergènes professionnels,IgE
+k78,Oxyde d&rsquo;éthylène,Allergènes professionnels,IgE
+k79,Anhydride phtalique,Allergènes professionnels,IgE
+k79,Anhydride phtalique,Allergènes professionnels,IgG
+k80,Formol,Allergènes professionnels,IgE
+k81,Ficus spp,Allergènes professionnels,IgE
+k82,Latex,Allergènes professionnels,IgG4
+k82,Latex Recombi +,Allergènes professionnels,IgE
+k82,Latex,Allergènes professionnels,IgG
+k83,Coton ; graine,Allergènes professionnels,IgE
+k84,Tournesol ; graine,Allergènes professionnels,IgE
+k85,Chloramine T,Allergènes professionnels,IgE
+k86,Anhydride trimellitique,Allergènes professionnels,IgE
+k87,Alpha-amylase,Allergènes professionnels,IgE
+mor,Morphine,Médicaments,IgE
+mx1,"Moisissures ; m1, m2, m3, m6",Microorganismes,IgE
+mx2,"Moisissures ; m1, m2, m3, m5, m6, m8",Microorganismes,IgE
+mx4,"Moisissures ; m3, m36, m207, m228",Microorganismes,IgE
+m1,Penicillium notatum,Microorganismes,IgE
+m1,Penicillium notatum,Microorganismes,IgG4
+m1,Penicillum notatum,Microorganismes,IgG
+m10,Stemphylium,Microorganismes,IgG4
+m10,Stemphyllium botryosum,Microorganismes,IgE
+m11,Rhizopus nigricans,Microorganismes,IgE
+m11,Rhizopus nigricans,Microorganismes,IgG4
+m12,Aureabasidium pullulans,Microorganismes,IgE
+m13,Phoma betae,Microorganismes,IgE
+m14,Epicoccum purpurascens,Microorganismes,IgE
+m15,Trichoderma viride,Microorganismes,IgE
+m16,Curvularia lunata,Microorganismes,IgE
+m2,Cladosporium herbarum,Microorganismes,IgE
+m2,Cladosporium herbarum,Microorganismes,IgG4
+m2,Cladosporium herbarum,Microorganismes,IgG
+m201,Ustilago nuda ou tritici,Microorganismes,IgE
+m202,Cephalosporium acremonium,Microorganismes,IgE
+m203,Trichosporon pullulans,Microorganismes,IgE
+m204,Ulocladium chartarum,Microorganismes,IgE
+m205,Trichophyton rubrum,Microorganismes,IgE
+m207,Aspergillus nIgE,Microorganismes,IgE
+m208,Chaetomium globosum,Microorganismes,IgE
+m209,Penicillium frequentans,Microorganismes,IgE
+m210,Trichophyton ; Qoetzii,Microorganismes,IgE
+m211,Trichophyton ; Interdigitale,Microorganismes,IgE
+m22,Micropolyspora Faeni,Microorganismes,IgG
+m223,Entérotoxine staphylococcique C,Microorganismes,IgE
+m224,Entérotoxine staphylococcique D,Microorganismes,IgE
+m225,Entérotoxine staphylococcique E,Microorganismes,IgE
+m226,Entérotoxine staphylococcique TSST,Microorganismes,IgE
+m227,Malassezia spp,Microorganismes,IgE
+m228,Aspergillus flavus,Microorganismes,IgE
+m23,Thermoactinomyces Vulgaris,Microorganismes,IgG
+m3,Aspergillus,Microorganismes,IgG4
+m3,Aspergillus,Microorganismes,IgG
+m3,Aspergillus fumigatus,Microorganismes,IgE
+m36,Aspergillus terreus,Microorganismes,IgE
+m4,Mucor racemosus,Microorganismes,IgE
+m5,Candida albicans,Microorganismes,IgE
+m5,Candida albican,Microorganismes,IgG4
+m5,Candida albican,Microorganismes,IgG
+m54,Aspergillus flavius,Microorganismes,IgE
+m6,Alternaria alternata,Microorganismes,IgE
+m6,Alternaria,Microorganismes,IgG4
+m6,Altenaria,Microorganismes,IgG
+m7,Botrytis cinerea,Microorganismes,IgG
+m7,Botrytis cinerea,Microorganismes,IgG4
+m7,Botrytis cinerea,Microorganismes,IgE
+m70,Pityrosporum orbiculaire,Microorganismes,IgE
+m8,Helminthosporium halodes,Microorganismes,IgE
+m80,Entérotoxine staphylococcique A,Microorganismes,IgE
+m81,Entérotoxine staphylococcique B,Microorganismes,IgE
+m9,Fusarium monoliforme,Microorganismes,IgG
+m9,Fusarium monoliforme,Microorganismes,IgE
+nes,Nesdonal,Médicaments,IgE
+o1,Coton ; fibres,Divers,IgE
+o201,Feuille de tabac,Divers,IgE
+o202,Artemisia salina,Divers,IgE
+o203,Tétramine,Divers,IgE
+o205,Séricine (colle à soie),Divers,IgE
+o206,Chortoglyphus arcuatus,Divers,IgE
+o207,Daphnie,Divers,IgE
+o210,Pseudomonas aeruginosa,Microorganismes,IgE
+o211,Ver de farine,Divers,IgE
+o214,CCD MUXF3 de la broméline,Divers,IgE
+o51,Streptoccocus viridans,Microorganismes,IgE
+o70,Liquide séminal,Divers,IgE
+o71,Staphylococcus aureus,Microorganismes,IgE
+pax1,"Squames d&rsquo;animaux, plumes ; e3, e4, e70, e85",Animaux,IgE
+pax3,"Pollens, moisissures ; m3, m6, g15, g12",Divers,IgE
+pax4,"Industrie alimentaire ; f4, f14, k87, Ri202",Allergènes professionnels,IgE
+pax5,"Produits chimique ; k75, k76, k77, k79",Allergènes professionnels,IgE
+pax6,"Agents désinfectants ; k78, k79, k80, k85",Allergènes professionnels,IgE
+p1,Ascaris,Parasites,IgE
+p2,Echinococcus,Parasites,IgE
+p4,Anisakis,Parasites,IgE
+Rfx12,"Mélange f5, f9, f35, Rf212, f225",Aliments d'origine végétale,IgE
+Rf302,Mandarine,Aliments d'origine végétale,IgE
+Rf330,Cynorrhodon,Aliments d'origine végétale,IgE
+Rf334,Lactoferrine bovine,Aliments d'origine animale,IgE
+Rf336,Jujube,Aliments d'origine végétale,IgE
+Rf339,Poivre de la jamaique,Aliments d'origine végétale,IgE
+rm218,Aspergillus rAspf1 (recombinant),Microorganismes,IgE
+rm219,Aspergillus rAspf2 (recombinant),Microorganismes,IgE
+rm220,Aspergillus rAspf3 (recombinant),Microorganismes,IgE
+rm221,Aspergillus rAspf4 (recombinant),Microorganismes,IgE
+rm222,Aspergillus rAspf6 (recombinant),Microorganismes,IgE
+Rt217,Poivrier,Pollens d'arbres,IgE
+rx3,Mélange pneumallergènes RX3,Pollens d'arbres,IgE
+rx4,Mélange pneumallergènes RX4,Pollens d'arbres,IgE
+rx5,Mélange pneumallergènes RX5,Pollens d'arbres,IgE
+sx1,"D.ptéronyssinus,chat,chien,phléole,seigle,C.herbarum, bouleau,armoise",Pollens d'arbres,IgG
+sx22,"Noix de pécan,noix de cajou,pistache,noix",Aliments d'origine végétale,IgG
+tea,Triethylamine,Divers,IgE
+tma,Trimethylamine,Divers,IgE
+tx1,"Arbres ; t1, t3, t7, t8, t10",Pollen d'arbres,IgE
+tx10,"Arbres ; t2, t3, t4, t15",Pollen d'arbres,IgE
+tx2,"Arbres ; t1, t7, t8, t14, t22",Pollen d'arbres,IgE
+tx3,"Arbres ; t6, t7, t8, t14, t20",Pollen d'arbres,IgE
+tx4,"Arbres ; t7, t8, t11, t12, t14",Pollen d'arbres,IgE
+tx5,"Arbres ; t2, t4, t8, t12, t14",Pollen d'arbres,IgE
+tx6,"Arbres ; t1, t3, t5, t7, t10",Pollen d'arbres,IgE
+tx7,"Arbres méditerrannéens ; t9, t12, t16, t18, t19, t21",Pollen d'arbres,IgE
+tx8,"Arbres ; t1, t3, t4, t7, t11",Pollen d'arbres,IgE
+tx9,"Arbres ; t2, t3, t4, t7, t11",Pollen d'arbres,IgE
+t1,Erable,Pollen d'arbres,IgE
+t10,Noyer,Pollen d'arbres,IgE
+t11,Platane,Pollen d'arbres,IgG4
+t11,Platane,Pollen d'arbres,IgE
+t11,Platane,Pollen d'arbres,IgG
+t12,Saule,Pollen d'arbres,IgE
+t14,Pleuplier,Pollen d'arbres,IgG4
+t14,Peuplier,Pollen d'arbres,IgE
+t15,Frêne ; Fraxinus americana,Pollen d'arbres,IgG4
+t15,Frêne ; Fraxinus americana,Pollen d'arbres,IgE
+t16,Pin ; Pinus strobus,Pollen d'arbres,IgE
+t16,Pin,Pollen d'arbres,IgG4
+t17,Cèdre du Japon,Pollen d'arbres,IgE
+t18,Eucalyptus,Pollen d'arbres,IgE
+t19,Mimosa,Pollen d'arbres,IgE
+t2,Aulne,Pollen d'arbres,IgE
+t2s,Aulne,Pollen d'arbres,IgG4
+t20,Prosopis,Pollen d'arbres,IgE
+t201,Sapin,Pollen d'arbres,IgE
+t203,Marronnier,Pollen d'arbres,IgE
+t205,Sureau,Pollen d'arbres,IgE
+t206,Châtaignier,Pollen d'arbres,IgE
+t207,Sapin de Douglas,Pollen d'arbres,IgE
+t208,Tilleul,Pollen d'arbres,IgE
+t209,Charme,Pollen d'arbres,IgE
+t209,Charme,Pollen d'arbres,IgG4
+t21,Cajeputier,Pollen d'arbres,IgE
+t210,Troène,Pollen d'arbres,IgE
+t211,Liquidambar,Pollen d'arbres,IgE
+t212,Cèdre,Pollen d'arbres,IgE
+t213,Pin ; Pinatus rabiata,Pollen d'arbres,IgE
+t214,Datte,Pollen d'arbres,IgE
+t215,rBet v 1 bouleau ; recombinant,Pollen d'arbres,IgE
+t216,rBet V2 profiline ; recombinant,Pollen d'arbres,IgE
+t218,Chêne de Virginie,Pollen d'arbres,IgE
+t22,Pacanier,Pollen d'arbres,IgE
+t220,rBet V4 profiline ; recombinant,Pollen d'arbres,IgE
+t221,"Bouleau rBet v2, rBet v 4 (recombinants)",Pollen d'arbres,IgE
+t222,Cyprès d&rsquo;Arizona,Pollen d'arbres,IgE
+t223,Palmier à huile,Pollen d'arbres,IgE
+t224,Olivier recombinant (nOle e1),Pollen d'arbres,IgE
+t225,rBet v 6 bouleau ; recombinant,Pollen d'arbres,IgE
+t23,Cyprès,Pollen d'arbres,IgG4
+t23,Cyprès,Pollen d'arbres,IgE
+t23,Cyprès,Pollen d'arbres,IgG
+t25,Frêne Commun,Pollen d'arbres,IgG
+t25,Frêne Commun,Pollen d'arbres,IgE
+t250,Lilas ; pollen,Pollen d'arbres,IgE
+t3,Bouleau,Pollen d'arbres,IgE
+t3,Bouleau,Pollen d'arbres,IgG
+t3,Bouleau,Pollen d'arbres,IgG4
+t37,Cyprès chauve,Pollen d'arbres,IgE
+t4,Noisetier,Pollen d'arbres,IgE
+t4,Noisetier,Pollen d'arbres,IgG4
+t4,Noisetier,Pollen d'arbres,IgG
+t44,Micocoulier de Virginie,Pollen d'arbres,IgE
+t5,Hêtre,Pollen d'arbres,IgE
+t55,Genêt à balai,Pollen d'arbres,IgE
+t6,Genèvrier,Pollen d'arbres,IgG4
+t6,Genèvrier,Pollen d'arbres,IgG
+t7,Chêne ; pollen,Pollen d'arbres,IgE
+t70,Mûrier,Pollen d'arbres,IgE
+t72,Palmier,Pollen d'arbres,IgG4
+t72,Palmier,Pollen d'arbres,IgE
+t73,Pin d&rsquo;Australie,Pollen d'arbres,IgE
+t75,Genêt,Pollen d'arbres,IgE
+t8,Orme,Pollen d'arbres,IgE
+t89,Thuya,Pollen d'arbres,IgE
+t9,Olivier,Pollen d'arbres,IgE
+t9,Olivier,Pollen d'arbres,IgG4
+t9,Olivier,Pollen d'arbres,IgG
+u203,Ampicilline,Médicaments,IgE
+u209,Paracétamol,Médicaments,IgE
+u219,Sauge,Aliments d'origine végétale,IgE
+u340,Gélatine,Médicaments,IgE
+wx1,"Herbacées ; w1, w6, w9, w10, w11",Pollens d’herbacées,IgE
+wx2,"Herbacées ; w2, w6, w9, w10, w15",Pollens d’herbacées,IgE
+wx209,"Mélange d&rsquo;ambroisies (Ambroisie,Ambroisie à épi grêle,Ambroisie trilobée)",Pollens d’herbacées,IgE
+wx3,"Herbacées ; w6, w9, w10, w12, w20",Pollens d’herbacées,IgE
+wx5,"Herbacées ; w1, w6, w7, w8, w12",Pollens d’herbacées,IgE
+wx6,"Plantago lanceolata, Chenopodium album, Salsola kali, Rumex acetosella",Pollens d’herbacées,IgE
+wx7,"Herbacées ; w7, w8, w9, w10, w12",Pollens d’herbacées,IgE
+w1,Ambroise,Pollens d’herbacées,IgG4
+w1,Ambroisie,Pollens d’herbacées,IgE
+w1,Ambroisie,Pollens d’herbacées,IgG
+w10,Chénopode,Pollens d’herbacées,IgG4
+w10,Chénopode blanc,Pollens d’herbacées,IgE
+w11,Soude,Pollens d’herbacées,IgE
+w12,Solidage,Pollens d’herbacées,IgE
+w12,Solidage,Pollens d’herbacées,IgG4
+w13,Petite bardane,Pollens d’herbacées,IgE
+w14,Amaranthe,Pollens d’herbacées,IgE
+w15,Arroche,Pollens d’herbacées,IgE
+w16,Iva,Pollens d’herbacées,IgE
+w17,Kochia,Pollens d’herbacées,IgE
+w18,Petite oseille,Pollens d’herbacées,IgG
+w18,Petite oseille,Pollens d’herbacées,IgG4
+w18,Petite oseille,Pollens d’herbacées,IgE
+w19,Pariétaire officinalis,Pollens d’herbacées,IgE
+w2,Ambroisie à épi grêle,Pollens d’herbacées,IgE
+w20,Ortie,Pollens d’herbacées,IgE
+w203,Colza ; pollen,Pollens d’herbacées,IgE
+w204,Tournesol,Pollens d’herbacées,IgE
+w206,Camomille,Pollens d’herbacées,IgE
+w207,Lupin ; pollen,Pollens d’herbacées,IgE
+w208,Lycopodium,Pollens d’herbacées,IgE
+w21,Pariétaire,Pollens d’herbacées,IgG4
+w21,Pariétaire,Pollens d’herbacées,IgG
+w21,Pariétaire judaica,Pollens d’herbacées,IgE
+w210,Betterave sucrière,Pollens d’herbacées,IgE
+w211,rPar j 2 Pariétaire ; recombinant,Pollens d’herbacées,IgE
+w22,Chrysanthème,Pollens d’herbacées,IgE
+W26,Narcissus pseudonarcissus ; Narcisse,Pollens d’herbacées,IgE
+w3,Ambroisie trilobée,Pollens d’herbacées,IgE
+w33,Trèfle,Pollens d’herbacées,IgE
+w4,Fausse ambroisie,Pollens d’herbacées,IgE
+w44,Forsythia,Pollens d’herbacées,IgE
+w45,Luzerne,Pollens d’herbacées,IgE
+w5,Absinthe,Pollens d’herbacées,IgE
+w55,Lavande,Pollens d’herbacées,IgE
+w6,Armoise commune,Pollens d’herbacées,IgE
+w6,Armoise commune,Pollens d’herbacées,IgG
+w6,Armoise commune,Pollens d’herbacées,IgG4
+w7,Grande Marguerite,Pollens d’herbacées,IgG4
+w7,Grande marguerite,Pollens d’herbacées,IgE
+w8,Pissenlit,Pollens d’herbacées,IgE
+w8,Pissenlit,Pollens d’herbacées,IgG4
+w9,Plantain,Pollens d’herbacées,IgE
+w9,Plantain,Pollens d’herbacées,IgG
+w9,Plantain,Pollens d’herbacées,IgG4
