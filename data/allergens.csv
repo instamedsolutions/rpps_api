@@ -897,3 +897,27 @@ w8,Pissenlit,Pollens d’herbacées,IgG4
 w9,Plantain,Pollens d’herbacées,IgE
 w9,Plantain,Pollens d’herbacées,IgG
 w9,Plantain,Pollens d’herbacées,IgG4
+g201,Orge,Pollens de graminées
+g202,Maïs,Pollens de graminées
+Rg203,Herbe des prés salés,Pollens de graminées
+Rg204,Fromental,Pollens de graminées
+t217,Poivrier,Pollens d'arbres
+t219,Palo Verde,Pollens d'arbres
+d201,Blomita tropicalis,Acariens de stockage
+e197,Perruche calopsitte (déjections),Animaux
+e198,Perruche calopsitte (protéines sériques),Animaux
+i205,Bourdon,Venins
+o212,Streptavidin,Divers
+o213,MBP (maltose binding protein),Divers
+f2,Lait de vache,Aliments - produits laitiers
+f334,Lactoferrine bovine,Aliments - produits laitiers
+f302,Mandarine,Aliments - fruits et légumes
+f330,Cynorrhodon,Aliments - fruits et légumes
+f336,Jujube,Aliments - fruits et légumes
+f124,Epeautre,"Graines, légumineuses et noix"
+f339,Poivre de la Jamaïque,Aliments - épices
+c260,Ammonium quaternaire (myorelaxants),Médicaments
+c261,Pholcodine,Médicaments
+Rk21-1,Anhydride Méthyltétrahydrophtalique,Allergènes professionnels
+Rk21-2,Poussière de bois d'Abachi,Allergènes professionnels
+Rk21-3,Pepsine,Allergènes professionnels
