@@ -5,6 +5,7 @@ namespace App\Entity;
 use ApiPlatform\Core\Annotation\ApiFilter;
 use ApiPlatform\Core\Annotation\ApiProperty;
 use ApiPlatform\Core\Annotation\ApiSubresource;
+use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\RangeFilter;
 use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\SearchFilter;
 use App\ApiPlatform\Filter\DiseaseFilter;
 use Doctrine\Common\Collections\ArrayCollection;
@@ -22,6 +23,8 @@ use Symfony\Component\Serializer\Annotation\MaxDepth;
  * @ORM\Table(name="diseases",indexes={
  *     @ORM\Index(name="diseases_index", columns={"cim"})
  * })
+ *
+ * @ApiFilter(RangeFilter::class,properties={"hierarchyLevel"})
  *
  * @UniqueEntity("cim")
  *
@@ -80,7 +83,7 @@ class Disease extends Thing implements Entity
      *     }
      * )
      *
-     * @ORM\Column(type="string", length=255, options={"collation":"utf8mb4_unicode_ci"})
+     * @ORM\Column(type="string", length=255)
      */
     protected $name;
 
@@ -144,10 +147,13 @@ class Disease extends Thing implements Entity
      *
      * @ORM\Column(type="smallint")
      *
+     * @Groups({"diseases:read"})
+     *
+     * @ApiFilter(RangeFilter::class)
      *
      * @var int
      */
-    protected $HierarchyLevel;
+    protected $hierarchyLevel;
 
     /**
      * @var int|null
@@ -268,15 +274,15 @@ class Disease extends Thing implements Entity
      */
     public function getHierarchyLevel(): int
     {
-        return $this->HierarchyLevel;
+        return $this->hierarchyLevel;
     }
 
     /**
-     * @param int $HierarchyLevel
+     * @param int $hierarchyLevel
      */
-    public function setHierarchyLevel(int $HierarchyLevel): void
+    public function setHierarchyLevel(int $hierarchyLevel): void
     {
-        $this->HierarchyLevel = $HierarchyLevel;
+        $this->hierarchyLevel = $hierarchyLevel;
     }
 
     /**

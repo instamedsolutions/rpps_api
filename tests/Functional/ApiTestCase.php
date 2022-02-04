@@ -12,7 +12,12 @@ use App\DataFixtures\LoadDiseaseGroups;
 use App\DataFixtures\LoadDiseases;
 use App\DataFixtures\LoadDrugs;
 use App\DataFixtures\LoadRPPS;
+use App\Entity\Entity;
+use App\Entity\GlobalEntity;
+use App\Entity\Thing;
+use App\Entity\User;
 use App\Kernel;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\Common\DataFixtures\Executor\ORMExecutor;
 use Doctrine\Common\DataFixtures\Purger\ORMPurger;
 use Doctrine\ORM\EntityManagerInterface;
@@ -21,6 +26,7 @@ use Symfony\Contracts\Translation\TranslatorInterface;
 
 /**
  * Class ApiTestCase
+ *
  * @package App\Tests\Functional
  */
 abstract class ApiTestCase extends BaseTestCase
@@ -42,7 +48,6 @@ abstract class ApiTestCase extends BaseTestCase
      * @var Client
      */
     protected $client;
-
 
 
     /**
@@ -93,9 +98,6 @@ abstract class ApiTestCase extends BaseTestCase
     }
 
 
-
-
-
     /**
      *
      * Do a POST Request
@@ -108,13 +110,10 @@ abstract class ApiTestCase extends BaseTestCase
      * @throws \Symfony\Contracts\HttpClient\Exception\ServerExceptionInterface
      * @throws \Symfony\Contracts\HttpClient\Exception\TransportExceptionInterface
      */
-    protected function post($url,$data = array(),$raw = false)
+    protected function post($url, $data = array(), $raw = false)
     {
-        return $this->doRequest("POST",$url,$data,array(),$raw);
+        return $this->doRequest("POST", $url, $data, array(), $raw);
     }
-
-
-
 
 
     /**
@@ -131,7 +130,7 @@ abstract class ApiTestCase extends BaseTestCase
      */
     protected function delete($url)
     {
-        return $this->doRequest("DELETE",$url);
+        return $this->doRequest("DELETE", $url);
     }
 
 
@@ -147,28 +146,9 @@ abstract class ApiTestCase extends BaseTestCase
      * @throws \Symfony\Contracts\HttpClient\Exception\ServerExceptionInterface
      * @throws \Symfony\Contracts\HttpClient\Exception\TransportExceptionInterface
      */
-    protected function get($url,$data = array(),$raw = false,$headers = array())
+    protected function get($url, $data = array(), $raw = false, $headers = array())
     {
-        return $this->doRequest("GET",$url,null,$data,$raw,$headers);
-    }
-
-
-
-    /**
-     *
-     * Do a POST Request
-     *
-     * @param $url
-     * @param $data
-     * @return mixed
-     * @throws \Symfony\Contracts\HttpClient\Exception\ClientExceptionInterface
-     * @throws \Symfony\Contracts\HttpClient\Exception\RedirectionExceptionInterface
-     * @throws \Symfony\Contracts\HttpClient\Exception\ServerExceptionInterface
-     * @throws \Symfony\Contracts\HttpClient\Exception\TransportExceptionInterface
-     */
-    protected function put($url,$data)
-    {
-        return $this->doRequest("PUT",$url,$data);
+        return $this->doRequest("GET", $url, null, $data, $raw, $headers);
     }
 
 
@@ -184,11 +164,28 @@ abstract class ApiTestCase extends BaseTestCase
      * @throws \Symfony\Contracts\HttpClient\Exception\ServerExceptionInterface
      * @throws \Symfony\Contracts\HttpClient\Exception\TransportExceptionInterface
      */
-    protected function patch($url,$data)
+    protected function put($url, $data)
     {
-        return $this->doRequest("PATCH",$url,$data);
+        return $this->doRequest("PUT", $url, $data);
     }
 
+
+    /**
+     *
+     * Do a POST Request
+     *
+     * @param $url
+     * @param $data
+     * @return mixed
+     * @throws \Symfony\Contracts\HttpClient\Exception\ClientExceptionInterface
+     * @throws \Symfony\Contracts\HttpClient\Exception\RedirectionExceptionInterface
+     * @throws \Symfony\Contracts\HttpClient\Exception\ServerExceptionInterface
+     * @throws \Symfony\Contracts\HttpClient\Exception\TransportExceptionInterface
+     */
+    protected function patch($url, $data)
+    {
+        return $this->doRequest("PATCH", $url, $data);
+    }
 
 
     /**
@@ -206,21 +203,21 @@ abstract class ApiTestCase extends BaseTestCase
      * @throws \Symfony\Contracts\HttpClient\Exception\ServerExceptionInterface
      * @throws \Symfony\Contracts\HttpClient\Exception\TransportExceptionInterface
      */
-    protected function doRequest($type,$url,$data = array(),$query = array(),$raw = false,$headers = array())
+    protected function doRequest($type, $url, $data = array(), $query = array(), $raw = false, $headers = array())
     {
-        if(strpos($url,'/') !== 0) {
+        if (strpos($url, '/') !== 0) {
             $url = "api/$url";
         };
 
         $headers = array_merge(array(
             'Content-Type' => 'application/json',
-        ),$headers);
+        ), $headers);
 
-        if($type === "PATCH") {
+        if ($type === "PATCH") {
             $headers['Content-Type'] = 'application/merge-patch+json';
         }
 
-        if($this->token) {
+        if ($this->token) {
             $headers['Authorization'] = "Bearer {$this->token}";
         }
 
@@ -229,43 +226,107 @@ abstract class ApiTestCase extends BaseTestCase
             'headers' => $headers
         );
 
-        if($query) {
+        if ($query) {
             $args['query'] = $query;
         }
 
         $args['json'] = $data;
 
-        $response = $this->client->request($type, $url,$args);
+        $response = $this->client->request($type, $url, $args);
 
         $content = $response->getContent(false);
 
-        if($raw) {
+        if ($raw) {
             return $response;
         }
 
-        return json_decode($content,true);
+        return json_decode($content, true);
     }
 
+
+    /**
+     * @param array|Collection $collection
+     * @param string $key
+     * @param array $values
+     */
+    protected function assertCollectionKeyContains($collection, string $key, array $values)
+    {
+
+        $data = $this->getCollectionValues($collection, $key);
+
+        foreach ($values as $test) {
+            $this->assertContains($test, $data);
+        }
+
+    }
+
+
+    /**
+     * @param array|Collection $collection
+     * @param string $key
+     * @param array $values
+     */
+    protected function assertCollectionKeyNotContains($collection, string $key, array $values)
+    {
+
+        $data = $this->getCollectionValues($collection, $key);
+
+        foreach ($values as $test) {
+            $this->assertNotContains($test, $data);
+        }
+
+    }
+
+
+    /**
+     * @param array|Collection $collection
+     * @param string $key
+     * @return array
+     */
+    protected function getCollectionValues($collection, string $key): array
+    {
+        if ($collection instanceof Collection) {
+            $collection = $collection->toArray();
+        }
+
+        $data = [];
+
+        $key = explode(".", $key);
+
+        foreach ($collection as $item) {
+            $value = null;
+            foreach ($key as $index => $k) {
+                if ($index === 0) {
+                    $value = $item[$k];
+                } else {
+                    $value = $value[$k];
+                }
+            }
+
+            $data[] = $value;
+        }
+
+        return $data;
+    }
 
 
     /**
      * @param $data
      */
-    public static function dump($data,$die = true)
+    public static function dump($data, $die = true)
     {
-        if(is_array($data) && isset($data['error'])) {
+        if (is_array($data) && isset($data['error'])) {
             dump($data['error']);
         } else {
             dump($data);
         }
 
-        if(!$die) {
+        if (!$die) {
             return;
         }
         die();
 
     }
-
 
 
 }

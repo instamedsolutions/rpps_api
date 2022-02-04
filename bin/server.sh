@@ -1,6 +1,5 @@
 symfony server:ca:install
 composer install
-php bin/console server:stop
 sudo chmod -R 777 ./var
 rm -rf var/db.sqlite
 sudo touch var/test_db.sqlite
