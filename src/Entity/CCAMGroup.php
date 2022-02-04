@@ -70,7 +70,7 @@ class CCAMGroup extends Thing implements Entity
      *     }
      * )
      *
-     * @ORM\Column(type="string", length=255, options={"collation":"utf8mb4_unicode_ci"})
+     * @ORM\Column(type="string", length=255)
      */
     protected $name;
 
@@ -94,7 +94,7 @@ class CCAMGroup extends Thing implements Entity
      *     }
      * )
      *
-     * @ORM\Column(type="text", options={"collation":"utf8mb4_unicode_ci"},nullable=true)
+     * @ORM\Column(type="text",nullable=true)
      */
     protected $description;
 

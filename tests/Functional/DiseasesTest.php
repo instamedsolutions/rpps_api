@@ -55,6 +55,28 @@ class DiseasesTest extends ApiTestCase
         $this->assertCount(1,$data['hydra:member']);
     }
 
+
+    /**
+     * @throws ClientExceptionInterface
+     * @throws RedirectionExceptionInterface
+     * @throws ServerExceptionInterface
+     * @throws TransportExceptionInterface
+     */
+    public function testFilterData()
+    {
+
+        $data = $this->get("diseases",['hierarchyLevel[lte]' => 3]);
+
+        $this->assertCollectionKeyContains($data['hydra:member'],"cim",['A00']);
+        $this->assertCollectionKeyNotContains($data['hydra:member'],"cim",['A000']);
+
+        $data = $this->get("diseases",['hierarchyLevel[gt]' => 3]);
+
+        $this->assertCollectionKeyContains($data['hydra:member'],"cim",['A000']);
+        $this->assertCollectionKeyNotContains($data['hydra:member'],"cim",['A00']);
+
+    }
+
     /**
      * @throws ClientExceptionInterface
      * @throws RedirectionExceptionInterface

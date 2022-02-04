@@ -71,7 +71,7 @@ class DiseaseGroup extends Thing implements Entity
      *     }
      * )
      *
-     * @ORM\Column(type="string", length=255, options={"collation":"utf8mb4_unicode_ci"})
+     * @ORM\Column(type="string", length=255)
      */
     protected $name;
 
