@@ -2,6 +2,10 @@
 
 namespace App\ApiPlatform\Filter;
 
+use Symfony\Component\String\ByteString;
+use Symfony\Component\String\CodePointString;
+use Symfony\Component\String\UnicodeString;
+
 trait FilterTrait
 {
 
@@ -9,20 +13,16 @@ trait FilterTrait
      * @param string $value
      * @return string
      */
-    protected function cleanValue(string $value,bool $replaceSpace = true) : string
+    protected function cleanValue(string $value, bool $replaceSpace = true): string
     {
         $value = trim(preg_replace('#\s+#', ' ', $value));
-        if($replaceSpace) {
-            $value = str_replace(" ","%",$value);
+        if ($replaceSpace) {
+            $value = str_replace(" ", "%", $value);
         }
 
-        try {
-            setlocale(LC_ALL, 'fr_FR.utf8');
-            $value = @iconv('utf8', 'ascii//TRANSLIT', $value);
-            return $value;
-        }catch (\Exception $exception) {
-            return $value;
-        }
+        // https://github.com/symfony/symfony/issues/9326
+        return transliterator_transliterate('Any-Latin; Latin-ASCII; [:Nonspacing Mark:] Remove; [:Punctuation:] Remove;',$value);
+
     }
 
 }
