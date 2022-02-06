@@ -1,9 +1,16 @@
-name: PHP Tests
-on: pull_request
+name: PHPUnit
+
+on: [push]
+
 jobs:
-  test:
+  build-test:
     runs-on: ubuntu-latest
+
     steps:
       - uses: actions/checkout@v2
-      - name: Build the stack
-        run: docker-compose up -d
+      - uses: php-actions/composer@v5
+      - uses: php-actions/phpunit@v3
+        name: phpunit
+        with:
+          php_version: 7.3
+          php_extensions: gd exif gmp imap tidy calendar pcntl http dom
