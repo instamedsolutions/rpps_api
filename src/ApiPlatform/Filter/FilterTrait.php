@@ -16,10 +16,13 @@ trait FilterTrait
             $value = str_replace(" ","%",$value);
         }
 
-        setlocale(LC_ALL, 'fr_FR.utf8');
-        $value = iconv('utf8', 'ascii//TRANSLIT', $value);
-
-        return $value;
+        try {
+            setlocale(LC_ALL, 'fr_FR.utf8');
+            $value = @iconv('utf8', 'ascii//TRANSLIT', $value);
+            return $value;
+        }catch (\Exception $exception) {
+            return $value;
+        }
     }
 
 }
