@@ -6,6 +6,7 @@ namespace App\Tests\Functional;
 use ApiPlatform\Core\Bridge\Symfony\Bundle\Test\ApiTestCase as BaseTestCase;
 use ApiPlatform\Core\Bridge\Symfony\Bundle\Test\Client;
 use ApiPlatform\Core\Bridge\Symfony\Bundle\Test\Response;
+use App\DataFixtures\LoadAllergens;
 use App\DataFixtures\LoadCCAM;
 use App\DataFixtures\LoadCCAMGroup;
 use App\DataFixtures\LoadDiseaseGroups;
@@ -59,7 +60,8 @@ abstract class ApiTestCase extends BaseTestCase
         LoadDiseaseGroups::class,
         LoadDiseases::class,
         LoadCCAMGroup::class,
-        LoadCCAM::class
+        LoadCCAM::class,
+        LoadAllergens::class
     );
 
 

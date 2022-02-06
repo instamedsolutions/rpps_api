@@ -13,7 +13,7 @@ use \Symfony\Contracts\HttpClient\Exception\TransportExceptionInterface;
 
 
 /**
- * Class DocumentListResourceTest
+ * Class DiseasesTest
  *
  * @package App\Tests\Functional
  */
