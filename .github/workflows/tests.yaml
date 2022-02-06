@@ -21,6 +21,9 @@ jobs:
           args: --ignore-platform-reqs
           php_version: 7.3
 
+      - name: Build test db
+        uses: ./.github/actions/create-test-db
+
       - uses: php-actions/phpunit@v3
         name: phpunit
         with:
