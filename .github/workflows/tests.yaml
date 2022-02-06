@@ -27,9 +27,11 @@ jobs:
       - uses: php-actions/phpunit@v3
         name: phpunit
         with:
-          php_extensions: xdebug mbstring xml iconv intl
+         # php_extensions: xdebug mbstring xml iconv intl
+          php_extensions: mbstring xml iconv intl
           php_version: 7.3
-          args: --coverage-text --testdox
-        env:
-          XDEBUG_MODE: coverage
-          TEST_NAME: Scarlett
+          #args: --coverage-text --testdox
+          args: --testdox
+       # env:
+       #   XDEBUG_MODE: coverage
+       #   TEST_NAME: Scarlett
