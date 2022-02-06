@@ -1,14 +1,29 @@
 name: PHPUnit
 
-on: [push]
+on: [ push ]
 
 jobs:
-  build-test:
+  install:
     runs-on: ubuntu-latest
 
     steps:
       - uses: actions/checkout@v2
-      - uses: php-actions/composer@v5
+
+      - name: Cache Composer dependencies
+        uses: actions/cache@v2
+        with:
+          path: /tmp/composer-cache
+          key: ${{ runner.os }}-${{ hashFiles('**/composer.lock') }}
+
+      - name: Install dependencies
+        uses: php-actions/composer@v6
+        with:
+          args: --ignore-platform-reqs
+          php_version: 7.3
+
+  test:
+    runs-on: ubuntu-latest
+    steps:
       - uses: php-actions/phpunit@v3
         name: phpunit
         with:
