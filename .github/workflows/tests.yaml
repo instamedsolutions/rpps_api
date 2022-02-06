@@ -25,12 +25,12 @@ jobs:
     runs-on: ubuntu-latest
     needs: install
     steps:
+      - uses: actions/checkout@v2
       - uses: php-actions/phpunit@v3
         name: phpunit
         with:
           php_extensions: xdebug
           php_version: 7.3
-          bootstrap: vendor/autoload.php
           args: --coverage-text --testdox
         env:
           XDEBUG_MODE: coverage
