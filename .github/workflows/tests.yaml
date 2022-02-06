@@ -28,5 +28,11 @@ jobs:
       - uses: php-actions/phpunit@v3
         name: phpunit
         with:
+          php_extensions: xdebug
           php_version: 7.3
-          php_extensions: http dom
+          bootstrap: vendor/autoload.php
+          configuration: phpunit.xml.dist
+          args: --coverage-text --testdox
+        env:
+          XDEBUG_MODE: coverage
+          TEST_NAME: Scarlett

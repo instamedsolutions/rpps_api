@@ -26,7 +26,7 @@ class LoadDrugs extends Fixture
 
         $drug = new Drug();
         $drug->setOwner("GLAXOSMITHKLINE SANTE GRAND PUBLIC");
-        $drug->setName(" ADVIL 200 mg ");
+        $drug->setName("ADVIL 200 mg, comprimé enrobé");
         $drug->setCisId("68634000");
         $drug->setPharmaceuticalForm("comprimé enrobé");
         $drug->setAdministrationForms(array("orale"));

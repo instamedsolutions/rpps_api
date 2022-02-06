@@ -29,7 +29,7 @@ class DrugsTest extends ApiTestCase
     public function testSearchDrugsData()
     {
 
-        $data = $this->get("drugs",array('search' => "Paracétamol"));
+        $data = $this->get("drugs",['search' => "Paracétamol"]);
 
         $this->assertResponseStatusCodeSame(Response::HTTP_OK);
         $this->assertEquals("PARACETAMOL 50,0 mg",$data['hydra:member'][0]['name']);

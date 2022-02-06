@@ -38,6 +38,7 @@
     },
     "require-dev": {
         "doctrine/doctrine-fixtures-bundle": "^3.4",
+        "liip/functional-test-bundle": "^4.5",
         "liip/test-fixtures-bundle": "^1.0.0",
         "phpunit/phpunit": "^9.5",
         "symfony/browser-kit": "5.1.*",
