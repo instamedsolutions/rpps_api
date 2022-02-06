@@ -27,7 +27,7 @@ jobs:
       - uses: php-actions/phpunit@v3
         name: phpunit
         with:
-          php_extensions: xdebug
+          php_extensions: xdebug iconv
           php_version: 7.3
           args: --coverage-text --testdox
         env:
