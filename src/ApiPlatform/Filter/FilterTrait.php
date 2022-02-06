@@ -21,7 +21,9 @@ trait FilterTrait
         }
 
         // https://github.com/symfony/symfony/issues/9326
-        return transliterator_transliterate('Any-Latin; Latin-ASCII; [:Nonspacing Mark:] Remove; [:Punctuation:] Remove;',$value);
+        $value = transliterator_transliterate('Any-Latin; Latin-ASCII;',$value);
+
+        return $value;
 
     }
 
