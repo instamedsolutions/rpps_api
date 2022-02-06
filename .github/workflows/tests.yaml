@@ -23,6 +23,7 @@ jobs:
 
   test:
     runs-on: ubuntu-latest
+    needs: install
     steps:
       - uses: php-actions/phpunit@v3
         name: phpunit
