@@ -1,7 +1,10 @@
+name: create-test-db
+description: Creates the test database
 runs:
   using: 'composite'
   steps:
     - name: Create test database
+      shell: bash
       run: |
         sudo chmod -R 777 ./var
         sudo touch var/test_db.sqlite
