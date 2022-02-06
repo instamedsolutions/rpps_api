@@ -29,4 +29,4 @@ jobs:
         name: phpunit
         with:
           php_version: 7.3
-          php_extensions: gd exif gmp imap tidy calendar pcntl http dom
+          php_extensions: http dom
