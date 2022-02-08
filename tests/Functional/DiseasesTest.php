@@ -13,7 +13,7 @@ use \Symfony\Contracts\HttpClient\Exception\TransportExceptionInterface;
 
 
 /**
- * Class DocumentListResourceTest
+ * Class DiseasesTest
  *
  * @package App\Tests\Functional
  */
@@ -33,15 +33,17 @@ class DiseasesTest extends ApiTestCase
         $data = $this->get("diseases",['search' => "Cholera"]);
 
         $this->assertResponseStatusCodeSame(Response::HTTP_OK);
-        $this->assertEquals("Cholera",$data['hydra:member'][0]['name']);
-        $this->assertEquals("A00",$data['hydra:member'][0]['cim']);
-        $this->assertEquals("01",$data['hydra:member'][0]['category']['cim']);
-        $this->assertEquals("Certaines maladies infectieuses et parasitaires",$data['hydra:member'][0]['category']['name']);
-        $this->assertEquals("A00-A09",$data['hydra:member'][0]['group']['cim']);
-        $this->assertEquals("Maladies intestinales infectieuses",$data['hydra:member'][0]['group']['name']);
 
-        $this->assertEquals("A Vibrio cholerae 01, biovar cholerae",$data['hydra:member'][1]['name']);
-        $this->assertEquals("A000",$data['hydra:member'][1]['cim']);
+        $this->assertEquals("A Vibrio cholerae 01, biovar cholerae",$data['hydra:member'][0]['name']);
+        $this->assertEquals("A000",$data['hydra:member'][0]['cim']);
+
+        $this->assertEquals("Cholera",$data['hydra:member'][1]['name']);
+        $this->assertEquals("A00",$data['hydra:member'][1]['cim']);
+        $this->assertEquals("01",$data['hydra:member'][1]['category']['cim']);
+        $this->assertEquals("Certaines maladies infectieuses et parasitaires",$data['hydra:member'][1]['category']['name']);
+        $this->assertEquals("A00-A09",$data['hydra:member'][1]['group']['cim']);
+        $this->assertEquals("Maladies intestinales infectieuses",$data['hydra:member'][1]['group']['name']);
+
 
         $this->assertCount(2,$data['hydra:member']);
 

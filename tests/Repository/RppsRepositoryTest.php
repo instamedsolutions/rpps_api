@@ -2,6 +2,7 @@
 
 namespace App\tests\Repository;
 
+use App\DataFixtures\LoadRPPS;
 use App\Entity\RPPS;
 use Liip\TestFixturesBundle\Test\FixturesTrait;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
@@ -25,26 +26,19 @@ class RppsRepositoryTest extends KernelTestCase
     }
 
 
-    public function testRppsImportToDB()
+    /**
+     * @return void
+     */
+    public function testRppsImportToDatabase()
     {
-        // add all your fixtures classes that implement
-        // Doctrine\Common\DataFixtures\FixtureInterface
-        $this->loadFixtures(array(
-            'App\DataFixtures\LoadRPPS'
-        ));
+        $this->loadFixtures([
+            LoadRPPS::class
+        ]);
 
-        $rppsDatas = new RPPS();
 
-        $rppsDatas =  $this->entityManager
-            ->getRepository(RPPS::class)
-            ->findAll();
+        $data = $this->entityManager->getRepository(RPPS::class)->findAll();
 
-            $count = 0;
-            foreach($rppsDatas as $rppsData) {
-                $count++;
-            }
-
-            $this->assertEquals(5, $count);
+        $this->assertCount(6, $data);
 
     }
 

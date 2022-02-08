@@ -1,9 +1,35 @@
-name: PHP Tests
-on: pull_request
+name: PHPUnit
+
+on: [ pull_request ]
+
 jobs:
-  test:
+  build-test:
     runs-on: ubuntu-latest
+
     steps:
       - uses: actions/checkout@v2
-      - name: Build the stack
-        run: docker-compose up -d
+
+      - name: Cache Composer dependencies
+        uses: actions/cache@v2
+        with:
+          path: /tmp/composer-cache
+          key: ${{ runner.os }}-${{ hashFiles('**/composer.lock') }}
+
+      - name: Install dependencies
+        uses: php-actions/composer@v6
+        with:
+          args: --ignore-platform-reqs
+          php_version: 7.3
+
+      - name: Build test db
+        uses: ./.github/actions/create-test-db
+
+      - uses: php-actions/phpunit@v3
+        name: phpunit
+        with:
+          php_extensions: xdebug mbstring xml iconv intl
+          php_version: 7.3
+          args: --coverage-text --testdox
+        env:
+          XDEBUG_MODE: coverage
+          TEST_NAME: Scarlett

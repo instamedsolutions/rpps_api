@@ -116,6 +116,9 @@
     "giggsey/locale": {
         "version": "1.9"
     },
+    "liip/functional-test-bundle": {
+        "version": "4.5.1"
+    },
     "liip/test-fixtures-bundle": {
         "version": "1.10.0"
     },

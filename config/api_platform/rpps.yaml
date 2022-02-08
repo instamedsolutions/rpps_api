@@ -1,5 +1,7 @@
 App\Entity\RPPS:
   shortName: Rpps
+  order:
+    name: ASC
   attributes:
     allow_extra_attributes: false
   collectionOperations:
