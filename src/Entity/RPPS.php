@@ -22,7 +22,7 @@ use Symfony\Component\Serializer\Annotation\Groups;
  *     @ORM\Index(name="rpps_index", columns={"id_rpps"})
  * })
  *
- * @ApiFilter(RPPSFilter::class,properties={"search"})
+ * @ApiFilter(RPPSFilter::class,properties={"search","demo"})
  *
  *
  * @UniqueEntity("idRpps")
