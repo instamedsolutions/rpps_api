@@ -6,6 +6,7 @@ use App\Entity\RPPS;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\Persistence\ObjectManager;
+use Faker\Factory;
 
 class LoadRPPS extends Fixture
 {
@@ -23,13 +24,14 @@ class LoadRPPS extends Fixture
     {
         $this->em = $manager;
 
-        $faker = \Faker\Factory::create('fr_FR');
+        $faker = Factory::create('fr_FR');
 
         $faker->seed(666);
 
         foreach ($this->getUsers() as $i => $user) {
             $j = $i+1;
 
+            $isDemo = $j > 6;
 
             $rpps = new RPPS();
             $rpps->setFirstName($user);
@@ -37,7 +39,10 @@ class LoadRPPS extends Fixture
             if(in_array($i,array(0,3,4))) {
                 $rpps->setTitle("Docteur");
             }
-            $rpps->setIdRpps("{$j}{$j}{$j}{$j}{$j}{$j}{$j}{$j}{$j}{$j}{$j}{$j}");
+
+            $first = $isDemo ? 2 : 1;
+
+            $rpps->setIdRpps("$first{$j}{$j}{$j}{$j}{$j}{$j}{$j}{$j}{$j}{$j}{$j}");
 
             if(in_array($i,array(0,1,5))) {
                 $rpps->setCpsNumber("{$j}{$j}{$j}{$j}{$j}{$j}{$j}{$j}{$j}{$j}");
@@ -74,16 +79,16 @@ class LoadRPPS extends Fixture
      */
     protected function getUsers() : array
     {
-        return array("Bastien","Jérémie","Luv","Julien","Lauriane","Maxime");
+        return ["Bastien","Jérémie","Luv","Julien","Lauriane","Maxime","Johann","Emilie"];
     }
 
 
     /**
-     * @return array
+     * @return string[]
      */
-    protected function getSpecialties()
+    protected function getSpecialties() : array
     {
-        return array('Qualifié en Médecine Générale','Sage-Femme','Masseur-Kinésithérapeute',null,'Pédiatrie','Pharmacien');
+        return ['Qualifié en Médecine Générale','Sage-Femme','Masseur-Kinésithérapeute',null,'Pédiatrie','Pharmacien',null,'Biologie médicale'];
     }
 
 

@@ -12,12 +12,30 @@ use \Symfony\Contracts\HttpClient\Exception\TransportExceptionInterface;
 
 
 /**
- * Class DocumentListResourceTest
+ * Class RPPSTest
  *
  * @package App\Tests\Functional
  */
 class RPPSTest extends ApiTestCase
 {
+
+    /**
+     * @throws ClientExceptionInterface
+     * @throws RedirectionExceptionInterface
+     * @throws ServerExceptionInterface
+     * @throws TransportExceptionInterface
+     */
+    public function testGetRppsData()
+    {
+
+        $data = $this->get("rpps");
+
+        $this->assertResponseStatusCodeSame(Response::HTTP_OK);
+
+        $this->assertCollectionKeyContains($data['hydra:member'],"firstName",["Bastien","Julien","Emilie","Jérémie"]);
+        $this->assertCollectionKeyContains($data['hydra:member'],"lastName",["TEST"]);
+
+    }
 
 
     /**
@@ -29,14 +47,22 @@ class RPPSTest extends ApiTestCase
     public function testSearchRppsData()
     {
 
-        $data = $this->get("rpps",array('search' => "Bastien"));
+        $data = $this->get("rpps",[
+            'search' => "Bastien"
+        ]);
 
         $this->assertResponseStatusCodeSame(Response::HTTP_OK);
-        $this->assertEquals("Bastien",$data['hydra:member'][0]['firstName']);
-        $this->assertEquals("TEST",$data['hydra:member'][0]['lastName']);
+
+        $this->assertCollectionKeyContains($data['hydra:member'],"firstName",["Bastien"]);
+        $this->assertCollectionKeyNotContains($data['hydra:member'],"firstName",["Julien","Emilie","Jérémie"]);
+        $this->assertCollectionKeyContains($data['hydra:member'],"lastName",["TEST"]);
 
         $this->assertCount(1,$data['hydra:member']);
     }
+
+
+
+
 
     /**
      * @throws ClientExceptionInterface
@@ -44,7 +70,38 @@ class RPPSTest extends ApiTestCase
      * @throws ServerExceptionInterface
      * @throws TransportExceptionInterface
      */
-    public function testGetRppsData()
+    public function testFilterRppsDataDemo()
+    {
+
+        $data = $this->get("rpps",[
+            'demo' => true
+        ]);
+
+        $this->assertResponseStatusCodeSame(Response::HTTP_OK);
+
+        $this->assertCollectionKeyContains($data['hydra:member'],"firstName",["Emilie"]);
+        $this->assertCollectionKeyNotContains($data['hydra:member'],"firstName",["Julien","Jérémie"]);
+
+        $data = $this->get("rpps",[
+            'demo' => false
+        ]);
+
+        $this->assertResponseStatusCodeSame(Response::HTTP_OK);
+
+        $this->assertCollectionKeyContains($data['hydra:member'],"firstName",["Julien","Jérémie"]);
+        $this->assertCollectionKeyNotContains($data['hydra:member'],"firstName",["Emilie"]);
+
+    }
+
+
+
+    /**
+     * @throws ClientExceptionInterface
+     * @throws RedirectionExceptionInterface
+     * @throws ServerExceptionInterface
+     * @throws TransportExceptionInterface
+     */
+    public function testGetOneRppsData()
     {
 
         $data = $this->get("rpps/111111111111");

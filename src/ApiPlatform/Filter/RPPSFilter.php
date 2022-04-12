@@ -39,13 +39,21 @@ final class RPPSFilter extends AbstractContextAwareFilter
             return;
         }
 
+
+        if($property === "demo") {
+            $value = self::parseBooleanValue($value);
+            $this->addDemoFilter($queryBuilder, $value);
+        }
+
+
         // Do not trigger if the value is empty
         if(!$value) {
             return;
         }
 
-        $this->addSearchFilter($queryBuilder,$value);
-
+        if($property === "search") {
+            $this->addSearchFilter($queryBuilder, $value);
+        }
 
     }
 
@@ -79,6 +87,50 @@ final class RPPSFilter extends AbstractContextAwareFilter
 
         return $queryBuilder;
     }
+
+
+    /**
+     * @param QueryBuilder $queryBuilder
+     * @param bool|null $value
+     * @return QueryBuilder
+     */
+    public function addDemoFilter(QueryBuilder $queryBuilder,?bool $value) : QueryBuilder
+    {
+        $rootAlias = $queryBuilder->getRootAliases()[0];
+
+        if(null === $value) {
+            return $queryBuilder;
+        }
+
+        if($value) {
+            $queryBuilder->andWhere("$rootAlias.idRpps LIKE :start");
+        } else {
+            $queryBuilder->andWhere("$rootAlias.idRpps NOT LIKE :start");
+        }
+
+        $queryBuilder->setParameter("start","2%");
+
+        return $queryBuilder;
+    }
+
+
+
+    /**
+     * @param string $string
+     * @return bool|null
+     */
+    public static function parseBooleanValue(string $string) : ?bool
+    {
+
+        $string = trim(strtolower($string));
+
+        // If true or 1, returns true
+        // if false or 0 returns false
+        // Else, incorrect value : returns null
+        return in_array($string,["1","true"]) ? true : (in_array($string,["0","false"]) ? false : null);
+
+    }
+
 
 
     /**
