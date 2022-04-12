@@ -115,15 +115,11 @@ class CreateTestData extends Command
                 $rpps->setFinessNumber("3" . $faker->numberBetween(10000000, 99999999));
             }
 
-            if (rand(0, 10) > 3) {
-                $rpps->setSpecialty($this->getSpecialty());
-            }
-
+            $rpps->setSpecialty($this->getSpecialty());
 
             $this->em->persist($rpps);
 
             $output->writeln("Creating $rpps");
-
         }
 
         $this->em->flush();
@@ -170,9 +166,10 @@ class CreateTestData extends Command
     /**
      * @return string
      */
-    protected function getSpecialty() : string
+    protected function getSpecialty(): string
     {
-        $specialties = ["Pharmacien",
+        $specialties = [
+            "Pharmacien",
             "Neurologie",
             "Médecine Générale",
             "Chirurgie générale",
@@ -208,11 +205,10 @@ class CreateTestData extends Command
             "Gériatrie",
             "Oncologie option radiothérapie",
             "Chirurgie Orale",
-            ];
+        ];
 
 
-         return $specialties[array_rand($specialties,1)];
-
+        return $specialties[array_rand($specialties, 1)];
     }
 
 
