@@ -70,7 +70,7 @@ class RPPSTest extends ApiTestCase
      * @throws ServerExceptionInterface
      * @throws TransportExceptionInterface
      */
-    public function testFilterRppsDataDemo()
+    public function testWithDemoTrueReturnsRppsDemoData()
     {
 
         $data = $this->get("rpps",[
@@ -81,6 +81,19 @@ class RPPSTest extends ApiTestCase
 
         $this->assertCollectionKeyContains($data['hydra:member'],"firstName",["Emilie"]);
         $this->assertCollectionKeyNotContains($data['hydra:member'],"firstName",["Julien","Jérémie"]);
+
+    }
+
+
+
+    /**
+     * @throws ClientExceptionInterface
+     * @throws RedirectionExceptionInterface
+     * @throws ServerExceptionInterface
+     * @throws TransportExceptionInterface
+     */
+    public function testWithDemoFalseDoesNotReturnRppsDemoData()
+    {
 
         $data = $this->get("rpps",[
             'demo' => false
