@@ -18,25 +18,28 @@ sync-metadata-storage: ## Ensures that the metadata storage is at the latest ver
 migrate: ## Runs the migrations
 	docker-compose run --rm apache php bin/console doctrine:migrations:version --add --all
 
-import-allergens: # Import allergets' data
+import-allergens: ## Import allergets' data
 	docker-compose run --rm apache php bin/console app:allergen:import
 
-import-ccam: # Import CCAM' data
+import-ccam: ## Import CCAM' data
 	docker-compose run --rm apache php bin/console app:ccam:import
 
-import-diseases: # Import diseases' data
+import-diseases: ## Import diseases' data
 	docker-compose run --rm apache php bin/console app:disease:import
 
-import-drugs: # Import drugs' data
+import-drugs: ## Import drugs' data
 	docker-compose run --rm apache php bin/console app:drugs:import
 
-import-rpps: # Import rpps' data
+import-rpps: ## Import rpps' data
 	docker-compose run --rm apache php bin/console app:rpps:import
 
-import-test-data: # Import test data
+import-jobs: ## Import jobs' data
+	docker-compose run --rm apache php bin/console app:job:import
+
+import-test-data: ## Import test data
 	docker-compose run --rm apache php bin/console app:test:create
 
-import-data: import-allergens import-ccam import-diseases import-drugs import-rpps # Import all data but test data
+import-data: import-allergens import-ccam import-diseases import-drugs import-rpps import-jobs ## Import all data but test data
 
 install-app: build composer-install update-schema load-fixtures sync-metadata-storage migrate ## Installs the application without importing the data
 
@@ -45,11 +48,16 @@ install: install-app import-data ## Installs the application & imports the data
 shell: ## Gets a shell in the apache container
 	docker-compose run --rm apache bash
 
-run: ## Runs all application's containers
-	docker-compose up
+make-migration: ## Creates the migration for detected changes
+	docker-compose run --rm apache php bin/console make:migration
 
 routes-dev: ## Lists all routes of the application
 	docker-compose run --rm apache php bin/console debug:router
+
+run: ## Runs all application's containers
+	docker-compose up
+
+start: run
 
 stop: ## Stops all containers
 	docker-compose down -v

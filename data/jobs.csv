@@ -1,0 +1,3328 @@
+code,mode,class,name
+J-00000,,,"Sections 0-1 Spécialistes, techniciens et personnel assimilé"
+J-00000,,0,00 Métiers et professions: termes généraux
+J-00000,,01,métier
+J-00000,,02,profession
+J-00000,,02,travail
+J-01000,,0,01 Spécialistes des sciences physiques et techniciens assimilés
+J-01100,,00,011 Chimistes
+J-01110,,01,"chimiste, en général"
+J-01120,,01,chimiste (chimie organique)
+J-01130,,01,chimiste (chimie minérale)
+J-01140,,01,chimiste (chimie physique)
+J-01150,,01,chimiste (chimie analytique)
+J-01190,,01,autres chimistes
+J-01200,,00,012 Physiciens
+J-01210,,01,"physicien, en général"
+J-01210,,02,"physicienne, en général"
+J-01220,,01,physicien en mécanique
+J-01220,,02,physicienne en mécanique
+J-01230,,01,physicien de la chaleur
+J-01230,,02,physicienne de la chaleur
+J-01240,,01,physicien en optique
+J-01240,,02,physicienne en optique
+J-01250,,01,physicien en acoustique
+J-01250,,02,physicienne en acoustique
+J-01260,,01,physicien en électricité et magnétisme
+J-01260,,02,physicienne en électricité et magnétisme
+J-01270,,01,physicien en électronique
+J-01270,,02,physicienne en électronique
+J-01280,,01,physicien en nucléaire
+J-01280,,02,physicienne en nucléaire
+J-01290,,01,autres physiciens
+J-01290,,02,autres physiciennes
+J-01300,,00,013 Spécialistes des sciences physiques n.c.a.
+J-01320,,01,géophysicien
+J-01320,,02,géophysicienne
+J-01330,,01,géologue
+J-01340,,01,météorologue
+J-01350,,01,astronome
+J-01390,,01,autres spécialistes des sciences physiques
+J-01400,,00,014 Techniciens des sciences physiques
+J-01420,,01,technicien chimiste
+J-01420,,02,technicienne chimiste
+J-01430,,01,technicien physicien
+J-01430,,02,technicienne physicienne
+J-01490,,01,autres techniciens des sciences physiques
+J-01490,,02,autres techniciennes des sciences physiques
+J-02000,,0,"02-03 Architectes, ingénieurs et techniciens assimilés"
+J-02100,,00,021 Architectes et urbanistes
+J-02120,,01,architecte (construction civile)
+J-02130,,01,urbaniste
+J-02140,,01,architecte paysagiste
+J-02200,,00,022 Ingénieurs civils
+J-02210,,01,"ingénieur civil, en général"
+J-02210,,02,"ingénieure civile, en général"
+J-02220,,01,ingénieur civil (construction de bâtiments)
+J-02220,,02,ingénieure civile (construction de bâtiments)
+J-02230,,01,ingénieur civil (construction de chaussées)
+J-02230,,02,ingénieure civile (construction de chaussées)
+J-02235,,01,ingénieur civil (construction d'aérodromes)
+J-02235,,02,ingénieure civile (construction d'aérodromes)
+J-02240,,01,ingénieur civil (construction de voies ferrées)
+J-02240,,02,ingénieure civile (construction de voies ferrées)
+J-02245,,01,ingénieur civil (construction de ponts)
+J-02245,,02,ingénieure civile (construction de ponts)
+J-02250,,01,ingénieur civil (installations sanitaires)
+J-02250,,02,ingénieure civile (installations sanitaires)
+J-02255,,01,ingénieur civil hydraulicien
+J-02255,,02,ingénieure civile hydraulicienne
+J-02260,,01,ingénieur civil (mécanique des sols)
+J-02260,,02,ingénieure civile (mécanique des sols)
+J-02290,,01,autres ingénieurs civils
+J-02290,,02,autres ingénieures civiles
+J-02300,,00,023 Ingénieurs électriciens et électroniciens
+J-02305,,01,"ingénieur électricien, en général"
+J-02305,,02,"ingénieure électricienne, en général"
+J-02310,,01,"ingénieur électronicien, en général"
+J-02310,,02,"ingénieure électronicienne, en général"
+J-02320,,01,ingénieur électricien (production de courant)
+J-02320,,02,ingénieure électricienne (production de courant)
+J-02330,,01,ingénieur électricien (transport et distribution de courant)
+J-02330,,02,ingénieure électricienne (transport et distribution de courant)
+J-02340,,01,ingénieur en télécommunications
+J-02340,,02,ingénieure en télécommunications
+J-02390,,01,autres ingénieurs électriciens et électroniciens
+J-02390,,02,autres ingénieures électriciennes et électroniciennes
+J-02400,,00,024 Ingénieurs mécaniciens
+J-02410,,01,"ingénieur mécanicien, en général"
+J-02410,,02,"ingénieure mécanicienne, en général"
+J-02420,,01,ingénieur mécanicien (machines et outillages industriels)
+J-02420,,02,ingénieure mécanicienne (machines et outillages industriels)
+J-02430,,01,"ingénieur mécanicien (spécialiste des moteurs, sauf moteurs marins)"
+J-02430,,02,"ingénieure mécanicienne (spécialiste des moteurs, sauf moteurs marins)"
+J-02440,,01,ingénieur mécanicien (moteurs marins et équipements de bord)
+J-02440,,02,ingénieure mécanicienne (moteurs marins et équipements de bord)
+J-02450,,01,ingénieur en constructions navales
+J-02450,,02,ingénieure en constructions navales
+J-02460,,01,ingénieur en aéronautique
+J-02460,,02,ingénieure en aéronautique
+J-02470,,01,ingénieur en mécanique automobile
+J-02470,,02,ingénieure en mécanique automobile
+J-02480,,01,"ingénieur en chauffage, ventilation et réfrigération"
+J-02480,,02,"ingénieure en chauffage, ventilation et réfrigération"
+J-02485,,01,ingénieur spécialiste de l'énergie nucléaire
+J-02485,,02,ingénieur spécialiste de l'énergie nucléaire
+J-02490,,01,autres ingénieurs mécaniciens
+J-02490,,02,autres ingénieures mécaniciennes
+J-02500,,00,025 Ingénieurs chimistes
+J-02510,,01,"ingénieur chimiste, en général"
+J-02510,,02,"ingénieure chimiste, en général"
+J-02520,,01,ingénieur chimiste (raffinage de pétrole)
+J-02520,,02,ingénieure chimiste (raffinage de pétrole)
+J-02590,,01,autres ingénieurs chimistes
+J-02590,,02,autres ingénieures chimistes
+J-02600,,00,026 Ingénieurs métallurgistes
+J-02620,,01,ingénieur métallurgiste (métallurgie extractive)
+J-02620,,02,ingénieure métallurgiste (métallurgie extractive)
+J-02630,,01,ingénieur métallurgiste (traitement des métaux)
+J-02630,,02,ingénieure métallurgiste (traitement des métaux)
+J-02690,,01,autres ingénieurs métallurgistes
+J-02690,,02,autres ingénieures métallurgistes
+J-02700,,00,027 Ingénieurs des mines
+J-02710,,01,"ingénieur des mines, en général"
+J-02710,,02,"ingénieure des mines, en général"
+J-02720,,01,ingénieur des mines de charbon
+J-02720,,02,ingénieure des mines de charbon
+J-02730,,01,ingénieur des mines métalliques
+J-02730,,02,ingénieure des mines métalliques
+J-02740,,01,ingénieur de l'extraction du pétrole et du gaz naturel
+J-02740,,02,ingénieure de l'extraction du pétrole et du gaz naturel
+J-02790,,01,autres ingénieurs des mines
+J-02790,,02,autres ingénieures des mines
+J-02800,,00,028 Ingénieurs industriels
+J-02810,,01,"ingénieur du rendement industriel, en général"
+J-02810,,02,"ingénieure du rendement industriel, en général"
+J-02820,,01,ingénieur des méthodes
+J-02820,,02,ingénieure des méthodes
+J-02830,,01,ingénieur de l'étude des temps et des mouvements
+J-02830,,02,ingénieure de l'étude des temps et des mouvements
+J-02890,,01,autres ingénieurs industriels
+J-02890,,02,autres ingénieures industrielles
+J-02900,,00,029 Ingénieurs n.c.a.
+J-02920,,01,ingénieur de céramique et verrerie
+J-02920,,02,ingénieure de céramique et verrerie
+J-02930,,01,ingénieur agricole
+J-02930,,02,ingénieure agricole
+J-02940,,01,ingénieur de la fabrication de denrées alimentaires et de boissons
+J-02940,,02,ingénieure de la fabrication de denrées alimentaires et de boissons
+J-02950,,01,ingénieur de la circulation routière
+J-02950,,02,ingénieure de la circulation routière
+J-02960,*,01,Ingénieur commercial
+J-02960,*,02,ingénieure commerciale
+J-02990,,01,autres ingénieurs
+J-02990,,02,autres ingénieures
+J-03100,,00,031 Géomètres
+J-03110,,01,"géomètre, en général"
+J-03120,,01,arpenteur-géomètre
+J-03120,,02,arpenteuse-géomètre
+J-03130,,01,géomètre des mines
+J-03140,,01,ingénieur hydrographe
+J-03140,,02,ingénieure hydrographe
+J-03150,,01,photogrammètre
+J-03190,,01,autres géomètres
+J-03200,,00,032 Dessinateurs
+J-03210,,01,"dessinateur, en général"
+J-03210,,02,"dessinatrice, en général"
+J-03220,,01,dessinateur en construction mécanique
+J-03220,,02,dessinatrice en construction mécanique
+J-03230,,01,dessinateur d'installations électriques
+J-03230,,02,dessinatrice d'installations électriques
+J-03240,,01,dessinateur en génie civil
+J-03240,,02,dessinatrice en génie civil
+J-03250,,01,dessinateur en architecture
+J-03250,,02,dessinatrice en architecture
+J-03260,,01,dessinateur cartographe
+J-03260,,02,dessinatrice cartographe
+J-03270,,01,illustrateur technique
+J-03270,,02,illustratrice technique
+J-03280,,01,lithographe
+J-03290,,01,autres dessinateurs
+J-03290,,02,autres dessinatrices
+J-03300,,00,033 Techniciens en génie civil
+J-03310,,01,"technicien en génie civil, en général"
+J-03310,,02,"technicienne en génie civil, en général"
+J-03320,,01,métreur-vérificateur
+J-03320,,02,métreuse-vérificatrice
+J-03330,,01,aide-géomètre
+J-03340,,01,surveillant de travaux de construction
+J-03340,,02,surveillante de travaux de construction
+J-03390,,01,autres techniciens en génie civil
+J-03390,,02,autres techniciennes en génie civil
+J-03400,,00,034 Techniciens en génie électrique et électronique
+J-03405,,01,"technicien électricien, en général"
+J-03405,,02,"technicienne électricienne, en général"
+J-03410,,01,"technicien électronicien, en général"
+J-03410,,02,"technicienne électronicienne, en général"
+J-03420,,01,technicien électricien (haute tension)
+J-03420,,02,technicienne électricienne (haute tension)
+J-03430,,01,technicien en télécommunications
+J-03430,,02,technicienne en télécommunications
+J-03490,,01,autres techniciens en génie électrique et électronique
+J-03490,,02,autres techniciennes en génie électrique et électronique
+J-03500,,00,035 Techniciens en génie mécanique
+J-03510,,01,"technicien mécanicien, en général"
+J-03510,,02,"technicienne mécanicienne, en général"
+J-03520,,01,technicien mécanicien (spécialiste des moteurs)
+J-03520,,02,technicienne mécanicienne (spécialiste des moteurs)
+J-03530,,01,technicien de l'aéronautique
+J-03530,,02,technicienne de l'aéronautique
+J-03540,,01,technicien de l'automobile
+J-03540,,02,technicienne de l'automobile
+J-03550,,01,"technicien en chauffage, ventilation et réfrigération"
+J-03550,,02,"technicienne en chauffage, ventilation et réfrigération"
+J-03590,,01,autres techniciens en génie mécanique
+J-03590,,02,autres techniciennes en génie mécanique
+J-03600,,00,036 Techniciens des sciences chimiques
+J-03610,,01,"technicien en chimie industrielle, en général"
+J-03610,,02,"technicienne en chimie industrielle, en général"
+J-03620,,01,technicien en chimie (raffinage du pétrole)
+J-03620,,02,technicienne en chimie (raffinage du pétrole)
+J-03690,,01,autres techniciens en chimie industrielle
+J-03690,,02,autres techniciennes en chimie industrielle
+J-03700,,00,037 Techniciens métallurgistes
+J-03720,,01,technicien métallurgiste (production et affinage des métaux)
+J-03720,,02,technicienne métallurgiste (production et affinage des métaux)
+J-03730,,01,technicien métallurgiste (traitement des métaux)
+J-03730,,02,technicienne métallurgiste (traitement des métaux)
+J-03790,,01,autres techniciens métallurgistes
+J-03790,,02,autres techniciennes métallurgistes
+J-03800,,00,038 Techniciens des mines
+J-03810,,01,"technicien des mines, en général"
+J-03810,,02,"technicienne des mines, en général"
+J-03820,,01,technicien de l'extraction du pétrole et du gaz naturel
+J-03820,,02,technicienne de l'extraction du pétrole et du gaz naturel
+J-03890,,01,autres techniciens des mines
+J-03890,,02,autres techniciennes des mines
+J-03900,,00,039 Techniciens de l'industrie n.c.a.
+J-03920,,01,technicien des méthodes de production
+J-03920,,02,technicienne des méthodes de production
+J-03930,,01,technicien de l'étude des temps et des mouvements
+J-03930,,02,technicienne de l'étude des temps et des mouvements
+J-03990,,01,autres techniciens de l'industrie
+J-03990,,02,autres techniciennes de l'industrie
+J-04000,,0,04 Officiers du transport aérien et maritime
+J-04100,,00,"041 Pilotes d'avions, navigateurs et mécaniciens de bord"
+J-04120,,01,pilote d'avion (transports aériens)
+J-04130,,01,pilote d'avion (à l'exception des transports aériens)
+J-04140,,01,navigateur de bord
+J-04140,,02,navigatrice de bord
+J-04150,,01,mécanicien de bord
+J-04150,,02,mécanicienne de bord
+J-04160,,01,instructeur de vol
+J-04160,,02,instructrice de vol
+J-04200,,00,042 Officiers de pont et pilotes
+J-04215,,01,capitaine de navire (navigation maritime)
+J-04220,,01,capitaine de bateau (navigation intérieure)
+J-04230,,01,officier de navigation
+J-04230,,02,officière de navigation
+J-04240,,01,pilote de navire
+J-04250,,01,capitaine d'armement (pont)
+J-04290,,01,autres officiers de pont et pilotes
+J-04290,,02,autres officières de pont et pilotes
+J-04300,,00,043 Officiers mécaniciens de navire
+J-04315,,01,premier officier mécanicien de navire
+J-04315,,02,première officière mécanicienne de navire
+J-04320,,01,officier mécanicien de navire
+J-04320,,02,officière mécanicienne de navire
+J-04330,,01,capitaine d'armement (technique)
+J-05000,,0,05 Spécialistes des sciences biologiques et techniciens assimilés
+J-05100,,00,"051 Biologistes, zoologistes et spécialistes assimilés"
+J-05110,,01,"biologiste, en général"
+J-05120,,01,botaniste
+J-05130,,01,zoologiste
+J-05190,,01,"autres biologistes, zoologistes et spécialistes assimilés"
+J-05200,,00,"052 Bactériologistes, pharmacologues et spécialistes assimilés"
+J-05220,,01,anatomiste
+J-05230,,01,biochimiste
+J-05240,,01,physiologiste
+J-05250,,01,bactériologiste
+J-05260,,01,pathologiste (médecine)
+J-05265,,01,pathologiste (médecine vétérinaire)
+J-05270,,01,pharmacologiste
+J-05280,,01,spécialiste de l'étude des animaux
+J-05290,,01,"autres bactériologistes, pharmacologistes et spécialistes assimilés"
+J-05300,,00,053 Agronomes et spécialistes assimilés
+J-05320,,01,agronome
+J-05330,,01,horticulteur
+J-05330,,02,horticultrice
+J-05340,,01,sylviculteur
+J-05340,,02,sylvicultrice
+J-05350,,01,pédologue
+J-05360,,01,conseiller agricole
+J-05360,,02,conseillère agricole
+J-05390,,01,autres agronomes et spécialistes assimilés
+J-05400,,00,054 Techniciens des sciences biologiques
+J-05420,,01,technicien en biologie
+J-05420,,02,technicienne en biologie
+J-05430,,01,technicien des sciences médicales
+J-05430,,02,technicienne des sciences médicales
+J-05490,,01,autres techniciens des sciences biologiques
+J-05490,,02,autres techniciennes des sciences biologiques
+J-06000,,0,"06-07 Médecins, dentistes, vétérinaires et personnel assimilé"
+J-06100,,00,061 Médecins
+J-06100,,01,médecin (médecine générale)
+J-06101,,01,médecin (médecine de famille)
+J-06101,,02,omnipracticien
+J-06101,,02,omnipracticienne
+J-06102,,01,médecin (médecine interne)
+J-06102,,02,interniste
+J-06110,,01,chirurgien (chirurgie générale)
+J-06110,,02,chirurgienne (chirurgie générale)
+J-06120,,01,médecin spécialiste
+J-06121,,01,hématologue
+J-06122,,01,infectiologue
+J-06123,,01,pneumologue
+J-06124,,01,néphrologue
+J-06125,,01,neurologue
+J-06126,,01,dermatologue
+J-06127,,01,endocrinologue
+J-06128,,01,gastro-entérologue
+J-06129,,01,gérontologue
+J-0612A,,01,rhumatologue
+J-0612B,,01,cardiologue
+J-06130,,01,chirurgien spécialiste
+J-06130,,02,chirurgienne spécialiste
+J-06131,,01,chirurgien plasticien
+J-06131,,02,chirurgienne plasticienne
+J-06132,,01,chirurgien orthopédiste
+J-06132,,02,chirurgienne orthopédiste
+J-06133,,01,chirurgien cardiovasculaire
+J-06133,,02,chirurgienne cardiovasculaire
+J-06134,,01,chirurgien thoracique
+J-06134,,02,chirurgienne thoracique
+J-06135,,01,neurochirurgien
+J-06135,,02,neurochirurgienne
+J-06136,,01,gynécologue
+J-06137,,01,ophthalmologiste
+J-06138,,01,oto-rhino-laryngologiste
+J-06139,,01,urologue
+J-06140,,01,médecin (hygiène et santé publique)
+J-06142,,01,médecin (santé communautaire)
+J-06152,,01,pédiatre
+J-06153,,01,immunologiste clinique
+J-06153,,02,allergologue
+J-06154,,01,physiatre
+J-06156,,01,obstétricien
+J-06156,,02,obstétricienne
+J-06157,,01,néonatalogiste
+J-06160,,01,médecin de laboratoire
+J-06161,,01,pathologiste général
+J-06162,,01,pathologiste clinicien
+J-06162,,02,pathologiste clinicienne
+J-06163,,01,anatomopathologiste
+J-06164,,01,neuropathologiste
+J-06165,,01,médecin biochimiste
+J-06166,,01,médecin microbiologiste
+J-06167,,01,hématologiste de laboratoire
+J-06170,,01,radiologiste
+J-06171,,01,spécialiste en radiologie diagnostique
+J-06172,,01,spécialiste en médecine nucléaire
+J-06173,,01,radiothérapeute
+J-06173,,02,radio-oncologue
+J-06190,,01,autres médecins
+J-06192,,01,anesthésiste
+J-06194,,01,médecin spécialiste en électroencéphalographie
+J-06197,,01,neuropsychiatre
+J-06198,,01,psychiatre
+J-06200,,00,062 Assistants médicaux
+J-06210,,01,assistant médical
+J-06210,,02,assistante médicale
+J-06300,,00,063 Dentistes
+J-06310,,01,"dentiste, en général"
+J-06320,,01,dentiste spécialiste
+J-06321,,01,orthodontiste
+J-06322,,01,périodontiste
+J-06323,,01,endodontiste
+J-06324,,01,prothodontiste
+J-06325,,01,prothodontiste (prothèses fixes)
+J-06326,,01,prothodontiste (prothèses amovibles)
+J-06330,,01,dentiste (hygiène publique)
+J-06340,,01,chirurgien buccal
+J-06340,,02,chirurgienne buccale
+J-06340,,02,spécialiste en chirurgie buccale et maxillo-faciale
+J-06344,,01,pathologiste buccal
+J-06344,,02,pathologiste buccale
+J-06391,,01,spécialiste en gérodontologie
+J-06392,,01,pédodontiste
+J-06400,,00,064 Assistants dentaires
+J-06420,,01,assistant dentaire
+J-06420,,02,assistante dentaire
+J-06430,,01,assistant dentaire (enfants d'âge préscolaire et scolaire)
+J-06430,,02,assistante dentaire (enfants d'âge préscolaire et scolaire)
+J-06440,,01,hygiéniste dentaire
+J-06500,,00,065 Vétérinaires
+J-06510,,01,"vétérinaire, en général"
+J-06520,,01,vétérinaire (santé publique)
+J-06590,,01,autres vétérinaires
+J-06600,,00,066 Assistants vétérinaires
+J-06610,,01,assistant vétérinaire
+J-06610,,02,assistante vétérinaire
+J-06700,,00,067 Pharmaciens
+J-06710,,01,pharmacien
+J-06710,,02,pharmacienne
+J-06800,,00,068 Assistants pharmaciens
+J-06810,,01,assistant pharmacien
+J-06810,,02,assistante pharmacienne
+J-06900,,00,069 Diététistes et nutritionnistes en santé publique
+J-06910,,01,"diététiste, en général"
+J-06920,,01,nutritionniste en santé publique
+J-06990,,01,autres diététistes et nutritionnistes en santé publiques
+J-07100,,00,071 Infirmiers diplômés
+J-07110,,01,"infirmier diplômé, en général"
+J-07110,,02,"infirmière diplômée, en général"
+J-07120,,01,infirmier diplômé spécialisé
+J-07120,,02,infirmière diplômée spécialisée
+J-07130,,01,infirmier de santé publique
+J-07130,,02,infirmière de santé publique
+J-07140,,01,infirmier en santé du travail
+J-07140,,02,infirmière en santé du travail
+J-07190,,01,autres infirmiers diplômés
+J-07190,,02,autres infirmières diplômées
+J-07200,,00,072 Personnel infirmier n.c.a.
+J-07210,,01,infirmier auxiliaire
+J-07210,,02,infirmière auxiliaire
+J-07300,,00,073 Sages-femmes diplômées
+J-07310,,01,sage-femme diplômée
+J-07400,,00,074 Personnel de sages-femmes n.c.a.
+J-07410,,01,sage-femme auxiliaire
+J-07500,,00,075 Optométristes et opticiens
+J-07520,,01,optométriste
+J-07530,,01,opticien d'ordonnances
+J-07530,,02,opticienne d'ordonnances
+J-07600,,00,076 Physiothérapeutes et ergothérapeutes
+J-07620,,01,physiothérapeute
+J-07630,,01,ergothérapeute
+J-07640,,01,masseur
+J-07640,,02,masseuse
+J-07700,,00,077 Techniciens en radiologie
+J-07710,,01,technicien en radiologie
+J-07710,,02,techniciennes en radiologie
+J-07900,,00,"079 Médecins, dentistes, vétérinaires et personnel assimilé n.c.a."
+J-07920,,01,ostéopathe
+J-07930,,01,chiropraticien
+J-07930,,02,chiropraticienne
+J-07940,,01,hygiéniste
+J-07950,,01,technicien en orthopédie
+J-07950,,02,technicienne en orthopédie
+J-07990,,01,"autres médecins, dentistes, vétérinaires et personnel assimilé"
+J-08000,,0,"08 Statisticiens, mathématiciens, analystes de systèmes et techniciens assimilés"
+J-08100,,00,081 Statisticiens
+J-08110,,01,"statisticien, en général"
+J-08110,,02,"statisticienne, en général"
+J-08120,,01,statisticien-mathématicien
+J-08120,,02,statisticienne-mathématicienne
+J-08130,,01,statisticien (statistiques appliquées)
+J-08130,,02,statisticienne (statistiques appliquées)
+J-08200,,00,082 Mathématiciens et actuaires
+J-08220,,01,mathématicien (mathématiques pures)
+J-08220,,02,mathématicienne (mathématiques pures)
+J-08230,,01,mathématicien (mathématiques appliquées)
+J-08230,,02,mathématicienne (mathématiques appliquées)
+J-08240,,01,analyste en recherche opérationnelle
+J-08250,,01,actuaire
+J-08300,,00,083 Analyste de systèmes
+J-08310,,01,analyste de systèmes
+J-08400,,00,084 Techniciens des statistiques et des mathématiques
+J-08420,,01,programmeur en informatique
+J-08420,,02,programmeuse en informatique
+J-08490,,01,autres techniciens des statistiques et des mathématiques
+J-08490,,02,autres techniciennes des statistiques et des mathématiques
+J-09000,,0,09 Économistes
+J-09010,,01,"économiste, en général"
+J-09020,,01,économiste spécialisé
+J-09020,,02,économiste spécialisée
+J-09030,,01,analyste en étude de marché
+J-11000,,0,11 Comptables
+J-11010,,01,"comptable, en général"
+J-11020,,01,vérificateur
+J-11020,,02,vérificatrice
+J-11090,,01,autres comptables
+J-12000,,0,12 Juristes
+J-12100,,00,121 Avocats
+J-12110,,01,avocat
+J-12110,,02,avocate
+J-12200,,00,122 Juges
+J-12900,,00,129 Juristes n.c.a.
+J-12910,,01,"juriste, autre qu'avocat ou juge"
+J-12910,,02,"juriste, autre qu'avocate ou juge"
+J-13000,,0,13 Professeurs
+J-13100,,00,131 Professeurs d'université et d'établissements d'enseignement supérieur
+J-13120,,01,professeur de sciences physiques (niveau supérieur)
+J-13120,,02,professeure de sciences physiques (niveau supérieur)
+J-13125,,01,professeur en génie et en architecture (niveau supérieur)
+J-13125,,02,professeure en génie et en architecture (niveau supérieur)
+J-13130,,01,professeur de sciences biologiques et médicales (niveau supérieur)
+J-13130,,02,professeure de sciences biologiques et médicales (niveau supérieur)
+J-13140,,01,professeur de mathématiques (niveau supérieur)
+J-13140,,02,professeure de mathématiques (niveau supérieur)
+J-13145,,01,professeur de sciences économiques et commerciales (niveau supérieur)
+J-13145,,02,professeure de sciences économiques et commerciales (niveau supérieur)
+J-13150,,01,professeur de droit (niveau supérieur)
+J-13150,,02,professeure de droit (niveau supérieur)
+J-13155,,01,professeur de pédagogie (niveau supérieur)
+J-13155,,02,professeure de pédagogie (niveau supérieur)
+J-13160,,01,professeur de sciences agricoles (niveau supérieur)
+J-13160,,02,professeure de sciences agricoles (niveau supérieur)
+J-13165,,01,"Professeur d'histoire, de philosophie, de sociologie et d'autres sciences sociales apparentées (niveau supérieur)"
+J-13165,,02,"professeure d'histoire, de philosophie, de sociologie et d'autres sciences sociales apparentées (niveau supérieur)"
+J-13170,,01,professeur de langues et de littérature (niveau supérieur)
+J-13170,,02,professeure de langues et de littérature (niveau supérieur)
+J-13175,,01,"professeur de thérapies paramédicales, des sciences infirmières et d'autres sciences apparentées (niveau supérieur)"
+J-13175,,02,"professeure de thérapies paramédicales, des sciences infirmières et d'autres sciences apparentées (niveau supérieur)"
+J-13180,,01,professeur d'arts industriels (niveau supérieur)
+J-13180,,02,professeure d'arts industriels (niveau supérieur)
+J-13190,,01,autres professeurs d'université et d'établissements d'enseignement supérieur
+J-13190,,02,autres professeures d'université et d'établissements d'enseignement supérieur
+J-13200,,00,132 Professeurs de l'enseignement secondaire
+J-13215,,01,professeur de langues et de littérature (niveau secondaire)
+J-13215,,02,professeure de langues et de littérature (niveau secondaire)
+J-13220,,01,professeur de mathématiques (niveau secondaire)
+J-13220,,02,professeure de mathématiques (niveau secondaire)
+J-13230,,01,professeur de sciences naturelles (niveau secondaire)
+J-13230,,02,professeure de sciences naturelles (niveau secondaire)
+J-13240,,01,professeur d'études sociales (niveau secondaire)
+J-13240,,02,professeure d'études sociales (niveau secondaire)
+J-13250,,01,professeur de beaux-arts (niveau secondaire)
+J-13250,,02,professeure de beaux-arts (niveau secondaire)
+J-13260,,01,professeur de l'enseignement commercial et de secrétariat (niveau secondaire)
+J-13260,,02,professeure de l'enseignement commercial et de secrétariat (niveau secondaire)
+J-13270,,01,professeur des sciences agricoles (niveau secondaire)
+J-13270,,02,professeure des sciences agricoles (niveau secondaire)
+J-13275,,01,professeur d'économie domestique et de formation générale d'infirmier (niveau secondaire)
+J-13275,,02,professeure d'économie domestique et de formation générale d'infirmier (niveau secondaire)
+J-13280,,01,professeur d'enseignement technique (niveau secondaire)
+J-13280,,02,professeure d'enseignement technique (niveau secondaire)
+J-13290,,01,autres professeurs du niveau secondaire
+J-13290,,02,autres professeures du niveau secondaire
+J-13300,,00,133 Professeurs de l'enseignement primaire
+J-13320,,01,professeur (niveau primaire)
+J-13320,,02,professeure (niveau primaire)
+J-13390,,01,autres professeurs du niveau primaire
+J-13390,,02,autres professeures du niveau primaire
+J-13400,,00,134 Éducateurs du niveau préscolaire
+J-13420,,01,éducateur à la maternelle
+J-13420,,02,éducatrice à la maternelle
+J-13490,,01,autres éducateurs du niveau préscolaire
+J-13490,,02,autres éducatrices du niveau préscolaire
+J-13500,,00,135 Enseignants spécialisés
+J-13520,,01,enseignants pour les aveugles
+J-13520,,02,enseignantes pour les aveugles
+J-13530,,01,enseignants pour les sourds
+J-13530,,02,enseignantes pour les sourds
+J-13540,,01,enseignants pour les personnes ayant une déficience mentale
+J-13540,,02,enseignantes pour les personnes ayant une déficience mentale
+J-13590,,01,autres enseignants spécialisés
+J-13590,,02,autres enseignantes spécialisées
+J-13900,,00,139 Personnel enseignant n.c.a.
+J-13920,,01,spécialiste des méthodes d'enseignement
+J-13930,,01,spécialiste du matériel didactique (matériel audio-visuel ou autre)
+J-13940,,01,directeur d'école
+J-13940,,02,directrice d'école
+J-13950,,01,inspecteur d'école
+J-13950,,02,inspectrice d'école
+J-13990,,01,autre personnel enseignant
+J-14000,,0,14 Membres du clergé
+J-14100,,00,141 Ministres des cultes et membres d'ordres religieux assimilés
+J-14120,,01,ministre du culte
+J-14121,,01,membre du clergé (ordonné)
+J-14122,,01,ministre du culte (ordonné)
+J-14123,,01,prêtre (ordonné)
+J-14124,,01,rabbin (ordonné)
+J-14130,,01,missionnaire
+J-14140,,01,assistant du culte (membre d'un ordre religieux)
+J-14140,,02,assistante du culte (membre d'un ordre religieux)
+J-14190,,01,autres ministres des cultes et membres d'ordres religieux assimilés
+J-14900,,00,149 Membres du clergé n.c.a.
+J-14920,,01,guérisseur spirituel
+J-14920,,02,guérisseuse spirituelle
+J-14990,,01,autres membres du clergé et personnel assimilé
+J-15000,,0,"15 Auteurs, journalistes et écrivains assimilés"
+J-15100,,00,151 Auteurs et critiques
+J-15120,,01,auteur
+J-15120,,02,auteure
+J-15130,,01,critique
+J-15900,,00,"159 Auteurs, journalistes et écrivains assimilés n.c.a."
+J-15920,,01,rédacteur en chef de quotidien et de périodique
+J-15920,,02,rédactrice en chef de quotidien et de périodique
+J-15925,,01,sous-éditeur de quotidien et de périodique
+J-15925,,02,sous-éditrice de quotidien et de périodique
+J-15930,,01,reporteur
+J-15930,,02,reporteure
+J-15935,,01,commentateur de radio et télévision
+J-15935,,02,commentatrice de radio et télévision
+J-15940,,01,éditeur de scénario
+J-15940,,02,éditrice de scénario
+J-15945,,01,éditeur de livres
+J-15945,,02,éditrice de livres
+J-15950,,01,rédacteur d'annonces publicitaires
+J-15950,,02,rédactrice d'annonces publicitaires
+J-15955,,01,responsable des relations publiques
+J-15960,,01,rédacteur publicitaire
+J-15960,,02,rédactrice publicitaire
+J-15965,,01,rédacteur technique
+J-15965,,02,rédactrice technique
+J-15990,,01,"autres auteurs, journalistes et écrivains assimilés"
+J-15990,,02,"autres auteures, journalistes et écrivaines assimilées"
+J-16000,,0,"16 Sculpteurs, peintres, photographes et artistes assimilés"
+J-16100,,00,"161 Sculpteurs, peintres et artistes assimilés"
+J-16120,,01,sculpteur
+J-16120,,02,sculptrice
+J-16130,,01,artiste peintre
+J-16140,,01,dessinateur caricaturiste
+J-16140,,02,dessinatrice caricaturiste
+J-16150,,01,graveur d'art au burin et à l'eau-forte
+J-16150,,02,graveuse d'art au burin et à l'eau-forte
+J-16160,,01,restaurateur de tableaux
+J-16160,,02,restauratrice de tableaux
+J-16190,,01,"autres sculpteurs, peintres et artistes assimilés"
+J-16190,,02,"autres sculptrices, peintres et artistes assimilées"
+J-16200,,00,162 Dessinateurs publicitaires et concepteurs
+J-16220,,01,dessinateur publicitaire
+J-16220,,02,dessinatrice publicitaire
+J-16230,,01,décorateur ensemblier
+J-16230,,02,décoratrice ensemblière
+J-16240,,01,concepteur de produits industriels et commerciaux
+J-16240,,02,conceptrice de produits industriels et commerciaux
+J-16250,,01,décorateur étalagiste
+J-16250,,02,décoratrice étalagiste
+J-16290,,01,autres dessinateurs commerciaux et concepteurs
+J-16290,,02,autres dessinatrices commerciales et conceptrices
+J-16300,,00,163 Photographes et cadreurs
+J-16310,,01,"photographe, en général"
+J-16320,,01,photographe portraitiste
+J-16330,,01,photographe publicitaire
+J-16340,,01,photojournaliste
+J-16350,,01,directeur de la photographie (cinéma)
+J-16350,,02,directrice de la photographie (cinéma)
+J-16360,,02,caméraman de cinéma
+J-16370,,02,caméraman de télévision
+J-16390,,01,autres photographes et cadreurs
+J-17000,,0,17 Compositeurs et artistes de spectacles
+J-17100,,00,"171 Compositeurs, musiciens et chanteurs"
+J-17120,,01,compositeur
+J-17120,,02,compositrice
+J-17130,,01,orchestrateur
+J-17130,,02,orchestratrice
+J-17135,,01,chef d'orchestre et directeur de fanfare
+J-17135,,02,chef d'orchestre et directrice de fanfare
+J-17140,,01,instrumentiste
+J-17145,,01,chanteur
+J-17145,,02,chanteuse
+J-17150,,01,directeur de choeur
+J-17150,,02,directrice de choeur
+J-17190,,01,"autres compositeurs, musiciens et chanteurs"
+J-17190,,02,"autres compositrices, musiciennes et chanteuses"
+J-17200,,00,172 Chorégraphes et danseurs
+J-17220,,01,chorégraphe
+J-17230,,01,danseur
+J-17230,,02,danseuse
+J-17300,,00,173 Acteurs et metteurs en scène
+J-17320,,01,acteur
+J-17320,,02,actrice
+J-17330,,01,metteur en scène
+J-17330,,02,metteuse en scène
+J-17340,,01,"metteur en scène de cinéma, de radio et de télévision"
+J-17340,,02,"metteuse en scène de cinéma, de radio et de télévision"
+J-17350,,01,diseur d'histoires
+J-17350,,02,diseuse d'histoires
+J-17350,,02,conteur
+J-17350,,02,conteuse
+J-17390,,01,autres acteurs et metteurs en scène
+J-17390,,02,autres actrices et metteuses en scène
+J-17400,,00,174 Producteurs (arts du spectacle)
+J-17420,,01,directeur de production (théâtre)
+J-17420,,02,directrice de production (théâtre)
+J-17430,,01,directeur de production (cinéma)
+J-17430,,02,directrice de production (cinéma)
+J-17440,,01,directeur de production (radio et télévision)
+J-17440,,02,directrice de production (radio et télévision)
+J-17490,,01,autres producteurs (arts du spectacle)
+J-17490,,02,autres productrices (arts du spectacle)
+J-17500,,00,175 Artistes de cirque
+J-17520,,01,clown
+J-17530,,01,magicien
+J-17530,,02,magicienne
+J-17540,,01,acrobate
+J-17550,,01,trapéziste
+J-17590,,01,autres artistes de cirque
+J-17900,,00,179 Artistes de spectacles n.c.a.
+J-17920,,01,annonceur-présentateur de radio et de télévision
+J-17920,,02,annonceuse-présentatrice de radio et de télévision
+J-17930,,01,animateur de jeu
+J-17930,,02,animatrice de jeu
+J-17990,,01,autres artistes de spectacles
+J-18000,,0,"18 Athlètes, sportifs et travailleurs assimilés"
+J-18020,,01,sportif professionnel
+J-18020,,02,sportive professionnelle
+J-18030,,01,entraîneur sportif
+J-18030,,02,entraîneuse sportive
+J-18040,,01,officiel de sports
+J-18040,,02,officielle de sports
+J-18050,,01,moniteur de culture physique
+J-18050,,02,monitrice de culture physique
+J-18090,,01,"autres athlètes, sportifs et travailleurs assimilés"
+J-18090,,02,"autres athlètes, sportives et travailleuses assimilées"
+J-19000,,0,"19 Membres d'une profession libérale, techniciens et travailleurs assimilés n.c.a."
+J-19100,,00,"191 Bibliothécaires, archivistes et conservateurs"
+J-19120,,01,bibliothécaire
+J-19130,,01,archiviste
+J-19140,,01,conservateur de musée et de galerie d'art
+J-19140,,02,conservatrice de musée et de galerie d'art
+J-19190,,01,"autres bibliothécaires, archivistes et conservateurs"
+J-19190,,02,"autres bibliothécaires, archivistes et conservatrices"
+J-19200,,00,"192 Sociologues, anthropologues et spécialistes assimilés"
+J-19220,,01,sociologue
+J-19230,,01,psychologue
+J-19240,,01,anthropologue
+J-19250,,01,géographe
+J-19260,,01,historien
+J-19260,,02,historienne
+J-19270,,01,spécialiste des sciences politiques
+J-19290,,01,"autres sociologues, anthropologues et spécialistes assimilés"
+J-19300,,00,193 Travailleurs sociaux
+J-19310,,01,"travailleur social, en général"
+J-19310,,02,"travailleuse sociale, en général"
+J-19320,,01,agent d'aide sociale
+J-19320,,02,agente d'aide sociale
+J-19330,,01,animateur culturel
+J-19330,,02,animatrice culturelle
+J-19340,,01,travailleur social (délinquance)
+J-19340,,02,travailleuse sociale (délinquance)
+J-19350,,01,travailleur social (santé mentale)
+J-19350,,02,travailleuse sociale (santé mentale)
+J-19390,,01,autres travailleurs sociaux
+J-19390,,02,autres travailleuses sociales
+J-19400,,00,194 Spécialistes des problèmes de personnel et du travail
+J-19420,,01,spécialiste des problèmes de personnel
+J-19430,,01,conseiller en orientation
+J-19430,,02,conseillère en orientation
+J-19440,,01,analyste de professions
+J-19490,,01,autres spécialistes des problèmes de personnel et du travail
+J-19500,,00,"195 Philologues, traducteurs et interprètes"
+J-19520,,01,philologue
+J-19530,,01,traducteur
+J-19530,,02,traductrice
+J-19540,,01,interprète
+J-19900,,00,"199 Autres membres d'une profession libérale, technique et travailleurs assimilés"
+J-19920,,01,agent de brevets
+J-19920,,02,agente de brevets
+J-19930,,01,conseiller en économie domestique
+J-19930,,02,conseillère en économie domestique
+J-19940,,01,organisateur de campagnes publicitaires
+J-19940,,02,organisatrice de campagnes publicitaires
+J-19950,,01,assureur
+J-19950,,02,assureure
+J-19960,,01,astrologue et diseur de bonne aventure
+J-19960,,02,astrologue et diseuse de bonne aventure
+J-19990,,01,"autres membres d'une profession libérale, technique et travailleurs assimilés n.c.a."
+J-19990,,02,"autres membres d'une profession libérale, technique et travailleuses assimilées n.c.a."
+J-20000,,,Section 2 Administrateurs et directeurs
+J-20000,,0,20  Membres des corps législatifs et administrateurs (administration publique)
+J-20100,,00,201 Membres des corps législatifs
+J-20110,,01,membre d'un corps législatif
+J-20200,,00,202 Administrateurs (administration publique)
+J-20210,,01,administrateur (administration publique)
+J-20210,,02,administratrice (administration publique)
+J-21000,,0,21 Directeurs
+J-21100,,00,211 Directeurs généraux
+J-21110,,01,directeur général
+J-21110,,02,directrice générale
+J-21200,,00,212 Directeurs de la production (à l'exception des entreprises agricoles)
+J-21210,,01,directeur de la production (à l'exception des entreprises agricoles)
+J-21210,,02,directrice de la production (à l'exception des entreprises agricoles)
+J-21900,,00,219 Directeurs n.c.a.
+J-21920,,01,directeur des travaux de recherche et de développement
+J-21920,,02,directrice des travaux de recherche et de développement
+J-21930,,01,directeur des ventes (à l'exception du commerce de gros et de détail)
+J-21930,,02,directrice des ventes (à l'exception du commerce de gros et de détail)
+J-21940,,01,directeur administratif
+J-21940,,02,directrice administrative
+J-21950,,01,directeur du budget et de la comptabilité
+J-21950,,02,directrice du budget et de la comptabilité
+J-21951,,01,directeur du crédit
+J-21951,,02,directrice du crédit
+J-21960,,01,directeur d'exploitation (services de transport)
+J-21960,,02,directrice d'exploitation (services de transport)
+J-21970,,01,directeur d'exploitation (services des postes et télécommunications)
+J-21970,,02,directrice d'exploitation (services des postes et télécommunications)
+J-21980,,01,directeur du personnel et des relations de travail
+J-21980,,02,directrice du personnel et des relations de travail
+J-21990,,01,autres directeurs
+J-21990,,02,autres directrices
+J-22000,,0,22 Administrateurs scolaires
+J-22000,,01,administrateur scolaire
+J-22010,,01,administrateur d'école primaire
+J-22020,,01,administrateur d'école secondaire
+J-22030,,01,administrateur de collège ou d'université
+J-23000,,0,23 Administrateurs d'hôpitaux
+J-23000,,01,administrateur d'hôpital
+J-23000,,02,administratrice d'hôpital
+J-23100,,01,archiviste médical
+J-23100,,02,archiviste médicale
+J-30000,,,Section 3 Employés de bureau et travailleurs assimilés
+J-30000,,0,30 Superviseurs de personnel de bureau
+J-30010,,01,"superviseur de personnel de bureau, en général"
+J-30010,,02,"superviseure de personnel de bureau, en général"
+J-30090,,01,autres superviseurs de personnel de bureau
+J-30090,,02,autres superviseures de personnel de bureau
+J-31000,,0,31 Hauts fonctionnaires
+J-31010,,01,haut fonctionnaire
+J-31010,,02,haute fonctionnaire
+J-32000,,0,"32 Sténographes, dactylographes et opérateurs sur machines perforatrices de cartes et de rubans"
+J-32100,,01,"321 Sténographes, dactylographes et télétypistes"
+J-32110,,01,"sténographe-dactylographe, en général"
+J-32120,,01,secrétaire-sténographe
+J-32130,,01,sténographe de procès-verbaux
+J-32140,,01,dactylographe
+J-32150,,01,télétypiste
+J-32190,,01,"autres sténographes, dactylographes et télétypistes"
+J-32200,,00,322 Opérateurs sur machine perforatrice de cartes et de rubans
+J-32220,,01,opérateur sur machine perforatrice de cartes et de rubans
+J-32220,,02,opératrice sur machine perforatrice de cartes et de rubans
+J-32290,,01,autres opérateurs sur machines perforatrices de cartes et de rubans
+J-32290,,02,autres opératrices sur machines perforatrices de cartes et de rubans
+J-33000,,0,"33 Aides-comptables, caissiers et travailleurs assimilés"
+J-33100,,00,331 Aides-comptables et caissiers
+J-33110,,01,"aide-comptable, en général"
+J-33120,,01,aide-comptable
+J-33120,,02,teneuse de livres
+J-33130,,01,caissier d'entreprise
+J-33130,,02,caissière d'entreprise
+J-33140,,01,caissier de banque
+J-33140,,02,caissière de banque
+J-33150,,01,employé aux opérations de change
+J-33150,,02,employée aux opérations de change
+J-33160,,01,caissier
+J-33160,,02,caissière
+J-33170,,01,employé de guichet de bureau de poste
+J-33170,,02,employée de guichet de bureau de poste
+J-33190,,01,autres aides-comptables et caissiers
+J-33190,,02,autres aides-comptables et caissières
+J-33900,,00,"339 Aides-comptables, caissiers et travailleurs assimilés n.c.a."
+J-33920,,01,employé au calcul des coûts et prix de revient
+J-33920,,02,employée au calcul des coûts et prix de revient
+J-33930,,01,employé aux salaires
+J-33930,,02,employée aux salaires
+J-33940,,01,commis aux finances
+J-33990,,01,"autres aides-comptables, caissiers et travailleurs assimilés"
+J-33990,,02,"autres aides-comptables, caissières et travailleuses assimilées"
+J-34000,,0,34 Opérateurs de machines de traitement de données
+J-34100,,00,341 Opérateurs sur machines comptables et sur machines à calculer
+J-34120,,01,opérateur sur machine comptable
+J-34120,,02,opératrice sur machine comptable
+J-34130,,01,opérateur sur machine à calculer
+J-34130,,02,opératrice sur machine à calculer
+J-34200,,00,342 Opérateurs sur machines de traitement automatique des données
+J-34220,,01,opérateur d'ordinateur
+J-34220,,02,opératrice d'ordinateur
+J-34230,,01,opérateur sur machine à cartes perforées
+J-34230,,02,opératrice sur machine à cartes perforées
+J-34290,,01,autres opérateurs sur machines de traitement automatique des données
+J-34290,,02,autres opératrices sur machines de traitement automatique des données
+J-35000,,0,35 Superviseurs des transports et des communications
+J-35100,,00,351 Chefs de gare
+J-35110,,01,chef de gare
+J-35200,,00,352 Maîtres de poste
+J-35210,,01,maître de poste
+J-35900,,00,359 Superviseurs des services de transports et de communications n.c.a.
+J-35920,,01,chef de service de transport ferroviaire
+J-35925,,01,régulateur de trains
+J-35925,,02,régulatrice de trains
+J-35930,,01,inspecteur des services de transport ferroviaire
+J-35930,,02,inspectrice des services de transport ferroviaire
+J-35935,,01,contrôleur de service de marchandises (chemins de fer)
+J-35935,,02,contrôleuse de service de marchandises (chemins de fer)
+J-35940,,01,chef de service de transport routier
+J-35945,,01,inspecteur des services de voyageurs par transport routier
+J-35945,,02,inspectrice des services de voyageurs par transport routier
+J-35950,,01,chef de service de transport aérien
+J-35960,,01,contrôleur aérien
+J-35960,,02,contrôleuse aérienne
+J-35970,,01,agent technique d'exploitation (transport aérien)
+J-35970,,02,agente technique d'exploitation (transport aérien)
+J-35975,,01,chef de service de télécommunications
+J-35980,,01,chef de services postaux
+J-35990,,01,autres superviseurs des services de transports et de communications
+J-35990,,02,autres superviseures des services de transports et de communications
+J-36000,,0,36 Receveurs de transports
+J-36020,,01,chef de train de voyageurs
+J-36030,,01,préposé aux wagons-lits ou aux wagons Pullman
+J-36030,,02,préposée aux wagons-lits ou aux wagons Pullman
+J-36040,,01,receveur d'autobus
+J-36040,,02,receveuse d'autobus
+J-36090,,01,autres receveurs de transports
+J-36090,,02,autres receveuses de transports
+J-37000,,0,37 Commis à la distribution du courrier
+J-37020,,01,préposé au tri du courrier
+J-37020,,02,préposée au tri du courrier
+J-37030,,01,facteur
+J-37030,,02,factrice
+J-37040,,01,messager
+J-37040,,02,messagère
+J-37090,,01,autres commis à la distribution du courrier
+J-38000,,0,38 Opérateurs téléphonistes et télégraphistes
+J-38020,,01,standardiste
+J-38030,,01,radiotéléphoniste (installations terrestres)
+J-38040,,01,télégraphiste
+J-38050,,01,radionavigant (navigation maritime)
+J-38050,,02,radionavigante (navigation maritime)
+J-38060,,01,radionavigant (navigation aérienne)
+J-38060,,02,radionavigante (navigation aérienne)
+J-38090,,01,autres opérateurs téléphonistes et télégraphistes
+J-38090,,02,autres opératrices téléphonistes et télégraphistes
+J-39000,,0,39 Employés de bureau et travailleurs assimilés n.c.a.
+J-39100,,00,391 Commis aux marchandises
+J-39120,,01,employé de service d'expédition et de réception
+J-39120,,02,employée de service d'expédition et de réception
+J-39130,,01,commis au registre des marchandises
+J-39140,,01,magasinier
+J-39140,,02,magasinière
+J-39150,,01,employé de service de pesage
+J-39150,,02,employée de service de pesage
+J-39190,,01,autres commis aux marchandises
+J-39200,,00,392 Commis à la planification du matériel et de la production
+J-39220,,01,commis à la planification du matériel
+J-39230,,01,commis à la planification de la production
+J-39300,,00,393 Commis à la correspondance et aux rapports
+J-39310,,01,"commis de bureau, en général"
+J-39320,,01,commis à la correspondance
+J-39330,,01,commis au personnel
+J-39340,,01,commis juridique
+J-39350,,01,commis à l'assurance
+J-39390,,01,autres commis à la correspondance et aux rapports
+J-39400,,00,394 Réceptionnistes et commis d'agence de voyage
+J-39410,,01,"réceptionniste, en général"
+J-39420,,01,réceptionniste d'hôtel
+J-39430,,01,réceptionniste de cabinet médical ou dentaire
+J-39440,,01,commis d'agence de voyage
+J-39490,,01,autres réceptionnistes et commis d'agence de voyage
+J-39500,,00,395 Commis de bibliothèque et commis au classement
+J-39520,,01,commis de bibliothèque
+J-39530,,01,commis au classement
+J-39900,,00,399 Commis n.c.a.
+J-39920,,01,commis aux stastistiques
+J-39930,,01,commis au codage (traitement des données)
+J-39940,,01,correcteur d'épreuves
+J-39940,,02,correctrice d'épreuves
+J-39950,,01,opérateur de machine de bureau (procédés de reproduction)
+J-39950,,02,opératrice de machine de bureau (procédés de reproduction)
+J-39990,,01,autres commis
+J-40000,,,Section 4 Travailleurs du secteur de la vente
+J-40000,,0,40 Directeurs (commerce de gros et de détail)
+J-40020,,01,directeur (commerce de gros)
+J-40020,,02,directrice (commerce de gros)
+J-40030,,01,directeur (commerce de détail)
+J-40030,,02,directrice (commerce de détail)
+J-41000,,0,41 Propriétaire-gérant (commerce de gros et de détail)
+J-41020,,01,propriétaire-gérant (commerce de gros)
+J-41020,,02,propriétaire-gérante (commerce de gros)
+J-41030,,01,propriétaire-gérant (commerce de détail)
+J-41030,,02,propriétaire-gérante (commerce de détail)
+J-42000,,0,42 Chefs des ventes et acheteurs
+J-42100,,00,421 chefs des ventes
+J-42120,,01,chef des ventes (commerce de gros)
+J-42130,,01,chef des ventes (commerce de détail)
+J-42190,,01,autres chefs des ventes
+J-42200,,00,422 Acheteurs
+J-42220,,01,acheteur
+J-42220,,02,acheteuse
+J-42230,,01,agent d'approvsionnement
+J-42230,,02,agente d'approvisionnement
+J-43000,,0,"43 Agents technico-commerciaux, représentants de commerce et agents de manufacturiers"
+J-43100,,00,431 Agents technico-commerciaux et conseillers en services techniques
+J-43120,,01,agent technico-commercial
+J-43120,,02,agente technico-commercial
+J-43130,,01,conseiller en services techniques
+J-43130,,02,conseillère en services techniques
+J-43200,,00,432 Représentants de commerce et agents de manufacturiers
+J-43220,,01,représentant de commerce
+J-43220,,02,représentante de commerce
+J-43230,,01,agent de manufacturiers
+J-43230,,02,agente de manufacturiers
+J-44000,,0,"44 Agents d'assurances, agents immobiliers, courtiers en valeurs mobilières, agents de vente de services aux entreprises et vendeurs aux enchères"
+J-44100,,00,"441 Agents d'assurances, agents immobiliers et coourtiers en valeurs mobilières"
+J-44120,,01,agent d'assurances
+J-44120,,02,agente d'assurances
+J-44130,,01,agent immobilier
+J-44130,,02,agente immobilière
+J-44140,,01,courtier en valeurs mobilières
+J-44140,,02,courtière en valeurs mobilières
+J-44190,,01,"autres agents d'assurances, agents immobiliers et courtiers en valeurs mobilières"
+J-44190,,02,"autres agentes d'assurances, agentes immobilières et courtières en valeurs mobilières"
+J-44200,,00,442 Agent de vente de services aux entreprises
+J-44220,,01,agent de vente de services aux entreprises (à l'exception de la publicité)
+J-44220,,02,agente de vente de services aux entreprises (à l'exception de la publicité)
+J-44230,,01,agent de publicité
+J-44230,,02,agente de publicité
+J-44300,,00,443 Vendeurs aux enchères
+J-44320,,01,vendeur aux enchères
+J-44320,,02,vendeuse aux enchères
+J-44330,,01,estimateur
+J-44330,,02,estimatrice
+J-45000,,0,"45 Vendeurs, commis-vendeurs et travailleurs assimilés"
+J-45100,,00,"451 Vendeurs, commis-vendeurs et démonstrateurs"
+J-45120,,01,commis-vendeur (commerce de gros)
+J-45120,,02,commis-vendeuse (commerce de gros)
+J-45130,,01,commis-vendeur (commerce de détail)
+J-45130,,02,commis-vendeuse (commerce de détail)
+J-45140,,01,mannequin
+J-45150,,01,démonstrateur
+J-45150,,02,démonstratrice
+J-45190,,01,"autres vendeurs, commis-vendeurs et démonstrateurs"
+J-45190,,02,"autres vendeurs, commis-vendeuses et démonstratrices"
+J-45200,,00,"452 Vendeurs ambulants, vendeurs à domicile et vendeurs de journaux"
+J-45220,,01,vendeur ambulant
+J-45220,,02,vendeuse ambulante
+J-45230,,01,vendeur à domicile
+J-45230,,02,vendeuse à domicile
+J-45240,,01,vendeur de journaux
+J-45240,,02,vendeuse de journaux
+J-45290,,01,"autres vendeurs ambulants, vendeurs à domicile et vendeurs de journaux"
+J-45290,,02,"autres vendeuses ambulantes, vendeuses à domicile et vendeuses de journaux"
+J-49000,,0,49 Travailleurs du secteur de la vente n.c.a.
+J-49020,,01,prêteur sur gages
+J-49020,,02,prêteuse sur gages
+J-49090,,01,autres travailleurs du secteur de la vente
+J-49090,,02,autres travailleuses du secteur de la vente
+J-50000,,,Section 5 Travailleurs du secteur des services
+J-50000,,0,"50 Directeurs d'hôtel, de cafés ou de restaurants"
+J-50020,,01,directeur d'hôtel-restaurant
+J-50020,,02,directrice d'hôtel-restaurant
+J-50030,,01,directeur de restaurant
+J-50030,,02,directrice de restaurant
+J-50040,,01,commissaire de marine
+J-50090,,01,"autres directeurs d'hôtel, de cafés ou de restaurants"
+J-50090,,02,"autres directrices d'hôtel, de cafés ou de restaurants"
+J-51000,,0,"51 Propriétaires-gérants d'hôtels, de cafés ou de restaurants"
+J-51020,,01,propriétaire-gérant d'hôtel-restaurant
+J-51020,,02,propriétaire-gérante d'hôtel-restaurant
+J-51030,,01,propriétaire-gérant de restaurant
+J-51030,,02,propriétaire-gérante de restaurant
+J-51040,,01,propriétaire-gérant de petit hôtel
+J-51040,,02,propriétaire-gérante de petit hôtel
+J-51050,,01,"propriétaire-gérant de café, bar ou casse-croûte"
+J-51050,,02,"propriétaire-gérante de café, bar ou casse-croûte"
+J-51090,,01,"autres propriétaires-gérants d'hôtels, de cafés ou de restaurants"
+J-51090,,02,"autres propriétaires-gérantes d'hôtels, de cafés ou de restaurants"
+J-52000,,0,"52 Intendants, économes et travailleurs assimilés"
+J-52020,,01,intendant (à l'exception du service privé)
+J-52020,,02,intendante (à l'exception du service privé)
+J-52030,,01,intendant (service privé)
+J-52030,,02,intendante (service privé)
+J-52040,,01,économe (hôtellerie)
+J-52050,,01,intendant de navire
+J-52050,,02,intendante de navire
+J-52060,,01,gouvernante d'institution
+J-52090,,01,"autres intendants, économes et travailleurs assimilés"
+J-52090,,02,"autres intendantes, économes et travailleuses assimilées"
+J-53000,,0,"53 Cuisiniers, serveurs, barmans et travailleurs assimilés"
+J-53100,,00,531 Cuisiniers
+J-53120,,01,chef de cuisine
+J-53130,,01,cuisinier d'établissement
+J-53130,,02,cuisinière d'établissement
+J-53140,,01,cuisinier (service privé)
+J-53140,,02,cuisinière (service privé)
+J-53150,,01,cuisinier à bord d'un navire
+J-53150,,02,cuisinière à bord d'un navire
+J-53190,,01,autres cuisiniers
+J-53190,,02,autres cuisinières
+J-53200,,00,"532 Serveurs, barmans et travailleurs assimilés"
+J-53210,,01,"serveur, en général"
+J-53210,,02,"serveuse, en général"
+J-53220,,01,maître d'hôtel
+J-53230,,01,serveur (service d'apparat)
+J-53230,,02,serveuse (service d'apparat)
+J-53240,,01,sommelier
+J-53240,,02,sommelière
+J-53250,,01,barman
+J-53250,,02,barmaid
+J-53290,,01,"autres serveurs, barmans et travailleurs assimilés"
+J-53290,,02,"autres serveuses, barmaids et travailleuses assimilées"
+J-54000,,0,54 Employés de maison et travailleurs assimilés n.c.a.
+J-54020,,01,bonne à tout faire
+J-54030,,01,valet de chambre (service privé)
+J-54030,,02,femme de chambre (service privé)
+J-54035,,01,bonne d'enfants
+J-54040,,01,homme de compagnie
+J-54040,,02,femme de compagnie
+J-54050,,01,femme de chambre d'établissement
+J-54055,,01,concierge d'hôtel
+J-54060,,01,garçon de bord
+J-54070,,01,habilleuse de théâtre et de cinéma
+J-54090,,01,autres employés de maison et travailleurs assimilés
+J-54090,,02,autres employées de maison et travailleuses assimilées
+J-55000,,0,"55 Concierges d'immeubles, préposés au ménage, nettoyeurs et travailleurs assimilés"
+J-55100,,00,551 Concierges d'immeubles
+J-55120,,01,concierge d'immeuble d'habitation
+J-55130,,01,concierge
+J-55140,,01,employé d'édifice religieux
+J-55140,,02,employée d'édifice religieux
+J-55190,,01,autres concierges d'immeubles
+J-55200,,00,"552 Préposés au ménage, nettoyeurs et travailleurs assimilés"
+J-55220,,01,préposé au ménage
+J-55220,,02,préposée au ménage
+J-55230,,01,laveur de vitres
+J-55230,,02,laveuse de vitres
+J-55240,,01,ramoneur
+J-55240,,02,ramoneuse
+J-55290,,01,"autres préposés au ménage, nettoyeurs et travailleurs assimilés"
+J-55290,,02,"autres préposées au ménage, nettoyeuses et travailleuses assimilées"
+J-56000,,0,"56 Blanchisseurs, nettoyeurs et presseurs"
+J-56010,,01,"blanchisseur, en général"
+J-56010,,02,"blanchisseuse, en général"
+J-56020,,01,opérateur de machine à laver
+J-56020,,02,opératrice de machine à laver
+J-56030,,01,opérateur de machine de nettoyage à sec
+J-56030,,02,opératrice de machine de nettoyage à sec
+J-56040,,01,dégraisseur à la main
+J-56040,,02,dégraisseuse à la main
+J-56050,,01,détacheur de tissus (nettoyage à sec)
+J-56050,,02,détacheuse de tissus (nettoyage à sec)
+J-56060,,01,repasseur à la machine
+J-56060,,02,repasseuse à la machine
+J-56070,,01,repasseur à la main
+J-56070,,02,repasseuse à la main
+J-56090,,01,"autres blanchisseurs, nettoyeurs et presseurs"
+J-56090,,02,"autres blanchisseuses, nettoyeuses et presseuses"
+J-57000,,0,"57 Coiffeurs, esthéticiens et travailleurs assimilés"
+J-57020,,01,coiffeur pour dames
+J-57020,,02,coiffeuse pour dames
+J-57030,,01,coiffeur pour hommes
+J-57030,,02,coiffeuse pour hommes
+J-57040,,01,esthéticien
+J-57040,,02,esthéticienne
+J-57050,,01,manucure
+J-57060,,01,maquilleur de théatre et de cinéma
+J-57060,,02,maquilleuse de théatre et de cinéma
+J-57070,,01,garçon de bains
+J-57070,,02,fille de bains
+J-57090,,01,"autres coiffeurs, esthéticiens et travailleurs assimilés"
+J-57090,,02,"autres coiffeuses, esthéticiennes et travailleuses assimilées"
+J-58000,,0,58 Travailleurs spécialisés dans les services de protection
+J-58100,,00,581 Pompiers
+J-58110,,01,"pompier, en général"
+J-58110,,02,"pompière, en général"
+J-58120,,01,spécialiste de la prévention des incendies
+J-58130,,01,pompier spécialiste en sauvetage
+J-58130,,02,pompière spécialiste en sauvetage
+J-58140,,01,pompier-sauveteur d'aérodrome
+J-58190,,01,autres pompiers
+J-58190,,02,autres pompières
+J-58200,,00,582 Policiers et détectives
+J-58220,,01,agent de police
+J-58220,,02,agente de police
+J-58220,,02,policier
+J-58220,,02,policière
+J-58230,,01,enquêteur
+J-58230,,02,enquêteuse
+J-58230,,02,détective
+J-58240,,01,agent de police privé
+J-58240,,02,agente de police privée
+J-58900,,00,589 Travailleurs spécialisés dans les services de protection n.c.a.
+J-58920,,01,enquêteur privé
+J-58920,,02,enquêteuse privée
+J-58930,,01,gardien de prison
+J-58930,,02,gardienne de prison
+J-58940,,01,gardien de sécurité
+J-58940,,02,gardienne de sécurité
+J-58990,,01,autres travailleurs spécialisés dans les services de protection
+J-58990,,02,autres travailleuses spécialisées dans les services de protection
+J-59000,,0,59 Employés du secteur des services n.c.a.
+J-59100,,00,591 Guides
+J-59120,,01,guide (voyages)
+J-59130,,01,guide (visites touristiques)
+J-59190,,01,autres guides
+J-59200,,00,592 Directeurs de funérailles et embaumeurs
+J-59220,,01,directeur de funérailles
+J-59220,,02,directrice de funérailles
+J-59230,,01,embaumeur
+J-59230,,02,embaumeuse
+J-59290,,01,autres directeurs de funérailles et embaumeurs
+J-59290,,02,autres directrices de funérailles et embaumeuses
+J-59900,,00,599  Autres travailleurs du secteur des services
+J-59920,,01,preneur aux livres (sport)
+J-59920,,02,preneuse aux livres (sport)
+J-59930,,01,croupier
+J-59930,,02,croupière
+J-59940,,01,aide-infirmier
+J-59940,,02,aide-infirmière
+J-59950,,01,assistant en pharmacie
+J-59950,,02,assistante en pharmacie
+J-59960,,01,aide en soins vétérinaires
+J-59970,,01,agent de bord
+J-59970,,02,hôtesse de l'air
+J-59990,,01,autres travailleurs du secteur des services n.c.a.
+J-59990,,02,autres travailleuses du secteur des services n.c.a.
+J-60000,,,"Section 6 Travailleurs agricoles, éleveurs, travailleurs forestiers, pêcheurs et chasseurs"
+J-60000,,0,60 Directeurs et surveillants d'exploitations agricoles
+J-60020,,01,directeur d'exploitation agricole
+J-60020,,02,directrice d'exploitation agricole
+J-60030,,01,surveillant d'exploitation agricole
+J-60030,,02,surveillante d'exploitation agricole
+J-61000,,0,61 Exploitants agricoles
+J-61100,,00,611 Exploitants agricoles en général
+J-61110,,02,"agriculteur, en général"
+J-61110,,02,"agricultrice, en général"
+J-61200,,00,612 Exploitants agricoles spécialisés
+J-61220,,01,exploitant de cultures de plein champs
+J-61220,,02,exploitante de cultures de plein champs
+J-61230,,01,"exploitant de verger, de vignoble ou de culture d'arbres et d'arbustes"
+J-61230,,02,"exploitante de verger, de vignoble ou de culture d'arbres et d'arbustes"
+J-61240,,01,éleveur
+J-61240,,02,éleveuse
+J-61250,,01,exploitant de ferme laitière
+J-61250,,02,exploitante de ferme laitière
+J-61260,,01,aviculteur
+J-61260,,02,avicultrice
+J-61270,,01,horticulteur-maraîcher
+J-61270,,02,horticultrice-maraîchère
+J-61290,,01,autres exploitants agricoles spécialisés
+J-61290,,02,autres exploitantes agricoles spécialisées
+J-62000,,0,62 Travailleurs agricoles et éleveurs
+J-62100,,00,621 Ouvriers agricoles en général
+J-62105,,01,"ouvrier agricole, en général"
+J-62105,,02,"ouvrière agricole, en général"
+J-62110,,01,"aide fermier, en général"
+J-62200,,00,622 Ouvriers agricoles de cultures de plein champ et maraîchères
+J-62210,,01,"ouvrier agricole de cultures de plein champ, en général"
+J-62210,,02,"ouvrière agricole de cultures de plein champ, en général"
+J-62220,,01,ouvrier agricole de cultures maraîchères
+J-62220,,02,ouvrière agricole de cultures maraîchères
+J-62230,,01,ouvrier agricole de culture du blé
+J-62230,,02,ouvrière agricole de culture du blé
+J-62240,,01,ouvrier agricole de culture du coton
+J-62240,,02,ouvrière agricole de culture du coton
+J-62250,,01,ouvrier agricole de riziculture
+J-62250,,02,ouvrière agricole de riziculture
+J-62260,,01,ouvrier agricole de canne à sucre
+J-62260,,02,ouvrière agricole de canne à sucre
+J-62290,,01,autres ouvriers agricoles de cultures de plein champ et maraîchères
+J-62290,,02,autres ouvrières agricoles de cultures de plein champ et maraîchères
+J-62300,,00,"623 Ouvriers de verger, de vignoble et de culture d'arbres et d'arbustes"
+J-62320,,01,ouvrier agricole (verger)
+J-62320,,02,ouvrière agricole (verger)
+J-62330,,01,ouvrier agricole de viticulture
+J-62330,,02,ouvrière agricole de viticulture
+J-62340,,01,ouvrier agricole de culture du thé
+J-62340,,02,ouvrière agricole de culture du thé
+J-62350,,01,ouvrier agricole (plantation d'arbres à caoutchouc)
+J-62350,,02,ouvrière agricole (plantation d'arbres à caoutchouc)
+J-62390,,01,"autres ouvriers de verger, de vignoble et de culture d'arbres et d'arbustes"
+J-62390,,02,"autres ouvrières de verger, de vignoble et de culture d'arbres et d'arbustes"
+J-62400,,00,"624 Ouvriers agricoles de l'élevage, sauf du bétail laitier"
+J-62410,,01,"ouvrier agricole de l'élevage, en général, sauf du bétail laitier"
+J-62410,,02,"ouvrière agricole de l'élevage, en général, sauf du bétail laitier"
+J-62420,,01,ouvrier agricole d'élevage de bovins pour la boucherie
+J-62420,,02,ouvrière agricole d'élevage de bovins pour la boucherie
+J-62430,,01,ouvrier agricole de l'élevage d'ovins
+J-62430,,02,ouvrière agricole de l'élevage d'ovins
+J-62440,,01,ouvrier agricole de l'élevage de porcins
+J-62440,,02,ouvrière agricole de l'élevage de porcins
+J-62450,,01,ouvrier agricole de l'élevage d'animaux à fourrure
+J-62450,,02,ouvrière agricole de l'élevage d'animaux à fourrure
+J-62490,,01,"autres ouvriers agricoles de l'élevage, sauf du bétail laitier"
+J-62490,,02,"autres ouvrières agricoles de l'élevage, sauf du bétail laitier"
+J-62500,,00,625 Ouvriers de ferme laitière
+J-62510,,01,"ouvrier de ferme laitière, en général"
+J-62510,,02,"ouvrière de ferme laitière, en général"
+J-62520,,01,trayeur (traite mécanique)
+J-62520,,02,trayeuse (traite mécanique)
+J-62590,,01,autres ouvriers de ferme laitière
+J-62590,,02,autres ouvrières de ferme laitière
+J-62600,,00,626 Ouvriers de ferme d'élevage de volailles
+J-62610,,01,"ouvriers de ferme d'élevage de volailles, en général"
+J-62610,,02,"ouvrières de ferme d'élevage de volailles, en général"
+J-62620,,01,ouvrier agricole de parc avicole
+J-62620,,02,ouvrière agricole de parc avicole
+J-62690,,01,autres ouvriers de ferme d'élevage de volailles
+J-62690,,02,autres ouvrières de ferme d'élevage de volailles
+J-62700,,00,627 Ouvriers pépiniéristes et jardiniers
+J-62720,,01,ouvrier maraîcher
+J-62720,,02,ouvrière maraîchère
+J-62730,,01,ouvrier pépiniériste
+J-62730,,02,ouvrière pépiniériste
+J-62740,,01,ouvrier jardinier
+J-62740,,02,ouvrière jardinière
+J-62790,,01,autres ouvriers pépiniéristes et jardiniers
+J-62790,,02,autres ouvrières pépiniéristes et jardinières
+J-62800,,00,628 Conducteurs de machinerie agricole
+J-62820,,01,Conducteur de machinerie agricole motorisée
+J-62820,,02,conductrice de machinerie agricole motorisée
+J-62890,,01,autres conducteurs de machineries agricoles
+J-62890,,02,autres conductrices de machineries agricoles
+J-62900,,00,629 Travailleurs agricoles et éleveurs n.c.a.
+J-62920,,01,ouvrier agricole (apiculture)
+J-62920,,02,ouvrière agricole (apiculture)
+J-62930,,01,ouvrier agricole (sériciculture)
+J-62930,,02,ouvrière agricole (sériciculture)
+J-62940,,01,récolteur de résine (à l'exception du latex)
+J-62940,,02,récolteuse de résine (à l'exception du latex)
+J-62950,,01,irrigateur
+J-62950,,02,irrigatrice
+J-62960,,01,ouvrier jardinier (entretien de terrains de jeu et de sport)
+J-62960,,02,ouvrière jardinière (entretien de terrains de jeu et de sport)
+J-62990,,01,autres travailleurs agricoles et éleveurs
+J-62990,,02,autres travailleuses agricoles et éleveuses
+J-63000,,0,63 Travailleurs forestiers
+J-63100,,00,631 Bûcherons
+J-63110,,01,"bûcheron, en général"
+J-63110,,02,"bûcheronne, en général"
+J-63120,,01,abatteur-tronçonneur
+J-63120,,02,abatteuse-tronçonneuse
+J-63130,,01,ouvrier grimpeur (exploitation forestière)
+J-63130,,02,ouvrière grimpeuse (exploitation forestière)
+J-63140,,01,draveur
+J-63140,,02,draveuse
+J-63190,,01,autres bûcherons
+J-63190,,02,autres bûcheronnes
+J-63200,,00,632 Travailleurs forestiers (à l'exception des bûcherons)
+J-63220,,01,surveillant forestier
+J-63220,,02,surveillante forestière
+J-63230,,01,travailleur forestier
+J-63230,,02,travailleuse forestière
+J-63240,,01,estimateur de bois de sciage
+J-63240,,02,estimatrice de bois de sciage
+J-63250,,01,pompier forestier
+J-63250,,02,pompière forestière
+J-63290,,01,autres travailleurs forestiers
+J-63290,,02,autres travailleuses forestières
+J-64000,,0,"64 Pêcheurs, chasseurs et travailleurs assimilés"
+J-64100,,00,641 Pêcheurs
+J-64120,,01,pêcheur en haute mer
+J-64120,,02,pêcheuse en haute mer
+J-64130,,01,pêcheur en eaux côtières et en eaux intérieures
+J-64130,,02,pêcheuse en eaux côtières et en eaux intérieures
+J-64900,,00,"649 Pêcheurs, chasseurs et travailleurs assimilés n.c.a."
+J-64920,,01,pisciculteur
+J-64920,,02,piscicultrice
+J-64930,,01,ostréiculteur
+J-64930,,02,ostréicultrice
+J-64940,,01,pêcheur de baleines
+J-64940,,02,pêcheuse de baleines
+J-64950,,01,chasseur de phoques
+J-64950,,02,chasseuse de phoques
+J-64960,,01,trappeur et chasseur
+J-64960,,02,trappeuse et chasseuse
+J-64990,,01,"autres pêcheurs, chasseurs et travailleurs assimilés"
+J-64990,,02,"autres pêcheuses, chasseuses et travailleuses assimilées"
+J-70000,,,"Sections 7-8-9 Travailleurs de la production et assimilés, conducteurs d'engins de transport et manoeuvres"
+J-70000,,0,70 Superviseurs de la production et contremaîtres généraux
+J-70010,,01,"superviseur de la production et contremaître général, en général"
+J-70010,,02,"superviseure de la production et contremaîtresse générale, en général"
+J-70020,,01,"superviseur de la production et contremaître général (mines, carrières et forage de puits)"
+J-70020,,02,"superviseure de la production et contremaîtresse générale (mines, carrières et forage de puits)"
+J-70030,,01,superviseur de la production et contremaître général (traitement des métaux)
+J-70030,,02,superviseure de la production et contremaîtresse générale (traitement des métaux)
+J-70040,,01,superviseur de la production et contremaître général (traitement de produits chimiques et de matières connexes)
+J-70040,,02,superviseure de la production et contremaîtresse générale (traitement de produits chimiques et de matières connexes)
+J-70050,,01,superviseur de la production et contremaître général (fabrication de machines et de produits métallurgiques)
+J-70050,,02,superviseure de la production et contremaîtresse générale (fabrication de machines et de produits métallurgiques)
+J-70055,,01,superviseur de la production et contremaître général (fabrication et installation d'équipements électriques et électroniques)
+J-70055,,02,superviseure de la production et contremaîtresse générale (fabrication et installation d'équipements électriques et électroniques)
+J-70060,,01,"superviseur de la production et contremaître général (fabrication de produits en papier, en matière plastique, caoutchouc et matières chimiques et synthétiques"
+J-70060,,02,"superviseure de la production et contremaîtresse générale (fabrication de produits en papier, en matière plastique, en caoutchouc et matières chimiques et synthétiques"
+J-70065,,01,superviseur de la production et contremaître général (transformation des aliments et des boissons)
+J-70065,,02,superviseure de la production et contremaîtresse générale (transformation des aliments et des boissons)
+J-70070,,01,superviseur de la production et contremaître général (production de textiles et confection de vêtements)
+J-70070,,02,superviseure de la production et contremaîtresse générale (production de textiles et confection de vêtements)
+J-70075,,01,superviseur de la production et contremaître général (travaux de construction)
+J-70075,,02,superviseure de la production et contremaîtresse générale (travaux de construction)
+J-70080,,01,"superviseur de la production et contremaître général (production et distribution d'électricité, de gaz et d'eau)"
+J-70080,,02,"superviseure de la production et contremaîtresse générale (production et distribution d'électricité, de gaz et d'eau)"
+J-70090,,01,autres superviseurs de la production et contremaîtres généraux
+J-70090,,02,autres superviseures de la production et contremaîtresses générales
+J-71000,,0,"71 Mineurs, roctiers, foreur de puits et travailleurs assimilés"
+J-71100,,00,711 Mineurs et roctiers
+J-71105,,01,"mineur, en général"
+J-71105,,02,"mineuse, en général"
+J-71110,,01,"roctier, en général"
+J-71110,,02,"roctière, en général"
+J-71120,,01,conducteur de haveuse (mines)
+J-71120,,02,conductrice de haveuse (mines)
+J-71130,,01,conducteur de foreuse (mines et carrières)
+J-71130,,02,conductrice de foreuse (mines et carrières)
+J-71140,,01,opérateur de haveuse continue
+J-71140,,02,opératrice de haveuse continue
+J-71150,,01,boutefeu (mines et carrières)
+J-71150,,02,boutefeue (mines et carrières)
+J-71160,,01,boiseur de fond
+J-71170,,01,échantillonneur (mines)
+J-71170,,02,échantillonneuse (mines)
+J-71190,,01,autres mineurs et roctiers
+J-71190,,02,autres mineuses et roctières
+J-71200,,00,712 Ouvriers du traitement des minerais et des pierres
+J-71220,,01,fendeur de pierres
+J-71220,,02,fendeuse de pierres
+J-71230,,01,conducteur de concasseur de minerai
+J-71230,,02,conductrice de concasseur de minerai
+J-71240,,01,conducteur de broyeur de minerai
+J-71240,,02,conductrice de broyeur de minerai
+J-71250,,01,conducteur de cribles
+J-71250,,02,conductrice de cribles
+J-71260,,01,conducteur d'appareil de flottation
+J-71260,,02,conductrice d'appareil de flottation
+J-71270,,01,conducteur d'appareil de précipitation
+J-71270,,02,conductrice d'appareil de précipitation
+J-71280,,01,conducteur de cône de séparation (mines)
+J-71280,,02,conductrice de cône de séparation (mines)
+J-71290,,01,autres ouvriers du traitement des minerais et des pierres
+J-71290,,02,autres ouvrières du traitement des minerais et des pierres
+J-71300,,00,713 Foreurs-sondeurs de puits et travailleurs assimilés
+J-71320,,01,foreur-sondeur (puits de pétrole et de gaz)
+J-71320,,02,foreuse-sondeuse (puits de pétrole et de gaz)
+J-71330,,01,conducteur de foreuse rotative (puits de pétrole et de gaz)
+J-71330,,02,conductrice de foreuse rotative (puits de pétrole et de gaz)
+J-71340,,01,conducteur de foreuse à câble (puits de pétrole et de gaz)
+J-71340,,02,conductrice de foreuse à câble (puits de pétrole et de gaz)
+J-71350,,01,ouvrier à la cimentation (puits de pétrole et de gaz)
+J-71350,,02,ouvrière à la cimentation (puits de pétrole et de gaz)
+J-71360,,01,sondeur de plancher (puits de pétrole et de gaz)
+J-71360,,02,sondeuse de plancher (puits de pétrole et de gaz)
+J-71370,,01,ouvrier d'acidification (puits de pétrole et de gaz)
+J-71370,,02,ouvrière d'acidification (puits de pétrole et de gaz)
+J-71380,,01,foreur-sondeur de puits (à l'exception des puits de pétrole et de gaz)
+J-71380,,02,foreuse-sondeuse de puits (à l'exception des puits de pétrole et de gaz)
+J-71390,,01,autres foreurs-soudeurs de puits et travailleurs assimilés
+J-71390,,02,autres foreuses-foreuses de puits et travailleuses assimilées
+J-72000,,0,72 Ouvriers de la transformation des métaux
+J-72100,,00,"721 Fondeurs (fusion, convertissage et affinage des métaux)"
+J-72120,,01,fondeur de haut fourneau (fusion du minerai)
+J-72120,,02,fondeuse de haut fourneau (fusion du minerai)
+J-72130,,01,Fondeur au four à sole (acier)
+J-72130,,02,fondeuse au four à sole (acier)
+J-72140,,01,fondeur au four à oxygène (convertissage de l'acier)
+J-72140,,02,fondeuse au four à oxygène (convertissage de l'acier)
+J-72150,,01,fondeur au convertisseur Bessemer (convertissage de l'acier)
+J-72150,,02,fondeuse au convertisseur Bessemer (convertissage de l'acier)
+J-72160,,01,fondeur au four à arc électrique (affinage de l'acier)
+J-72160,,02,fondeuse au four à arc électrique (affinage de l'acier)
+J-72170,,01,fondeur au convertissage et à l'affinage des métaux non ferreux
+J-72170,,02,fondeuse au convertissage et à l'affinage des métaux non ferreux
+J-72190,,01,"autres fondeurs (fusion, convertissage et affinage des métaux)"
+J-72190,,02,"autres fondeuses (fusion, convertissage et affinage des métaux)"
+J-72200,,00,722 Lamineurs
+J-72220,,01,lamineur d'acier à chaud
+J-72220,,02,lamineuse d'acier à chaud
+J-72230,,01,lamineur d'acier sur train continu
+J-72230,,02,lamineuse d'acier sur train continu
+J-72240,,01,lamineur d'acier à froid
+J-72240,,02,lamineuse d'acier à froid
+J-72250,,01,lamineur de métaux non ferreux
+J-72250,,02,lamineuse de métaux non ferreux
+J-72260,,01,lamineur de tuyaux et tubes sans soudure
+J-72260,,02,lamineuse de tuyaux et tubes sans soudure
+J-72270,,01,opérateur de laminoir
+J-72270,,02,opératrice de laminoir
+J-72290,,01,autres lamineurs
+J-72290,,02,autres lamineuses
+J-72300,,00,723 Conducteurs de fours de deuxième fusion et de fours à réchauffer
+J-72320,,01,fondeur de deuxième fusion (sauf au cubilot)
+J-72320,,02,fondeuse de deuxième fusion (sauf au cubilot)
+J-72330,,01,fondeur de deuxième fusion au cubilot
+J-72330,,02,fondeuse de deuxième fusion au cubilot
+J-72340,,01,conducteur de four à réchauffer les métaux
+J-72340,,02,conductrice de four à réchauffer les métaux
+J-72390,,01,autres conducteurs de fours de deuxième fusion et de fours à réchauffer
+J-72390,,02,autres conductrices de fours de deuxième fusion et de fours à réchauffer
+J-72400,,00,724 Couleurs de métaux
+J-72420,,01,couleur de métal
+J-72420,,02,couleuse de métal
+J-72430,,01,conducteur de machine à couler par méthode centrifuge
+J-72430,,02,conductrice de machine à couler par méthode centrifuge
+J-72440,,01,conducteur de machine à couler sous pression
+J-72440,,02,conductrice de machine à couler sous pression
+J-72450,,01,conducteur de machine à couler en continu des tubes en métaux non ferreux
+J-72450,,02,conductrice de machine à couler en continu des tubes en métaux non ferreux
+J-72490,,01,autres couleurs de métaux
+J-72490,,02,autres couleuses de métaux
+J-72500,,00,725 Mouleurs de métaux et noyauteurs
+J-72520,,01,mouleur à l'établi (fonderie)
+J-72520,,02,mouleuse à l'établi (fonderie)
+J-72530,,01,mouleur au sol et en fosse
+J-72530,,02,mouleuse au sol et en fosse
+J-72540,,01,mouleur à la machine (fonderie)
+J-72540,,02,mouleuse à la machine (fonderie)
+J-72550,,01,noyauteur à la main
+J-72550,,02,noyauteuse à la main
+J-72560,,01,noyauteur à la machine
+J-72560,,02,noyauteuse à la machine
+J-72590,,01,autres mouleurs de métal et noyauteurs
+J-72590,,02,autres mouleuses de métal et noyauteuses
+J-72600,,00,"726 Recuiseurs, trempeurs-revenisseurs et cémenteurs de métaux"
+J-72620,,01,recuiseur de métaux
+J-72620,,02,recuiseuse de métaux
+J-72630,,01,trempeur de métaux
+J-72630,,02,trempeuse de métaux
+J-72640,,01,cémenteur de métaux
+J-72640,,02,cémenteuse de métaux
+J-72650,,01,trempeur-revenisseur de métaux
+J-72650,,02,trempeuse-revenisseuse de métaux
+J-72690,,01,"autres recuiseurs, trempeurs-revenisseurs et cémenteurs de métaux"
+J-72690,,02,"autres recuiseuses, trempeuses-revenisseuses et cémenteuses de métaux"
+J-72700,,00,727 Tréfileurs et conducteurs de presse à filer le métal
+J-72720,,01,tréfileur à la main
+J-72720,,02,tréfileuse à la main
+J-72730,,01,tréfileur à la machine
+J-72730,,02,tréfileuse à la machine
+J-72740,,01,étireur de tubes et tuyaux sans soudure
+J-72740,,02,étireuse de tubes et tuyaux sans soudure
+J-72750,,01,conducteur de presse à filer le métal
+J-72750,,02,conductrice de presse à filer le métal
+J-72790,,01,autres tréfileurs et conducteurs de presse à filer le métal
+J-72790,,02,autres tréfileuses et conductrices de presse à filer le métal
+J-72800,,00,728 Électroplastes et métalliseurs
+J-72820,,01,électroplaste
+J-72830,,01,métalliseur au bain chaud
+J-72830,,02,métalliseuse au bain chaud
+J-72840,,01,métalliseur de fils métalliques au bain automatique
+J-72840,,02,métalliseuse de fils métalliques au bain automatique
+J-72850,,01,métalliseur au pistolet
+J-72850,,02,métalliseuse au pistolet
+J-72890,,01,autres électroplastes et métalliseurs
+J-72890,,02,autres électroplastes et métalliseuses
+J-72900,,00,729 Ouvriers de la transformation des métaux n.c.a.
+J-72920,,01,trempeur (bleuissage des métaux)
+J-72920,,02,trempeuse (bleuissage des métaux)
+J-72930,,01,dresseur-planeur de surfaces métalliques
+J-72930,,02,dresseuse-planeuse de surfaces métalliques
+J-72940,,01,nettoyeur-dégraisseur de métaux
+J-72940,,02,nettoyeuse-dégraisseuse de métaux
+J-72990,,01,autres ouvriers de la transformation des métaux
+J-72990,,02,autres ouvrières de la transformation des métaux
+J-73000,,0,73 Ouvriers de la préparation du bois et de la fabrication du papier
+J-73100,,00,731 Ouvriers au traitement du bois
+J-73120,,01,sécheur de bois
+J-73120,,02,sécheuse de bois
+J-73130,,01,imprégnateur de bois
+J-73130,,02,imprégnatrice de bois
+J-73190,,01,autres ouvriers au traitement du bois
+J-73190,,02,autres ouvrières au traitement du bois
+J-73200,,00,"732 Scieurs, colleurs de contre-plaqués et ouvriers assimilés (préparation du bois)"
+J-73210,,01,"scieur en scierie, en général"
+J-73210,,02,"scieuse en scierie, en général"
+J-73220,,01,scieur-coupeur de bords
+J-73220,,02,scieuse-coupeuse de bords
+J-73230,,01,conducteur de scie à ruban
+J-73230,,02,conductrice de scie à ruban
+J-73240,,01,coupeur de bois de placage
+J-73240,,02,coupeuse de bois de placages
+J-73250,,01,conducteur de dresseuse-encoleuse de contre-plaqué
+J-73250,,02,conductrice de dresseuse-encoleuse de contre-plaqué
+J-73260,,01,conducteur de presse de contre-plaqué
+J-73260,,02,conductrice de presse de contre-plaqué
+J-73270,,01,classeur de bois
+J-73270,,02,classeuse de bois
+J-73290,,01,"autres scieurs, colleurs de contre-plaqués et ouvriers assimilés (préparation du bois)"
+J-73290,,02,"autres scieuses, colleuses de contre-plaqués et ouvrières assimilées (préparation du bois)"
+J-73300,,00,733 Préparateurs de pâte à papier
+J-73320,,01,conducteur de machine à râper et à défibrer
+J-73320,,02,conductrice de machine à râper et à défibrer
+J-73330,,01,conducteur de coupeuse de bois
+J-73330,,02,conductrice de coupeuse de bois
+J-73340,,01,conducteur de lessiveur
+J-73340,,02,conductrice de lessiveur
+J-73350,,01,blanchisseur de pâte à papier
+J-73350,,02,blanchisseuse de pâte à papier
+J-73360,,01,opérateur de pile (pâtes et papiers)
+J-73360,,02,opératrice de pile (pâtes et papiers)
+J-73390,,01,autres préparateurs de pâte à papier
+J-73390,,02,autres préparatrices de pâte à papier
+J-73400,,00,734 Ouvriers à la fabrication du papier
+J-73420,,01,conducteur de machine à papier (table de fabrication)
+J-73420,,02,conductrice de machine à papier (table de fabrication)
+J-73430,,01,conducteur de machine à papier (séchage et finition)
+J-73430,,02,conductrice de machine à papier (séchage et finition)
+J-73440,,01,opérateur de supercalandre
+J-73440,,02,opératrice de supercalandre
+J-73450,,01,conducteur de coucheuse
+J-73450,,02,conductrice de coucheuse
+J-73460,,01,papetier à la cuve
+J-73460,,02,papetière à la cuve
+J-73490,,01,autres ouvriers à la fabrication du papier
+J-73490,,02,autres ouvrières à la fabrication du papier
+J-74000,,0,"74 Conducteurs de fours, d'appareils chimiques et travailleurs assimilés"
+J-74100,,00,"741 Conducteurs de concasseurs, de broyeurs et de mélangeurs"
+J-74120,,01,conducteur de concasseur (processus chimiques et connexes)
+J-74120,,02,conductrice de concasseur (processus chimiques et connexes)
+J-74130,,01,broyeur-pulvérisateur (processus chimiques et connexes)
+J-74130,,02,broyeuse-pulvérisatrice (processus chimiques et connexes)
+J-74140,,01,conducteur de mélangeur (processus chimiques et connexes)
+J-74140,,02,conductrice de mélangeur (processus chimiques et connexes)
+J-74190,,01,"autres conducteurs de concasseurs, de broyeurs et de mélangeurs"
+J-74190,,02,"autres conductrices de concasseurs, de broyeurs et de mélangeurs"
+J-74200,,00,"742 Cuiseurs, conducteurs de fours de grillage et conducteurs de fours à traitement thermique assimilés"
+J-74220,,01,cuiseur (processus chimiques et connexes)
+J-74220,,02,cuiseuse (processus chimiques et connexes)
+J-74230,,01,conducteur de four de grillage (processus chimiques et connexes)
+J-74230,,02,conductrice de four de grillage (processus chimiques et connexes)
+J-74240,,01,conducteur de séchoir (processus chimiques et connexes)
+J-74240,,02,conductrice de séchoir (processus chimiques et connexes)
+J-74290,,01,"autres cuiseurs, conducteurs de four de grillage et conducteurs de fours à traitement thermique assimilés"
+J-74290,,02,"autres cuiseuses, conductrices de four de grillage et conductrices de fours à traitement thermique assimilées"
+J-74300,,00,743 Conducteurs d'appareils de filtrage
+J-74320,,01,conducteur de filtre-presse
+J-74320,,02,conductrice de filtre-presse
+J-74330,,01,conducteur de filtre à tambour rotatif
+J-74330,,02,conductrice de filtre à tambour rotatif
+J-74340,,01,conducteur de centrifugeur
+J-74340,,02,conductrice de centrifugeur
+J-74350,,01,ouvrier du traitement du pétrole brut (champs d'extraction)
+J-74350,,02,ouvrière du traitement du pétrole brut (champs d'extraction)
+J-74390,,01,autres conducteurs d'appareils de filtrage
+J-74390,,02,autres conductrices d'appareils de filtrage
+J-74400,,00,744 Conducteurs d'appareils de distillation et de réaction
+J-74420,,01,"conducteur d'appareil à distiller en discontinu (processus chimiques, à l'exception du pétrole)"
+J-74420,,02,"conductrice d'appareil à distiller en discontinu (processus chimiques, à l'exception du pétrole)"
+J-74430,,01,"conducteur d'appareil à distiller en continu (processus chimiques, à l'exception du pétrole)"
+J-74430,,02,"conductrice d'appareil à distiller en continu (processus chimiques, à l'exception du pétrole)"
+J-74440,,01,"conducteur d'appareil de réaction et de conversion (processus chimiques, à l'exception du pétrole)"
+J-74440,,02,"conductrice d'appareil de réaction et de conversion (processus chimiques, à l'exception du pétrole)"
+J-74450,,01,conducteur d'évaporateur
+J-74450,,02,conductrice d'évaporateur
+J-74460,,01,distillateur de bois en forêt
+J-74460,,02,distillatrice de bois en forêt
+J-74490,,01,autres conducteurs d'appareils de distillation et de réaction
+J-74490,,02,autres conductrices d'appareils de distillation et de réaction
+J-74500,,00,745 Ouvriers du raffinage du pétrole
+J-74520,,01,conducteur d'installation de désulfuration (raffinage de pétrole)
+J-74520,,02,conductrice d'installation de désulfuration (raffinage de pétrole)
+J-74530,,01,pompiste (raffinage du pétrole)
+J-74540,,01,distillateur (raffinage du pétrole)
+J-74540,,02,distillatrice (raffinage du pétrole)
+J-74550,,01,contrôleur du raffinage du pétrole
+J-74550,,02,contrôleuse du raffinage du pétrole
+J-74560,,01,mélangeur (raffinage du pétrole)
+J-74560,,02,mélangeuse (raffinage du pétrole)
+J-74570,,01,opérateur de séparation de paraffine
+J-74570,,02,opératrice de séparation de paraffine
+J-74590,,01,autres ouvriers du raffinage du pétrole
+J-74590,,02,autres ouvrières du raffinage du pétrole
+J-74900,,00,749 Ouvriers du traitement chimique des matières radioactives et travailleurs assimilés n.c.a.
+J-74915,,01,ouvrier du blanchiment chimique
+J-74915,,02,ouvrière du blanchiment chimique
+J-74920,,01,conducteur de cokerie
+J-74920,,02,conductrice de cokerie
+J-74925,,01,conducteur d'appareils de production de gaz de houille
+J-74925,,02,conductrice d'appareils de production de gaz de houille
+J-74930,,01,charbonnier en charbon de bois
+J-74930,,02,charbonnière en charbon de bois
+J-74935,,01,ouvrier du traitement des fibres synthétiques
+J-74935,,02,ouvrière du traitement des fibres synthétiques
+J-74940,,01,ouvrier du traitement chimique de matières radioactives
+J-74940,,02,ouvrière du traitement chimique de matières radioactives
+J-74990,,01,autres ouvriers du traitement chimique des matières radioactives et travailleurs assimilés
+J-74990,,02,autres ouvrières du traitement chimique des matières radioactives et travailleuses assimilées
+J-75000,,0,"75 Fileurs, tisserands, tricoteurs, teinturiers et travailleurs assimilés"
+J-75100,,00,751 Préparateurs de fibres textiles
+J-75115,,01,trieur et classeur de fibres
+J-75115,,02,trieuse et classeuse de fibres
+J-75120,,01,laveur de laine
+J-75120,,02,laveuse de laine
+J-75125,,01,mélangeur de fibres
+J-75125,,02,mélangeuse de fibres
+J-75130,,01,batteur de fibres
+J-75130,,02,batteuse de fibres
+J-75135,,01,cardeur de fibres
+J-75135,,02,cardeuse de fibres
+J-75140,,01,nappeur de fibres
+J-75140,,02,nappeuse de fibres
+J-75145,,01,peigneur de fibres
+J-75145,,02,peigneuse de fibres
+J-75150,,01,allongeur de fibres
+J-75150,,02,allongeuse de fibres
+J-75155,,01,banc brocheur
+J-75155,,02,banc brocheuse
+J-75190,,01,autres préparateurs de fibres textiles
+J-75190,,02,autres préparatrices de fibres textiles
+J-75200,,00,752 Fileurs et bobineurs
+J-75220,,01,fileur de fils et de filés
+J-75220,,02,fileuse de fils et de filés
+J-75230,,01,doubleur de fils
+J-75230,,02,doubleuse de fils
+J-75240,,01,retordeur de fils et de filés
+J-75240,,02,retordeuse de fils et de filés
+J-75250,,01,bobineur de fils et de filés
+J-75250,,02,bobineuse de fils et de filés
+J-75290,,01,autres fileurs et bobineurs
+J-75290,,02,autres fileuses et bobineuses
+J-75300,,00,753 Régleurs de métiers à tisser et à tricoter et metteurs en cartes
+J-75320,,01,régleur de métiers à tisser
+J-75320,,02,régleuse de métiers à tisser
+J-75330,,01,régleur de métiers à tricoter
+J-75330,,02,régleuse de métiers à tricoter
+J-75340,,01,copiste de dessins pour cartons Jacquard
+J-75350,,01,piqueur de cartons Jacquard
+J-75350,,02,piqueuse de cartons Jacquard
+J-75390,,01,autres régleurs de métiers à tisser et à tricoter et metteurs en cartes
+J-75390,,02,autres régleuses de métiers à tisser et à tricoter et metteuses en cartes
+J-75400,,00,754 Tisserands et ouvriers assimilés
+J-75415,,01,ourdisseur
+J-75415,,02,ourdisseuse
+J-75420,,01,rentreur de chaîne à la main
+J-75420,,02,rentreuse de chaîne à la main
+J-75425,,01,rentreur de chaîne à la machine
+J-75425,,02,rentreuse de chaîne à la machine
+J-75430,,01,tisserand sur métier à bras
+J-75430,,02,tisserande sur métier à bras
+J-75435,,01,tapissier sur métier à bras
+J-75435,,02,tapissière sur métier à bras
+J-75440,,01,tisserand sur métier mécanique (à l'exception du métier à tisser Jacquard)
+J-75440,,02,tisserande sur métier mécanique (à l'exception du métier à tisser Jacquard)
+J-75445,,01,tisserand sur métier Jacquard
+J-75445,,02,tisserande sur métier Jacquard
+J-75450,,02,dentellière à la machine
+J-75455,,01,tisseur de tapis sur métier à bras
+J-75455,,02,tisseuse de tapis sur métier à bras
+J-75460,,01,tisseur de tapis sur métier mécanique
+J-75460,,02,tisseuse de tapis sur métier mécanique
+J-75465,,01,tisseur de filet à la machine
+J-75465,,02,tisseuse de filet à la machine
+J-75470,,01,contrôleur de tissus
+J-75470,,02,contrôleuse de tissus
+J-75475,,01,stoppeur de tissus
+J-75475,,02,stoppeuse de tissus
+J-75490,,01,autres tisserands et ouvriers assimilés
+J-75490,,02,autres tisserandes et ouvrières assimilées
+J-75500,,00,755 Tricoteurs
+J-75520,,01,tricoteur sur métier automatique (vêtements et tissus)
+J-75520,,02,tricoteuse sur métier automatique (vêtements et tissus)
+J-75530,,01,tricoteur de bas sur métier automatique
+J-75530,,02,tricoteuse de bas sur métier automatique
+J-75540,,01,tricoteur sur métier à bras
+J-75540,,02,tricoteuse sur métier à bras
+J-75550,,01,tricoteur à la main
+J-75550,,02,tricoteuse à la main
+J-75590,,01,autres tricoteurs
+J-75590,,02,autres tricoteuses
+J-75600,,00,"756 Blanchisseurs, teinturiers et finisseurs de produits textiles"
+J-75615,,01,blanchisseur
+J-75615,,02,blanchisseuse
+J-75620,,01,teinturier de fils
+J-75620,,02,teinturière de fils
+J-75625,,01,teinturier de tissus
+J-75625,,02,teinturière de tissus
+J-75630,,01,teinturier de vêtements
+J-75630,,02,teinturière de vêtements
+J-75635,,01,laveur de produits textiles
+J-75635,,02,laveuse de produits textiles
+J-75640,,01,dégommeur de soie
+J-75640,,02,dégommeuse de soie
+J-75645,,01,carboniseur de laine
+J-75645,,02,carboniseuse de laine
+J-75650,,01,rétrécisseur de produits textiles
+J-75650,,02,rétrécisseuse de produits textiles
+J-75655,,01,fouleur de produits textiles
+J-75655,,02,fouleuse de produits textiles
+J-75660,,01,imperméabilisateur de produits textiles
+J-75660,,02,imperméabilisatrice de produits textiles
+J-75665,,01,chargeur de soie
+J-75665,,02,chargeuse de soie
+J-75670,,01,calandreur de tissus
+J-75670,,02,calandreuse de tissus
+J-75690,,01,"autres blanchisseurs, teinturiers et finisseurs de produits textiles"
+J-75690,,02,"autres blanchisseuses, teinturières et finisseuses de produits textiles"
+J-75900,,00,"759 Fileurs, tisserands, tricoteurs, teinturiers et travailleurs assimilés n.c.a."
+J-75920,,01,passementier à la main
+J-75920,,02,passementière à la main
+J-75925,,01,passementier à la machine
+J-75925,,02,passementière à la machine
+J-75930,,01,crocheteur à la main
+J-75930,,02,crocheteuse à la main
+J-75935,,01,crocheteur à la machine
+J-75935,,02,crocheteuse à la machine
+J-75940,,01,confectionneur de filet à la main
+J-75940,,02,confectionneuse de filet à la main
+J-75945,,01,ouvrier en feutre
+J-75945,,02,ouvrière en feutre
+J-75950,,01,bastisseur aux cônes pour chapeaux de feutre
+J-75950,,02,bastisseuse aux cônes pour chapeaux de feutre
+J-75990,,01,"autres fileurs, tisserands, tricoteurs, teinturiers et travailleurs assimilés"
+J-75990,,02,"autres fileuses, tisserandes, tricoteuses, teinturières et travailleuses assimilées"
+J-76000,,0,"76 Tanneurs, peaussiers-délaineurs et apprêteurs de pelleteries"
+J-76100,,00,761 Tanneurs et peaussiers-délaineurs
+J-76120,,01,assortisseur de peaux
+J-76120,,02,assortisseuse de peaux
+J-76125,,01,peaussier-délaineur
+J-76125,,02,peaussière-délaineuse
+J-76130,,01,écharneur-ébourreur à la main
+J-76130,,02,écharneuse-ébourreuse à la main
+J-76135,,01,écharneur-ébourreur à la machine
+J-76135,,02,écharneuse-ébourreuse à la machine
+J-76140,,01,fendeur de peaux
+J-76140,,02,fendeuse de peaux
+J-76145,,01,tanneur
+J-76145,,02,tanneuse
+J-76150,,01,corroyeur de cuir
+J-76150,,02,corroyeuse de cuir
+J-76155,,01,teinturier sur cuir
+J-76155,,02,teinturière sur cuir
+J-76190,,01,autres tanneurs et peaussiers-délaineurs
+J-76190,,02,autres tanneuses et peaussières-délaineuses
+J-76200,,00,762 Apprêteurs de pelleteries
+J-76220,,01,trieur de peaux à fourrure
+J-76220,,02,trieuse de peaux à fourrure
+J-76230,,01,écharneur de peaux à fourrure
+J-76230,,02,écharneuse de peaux à fourrure
+J-76240,,01,épileur et pareur de peaux à fourrure
+J-76240,,02,épileuse et pareuse de peaux à fourrure
+J-76250,,01,teinturier de peaux à fourrure
+J-76250,,02,teinturière de peaux à fourrure
+J-76260,,01,étireur de peaux à fourrure
+J-76260,,02,étireuse de peaux à fourrure
+J-76290,,01,autres apprêteurs de pelleteries
+J-76290,,02,autres apprêteuses de pelleteries
+J-77000,,0,77 Travailleurs de la transformation des aliments et des boissons
+J-77100,,00,771 Meuniers et ouvriers assimilés
+J-77120,,01,meunier
+J-77120,,02,meunière
+J-77130,,01,préparateur de riz
+J-77130,,02,préparatrice de riz
+J-77140,,01,préparateur d'épices
+J-77140,,02,préparatrice d'épices
+J-77190,,01,autres meuniers et ouvriers assimilés
+J-77190,,02,autres meunières et ouvrières assimilées
+J-77200,,00,772 Ouvriers de la production et du raffinage du sucre
+J-77220,,01,broyeur de canne à sucre
+J-77220,,02,broyeuse de canne à sucre
+J-77230,,01,opérateur de diffuseur (sucre de betterave)
+J-77230,,02,opératrice de diffuseur (sucre de betterave)
+J-77240,,01,carbonateur de sucrerie
+J-77240,,02,carbonatrice de sucrerie
+J-77250,,01,cuiseur de sucrerie
+J-77250,,02,cuiseuse de sucrerie
+J-77260,,01,conducteur d'installations de raffinage du sucre en continu
+J-77260,,02,conductrice d'installations de raffinage du sucre en continu
+J-77290,,01,autres ouvriers de la production et du raffinage du sucre
+J-77290,,02,autres ouvrières de la production et du raffinage du sucre
+J-77300,,00,773 Bouchers et ouvriers assimilés
+J-77310,,01,"boucher, en général"
+J-77310,,02,"bouchère, en général"
+J-77320,,01,abatteur de bestiaux
+J-77320,,02,abatteuse de bestiaux
+J-77330,,01,dépeceur-découpeur de viande
+J-77330,,02,dépeceuse-découpeuse de viande
+J-77340,,01,fabricant de saucisses
+J-77340,,02,fabricante de saucisses
+J-77390,,01,autres bouchers et ouvriers assimilés
+J-77390,,02,autres bouchères et ouvrières assimilées
+J-77400,,00,774 Ouvriers de la conservation des aliments
+J-77410,,01,"cuiseur-conserveur, en général"
+J-77410,,02,"cuiseuse-conservatrice, en général"
+J-77415,,01,cuiseur-conserveur de poisson
+J-77415,,02,cuiseuse-conservatrice de poisson
+J-77420,,01,autoclaviste
+J-77430,,01,conducteur d'appareil de congélation
+J-77430,,02,conductrice d'appareil de congélation
+J-77440,,01,conducteur d'appareil de déshydratation
+J-77440,,02,conductrice d'appareil de déshydratation
+J-77450,,01,saleur-saumurier (aliments)
+J-77450,,02,saleuse-saumurière (aliments)
+J-77460,,01,conducteur de fumoir (viande et poisson)
+J-77460,,02,conductrice de fumoir (viande et poisson)
+J-77490,,01,autres ouvriers de la conservation des aliments
+J-77490,,02,autres ouvrières de la conservation des aliments
+J-77500,,OK,775 Préparateurs de produits laitiers
+J-77510,,01,"préparateur de produits laitiers, en général"
+J-77510,,02,"préparatrice de produits laitiers, en général"
+J-77520,,01,conducteur d'appareil de pasteurisation du lait
+J-77520,,02,conductrice d'appareil de pasteurisation du lait
+J-77530,,01,baratteur
+J-77530,,02,baratteuse
+J-77540,,01,fromager
+J-77540,,02,fromagère
+J-77550,,01,fabricant de crème glacée
+J-77550,,02,fabricante de crème glacée
+J-77590,,01,autres préparateurs de produits laitiers
+J-77590,,02,autres préparatrices de produits laitiers
+J-77600,,00,"776 Boulangers, pâtissiers, confiseurs"
+J-77610,,01,"boulanger-pâtissier, en général"
+J-77610,,02,"boulangère-pâtissière, en général"
+J-77620,,01,boulanger
+J-77620,,02,boulangère
+J-77630,,01,pâtissier
+J-77630,,02,pâtissière
+J-77640,,01,fabricant de pâtes alimentaires
+J-77640,,02,fabricante de pâtes alimentaires
+J-77650,,01,chocolatier
+J-77650,,02,chocolatière
+J-77660,,01,confiseur
+J-77660,,02,confiseuse
+J-77690,,01,"autres boulangers, pâtissiers et confiseurs"
+J-77690,,02,"autres boulangères, pâtissières et confiseuses"
+J-77700,,00,"777 Ouvriers de la préparation des thés, des cafés et des cacaos"
+J-77720,,01,dégustateur de café ou de thé
+J-77720,,02,dégustatrice de café ou de thé
+J-77730,,01,ouvrier au mélange du café
+J-77730,,02,ouvrière au mélange du café
+J-77740,,01,ouvrier au mélange du thé
+J-77740,,02,ouvrière au mélange du thé
+J-77750,,01,grilleur de café
+J-77750,,02,grilleuse de café
+J-77760,,01,grilleur de fèves de cacao
+J-77760,,02,grilleuse de fèves de cacao
+J-77790,,01,"autres ouvriers de la préparation des thés, des cafés et des cacaos"
+J-77790,,02,"autres ouvrières de la préparation des thés, des cafés et des cacaos"
+J-77800,,00,778 Brasseurs et fabricants de vin et de boissons alcoolisées
+J-77820,,01,ouvrier de la germination (maltage)
+J-77820,,02,ouvrière de la germination (maltage)
+J-77825,,01,tourrailleur (maltage)
+J-77825,,02,tourrailleuse (maltage)
+J-77830,,01,cuiseur de malt
+J-77830,,02,cuiseuse de malt
+J-77835,,01,ouvrier de la fermentation
+J-77835,,02,ouvrière de la fermentation
+J-77840,,01,ouvrier à la fabrication de la levure
+J-77840,,02,ouvrière à la fabrication de la levure
+J-77850,,01,ouvrier du travail des vins
+J-77850,,02,ouvrière du travail des vins
+J-77860,,01,dégustateur de vin et de liqueur
+J-77860,,02,dégustatrice de vin et de liqueur
+J-77870,,01,vinaigrier
+J-77870,,02,vinaigrière
+J-77880,,01,conducteur de pressoir à fruits
+J-77880,,02,conductrice de pressoir à fruits
+J-77890,,01,autres brasseurs et fabricants de vin et de boissons alcoolisées
+J-77890,,02,autres brasseuses et fabricantes de vin et de boissons alcoolisées
+J-77900,,00,779 Travaillleurs de la transformation des aliments et des boissons n.c.a.
+J-77920,,01,presseur d'huile comestible
+J-77920,,02,presseuse d'huile comestible
+J-77925,,01,conducteur de machine à raffiner les huiles et les corps gras
+J-77925,,02,conductrice de machine à raffiner les huiles et les corps gras
+J-77930,,01,conducteur d'appareil d'hydrogénation des huiles et des corps gras
+J-77930,,02,conductrice d'appareil d'hydrogénation des huiles et des corps gras
+J-77940,,01,préparateur de poissons
+J-77940,,02,préparatrice de poissons
+J-77990,,01,autres travailleurs de la transformation des aliments et des boissons
+J-77990,,02,autres travailleuses de la transformation des aliments et des boissons
+J-78000,,0,78 Ouvriers de la préparation du tabac et de la fabrication des produits du tabac
+J-78100,,00,781 Ouvriers de la préparation du tabac
+J-78120,,01,trieur de feuilles de tabac
+J-78120,,02,trieuse de feuilles de tabac
+J-78130,,01,préposé au mélange du tabac
+J-78130,,02,préposée au mélange du tabac
+J-78140,,01,mouilleur de tabac
+J-78140,,02,mouilleuse de tabac
+J-78150,,01,effeuilleur de plants de tabac (à la main)
+J-78150,,02,effeuilleuse de plants de tabac (à la main)
+J-78160,,01,effeuilleur de plants de tabac (à la machine)
+J-78160,,02,effeuilleuse de plant de tabac (à la machine)
+J-78170,,01,conducteur de machine à couper le tabac
+J-78170,,02,conductrice de machine à couper le tabac
+J-78190,,01,autres ouvriers de la préparation du tabac
+J-78190,,02,autres ouvrières de la préparation du tabac
+J-78200,,00,782 Cigariers
+J-78220,,01,cigarier à la main
+J-78220,,02,cigarière à la main
+J-78230,,01,cigarier à la machine
+J-78230,,02,cigarière à la machine
+J-78290,,01,autres cigariers
+J-78290,,02,autres cigarières
+J-78300,,00,783 Ouvriers de la fabrication des cigarettes
+J-78320,,01,confectionneur de cigarettes (à la machine)
+J-78320,,02,confectionneuse de cigarettes (à la machine)
+J-78390,,01,autres ouvriers de la fabrication des cigarettes
+J-78390,,02,autres ouvrières de la fabrication des cigarettes
+J-78900,,00,789 Ouvriers de la préparation du tabac et de la fabrication des produits du tabac n.c.a.
+J-78920,,01,préparateur de tabac à priser
+J-78920,,02,préparatrice de tabac à priser
+J-78990,,01,autres ouvriers de la préparation du tabac et de la fabrication des produits du tabac
+J-78990,,02,autres ouvrières de la préparation du tabac et de la fabrication des produits du tabac
+J-79000,,0,"79 Tailleurs, couturiers, couseurs, rembourreurs et ouvriers assimilés"
+J-79100,,00,791 Tailleurs et couturiers
+J-79120,,01,tailleur sur mesure
+J-79120,,02,tailleuse sur mesure
+J-79130,,01,tailleur en confection
+J-79130,,02,tailleuse en confection
+J-79140,,01,couturier
+J-79140,,02,couturière
+J-79190,,01,autres tailleurs et couturiers
+J-79190,,02,autres tailleuses et couturières
+J-79200,,00,792 Fourreurs et travailleurs assimilés
+J-79220,,01,fourreur
+J-79220,,02,fourreuse
+J-79230,,01,patronnier en fourrures
+J-79230,,02,patronnière en fourrures
+J-79240,,01,trieur et assortisseur de fourrures
+J-79240,,02,trieuse et assortisseuse de fourrures
+J-79250,,01,coupeur de fourrures
+J-79250,,02,coupeuse de fourrures
+J-79260,,01,cloueur de fourrures
+J-79260,,02,cloueuse de fourrures
+J-79290,,01,autres fourreurs et travailleurs assimilés
+J-79290,,02,autres fourreuses et travailleures assimilées
+J-79300,,00,793 Modistes et chapeliers
+J-79320,,01,modiste
+J-79330,,01,dresseur de chapeaux à la machine
+J-79330,,02,dresseuse de chapeaux à la machine
+J-79390,,01,autres modistes et chapeliers
+J-79390,,02,autres modistes et chapelières
+J-79400,,00,794 Patronniers et coupeurs
+J-79420,,01,patronnier de vêtements
+J-79420,,02,patronnière de vêtements
+J-79430,,01,patronnier de chapeaux et bérets
+J-79430,,02,patronnière de chapeaux et bérets
+J-79440,,01,marqueur de vêtements
+J-79440,,02,marqueuse de vêtements
+J-79450,,01,"coupeur de vêtements, à l'exception du cuir"
+J-79450,,02,"coupeuse de vêtements, à l'exception du cuir"
+J-79460,,01,coupeur de vêtements de cuir
+J-79460,,02,coupeuse de vêtements de cuir
+J-79470,,01,"coupeur de gants, à l'exception de peau"
+J-79470,,02,"coupeuse de gants, à l'exception de peau"
+J-79480,,01,coupeur de gants de peau
+J-79480,,02,coupeuse de gants de peau
+J-79490,,01,autres patronniers et coupeurs
+J-79490,,02,autres patronnières et coupeuses
+J-79500,,00,795 Couseurs et brodeurs
+J-79510,,01,"couseur à la main et à la machine, en général"
+J-79510,,02,"couseuse à la main et à la machine, en général"
+J-79520,,01,couseur de vêtements à la main (à l'exception du cuir et de la fourrure)
+J-79520,,02,couseuse de vêtements à la main (à l'exception du cuir et de la fourrure)
+J-79530,,01,couseur de vêtements en cuir à la main
+J-79530,,02,couseuse de vêtements en cuir à la main
+J-79540,,01,couseur de fourrure à la main
+J-79540,,02,couseuse de fourrures à la main
+J-79550,,01,opérateur de machine à coudre
+J-79550,,02,opératrice de machine à coudre
+J-79560,,01,brodeur à la main
+J-79560,,02,brodeuse à la main
+J-79570,,01,brodeur à la machine
+J-79570,,02,brodeuse à la machine
+J-79590,,01,autres couseurs et brodeurs
+J-79590,,02,autres couseuses et brodeuses
+J-79600,,00,796 Rembourreurs et travailleurs assimilés
+J-79620,,01,rembourreur
+J-79620,,02,rembourreuse
+J-79630,,01,tapissier en voitures
+J-79630,,02,tapissière en voitures
+J-79640,,01,matelassier
+J-79640,,02,matelassière
+J-79690,,01,autres rembourreurs et travailleurs assimilés
+J-79690,,02,autres rembourreuses et travailleuses assimilées
+J-79900,,00,"799 Tailleurs, couturiers, couseurs, rembourreurs et ouvriers assimilés n.c.a."
+J-79920,,01,"confectionneur de voiles à bateau, de tentes et de bâches"
+J-79920,,02,"confectionneuse de voiles à bateau, de tentes et de bâches"
+J-79930,,01,fabricant de parapluies
+J-79930,,02,fabricante de parapluies
+J-79990,,01,"autres tailleurs, couturiers, couseurs, rembourreurs et ouvriers assimilés"
+J-79990,,02,"autres tailleuses, couturières, couseuses, rembourreuses et ouvrières assimilées"
+J-80000,,0,80 Fabricants de chaussures et ouvriers de la fabrication d'articles en cuir
+J-80100,,00,801 Fabricants de chaussures et cordonniers
+J-80110,,01,"fabricant de chaussures, en général"
+J-80110,,02,"fabricante de chaussures, en général"
+J-80120,,01,fabricant de chaussures orthopédiques
+J-80120,,02,fabricante de chaussures orthopédiques
+J-80130,,01,cordonnier
+J-80130,,02,cordonnière
+J-80190,,01,autres fabricants de chaussures et cordonniers
+J-80190,,02,autres fabricantes de chaussures et cordonnières
+J-80200,,00,"802 Coupeurs, monteurs de tiges, couseurs de chaussures et ouvriers assimilés"
+J-80215,,01,patronnier de chaussures
+J-80215,,02,patronnière de chaussures
+J-80220,,01,coupeur d'empeignes
+J-80220,,02,coupeuse d'empeignes
+J-80225,,01,coupeur de chaussures à la main
+J-80225,,02,coupeuse de chaussures à la main
+J-80230,,01,apprêteur de tiges (chaussures)
+J-80230,,02,apprêteuse de tiges (chaussures)
+J-80235,,01,coupeur de semelles à la presse
+J-80235,,02,coupeuse de semelles à la presse
+J-80240,,01,monteur de semelles
+J-80240,,02,monteuse de semelles
+J-80245,,01,monteur de tiges
+J-80245,,02,monteuse de tiges
+J-80250,,01,couseur de chaussures à la machine
+J-80250,,02,couseuse de chaussures à la machine
+J-80255,,01,finisseur de chaussures
+J-80255,,02,finisseuse de chaussures
+J-80290,,01,"autres coupeurs, monteurs de tiges, couseurs de chaussures et ouvriers assimilés"
+J-80290,,02,"autres coupeuses, monteuses de tiges, couseuses de chaussures et ouvrières assimilés"
+J-80300,,00,803 Ouvriers de la fabrication d'articles en cuir
+J-80310,,01,"ouvrier de la fabrication d'articles en cuir, en général"
+J-80310,,02,"ouvrière de la fabrication d'articles en cuir, en général"
+J-80320,,01,sellier et harnacheur
+J-80320,,02,sellière et harnacheuse
+J-80330,,01,coupeur de cuir
+J-80330,,02,coupeuse de cuir
+J-80340,,01,couseur de cuir à la main
+J-80340,,02,couseuse de cuir à la main
+J-80350,,01,couseur de cuir à la machine
+J-80350,,02,couseuse de cuir à la machine
+J-80360,,01,monteur d'articles en cuir
+J-80360,,02,monteuse d'articles en cuir
+J-80390,,01,autres ouvriers de la fabrication d'articles en cuir
+J-80390,,02,autres ouvrières de la fabrication d'articles en cuir
+J-81000,,0,81 Ébénistes et travailleurs du bois assimilés
+J-81100,,00,811 Ébénistes
+J-81120,,01,ébéniste
+J-81190,,01,autres ébénistes
+J-81200,,00,812 Conducteur de machines à bois
+J-81205,,01,"régleur de machine à bois, en général"
+J-81205,,02,"régleuse de machine à bois, en général"
+J-81208,,01,"conducteur de machines à bois, en général"
+J-81208,,02,"conductrice de machines à bois, en général"
+J-81210,,01,"régleur-conducteur de machines à bois, en général"
+J-81210,,02,"régleuse-conductrice de machines à bois, en général"
+J-81220,,01,scieur de précision sur bois
+J-81220,,02,scieuse de précision sur bois
+J-81230,,01,tourneur sur bois
+J-81230,,02,tourneuse sur bois
+J-81240,,01,régleur-conducteur de tour (travail du bois)
+J-81240,,02,régleuse-conductrice de tour (travail du bois)
+J-81250,,01,régleur-conducteur de toupie (travail du bois)
+J-81250,,02,régleuse-conductrice de toupie (travail du bois)
+J-81260,,01,régleur-conducteur de moulureuse
+J-81260,,02,régleuse-conductrice de moulureuse
+J-81270,,01,régleur-conducteur de raboteuse sur bois
+J-81270,,02,régleuse-conductrice de raboteuse sur bois
+J-81280,,01,régleur-conducteur de machine à sculpter le bois
+J-81280,,02,régleuse-conductrice de machine à sculpter le bois
+J-81290,,01,autres conducteurs de machines à bois
+J-81290,,02,autres conductrices de machines à bois
+J-81900,,00,819 Ébénistes et travailleurs du bois assimilés n.c.a.
+J-81920,,01,carrossier en bois
+J-81920,,02,carrossière en bois
+J-81925,,01,charron
+J-81925,,02,charronne
+J-81930,,01,tonnelier
+J-81930,,02,tonnelière
+J-81935,,01,modeleur sur bois
+J-81935,,02,modeleuse sur bois
+J-81940,,01,maquettiste sur bois
+J-81945,,01,sculpteur sur bois
+J-81945,,02,sculpteuse sur bois
+J-81950,,01,plaqueur
+J-81950,,02,plaqueuse
+J-81955,,01,finisseur de meubles en bois
+J-81955,,02,finisseuse de meubles en bois
+J-81960,,01,pipier
+J-81960,,02,pipière
+J-81965,,01,marqueteur
+J-81965,,02,marqueteuse
+J-81990,,01,autres ébénistes et travailleurs du bois assimilés
+J-81990,,02,autres ébénistes et travailleuses du bois assimilées
+J-82000,,0,82 Tailleurs et graveurs de pierres
+J-82020,,01,tailleur et finisseur de pierres
+J-82020,,02,tailleuse et finisseuse de pierres
+J-82030,,01,trieur de pierres
+J-82030,,02,trieuse de pierres
+J-82040,,01,traceur appareilleur de pierres
+J-82040,,02,traceuse appareilleuse de pierres
+J-82050,,01,tourneur sur pierre
+J-82050,,02,tourneuse sur pierre
+J-82060,,01,graveur de lettres sur pierre à la main
+J-82060,,02,graveuse de lettres sur pierre à la main
+J-82070,,01,ouvrier sculpteur sur pierre à la main
+J-82070,,02,ouvrière sculptrice sur pierre à la main
+J-82080,,01,sculpteur-monteur de monuments
+J-82080,,02,sculptrice-monteuse de monuments
+J-82090,,01,autres tailleurs et graveurs de pierres
+J-82090,,02,autres tailleuses et graveuses de pierres
+J-83000,,0,"83 Forgerons, outilleurs et conducteurs de machines-outils"
+J-83100,,00,"831 Forgerons, marteleurs et conducteur de presse à forger"
+J-83110,,01,"forgeron, en général"
+J-83110,,02,"forgeronne, en général"
+J-83120,,01,marteleur
+J-83120,,02,marteleuse
+J-83130,,01,conducteur de marteau-pilon
+J-83130,,02,conductrice de marteau-pilon
+J-83140,,01,conducteur de presse à forger
+J-83140,,02,conductrice de presse à forger
+J-83190,,01,"autres forgerons, marteleurs et conducteurs de presses à forger"
+J-83190,,02,"autres forgeronnes, marteleuses et conductrices de presses à forger"
+J-83200,,00,"832 Outilleurs, modeleurs mécaniciens et traceurs mécaniciens"
+J-83220,,01,outilleur-ajusteur
+J-83220,,02,outilleuse-ajusteuse
+J-83230,,01,ajusteur calibriste
+J-83230,,02,ajusteuse calibriste
+J-83240,,01,modeleur mécanicien (fonderie)
+J-83240,,02,modeleuse mécanicienne (fonderie)
+J-83250,,01,traceur mécanicien
+J-83250,,02,traceuse mécanicienne
+J-83290,,01,"autres outilleurs, modeleurs mécaniciens et traceurs mécaniciens"
+J-83290,,02,"autres outilleuses, modeleuses mécaniciennes et traceuses mécaniciennes"
+J-83300,,00,833 Régleurs-conducteurs de machines-outils
+J-83305,,01,"régleur de machines-outils, en général"
+J-83305,,02,"régleuse de machines-outils, en général"
+J-83310,,01,"régleur-conducteur de machines-outils, en général"
+J-83310,,02,"régleuse-conductrice de machines-outils, en général"
+J-83320,,01,régleur-conducteur de tour
+J-83320,,02,régleuse-conductrice de tour
+J-83330,,01,régleur-conducteur de fraiseuse
+J-83330,,02,régleuse-conductrice de fraiseuse
+J-83340,,01,régleur-conducteur de raboteuse
+J-83340,,02,régleuse-conductrice de raboteuse
+J-83350,,01,régleur-conducteur d'aléseuse
+J-83350,,02,régleuse-conductrice d'aléseuse
+J-83360,,01,régleur-conducteur de perceuse
+J-83360,,02,régleuse-conductrice de perceuse
+J-83370,,01,régleur-conducteur de rectifieuse
+J-83370,,02,régleuse-conductrice de rectifieuse
+J-83380,,01,régleur-conducteur de machine à roder
+J-83380,,02,régleuse-conductrice de machine à roder
+J-83385,,01,régleur-conducteur de machine à commande numérique
+J-83385,,02,régleuse-conductrice de machine à commande numérique
+J-83390,,01,autres régleurs-conducteurs de machines-outils
+J-83390,,02,autres régleuses-conductrices de machines-outils
+J-83400,,00,834 Conducteurs de machines-outils
+J-83410,,01,"conducteur de machines-outils, en général"
+J-83410,,02,"conductrice de machines-outils, en général"
+J-83420,,01,conducteur de tour
+J-83420,,02,conductrice de tour
+J-83430,,01,conducteur de fraiseuse
+J-83430,,02,conductrice de fraiseuse
+J-83440,,01,conducteur de raboteuse
+J-83440,,02,conductrice de raboteuse
+J-83450,,01,conducteur d'aléseuse
+J-83450,,02,conductrice d'aléseuse
+J-83460,,01,conducteur de perceuse
+J-83460,,02,conductrice de perceuse
+J-83465,,01,conducteur de rectifieuse
+J-83465,,02,conductrice de rectifieuse
+J-83470,,01,conducteur de machine à roder
+J-83470,,02,conductrice de machine à roder
+J-83475,,01,conducteur de scie à métaux
+J-83475,,02,conductrice de scie à métaux
+J-83480,,01,conducteur de machine à transfert automatique
+J-83480,,02,conductrice de machine à transfert automatique
+J-83490,,01,autres conducteurs de machines-outils
+J-83490,,02,autres conductrices de machines-outils
+J-83500,,00,"835 Émouleurs, polisseurs et affûteurs d'outils"
+J-83520,,01,conducteur de machine à polir
+J-83520,,02,conductrice de machine à polir
+J-83530,,01,"affûteur-outilleur, machine-outils"
+J-83530,,02,"affûteuse-outilleuse, machine-outils"
+J-83540,,01,aiguiseur de coutellerie
+J-83540,,02,aiguiseuse de coutellerie
+J-83550,,01,réparateur et affûteur de scies
+J-83550,,02,réparatrice et affûteuse de scies
+J-83560,,01,aiguiseur de cardes
+J-83560,,02,aiguiseuse de cardes
+J-83590,,01,"autres émouleurs, polisseurs et affûteurs d'outils"
+J-83590,,02,"autres émouleuses, polisseuses et affûteuses d'outils"
+J-83900,,00,"839 Forgerons, outilleurs et conducteurs de machines-outils n.c.a."
+J-83920,,01,armurier
+J-83920,,02,armurière
+J-83930,,01,serrurier
+J-83930,,02,serrurière
+J-83940,,01,repousseur au tour sur métaux
+J-83940,,02,repousseuse au tour sur métaux
+J-83950,,01,formeur de métal à la main
+J-83950,,02,formeuse de métal à la main
+J-83960,,01,conducteur de presse mécanique
+J-83960,,02,conductrice de presse mécanique
+J-83970,,01,conducteur de machine à cintrer
+J-83970,,02,conductrice de machine à cintrer
+J-83980,,01,conducteur de cisaille mécanique
+J-83980,,02,conductrice de cisaille mécanique
+J-83990,,01,"autres forgerons, outilleurs et conducteurs de machines-outils"
+J-83990,,02,"autres forgeronnes, outillleuses et conductrices de machines-outils"
+J-84000,,0,"84 Ajusteurs-monteurs, installateurs de machines et fabricants d'intruments de précision (sauf électriques)"
+J-84100,,00,841 Ajusteurs-monteurs et installateurs de machines
+J-84105,,01,"ajusteur en construction mécanique, en général"
+J-84105,,02,"ajusteuse en construction mécanique, en général"
+J-84110,,01,"ajusteur-monteur en construction mécanique, en général"
+J-84110,,02,"ajusteuse-monteuse en construction mécanique, en général"
+J-84115,,01,ajusteur-monteur de moteur à combustion interne (à l'exception des moteurs d'avion et des moteurs marins)
+J-84115,,02,ajusteuse-monteuse de moteur à combustion interne (à l'exception des moteurs d'avion et des moteurs marins)
+J-84120,,01,ajusteur-monteur de moteurs d'avion
+J-84120,,02,ajusteuse-monteuse de moteurs d'avion
+J-84125,,01,ajusteur-monteur de moteurs marins
+J-84125,,02,ajusteuse-monteuse de moteurs marins
+J-84130,,01,ajusteur-monteur de turbines (à l'exception des turbines d'avion et des turbines marines)
+J-84130,,02,ajusteuse-monteuse de turbines (à l'exception des turbines d'avion et des turbines marines)
+J-84135,,01,ajusteur-monteur de machines-outils pour le travail des métaux
+J-84135,,02,ajusteuse-monteuse de machines-outils pour le travail des métaux
+J-84140,,01,ajusteur-monteur de machines de mines
+J-84140,,02,ajusteuse-monteuse de machines de mines
+J-84145,,01,ajusteur-monteur de machines d'imprimerie
+J-84145,,02,ajusteuse-monteuse de machines d'imprimerie
+J-84150,,01,ajusteur-monteur de machines textiles
+J-84150,,02,ajusteuse-monteuse de machines textiles
+J-84155,,01,ajusteur-monteur de machines à bois
+J-84155,,02,ajusteuse-monteuse de machines à bois
+J-84160,,01,ajusteur-monteur de machines agricoles
+J-84160,,02,ajusteuse-monteuse de machines agricoles
+J-84165,,01,ajusteur-monteur d'engins de terrassement
+J-84165,,02,ajusteuse-monteuse d'engins de terrassement
+J-84170,,01,ajusteur-monteur de machines de bureau
+J-84170,,02,ajusteuse-monteuse de machines de bureau
+J-84175,,01,monteur-installateur de machines
+J-84175,,02,monteuse-installatrice de machines
+J-84180,,01,installateur-mécanicien d'installation de réfrigération et de climatisation
+J-84180,,02,installatrice-mécanicienne d'installation de réfrigération et de climatisation
+J-84185,,01,ajusteur-monteur d'aviation
+J-84185,,02,ajusteuse-monteuse d'aviation
+J-84190,,01,autres ajusteurs-monteurs et installateurs de machines
+J-84190,,02,autres ajusteuses-monteuses et installatrices de machine
+J-84200,,00,842 Horlogers et mécaniciens d'instruments de précision
+J-84220,,01,horloger
+J-84220,,02,horlogère
+J-84225,,01,horloger-réparateur
+J-84225,,02,horlogère-réparatrice
+J-84230,,01,mécanicien-réparateur d'instruments de précision
+J-84230,,02,mécanicienne-réparatrice d'instruments de précision
+J-84235,,01,mécanicien-réparateur d'instruments d'optique
+J-84240,,01,monteur d'instruments de précision
+J-84240,,02,monteuse d'instruments de précision
+J-84245,,01,mécanicien-réparateur de prothèses orthopédiques
+J-84250,,01,prothésiste dentaire
+J-84290,,01,autres horlogers et et mécaniciens d'instruments de précision
+J-84290,,02,autres horlogères et mécaniciennes d'instruments de précisions
+J-84300,,00,843 Mécaniciens de véhicules à moteur
+J-84320,,01,mécanicien d'automobiles
+J-84320,,02,mécanicienne d'automobiles
+J-84330,,01,mécanicien de camions
+J-84330,,02,mécanicienne de camions
+J-84340,,01,mécanicien de motocyclettes et vélomoteurs
+J-84340,,02,mécanicienne de motocyclettes et vélomoteurs
+J-84390,,01,autres mécaniciens de véhicules à moteur
+J-84390,,02,autres mécaniciennes de véhicules à moteur
+J-84400,,00,844  Mécaniciens de moteurs d'avion
+J-84410,,01,"mécanicien de moteurs d'avion, en général"
+J-84410,,02,"mécanicienne de moteurs d'avion, en général"
+J-84420,,01,Mécanicien de moteurs d'avion (service de ligne)
+J-84420,,02,mécanicienne de moteurs d'avion (service de ligne)
+J-84490,,01,autres mécaniciens de moteurs d'avion
+J-84490,,02,autres mécaniciennes de moteurs d'avion
+J-84900,,00,"849 Ajusteurs-monteurs, installateurs de machines et mécaniciens d'appareils de précision (sauf électriques) n.c.a."
+J-84910,,01,"mécanicien de machines, en général"
+J-84910,,02,"mécanicienne de machines, en général"
+J-84915,,01,mécanicien de machines à vapeur à mouvement alternatif
+J-84915,,02,mécanicienne de machines à vapeur à mouvement alternatif
+J-84920,,01,mécanicien de moteurs Diesel (à l'exception des véhicules à moteur)
+J-84920,,02,mécanicienne de moteurs Diesel (à l'exception des véhicules à moteur)
+J-84925,,01,mécanicien de turbines (à l'exception des turbines d'avion et des turbines marines)
+J-84925,,02,mécanicienne de turbines (à l'exception des turbines d'avion et des turbines marines)
+J-84930,,01,mécanicien de machines-outils pour le travail des métaux
+J-84930,,02,mécanicienne de machines-outils pour le travail des métaux
+J-84935,,01,mécanicien de machinerie minière
+J-84935,,02,mécanicienne de machinerie minière
+J-84940,,01,mécanicien de machines d'imprimerie
+J-84940,,02,mécanicienne de machines d'imprimerie
+J-84945,,01,mécanicien de machines textiles
+J-84945,,02,mécanicienne de machines textiles
+J-84950,,01,mécanicien de machines à bois
+J-84950,,02,mécanicienne de machines à bois
+J-84955,,01,mécanicien de machines agricoles
+J-84955,,02,mécanicienne de machines agricoles
+J-84960,,01,mécanicien d'engins de terrassement et de machines de construction
+J-84960,,02,mécanicienne d'engins de terrassement et de machines de construction
+J-84965,,01,mécanicien de machines de bureau
+J-84965,,02,mécanicienne de machines de bureau
+J-84970,,01,mécanicien d'entretien d'établissement
+J-84970,,02,mécanicienne d'entretien d'établissement
+J-84975,,01,mécanicien-réparateur de cycles
+J-84975,,02,mécanicienne-réparatrice de cycles
+J-84980,,01,huileur et graisseur (à l'exception des moteurs marins)
+J-84980,,02,huileuse et graisseuse (à l'exception des moteurs marins)
+J-84985,,01,contrôleur-vérificateur de construction mécanique
+J-84985,,02,contrôleuse-vérificatrice de construction mécanique
+J-84990,,01,"autres ajusteurs-monteurs, installateurs de machines et mécaniciens d'appareils de précision (sauf électriques)"
+J-84990,,02,"autres ajusteuses-monteuses, installatrices de machines et mécaniciennes d'appareils de précision (sauf électriques)"
+J-85000,,0,85 Ajusteurs-électriciens et ouvriers en électricité et en électronique assimilés
+J-85100,,00,851 Ajusteurs-électriciens
+J-85110,,01,"ajusteur-électricien, en général"
+J-85110,,02,"ajusteuse-électricienne, en général"
+J-85120,,01,ajusteur-électricien de moteurs et dynamos
+J-85120,,02,ajusteuse-électricienne de moteurs et dynamos
+J-85130,,01,ajusteur-électricien de transformateurs
+J-85130,,02,ajusteuse-électricienne de transformateurs
+J-85140,,01,ajusteur-électricien de tableaux de distribution et de dispositifs de commutation et de commande
+J-85140,,02,ajusteuse-électricienne de tableaux de distribution et de dispositifs de commutation et de commande
+J-85150,,01,ajusteur-électricien d'instruments
+J-85150,,02,ajusteuse-électricienne d'instruments
+J-85160,,01,ajusteur-électricien d'ascenseurs et d'équipements similaires
+J-85160,,02,ajusteuse-électricienne d'ascenseurs et d'équipements similaires
+J-85190,,01,autres ajusteurs-électriciens
+J-85190,,02,autres ajusteuses-électriciennes
+J-85200,,00,852 Ajusteurs-électroniciens
+J-85210,,01,"ajusteur-électronicien, en général"
+J-85210,,02,"ajusteuse-électronicienne, en général"
+J-85220,,01,"ajusteur-électronicien de matériel radio, de radar et de télévision"
+J-85220,,02,"ajusteuse-électronicienne de matériel radio, de radar et de télévision"
+J-85230,,01,ajusteur-électronicien d'appareils médicaux
+J-85230,,02,ajusteuse-électronicienne d'appareils médicaux
+J-85240,,01,ajusteur-électronicien d'ordinateurs et de machines similaires
+J-85240,,02,ajusteuse-électronicienne d'ordinateurs et de machines similaires
+J-85250,,01,ajusteur-électronicien de machines industrielles
+J-85250,,02,ajusteuse-électronicienne de machines industrielles
+J-85260,,01,ajusteur-électronicien d'installations de signalisation
+J-85260,,02,ajusteuse-électronicienne d'installations de signalisation
+J-85290,,01,autres ajusteurs-électroniciens
+J-85290,,02,autres ajusteuses-électronicienes
+J-85300,,00,853 Monteurs d'appareils électriques et électroniques
+J-85320,,01,monteur d'appareils électriques
+J-85320,,02,monteuse d'appareils électriques
+J-85330,,01,monteur d'appareils électroniques
+J-85330,,02,monteuse d'appareils électroniques
+J-85340,,01,bobineur à la machine
+J-85340,,02,bobineuse à la machine
+J-85350,,01,bobineur à la main
+J-85350,,02,bobineuse à la main
+J-85390,,01,autres monteurs d'appareils électriques et électroniques
+J-85390,,02,autres monteuses d'appareils électriques et électroniques
+J-85400,,00,854 Réparateurs de radios et de téléviseurs
+J-85420,,01,réparateur de radios et de téléviseurs
+J-85420,,02,réparatrice de radios et de téléviseurs
+J-85490,,01,autres réparateurs de radios et de téléviseurs
+J-85490,,02,autres réparatrices de radios et de téléviseurs
+J-85500,,00,855 Électriciens d'installations
+J-85510,,01,"électricien, en général"
+J-85510,,02,"électricienne, en général"
+J-85520,,01,électricien en bâtiment
+J-85520,,02,électricienne en bâtiment
+J-85530,,01,électricien d'avion
+J-85530,,02,électricienne d'avion
+J-85535,,01,électricien de navire
+J-85535,,02,électricienne de navire
+J-85540,,01,électricien de véhicule
+J-85540,,02,électricienne de véhicule
+J-85550,,01,électricien de théâtre et de cinéma
+J-85550,,02,électricienne de théatre et de cinéma
+J-85560,,01,électricien d'entretien
+J-85560,,02,électricienne d'entretien
+J-85570,,01,électricien-réparateur
+J-85570,,02,électricienne-réparatrice
+J-85590,,01,autres électriciens d'installations
+J-85590,,02,autres électriciennes d'installations
+J-85600,,00,856 Monteurs d'installations téléphoniques et télégraphiques
+J-85620,,01,monteur d'installations téléphoniques et télégraphiques
+J-85620,,02,monteuse d'installations téléphoniques et télégraphiques
+J-85630,,01,dépanneur d'installations téléphoniques et télégraphiques
+J-85630,,02,dépanneuse d'installations téléphoniques et télégraphiques
+J-85690,,01,autres monteurs d'installations téléphoniques et télégraphiques
+J-85690,,02,autres monteuses d'installations téléphoniques et télégraphiques
+J-85700,,00,857 Monteurs de lignes électriques et épisseurs de câbles
+J-85720,,01,monteur de lignes aériennes (transport de courant)
+J-85720,,02,monteuse de lignes aériennes (transport de courant)
+J-85730,,01,monteur de lignes caténaires
+J-85730,,02,monteuse de lignes caténaires
+J-85740,,01,monteur de lignes téléphoniques et télégraphiques
+J-85740,,02,monteuse de lignes téléphoniques et télégraphiques
+J-85750,,01,épisseur de câbles
+J-85750,,02,épisseuse de câbles
+J-85790,,01,autres monteurs de lignes électriques et épisseurs de câbles
+J-85790,,02,autres monteuses de lignes électriques et épisseuses de câbles
+J-85900,,00,859 Ajusteurs-électriciens et ouvriers en électricité et en électronique assimilés n.c.a.
+J-85920,,01,contrôleur de fabrication (appareils électriques et électroniques)
+J-85920,,02,contrôleuse de fabrication (appareils électriques et électroniques)
+J-85990,,01,autres ajusteurs-électriciens et ouvriers en électricité et en électronique assimilés
+J-85990,,02,autres ajusteuses-électriciennes et ouvrières en électricité et en électronique assimilées
+J-86000,,0,86 Opérateurs de stations d'émissions de radio et de télévision et d'appareils de sonorisation et projectionnistes de cinéma
+J-86100,,00,861 Opérateurs de stations d'émissions de radio et de télévision
+J-86120,,01,opérateur de station d'émissions de radio et de télévision
+J-86120,,02,opératrice de station d'émissions de radio et de télévision
+J-86130,,01,opérateur d'appareils de studio de radio et de télévision
+J-86130,,02,opératrice d'appareils de studio de radio et de télévision
+J-86190,,01,autres opérateurs de stations d'émissions de radio et de télévision
+J-86190,,02,autres opératrices de stations d'émissions de radio et de télévision
+J-86200,,00,862 Opérateurs d'appareils de sonorisation et projectionnistes de cinémas
+J-86220,,01,opérateur d'appareil d'enregistrement sonore
+J-86220,,02,opératrice d'appareil d'enregistrement sonore
+J-86230,,01,sonorisateur
+J-86230,,02,sonorisatrice
+J-86240,,01,projectionniste de cinéma
+J-86290,,01,autres opérateurs d'appareils de sonorisation et projectionnistes de cinéma
+J-86290,,02,autres opératrices d'appareils de sonorisation et projectionnistes de cinéma
+J-87000,,0,"87 Plombiers, soudeurs, travailleurs du métal en feuille et monteurs de charpentes et de structures métalliques"
+J-87100,,00,871 Plombiers et tuyauteurs
+J-87105,,01,"plombier, en général"
+J-87105,,02,"plombière, en général"
+J-87110,,01,"tuyauteur, en général"
+J-87110,,02,"tuyauteuse, en général"
+J-87120,,01,tuyauteur (distribution de gaz)
+J-87120,,02,tuyauteuse (distribution de gaz)
+J-87130,,01,tuyauteur (marine)
+J-87130,,02,tuyauteuse (marine)
+J-87140,,01,tuyauteur (aviation)
+J-87140,,02,tuyauteuse (aviation)
+J-87190,,01,autres plombiers et tuyauteurs
+J-87190,,02,autres plombières et tuyauteuses
+J-87200,,00,872 Soudeurs et oxycoupeurs
+J-87210,,01,"soudeur au chalumeau et à l'arc électrique, en général"
+J-87210,,02,"soudeuse au chalumeau et à l'arc électrique, en général"
+J-87215,,01,soudeur au chalumeau
+J-87215,,02,soudeuse au chalumeau
+J-87220,,01,soudeur à l'arc électrique
+J-87220,,02,soudeuse à l'arc électrique
+J-87225,,01,conducteur de machine à souder à l'arc
+J-87225,,02,conductrice de machine à souder à l'arc
+J-87230,,01,soudeur aluminothermique
+J-87230,,02,soudeuse aluminothermique
+J-87235,,01,soudeur par résistance
+J-87235,,02,soudeuse par résistance
+J-87240,,01,soudeur au plomb
+J-87240,,02,soudeuse au plomb
+J-87245,,01,braseur
+J-87245,,02,braseuse
+J-87250,,01,oxycoupeur à la main
+J-87250,,02,oxycoupeuse à la main
+J-87255,,01,oxycoupeur à la machine
+J-87255,,02,oxycoupeuse à la machine
+J-87260,,01,soudeur au fer
+J-87260,,02,soudeuse au fer
+J-87290,,01,autres soudeurs et oxycoupeurs
+J-87290,,02,autres soudeuses et oxycoupeuses
+J-87300,,00,873 Travailleurs du métal en feuille
+J-87310,,01,"tôlier, en général"
+J-87310,,02,"tôlière, en général"
+J-87320,,01,traceur en chaudronnerie
+J-87320,,02,traceuse en chaudronnerie
+J-87330,,01,chaudronnier en cuivre et alliages légers
+J-87330,,02,chaudronnière en cuivre et alliages légers
+J-87340,,01,ferblantier
+J-87340,,02,ferblantière
+J-87350,,01,monteur de chaudières
+J-87350,,02,monteuse de chaudières
+J-87360,,01,tôlier ornemaniste
+J-87360,,02,tôlière ornemaniste
+J-87370,,01,tôlier en carosserie
+J-87370,,02,tôlière en carosserie
+J-87380,,01,tôlier d'aviation
+J-87380,,02,tôlière d'aviation
+J-87390,,01,autres travailleurs du métal en feuille
+J-87390,,02,autres travailleuses du métal en feuille
+J-87400,,00,874 Monteurs de charpentes et de structures métalliques
+J-87420,,01,traceur en charpentes métalliques
+J-87420,,02,traceuse en charpentes métalliques
+J-87430,,01,Travailleur en acier de charpente (en atelier)
+J-87430,,02,travailleuse en acier de charpente (en atelier)
+J-87440,,01,monteur de charpentes métalliques
+J-87440,,02,monteuse de charpentes métalliques
+J-87450,,01,charpentier en fer (constructions navales)
+J-87450,,02,charpentière en fer (constructions navales)
+J-87455,,01,blindeur de carènes
+J-87455,,02,blindeuse de carènes
+J-87460,,01,riveur à la main
+J-87460,,02,riveuse à la main
+J-87465,,01,riveur à la machine
+J-87465,,02,riveuse à la machine
+J-87470,,01,riveur au marteau pneumatique
+J-87470,,02,riveuse au marteau pneumatique
+J-87490,,01,autres monteurs de charpentes et de structures métalliques
+J-87490,,02,autres monteuses de charpentes et de structures métalliques
+J-88000,,0,88 Joailliers et orfèvres
+J-88010,,01,"joaillier, en général"
+J-88010,,02,"joaillière, en général"
+J-88020,,01,bijoutier-réparateur
+J-88020,,02,bijoutière-réparatrice
+J-88030,,01,tailleur et polisseur de pierres précieuses
+J-88030,,02,tailleuse et polisseuse de pierres précieuses
+J-88040,,01,sertisseur de pierres précieuses
+J-88040,,02,sertisseuse de pierres précieuses
+J-88050,,01,orfèvre
+J-88060,,01,lamineur de métaux précieux
+J-88060,,02,lamineuse de métaux précieux
+J-88070,,01,batteur de métaux précieux
+J-88070,,02,batteuse de métaux précieux
+J-88080,,01,graveur de bijoux
+J-88080,,02,graveuse de bijoux
+J-88090,,01,autres joailliers et orfèvres
+J-88090,,02,autres joaillières et orfèvres
+J-89000,,0,"89 Verriers, potiers et travailleurs assimilés"
+J-89100,,00,"891 Formeurs, tailleurs, meuleurs et polisseurs de verre"
+J-89120,,01,souffleur de verre
+J-89120,,02,souffleuse de verre
+J-89124,,01,souffleur de verre (appareils de laboratoire)
+J-89124,,02,souffleuse de verre (appareils de laboratoire)
+J-89128,,01,opérateur de souffleuse de verre
+J-89128,,02,opératrice de souffleuse de verre
+J-89132,,01,mouleur de lentilles
+J-89132,,02,mouleuse de lentilles
+J-89136,,01,opérateur de machine à presser le verre
+J-89136,,02,opératrice de machine à presser le verre
+J-89140,,01,opérateur de machine à étirer le verre
+J-89140,,02,opératrice de machine à étirer le verre
+J-89144,,01,conducteur de laminoir de verre
+J-89144,,02,conductrice de laminoir de verre
+J-89148,,01,conducteur de machine de douci-poli (glace)
+J-89148,,02,conductrice de machine de douci-poli (glace)
+J-89152,,01,opérateur au bain métallique (flottage du verre)
+J-89152,,02,opératrice au bain métallique (flottage du verre)
+J-89156,,01,tailleur de verre
+J-89156,,02,tailleuse de verre
+J-89160,,01,tailleur de verre d'optique
+J-89160,,02,tailleuse de verre d'optique
+J-89164,,01,façonneur de bords (glace)
+J-89164,,02,façonneuse de bords (glace)
+J-89168,,01,conducteur de machine à meuler les lentilles
+J-89168,,02,conductrice de machine à meuler les lentilles
+J-89172,,01,conducteur de machine à polir les verres d'optique
+J-89172,,02,conductrice de machine à polir les verres d'optique
+J-89176,,01,conducteur de machine à étirer des baguettes et des tubes de verres
+J-89176,,02,conductrice de machine à étirer des baguettes et des tubes de verres
+J-89180,,01,courbeur de tubes de verre
+J-89180,,02,courbeuse de tubes de verre
+J-89190,,01,"autres formeurs, tailleurs, meuleurs et polisseurs de verre"
+J-89190,,02,"autres formeuses, tailleuses, meuleuses et polisseuses de verre"
+J-89200,,00,892 Potiers et travailleurs assimilés (argile et produits abrasifs)
+J-89210,,01,"potier, en général"
+J-89210,,02,"potière, en général"
+J-89215,,01,modeleur-mouleur de céramique
+J-89215,,02,modeleuse-mouleuse de céramique
+J-89220,,01,mouleur-noyauteur de céramique
+J-89220,,02,mouleuse-noyauteuse de céramique
+J-89225,,01,façonnier en faïence et en porcelaine
+J-89225,,02,façonnière en faïence et en porcelaine
+J-89230,,01,calibreur en faïence et en porcelaine
+J-89230,,02,calibreuse en faïence et en porcelaine
+J-89235,,01,couleur en faïence et en porcelaine
+J-89235,,02,couleuse en faïence et en porcelaine
+J-89240,,01,mouleur de briques et de tuiles à la main
+J-89240,,02,mouleuse de briques et de tuiles à la main
+J-89245,,01,presseur de céramique à la main
+J-89245,,02,presseuse de céramique à la main
+J-89250,,01,conducteur de machine à mouler la céramique
+J-89250,,02,conductrice de machine à mouler la céramique
+J-89255,,01,conducteur de machine à mouler par extrusion (céramique)
+J-89255,,02,conductrice de machine à mouler par extrusion (céramique)
+J-89260,,01,mouleur de meules abrasives
+J-89260,,02,mouleuse de meules abrasives
+J-89290,,01,autres potiers et travailleurs assimilés (argile et produits abrasifs)
+J-89290,,02,autres potières et travailleuses assimilées (argile et produits abrasifs)
+J-89300,,00,893 Conducteurs de fours de verrerie et de céramique
+J-89320,,01,conducteur de four de verrerie
+J-89320,,02,conductrice de four de verrerie
+J-89330,,01,préposé au four à recuire le verre
+J-89330,,02,préposée au four à recuire le verre
+J-89340,,01,trempeur de verre
+J-89340,,02,trempeuse de verre
+J-89350,,01,conducteur de four de céramique (faïence et porcelaine)
+J-89350,,02,conductrice de four de céramique (faïence et porcelaine)
+J-89360,,01,conducteur de four de céramique (briques et tuiles)
+J-89360,,02,conductrice de four de céramique (briques et tuiles)
+J-89390,,01,autres conducteurs de fours de verrerie et de céramique
+J-89390,,02,autres conductrices de fours de verrerie et de céramique
+J-89400,,00,894 Graveurs sur verre
+J-89420,,01,graveur sur verre
+J-89420,,02,graveuse sur verre
+J-89430,,01,graveur de verre à l'eau forte
+J-89430,,02,graveuse de verre à l'eau forte
+J-89440,,01,graveur au sable (verrerie)
+J-89440,,02,graveuse au sable (verrerie)
+J-89490,,01,autres graveurs sur verre
+J-89490,,02,autres graveuses sur verre
+J-89500,,00,895 Peintres et décorateurs sur verre et sur céramique
+J-89520,,01,peintre-décorateur sur verre
+J-89520,,02,peintre-décoratrice sur verre
+J-89530,,01,peintre-décorateur sur céramique
+J-89530,,02,peintre-décoratrice sur céramique
+J-89540,,01,décorateur de céramique
+J-89540,,02,décoratrice de céramique
+J-89550,,01,décorateur-émailleur de céramique au pistolet
+J-89550,,02,décoratrice-émailleuse de céramique au pistolet
+J-89560,,01,émailleur de porcelaine au trempé
+J-89560,,02,émailleuse de porcelaine au trempé
+J-89570,,01,argenteur de glaces et de miroirs
+J-89570,,02,argenteuse de glaces et de miroirs
+J-89590,,01,autres peintres et décorateurs sur verre et sur céramique
+J-89590,,02,autres peintres et décoratrices sur verre et sur céramique
+J-89900,,00,"899 Verriers, potiers et travailleurs assimilés n.c.a."
+J-89920,,01,composeur de verre
+J-89920,,02,composeuse de verre
+J-89930,,01,préparateur de pâte d'argile
+J-89930,,02,préparatrice de pâte d'argile
+J-89940,,01,préparateur de barbotine
+J-89940,,02,préparatrice de barbotine
+J-89950,,01,préparateur d'émaux
+J-89950,,02,préparatrice d'émaux
+J-89960,,01,ouvrier au mélangeur de poudres abrasives
+J-89960,,02,ouvrière au mélangeur de poudres abrasives
+J-89970,,01,conducteur de machine à fabriquer la fibre de verre
+J-89970,,02,conductrice de machine à fabriquer la fibre de verre
+J-89990,,01,"autres verriers, potiers et travailleurs assimilés"
+J-89990,,02,"autres verrières, potières et travailleuses assimilées"
+J-90000,,0,90 Ouvriers de la fabrication d'articles en caoutchouc et en matières plastiques
+J-90100,,00,901 Ouvriers de la fabrication d'articles en caoutchouc et en matières plastiques (à l'exception des confectionneurs et vulcanisateurs de pneus)
+J-90120,,01,opérateur de broyeur de caoutchouc
+J-90120,,02,opératrice de broyeur de caoutchouc
+J-90125,,01,conducteur de calandre (caoutchouc)
+J-90125,,02,conductrice de calandre (caoutchouc)
+J-90130,,01,conducteur de machine à refouler le caoutchouc
+J-90130,,02,conductrice de machine à refouler le caoutchouc
+J-90135,,01,conducteur de machine à mouler le caoutchouc
+J-90135,,02,conductrice de machine à mouler le caoutchouc
+J-90140,,01,confectionneur-assembleur d'articles en caoutchouc
+J-90140,,02,confectionneuse-assembleuse d'articles en caoutchouc
+J-90150,,01,conducteur de machine à mouler les matières plastiques par injection
+J-90150,,02,conductrice de machine à mouler les matières plastiques par injection
+J-90155,,01,conducteur de machine à mouler les matières plastiques par compression
+J-90155,,02,conductrice de machine à mouler les matières plastiques par compression
+J-90160,,01,conducteur de machine à refouler les matières plastiques
+J-90160,,02,conductrice de machine à refouler les matières plastiques
+J-90165,,01,lamineur de matières plastiques
+J-90165,,02,lamineuse de matières plastiques
+J-90170,,01,monteur-assembleur d'articles en matières plastiques
+J-90170,,02,monteuse-assembleuse d'articles en matières plastiques
+J-90180,,01,ouvrier de la fabrication d'articles en matières plastiques
+J-90180,,02,ouvrière de la fabrication d'articles en matières plastiques
+J-90190,,01,autres ouvriers de la fabrication d'articles en caoutchouc et en matières plastiques (à l'exception des confectionneurs et vulcanisateurs de pneus)
+J-90190,,02,autres ouvrières de la fabrication d'articles en caoutchouc et en matières plastiques (à l'exception des confectionneurs et vulcanisateurs de pneus)
+J-90200,,00,902 Confectionneurs et vulcanisateurs de pneus
+J-90220,,01,confectionneur de pneus
+J-90220,,02,confectionneuse de pneus
+J-90230,,01,mouleur de pneus
+J-90230,,02,mouleuse de pneus
+J-90240,,01,rechapeur de pneus
+J-90240,,02,rechapeuse de pneus
+J-90290,,01,autres confectionneurs et vulcanisateurs de pneus
+J-90290,,02,autres confectionneuses et vulcanisatrices de pneus
+J-91000,,0,91 Confectionneurs d'articles en papier et en carton
+J-91020,,01,cartonnier à la main
+J-91020,,02,cartonnière à la main
+J-91030,,01,cartonnier à la machine
+J-91030,,02,cartonnière à la machine
+J-91040,,01,conducteur de machine à doubler le carton
+J-91040,,02,conductrice de machine à doubler le carton
+J-91050,,01,conducteur de machine à couper et à plier le carton
+J-91050,,02,conductrice de machine à couper et à plier le carton
+J-91060,,01,conducteur de presse à emboutir le carton
+J-91060,,02,conductrice de presse à emboutir le carton
+J-91070,,01,conducteur de machine à confectionner des sacs et des enveloppes en papier
+J-91070,,02,conductrice de machine à confectionner des sacs et des enveloppes en papier
+J-91080,,01,conducteur de machine à confectionner des sacs en cellophane
+J-91080,,02,conductrice de machine à confectionner des sacs en cellophane
+J-91090,,01,autres confectionneurs d'articles en papier et en carton
+J-91090,,02,autres confectionneuses d'articles en papier et en carton
+J-92000,,0,92 Imprimeurs et travailleurs assimilés
+J-92100,,00,921 Compositeurs typographes
+J-92110,,01,"imprimeur, en général"
+J-92110,,02,"imprimeuse, en général"
+J-92120,,01,compositeur à la main
+J-92120,,02,compositrice à la main
+J-92130,,01,linotypiste
+J-92135,,01,claviste-monotypiste
+J-92140,,01,fondeur de caractères d'imprimerie à la machine
+J-92140,,02,fondeuse de caractères d'imprimerie à la machine
+J-92145,,01,metteur en pages
+J-92145,,02,metteuse en pages
+J-92150,,01,imposeur
+J-92150,,02,imposeuse
+J-92155,,01,opérateur de photocomposeuse
+J-92155,,02,opératrice de photocomposeuse
+J-92190,,01,autres compositeurs typographes
+J-92190,,02,autres compositrices typographes
+J-92200,,00,922 Conducteurs de presses à imprimer
+J-92220,,01,conducteur de presse à cylindre
+J-92220,,02,conductrice de presse à cylindre
+J-92225,,01,conducteur de presse à platine
+J-92225,,02,conductrice de presse à platine
+J-92230,,01,conducteur de presse rotative
+J-92230,,02,conductrice de presse rotative
+J-92240,,01,conducteur de presse offset
+J-92240,,02,conductrice de presse offset
+J-92250,,01,conducteur de presse lithographique
+J-92250,,02,conductrice de presse lithographique
+J-92260,,01,conducteur de presse à rotogravure
+J-92260,,02,conductrice de presse à rotogravure
+J-92270,,01,imprimeur de papiers peints
+J-92270,,02,imprimeuse de papiers peints
+J-92290,,01,autres conducteurs de presses à imprimer
+J-92290,,02,autres conductrices de presses à imprimer
+J-92300,,00,923 Stéréotypeurs et clicheurs-galvanoplastes
+J-92320,,01,stéréotypeur
+J-92320,,02,stéréotypeuse
+J-92330,,01,clicheur-galvanoplaste
+J-92330,,02,clicheuse-galvanoplaste
+J-92390,,01,autres stéréotypeurs et clicheurs-galvanoplastes
+J-92390,,02,autres stéréotypeuses et clicheuses-galvanoplastes
+J-92400,,00,924 Graveurs d'imprimerie (à l'exception des photograveurs)
+J-92415,,01,graveur sur pierres lithographiques
+J-92415,,02,graveuse sur pierres lithographiques
+J-92420,,01,"graveur à la main sur plaques, cylindres et matrices d'imprimerie"
+J-92420,,02,"graveuse à la main sur plaques, cylindres et matrices d'imprimerie"
+J-92430,,01,"graveur à la main sur clichés de bois, de caoutchouc et de linoléum"
+J-92430,,02,"graveuse à la main sur clichés de bois, de caoutchouc et de linoléum"
+J-92440,,01,graveur à la machine sur cylindres d'imprimerie
+J-92440,,02,graveuse à la machine sur cylindres d'imprimerie
+J-92445,,01,graveur au pantographe
+J-92445,,02,graveuse au pantographe
+J-92450,,01,reporteur lithographe
+J-92450,,02,reporteuse lithographe
+J-92460,,01,graveur à l'eau-forte (imprimerie)
+J-92460,,02,graveuse à l'eau-forte (imprimerie)
+J-92490,,01,autres graveurs d'imprimerie (à l'exception des photograveurs)
+J-92490,,02,autres graveuses d'imprimerie (à l'exception des photograveuses)
+J-92500,,00,925 Photograveurs
+J-92510,,01,"photograveur, en général"
+J-92510,,02,"photograveuse, en général"
+J-92520,,01,photograveur clicheur
+J-92520,,02,photograveuse clicheuse
+J-92530,,01,photograveur retoucheur
+J-92530,,02,photograveuse retoucheuse
+J-92540,,01,photograveur reporteur
+J-92540,,02,photograveuse reporteuse
+J-92550,,01,photograveur à l'eau-forte
+J-92550,,02,photograveuse à l'eau-forte
+J-92560,,01,retoucheur de clichés
+J-92560,,02,retoucheuse de clichés
+J-92590,,01,autres photograveurs
+J-92590,,02,autres photograveuses
+J-92600,,00,926 Relieurs et travailleurs assimilés
+J-92620,,01,relieur à la main
+J-92620,,02,relieuse à la main
+J-92630,,01,relieur industriel
+J-92630,,02,relieuse industrielle
+J-92640,,01,gaufreur en reliure à la main
+J-92640,,02,gaufreuse en reliure à la main
+J-92650,,01,gaufreur en reliure à la machine
+J-92650,,02,gaufreuse en reliure à la machine
+J-92690,,01,autres relieurs et travailleurs assimilés
+J-92690,,02,autres relieuses et travailleuses assimilées
+J-92700,,00,927 Développeurs de photographies en chambre noire
+J-92720,,01,développeur de photographies en couleur
+J-92720,,02,développeuse de photographies en couleur
+J-92730,,01,développeur de photographies en noir et blanc
+J-92730,,02,développeuse de photographies en noir et blanc
+J-92740,,01,tireur de photographies
+J-92740,,02,tireuse de photographies
+J-92750,,01,agrandisseur de photographies
+J-92750,,02,agrandisseuse de photographies
+J-92790,,01,autres développeurs de photographies en chambre noire
+J-92790,,02,autres développeuses de photographies en chambre noire
+J-92900,,00,929 Imprimeurs et travailleurs assimilés n.c.a.
+J-92920,,01,préparateur de pochoirs (sérigraphie)
+J-92920,,02,préparatrice de pochoirs (sérigraphie)
+J-92930,,01,imprimeur sérigraphe
+J-92930,,02,imprimeuse sérigraphe
+J-92940,,01,imprimeur à la planche
+J-92940,,02,imprimeuse à la planche
+J-92950,,01,imprimeur sur textiles
+J-92950,,02,imprimeuse sur textiles
+J-92990,,01,autres imprimeurs et travailleurs assimilés
+J-92990,,02,autres imprimeuses et travailleuses assimilées
+J-93000,,0,93 Peintres
+J-93100,,00,931 Peintres en construction
+J-93120,,01,peintre en bâtiment
+J-93130,,01,peintre de charpentes métalliques et de coques de navires
+J-93190,,01,autres peintres en construction
+J-93900,,00,939 Peintres n.c.a.
+J-93920,,01,peintre au pinceau (sauf en construction)
+J-93930,,01,peintre au pistolet (sauf en construction)
+J-93940,,01,peintre au trempé à la main
+J-93950,,01,peintre d'enseignes
+J-93960,,01,peintre d'automobiles
+J-93990,,01,autres peintres
+J-94000,,0,94 Ouvriers à la production et travailleurs assimilés n.c.a.
+J-94100,,00,941 Facteurs et accordeurs d'instruments de musique
+J-94120,,01,luthier
+J-94120,,02,luthière
+J-94130,,01,facteur d'instruments à vent en bois
+J-94130,,02,factrice d'instruments à vent en bois
+J-94140,,01,facteur d'instruments à vent en métal
+J-94140,,02,factrice d'instruments à vent en métal
+J-94150,,01,facteur d'accordéons
+J-94150,,02,factrice d'accordéons
+J-94160,,01,facteur d'orgues
+J-94160,,02,factrice d'orgues
+J-94170,,01,facteur de pianos
+J-94170,,02,factrice de pianos
+J-94180,,01,accordeur d'instruments de musique
+J-94180,,02,accordeuse d'instruments de musique
+J-94190,,01,autres facteurs et accordeurs d'instruments de musique
+J-94190,,02,autres factrices et accordeuses d'instruments de musique
+J-94200,,00,942 Vanniers et brossiers
+J-94220,,01,vannier
+J-94220,,02,vannière
+J-94230,,01,monteur de brosses à la main
+J-94230,,02,monteuse de brosses à la main
+J-94240,,01,monteur de balais à la main
+J-94240,,02,monteuse de balais à la main
+J-94250,,01,vannier d'ameublement
+J-94250,,02,vannière d'ameublement
+J-94290,,01,autres vanniers et brossiers
+J-94290,,02,autres vannières et brossières
+J-94300,,00,943 Ouvriers de la fabrication de produits minéraux non métalliques
+J-94320,,01,ouvrier de la fabrication de produits en béton préfabriqués
+J-94320,,02,ouvrière de la fabrication de produits en béton préfabriqués
+J-94330,,01,ouvrier de la fabrication de produits en amiante-ciment
+J-94330,,02,ouvrière de la fabrication de produits en amiante-ciment
+J-94340,,01,ouvrier de la fabrication d'agglomérés
+J-94340,,02,ouvrière de la fabrication d'agglomérés
+J-94390,,01,autres ouvriers de la fabrication de produits minéraux non métalliques
+J-94390,,02,autres ouvrières de la fabrication de produits minéraux non métalliques
+J-94900,,00,949 Ouvriers à la production et travailleurs assimilés n.c.a.
+J-94920,,01,taxidermiste
+J-94930,,01,ouvrier de la fabrication de linoléum
+J-94930,,02,ouvrière de la fabrication de linoléum
+J-94940,,01,confectionneur de poupées ou de jouets rembourrés
+J-94940,,02,confectionneuse de poupées ou de jouets rembourrés
+J-94950,,01,confectionneur de timbres en caoutchouc
+J-94950,,02,confectionneuse de timbres en caoutchouc
+J-94969,,01,confectionneur de bougies
+J-94969,,02,confectionneuse de bougies
+J-94970,,01,ouvrier de la fabrication de films et papiers photographiques
+J-94970,,02,ouvrière de la fabrication de films et papiers photographiques
+J-94980,,01,vérificateur de la qualité de fabrication
+J-94980,,02,vérificatrice de la qualité de fabrication
+J-94990,,01,autres ouvriers à la production et travailleurs assimilés n.c.a.
+J-94990,,02,autres ouvrières à la production et travailleuses assimilées n.c.a.
+J-95000,,0,"95 Briqueteurs, charpentiers et autres travailleurs de la construction"
+J-95100,,00,"951 Briqueteurs, maçons et carreleurs"
+J-95120,,01,briqueteur (bâtiment)
+J-95120,,02,briqueteuse (bâtiment)
+J-95125,,01,briqueteur (construction de cheminées)
+J-95125,,02,briqueteuse (construction de cheminées)
+J-95130,,01,maçon fumiste industriel
+J-95130,,02,maçonne fumiste industrielle
+J-95140,,01,maçon en pierres
+J-95140,,02,maçonne en pierres
+J-95145,,01,marbrier de bâtiment
+J-95145,,02,marbrière de bâtiment
+J-95150,,01,carreleur
+J-95150,,02,carreleuse
+J-95155,,01,mosaïste
+J-95160,,01,paveur
+J-95160,,02,paveuse
+J-95190,,01,"autres briqueteurs, maçons et carreleurs"
+J-95190,,02,"autres briqueteuses, maçonnes et carreleuses"
+J-95200,,00,"952 Ouvriers en béton armé, cimentiers-finisseurs et poseurs de sol en terrazo"
+J-95210,,01,"cimentier en béton armé, en général"
+J-95210,,02,"cimentière en béton armé, en général"
+J-95220,,01,coffreur-boiseur
+J-95220,,02,coffreuse-boiseuse
+J-95230,,01,ferrailleur
+J-95230,,02,ferrailleuse
+J-95240,,01,cimentier-finisseur
+J-95240,,02,cimentière-finisseuse
+J-95250,,01,poseur de sol en terrazo
+J-95250,,02,poseuse de sol en terrazo
+J-95290,,01,"autres ouvriers en béton armé, cimentiers-finisseurs et poseurs de sol en terrazo"
+J-95290,,02,"autres ouvrières en béton armé, cimentières-finisseuses et poseuses de sol en terrazo"
+J-95300,,00,953 Couvreurs
+J-95320,,01,couvreur en ardoises et en tuiles
+J-95320,,02,couvreuse en ardoises et en tuiles
+J-95330,,01,couvreur en matériaux synthétiques
+J-95330,,02,couvreuse en matériaux synthétiques
+J-95340,,01,couvreur en asphalte
+J-95340,,02,couvreuse en asphalte
+J-95350,,01,couvreur-zingueur
+J-95350,,02,couvreuse-zingueuse
+J-95360,,01,couvreur en chaume
+J-95360,,02,couvreuse en chaume
+J-95390,,01,autres couvreurs
+J-95390,,02,autres couvreuses
+J-95400,,00,"954 Charpentiers, menuisiers et parqueteurs"
+J-95410,,01,"charpentier, en général"
+J-95410,,02,"charpentière, en général"
+J-95415,,01,charpentier de bâtiment
+J-95415,,02,charpentière de bâtiment
+J-95420,,01,menuisier de bâtiment
+J-95420,,02,menuisière de bâtiment
+J-95430,,01,charpentier-menuisier de décors
+J-95430,,02,charpentière-menuisière de décors
+J-95440,,01,charpentier de navire
+J-95440,,02,charpentière de navire
+J-95445,,01,menuisier de navire
+J-95445,,02,menuisière de navire
+J-95450,,01,charpentier-constructeur de canots en bois
+J-95450,,02,charpentière-constructrice de canots en bois
+J-95455,,01,charpentier de marine
+J-95455,,02,charpentière de marine
+J-95460,,01,menuisier d'aviation
+J-95460,,02,menuisière d'aviation
+J-95470,,01,menuisier à l'établi
+J-95470,,02,menuisière à l'établi
+J-95475,,01,parqueteur
+J-95475,,02,parqueteuse
+J-95490,,01,"autres charpentiers, menuisiers et parqueteurs"
+J-95490,,02,"autres charpentières, menuisières et parqueteuses"
+J-95500,,00,955 Plâtriers
+J-95510,,01,"plâtrier, en général"
+J-95510,,02,"plâtrière, en général"
+J-95520,,01,plâtrier ornemaniste
+J-95520,,02,plâtrière ornemaniste
+J-95530,,01,stucateur
+J-95530,,02,stucatrice
+J-95540,,01,staffeur
+J-95540,,02,staffeuse
+J-95590,,01,autres plâtriers
+J-95590,,02,autres plâtrières
+J-95600,,00,956 Installateurs de matériel d'isolation et d'insonorisation
+J-95620,,01,calorifugeur à la main (bâtiment)
+J-95620,,02,calorifugeuse à la main (bâtiment)
+J-95630,,01,calorifugeur à la machine (bâtiment)
+J-95630,,02,calorifugeuse à la machine (bâtiment)
+J-95640,,01,applicateur de matériaux d'insonorisation
+J-95640,,02,applicatrice de matériaux d'insonorisation
+J-95650,,01,calorifugeur de chaudières et tuyaux
+J-95650,,02,calorifugeuse de chaudières et tuyaux
+J-95660,,01,calorifugeur d'installations de réfrigération et de climatisation
+J-95660,,02,calorifugeuse d'installations de réfrigération et de climatisation
+J-95690,,01,autres installateurs de matériel d'isolation et d'insonorisation
+J-95690,,02,autres installatrices de matériel d'isolation et d'insonorisation
+J-95700,,00,957 Vitriers
+J-95720,,01,vitrier de bâtiments
+J-95720,,02,vitrière de bâtiments
+J-95730,,01,vitrier-poseur de verrières sans mastic
+J-95730,,02,vitrière-poseuse de verrières sans mastic
+J-95740,,01,vitrier-poseur de vitres et vitrines
+J-95740,,02,vitrière-poseuse de vitres et vitrines
+J-95750,,01,vitrailliste
+J-95760,,01,Vitrier-poseur en véhicules
+J-95760,,02,vitrière-poseuse en véhicules
+J-95790,,01,autres vitriers
+J-95790,,02,autres vitrières
+J-95900,,00,959 Travailleurs de la construction n.c.a.
+J-95910,,01,"entrepreneur en bâtiment, en général"
+J-95910,,02,"entrepreneuse en bâtiment, en général"
+J-95920,,01,ouvrier d'entretien de construction
+J-95920,,02,ouvrière d'entretien de construction
+J-95925,,01,colleur de papiers peints
+J-95925,,02,colleuse de papiers peints
+J-95930,,01,ouvrier spécialiste du travail sur hauts échafaudages
+J-95930,,02,ouvrière spécialiste du travail sur hauts échafaudages
+J-95940,,01,monteur d'échafaudages
+J-95940,,02,monteuse d'échafaudages
+J-95945,,01,ouvrier de démolition
+J-95945,,02,ouvrière de démolition
+J-95950,,01,poseur de tuyaux
+J-95950,,02,poseuse de tuyaux
+J-95955,,01,puisatier
+J-95955,,02,puisatière
+J-95960,,01,scaphandrier
+J-95960,,02,scaphandrière
+J-95970,,01,carreleur (carreaux synthétiques)
+J-95970,,02,carreleuse (carreaux synthétiques)
+J-95975,,01,nettoyeur d'extérieurs de bâtiments
+J-95975,,02,nettoyeuse d'extérieurs de bâtiments
+J-95990,,01,autres travailleurs de la construction
+J-95990,,02,autres travailleuses de la construction
+J-96000,,0,96 Conducteurs de machines et d'installations fixes
+J-96100,,00,961 Conducteurs d'installations de production d'énergie
+J-96120,,01,conducteur d'installations de centrale électrique thermique
+J-96120,,02,conductrice d'installations de centrale électrique thermique
+J-96130,,01,conducteur d'installations de centrale hydro-électrique
+J-96130,,02,conductrice d'installations de centrale hydro-électrique
+J-96140,,01,conducteur d'installations d'énergie nucléaire
+J-96140,,02,conductrice d'installations d'énergie nucléaire
+J-96150,,01,conducteur de turbine de centrale électrique
+J-96150,,02,conductrice de turbine de centrale électrique
+J-96160,,01,opérateur de tableau de distribution de centrale électrique
+J-96160,,02,opératrice de tableau de distribution de centrale électrique
+J-96170,,01,répartiteur de charge de centrale électrique
+J-96170,,02,répartitrice de charge de centrale électrique
+J-96190,,01,autres conducteurs d'installations de production d'énergie
+J-96190,,02,autres conductrices d'installations de production d'énergie
+J-96900,,00,969 Conducteurs de machines et d'installations fixes n.c.a.
+J-96910,,01,"conducteur de machine fixe, en général"
+J-96910,,02,"conductrice de machine fixe, en général"
+J-96920,,01,conducteur de compresseur d'air
+J-96920,,02,conductrice de compresseur d'air
+J-96925,,01,conducteur de compresseur de gaz
+J-96925,,02,conductrice de compresseur de gaz
+J-96930,,01,chauffeur de chaudière
+J-96930,,02,chauffeuse de chaudière
+J-96940,,01,conducteur de station de pompage
+J-96940,,02,conductrice de station de pompage
+J-96950,,01,conducteur d'installation de traitement de l'eau potable (station de production d'eau potable)
+J-96950,,02,conductrice d'installation de traitement de l'eau potable (station de production d'eau potable)
+J-96960,,01,conducteur d'installation d'incinération des ordures
+J-96960,,02,conductrice d'installation d'incinération des ordures
+J-96970,,01,conducteur d'installation de réfrigération
+J-96970,,02,conductrice d'installation de réfrigération
+J-96980,,01,conducteur d'installation de chauffage et de ventilation
+J-96980,,02,conductrice d'installation de chauffage et de ventilation
+J-96990,,01,autres conducteurs de machines et d'installations fixes
+J-96990,,02,autres conductrices de machines et d'installations fixes
+J-97000,,0,"97 Conducteurs d'engins de manutention et de terrassement, dockers et manutentionnaires"
+J-97100,,00,971 Dockers et manutentionnaires
+J-97120,,01,docker
+J-97120,,02,dockeuse
+J-97130,,01,chargeur de véhicules ferroviaires et routiers
+J-97130,,02,chargeuse de véhicules ferroviaires et routiers
+J-97135,,01,chargeur d'avions
+J-97135,,02,chargeuse d'avions
+J-97140,,01,chargeur de bateaux-citernes
+J-97140,,02,chargeuse de bateaux-citernes
+J-97145,,01,manutentionnaire
+J-97150,,01,emballeur à la main
+J-97150,,02,emballeuse à la main
+J-97155,,01,empaqueteur à la machine
+J-97155,,02,empaqueteuse à la machine
+J-97160,,01,conducteur de machine à étiqueter
+J-97160,,02,conductrice de machine à étiqueter
+J-97170,,01,conducteur de presse à balles
+J-97170,,02,conductrice de presse à balles
+J-97190,,01,autres dockers et manutentionnaires
+J-97190,,02,autres dockeuses et manutentionnaires
+J-97200,,00,972 Gréeurs et épisseurs de câbles
+J-97205,,01,"monteur d'appareils de levage, en général"
+J-97205,,02,"monteuse d'appareils de levage, en général"
+J-97210,,01,"épisseur de cordages et de câbles, en général"
+J-97210,,02,"épisseuse de cordages et de câbles, en général"
+J-97220,,01,monteur d'appareils de levage (construction)
+J-97220,,02,monteuse d'appareils de levage (construction)
+J-97230,,01,gréeur de navires
+J-97230,,02,gréeuse de navires
+J-97240,,01,monteur de câbles d'avions
+J-97240,,02,monteuse de câbles d'avions
+J-97250,,01,monteur de câbles (forage de puits de pétrole et de gaz)
+J-97250,,02,monteuse de câbles (forage de puits de pétrole et de gaz)
+J-97260,,01,monteur de câbles de ponts suspendus
+J-97260,,02,monteuse de câbles de ponts suspendus
+J-97290,,01,autres gréeurs et épisseurs de câbles
+J-97290,,02,autres gréeuses et épisseuses de câbles
+J-97300,,00,973 Conducteurs de grues et d'appareils de levage
+J-97320,,01,conducteur de pont roulant ou de grue sur portique
+J-97320,,02,conductrice de pont roulant ou de grue sur portique
+J-97325,,01,conducteur de grue fixe
+J-97325,,02,conductrice de grue fixe
+J-97327,,01,conducteur de grue à tour
+J-97327,,02,conductrice de grue à tour
+J-97330,,01,conducteur de grue mobile
+J-97330,,02,conductrice de grue mobile
+J-97335,,01,conducteur d'appareils de levage (construction)
+J-97335,,02,conductrice d'appareils de levage (construction)
+J-97340,,01,conducteur d'appareils de levage (mines)
+J-97340,,02,conductrice d'appareils de levage (mines)
+J-97345,,01,pilote de cages de mines
+J-97350,,01,conducteur de treuil
+J-97350,,02,conductrice de treuil
+J-97355,,01,conducteur de pont tournant ou levant
+J-97355,,02,conductrice de pont tournant ou levant
+J-97390,,01,autres conducteurs de grues et d'appareils de levage
+J-97390,,02,autres conductrices de grues et d'appareils de levage
+J-97400,,00,974 Conducteurs d'engins de terrassement et travailleurs assimilés
+J-97420,,01,conducteur d'excavatrices
+J-97420,,02,conductrice d'excavatrices
+J-97425,,01,conducteur d'excavatrice de tranchées
+J-97425,,02,conductrice d'excavatrice de tranchées
+J-97430,,01,conducteur de bulldozer
+J-97430,,02,conductrice de bulldozer
+J-97435,,01,conducteur de drague
+J-97435,,02,conductrice de drague
+J-97440,,01,conducteur de sonnette
+J-97440,,02,conductrice de sonnette
+J-97445,,01,Conducteur de niveleuse-décapeuse pour routes
+J-97445,,02,Conductrice de niveleuse-décapeuse pour routes
+J-97450,,01,conducteur de rouleau compresseur
+J-97450,,02,conductrice de rouleau compresseur
+J-97455,,01,conducteur de machine à étaler le béton
+J-97455,,02,conductrice de machine à étaler le béton
+J-97460,,01,conducteur de bitumeuse-goudronneuse
+J-97460,,02,conductrice de bitumeuse-goudronneuse
+J-97470,,01,conducteur de bétonnière
+J-97470,,02,conductrice de bétonnière
+J-97475,,01,conducteur d'installation fixe pour la préparation du béton
+J-97475,,02,conductrice d'installation fixe pour la préparation du béton
+J-97490,,01,autres conducteurs d'engins de terrassement et travailleurs assimilés
+J-97490,,02,autres conductrices d'engins de terrassement et travailleuses assimilées
+J-97900,,00,979 Conducteurs d'engins de manutention n.c.a.
+J-97920,,01,conducteur de chariot élévateur
+J-97930,,01,conducteur de camion à benne basculante
+J-97930,,02,conductrice de camion à benne basculante
+J-97940,,01,conducteur de navette (mines)
+J-97940,,02,conductrice de navette (mines)
+J-97950,,01,conducteur de train porteur (fardier)
+J-97950,,02,conductrice de train porteur (fardier)
+J-97990,,01,autres conducteurs d'engins de manutention
+J-97990,,02,autres conductrices d'engins de manutention
+J-98000,,0,98 Conducteurs d'engins de transport
+J-98100,,00,"981 Matelots de pont, mariniers et bateliers"
+J-98120,,01,maître d'équipage
+J-98130,,01,matelot qualifié
+J-98140,,01,matelot de 3e classe
+J-98190,,01,"autres matelots de pont, mariniers et bateliers"
+J-98190,,02,"autres matelots de pont, marinières et batelières"
+J-98200,,00,982 Matelots des salles des machines et des chaufferies
+J-98220,,01,chauffeur de navire (chaufferie)
+J-98220,,02,chauffeuse de navire (chaufferie)
+J-98230,,01,huileur et graisseur de navire
+J-98230,,02,huileuse et graisseuse de navire
+J-98290,,01,autres matelots des salles de machines et des chaufferies
+J-98300,,00,983 Conducteurs et chauffeurs de locomotives
+J-98320,,01,conducteur de locomotive
+J-98320,,02,conductrice de locomotive
+J-98330,,01,chauffeur de locomotive à vapeur
+J-98330,,02,chauffeuse de locomotive à vapeur
+J-98340,,01,aide-conducteur de locomotive
+J-98340,,02,aide-conductrice de locomotive
+J-98350,,01,conducteur de train métropolitain sous-terrain ou aérien
+J-98350,,02,conductrice de train métropolitain sous-terrain ou aérien
+J-98360,,01,conducteur de locomotive (mines et carrières)
+J-98360,,02,conductrice de locomotive (mines et carrières)
+J-98390,,01,autres conducteurs et chauffeurs de locomotives
+J-98390,,02,autres conductrices et chauffeuses de locomotives
+J-98400,,00,"984 Chef de train de marchandises, aiguilleurs et agents de manoeuvre de chemin de fer"
+J-98420,,01,chef de train de marchandises
+J-98430,,01,aiguilleur
+J-98430,,02,aiguilleuse
+J-98440,,01,agent de manoeuvre de chemin de fer
+J-98440,,02,agente de manoeuvre de chemin de fer
+J-98450,,01,accrocheur-aiguilleur (mines et carrières)
+J-98450,,02,accrocheuse-aiguilleuse (mines et carrières)
+J-98500,,00,985 Conducteurs de véhicules à moteur
+J-98520,,01,conducteur de tramway
+J-98520,,02,conductrice de tramway
+J-98530,,01,chauffeur de taxi
+J-98530,,02,chauffeuse de taxi
+J-98540,,01,conducteur d'autobus
+J-98540,,02,conductrice d'autobus
+J-98550,,01,conducteur de camion ou de camionnette (transports locaux)
+J-98550,,02,conductrice de camion ou de camionnette (transports locaux)
+J-98560,,01,conducteur de camion sur longue distance
+J-98560,,02,conductrice de camion sur longue distance
+J-98570,,01,conducteur de motocyclette
+J-98570,,02,conductrice de motocyclette
+J-98590,,01,autres conducteurs de véhicules à moteur
+J-98590,,02,autres conductrices de véhicules à moteur
+J-98600,,00,986 Conducteurs d'animaux et de véhicules à traction animale
+J-98620,,01,conducteur de véhicule à traction animale sur route
+J-98620,,02,conductrice de véhicule à traction animale sur route
+J-98630,,01,conducteur de véhicule à traction animale dans les mines et carrières
+J-98630,,02,conductrice de véhicule à traction animale dans les mines et carrières
+J-98690,,01,autres conducteurs d'animaux et de véhicules à traction animale
+J-98690,,02,autres conductrices d'animaux et de véhicules à traction animale
+J-98900,,00,989 Conducteurs d'engins de transport n.c.a.
+J-98920,,01,maître de port (cale sèche)
+J-98930,,01,éclusier (canaux et ports)
+J-98930,,02,éclusière (canaux et ports)
+J-98940,,01,gardien de phare
+J-98940,,02,gardienne de phare
+J-98950,,01,conducteur de véhicule à pédales
+J-98950,,02,conductrice de véhicule à pédales
+J-98990,,01,autres conducteurs d'engins de transport
+J-98990,,02,autres conductrices d'engins de transport
+J-99000,,0,99 Manoeuvres n.c.a.
+J-99910,,01,manoeuvre
+J-A0000,,,Section A Travailleurs ne pouvant être classés par un métier ou une profession
+J-A1000,,0,A1 Personnes en quête de leur premier emploi
+J-A1010,,01,personnes en quête de leur premier emploi
+J-A2000,,0,"A2 Travailleurs ayant fait, au sujet de leur profession, une déclaration imprécise ou insuffisante"
+J-A2010,,01,"travailleurs ayant fait, au sujet de leur profession, une déclaration imprécise ou insuffisante"
+J-A2010,,02,"travailleuses ayant fait, au sujet de leur profession, une déclaration imprécise ou insuffisante"
+J-A2020,,01,travailleur actif ayant plusieurs professions
+J-A2020,,02,travailleuse active ayant plusieurs professions
+J-A3000,,0,A3 Travailleurs n'ayant déclaré aucune profession
+J-A3010,,01,travailleurs n'ayant déclaré aucune profession
+J-A3020,,01,ménagère
+J-A3050,,01,étudiant
+J-A3050,,02,étudiante
+J-A3060,,01,Retraité (voir les codes des professions antérieures)
+J-A3060,,02,Retraitée (voir les codes des professions antérieures)
+J-B0000,,,Section B Membres des forces armées
+J-B0000,,01,membre des services militaires
+J-B0200,,01,membre des services militaires (forces terrestres)
+J-B0400,,01,membre des services militaires (forces navales)
+J-35210,,02,maîtresse de poste
+J-53120,,02,chef cuisinier
+J-53120,,02,chef cuisinière
+J-71150,,02,dynamiteur (mines et carrières)
+J-71150,,02,dynamiteuse (mines et carrières)
+J-75155,,02,bambrocheur
+J-75155,,02,bambrocheuse
+J-79620,,02,tapissier en ameublement
+J-79620,,02,tapissière en ameublement
+J-84235,,02,mécanicienne-réparatrice d'instruments d'optique
+J-84245,,02,mécanicienne-réparatrice de prothèses orthopédiques
+J-84250,,02,technicien dentaire
+J-84250,,02,technicienne dentaire
+J-84250,,02,mécanicien-réparateur de prothèses dentaires
+J-84250,,02,mécanicienne-réparatrice de prothèses dentaires
+J-84250,,02,mécanicien-dentiste
+J-84250,,02,mécanicienne-dentiste
+J-84935,,02,mécanicien de machines de mines
+J-84935,,02,mécanicienne de machines de mines
+J-86230,,02,opérateur d'amplification du son
+J-86230,,02,opératrice d'amplification du son
+J-87450,,02,charpentier en fer de marine
+J-87450,,02,charpentière en fer de marine
+J-88080,,02,graveur en joaillerie
+J-88080,,02,graveuse en joaillerie
+J-89136,,02,conducteur de presse à verre
+J-89136,,02,conductrice de presse à verre
+J-90125,,02,opérateur de calandre (caoutchouc)
+J-90125,,02,opératrice de calandre (caoutchouc)
+J-95975,,02,ravaleur-nettoyeur de bâtiments
+J-95975,,02,ravaleuse-nettoyeuse de bâtiments
+J-97120,,02,débardeur
+J-97120,,02,débardeuse
+J-97920,,02,conductrice de chariot élévateur
+J-98920,,02,maîtresse de port (cale sèche)
+J-A3010,,02,travailleuses n'ayant déclaré aucune profession
+J-02960,*,02,ingénieur technico-commercial
+J-02960,,02,ingénieure technico-commerciale
+J-05270,,02,pharmacologue
+J-05350,,02,agronome pédologue
+J-06161,,02,pathologiste générale
+J-06165,,02,biochimiste médical
+J-06165,,02,biochimiste médicale
+J-07640,,02,massothérapeute
+J-09030,,02,analyste de marché
+J-16360,,01,cadreur de cinéma
+J-16370,,01,cadreur de télévision
+J-22000,,02,administratrice scolaire
+J-22010,,02,administratrice d'école primaire
+J-22020,,02,administratrice d'école secondaire
+J-22030,,02,administratrice de collège ou d'université
+J-33120,,02,teneur de livres
+J-43220,,02,voyageur de commerce
+J-43220,,02,voyageuse de commerce
+J-53220,,02,maîtresse d'hôtel
+J-54070,,02,habilleur de théâtre et de cinéma
+J-55140,,02,bedeau
+J-55220,,02,responsable du ménage
+J-58140,,02,pompière-sauveteuse d'aérodrome
+J-58940,,02,agent de sécurité
+J-58940,,02,agente de sécurité
+J-59970,,02,agente de bord
+J-61110,,01,"exploitant agricole, en général"
+J-61110,,02,"exploitante agricole, en général"
+J-61110,,02,"fermier, en général"
+J-61110,,02,"fermière, en général"
+J-62110,,02,"aide fermière, en général"
+J-62420,,02,ouvrier de ferme d'élevage de bovins de boucherie
+J-62420,,02,ouvrière de ferme d'élevage de bovins de boucherie
+J-71160,,02,boiseuse de fond
+J-75450,,01,dentellier à la machine
+J-78130,,02,mélangeur de tabac
+J-78130,,02,mélangeuse de tabac
+J-88010,,02,bijoutier-joaillier
+J-88010,,02,bijoutière-joaillière
+J-16390,,02,autres photographes et cadreuses
+J-16360,,02,cadreuse de cinéma
+J-16370,,02,cadreuse de télévision
+J-98120,,02,maîtresse d'équipage
