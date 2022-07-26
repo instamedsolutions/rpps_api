@@ -19,6 +19,7 @@
         "doctrine/doctrine-bundle": "^2",
         "doctrine/doctrine-migrations-bundle": "^3.0",
         "doctrine/orm": "^2.7",
+        "doctrine/persistence": "^2.2",
         "fzaninotto/faker": "^1.9",
         "nelmio/cors-bundle": "^2.1",
         "odolbeau/phone-number-bundle": "^3.1",
