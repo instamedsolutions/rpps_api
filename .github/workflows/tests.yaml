@@ -2,8 +2,6 @@ name: PHPUnit
 
 on:
   pull_request:
-    types:
-      - opened
     branches:
       - main
       - staging
