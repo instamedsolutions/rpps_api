@@ -69,7 +69,7 @@ COPY  ./docker/apache/custom.ini /usr/local/etc/php/conf.d/custom.ini
 
 RUN openssl req -x509 -nodes -days 365 -newkey rsa:2048 -subj "/C=FR/ST=Ile-De-France/L=Paris/O=Instamed/OU=IT Department/CN=localhost" -keyout /etc/ssl/private/apache-selfsigned.key -out /etc/ssl/certs/apache-selfsigned.crt
 
-#RUN composer install
+RUN composer install
 RUN php bin/console assets:install --symlink
 
 CMD ["/usr/sbin/apache2ctl", "-D", "FOREGROUND"]

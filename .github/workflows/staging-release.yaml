@@ -3,13 +3,12 @@ name: Deploy Staging
 env:
   ENVIRONMENT: 'staging'
   REGISTRY: ghcr.io
-  IMAGE_NAME: "instamedsolutions/rpps_api"
+  IMAGE_NAME: ${{ github.repository }}
 
 on:
   push:
     branches:
       - staging
-      - feature/docker
   workflow_dispatch:
 
 concurrency:
