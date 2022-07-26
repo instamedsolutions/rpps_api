@@ -8,14 +8,14 @@ services:
     build:
       context: ./
       dockerfile: ./docker/apache/Dockerfile
-    container_name: api-apache-container
+    container_name: rpps-apache-container
     restart: always
     ports:
-      - 8001:443
+      - "8001:443"
     volumes_from:
       - app-data
     links:
-      - mysql
+      - database
 
   app-data:
     image: alpine:3
@@ -25,12 +25,12 @@ services:
 
     command: "true"
 
-  mysql:
+  database:
     image: mysql:5
-    container_name: api-mysql-container
+    container_name: rpps-database-container
     restart: always
     ports:
-      - 3333:3306
+      - "3333:3306"
     volumes:
       - db-data:/var/lib/mysql
       - ./docker/mysql/:/home/mysql/

@@ -14,6 +14,10 @@ inputs:
   docker_image:
     description: "The name of your image"
     required: true
+  docker_tag:
+    description: "The tag you want to build"
+    required: false
+    default: latest
 
 runs:
   using: 'composite'
@@ -44,7 +48,7 @@ runs:
         context: ./
         push: true
         builder: ${{ steps.buildx.outputs.name }}
-        tags: ${{ inputs.registry_url }}/${{ inputs.docker_image }}:latest
+        tags: ${{ inputs.registry_url }}/${{ inputs.docker_image }}:${{ inputs.docker_tag }}
         file: docker/apache/Dockerfile
-        cache-from: type=registry,ref=${{ inputs.registry_url }}/${{ inputs.docker_image }}:cached
-        cache-to: type=registry,ref=${{ inputs.registry_url }}/${{ inputs.docker_image }}:cached,mode=max
+        cache-from: type=registry,ref=${{ inputs.registry_url }}/${{ inputs.docker_image }}:${{ inputs.docker_tag }}-cached
+        cache-to: type=registry,ref=${{ inputs.registry_url }}/${{ inputs.docker_image }}:${{ inputs.docker_tag }}-cached,mode=max

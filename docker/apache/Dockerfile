@@ -61,6 +61,9 @@ ADD https://github.com/mlocati/docker-php-extension-installer/releases/latest/do
 RUN chmod +x /usr/local/bin/install-php-extensions && sync && \
     install-php-extensions http dom iconv mbstring xml intl
 
+RUN apt-get update \
+    && apt-get install -y default-mysql-client
+
 FROM rpps-base AS builder
 
 COPY --chown=www-data:www-data . /var/www/html/

@@ -33,3 +33,4 @@ jobs:
           registry_username: ${{ github.actor }}
           registry_password: ${{ secrets.GITHUB_TOKEN }}
           docker_image: ${{ env.IMAGE_NAME }}
+          docker_tag: ${{ env.ENVIRONMENT }}

@@ -10,12 +10,15 @@ update-schema: ## Updates the SQL schema
 	docker-compose run --rm apache php bin/console doctrine:schema:update --force
 
 load-fixtures: ## Loads fixtures into the database
-	docker-compose run --rm apache php bin/console doctrine:fixtures:load
+	docker-compose run --rm apache php bin/console doctrine:fixtures:load --no-interaction
 
 sync-metadata-storage: ## Ensures that the metadata storage is at the latest version.
 	docker-compose run --rm apache php bin/console doctrine:migrations:sync-metadata-storage
 
-migrate: ## Runs the migrations
+migrate: ## Sync the migrations
+	docker-compose run --rm apache php bin/console doctrine:migrations:migrate --no-interaction
+
+migrate-sync: ## Runs the migrations
 	docker-compose run --rm apache php bin/console doctrine:migrations:version --add --all
 
 import-allergens: # Import allergets' data
@@ -38,7 +41,9 @@ import-test-data: # Import test data
 
 import-data: import-allergens import-ccam import-diseases import-drugs import-rpps # Import all data but test data
 
-install-app: build composer-install update-schema load-fixtures sync-metadata-storage migrate ## Installs the application without importing the data
+install-app: build composer-install setup-db ## Installs the application without importing the data
+
+setup-db: update-schema load-fixtures sync-metadata-storage migrate-sync ## Installs the application without importing the data
 
 install: install-app import-data ## Installs the application & imports the data
 
