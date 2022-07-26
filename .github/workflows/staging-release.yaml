@@ -8,6 +8,7 @@ on:
   push:
     branches:
       - staging
+      - feature/docker
   workflow_dispatch:
 
 concurrency:
