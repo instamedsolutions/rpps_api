@@ -16,17 +16,12 @@ services:
       - app-data
     links:
       - mysql
-    # command: >
-    #   bash -c "yarn run encore dev --watch"
 
   app-data:
     image: alpine:3
     container_name: api-app-data-container
     volumes:
       - ./:/var/www/html/
-      # if you are on windows, improve performance
-      # - vendor:/var/www/html/vendor/:delegated
-      # - var:/var/www/html/var/:delegated
 
     command: "true"
 
@@ -35,7 +30,7 @@ services:
     container_name: api-mysql-container
     restart: always
     ports:
-      - 3307:3306
+      - 3333:3306
     volumes:
       - db-data:/var/lib/mysql
       - ./docker/mysql/:/home/mysql/
@@ -45,13 +40,3 @@ services:
       MYSQL_USER: ${DATABASE_USER}
       MYSQL_PASSWORD: ${DATABASE_PASSWORD}
       MYSQL_ROOT_PASSWORD: root
-
-  phpmyadmin:
-    image: phpmyadmin/phpmyadmin:5
-    container_name: api-phpmyadmin-container
-    ports:
-      - 8080:80
-    links:
-      - mysql
-    environment:
-      PMA_HOST: mysql
