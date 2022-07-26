@@ -14,10 +14,6 @@ inputs:
   docker_image:
     description: "The name of your image"
     required: true
-  docker_file:
-    description: "The extension of your Dockerfile"
-    required: true
-
 
 runs:
   using: 'composite'
