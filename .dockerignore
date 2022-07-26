@@ -1,0 +1,11 @@
+.circleci
+.github
+.git
+.vscode
+coverage
+node_modules
+backup/*
+var/*
+!var/data/test.sqlite
+!var/cache/*
+!var/log/*
