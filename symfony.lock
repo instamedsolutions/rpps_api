@@ -140,9 +140,6 @@
     "nikic/php-parser": {
         "version": "v4.10.3"
     },
-    "ocramius/proxy-manager": {
-        "version": "2.2.3"
-    },
     "odolbeau/phone-number-bundle": {
         "version": "3.0",
         "recipe": {
@@ -552,11 +549,5 @@
     },
     "willdurand/negotiation": {
         "version": "3.0.0"
-    },
-    "zendframework/zend-code": {
-        "version": "3.4.1"
-    },
-    "zendframework/zend-eventmanager": {
-        "version": "3.2.1"
     }
 }

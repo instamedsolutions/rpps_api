@@ -1,4 +1,6 @@
-FROM php:7.3-apache
+ARG PHP_VERSION=7.3
+
+FROM php:${PHP_VERSION}-apache as rpps-base
 
 ENV DEBIAN_FRONTEND noninteractive
 
@@ -45,7 +47,6 @@ ADD https://github.com/mlocati/docker-php-extension-installer/releases/latest/do
 RUN chmod +x /usr/local/bin/install-php-extensions && sync && \
     install-php-extensions http
 
-
 RUN a2enmod rewrite ssl headers
 
 RUN php -r "copy('https://getcomposer.org/installer', '/tmp/composer-setup.php');" && php /tmp/composer-setup.php --no-ansi --install-dir=/usr/local/bin --filename=composer && rm -rf /tmp/composer-setup.php
@@ -60,13 +61,15 @@ ADD https://github.com/mlocati/docker-php-extension-installer/releases/latest/do
 RUN chmod +x /usr/local/bin/install-php-extensions && sync && \
     install-php-extensions http dom iconv mbstring xml intl
 
+FROM rpps-base AS builder
+
 COPY --chown=www-data:www-data . /var/www/html/
 COPY ./docker/apache/000-default.conf /etc/apache2/sites-available/000-default.conf
 COPY  ./docker/apache/custom.ini /usr/local/etc/php/conf.d/custom.ini
 
 RUN openssl req -x509 -nodes -days 365 -newkey rsa:2048 -subj "/C=FR/ST=Ile-De-France/L=Paris/O=Instamed/OU=IT Department/CN=localhost" -keyout /etc/ssl/private/apache-selfsigned.key -out /etc/ssl/certs/apache-selfsigned.crt
 
-RUN composer install
+#RUN composer install
 RUN php bin/console assets:install --symlink
 
 CMD ["/usr/sbin/apache2ctl", "-D", "FOREGROUND"]
