@@ -1,7 +1,7 @@
 name: Build Base Image
 
 concurrency:
-  group: ci-tests-${{ github.ref }}-1
+  group: build-base-${{ github.ref }}-1
   cancel-in-progress: true
 
 env:
