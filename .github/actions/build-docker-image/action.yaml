@@ -14,6 +14,9 @@ inputs:
   docker_image:
     description: "The name of your image"
     required: true
+  docker_file:
+    description: "The extension of your Dockerfile"
+    required: true
   docker_tag:
     description: "The tag you want to build"
     required: false
@@ -49,6 +52,6 @@ runs:
         push: true
         builder: ${{ steps.buildx.outputs.name }}
         tags: ${{ inputs.registry_url }}/${{ inputs.docker_image }}:${{ inputs.docker_tag }}
-        file: docker/apache/Dockerfile
+        file: docker/apache/Dockerfile.${{ inputs.docker_file }}
         cache-from: type=registry,ref=${{ inputs.registry_url }}/${{ inputs.docker_image }}:${{ inputs.docker_tag }}-cached
         cache-to: type=registry,ref=${{ inputs.registry_url }}/${{ inputs.docker_image }}:${{ inputs.docker_tag }}-cached,mode=max
