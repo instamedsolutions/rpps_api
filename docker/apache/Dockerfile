@@ -54,6 +54,8 @@ RUN php /usr/local/bin/composer config --global --auth github-oauth.github.com 7
 
 RUN rm -vf /var/lib/apt/lists/* && apt-get update && apt-get install -y git
 
+RUN apt-get install -y vim
+
 WORKDIR /var/www/html
 
 ADD https://github.com/mlocati/docker-php-extension-installer/releases/latest/download/install-php-extensions /usr/local/bin/
