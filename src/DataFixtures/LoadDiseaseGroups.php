@@ -19,10 +19,9 @@ class LoadDiseaseGroups extends Fixture implements FixtureInterface
 {
 
 
-    const GROUP = 'group';
+    final const GROUP = 'group';
 
-    const CATEGORY = 'category';
-
+    final const CATEGORY = 'category';
 
 
     /**
@@ -31,9 +30,6 @@ class LoadDiseaseGroups extends Fixture implements FixtureInterface
     protected $em;
 
 
-    /**
-     * @param ObjectManager $manager
-     */
     public function load(ObjectManager $manager)
     {
         $this->em = $manager;
@@ -53,8 +49,8 @@ class LoadDiseaseGroups extends Fixture implements FixtureInterface
 
         $this->em->flush();
 
-        $this->addReference(self::CATEGORY,$group);
-        $this->addReference(self::GROUP,$group2);
+        $this->addReference(self::CATEGORY, $group);
+        $this->addReference(self::GROUP, $group2);
     }
 
 }

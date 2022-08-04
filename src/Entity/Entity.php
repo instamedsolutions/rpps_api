@@ -2,34 +2,18 @@
 
 namespace App\Entity;
 
-use DateTime;
+use DateTimeInterface;
 
-/**
- *
- */
+
 interface Entity
 {
 
-    /**
-     * @return string
-     */
-    public function getId() : string;
+    public function getId(): string;
 
+    public function getCreatedDate(): ?DateTimeInterface;
 
-    /**
-     * @return DateTime|null
-     */
-    public function getCreatedDate(): ?DateTime;
+    public function setCreatedDate(?DateTimeInterface $createdDate): void;
 
-
-    /**
-     * @param DateTime|null $createdDate
-     */
-    public function setCreatedDate(?DateTime $createdDate): void;
-
-    /**
-     * @return string
-     */
-    public function __toString() : string;
+    public function __toString(): string;
 
 }

@@ -2,6 +2,7 @@
 
 namespace App\Repository;
 
+use Doctrine\ORM\NonUniqueResultException;
 use App\Entity\DocumentType;
 use App\Entity\RPPS;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
@@ -18,7 +19,6 @@ class RPPSRepository extends ServiceEntityRepository
 
     /**
      * RPPSRepository constructor.
-     * @param ManagerRegistry $registry
      */
     public function __construct(ManagerRegistry $registry)
     {
@@ -30,25 +30,21 @@ class RPPSRepository extends ServiceEntityRepository
      * @param null $lockMode
      * @param null $lockVersion
      * @return RPPS|null
-     * @throws \Doctrine\ORM\NonUniqueResultException
+     * @throws NonUniqueResultException
      */
-    public function find($id, $lockMode = null, $lockVersion = null)
+    public function find($id, $lockMode = null, $lockVersion = null): ?RPPS
     {
-
-
-        if(null === $id || 0 === $id) {
+        if (null === $id || 0 === $id) {
             return null;
         }
 
         return $this->createQueryBuilder('r')
             ->where('r.id = :id')
             ->orWhere('r.idRpps = :id')
-            ->setParameter('id',$id)
+            ->setParameter('id', $id)
             ->getQuery()
             ->getOneOrNullResult();
     }
-
-
 
 
 }

@@ -4,7 +4,7 @@
     "type": "project",
     "license": "proprietary",
     "require": {
-        "php": ">=7.2.5",
+        "php": ">=8.1",
         "ext-ctype": "*",
         "ext-curl": "*",
         "ext-iconv": "*",
@@ -12,15 +12,14 @@
         "ext-json": "*",
         "ext-zip": "*",
         "api-platform/core": "^2.5",
-        "composer/package-versions-deprecated": "1.11.99.1",
         "doctrine/annotations": "^1.0",
         "doctrine/cache": "^2.2",
         "doctrine/dbal": "2.*",
         "doctrine/doctrine-bundle": "^2",
         "doctrine/doctrine-migrations-bundle": "^3.0",
-        "doctrine/orm": "^2.7",
+        "doctrine/orm": "^2.9",
         "doctrine/persistence": "^2.2",
-        "fzaninotto/faker": "^1.9",
+        "fakerphp/faker": "^1.20",
         "nelmio/cors-bundle": "^2.1",
         "odolbeau/phone-number-bundle": "^3.1",
         "phpdocumentor/reflection-docblock": "^5.2",
@@ -48,6 +47,7 @@
         "liip/functional-test-bundle": "^4.5",
         "liip/test-fixtures-bundle": "^1.0.0",
         "phpunit/phpunit": "^9.5",
+        "rector/rector": "^0.13.10",
         "symfony/browser-kit": "5.4.*",
         "symfony/css-selector": "5.4.*",
         "symfony/debug-bundle": "5.4.*",
@@ -97,9 +97,6 @@
         "post-update-cmd": [
             "@auto-scripts"
         ]
-    },
-    "conflict": {
-        "symfony/symfony": "*"
     },
     "extra": {
         "symfony": {

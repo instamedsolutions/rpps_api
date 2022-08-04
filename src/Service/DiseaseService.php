@@ -2,6 +2,8 @@
 
 namespace App\Service;
 
+use Doctrine\ORM\NonUniqueResultException;
+use Exception;
 use App\Entity\Disease;
 use App\Entity\DiseaseGroup;
 use App\Entity\Drug;
@@ -15,60 +17,54 @@ use Symfony\Component\Console\Output\OutputInterface;
 class DiseaseService extends ImporterService
 {
 
-    protected $diseases = [];
+    protected array $diseases = [];
 
-    protected $groups = [];
+    protected array $groups = [];
 
 
-    const CODES = "codes";
+    final const CODES = "codes";
 
-    const CHAPITRES = "chapitres";
+    final const CHAPITRES = "chapitres";
 
-    const GROUPES = "groupes";
+    final const GROUPES = "groupes";
 
-    protected $cim10Url;
-
-    public function __construct(string $cim10Url,FileProcessor $fileProcessor,EntityManagerInterface $em)
-    {
-        parent::__construct(DiseaseGroup::class,$fileProcessor,$em);
-
-        $this->cim10 = $cim10Url;
+    public function __construct(
+        protected string $cim10Url,
+        FileProcessor $fileProcessor,
+        EntityManagerInterface $em
+    ) {
+        parent::__construct(DiseaseGroup::class, $fileProcessor, $em);
         $this->setClearalbe(false);
-
     }
 
 
     /**
-     * @param OutputInterface $output
-     * @param string $type
-     * @return bool
-     * @throws \Doctrine\ORM\NonUniqueResultException
+     * @throws NonUniqueResultException
      */
-    public function importFiles(OutputInterface $output,string $type) : bool
+    public function importFiles(OutputInterface $output, string $type): bool
     {
         /** Handling File File */
-        $files = $this->fileProcessor->getFiles($this->$type,$type,true);
+        $files = $this->fileProcessor->getFiles($this->$type, $type, true);
 
         $types = [];
 
         $process = true;
         foreach ($files as $file) {
-
             $type = $this->getTypeFromFileName($file);
 
 
-            if($type) {
+            if ($type) {
                 $types[$type] = $file;
             }
         }
 
 
-        $options = ["delimiter" => ";","utf8" => true,"headers" => false];
+        $options = ["delimiter" => ";", "utf8" => true, "headers" => false];
 
         // Import in a specific order
-        $first = $this->processFile($output,$types[self::CHAPITRES],self::CHAPITRES,$options);
-        $second = $this->processFile($output,$types[self::GROUPES],self::GROUPES,$options);
-        $third =  $this->processFile($output,$types[self::CODES],self::CODES,$options);
+        $first = $this->processFile($output, $types[self::CHAPITRES], self::CHAPITRES, $options);
+        $second = $this->processFile($output, $types[self::GROUPES], self::GROUPES, $options);
+        $third = $this->processFile($output, $types[self::CODES], self::CODES, $options);
 
         foreach ($files as $file) {
             unlink($file);
@@ -78,40 +74,22 @@ class DiseaseService extends ImporterService
     }
 
 
-
     /**
-     * @param array $data
-     * @param string $type
-     * @return Thing|null
-     * @throws \Doctrine\ORM\NonUniqueResultException
+     * @throws NonUniqueResultException
      */
-    protected function processData(array $data,string $type) : ?Thing
+    protected function processData(array $data, string $type): ?Thing
     {
-
-        switch ($type)
-        {
-            case self::CHAPITRES :
-                return $this->parseChapters($data);
-            case self::GROUPES :
-                return $this->parseGroups($data);
-            case self::CODES :
-                return $this->parseCodes($data);
-
-        }
-
-        throw new \Exception("Type $type is not supported yet");
-
+        return match ($type) {
+            self::CHAPITRES => $this->parseChapters($data),
+            self::GROUPES => $this->parseGroups($data),
+            self::CODES => $this->parseCodes($data),
+            default => throw new Exception("Type $type is not supported yet"),
+        };
     }
 
 
-
-    /**
-     * @param array $data
-     * @return DiseaseGroup|null
-     */
     protected function parseChapters(array $data): ?DiseaseGroup
     {
-
         /** @var DiseaseGroup $group */
         $group = $this->repository->find($data[0]);
 
@@ -125,17 +103,11 @@ class DiseaseService extends ImporterService
         $this->groups[$group->getCim()] = $group;
 
         return $group;
-
     }
 
 
-    /**
-     * @param array $data
-     * @return DiseaseGroup|null
-     */
     protected function parseGroups(array $data): ?DiseaseGroup
     {
-
         $cim10 = "{$data[0]}-{$data[1]}";
 
         /** @var DiseaseGroup $group */
@@ -152,12 +124,10 @@ class DiseaseService extends ImporterService
         $this->groups[$data[0]] = $group;
 
         return $group;
-
     }
 
 
     /**
-     * @param array $data
      * @return DiseaseGroup|null
      */
     protected function parseCodes(array $data): ?Disease
@@ -182,49 +152,38 @@ class DiseaseService extends ImporterService
         $disease->setGroup($this->groups[$data[4]]);
         $disease->setCategory($this->groups[self::transformToDoubleDigit($data[3])]);
 
-        $parentId = explode(".",$data[6])[0];
-        if($parentId !== $disease->getCim()) {
+        $parentId = explode(".", (string)$data[6])[0];
+        if ($parentId !== $disease->getCim()) {
             $disease->setParent($this->diseases[$parentId]);
         }
 
         $this->diseases[$disease->getCim()] = $disease;
 
         return $disease;
-
     }
 
 
-
-    /**
-     * @param string $fileName
-     * @return string|null
-     */
-    protected function getTypeFromFileName(string $fileName) : ?string
+    protected function getTypeFromFileName(string $fileName): ?string
     {
-        if(strpos($fileName,self::CHAPITRES)) {
+        if (strpos($fileName, self::CHAPITRES)) {
             return self::CHAPITRES;
         }
 
-        if(strpos($fileName,self::CODES)) {
+        if (strpos($fileName, self::CODES)) {
             return self::CODES;
         }
 
-        if(strpos($fileName,self::GROUPES)) {
+        if (strpos($fileName, self::GROUPES)) {
             return self::GROUPES;
         }
 
         return null;
-
     }
 
 
-    /**
-     * @param int $int
-     * @return string
-     */
-    public static function transformToDoubleDigit(int $int) : string
+    public static function transformToDoubleDigit(int $int): string
     {
-        if($int < 10) {
+        if ($int < 10) {
             return "0{$int}";
         }
 

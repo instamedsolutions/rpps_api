@@ -22,14 +22,13 @@ class FileProcessorTest extends WebTestCase
         $container = self::$container;
 
         $this->em = $container->get('doctrine.orm.entity_manager');
-
     }
 
 
     public function testCountFileLines()
     {
-        $fileName = __DIR__ . '/docs/line-count.csv' ;
-        $fileProcessor = new FileProcessor(__DIR__,$this->em);
+        $fileName = __DIR__ . '/docs/line-count.csv';
+        $fileProcessor = new FileProcessor(__DIR__, $this->em);
         $lineCount = $fileProcessor->getLinesCount($fileName);
 
         $this->assertEquals(5, $lineCount);

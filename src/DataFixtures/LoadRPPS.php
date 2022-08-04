@@ -17,9 +17,6 @@ class LoadRPPS extends Fixture
     protected $em;
 
 
-    /**
-     * @param ObjectManager $manager
-     */
     public function load(ObjectManager $manager)
     {
         $this->em = $manager;
@@ -29,14 +26,14 @@ class LoadRPPS extends Fixture
         $faker->seed(666);
 
         foreach ($this->getUsers() as $i => $user) {
-            $j = $i+1;
+            $j = $i + 1;
 
             $isDemo = $j > 6;
 
             $rpps = new RPPS();
             $rpps->setFirstName($user);
             $rpps->setLastName("Test");
-            if(in_array($i,array(0,3,4))) {
+            if (in_array($i, [0, 3, 4])) {
                 $rpps->setTitle("Docteur");
             }
 
@@ -44,26 +41,26 @@ class LoadRPPS extends Fixture
 
             $rpps->setIdRpps("$first{$j}{$j}{$j}{$j}{$j}{$j}{$j}{$j}{$j}{$j}{$j}");
 
-            if(in_array($i,array(0,1,5))) {
+            if (in_array($i, [0, 1, 5])) {
                 $rpps->setCpsNumber("{$j}{$j}{$j}{$j}{$j}{$j}{$j}{$j}{$j}{$j}");
             }
 
-            if(in_array($i,array(0,2,3))) {
+            if (in_array($i, [0, 2, 3])) {
                 $rpps->setFinessNumber("{$j}{$j}{$j}{$j}{$j}{$j}{$j}{$j}{$j}");
             }
-            if(in_array($i,array(0,4,5))) {
-                $rpps->setEmail(strtolower("$user@instamed.fr"));
+            if (in_array($i, [0, 4, 5])) {
+                $rpps->setEmail(strtolower((string)"$user@instamed.fr"));
             }
 
-            if(in_array($i,array(0,1,4))) {
-                $rpps->setAddress($faker->streetAddress);
-                $rpps->setCity($faker->city);
-                $rpps->setZipcode($faker->postcode);
+            if (in_array($i, [0, 1, 4])) {
+                $rpps->setAddress($faker->streetAddress());
+                $rpps->setCity($faker->city());
+                $rpps->setZipcode($faker->postcode());
             }
             $rpps->setSpecialty($this->getSpecialties()[$i]);
 
-            if(in_array($i,array(0,3,5))) {
-                $rpps->setPhoneNumber($faker->phoneNumber);
+            if (in_array($i, [0, 3, 5])) {
+                $rpps->setPhoneNumber($faker->phoneNumber());
             }
 
             $this->em->persist($rpps);
@@ -77,18 +74,27 @@ class LoadRPPS extends Fixture
     /**
      * @return string[]
      */
-    protected function getUsers() : array
+    protected function getUsers(): array
     {
-        return ["Bastien","Jérémie","Luv","Julien","Lauriane","Maxime","Johann","Emilie"];
+        return ["Bastien", "Jérémie", "Luv", "Julien", "Lauriane", "Maxime", "Johann", "Emilie"];
     }
 
 
     /**
      * @return string[]
      */
-    protected function getSpecialties() : array
+    protected function getSpecialties(): array
     {
-        return ['Qualifié en Médecine Générale','Sage-Femme','Masseur-Kinésithérapeute',null,'Pédiatrie','Pharmacien',null,'Biologie médicale'];
+        return [
+            'Qualifié en Médecine Générale',
+            'Sage-Femme',
+            'Masseur-Kinésithérapeute',
+            null,
+            'Pédiatrie',
+            'Pharmacien',
+            null,
+            'Biologie médicale'
+        ];
     }
 
 

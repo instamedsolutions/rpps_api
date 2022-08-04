@@ -96,7 +96,6 @@ abstract class ApiTestCase extends BaseTestCase
         $executor->execute($loader->getFixtures(), true);
 
         $this->client = $client;
-
     }
 
 
@@ -253,13 +252,11 @@ abstract class ApiTestCase extends BaseTestCase
      */
     protected function assertCollectionKeyContains($collection, string $key, array $values)
     {
-
         $data = $this->getCollectionValues($collection, $key);
 
         foreach ($values as $test) {
             $this->assertContains($test, $data);
         }
-
     }
 
 
@@ -270,13 +267,11 @@ abstract class ApiTestCase extends BaseTestCase
      */
     protected function assertCollectionKeyNotContains($collection, string $key, array $values)
     {
-
         $data = $this->getCollectionValues($collection, $key);
 
         foreach ($values as $test) {
             $this->assertNotContains($test, $data);
         }
-
     }
 
 
@@ -327,7 +322,6 @@ abstract class ApiTestCase extends BaseTestCase
             return;
         }
         die();
-
     }
 
 

@@ -2,6 +2,7 @@
 
 namespace App\Repository;
 
+use Doctrine\ORM\NonUniqueResultException;
 use App\Entity\Drug;
 use App\Entity\RPPS;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
@@ -18,7 +19,6 @@ class DrugRepository extends ServiceEntityRepository
 
     /**
      * RPPSRepository constructor.
-     * @param ManagerRegistry $registry
      */
     public function __construct(ManagerRegistry $registry)
     {
@@ -30,24 +30,21 @@ class DrugRepository extends ServiceEntityRepository
      * @param null $lockMode
      * @param null $lockVersion
      * @return Drug|null
-     * @throws \Doctrine\ORM\NonUniqueResultException
+     * @throws NonUniqueResultException
      */
-    public function find($id, $lockMode = null, $lockVersion = null)
+    public function find($id, $lockMode = null, $lockVersion = null): ?Drug
     {
-
-        if(null === $id || 0 === $id) {
+        if (null === $id || 0 === $id) {
             return null;
         }
 
         return $this->createQueryBuilder('d')
             ->where('d.id = :id')
             ->orWhere('d.cisId = :id')
-            ->setParameter('id',$id)
+            ->setParameter('id', $id)
             ->getQuery()
             ->getOneOrNullResult();
     }
-
-
 
 
 }

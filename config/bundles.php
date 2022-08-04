@@ -12,7 +12,7 @@ return [
     Doctrine\Bundle\FixturesBundle\DoctrineFixturesBundle::class => ['dev' => true, 'test' => true],
     Liip\TestFixturesBundle\LiipTestFixturesBundle::class => ['dev' => true, 'test' => true],
     Misd\PhoneNumberBundle\MisdPhoneNumberBundle::class => ['all' => true],
-    Symfony\Bundle\DebugBundle\DebugBundle::class => ['dev' => true,'staging' => true, 'test' => true],
-    Symfony\Bundle\WebProfilerBundle\WebProfilerBundle::class => ['dev' => true,'staging' => true, 'test' => true],
+    Symfony\Bundle\DebugBundle\DebugBundle::class => ['dev' => true, 'staging' => true, 'test' => true],
+    Symfony\Bundle\WebProfilerBundle\WebProfilerBundle::class => ['dev' => true, 'staging' => true, 'test' => true],
     Liip\FunctionalTestBundle\LiipFunctionalTestBundle::class => ['dev' => true, 'test' => true],
 ];

@@ -2,6 +2,7 @@
 
 namespace App\Repository;
 
+use Doctrine\ORM\NonUniqueResultException;
 use App\Entity\Allergen;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
@@ -18,7 +19,6 @@ class AllergenRepository extends ServiceEntityRepository
 
     /**
      * RPPSRepository constructor.
-     * @param ManagerRegistry $registry
      */
     public function __construct(ManagerRegistry $registry)
     {
@@ -30,24 +30,21 @@ class AllergenRepository extends ServiceEntityRepository
      * @param null $lockMode
      * @param null $lockVersion
      * @return Allergen|null
-     * @throws \Doctrine\ORM\NonUniqueResultException
+     * @throws NonUniqueResultException
      */
     public function find($id, $lockMode = null, $lockVersion = null)
     {
-
-        if(null === $id || 0 === $id) {
+        if (null === $id || 0 === $id) {
             return null;
         }
 
         return $this->createQueryBuilder('d')
             ->where('d.id = :id')
             ->orWhere('d.code = :id')
-            ->setParameter('id',$id)
+            ->setParameter('id', $id)
             ->getQuery()
             ->getOneOrNullResult();
     }
-
-
 
 
 }
