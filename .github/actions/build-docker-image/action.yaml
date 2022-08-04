@@ -4,7 +4,8 @@ description: Build the docker image passed as a parameter
 inputs:
   registry_url:
     description: "The git registry your image is stored on"
-    required: true
+    required: false
+    default: ghcr.io
   registry_username:
     description: "The username of your registry user"
     required: true
