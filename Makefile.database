@@ -1,0 +1,17 @@
+
+setup-db: update-schema load-fixtures sync-metadata-storage migrate-sync ## Installs the application without importing the data
+
+update-schema: ## Updates the SQL schema
+	docker-compose run --rm apache php bin/console doctrine:schema:update --force
+
+load-fixtures: ## Loads fixtures into the database
+	docker-compose run --rm apache php bin/console doctrine:fixtures:load --no-interaction
+
+sync-metadata-storage: ## Ensures that the metadata storage is at the latest version.
+	docker-compose run --rm apache php bin/console doctrine:migrations:sync-metadata-storage
+
+migrate: ## Sync the migrations
+	docker-compose run --rm apache php bin/console doctrine:migrations:migrate --no-interaction
+
+migrate-sync: ## Runs the migrations
+	docker-compose run --rm apache php bin/console doctrine:migrations:version --add --all --no-interaction

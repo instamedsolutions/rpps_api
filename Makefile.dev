@@ -1,0 +1,14 @@
+## === Development === commands - meant to be used to run the project locally while developping on it
+
+setup-dev: run composer-install setup-db ## Installs the application without importing the data
+
+install: install-app import-data ## Installs the application & imports the data
+
+composer-install: ## Runs composer install in the container to install backend dependencies
+	docker-compose run --rm apache composer install
+
+routes-dev: ## Lists all routes of the application
+	docker-compose run --rm apache php bin/console debug:router
+
+shell: ## Gets a shell in the apache container
+	docker-compose run --rm apache bash
