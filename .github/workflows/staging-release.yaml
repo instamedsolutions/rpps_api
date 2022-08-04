@@ -2,8 +2,7 @@ name: Deploy Staging
 
 env:
   ENVIRONMENT: 'staging'
-  REGISTRY: ghcr.io
-  IMAGE_NAME: ${{ github.repository.lowercase }}
+  IMAGE_NAME: ${{ github.repository }}
 
 on:
   push:
@@ -12,15 +11,16 @@ on:
   workflow_dispatch:
 
 concurrency:
-  group: ci-tests-${{ github.ref }}-1
+  group: staging-release-${{ github.ref }}-1
   cancel-in-progress: true
 
 
 jobs:
-  docker-build:
+  docker-build-base:
+    name: Build Base Image
     runs-on: ubuntu-latest
     environment:
-      name: test
+      name: staging
     steps:
       - name: Checkout
         uses: actions/checkout@v2
@@ -28,7 +28,27 @@ jobs:
       - name: Build staging image
         uses: ./.github/actions/build-docker-image
         with:
-          registry_url: ${{ env.REGISTRY }}
+          registry_username: ${{ github.actor }}
+          registry_password: ${{ secrets.GITHUB_TOKEN }}
+          docker_image: ${{ env.IMAGE_NAME }}-base
+          docker_file: "base"
+          docker_tag: ${{ env.ENVIRONMENT }}
+
+  docker-build-staging:
+    name: Build Staging Image
+    runs-on: ubuntu-latest
+    needs: docker-build-base
+    environment:
+      name: staging
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Build staging image
+        uses: ./.github/actions/build-docker-image
+        with:
           registry_username: ${{ github.actor }}
           registry_password: ${{ secrets.GITHUB_TOKEN }}
           docker_image: ${{ env.IMAGE_NAME }}
+          docker_file: ${{ env.ENVIRONMENT }}
+          docker_tag: ${{ env.ENVIRONMENT }}

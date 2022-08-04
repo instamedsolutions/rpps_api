@@ -4,7 +4,8 @@ description: Build the docker image passed as a parameter
 inputs:
   registry_url:
     description: "The git registry your image is stored on"
-    required: true
+    required: false
+    default: ghcr.io
   registry_username:
     description: "The username of your registry user"
     required: true
@@ -17,7 +18,10 @@ inputs:
   docker_file:
     description: "The extension of your Dockerfile"
     required: true
-
+  docker_tag:
+    description: "The tag you want to build"
+    required: false
+    default: latest
 
 runs:
   using: 'composite'
@@ -48,7 +52,7 @@ runs:
         context: ./
         push: true
         builder: ${{ steps.buildx.outputs.name }}
-        tags: ${{ inputs.registry_url }}/${{ inputs.docker_image }}:latest
-        file: docker/apache/Dockerfile
-        cache-from: type=registry,ref=${{ inputs.registry_url }}/${{ inputs.docker_image }}:cached
-        cache-to: type=registry,ref=${{ inputs.registry_url }}/${{ inputs.docker_image }}:cached,mode=max
+        tags: ${{ inputs.registry_url }}/${{ inputs.docker_image }}:${{ inputs.docker_tag }}
+        file: docker/apache/Dockerfile.${{ inputs.docker_file }}
+        cache-from: type=registry,ref=${{ inputs.registry_url }}/${{ inputs.docker_image }}:${{ inputs.docker_tag }}-cached
+        cache-to: type=registry,ref=${{ inputs.registry_url }}/${{ inputs.docker_image }}:${{ inputs.docker_tag }}-cached,mode=max

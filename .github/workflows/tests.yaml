@@ -1,10 +1,17 @@
 name: PHPUnit
 
+env:
+  PHP_VERSION: 7.3
+
 on:
   pull_request:
     branches:
       - main
       - staging
+
+concurrency:
+  group: phpunit-tests-${{ github.ref }}-1
+  cancel-in-progress: true
 
 jobs:
   build-test:
@@ -23,7 +30,7 @@ jobs:
         uses: php-actions/composer@v6
         with:
           args: --ignore-platform-reqs
-          php_version: 7.3
+          php_version: ${{ env.PHP_VERSION }}
 
       - name: Build test db
         uses: ./.github/actions/create-test-db
@@ -32,8 +39,7 @@ jobs:
         name: phpunit
         with:
           php_extensions: xdebug mbstring xml iconv intl
-          php_version: 7.3
+          php_version: ${{ env.PHP_VERSION }}
           args: --coverage-text --testdox
         env:
           XDEBUG_MODE: coverage
-          TEST_NAME: Scarlett
