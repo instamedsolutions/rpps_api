@@ -1,0 +1,36 @@
+name: Deploy to AWS
+description: Deploys the application to AWS
+
+inputs:
+  aws_role_arn:
+    description: "The ARN of the AWS Role to use"
+    required: true
+  aws_cluster_name:
+    description: "The name of the AWS Cluster to deploy to"
+    required: true
+  aws_api_service_name:
+    description: "The name of the Main API service"
+    required: true
+  aws_workers_service_name:
+    description: "The name of the workers service"
+    required: true
+  aws_scheduled_service_name:
+    description: "The name of the Scheduled workers service"
+    required: true
+
+runs:
+  using: 'composite'
+  steps:
+    - name: Configure AWS credentials
+      uses: aws-actions/configure-aws-credentials@v1
+      with:
+        role-to-assume: ${{ inputs.aws_role_arn }}
+        aws-region: eu-west-3
+
+    - name: Trigger deployment
+      shell: bash
+      run: |
+        aws ecs update-service --cluster ${{ inputs.aws_cluster_name }} --service ${{ inputs.aws_api_service_name }} --force-new-deployment
+        aws ecs update-service --cluster ${{ inputs.aws_cluster_name }} --service ${{ inputs.aws_workers_service_name }} --force-new-deployment
+        aws ecs update-service --cluster ${{ inputs.aws_cluster_name }} --service ${{ inputs.aws_scheduled_service_name }} --force-new-deployment
+    
