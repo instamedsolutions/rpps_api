@@ -66,8 +66,8 @@ runs:
         builder: ${{ steps.buildx.outputs.name }}
         tags: ${{ inputs.registry_url }}/${{ inputs.docker_image }}:${{ inputs.docker_tag }}
         file: docker/apache/Dockerfile.${{ inputs.docker_file }}
-        #cache-from: type=registry,ref=${{ inputs.registry_url }}/${{ inputs.docker_image }}:${{ inputs.docker_tag }}-cached
-        #cache-to: type=registry,ref=${{ inputs.registry_url }}/${{ inputs.docker_image }}:${{ inputs.docker_tag }}-cached,mode=max
+        cache-from: type=registry,ref=${{ inputs.registry_url }}/${{ inputs.docker_image }}:${{ inputs.docker_tag }}-cached
+        cache-to: type=registry,ref=${{ inputs.registry_url }}/${{ inputs.docker_image }}:${{ inputs.docker_tag }}-cached,mode=max
         build-args: |
           DOCKER_ENV=${{ inputs.docker_env }}
           BASE_IMAGE=${{ inputs.base_image_tag }}
