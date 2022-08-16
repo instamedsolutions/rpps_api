@@ -26,7 +26,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
 
-      - name: Build staging image
+      - name: Build base image
         uses: ./.github/actions/build-docker-image
         with:
           registry_username: ${{ github.actor }}
@@ -51,8 +51,10 @@ jobs:
           registry_username: ${{ github.actor }}
           registry_password: ${{ secrets.GITHUB_TOKEN }}
           docker_image: ${{ env.IMAGE_NAME }}
-          docker_file: ${{ env.ENVIRONMENT }}
+          docker_file: 'deployed'
+          docker_env: ${{ env.ENVIRONMENT }}
           docker_tag: ${{ env.ENVIRONMENT }}
+          base_image_tag: ${{ env.ENVIRONMENT }}
 
   ecs-deploy:
     name: Trigger deployment on ECS
