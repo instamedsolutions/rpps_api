@@ -55,6 +55,7 @@ jobs:
           docker_env: ${{ env.ENVIRONMENT }}
           docker_tag: ${{ env.ENVIRONMENT }}
           base_image_tag: ${{ env.ENVIRONMENT }}
+          github_token: ${{ secrets.GITHUB_TOKEN }}
 
   ecs-deploy:
     name: Trigger deployment on ECS

@@ -58,6 +58,8 @@ jobs:
           docker_env: ${{ env.ENVIRONMENT }}
           docker_tag: ${{ env.ENVIRONMENT }}
           base_image_tag: 'latest'
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+
 
   docker-build-tag:
     name: Build tag Image
@@ -80,6 +82,8 @@ jobs:
           docker_env: ${{ env.ENVIRONMENT }}
           base_image_tag: 'latest'
           docker_tag: ${{github.ref_name}}
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+
 
   ecs-deploy:
     name: Trigger deployment on ECS
