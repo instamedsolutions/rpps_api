@@ -4,7 +4,9 @@ namespace App\Command;
 
 use App\DataFixtures\LoadRPPS;
 use App\Entity\RPPS;
+use App\Service\RPPSService;
 use Doctrine\Common\DataFixtures\Executor\ORMExecutor;
+use Doctrine\DBAL\Connection;
 use Doctrine\ORM\EntityManagerInterface;
 use Faker\Factory;
 use Symfony\Bridge\Doctrine\DataFixtures\ContainerAwareLoader;
@@ -25,11 +27,10 @@ class CreateTestData extends Command
     protected static $defaultName = 'app:test:create';
 
 
-    /**
-     * CreateTestData constructor.
-     */
-    public function __construct(protected EntityManagerInterface $em, protected KernelInterface $kernel)
-    {
+    public function __construct(
+        private readonly RPPSService $service,
+        private readonly EntityManagerInterface $em,
+    ) {
         parent::__construct(self::$defaultName);
     }
 
@@ -82,7 +83,7 @@ class CreateTestData extends Command
             $rpps->setFirstName($faker->firstName);
             $rpps->setLastName($faker->lastName . " Demo");
             $rpps->setEmail(
-                strtolower(str_replace(" ", "-", (string)"{$rpps->getFirstName()}.{$rpps->getLastName()}@instamed.fr"))
+                strtolower(str_replace(" ", "-", "{$rpps->getFirstName()}.{$rpps->getLastName()}@instamed.fr"))
             );
             $rpps->setTitle(random_int(0, 10) > 5 ? "Docteur" : null);
             $rpps->setCpsNumber(random_int(0, 10) > 5 ? "9" . $faker->numberBetween(100_000_000, 999_999_999) : null);
@@ -111,35 +112,10 @@ class CreateTestData extends Command
     }
 
 
-    protected function legacyLoad($output): int
+    protected function legacyLoad(OutputInterface $output): int
     {
-        $data = $this->em->getRepository(RPPS::class)->find("111111111111");
-
-        if ($data instanceof RPPS) {
-            $output->writeln("Existing data, deletion of the data in progress");
-
-            for ($j = 1; $j <= 6; $j++) {
-                $id = "1{$j}{$j}{$j}{$j}{$j}{$j}{$j}{$j}{$j}{$j}{$j}";
-
-                $rpps = $this->em->getRepository(RPPS::class)->find($id);
-
-                if ($rpps instanceof RPPS) {
-                    $this->em->remove($rpps);
-                }
-            }
-
-            $this->em->flush();
-        }
-
-        $loader = new ContainerAwareLoader($this->kernel->getContainer());
-
-        $fixture = new LoadRPPS();
-        $loader->addFixture($fixture);
-
-        $executor = new ORMExecutor($this->em);
-        $executor->execute($loader->getFixtures(), true);
-
-        $output->writeln("Les données ont bien été chargées");
+        $this->service->setOutput($output);
+        $this->service->loadTestData();
 
         return Command::SUCCESS;
     }

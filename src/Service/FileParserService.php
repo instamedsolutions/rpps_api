@@ -23,10 +23,22 @@ abstract class FileParserService
 
     public function __construct(
         protected string $entity,
-        protected FileProcessor $fileProcessor,
-        protected EntityManagerInterface $em
+        protected readonly FileProcessor $fileProcessor,
+        protected readonly EntityManagerInterface $em
     ) {
         $this->init($entity);
+    }
+
+
+    private ?string $importId = null;
+
+    public function getImportId(): string
+    {
+        if (!$this->importId) {
+            $this->importId = uniqid("import_");
+        }
+
+        return $this->importId;
     }
 
 
@@ -114,15 +126,32 @@ abstract class FileParserService
                     'd-m-Y G:i:s'
                 ) . ' / Ended at ' . $end->format(
                     'd-m-Y G:i:s'
-                ) . ' | You have imported all datas from your RPPS file to your database ---</comment>'
+                ) . ' | You have imported all datas from your file to your database ---</comment>'
             );
         }
+
+        $this->removeOldData();
 
         return true;
     }
 
 
-    public function setClearalbe(bool $clearable): void
+    public function removeOldData(): void
+    {
+
+        $metadata = $this->em->getClassMetadata($this->entity);
+
+        $this->em->getConnection()->executeQuery(
+            "DELETE FROM {$metadata->getTableName()} WHERE import_id <> ?",
+            [$this->getImportId()]
+        );
+
+        $this->output->writeln("Old data removed");
+
+    }
+
+
+    public function setClearable(bool $clearable): void
     {
         $this->clearable = $clearable;
     }

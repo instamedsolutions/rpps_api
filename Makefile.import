@@ -1,4 +1,5 @@
-import-data: import-allergens import-ccam import-diseases import-drugs import-rpps # Import all data but test data
+#import-data: import-allergens import-ccam import-diseases import-drugs import-rpps # Import all data but test data
+import-data: import-diseases import-drugs import-rpps # Import all data but test data
 
 import-allergens: # Import allergets' data
 	docker-compose run --rm apache php bin/console app:allergen:import
@@ -16,4 +17,4 @@ import-rpps: # Import rpps' data
 	docker-compose run --rm apache php bin/console app:rpps:import
 
 import-test-data: # Import test data
-	docker-compose run --rm apache php bin/console app:test:create
+	docker-compose run --rm apache php bin/console app:test:create --legacy=true

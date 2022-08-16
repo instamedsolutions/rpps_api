@@ -33,6 +33,7 @@ class LoadCCAM extends Fixture implements DependentFixtureInterface, FixtureInte
         $ccam->setGroup($this->getReference(LoadCCAMGroup::GROUP));
         $ccam->setCategory($this->getReference(LoadCCAMGroup::CATEGORY));
         $ccam->setRegroupementCode("ATM");
+        $ccam->importId = "import_1";
 
         $this->em->persist($ccam);
 
@@ -50,6 +51,7 @@ class LoadCCAM extends Fixture implements DependentFixtureInterface, FixtureInte
         $ccam2->setRate1(86.4);
         $ccam2->setRate2(86.4);
         $ccam2->setRegroupementCode("ATM");
+        $ccam2->importId = "import_1";
 
         $this->em->persist($ccam2);
 

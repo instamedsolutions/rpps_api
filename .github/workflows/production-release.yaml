@@ -77,3 +77,28 @@ jobs:
           docker_image: ${{ env.IMAGE_NAME }}
           docker_file: ${{ env.ENVIRONMENT }}
           docker_tag: ${{github.ref_name}}
+
+  ecs-deploy:
+    name: Trigger deployment on ECS
+    needs: docker-build-staging
+    runs-on: ubuntu-latest
+    permissions:
+      id-token: write
+      contents: read
+    environment:
+      name: 'staging'
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          role-to-assume: ${{secrets.AWS_ROLE_ARN}}
+          aws-region: eu-west-3
+      - name: Trigger deployment
+        run: |
+          aws ecs update-service --cluster eu-west-3-${{ secrets.AWS_CLUSTER_NAME }} --service ${{ secrets.AWS_API_SERVICE_NAME }} --force-new-deployment
+          aws ecs update-service --cluster eu-west-3-${{ secrets.AWS_CLUSTER_NAME }} --service ${{ secrets.AWS_WORKERS_SERVICE_NAME }} --force-new-deployment
+          aws ecs update-service --cluster eu-west-3-${{ secrets.AWS_CLUSTER_NAME }} --service ${{ secrets.AWS_SCHEDULED_WORKERS_SERVICE_NAME }} --force-new-deployment
+
+

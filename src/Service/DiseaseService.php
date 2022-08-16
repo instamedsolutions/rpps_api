@@ -29,12 +29,12 @@ class DiseaseService extends ImporterService
     final const GROUPES = "groupes";
 
     public function __construct(
-        protected string $cim10Url,
+        protected string $cim10,
         FileProcessor $fileProcessor,
         EntityManagerInterface $em
     ) {
         parent::__construct(DiseaseGroup::class, $fileProcessor, $em);
-        $this->setClearalbe(false);
+        $this->setClearable(false);
     }
 
 
@@ -99,6 +99,7 @@ class DiseaseService extends ImporterService
         }
 
         $group->setName($data[1]);
+        $group->importId = $this->getImportId();
 
         $this->groups[$group->getCim()] = $group;
 
@@ -120,6 +121,7 @@ class DiseaseService extends ImporterService
 
         $group->setParent($this->groups[$data[2]]);
         $group->setName($data[3]);
+        $group->importId = $this->getImportId();
 
         $this->groups[$data[0]] = $group;
 
@@ -156,6 +158,7 @@ class DiseaseService extends ImporterService
         if ($parentId !== $disease->getCim()) {
             $disease->setParent($this->diseases[$parentId]);
         }
+        $disease->importId = $this->getImportId();
 
         $this->diseases[$disease->getCim()] = $disease;
 

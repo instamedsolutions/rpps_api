@@ -52,6 +52,9 @@ class DrugsImport extends Command
      */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
+
+        $this->drugService->setOutput($output);
+
         $process = $input->getOption("process");
 
         try {

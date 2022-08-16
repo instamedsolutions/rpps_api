@@ -73,6 +73,7 @@ class RppsImport extends Command
             $end = new DateTime();
             $output->writeln('<comment>' . $end->format('d-m-Y G:i:s') . ' Stop processing :---</comment>');
 
+            $this->rppsService->loadTestData();
 
             return Command::SUCCESS;
         } catch (Exception $e) {

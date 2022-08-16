@@ -27,6 +27,7 @@ class LoadDrugs extends Fixture
         $drug->setCisId("68634000");
         $drug->setPharmaceuticalForm("comprimé enrobé");
         $drug->setAdministrationForms(["orale"]);
+        $drug->importId = "import_1";
         $this->em->persist($drug);
 
         $drug2 = new Drug();
@@ -41,6 +42,7 @@ class LoadDrugs extends Fixture
         $drug2->setSecurityText(
             "<a target='_blank'  title=\"Lien direct vers l'information importante sur le site de l'ANSM - Nouvelle fenêtre\" href='https://www.ansm.sante.fr/S-informer/Points-d-information-Points-d-information/COVID-19-l-ANSM-prend-des-mesures-pour-favoriser-le-bon-usage-du-paracetamol'>COVID-19 : lANSM prend des mesures pour favoriser le bon usage du paracétamol</a>"
         );
+        $drug2->importId = "import_1";
         $this->em->persist($drug2);
 
         $this->em->flush();
