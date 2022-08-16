@@ -5,6 +5,7 @@ run-command:
 include Makefile.import
 include Makefile.database
 include Makefile.dev
+include Makefile.prod
 include Makefile.test
 
 run: ## Runs all application's containers

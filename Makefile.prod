@@ -1,0 +1,16 @@
+import-prod-data: import-prod-allergens import-prod-ccam import-prod-diseases import-prod-drugs import-prod-rpps # Import all data but test data
+
+import-prod-allergens: # Import allergets' data
+	php bin/console app:allergen:import
+
+import-prod-ccam: # Import CCAM' data
+	php bin/console app:ccam:import
+
+import-prod-diseases: # Import diseases' data
+	php bin/console app:disease:import
+
+import-prod-drugs: # Import drugs' data
+	php bin/console app:drugs:import
+
+import-prod-rpps: # Import rpps' data
+	php bin/console app:rpps:import
