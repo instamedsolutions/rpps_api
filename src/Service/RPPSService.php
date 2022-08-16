@@ -21,8 +21,8 @@ class RPPSService extends ImporterService
 
 
     public function __construct(
-        protected string $cps,
-        protected string $rpps,
+        protected readonly string $cps,
+        protected readonly string $rpps,
         FileProcessor $fileProcessor,
         EntityManagerInterface $em,
         private readonly KernelInterface $kernel

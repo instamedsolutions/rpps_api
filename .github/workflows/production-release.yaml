@@ -97,8 +97,8 @@ jobs:
           aws-region: eu-west-3
       - name: Trigger deployment
         run: |
-          aws ecs update-service --cluster eu-west-3-${{ secrets.AWS_CLUSTER_NAME }} --service ${{ secrets.AWS_API_SERVICE_NAME }} --force-new-deployment
-          aws ecs update-service --cluster eu-west-3-${{ secrets.AWS_CLUSTER_NAME }} --service ${{ secrets.AWS_WORKERS_SERVICE_NAME }} --force-new-deployment
-          aws ecs update-service --cluster eu-west-3-${{ secrets.AWS_CLUSTER_NAME }} --service ${{ secrets.AWS_SCHEDULED_WORKERS_SERVICE_NAME }} --force-new-deployment
+          aws ecs update-service --cluster ${{ secrets.AWS_CLUSTER_NAME }} --service ${{ secrets.AWS_API_SERVICE_NAME }} --force-new-deployment
+          aws ecs update-service --cluster ${{ secrets.AWS_CLUSTER_NAME }} --service ${{ secrets.AWS_WORKERS_SERVICE_NAME }} --force-new-deployment
+          aws ecs update-service --cluster ${{ secrets.AWS_CLUSTER_NAME }} --service ${{ secrets.AWS_SCHEDULED_WORKERS_SERVICE_NAME }} --force-new-deployment
 
 

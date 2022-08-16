@@ -23,7 +23,7 @@ final class Version20220816103752 extends AbstractMigration
         $this->addSql('ALTER TABLE allergens ADD import_id VARCHAR(20) NOT NULL');
         $this->addSql('ALTER TABLE ccam ADD import_id VARCHAR(20) NOT NULL, CHANGE name name LONGTEXT NOT NULL');
         $this->addSql('ALTER TABLE ccam_group ADD import_id VARCHAR(20) NOT NULL');
-        $this->addSql('ALTER TABLE diseases ADD import_id VARCHAR(20) NOT NULL');
+        $this->addSql('ALTER TABLE diseases ADD import_id VARCHAR(20) NOT NULL, CHANGE name name LONGTEXT NOT NULL');
         $this->addSql('ALTER TABLE diseases_group ADD import_id VARCHAR(20) NOT NULL');
         $this->addSql('ALTER TABLE drugs ADD import_id VARCHAR(20) NOT NULL, CHANGE generic_type generic_type LONGTEXT DEFAULT NULL');
         $this->addSql('ALTER TABLE rpps ADD import_id VARCHAR(20) NOT NULL');

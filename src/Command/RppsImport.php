@@ -53,6 +53,7 @@ class RppsImport extends Command
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         $process = $input->getOption("process");
+        $this->rppsService->setOutput($output);
 
         try {
             // Turning off doctrine default logs queries for saving memory

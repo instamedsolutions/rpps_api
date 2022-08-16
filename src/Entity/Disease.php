@@ -52,7 +52,7 @@ class Disease extends Thing implements Entity, Stringable
     ])]
     #[ApiFilter(SearchFilter::class, strategy: SearchFilterInterface::STRATEGY_START)]
     #[Groups(['read'])]
-    #[ORM\Column(type: 'string', length: 255)]
+    #[ORM\Column(type: 'text')]
     protected ?string $name;
 
 
