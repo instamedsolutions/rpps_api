@@ -16,3 +16,6 @@ shell: ## Gets a shell in the apache container
 
 clear-cache:
 	make run-command command='cache:clear'
+
+reactor:
+	docker-compose run --rm apache vendor/bin/rector process src -v

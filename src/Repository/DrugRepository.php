@@ -29,7 +29,6 @@ class DrugRepository extends ServiceEntityRepository
      * @param mixed $id
      * @param null $lockMode
      * @param null $lockVersion
-     * @return Drug|null
      * @throws NonUniqueResultException
      */
     public function find($id, $lockMode = null, $lockVersion = null): ?Drug

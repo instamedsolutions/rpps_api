@@ -29,7 +29,6 @@ class RPPSRepository extends ServiceEntityRepository
      * @param mixed $id
      * @param null $lockMode
      * @param null $lockVersion
-     * @return RPPS|null
      * @throws NonUniqueResultException
      */
     public function find($id, $lockMode = null, $lockVersion = null): ?RPPS

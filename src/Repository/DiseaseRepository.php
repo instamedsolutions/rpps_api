@@ -29,7 +29,6 @@ class DiseaseRepository extends ServiceEntityRepository
      * @param mixed $id
      * @param null $lockMode
      * @param null $lockVersion
-     * @return Disease|null
      * @throws NonUniqueResultException
      */
     public function find($id, $lockMode = null, $lockVersion = null) : ?Disease
