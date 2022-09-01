@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use ApiPlatform\Core\Bridge\Doctrine\Common\Filter\SearchFilterInterface;
 use Stringable;
 use ApiPlatform\Core\Annotation\ApiFilter;
 use ApiPlatform\Core\Annotation\ApiProperty;
@@ -32,7 +33,7 @@ class Disease extends Thing implements Entity, Stringable
     final const SEX_FEMALE = 2;
 
 
-    #[ApiFilter(SearchFilter::class, strategy: "exact")]
+    #[ApiFilter(SearchFilter::class, strategy: SearchFilterInterface::STRATEGY_EXACT)]
     #[ApiProperty(description: "The unique CIM-10 Id in the international database", required: true, attributes: [
         "openapi_context" => [
             "type" => "string",
@@ -49,9 +50,9 @@ class Disease extends Thing implements Entity, Stringable
             "example" => "PANTOPRAZOLE KRKA 40 mg, comprimé gastro-résistant"
         ]
     ])]
-    #[ApiFilter(SearchFilter::class, strategy: "istart")]
+    #[ApiFilter(SearchFilter::class, strategy: SearchFilterInterface::STRATEGY_START)]
     #[Groups(['read'])]
-    #[ORM\Column(type: 'string', length: 255)]
+    #[ORM\Column(type: 'text')]
     protected ?string $name;
 
 
@@ -59,6 +60,7 @@ class Disease extends Thing implements Entity, Stringable
     #[Groups(['diseases:item:read'])]
     #[MaxDepth(2)]
     #[ORM\ManyToOne(targetEntity: Disease::class, cascade: ['persist'], inversedBy: 'children')]
+    #[ORM\JoinColumn(name: 'parent_id', referencedColumnName: 'id', nullable: true, onDelete: 'SET NULL')]
     protected ?Disease $parent;
 
 
@@ -66,6 +68,7 @@ class Disease extends Thing implements Entity, Stringable
     #[Groups(['diseases:read'])]
     #[MaxDepth(1)]
     #[ORM\ManyToOne(targetEntity: DiseaseGroup::class, cascade: ['persist'])]
+    #[ORM\JoinColumn(name: 'group_id', referencedColumnName: 'id', nullable: true, onDelete: 'SET NULL')]
     protected ?DiseaseGroup $group;
 
 
@@ -73,6 +76,7 @@ class Disease extends Thing implements Entity, Stringable
     #[MaxDepth(1)]
     #[Groups(['diseases:read'])]
     #[ORM\ManyToOne(targetEntity: DiseaseGroup::class, cascade: ['persist'])]
+    #[ORM\JoinColumn(name: 'category_id', referencedColumnName: 'id', nullable: true, onDelete: 'SET NULL')]
     protected ?DiseaseGroup $category;
 
     /**

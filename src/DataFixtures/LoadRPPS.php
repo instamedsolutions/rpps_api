@@ -11,10 +11,10 @@ use Faker\Factory;
 class LoadRPPS extends Fixture
 {
 
-    /**
-     * @var EntityManagerInterface
-     */
-    protected $em;
+
+    public string $importId = "import_1";
+
+    protected EntityManagerInterface $em;
 
 
     public function load(ObjectManager $manager)
@@ -39,7 +39,7 @@ class LoadRPPS extends Fixture
 
             $first = $isDemo ? 2 : 1;
 
-            $rpps->setIdRpps("$first{$j}{$j}{$j}{$j}{$j}{$j}{$j}{$j}{$j}{$j}{$j}");
+            $rpps->setIdRpps("$first{$j}{$j}{$j}{$j}{$j}{$j}{$j}{$j}{$j}{$j}");
 
             if (in_array($i, [0, 1, 5])) {
                 $rpps->setCpsNumber("{$j}{$j}{$j}{$j}{$j}{$j}{$j}{$j}{$j}{$j}");
@@ -63,6 +63,8 @@ class LoadRPPS extends Fixture
                 $rpps->setPhoneNumber($faker->phoneNumber());
             }
 
+            $rpps->importId = $this->importId;
+
             $this->em->persist($rpps);
         }
 
@@ -71,18 +73,13 @@ class LoadRPPS extends Fixture
     }
 
 
-    /**
-     * @return string[]
-     */
+
     protected function getUsers(): array
     {
         return ["Bastien", "Jérémie", "Luv", "Julien", "Lauriane", "Maxime", "Johann", "Emilie"];
     }
 
 
-    /**
-     * @return string[]
-     */
     protected function getSpecialties(): array
     {
         return [

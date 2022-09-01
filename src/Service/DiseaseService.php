@@ -21,6 +21,7 @@ class DiseaseService extends ImporterService
 
     protected array $groups = [];
 
+    private const PARSING_OPTIONS = ["delimiter" => ";", "utf8" => true, "headers" => false];
 
     final const CODES = "codes";
 
@@ -29,21 +30,18 @@ class DiseaseService extends ImporterService
     final const GROUPES = "groupes";
 
     public function __construct(
-        protected string $cim10Url,
+        protected string $cim10,
         FileProcessor $fileProcessor,
         EntityManagerInterface $em
     ) {
         parent::__construct(DiseaseGroup::class, $fileProcessor, $em);
-        $this->setClearalbe(false);
+        $this->setClearable(false);
     }
 
 
-    /**
-     * @throws NonUniqueResultException
-     */
     public function importFiles(OutputInterface $output, string $type): bool
     {
-        /** Handling File File */
+        /** Handling File */
         $files = $this->fileProcessor->getFiles($this->$type, $type, true);
 
         $types = [];
@@ -59,12 +57,10 @@ class DiseaseService extends ImporterService
         }
 
 
-        $options = ["delimiter" => ";", "utf8" => true, "headers" => false];
-
         // Import in a specific order
-        $first = $this->processFile($output, $types[self::CHAPITRES], self::CHAPITRES, $options);
-        $second = $this->processFile($output, $types[self::GROUPES], self::GROUPES, $options);
-        $third = $this->processFile($output, $types[self::CODES], self::CODES, $options);
+        $first = $this->processFile($output, $types[self::CHAPITRES], self::CHAPITRES, self::PARSING_OPTIONS);
+        $second = $this->processFile($output, $types[self::GROUPES], self::GROUPES, self::PARSING_OPTIONS);
+        $third = $this->processFile($output, $types[self::CODES], self::CODES, self::PARSING_OPTIONS);
 
         foreach ($files as $file) {
             unlink($file);
@@ -75,7 +71,7 @@ class DiseaseService extends ImporterService
 
 
     /**
-     * @throws NonUniqueResultException
+     * @throws Exception
      */
     protected function processData(array $data, string $type): ?Thing
     {
@@ -99,6 +95,7 @@ class DiseaseService extends ImporterService
         }
 
         $group->setName($data[1]);
+        $group->importId = $this->getImportId();
 
         $this->groups[$group->getCim()] = $group;
 
@@ -120,6 +117,7 @@ class DiseaseService extends ImporterService
 
         $group->setParent($this->groups[$data[2]]);
         $group->setName($data[3]);
+        $group->importId = $this->getImportId();
 
         $this->groups[$data[0]] = $group;
 
@@ -127,9 +125,6 @@ class DiseaseService extends ImporterService
     }
 
 
-    /**
-     * @return DiseaseGroup|null
-     */
     protected function parseCodes(array $data): ?Disease
     {
         $this->init(Disease::class);
@@ -156,6 +151,7 @@ class DiseaseService extends ImporterService
         if ($parentId !== $disease->getCim()) {
             $disease->setParent($this->diseases[$parentId]);
         }
+        $disease->importId = $this->getImportId();
 
         $this->diseases[$disease->getCim()] = $disease;
 

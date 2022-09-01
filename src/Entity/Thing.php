@@ -2,41 +2,32 @@
 
 namespace App\Entity;
 
+use ApiPlatform\Core\Annotation\ApiProperty;
 use Stringable;
 use DateTime;
 use DateTimeInterface;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Serializer\Annotation\Groups;
 
-use function Symfony\Component\String\u;
-
-/**
- *
- */
-abstract class Thing implements Entity, Stringable
+abstract class Thing implements Entity, ImportedEntity, Stringable
 {
 
 
-    /**
-     *
-     * @var string
-     *
-     *
-     */
     #[Groups(['read'])]
     #[ORM\Id]
     #[ORM\GeneratedValue(strategy: 'UUID')]
     #[ORM\Column(type: 'guid', unique: true)]
-    protected $id;
+    protected ?string $id;
 
 
-    /**
-     * @var DateTime|null
-     *
-     * The created date of the entity
-     */
+    #[ApiProperty(description: "The created date of the entity", writable: false)]
     #[ORM\Column(name: 'created_date', type: 'datetime')]
-    protected $createdDate;
+    protected ?DateTime $createdDate;
+
+
+    #[ApiProperty(readable: false, writable: false)]
+    #[ORM\Column(name: 'import_id', type: 'string', length: 20, nullable: false)]
+    public ?string $importId = null;
 
 
     /**
@@ -64,21 +55,7 @@ abstract class Thing implements Entity, Stringable
         $this->createdDate = $createdDate;
     }
 
-    /**
-     *
-     * Function replacing Maj to dashed
-     *
-     * https://stackoverflow.com/questions/1993721/how-to-convert-pascalcase-to-pascal-case
-     **/
-    public static function decamelize(string $word): string
-    {
-        return u($word)->snake()->toString();
-    }
 
-
-    /**
-     * @return string
-     */
     abstract public function __toString(): string;
 
 }

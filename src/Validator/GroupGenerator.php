@@ -8,6 +8,8 @@ use App\Entity\Thing;
 use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\Security\Core\Security;
 
+use function Symfony\Component\String\u;
+
 /**
  * Class UserGroupGenerator
  *
@@ -68,7 +70,7 @@ final class GroupGenerator
             $op_type = $subresource['collection'] ? 'collection' : 'item';
 
             if (isset($subresource['property'])) {
-                $entity = Thing::decamelize($subresource['property']);
+                $entity = u($subresource['property'])->snake()->toString();
             }
         }
 

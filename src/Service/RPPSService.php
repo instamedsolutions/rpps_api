@@ -2,15 +2,16 @@
 
 namespace App\Service;
 
+use App\DataFixtures\LoadRPPS;
+use Doctrine\Common\DataFixtures\Executor\ORMExecutor;
+use Doctrine\DBAL\Connection;
 use Exception;
 use Doctrine\ORM\NonUniqueResultException;
-use App\Entity\Drug;
 use App\Entity\RPPS;
-use App\Repository\DrugRepository;
-use App\Repository\RPPSRepository;
 use Doctrine\ORM\EntityManagerInterface;
-use Doctrine\ORM\Mapping\Entity;
+use Symfony\Bridge\Doctrine\DataFixtures\ContainerAwareLoader;
 use Symfony\Component\Console\Output\OutputInterface;
+use Symfony\Component\HttpKernel\KernelInterface;
 
 /**
  * Contains all useful methods to process files and import them into database.
@@ -20,12 +21,45 @@ class RPPSService extends ImporterService
 
 
     public function __construct(
-        protected string $cpsUrl,
-        protected string $rppsUrl,
+        protected readonly string $cps,
+        protected readonly string $rpps,
         FileProcessor $fileProcessor,
-        EntityManagerInterface $em
+        EntityManagerInterface $em,
+        private readonly KernelInterface $kernel
     ) {
         parent::__construct(RPPS::class, $fileProcessor, $em);
+    }
+
+
+    public function loadTestData(): void
+    {
+        $this->output->writeln("Deletion of existing data in progress");
+
+        $ids = [];
+        for ($j = 1; $j <= 9; $j++) {
+            $ids[] = "1{$j}{$j}{$j}{$j}{$j}{$j}{$j}{$j}{$j}{$j}";
+            $ids[] = "2{$j}{$j}{$j}{$j}{$j}{$j}{$j}{$j}{$j}{$j}";
+        }
+
+        $this->em->getConnection()->executeQuery(
+            "DELETE FROM rpps WHERE id_rpps IN (:ids)",
+            ["ids" => $ids],
+            ["ids" => Connection::PARAM_STR_ARRAY]
+        );
+
+        $this->output->writeln("Existing data successfully deleted");
+
+
+        $loader = new ContainerAwareLoader($this->kernel->getContainer());
+
+        $fixture = new LoadRPPS();
+        $fixture->importId = $this->getImportId();
+        $loader->addFixture($fixture);
+
+        $executor = new ORMExecutor($this->em);
+        $executor->execute($loader->getFixtures(), true);
+
+        $this->output->writeln("Test data successfully loaded");
     }
 
 
@@ -114,6 +148,8 @@ class RPPSService extends ImporterService
         $rpps->setPhoneNumber(str_replace(' ', '', (string)$data[36]));
         $rpps->setEmail($data[39]);
         $rpps->setFinessNumber($data[18]);
+
+        $rpps->importId = $this->getImportId();
 
         return $rpps;
     }

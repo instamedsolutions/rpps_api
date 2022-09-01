@@ -31,7 +31,7 @@ class DiseaseGroup extends Thing implements Entity, Stringable
     ])]
     #[Groups(['read'])]
     #[ORM\Column(type: 'string', unique: true)]
-    protected ?string $cim;
+    protected ?string $cim = null;
 
 
     #[ApiFilter(SearchFilter::class, strategy: "istart")]
@@ -43,12 +43,13 @@ class DiseaseGroup extends Thing implements Entity, Stringable
     ])]
     #[Groups(['read'])]
     #[ORM\Column(type: 'string', length: 255)]
-    protected ?string $name;
+    protected ?string $name = null;
 
 
     #[Groups(['diseases_groups:read'])]
-    #[ORM\ManyToOne(targetEntity: DiseaseGroup::class, inversedBy: 'children', cascade: ['persist'], fetch: 'EXTRA_LAZY')]
-    protected ?DiseaseGroup $parent;
+    #[ORM\ManyToOne(targetEntity: DiseaseGroup::class, cascade: ['persist','remove'], fetch: 'EXTRA_LAZY', inversedBy: 'children')]
+    #[ORM\JoinColumn(name: 'parent_id', referencedColumnName: 'id', nullable: true,onDelete: 'SET NULL')]
+    protected ?DiseaseGroup $parent = null;
 
 
     /**
@@ -57,7 +58,7 @@ class DiseaseGroup extends Thing implements Entity, Stringable
      */
     #[ApiSubresource(maxDepth: 2)]
     #[Groups(['diseases_groups:item:read'])]
-    #[ORM\OneToMany(targetEntity: 'DiseaseGroup', mappedBy: 'parent', cascade: ['persist'], fetch: 'EXTRA_LAZY')]
+    #[ORM\OneToMany(mappedBy: 'parent', targetEntity: 'DiseaseGroup', cascade: ['persist','remove'], fetch: 'EXTRA_LAZY')]
     protected Collection $children;
 
     public function __construct()

@@ -8,10 +8,11 @@ composer-install: ## Runs composer install in the container to install backend d
 	docker-compose run --rm apache composer install
 
 routes-dev: ## Lists all routes of the application
-	docker-compose run --rm apache php bin/console debug:router
+	make run-command command='debug:router'
+
 
 shell: ## Gets a shell in the apache container
 	docker-compose run --rm apache bash
 
 clear-cache:
-	docker-compose exec apache php bin/console cache:clear
+	make run-command command='cache:clear'

@@ -1,0 +1,34 @@
+name: Build Base Image
+
+concurrency:
+  group: build-base-${{ github.ref }}-1
+  cancel-in-progress: true
+
+env:
+  REGISTRY: ghcr.io
+  IMAGE_NAME: ${{ github.repository }}-base
+
+on:
+  push:
+    paths:
+      - 'docker/apache/Dockerfile.base'
+      - '.github/workflows/build-base-image.yaml'
+  workflow_dispatch:
+
+jobs:
+  docker-build:
+    runs-on: ubuntu-latest
+    environment:
+      name: test
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Build base image
+        uses: ./.github/actions/build-docker-image
+        with:
+          registry_url: ${{ env.REGISTRY }}
+          registry_username: ${{ github.actor }}
+          registry_password: ${{ secrets.GITHUB_TOKEN }}
+          docker_image: ${{ env.IMAGE_NAME }}
+          docker_file: "base"
