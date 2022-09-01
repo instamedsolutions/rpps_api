@@ -2,6 +2,8 @@
 
 namespace App\Command;
 
+use DateTime;
+use Exception;
 use App\Service\AllergenService;
 use App\Service\DrugService;
 use App\Service\FileProcessor;
@@ -15,7 +17,7 @@ use Symfony\Component\Console\Output\OutputInterface;
 
 /**
  * Command to import file in empty database.
-**/
+ **/
 class AllergenImport extends Command
 {
 
@@ -23,26 +25,9 @@ class AllergenImport extends Command
     protected static $defaultName = 'app:allergen:import';
 
 
-    /**
-     * @var EntityManagerInterface
-     */
-    protected $em;
-
-
-    /**
-     * @var AllergenService
-     */
-    protected $allergenService;
-
-
-
-    public function __construct(AllergenService $allergenService,EntityManagerInterface $entityManager)
+    public function __construct(protected AllergenService $allergenService, protected EntityManagerInterface $em)
     {
-
         parent::__construct(self::$defaultName);
-
-        $this->allergenService = $allergenService;
-        $this->em = $entityManager;
     }
 
 
@@ -53,13 +38,10 @@ class AllergenImport extends Command
     {
         $this->setDescription('Import Allergen File into database')
             ->setHelp('This command will import all allergens data.');
-
     }
 
 
     /**
-     * @param InputInterface $input
-     * @param OutputInterface $output
      * @return int|void
      */
     protected function execute(InputInterface $input, OutputInterface $output)
@@ -71,24 +53,21 @@ class AllergenImport extends Command
             $this->em->getConnection()->getConfiguration()->setSQLLogger(null);
 
             // Showing when the cps process is launched
-            $start = new \DateTime();
+            $start = new DateTime();
             $output->writeln('<comment>' . $start->format('d-m-Y G:i:s') . ' Start processing :---</comment>');
 
             $this->allergenService->parse();
 
             // Showing when the cps process is launched
-            $end = new \DateTime();
+            $end = new DateTime();
             $output->writeln('<comment>' . $end->format('d-m-Y G:i:s') . ' Stop processing :---</comment>');
 
 
             return Command::SUCCESS;
-
-
-        } catch(\Exception $e){
+        } catch (Exception $e) {
             error_log($e->getMessage());
             $output->writeln($e->getMessage());
             return Command::FAILURE;
-
         }
     }
 

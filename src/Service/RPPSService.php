@@ -2,6 +2,8 @@
 
 namespace App\Service;
 
+use Exception;
+use Doctrine\ORM\NonUniqueResultException;
 use App\Entity\Drug;
 use App\Entity\RPPS;
 use App\Repository\DrugRepository;
@@ -17,60 +19,33 @@ class RPPSService extends ImporterService
 {
 
 
-    /**
-     * @var EntityManagerInterface
-     */
-    protected $em;
-
-
-    /**
-     * @var string
-     */
-    protected $cps;
-
-    /**
-     * @var string
-     */
-    protected $rpps;
-
-
-    /**
-     * RPPSService constructor.
-     * @param string $cpsUrl
-     * @param string $rppsUrl
-     * @param FileProcessor $fileProcessor
-     * @param EntityManagerInterface $em
-     */
-    public function __construct(string $cpsUrl,string $rppsUrl,FileProcessor $fileProcessor,EntityManagerInterface $em)
-    {
-        parent::__construct(RPPS::class,$fileProcessor,$em);
-
-        $this->rpps = $rppsUrl;
-        $this->cps = $cpsUrl;
-
+    public function __construct(
+        protected string $cpsUrl,
+        protected string $rppsUrl,
+        FileProcessor $fileProcessor,
+        EntityManagerInterface $em
+    ) {
+        parent::__construct(RPPS::class, $fileProcessor, $em);
     }
 
 
-
     /**
-     * @param OutputInterface $output
-     * @return bool
-     * @throws \Exception
+     * @throws Exception
      */
-    public function importFile(OutputInterface $output,string $type) : bool
+    public function importFile(OutputInterface $output, string $type): bool
     {
         /** Handling File File */
-        $file = $this->fileProcessor->getFile($this->$type,$type,true);
+        $file = $this->fileProcessor->getFile($this->$type, $type, true);
 
-        if($type === "rpps") {
-            $options = array('delimiter' => ";", "utf8" => true, "headers" => true);
-        } else if($type === "cps") {
-            $options = array('delimiter' => "|", "utf8" => false, "headers" => true);
+        if ($type === "rpps") {
+            $options = ['delimiter' => ";", "utf8" => true, "headers" => true];
+        } elseif ($type === "cps") {
+            $options = ['delimiter' => "|", "utf8" => false, "headers" => true];
         } else {
-            throw new \Exception("Type $type not working");
+            throw new Exception("Type $type not working");
         }
 
-        $process = $this->processFile($output,$file,$type,$options);
+        $process = $this->processFile($output, $file, $type, $options);
 
         unlink($file);
 
@@ -79,36 +54,24 @@ class RPPSService extends ImporterService
 
 
     /**
-     * @param array $data
-     * @param string $type
-     * @return RPPS|null
-     * @throws \Doctrine\ORM\NonUniqueResultException
+     * @throws NonUniqueResultException
      */
-    protected function processData(array $data,string $type) : ?RPPS
+    protected function processData(array $data, string $type): ?RPPS
     {
-        switch ($type)
-        {
-            case "cps" :
-                return $this->processCPS($data);
-            case "rpps" :
-                return $this->processRPPS($data);
-        }
-
-        throw new \Exception("Type $type is not supported yet");
-
+        return match ($type) {
+            "cps" => $this->processCPS($data),
+            "rpps" => $this->processRPPS($data),
+            default => throw new Exception("Type $type is not supported yet"),
+        };
     }
 
     /**
-     * @param array $data
      *
-     * @return RPPS|null
      *
-     * @throws \Doctrine\ORM\NonUniqueResultException
+     * @throws NonUniqueResultException
      */
     protected function processCPS(array $data): ?RPPS
     {
-
-
         /** @var RPPS $rpps */
         $rpps = $this->repository->find($data[0]);
 
@@ -123,19 +86,15 @@ class RPPSService extends ImporterService
 
 
     /**
-     * @param array $data
      *
-     * @return RPPS|null
      *
-     * @throws \Doctrine\ORM\NonUniqueResultException
+     * @throws NonUniqueResultException
      */
     protected function processRPPS(array $data): ?RPPS
     {
-
-        /** @var RPPS|null $rpps */
         $rpps = $this->repository->find($data[1]);
 
-        if (null === $rpps) {
+        if (!$rpps instanceof RPPS) {
             $rpps = new RPPS();
         }
 
@@ -145,14 +104,14 @@ class RPPSService extends ImporterService
         $rpps->setFirstName($data[6]);
         $rpps->setSpecialty($data[8]);
 
-        if($data[12] && in_array($data[13],["S","CEX"])) {
+        if ($data[12] && in_array($data[13], ["S", "CEX"])) {
             $rpps->setSpecialty($data[12]);
         }
 
         $rpps->setAddress($data[24] . " " . $data[25] . " " . $data[27] . " " . $data[28] . " " . $data[29]);
         $rpps->setZipcode($data[31]);
         $rpps->setCity($data[30]);
-        $rpps->setPhoneNumber(str_replace(' ', '', $data[36]));
+        $rpps->setPhoneNumber(str_replace(' ', '', (string)$data[36]));
         $rpps->setEmail($data[39]);
         $rpps->setFinessNumber($data[18]);
 

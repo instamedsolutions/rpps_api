@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace App\Swagger;
 
+use ArrayObject;
+use Symfony\Component\Serializer\Exception\ExceptionInterface;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
 use Doctrine\Common\Annotations\AnnotationReader;
@@ -13,23 +15,13 @@ use Symfony\Component\Serializer\Mapping\Loader\AnnotationLoader;
 
 final class SwaggerDecorator implements NormalizerInterface
 {
-    /**
-     * @var NormalizerInterface
-     */
-    private $decorated;
-
-
     protected $serializerExtractor;
 
     /**
      * SwaggerDecorator constructor.
-     * @param NormalizerInterface $decorated
      */
-    public function __construct(NormalizerInterface $decorated)
+    public function __construct(private readonly NormalizerInterface $decorated)
     {
-
-        $this->decorated = $decorated;
-
         $serializerClassMetadataFactory = new ClassMetadataFactory(new AnnotationLoader(new AnnotationReader));
         $serializerExtractor = new SerializerExtractor($serializerClassMetadataFactory);
 
@@ -40,9 +32,8 @@ final class SwaggerDecorator implements NormalizerInterface
     /**
      * @param mixed $data
      * @param null $format
-     * @return bool
      */
-    public function supportsNormalization($data,string $format = null): bool
+    public function supportsNormalization($data, string $format = null): bool
     {
         return $this->decorated->supportsNormalization($data, $format);
     }
@@ -51,23 +42,18 @@ final class SwaggerDecorator implements NormalizerInterface
     /**
      * @param mixed $object
      * @param null $format
-     * @param array $context
-     * @return array|\ArrayObject|bool|float|int|string|null
-     * @throws \Symfony\Component\Serializer\Exception\ExceptionInterface
+     * @return array|ArrayObject|bool|float|int|string|null
+     * @throws ExceptionInterface
      */
-    public function normalize($object,string $format = null, array $context = [])
+    public function normalize($object, string $format = null, array $context = [])
     {
-
         $docs = $this->decorated->normalize($object, $format, $context);
 
-        $docs = $this->updateDoc($docs);
-
-        return $docs;
+        return $this->updateDoc($docs);
     }
 
-    public function updateDoc(array $docs) : array
+    public function updateDoc(array $docs): array
     {
-
         $docs['definitions']['PhoneNumber'] = [
             'type' => "string",
             "description" => "The phone number with country code",

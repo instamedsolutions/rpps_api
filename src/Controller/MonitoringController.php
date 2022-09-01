@@ -8,11 +8,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class MonitoringController extends AbstractController
 {
-    /**
-     * @Route("/api/monitoring/health_check", name="api_monitoring_health_check")
-     *
-     * @return Response
-     */
+    #[Route(path: '/api/monitoring/health_check', name: 'api_monitoring_health_check')]
     public function healthCheckAction(): Response
     {
         return $this->json([

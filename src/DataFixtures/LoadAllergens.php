@@ -3,8 +3,6 @@
 namespace App\DataFixtures;
 
 use App\Entity\Allergen;
-use App\Entity\Drug;
-use App\Entity\RPPS;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\Persistence\ObjectManager;
@@ -15,15 +13,10 @@ use Doctrine\Persistence\ObjectManager;
 class LoadAllergens extends Fixture
 {
 
-    /**
-     * @var EntityManagerInterface
-     */
-    protected $em;
+
+    protected EntityManagerInterface $em;
 
 
-    /**
-     * @param ObjectManager $manager
-     */
     public function load(ObjectManager $manager)
     {
         $this->em = $manager;
@@ -41,7 +34,6 @@ class LoadAllergens extends Fixture
         $this->em->persist($entity2);
 
         $this->em->flush();
-
     }
 
 }

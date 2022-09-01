@@ -7,7 +7,7 @@ services:
   apache:
     build:
       context: ./
-      dockerfile: ./docker/apache/Dockerfile.dev
+      dockerfile: ./docker/apache/Dockerfile.${DOCKER_COMPOSE_ENV:-dev}
     container_name: rpps-apache-container
     restart: always
     ports:

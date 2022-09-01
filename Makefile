@@ -1,6 +1,7 @@
 include Makefile.import
 include Makefile.database
 include Makefile.dev
+include Makefile.test
 
 run: ## Runs all application's containers
 	docker-compose up

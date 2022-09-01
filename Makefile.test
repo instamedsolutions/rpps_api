@@ -11,4 +11,4 @@ sync-test-metadata-storage: ## Ensures that the metadata storage is at the lates
 	docker-compose run --rm apache php bin/console doctrine:migrations:sync-metadata-storage --env=test
 
 phpunit:
-	docker-compose run --rm apache phpunit
+	docker-compose run --rm apache ./vendor/bin/phpunit --testdox

@@ -9,10 +9,6 @@ use Symfony\Component\String\UnicodeString;
 trait FilterTrait
 {
 
-    /**
-     * @param string $value
-     * @return string
-     */
     protected function cleanValue(string $value, bool $replaceSpace = true): string
     {
         $value = trim(preg_replace('#\s+#', ' ', $value));
@@ -21,10 +17,9 @@ trait FilterTrait
         }
 
         // https://github.com/symfony/symfony/issues/9326
-        $value = transliterator_transliterate('Any-Latin; Latin-ASCII;',$value);
+        $value = transliterator_transliterate('Any-Latin; Latin-ASCII;', $value);
 
         return $value;
-
     }
 
 }

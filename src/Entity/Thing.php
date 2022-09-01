@@ -2,14 +2,18 @@
 
 namespace App\Entity;
 
+use Stringable;
 use DateTime;
+use DateTimeInterface;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Serializer\Annotation\Groups;
+
+use function Symfony\Component\String\u;
 
 /**
  *
  */
-abstract class Thing implements Entity
+abstract class Thing implements Entity, Stringable
 {
 
 
@@ -17,12 +21,12 @@ abstract class Thing implements Entity
      *
      * @var string
      *
-     * @Groups({"read"})
      *
-     * @ORM\Id()
-     * @ORM\GeneratedValue(strategy="UUID")
-     * @ORM\Column(type="guid",unique=true)
      */
+    #[Groups(['read'])]
+    #[ORM\Id]
+    #[ORM\GeneratedValue(strategy: 'UUID')]
+    #[ORM\Column(type: 'guid', unique: true)]
     protected $id;
 
 
@@ -30,9 +34,8 @@ abstract class Thing implements Entity
      * @var DateTime|null
      *
      * The created date of the entity
-     *
-     * @ORM\Column(name="created_date", type="datetime")
      */
+    #[ORM\Column(name: 'created_date', type: 'datetime')]
     protected $createdDate;
 
 
@@ -44,26 +47,19 @@ abstract class Thing implements Entity
         $this->createdDate = new DateTime();
     }
 
-    /**
-     * @return string
-     */
-    public function getId() : string
+    public function getId(): string
     {
         return $this->id;
     }
 
-    /**
-     * @return DateTime|null
-     */
-    public function getCreatedDate(): ?DateTime
+
+    public function getCreatedDate(): ?DateTimeInterface
     {
         return $this->createdDate;
     }
 
-    /**
-     * @param DateTime|null $createdDate
-     */
-    public function setCreatedDate(?DateTime $createdDate): void
+
+    public function setCreatedDate(DateTimeInterface|null $createdDate): void
     {
         $this->createdDate = $createdDate;
     }
@@ -73,26 +69,16 @@ abstract class Thing implements Entity
      * Function replacing Maj to dashed
      *
      * https://stackoverflow.com/questions/1993721/how-to-convert-pascalcase-to-pascal-case
-     *
-     * @param $word
-     * @return string
-     */
-    public static function decamelize(string $word) : string
+     **/
+    public static function decamelize(string $word): string
     {
-
-        $word = lcfirst($word);
-
-        return strtolower(preg_replace(
-            '/(^|[a-z])([A-Z])/',
-            strtolower(strlen("\\1") ? "\\1_\\2" : "\\2"),
-            $word
-        ));
+        return u($word)->snake()->toString();
     }
 
 
     /**
      * @return string
      */
-    abstract public function __toString() : string;
+    abstract public function __toString(): string;
 
 }

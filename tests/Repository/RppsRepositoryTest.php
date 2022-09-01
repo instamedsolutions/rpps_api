@@ -39,7 +39,6 @@ class RppsRepositoryTest extends KernelTestCase
         $data = $this->entityManager->getRepository(RPPS::class)->findAll();
 
         $this->assertCount(8, $data);
-
     }
 
 }

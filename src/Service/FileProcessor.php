@@ -19,26 +19,10 @@ class FileProcessor
 
 
     /**
-     * @var EntityManagerInterface
-     */
-    protected $em;
-
-
-    /**
-     * @var string
-     */
-    protected $projectDir;
-
-
-    /**
      * FileProcessor constructor.
-     * @param string $projectDir
-     * @param EntityManagerInterface $em
      */
-    public function __construct(string $projectDir,EntityManagerInterface $em)
+    public function __construct(protected string $projectDir, protected EntityManagerInterface $em)
     {
-        $this->em = $em;
-        $this->projectDir = $projectDir;
     }
 
 
@@ -48,7 +32,6 @@ class FileProcessor
      * @param string $file
      * The path of the file we want to process.
      *
-     * @return integer
      * The number of lines in a file.
      */
     public function getLinesCount(string $file): int
@@ -78,40 +61,33 @@ class FileProcessor
      *
      * @param bool $isZip
      * If the file you're getting is a zip and needs to be unzipped
-     *
-     * @return array
      */
-    public function getFiles(string $url,$name = "file",$isZip = false) : array
+    public function getFiles(string $url, $name = "file", $isZip = false): array
     {
-
         $ext = $isZip ? "zip" : "txt";
 
         $filePath = $this->projectDir . "/var/{$name}.$ext";
 
-        $fileHandler = fopen($filePath,"w+");
+        $fileHandler = fopen($filePath, "w+");
 
-        $client = HttpClient::create(array(
-            'timeout' => null,
-            'verify_peer' => false,
-            'verify_host' => false,
-        ));
+        $client = HttpClient::create(['timeout' => null, 'verify_peer' => false, 'verify_host' => false]);
 
 
-        $response = $client->request("GET",$url);
+        $response = $client->request("GET", $url);
         foreach ($client->stream($response) as $chunk) {
             fwrite($fileHandler, $chunk->getContent());
         }
 
         fclose($fileHandler);
 
-        if(!$isZip) {
+        if (!$isZip) {
             return [$filePath];
         }
 
         $zip = new \ZipArchive();
 
         $zip->open($filePath);
-        $zip->extractTo($this->projectDir."/var/$name");
+        $zip->extractTo($this->projectDir . "/var/$name");
         $files = [];
         for ($i = 0; $i < $zip->numFiles; $i++) {
             $files[] = $this->projectDir . "/var/$name/" . $zip->getNameIndex($i);
@@ -122,19 +98,16 @@ class FileProcessor
         unlink($filePath);
 
         return $files;
-
     }
 
 
     /**
-     * @param string $url
      * @param string $name
      * @param false $isZip
-     * @return string
      */
-    public function getFile(string $url,$name = "file",$isZip = false) : string
+    public function getFile(string $url, $name = "file", $isZip = false): string
     {
-        return $this->getFiles($url,$name,$isZip)[0];
+        return $this->getFiles($url, $name, $isZip)[0];
     }
 
 

@@ -26,27 +26,11 @@ class CreateTestData extends Command
 
 
     /**
-     * @var EntityManagerInterface
-     */
-    protected $em;
-
-    /**
-     * @var KernelInterface
-     */
-    protected $kernel;
-
-
-    /**
      * CreateTestData constructor.
-     *
-     * @param EntityManagerInterface $entityManager
      */
-    public function __construct(EntityManagerInterface $entityManager, KernelInterface $kernel)
+    public function __construct(protected EntityManagerInterface $em, protected KernelInterface $kernel)
     {
         parent::__construct(self::$defaultName);
-
-        $this->em = $entityManager;
-        $this->kernel = $kernel;
     }
 
 
@@ -77,8 +61,6 @@ class CreateTestData extends Command
 
 
     /**
-     * @param InputInterface $input
-     * @param OutputInterface $output
      * @return int|void
      */
     protected function execute(InputInterface $input, OutputInterface $output)
@@ -96,23 +78,23 @@ class CreateTestData extends Command
         for ($i = 0; $i < $number; $i++) {
             $faker = Factory::create('fr_FR');
             $rpps = new RPPS();
-            $rpps->setIdRpps("2" . $faker->numberBetween(1000000000000, 9999999999999));
+            $rpps->setIdRpps("2" . $faker->numberBetween(1_000_000_000_000, 9_999_999_999_999));
             $rpps->setFirstName($faker->firstName);
             $rpps->setLastName($faker->lastName . " Demo");
             $rpps->setEmail(
-                strtolower(str_replace(" ", "-", "{$rpps->getFirstName()}.{$rpps->getLastName()}@instamed.fr"))
+                strtolower(str_replace(" ", "-", (string)"{$rpps->getFirstName()}.{$rpps->getLastName()}@instamed.fr"))
             );
-            $rpps->setTitle(rand(0, 10) > 5 ? "Docteur" : null);
-            $rpps->setCpsNumber(rand(0, 10) > 5 ? "9" . $faker->numberBetween(100000000, 999999999) : null);
+            $rpps->setTitle(random_int(0, 10) > 5 ? "Docteur" : null);
+            $rpps->setCpsNumber(random_int(0, 10) > 5 ? "9" . $faker->numberBetween(100_000_000, 999_999_999) : null);
 
-            if (rand(0, 10) > 6) {
+            if (random_int(0, 10) > 6) {
                 $rpps->setAddress($faker->streetAddress);
                 $rpps->setCity($faker->city);
                 $rpps->setZipcode($faker->postcode);
             }
 
-            if (rand(0, 10) > 4) {
-                $rpps->setFinessNumber("3" . $faker->numberBetween(10000000, 99999999));
+            if (random_int(0, 10) > 4) {
+                $rpps->setFinessNumber("3" . $faker->numberBetween(10_000_000, 99_999_999));
             }
 
             $rpps->setSpecialty($this->getSpecialty());
@@ -163,9 +145,6 @@ class CreateTestData extends Command
     }
 
 
-    /**
-     * @return string
-     */
     protected function getSpecialty(): string
     {
         $specialties = [

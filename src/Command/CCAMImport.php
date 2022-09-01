@@ -2,6 +2,8 @@
 
 namespace App\Command;
 
+use DateTime;
+use Exception;
 use App\Service\CCAMService;
 use App\Service\DiseaseService;
 use App\Service\DrugService;
@@ -16,18 +18,12 @@ use Symfony\Component\Console\Output\OutputInterface;
 
 /**
  * Command to import file in empty database.
-**/
+ **/
 class CCAMImport extends Command
 {
 
     // the name of the command (the part after "bin/console")
     protected static $defaultName = 'app:ccam:import';
-
-
-    /**
-     * @var EntityManagerInterface
-     */
-    protected $em;
 
     /**
      * @var string
@@ -35,21 +31,9 @@ class CCAMImport extends Command
     protected $projectDir;
 
 
-    /**
-     * @var CCAMService
-     */
-    protected $ccamService;
-
-
-
-    public function __construct(CCAMService $ccamService, EntityManagerInterface $entityManager)
+    public function __construct(protected CCAMService $ccamService, protected EntityManagerInterface $em)
     {
-
         parent::__construct(self::$defaultName);
-
-        $this->ccamService = $ccamService;
-
-        $this->em = $entityManager;
     }
 
 
@@ -60,18 +44,14 @@ class CCAMImport extends Command
     {
         $this->setDescription('Import all CCAM data into database')
             ->setHelp('This command will import all CCAM data.');
-
     }
 
 
     /**
-     * @param InputInterface $input
-     * @param OutputInterface $output
      * @return int|void
      */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-
         $this->ccamService->setOutput($output);
 
         try {
@@ -79,24 +59,21 @@ class CCAMImport extends Command
             $this->em->getConnection()->getConfiguration()->setSQLLogger(null);
 
             // Showing when the cps process is launched
-            $start = new \DateTime();
+            $start = new DateTime();
             $output->writeln('<comment>' . $start->format('d-m-Y G:i:s') . ' Start processing :---</comment>');
 
             $this->ccamService->parse();
 
             // Showing when the cps process is launched
-            $end = new \DateTime();
+            $end = new DateTime();
             $output->writeln('<comment>' . $end->format('d-m-Y G:i:s') . ' Stop processing :---</comment>');
 
 
             return Command::SUCCESS;
-
-
-        } catch(\Exception $e){
+        } catch (Exception $e) {
             error_log($e->getMessage());
             $output->writeln($e->getMessage());
             return Command::FAILURE;
-
         }
     }
 }

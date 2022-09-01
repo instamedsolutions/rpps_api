@@ -24,9 +24,6 @@ class LoadDiseases extends Fixture implements DependentFixtureInterface, Fixture
     protected $em;
 
 
-    /**
-     * @param ObjectManager $manager
-     */
     public function load(ObjectManager $manager)
     {
         $this->em = $manager;
@@ -57,9 +54,9 @@ class LoadDiseases extends Fixture implements DependentFixtureInterface, Fixture
     /**
      * @return string[]
      */
-    public function getDependencies() : array
+    public function getDependencies(): array
     {
-       return [LoadDiseaseGroups::class];
+        return [LoadDiseaseGroups::class];
     }
 
 

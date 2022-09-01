@@ -2,6 +2,7 @@
 
 namespace App\ApiPlatform\Filter;
 
+use Exception;
 use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\AbstractContextAwareFilter;
 use ApiPlatform\Core\Bridge\Doctrine\Orm\Util\QueryNameGeneratorInterface;
 use Doctrine\ORM\QueryBuilder;
@@ -9,56 +10,49 @@ use Doctrine\ORM\QueryBuilder;
 /*
  *
  */
+
 final class AllergenFilter extends AbstractContextAwareFilter
 {
 
     use FilterTrait;
 
-    /**
-     * @var QueryNameGeneratorInterface
-     */
-    protected $queryNameGenerator;
+    protected ?QueryNameGeneratorInterface $queryNameGenerator = null;
 
 
     /**
-     * @param string $property
      * @param $value
-     * @param QueryBuilder $queryBuilder
-     * @param QueryNameGeneratorInterface $queryNameGenerator
-     * @param string $resourceClass
      * @param string|null $operationName
      *
-     * @throws \Exception
+     * @throws Exception
      */
-    protected function filterProperty(string $property, $value, QueryBuilder $queryBuilder, QueryNameGeneratorInterface $queryNameGenerator, string $resourceClass, string $operationName = null)
-    {
+    protected function filterProperty(
+        string $property,
+        $value,
+        QueryBuilder $queryBuilder,
+        QueryNameGeneratorInterface $queryNameGenerator,
+        string $resourceClass,
+        string $operationName = null
+    ) {
         $this->queryNameGenerator = $queryNameGenerator;
 
-        if(!array_key_exists($property,$this->properties)) {
+        if (!array_key_exists($property, $this->properties)) {
             return;
         }
 
         // Do not trigger if the value is empty
-        if(!$value) {
+        if (!$value) {
             return;
         }
 
-        $this->addSearchFilter($queryBuilder,$value);
-
-
+        $this->addSearchFilter($queryBuilder, $value);
     }
 
 
     /**
-     * @param QueryBuilder $queryBuilder
-     * @param string|null $value
-     * @return QueryBuilder
-     * @throws \Exception
+     * @throws Exception
      */
-    protected function addSearchFilter(QueryBuilder $queryBuilder,?string $value) : QueryBuilder
+    protected function addSearchFilter(QueryBuilder $queryBuilder, ?string $value): QueryBuilder
     {
-
-
         $alias = $queryBuilder->getRootAliases()[0];
 
         // Generate a unique parameter name to avoid collisions with other filters
@@ -68,16 +62,12 @@ final class AllergenFilter extends AbstractContextAwareFilter
 
         $value = $this->cleanValue($value);
 
-        $queryBuilder->setParameter($end,  "%$value%");
+        $queryBuilder->setParameter($end, "%$value%");
 
         return $queryBuilder;
     }
 
 
-    /**
-     * @param string $resourceClass
-     * @return array
-     */
     public function getDescription(string $resourceClass): array
     {
         if (!$this->properties) {
@@ -90,12 +80,12 @@ final class AllergenFilter extends AbstractContextAwareFilter
                 'property' => $property,
                 'type' => 'string',
                 'required' => false,
-                'swagger' => array(
+                'swagger' => [
                     'description' => "Search by first name, last name...",
                     'type' => 'string',
                     'name' => $property,
-                    'example' => "Jean Du",
-                ),
+                    'example' => "Jean Du"
+                ],
             ];
         }
 
