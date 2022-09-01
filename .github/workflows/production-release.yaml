@@ -104,5 +104,3 @@ jobs:
           aws_role_arn: ${{ secrets.AWS_ROLE_ARN }}
           aws_cluster_name: ${{ secrets.AWS_CLUSTER_NAME }}
           aws_api_service_name: ${{ secrets.AWS_API_SERVICE_NAME }}
-          aws_workers_service_name: ${{ secrets.AWS_WORKERS_SERVICE_NAME }}
-          aws_scheduled_service_name: ${{ secrets.AWS_SCHEDULED_WORKERS_SERVICE_NAME }}
