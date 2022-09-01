@@ -36,7 +36,7 @@ class Drug extends Thing implements Entity, Stringable
     ])]
     #[Groups(['read'])]
     #[ORM\Column(type: 'string', unique: true, nullable: true)]
-    protected ?string $cisId;
+    protected ?string $cisId = null;
 
 
     #[ApiFilter(SearchFilter::class, strategy: "istart")]
@@ -47,7 +47,7 @@ class Drug extends Thing implements Entity, Stringable
         ]
     ])]
     #[ORM\Column(type: 'string', length: 255)]
-    protected ?string $name;
+    protected ?string $name = null;
 
 
     #[ApiProperty(description: "The pharmaceutical form of the drug", required: true, attributes: [
@@ -58,7 +58,7 @@ class Drug extends Thing implements Entity, Stringable
     ])]
     #[Groups(['read'])]
     #[ORM\Column(type: 'string', length: 255, nullable: true)]
-    protected ?string $pharmaceuticalForm;
+    protected ?string $pharmaceuticalForm = null;
 
 
     #[ApiProperty(description: "The administration form of the drug", required: true, attributes: [
@@ -83,7 +83,7 @@ class Drug extends Thing implements Entity, Stringable
     ])]
     #[Groups(['read'])]
     #[ORM\Column(type: 'string', length: 255, nullable: true)]
-    protected ?string $owner;
+    protected ?string $owner = null;
 
     #[ApiProperty(description: "The packaging of the drug", required: false, attributes: [
         "openapi_context" => [
@@ -93,7 +93,7 @@ class Drug extends Thing implements Entity, Stringable
     ])]
     #[Groups(['read'])]
     #[ORM\Column(type: 'string', length: 255, nullable: true)]
-    protected ?string $presentationLabel;
+    protected ?string $presentationLabel = null;
 
 
     #[ApiProperty(description: "The percentage reimbursed of the drug", required: false, attributes: [
@@ -118,7 +118,7 @@ class Drug extends Thing implements Entity, Stringable
     ])]
     #[Groups(['drugs:item:read'])]
     #[ORM\Column(type: 'float', nullable: true)]
-    protected ?float $price;
+    protected ?float $price = null;
 
 
     #[ApiProperty(description: "The generic label of the drug", required: false, attributes: [
@@ -129,7 +129,7 @@ class Drug extends Thing implements Entity, Stringable
     ])]
     #[Groups(['drugs:item:read'])]
     #[ORM\Column(type: 'string', nullable: true)]
-    protected ?string $prescriptionConditions;
+    protected ?string $prescriptionConditions = null;
 
 
     #[ApiProperty(required: true, attributes: [
@@ -140,7 +140,7 @@ class Drug extends Thing implements Entity, Stringable
     ])]
     #[Groups(['drugs:item:read'])]
     #[ORM\Column(type: 'text', nullable: true)]
-    protected ?string $genericType;
+    protected ?string $genericType = null;
 
 
     #[ApiProperty(required: true, attributes: [
@@ -151,7 +151,7 @@ class Drug extends Thing implements Entity, Stringable
     ])]
     #[Groups(['drugs:item:read'])]
     #[ORM\Column(type: 'integer', nullable: true)]
-    protected ?int $genericGroupId;
+    protected ?int $genericGroupId = null;
 
 
     #[ApiProperty(required: true, attributes: [
@@ -168,12 +168,12 @@ class Drug extends Thing implements Entity, Stringable
     ])]
     #[Groups(['drugs:item:read'])]
     #[ORM\Column(type: 'smallint', nullable: true)]
-    protected ?string $genericLabel;
+    protected ?string $genericLabel = null;
 
 
     #[Groups(['drugs:item:read'])]
     #[ORM\Column(type: 'text', nullable: true)]
-    protected ?string $securityText;
+    protected ?string $securityText = null;
 
 
     public function getId(): string

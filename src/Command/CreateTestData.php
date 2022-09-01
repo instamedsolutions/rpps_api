@@ -83,7 +83,7 @@ class CreateTestData extends Command
             $rpps->setFirstName($faker->firstName);
             $rpps->setLastName($faker->lastName . " Demo");
             $rpps->setEmail(
-                strtolower(str_replace(" ", "-", "{$rpps->getFirstName()}.{$rpps->getLastName()}@instamed.fr"))
+                strtolower(str_replace(" ", "-", (string) "{$rpps->getFirstName()}.{$rpps->getLastName()}@instamed.fr"))
             );
             $rpps->setTitle(random_int(0, 10) > 5 ? "Docteur" : null);
             $rpps->setCpsNumber(random_int(0, 10) > 5 ? "9" . $faker->numberBetween(100_000_000, 999_999_999) : null);

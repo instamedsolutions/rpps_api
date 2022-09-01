@@ -42,7 +42,7 @@ class Disease extends Thing implements Entity, Stringable
     ])]
     #[Groups(['read'])]
     #[ORM\Column(type: 'string', unique: true)]
-    protected ?string $cim;
+    protected ?string $cim = null;
 
     #[ApiProperty(description: "The name of the disease", required: true, attributes: [
         "openapi_context" => [
@@ -53,7 +53,7 @@ class Disease extends Thing implements Entity, Stringable
     #[ApiFilter(SearchFilter::class, strategy: SearchFilterInterface::STRATEGY_START)]
     #[Groups(['read'])]
     #[ORM\Column(type: 'text')]
-    protected ?string $name;
+    protected ?string $name = null;
 
 
     #[ApiProperty(description: "The parent disease (if any)", required: false)]
@@ -61,7 +61,7 @@ class Disease extends Thing implements Entity, Stringable
     #[MaxDepth(2)]
     #[ORM\ManyToOne(targetEntity: Disease::class, cascade: ['persist'], inversedBy: 'children')]
     #[ORM\JoinColumn(name: 'parent_id', referencedColumnName: 'id', nullable: true, onDelete: 'SET NULL')]
-    protected ?Disease $parent;
+    protected ?Disease $parent = null;
 
 
     #[ApiProperty(description: "The subgroup the disease is a part of. A group is itself linked to a category", required: false)]
@@ -69,7 +69,7 @@ class Disease extends Thing implements Entity, Stringable
     #[MaxDepth(1)]
     #[ORM\ManyToOne(targetEntity: DiseaseGroup::class, cascade: ['persist'])]
     #[ORM\JoinColumn(name: 'group_id', referencedColumnName: 'id', nullable: true, onDelete: 'SET NULL')]
-    protected ?DiseaseGroup $group;
+    protected ?DiseaseGroup $group = null;
 
 
     #[ApiProperty(description: "The main category the disease is a part of", required: false)]
@@ -77,7 +77,7 @@ class Disease extends Thing implements Entity, Stringable
     #[Groups(['diseases:read'])]
     #[ORM\ManyToOne(targetEntity: DiseaseGroup::class, cascade: ['persist'])]
     #[ORM\JoinColumn(name: 'category_id', referencedColumnName: 'id', nullable: true, onDelete: 'SET NULL')]
-    protected ?DiseaseGroup $category;
+    protected ?DiseaseGroup $category = null;
 
     /**
      *
@@ -93,23 +93,23 @@ class Disease extends Thing implements Entity, Stringable
     #[ApiFilter(RangeFilter::class)]
     #[ORM\Column(type: 'smallint')]
     #[Groups(['diseases:read'])]
-    protected ?int $hierarchyLevel;
+    protected ?int $hierarchyLevel = null;
 
 
     #[ApiProperty(description: "The sex of the patient if the disease only targets a specific individual", required: false)]
     #[Groups(['diseases:item:read'])]
     #[ORM\Column(type: 'smallint', nullable: true)]
-    protected ?int $sex;
+    protected ?int $sex = null;
 
 
     #[Groups(['diseases:item:read'])]
     #[ORM\Column(type: 'integer', nullable: true)]
-    protected ?int $lowerAgeLimit;
+    protected ?int $lowerAgeLimit = null;
 
 
     #[Groups(['diseases:item:read'])]
     #[ORM\Column(type: 'integer', nullable: true)]
-    protected ?int $upperAgeLimit;
+    protected ?int $upperAgeLimit = null;
 
 
     public function __construct()
@@ -179,9 +179,6 @@ class Disease extends Thing implements Entity, Stringable
         return $this->sex;
     }
 
-    /**
-     * @param int|string|null $sex
-     */
     public function setSex(int|string|null $sex): void
     {
         if (is_string($sex)) {
@@ -195,9 +192,6 @@ class Disease extends Thing implements Entity, Stringable
         return $this->lowerAgeLimit;
     }
 
-    /**
-     * @param int|string|null $lowerAgeLimit
-     */
     public function setLowerAgeLimit(int|string|null $lowerAgeLimit): void
     {
         if (is_string($lowerAgeLimit)) {
@@ -214,9 +208,6 @@ class Disease extends Thing implements Entity, Stringable
         return $this->upperAgeLimit;
     }
 
-    /**
-     * @param int|string|null $upperAgeLimit
-     */
     public function setUpperAgeLimit(int|string|null $upperAgeLimit): void
     {
         if (is_string($upperAgeLimit)) {

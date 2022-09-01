@@ -1,0 +1,423 @@
+code,description
+AAD,Autres accessoires traitement à domicile (Titre I Chapitre I de la LPP)
+AAR,Appareil d'Assistance Respiratoire (Titre I Chapitre I du de la LPP)
+ACO,Actes d'obstétrique
+ADA,Actes d'anesthésie
+ADC,Actes de chirurgie
+ADE,Actes d'échographie
+ADI,Actes d'imagerie
+AIS,Acte infirmier de soin
+AMC,Acte de Kinésithérapie en établissement
+AMI,Soin infirmier
+AMK,Acte de kinésithérapie
+AMO,Séance d'orthophonie
+AMP,Soin de pédicurie
+AMS,Acte de kinésithérapie ostéo-articulaire
+AMY,Séance d'orthoptie
+APC,Avis ponctuel de consultant du médecin
+APU,Avis ponctuel de consultant réalisé par les professeurs des universités-praticiens hospitaliers
+APV,Avis ponctuel de consultant du médecin en visite
+APY,"Avis ponctuel de consultant réalisé par un psychiatre, neuropsychiatre ou neurologue"
+ARO,Générateur d'aérosol
+ATD,Complément AT Dentaire
+ATL,Complément AT LPP
+ATM,Actes techniques médicaux (hors imagerie)
+AVY,"Avis ponctuel de consultant réalisé par un psychiatre, neuropsychiatre ou neurologue en visite"
+AXI,Prophylaxie bucco-dentaire
+B,Acte de biologie
+BDC,Examen bucco-dentaire
+BR2,Examen Bucco-dentaire plus 1 ou 2 clichés radios
+BR4,Examen Bucco-dentaire plus 3 ou 4 clichés radios
+C,Consultation
+CDE,Consultation spécifìque de dépistage
+CG,Consultation suivi de grossesse
+CGP,Consultation Grand Prématuré
+CNP,Consultation neuropsychiatre
+COR,Podo-orthèse
+CPH,Copie d'ordonnance
+CPM,Majoration pour consultation Pédiatrique Malformation
+CRD,Majoration consultation régulée dimanche
+CRM,Majoration astreinte milieu de nuit sur la consultation ferié et assimilé
+CRS,Majoration consultation régulée samedi après-midi
+CS,Consultation spécialiste
+CSC,Consultation spécifique au cabinet par un médecin spécialiste en pathologie cardio-vasculaire-cardiologie - affection vasculaire
+CSM,Consultation de Sortie Maternité
+CSO,Consultation Suivi de l'Obésité
+CST,Complement surveillance thermales
+D,Actes dentaires
+DAP,Supplement Dérogatoire SMG sur Actes Professionnels remboursables
+DAT,Dépassement Accident de Travail
+DC,Acte de chirurgie dentaire
+DCC,Acte de Dépistage du Cancer Colorectal
+DDT,Dépassement Dentaire en Tiers Payant
+DHT,Dépassement d'Honoraires en Tiers Payant
+DLT,Dépassement LPP en Tiers Payant
+DPS,Supplément Dérogatoire SMG sur Prestations Sanitaires remboursables
+DVO,Divers Orthèses
+END,Actes d'Endodontie
+EPH,Enfant pathologie Handicap
+FDA,Forfait Dentaire pour prothèse Adjointe (dédié à la CMU-C)
+FDC,Forfait Dentaire pour prothèse Conjointe (dédié à la CMU-C)
+FDO,Forfait Dentaire pour acte dentaire ODF (dédié à la CMU-C)
+CA,Consultation approfondie
+DI,Bilan de soins infirmiers
+CCP,Consultation Prévention santé sexuelle
+FDR,Forfait Dentaire pour Réparation de prothèse (dédié à la CMU-C)
+FFC,Forfait Fausse Couche Ville
+FFV,Forfait Fausse Couche Ville Sans Echographie
+FPC,Forfait prothèse conjointe (dédié à la CMU-C)
+FPO,Forfait orthodontique (dédié à la cMU-C)
+FSD,Forfait de Sécurité Dermatologique
+FTN,Forfait technique normal
+FTR,Forfait technique réduit
+G,Consultation Médecine Générale
+GLU,Nutriment pour intolérant au gluten
+GS,Consultation Spécialiste Médecine Générale
+GS1,Vaccin anti grippe Hémisphère Sud VAXIGRIP HS
+GS2,Vaccin anti grippe Hémisphère Sud FLUARIX HS
+HC,Honoraire dispensation Complexe
+HD1,Honoraire de Dispensation niveau 1
+HD2,Honoraire de Dispensation niveau 2
+HD4,Honoraire de Dispensation niveau 4
+HD7,Honoraire de Dispensation niveau 7
+HDS,Honoraire de dispensation spécifique vaccins anti grippaux Hémisphère Sud
+HG1,Honoraire de Dispensation Grand conditionnement niveau 1
+HG2,Honoraire de Dispensation Grand conditionnement niveau 2
+HG4,Honoraire de Dispensation Grand conditionnement niveau 4
+HG7,Honoraire de Dispensation Grand conditionnement niveau 7
+HN,Hors Nomenclature
+ICO,Inlay-Core
+ID,Indemnité de Déplacement
+IF,Indemnité Forfaitaire de Déplacement
+IFA,lndemnité Forfaitaire de déplacement pour Auxiliaires médicaux et assimiles
+IFN,lndemnité Forflaitaire de déplacement MK Neurologique
+IFO,Indemnité Forfaitaire de déplacement MK Orthopédique et rhumatologique
+IFP,Indemnité Forfaitaire de déplacement MK Pneumologie
+IFR,Indemnité Forfaitaire de déplacement MK Rhumatismale
+IFS,Indemnité Forfaitaire de déplacement de sortie
+IGR,Insuffisance Greffe Rénale
+IK,lndemnité Kilométrique
+IKM,lndemnité Kilométrique Montagne
+IKS,lndemnité Kilométrique Spéciale
+IMP,Implantologie
+INO,Actes Inlay-Onlay
+K,Acte de spécialité
+KA,Acte de chirurgie d'urgence
+KB,Prélèvement directeur de laboratoire
+KC,Acte de chirurgie (ou de chirurgie dentaire par stomatologue)
+KE,Acte d'échographie échotomographie ou doppler pratiqué par le médecin ou la sage-femme
+KGP,Kit Anti-Grippe
+KMB,Prélèvement par ponction veineuse directe par un médecin biologiste
+KTH,Pratique médicale complémentaire en cure thermale
+LEN,Lentille optique
+LUN,Monture optique
+MAC,Matériels et appareils de contention et de maintien (Titre I - chapitre 2 de la LPP)
+FPE,Forfait pédiatrique
+KMO,Acte de phoniatrie par médecin
+MAD,Matériels et appareils de traitement divers (Titre l-chapitre 3 de la LPP)
+MAF,Majoration consultation Annuelle Famille
+MAP,Majoration Anatomo-cythopathologiste
+MAU,Majoration pour acte unique
+MAV,Maladie Atteinte Vasculaire
+MCA,Majoration Consultation Asthme déstabilisé
+MCC,Majoration cardiologue affectée à la CSC
+MCD,Majoration spécifique permanence de soins Clinique Dentiste
+MCE,Majoration Consultation Endocrinologue
+MCG,Majoration de coordination des généralistes
+MCI,Majoration de coordination et d'environnement de soin infirmier
+MCT,Majoration patients Cérébro-lésés ou Traumatisés
+MCU,Majoration correspondant urgence
+MD,Majoration de déplacement
+MDD,Majoration de déplacement critères médicaux ou environnementaux de dimanche ou jour férié
+MDI,Majoration de déplacement critères médicaux ou environnementaux en milieu de nuit 24 H à 6 H
+MDN,Majoration de déplacement critères médicaux ou environnementaux de nuit de 20 H à24H et de 6 H à 8 H
+MEG,Majoration Enfant Généraliste
+MEP,Majoration Enfant Pédiatre
+MHU,Médicament homéopathique unitaire
+MIC,Majoration Insuffisant Cardiaque
+MIS,Majoration pour information Initiale et mise en place de la Statégie thérapeutique
+MM,Majoration de milieu de nuit
+MMF,Majoration prise en charge Mycose ou Fibrose pulmonaire
+MMM,Majoration pour prise en charge Malformation congénitale et Maladie grave du fœtus
+MPB,Majoration pour traitement Par Biothérapie anti-TNF alpha
+MPC,Majoration Provisoire Cliniciens
+MPF,Majoration consultation Famille
+MPI,Majoration pharmacie délivrée dans les Iles
+MPS,Majoration pour Prise en charge de la Stérilité
+MPT,Majoration de Prise en charge de la Tuberculose
+MRT,Majoration médecin traitant régulation
+MSH,Majoration de Sortie d'Hospitalisation
+MSP,Majoration suivi Prématurés
+MTA,Majoration consultation appareillage
+MTS,Majoration Transitoire Spécifique
+MU,Majoration d'Urgence
+MUT,Majoration d’urgence du médecin traitant
+NFE,Nouveau Forfait Enfant
+NFP,Nouveau Forfait Pédiatrique
+OME,Forfait monture - 18 ans (CMU-C)
+OP1,Forfait optique - N1 Multifocaux (CMU C)
+OP2,Forfait optique - N2 Multifocaux (CMU C)
+OP3,Forfait optique - N3 Multifocaux (CMU C)
+OP4,Forfait optique - N4 Multifocaux (CMU C)
+OP5,Forfait optique - N5 Multifocaux (CMU C)
+OP6,Forfait optique - N6 Multifocaux (CMU C)
+OP7,Forfait optique - N7 Multifocaux (CMU C)
+OPC,Orthoprothèses Coûteuses
+OPM,Forfait monture (CMU C)
+OPT,Optique
+ORP,Orthoprothèse
+ORT,Orthopédie dentofaciale par stomatologue
+OV1,Forfait optique enfant - Nl Unifocaux (CMU C)
+MAS,Majoration Annuelle de Synthèse
+MCS,Majoration de coordination spécialiste
+OV2,Forfait optique enfant - N2 Unifocaux (CMU C)
+OV3,Forfait optique enfant - N3 Unifocaux (CMU C)
+OV4,Forfait optique enfant - N4 Unifocaux (CMU C)
+OV5,Forfait optique enfant - N5 Unifocaux (CMU C)
+OV6,Forfait optique enfant - N6 Unifocaux (CMU C)
+OV7,Forfait optique enfant - N7 Unifocaux (CMU C)
+OV8,Forfait optique enfant - N8 Unifocaux (CMU C)
+OV9,Forfait optique enfant - N9 Unifocaux (CMU C)
+OVA,Forfait optique enfant - A Unifocaux (CMU C)
+OVB,Forfait optique enfant - B Unifocaux (CMU C)
+P,Acte anatomo-cyto-pathologie
+PA,Orthèses (Titre Il Chapitre 1 de la LPP)
+PAM,Prothèse Amovible Définitive Métallique
+PAN,Pansements (Titre I - chapitre 4 de la LPP)
+PAR,Prothèse Amovible définitive Résine
+PAU,Prothèse auditive
+PAV,Participation Assuré
+PB,Prélèvement sanguin par directeur labo. Non médecin
+PDM,Dispositif Médical (prise en charge exceptionnelle)
+PDT,Prothèse Dentaire Provisoire
+PEG,Majoration Pathologie Endocrinienne de la Grossesse
+PEX,Prothèse exteme non orthopedique
+PFC,Prothèse Fixe Céramique
+PFM,Prothèses dentaires fixes métalliques
+PH1,Pharmacie
+PH2,Pharmacie vignette orange
+PH4,Pharmacie vignette bleue
+PH7,Pharmacie vignette blanche
+PHN,Pharmacie non remboursable
+PII,Prothèse interne inerte
+PIO,Processeur pour Implant Osté-intégré
+PIV,Prise en charge Infection VIH
+PM2,Préparation Magistrale à 15%
+PM4,Préparation Magistrale à 30%
+PMH,Préparation magistrale Homéopathique
+PMR,Préparation magistrale
+POC,Prothèse oculaire et facial
+POD,Acte de pédicure podologue (Diabétique)
+POG,Pathologie Oculaire Grave
+PPH,Plan Personnalisé de Santé-Pharmacie
+PPI,Préparation Pharmaceutique
+PPN,Prise en charge Pathologies Neurologiques
+PPP,Prestation Particulière Pandémie
+PPR,Prise en charge Polyarthrite Rhumatoïde
+PPS,Plan Personnalisé de Santé
+PRO,Prothèse dentaire par stomatologue
+PTG,Première consultation Thrombophilie Grave
+RNO,Renouvellement d'Optique
+RPN,Répqrqtion sur Prothèse
+SC,Soin conservateur par dentiste
+SCM,Soins conservateurs par médecin
+SDE,Soins dentaires
+SES,Suite examen de santé
+SF,Acte de sage-femme autre que les actes d'échographie d'échotomographie ou de doppler
+SFI,Soin infirmier par sage-femme
+SGA,Supplément dérogatoire SMG2 sur Actes professionnels non remboursable
+SGE,Scoliose Grave de l'Enfant
+SGN,Supplément dérogatoire SMG sur prestations Sanitaires non remboursables
+SGS,Prestation non identifiée par l'Assurance Maladie
+SLA,Séquelles Lourds AVC
+SP,Examen de suivi post-natal
+SPR,Acte de prothèse dentaire par chirurgien dentiste
+STH,Forfait surveillance médicale thermale
+TB,Prélèvement sanguin par un technicien de laboratoire
+TCA,Trouble du Comportement Alimentaire
+TDR,Test de diagnostic rapide
+TDS,Parodontologie
+THR,Demi-forfait surveillance thermale
+TO,Traitement d'orthopédie dentofaciale par chirurgien dentiste
+UPH,Urgence pharmacie
+V,Visite
+VA,Visite d'urgence
+VDC,Vidéocapsule
+VEH,Véhicule pour handicapé physique
+VER,Verre optique
+VG,Visite Médecine Générale
+VGS,Visite Spécialiste Médecine Générale
+VL,Visite longue et complexe
+VNP,Visite neuropsychiatre
+VRD,Majoration visite régulée dimanche férié et assimilé
+VRM,Majoration astreinte milieu nuit sur la visite
+VRN,Majoration astreinte nuit sur la visite
+VRS,Majoration visite régulée samedi après-midi
+VS,Visite spécialiste
+Z,Acte de radiologie
+CCE,Consultation très complexe Enfants
+CCX,Consultation complexe Enfants
+CSE,Consultation annuelle de suivi de l’Enfant autiste
+CTE,Consultation de repérage des signes de Trouble du spectre de l’autisme
+MCX,Majoration pour consultation complexe
+MIA,Majoration pour consultation Initiale Anisocorie diplopie
+MTX,Majoration pour consultation très complexe
+TNS,Traitement Nicotinique de Substitution
+FOT,Forfait évaluation domicile handicap
+DSP,Forfait Sortie Précoce
+MSF,Majoration Sage-Femme
+FOH,Forfait Handicap Orthophonie
+MEO,Majoration Enfant Orthophonie
+FAD,Forfait retour à domicile post chirurgie orthopédique
+FRD,Forfait retour à domicile post AVC
+RNM,Muraine bilan visuel
+TC,Téléconsultation
+TE1,Télé Expertise niveau 1
+TE2,Télé Expertise niveau 2
+TSA,Télésurveillance Accompagnement Thérapeutique
+TSF,Télésurveillance Fournisseur
+TSM,Télésurveillance Médecin
+TDT,Télé expertise Dossier Traitant
+TLC,Télé consultation ALD et/ou EHPAD
+TLE,Télé expertise ALD et/ou EHPAD
+TTE,Téléconsultation médecin Traitant avec EHPAD
+TCG,Téléconsultation Généraliste
+FPH,Forfait Post Hospitalisation Orthophonie
+FIS,Prestation générique dans le cadre du Fond Innovation
+TLD,Téléconsultation d'accompagnement à domicile
+TLL,Téléconsultation d'accompagnement dans un lieu dédié
+TLM,Traceur d'accompagnement à la téléconsultation
+TLS,Téléconsultation d'accompagnement lors d'un soin
+PCV,Consultation Post-Confinement
+TCP,Acte de téléconsultation
+TEP,Acte de télé expertise
+IG,Intervention IVG
+IPD,Forfait Intervention IVG
+MIE,Majoration Infirmier Enfant
+AMX,Soins infirmiers externalisés
+BSA,Forfait bilan de soins légers
+BSB,Forfait bilan de soins intermédiaires
+BSC,Forfait bilan de soins lourds
+IFI,Forfait de déplacement Infirmiers
+MIP,Majoration Infirmier Pratique avancée
+PAI,Forfait Pratique Avancée Infirmier
+IFV,Indemnité Forfaitaire Déplacement pour personne âgée
+MTJ,Majoration Transitoire Jeune Mayotte
+COA,Examen Obligatoire enfant 100% A
+COB,Examen Obligatoire Enfant 100% B
+COD,Examen Obligatoire Enfant 100% D
+COE,Consultation Obligatoire Enfant
+COG,Examen Obligatoire Enfant 100% G
+COH,Examen Obligatoire Enfant 100% H
+COM,Examen Obligatoire Enfant 100% M
+VAC,Acte de Vaccination COVID-19
+INJ,Acte d’injection du Vaccin COVID-19
+CRN,Majoration astreinte nuit sur la consultation
+MBB,Majoration nourrisson avant huit jours
+MGE,Majoration Généraliste Enfant
+MNO,Majoration Nourrisson Cénéraliste
+MNP,Majoration Nourrisson Pédiatre
+MPE,Majoration pour acte unique
+MPJ,Majoration Provisoire Cliniciens moins de 16 ans
+MPP,Majoration suivi de prématuré par pédiatre
+AKI,Accompagnement anti-vitamine K initial
+AKS,Accompagnement anti-vitamine K suivant
+AOI,Accompagnement anticoagulants Oraux directs année Initiale
+AOS,Accompagnement anticoagulants Oraux directs année Suivante
+APA,Audio Prothèses Accessoires
+ASI,Accompagnement asthme Initial
+ASS,Accompagnement asthme Suivant
+BDX,Supplément Examen Bucco-Dentaire Complexe
+BMI,Bilan Médication Initial
+BMS,Bilan Médication année Suivante
+BMT,Bilan Médication changement de Traitement
+BR1,Bridge RAC modéré
+BRP,Examen Bucco-Dentaire avec Radio Panoramique
+CBX,Consultation Bucco-Dentaire complexe
+CM0,Couronne métallique RAC 0
+CT0,Couronne transitoire RAC 0
+CT1,Couronne transitoire RAC modéré
+CZ0,Couronne zircone RAC 0
+CZ1,Couronne zircone RAC modéré
+DAD,code traceur Dispensation ADaptée
+HDA,Honoraire de dispensation lié à l'âge de l'assuré
+HDE,Honoraire de dispensation pour délivrance de médicament spécifique
+HDR,Honoraire de dispensation pour délivrance de médicament remboursable
+IC0,Inlay core RAC 0
+IC1,Inlay core RAC modéré
+IN1,Inlay onlay RAC modéré
+M02,Monture enfant – Classe A - RAC 0
+M03,Monture adulte – classe B – Honoraires libres
+M01,Monture adulte – classe A - RAC 0
+M04,Monture enfant – Classe B – Honoraires libres
+MS1,Optique classe A – Supplément pour monture de lunettes à coque – moins de 6 ans – RAC 0
+MS2,Optique classe B – Supplément pour monture de lunettes à coque – moins de 6 ans – Honoraires libres
+P1D,Prothèse auditive panier 1- RAC 0 – oreille droite
+P1G,Prothèse auditive panier 1- RAC 0 – oreille gauche
+P2D,Prothèse auditive panier 2 – Honoraires libres – oill drite
+P2G,Prothèse auditive panier 2 – Honoraires libres – oill gache
+PA0,Prothèse amovible RAC 0
+PA1,Prothèse amovible RAC modéré
+PF0,Prothèse fixe RAC 0
+PF1,Prothèse fixe RAC modéré
+PIL,Audio Prothèses Piles
+PT0,Prothèse amovible de transition RAC 0
+RA0,Réparation Adjonction RAC 0
+PAZ,Prothèse auditive rac zéro
+RE1,Réparation prothèse RAC modéré
+RF0,Réparation facette prothèse amovible RAC 0
+RS0,Réparation prothèse adjointe simple RAC 0
+S01,Optique- adaptation verre de classe A - RAC 0
+SU0,Supplément prothèse résine RAC 0
+SU1,Supplément prothèse métallique RAC modéré
+SUI,Suivi prothèse auditive
+SV1,Optique- adaptation verre de classe B – Honoraires libres
+SV2,"Optique- appairage niveau 1,2 ou 3 classe A – RAC 0"
+SV3,Optique- autre supplément
+SV4,Optique- Supplément pour verres teintés - plafonné
+TAC,Code Traceur Accompagnement
+TRD,Test Rapide d'Orientation Diagnostique de l'Angine
+V01,Verre de classe A – Unifocal ou neutre - RAC 0
+V02,Verre de classe A – Unifocal complexe - RAC 0
+V03,Verre de classe A - Multifocal/progressif complexe - RAC 0
+V04,Verre de classe A – Multifocal/progressif très complexe RAC 0
+VGP,Vaccination Grippe Pharmacien
+VM1,Verre de classe B – Multifocal/ progressif sphérique - Honoraires libres
+VM2,Verre de classe B – Multifocal/ progressif sphéro-cylindrique - Honoraireslibes
+VM3,Verre de classe B – Multifocal/ progressif sphéro-cylindrique - Honoraireslibes
+VM4,Verre de classe B – Multifocal/progressif sphérique - Honoraires libres
+VM5,Verre de classe B – Multifocal/ progressif sphéro-cylindrique - Honoraireslibes
+VM6,Verre de classe B – Multifocal/ progressif sphéro-cylindrique complexe - Hnorire lires
+VM7,Verre de classe B – Multifocal/ progressif sphéro-cylindrique très complex - onoairs lbre
+VU1,Verre de classe B – Unifocal sphérique - Honoraires libres
+VU2,Verre de classe B – Unifocal sphéro-cylindrique - Honoraires libres
+VU3,Verre de classe B – Unifocal sphéro-cylindrique - Honoraires libres
+VU4,Verre de classe B – Unifocal sphérique - Honoraires libres
+VU5,Verre de classe B – Unifocal sphéro-cylindrique - Honoraires libres
+VU6,Verre de classe B – Unifocal sphéro-cylindrique - Honoraires libres
+VU7,Verre de classe B – Unifocal sphéro-cylindrique -Honoraires libres
+GCO,Consultation protocole coopératif
+TMO,Télésoin Orthophonistes
+TMY,Télésoin Orthoptistes
+ASE,Consultation Aide Sociale Enfance
+MPH,Consultation personne souffrant de handicap
+FHV,Forfait Honoraires de Ville
+FMV,Forfait Médicament de Ville
+FPB,Forfait Préalable Biologie IVG ville
+TFS,Télésoins Sages-Femmes
+MGM,Majoration Gynécologie Médicale
+MP,Majoration Psychiatres pour enfants
+COJ,Examen obligatoire enfant 100% J
+COK,Examen obligatoire enfant 100% K
+FTD,Forfait Troubles neuro-Développement
+FUB,Forfait Ultérieur Biologie IVG ville
+IC,Consultation généraliste IVG
+ICS,Consultation Spécialiste IVG
+IPE,Vérification Echographie pré IVG
+IVE,Vérification Echographie post IVG
+RQD,Demande téléexpertise
+JC,Téléconsultation généraliste IVG
+JCS,Téléconsultation spécialiste IVG
+SNP,Soins Non Programmés
+BTC,Bilan Mission Retrouve Ton Cap
+STC,Suivi Mission Retrouve Ton Cap

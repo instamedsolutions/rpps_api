@@ -12,6 +12,7 @@ use App\DataFixtures\LoadCCAMGroup;
 use App\DataFixtures\LoadDiseaseGroups;
 use App\DataFixtures\LoadDiseases;
 use App\DataFixtures\LoadDrugs;
+use App\DataFixtures\LoadNGAP;
 use App\DataFixtures\LoadRPPS;
 use App\Entity\Entity;
 use App\Entity\GlobalEntity;
@@ -61,7 +62,8 @@ abstract class ApiTestCase extends BaseTestCase
         LoadDiseases::class,
         LoadCCAMGroup::class,
         LoadCCAM::class,
-        LoadAllergens::class
+        LoadAllergens::class,
+        LoadNGAP::class
     );
 
 

@@ -20,22 +20,13 @@ class CCAMRepository extends ServiceEntityRepository
 {
 
 
-    /**
-     * RPPSRepository constructor.
-     */
     public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, CCAM::class);
     }
 
-    /**
-     * @param mixed $id
-     * @param null $lockMode
-     * @param null $lockVersion
-     * @return Drug|null
-     * @throws NonUniqueResultException
-     */
-    public function find($id, $lockMode = null, $lockVersion = null) : ?CCAM
+
+    public function find($id, $lockMode = null, $lockVersion = null): ?CCAM
     {
         if (null === $id || 0 === $id) {
             return null;

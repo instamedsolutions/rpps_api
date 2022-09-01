@@ -1,7 +1,10 @@
 import-prod-data: import-prod-allergens import-prod-ccam import-prod-diseases import-prod-drugs import-prod-rpps # Import all data but test data
 
-import-prod-allergens: # Import allergets' data
+import-prod-allergens: # Import allergens' data
 	php bin/console app:allergen:import
+
+import-prod-ngap: # Import ngap's data
+	php bin/console app:ngap:import
 
 import-prod-ccam: # Import CCAM' data
 	php bin/console app:ccam:import

@@ -34,7 +34,7 @@ class RPPS extends Thing implements Entity, Stringable
     ])]
     #[Groups(['read'])]
     #[ORM\Column(type: 'string', unique: true, nullable: true)]
-    protected ?string $idRpps;
+    protected ?string $idRpps = null;
 
 
     #[ApiProperty(description: "The civility of the doctor", required: false, attributes: [
@@ -45,7 +45,7 @@ class RPPS extends Thing implements Entity, Stringable
     ])]
     #[Groups(['read'])]
     #[ORM\Column(type: 'string', length: 255, nullable: true)]
-    protected ?string $title;
+    protected ?string $title = null;
 
 
     #[ApiFilter(SearchFilter::class, strategy: "istart")]
@@ -57,7 +57,7 @@ class RPPS extends Thing implements Entity, Stringable
     ])]
     #[Groups(['read'])]
     #[ORM\Column(type: 'string', length: 255, nullable: true)]
-    protected ?string $lastName;
+    protected ?string $lastName = null;
 
 
     #[ApiFilter(SearchFilter::class, strategy: "istart")]
@@ -69,7 +69,7 @@ class RPPS extends Thing implements Entity, Stringable
     ])]
     #[Groups(['read'])]
     #[ORM\Column(type: 'string', length: 255, nullable: true)]
-    protected ?string $firstName;
+    protected ?string $firstName = null;
 
 
     #[ApiProperty(description: "The specialty of the doctor", required: false, attributes: [
@@ -80,7 +80,7 @@ class RPPS extends Thing implements Entity, Stringable
     ])]
     #[Groups(['read'])]
     #[ORM\Column(type: 'string', length: 255, nullable: true)]
-    protected ?string $specialty;
+    protected ?string $specialty = null;
 
 
     #[ApiProperty(description: "The address of the doctor", required: false, attributes: [
@@ -91,7 +91,7 @@ class RPPS extends Thing implements Entity, Stringable
     ])]
     #[Groups(['read'])]
     #[ORM\Column(type: 'string', length: 255, nullable: true)]
-    protected ?string $address;
+    protected ?string $address = null;
 
 
     #[ApiProperty(description: "The postal code of the doctor", required: false, attributes: [
@@ -102,7 +102,7 @@ class RPPS extends Thing implements Entity, Stringable
     ])]
     #[Groups(['read'])]
     #[ORM\Column(type: 'string', length: 255, nullable: true)]
-    protected ?string $zipcode;
+    protected ?string $zipcode = null;
 
 
     #[ApiProperty(description: "The city of the doctor", required: false, attributes: [
@@ -113,7 +113,7 @@ class RPPS extends Thing implements Entity, Stringable
     ])]
     #[Groups(['read'])]
     #[ORM\Column(type: 'string', length: 255, nullable: true)]
-    protected ?string $city;
+    protected ?string $city = null;
 
 
     #[ApiProperty(description: "The phone number of the doctor", required: false, attributes: [
@@ -125,7 +125,7 @@ class RPPS extends Thing implements Entity, Stringable
     #[AssertPhoneNumber(defaultRegion: "FR")]
     #[Groups(['read'])]
     #[ORM\Column(type: 'phone_number', nullable: true)]
-    protected ?PhoneNumber $phoneNumber;
+    protected ?PhoneNumber $phoneNumber = null;
 
 
     #[ApiProperty(description: "The email of the doctor", required: false, attributes: [
@@ -137,7 +137,7 @@ class RPPS extends Thing implements Entity, Stringable
     #[ApiFilter(SearchFilter::class, strategy: "istart")]
     #[ORM\Column(type: 'string', length: 255, nullable: true)]
     #[Groups(['read'])]
-    protected ?string $email;
+    protected ?string $email = null;
 
 
     #[ApiProperty(description: "The Finess number of the doctor", required: false, attributes: [
@@ -148,7 +148,7 @@ class RPPS extends Thing implements Entity, Stringable
     ])]
     #[Groups(['read'])]
     #[ORM\Column(type: 'string', length: 255, nullable: true)]
-    protected ?string $finessNumber;
+    protected ?string $finessNumber = null;
 
 
     #[ApiProperty(description: "The CPS number of the doctor", required: false, attributes: [
@@ -159,7 +159,7 @@ class RPPS extends Thing implements Entity, Stringable
     ])]
     #[Groups(['read'])]
     #[ORM\Column(type: 'string', length: 255, nullable: true)]
-    protected ?string $cpsNumber;
+    protected ?string $cpsNumber = null;
 
 
     public function getIdRpps(): ?string

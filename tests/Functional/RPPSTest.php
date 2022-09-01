@@ -108,7 +108,7 @@ class RPPSTest extends ApiTestCase
      */
     public function testGetOneRppsData()
     {
-        $data = $this->get("rpps/111111111111");
+        $data = $this->get("rpps/11111111111");
 
         $this->assertResponseStatusCodeSame(Response::HTTP_OK);
         $this->assertEquals("Bastien", $data['firstName']);

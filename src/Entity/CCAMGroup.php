@@ -99,7 +99,7 @@ class CCAMGroup extends Thing implements Entity, Stringable
     public function addDescriptionLine(string $description)
     {
         if (trim($description) !== '' && trim($description) !== '0') {
-            $this->description .= trim(",$description");
+            $this->description .= trim((string) ",$description");
         }
     }
 

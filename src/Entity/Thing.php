@@ -16,8 +16,14 @@ abstract class Thing implements Entity, ImportedEntity, Stringable
     #[Groups(['read'])]
     #[ORM\Id]
     #[ORM\GeneratedValue(strategy: 'UUID')]
+    #[ApiProperty(description: "The id of the resource", required: true, attributes: [
+        "openapi_context" => [
+            "type" => "string",
+            "format" => "uuid",
+        ]
+    ])]
     #[ORM\Column(type: 'guid', unique: true)]
-    protected ?string $id;
+    protected ?string $id = null;
 
 
     #[ApiProperty(description: "The created date of the entity", writable: false)]

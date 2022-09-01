@@ -33,7 +33,7 @@ class Allergen extends Thing implements Entity, Stringable
     #[ApiFilter(SearchFilter::class, strategy: "exact")]
     #[Groups(['read'])]
     #[ORM\Column(name: 'allergen_code', type: 'string', length: 10, unique: true)]
-    protected ?string $code;
+    protected ?string $code = null;
 
 
     #[ApiProperty(description: "The name of the allergen", required: true, attributes: [
@@ -45,7 +45,7 @@ class Allergen extends Thing implements Entity, Stringable
     #[ApiFilter(SearchFilter::class, strategy: "istart")]
     #[Groups(['read'])]
     #[ORM\Column(type: 'string', length: 255)]
-    protected ?string $name;
+    protected ?string $name = null;
 
 
     #[ApiProperty(description: "The parent group of the allergen", required: true, attributes: [
@@ -56,7 +56,7 @@ class Allergen extends Thing implements Entity, Stringable
     ])]
     #[Groups(['read'])]
     #[ORM\Column(name: 'allergen_group', type: 'string', length: 255)]
-    protected ?string $group;
+    protected ?string $group = null;
 
     public function getCode(): ?string
     {
