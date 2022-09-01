@@ -14,3 +14,11 @@ import-prod-drugs: # Import drugs' data
 
 import-prod-rpps: # Import rpps' data
 	php bin/console app:rpps:import
+
+make start-prod: clear-cache-prod start-apache-prod
+
+clear-cache-prod:
+	php bin/console cache:clear
+
+start-apache-prod:
+	/usr/sbin/apache2ctl", "-D", "FOREGROUND
