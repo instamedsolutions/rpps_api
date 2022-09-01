@@ -7,11 +7,12 @@ use ApiPlatform\Core\DataProvider\ItemDataProviderInterface;
 use ApiPlatform\Core\DataProvider\RestrictedDataProviderInterface;
 use App\Entity\RPPS;
 use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Component\HttpFoundation\RequestStack;
 
 final class RPPSItemDataProvider implements ItemDataProviderInterface, RestrictedDataProviderInterface
 {
 
-    public function __construct(protected EntityManagerInterface $em)
+    public function __construct(protected readonly RequestStack $requestStack, protected EntityManagerInterface $em)
     {
     }
 
@@ -30,8 +31,10 @@ final class RPPSItemDataProvider implements ItemDataProviderInterface, Restricte
      */
     public function getItem(string $resourceClass, $id, string $operationName = null, array $context = []): ?RPPS
     {
+        $request = $this->requestStack->getMainRequest();
+
         if (0 === $id) {
-            $id = $this->request->get("id", null);
+            $id = $request->get("id", null);
         }
 
         if (null === $id) {
