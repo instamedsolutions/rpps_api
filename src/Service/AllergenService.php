@@ -2,6 +2,7 @@
 
 namespace App\Service;
 
+use Doctrine\ORM\NonUniqueResultException;
 use App\Entity\Allergen;
 use App\Entity\Drug;
 use Doctrine\ORM\EntityManagerInterface;
@@ -13,36 +14,24 @@ use Symfony\Component\Console\Output\OutputInterface;
 class AllergenService extends FileParserService
 {
 
-    /**
-     * @var string
-     */
-    protected $projectDir;
-
-
-    public function __construct(string $projectDir,FileProcessor $fileProcessor,EntityManagerInterface $em)
+    public function __construct(protected string $projectDir, FileProcessor $fileProcessor, EntityManagerInterface $em)
     {
-        $this->projectDir = $projectDir;
-        parent::__construct(Allergen::class,$fileProcessor,$em);
+        parent::__construct(Allergen::class, $fileProcessor, $em);
     }
 
 
-    /**
-     * @return bool
-     * @throws \Doctrine\ORM\NonUniqueResultException
-     */
-    public function parse() : bool
+    public function parse(): bool
     {
-        return $this->processFile($this->output,$this->getFile(),"default",['delimiter' => ",","utf8" => true,"headers" => true]);
+        return $this->processFile(
+            $this->output,
+            $this->getFile(),
+            "default",
+            ['delimiter' => ",", "utf8" => true, "headers" => true]
+        );
     }
 
 
-    /**
-     * @param array $data
-     * @param string $type
-     * @return Drug|null
-     * @throws \Doctrine\ORM\NonUniqueResultException
-     */
-    protected function processData(array $data,string $type) : ?Allergen
+    protected function processData(array $data, string $type): ?Allergen
     {
         $allergen = $this->repository->find($data[0]);
 
@@ -62,12 +51,8 @@ class AllergenService extends FileParserService
     }
 
 
-
-    /**
-     * @return string
-     */
-    protected function getFile() : string
+    protected function getFile(): string
     {
-        return  "$this->projectDir/data/allergens.csv";
+        return "$this->projectDir/data/allergens.csv";
     }
 }

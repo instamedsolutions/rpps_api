@@ -28,14 +28,13 @@ class DrugsTest extends ApiTestCase
      */
     public function testSearchDrugsData()
     {
-
-        $data = $this->get("drugs",['search' => "Paracétamol"]);
+        $data = $this->get("drugs", ['search' => "Paracétamol"]);
 
         $this->assertResponseStatusCodeSame(Response::HTTP_OK);
-        $this->assertEquals("PARACETAMOL 50,0 mg",$data['hydra:member'][0]['name']);
-        $this->assertEquals("68634033",$data['hydra:member'][0]['cisId']);
+        $this->assertEquals("PARACETAMOL 50,0 mg", $data['hydra:member'][0]['name']);
+        $this->assertEquals("68634033", $data['hydra:member'][0]['cisId']);
 
-        $this->assertCount(1,$data['hydra:member']);
+        $this->assertCount(1, $data['hydra:member']);
     }
 
     /**
@@ -46,13 +45,11 @@ class DrugsTest extends ApiTestCase
      */
     public function testGetDrugsData()
     {
-
         $data = $this->get("drugs/68634000");
 
         $this->assertResponseStatusCodeSame(Response::HTTP_OK);
-        $this->assertEquals("ADVIL 200 mg",$data['name']);
-        $this->assertEquals(['orale'],$data['administrationForms']);
-
+        $this->assertEquals("ADVIL 200 mg", $data['name']);
+        $this->assertEquals(['orale'], $data['administrationForms']);
     }
 
 }

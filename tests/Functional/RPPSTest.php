@@ -27,14 +27,16 @@ class RPPSTest extends ApiTestCase
      */
     public function testGetRppsData()
     {
-
         $data = $this->get("rpps");
 
         $this->assertResponseStatusCodeSame(Response::HTTP_OK);
 
-        $this->assertCollectionKeyContains($data['hydra:member'],"firstName",["Bastien","Julien","Emilie","Jérémie"]);
-        $this->assertCollectionKeyContains($data['hydra:member'],"lastName",["TEST"]);
-
+        $this->assertCollectionKeyContains(
+            $data['hydra:member'],
+            "firstName",
+            ["Bastien", "Julien", "Emilie", "Jérémie"]
+        );
+        $this->assertCollectionKeyContains($data['hydra:member'], "lastName", ["TEST"]);
     }
 
 
@@ -46,22 +48,18 @@ class RPPSTest extends ApiTestCase
      */
     public function testSearchRppsData()
     {
-
-        $data = $this->get("rpps",[
+        $data = $this->get("rpps", [
             'search' => "Bastien"
         ]);
 
         $this->assertResponseStatusCodeSame(Response::HTTP_OK);
 
-        $this->assertCollectionKeyContains($data['hydra:member'],"firstName",["Bastien"]);
-        $this->assertCollectionKeyNotContains($data['hydra:member'],"firstName",["Julien","Emilie","Jérémie"]);
-        $this->assertCollectionKeyContains($data['hydra:member'],"lastName",["TEST"]);
+        $this->assertCollectionKeyContains($data['hydra:member'], "firstName", ["Bastien"]);
+        $this->assertCollectionKeyNotContains($data['hydra:member'], "firstName", ["Julien", "Emilie", "Jérémie"]);
+        $this->assertCollectionKeyContains($data['hydra:member'], "lastName", ["TEST"]);
 
-        $this->assertCount(1,$data['hydra:member']);
+        $this->assertCount(1, $data['hydra:member']);
     }
-
-
-
 
 
     /**
@@ -72,18 +70,15 @@ class RPPSTest extends ApiTestCase
      */
     public function testWithDemoTrueReturnsRppsDemoData()
     {
-
-        $data = $this->get("rpps",[
+        $data = $this->get("rpps", [
             'demo' => true
         ]);
 
         $this->assertResponseStatusCodeSame(Response::HTTP_OK);
 
-        $this->assertCollectionKeyContains($data['hydra:member'],"firstName",["Emilie"]);
-        $this->assertCollectionKeyNotContains($data['hydra:member'],"firstName",["Julien","Jérémie"]);
-
+        $this->assertCollectionKeyContains($data['hydra:member'], "firstName", ["Emilie"]);
+        $this->assertCollectionKeyNotContains($data['hydra:member'], "firstName", ["Julien", "Jérémie"]);
     }
-
 
 
     /**
@@ -94,18 +89,15 @@ class RPPSTest extends ApiTestCase
      */
     public function testWithDemoFalseDoesNotReturnRppsDemoData()
     {
-
-        $data = $this->get("rpps",[
+        $data = $this->get("rpps", [
             'demo' => false
         ]);
 
         $this->assertResponseStatusCodeSame(Response::HTTP_OK);
 
-        $this->assertCollectionKeyContains($data['hydra:member'],"firstName",["Julien","Jérémie"]);
-        $this->assertCollectionKeyNotContains($data['hydra:member'],"firstName",["Emilie"]);
-
+        $this->assertCollectionKeyContains($data['hydra:member'], "firstName", ["Julien", "Jérémie"]);
+        $this->assertCollectionKeyNotContains($data['hydra:member'], "firstName", ["Emilie"]);
     }
-
 
 
     /**
@@ -116,13 +108,11 @@ class RPPSTest extends ApiTestCase
      */
     public function testGetOneRppsData()
     {
-
         $data = $this->get("rpps/111111111111");
 
         $this->assertResponseStatusCodeSame(Response::HTTP_OK);
-        $this->assertEquals("Bastien",$data['firstName']);
-        $this->assertEquals("TEST",$data['lastName']);
-
+        $this->assertEquals("Bastien", $data['firstName']);
+        $this->assertEquals("TEST", $data['lastName']);
     }
 
 }

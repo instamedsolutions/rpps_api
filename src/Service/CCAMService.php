@@ -2,6 +2,7 @@
 
 namespace App\Service;
 
+use Doctrine\ORM\NonUniqueResultException;
 use App\Entity\CCAM;
 use App\Entity\CCAMGroup;
 use App\Entity\Entity;
@@ -13,12 +14,6 @@ use Doctrine\ORM\EntityManagerInterface;
  */
 class CCAMService extends FileParserService
 {
-
-    /**
-     * @var string
-     */
-    protected $projectDir;
-
 
     /**
      * @var CCAMGroup|null;
@@ -40,47 +35,47 @@ class CCAMService extends FileParserService
 
     protected $groupRepository;
 
-    public function __construct(string $projectDir,FileProcessor $fileProcessor,EntityManagerInterface $em)
+    public function __construct(protected string $projectDir, FileProcessor $fileProcessor, EntityManagerInterface $em)
     {
-        $this->projectDir = $projectDir;
-        parent::__construct(CCAM::class,$fileProcessor,$em);
+        parent::__construct(CCAM::class, $fileProcessor, $em);
         $this->groupRepository = $this->em->getRepository(CCAMGroup::class);
         $this->setClearalbe(false);
     }
 
 
     /**
-     * @return bool
-     * @throws \Doctrine\ORM\NonUniqueResultException
+     * @throws NonUniqueResultException
      */
-    public function parse() : bool
+    public function parse(): bool
     {
-        return $this->processFile($this->output,$this->getFile(),"default",['delimiter' => ",","utf8" => true,"first_line" => 2,"headers" => true]);
+        return $this->processFile(
+            $this->output,
+            $this->getFile(),
+            "default",
+            ['delimiter' => ",", "utf8" => true, "first_line" => 2, "headers" => true]
+        );
     }
 
 
     /**
-     * @param array $data
-     * @param string $type
      * @return CCAM|CCAMGroup
-     * @throws \Doctrine\ORM\NonUniqueResultException
+     * @throws NonUniqueResultException
      */
-    protected function processData(array $data,string $type) : ?Entity
+    protected function processData(array $data, string $type): ?Entity
     {
-
-        if($this->empty($data)) {
+        if ($this->empty($data)) {
             return null;
         }
 
-        if($this->isGroup($data)) {
+        if ($this->isGroup($data)) {
             $group = $this->groupRepository->find($data[0]);
 
-            if(null === $group) {
+            if (null === $group) {
                 $group = new CCAMGroup();
             }
             $group->setName($data[2]);
             $group->setCode($data[0]);
-            if(!$this->isCategory($data)) {
+            if (!$this->isCategory($data)) {
                 $group->setParent($this->currentCategory);
             } else {
                 $this->currentCategory = $group;
@@ -92,9 +87,9 @@ class CCAMService extends FileParserService
             return $group;
         }
 
-        if($this->isCCAM($data)) {
+        if ($this->isCCAM($data)) {
             $ccam = $this->repository->find($data[0]);
-            if(null === $ccam) {
+            if (null === $ccam) {
                 $ccam = new CCAM();
             }
             $ccam->setCode($data[0]);
@@ -109,11 +104,11 @@ class CCAMService extends FileParserService
             return $ccam;
         }
 
-        if($this->isModifier($data)) {
+        if ($this->isModifier($data)) {
             $this->currentCCAM->setModifiers($this->parseModifier($data));
         }
 
-        if($this->currentCCAM) {
+        if ($this->currentCCAM) {
             $this->currentCCAM->addDescriptionLine($data[2]);
             $this->currentCCAM->setGroup($this->currentGroup);
             $this->currentCCAM->setCategory($this->currentCategory);
@@ -127,48 +122,34 @@ class CCAMService extends FileParserService
     }
 
 
-
-    protected function isModifier(array $data) : bool
+    protected function isModifier(array $data): bool
     {
         // [A, F, J, K, T, P, S, U, 7]
-        return preg_match("#^\[[A-Z0-9+, ]+\]$#",$data[0]) === 1;
+        return preg_match("#^\[[A-Z0-9+, ]+\]$#", (string)$data[0]) === 1;
     }
 
-    /**
-     * @param array $data
-     * @return array
-     */
-    protected function parseModifier(array $data) : array
+    protected function parseModifier(array $data): array
     {
         $m = $data[0];
-        $m = str_replace([" ","[","]"],"",$m);
+        $m = str_replace([" ", "[", "]"], "", (string)$m);
 
-        return explode(",",$m);
+        return explode(",", $m);
     }
 
-    /**
-     * @param array $data
-     * @return bool
-     */
-    protected function isGroup(array $data) : bool
+    protected function isGroup(array $data): bool
     {
         // 01.30.44
-        return preg_match("#^[0-9]{1,2}([0-9.]+)?$#",$data[0]) === 1;
+        return preg_match("#^\\d{1,2}([0-9.]+)?\$#", (string)$data[0]) === 1;
     }
 
 
-    /**
-     * @param string $rate
-     * @return float|null
-     */
-    protected function parseRate(string $rate) : ?float
+    protected function parseRate(string $rate): ?float
     {
-        if($rate === "Non pris en charge") {
+        if ($rate === "Non pris en charge") {
             return null;
         }
 
         return (float)$rate;
-
     }
 
 
@@ -177,39 +158,26 @@ class CCAMService extends FileParserService
      * This is a main category
      *
      * @param array $data
-     * @return bool
      */
-    protected function isCategory(array $data) : bool
+    protected function isCategory(array $data): bool
     {
-        return preg_match("#^[0-9]{1,2}$#",$data[0]) === 1;
+        return preg_match("#^\\d{1,2}\$#", (string)$data[0]) === 1;
     }
 
-    /**
-     * @param array $data
-     * @return bool
-     */
-    protected function isCCAM(array $data) : bool
+    protected function isCCAM(array $data): bool
     {
-        return preg_match("#^[A-Z]{4}[0-9]{3}$#",$data[0]) === 1;
-
+        return preg_match("#^[A-Z]{4}\\d{3}\$#", (string)$data[0]) === 1;
     }
 
 
-    /**
-     * @param array $data
-     * @return bool
-     */
-    protected function empty(array $data) : bool
+    protected function empty(array $data): bool
     {
-        return false === (bool)(trim(join("",$data)));
+        return !(bool)(trim(implode("", $data)));
     }
 
 
-    /**
-     * @return string
-     */
-    protected function getFile() : string
+    protected function getFile(): string
     {
-        return  "$this->projectDir/data/ccam.csv";
+        return "$this->projectDir/data/ccam.csv";
     }
 }

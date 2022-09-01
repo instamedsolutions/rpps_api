@@ -2,6 +2,7 @@
 
 namespace App\Repository;
 
+use Doctrine\ORM\NonUniqueResultException;
 use App\Entity\CCAM;
 use App\Entity\CCAMGroup;
 use App\Entity\DiseaseGroup;
@@ -21,7 +22,6 @@ class CCAMRepository extends ServiceEntityRepository
 
     /**
      * RPPSRepository constructor.
-     * @param ManagerRegistry $registry
      */
     public function __construct(ManagerRegistry $registry)
     {
@@ -33,24 +33,21 @@ class CCAMRepository extends ServiceEntityRepository
      * @param null $lockMode
      * @param null $lockVersion
      * @return Drug|null
-     * @throws \Doctrine\ORM\NonUniqueResultException
+     * @throws NonUniqueResultException
      */
-    public function find($id, $lockMode = null, $lockVersion = null)
+    public function find($id, $lockMode = null, $lockVersion = null) : ?CCAM
     {
-
-        if(null === $id || 0 === $id) {
+        if (null === $id || 0 === $id) {
             return null;
         }
 
         return $this->createQueryBuilder('d')
             ->where('d.id = :id')
             ->orWhere('d.code = :id')
-            ->setParameter('id',$id)
+            ->setParameter('id', $id)
             ->getQuery()
             ->getOneOrNullResult();
     }
-
-
 
 
 }

@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use Stringable;
 use ApiPlatform\Core\Annotation\ApiFilter;
 use ApiPlatform\Core\Annotation\ApiProperty;
 use ApiPlatform\Core\Annotation\ApiSubresource;
@@ -16,176 +17,95 @@ use App\Repository\DiseaseRepository;
 use Symfony\Component\Serializer\Annotation\Groups;
 use Symfony\Component\Serializer\Annotation\MaxDepth;
 
-/**
- *
- * @ORM\Entity(repositoryClass=DiseaseRepository::class)
- *
- * @ORM\Table(name="diseases",indexes={
- *     @ORM\Index(name="diseases_index", columns={"cim"})
- * })
- *
- * @ApiFilter(RangeFilter::class,properties={"hierarchyLevel"})
- *
- * @UniqueEntity("cim")
- *
- * @ApiFilter(DiseaseFilter::class,properties={"search"})
- * @ApiFilter(SearchFilter::class, properties={"category.cim","group.cim"})
- *
- */
-class Disease extends Thing implements Entity
+
+#[ApiFilter(RangeFilter::class, properties: ["hierarchyLevel"])]
+#[ApiFilter(DiseaseFilter::class, properties: ["search"])]
+#[ApiFilter(SearchFilter::class, properties: ["category.cim", "group.cim"])]
+#[ORM\Entity(repositoryClass: DiseaseRepository::class)]
+#[ORM\Table(name: 'diseases')]
+#[ORM\Index(columns: ['cim'], name: 'diseases_index')]
+#[UniqueEntity('cim')]
+class Disease extends Thing implements Entity, Stringable
 {
+    final const SEX_MALE = 1;
 
-    const SEX_MALE = 1;
-
-    const SEX_FEMALE = 2;
-
-    /**
-     *
-     * @var string|null
-     *
-     * The unique CIS Id in the government database
-     *
-     * @ApiFilter(SearchFilter::class, strategy="exact")
-     *
-     * @Groups({"read"})
-     *
-     * @ApiProperty(
-     *     required=true,
-     *     attributes={
-     *         "openapi_context"={
-     *             "type"="string",
-     *              "example"="66595239"
-     *         }
-     *     }
-     * )
-     *
-     * @ORM\Column(type="string",unique=true)
-     */
-    protected $cim;
-
-    /**
-     *
-     * @var string|null
-     *
-     * The name of the drug
-     *
-     * @ApiFilter(SearchFilter::class, strategy="istart")
-     *
-     * @Groups({"read"})
-     *
-     * @ApiProperty(
-     *     required=true,
-     *     attributes={
-     *         "openapi_context"={
-     *             "type"="string",
-     *              "example"="PANTOPRAZOLE KRKA 40 mg, comprimé gastro-résistant"
-     *         }
-     *     }
-     * )
-     *
-     * @ORM\Column(type="string", length=255)
-     */
-    protected $name;
-
-    /**
-     * @var Disease|null
-     *
-     * @Groups({"diseases:item:read"})
-     *
-     * @MaxDepth(2)
-     *
-     * The parent disease (if any)
-     *
-     * @ORM\ManyToOne(targetEntity="Disease", inversedBy="children", cascade={"persist"})
-     */
-    protected $parent;
+    final const SEX_FEMALE = 2;
 
 
-    /**
-     * @var DiseaseGroup|null
-     *
-     * @Groups({"diseases:read"})
-     *
-     * @MaxDepth(1)
-     *
-     * The subgroup the disease is a part of.
-     * A group is itself linked to a category
-     *
-     * @ORM\ManyToOne(targetEntity="DiseaseGroup", cascade={"persist"})
-     */
-    protected $group;
+    #[ApiFilter(SearchFilter::class, strategy: "exact")]
+    #[ApiProperty(description: "The unique CIM-10 Id in the international database", required: true, attributes: [
+        "openapi_context" => [
+            "type" => "string",
+            "example" => "66595239"
+        ]
+    ])]
+    #[Groups(['read'])]
+    #[ORM\Column(type: 'string', unique: true)]
+    protected ?string $cim;
 
-    /**
-     * @var DiseaseGroup|null
-     *
-     * The main category the disease is a part of.
-     *
-     * @MaxDepth(1)
-     *
-     * @Groups({"diseases:read"})
-     *
-     * @ORM\ManyToOne(targetEntity="DiseaseGroup", cascade={"persist"})
-     */
-    protected $category;
+    #[ApiProperty(description: "The name of the disease", required: true, attributes: [
+        "openapi_context" => [
+            "type" => "string",
+            "example" => "PANTOPRAZOLE KRKA 40 mg, comprimé gastro-résistant"
+        ]
+    ])]
+    #[ApiFilter(SearchFilter::class, strategy: "istart")]
+    #[Groups(['read'])]
+    #[ORM\Column(type: 'string', length: 255)]
+    protected ?string $name;
 
 
+    #[ApiProperty(description: "The parent disease (if any)", required: false)]
+    #[Groups(['diseases:item:read'])]
+    #[MaxDepth(2)]
+    #[ORM\ManyToOne(targetEntity: Disease::class, cascade: ['persist'], inversedBy: 'children')]
+    protected ?Disease $parent;
+
+
+    #[ApiProperty(description: "The subgroup the disease is a part of. A group is itself linked to a category", required: false)]
+    #[Groups(['diseases:read'])]
+    #[MaxDepth(1)]
+    #[ORM\ManyToOne(targetEntity: DiseaseGroup::class, cascade: ['persist'])]
+    protected ?DiseaseGroup $group;
+
+
+    #[ApiProperty(description: "The main category the disease is a part of", required: false)]
+    #[MaxDepth(1)]
+    #[Groups(['diseases:read'])]
+    #[ORM\ManyToOne(targetEntity: DiseaseGroup::class, cascade: ['persist'])]
+    protected ?DiseaseGroup $category;
 
     /**
      *
-     * All the child diseases
-     *
-     * @ApiSubresource(maxDepth=2)
-     *
-     * @var Collection|Disease[]
-     *
-     * @ORM\OneToMany(targetEntity="Disease", mappedBy="parent", cascade={"persist"}, fetch="EXTRA_LAZY")
+     * @var Collection<int,Disease>
      */
-    protected $children = [];
+    #[ApiProperty(description: "The child diseases", required: false)]
+    #[ApiSubresource(maxDepth: 2)]
+    #[ORM\OneToMany(mappedBy: 'parent', targetEntity: Disease::class, cascade: ['persist'], fetch: 'EXTRA_LAZY')]
+    protected Collection $children;
 
 
-    /**
-     *
-     * @ORM\Column(type="smallint")
-     *
-     * @Groups({"diseases:read"})
-     *
-     * @ApiFilter(RangeFilter::class)
-     *
-     * @var int
-     */
-    protected $hierarchyLevel;
-
-    /**
-     * @var int|null
-     *
-     * @Groups({"diseases:item:read"})
-     *
-     * @ORM\Column(type="smallint",nullable=true)
-     *
-     */
-    protected $sex;
+    #[ApiProperty(description: "The hierarchy level of the disease in the tree", required: false)]
+    #[ApiFilter(RangeFilter::class)]
+    #[ORM\Column(type: 'smallint')]
+    #[Groups(['diseases:read'])]
+    protected ?int $hierarchyLevel;
 
 
-    /**
-     *
-     * @Groups({"diseases:item:read"})
-     *
-     * @ORM\Column(type="integer",nullable=true)
-     *
-     * @var int|null
-     */
-    protected $lowerAgeLimit;
+    #[ApiProperty(description: "The sex of the patient if the disease only targets a specific individual", required: false)]
+    #[Groups(['diseases:item:read'])]
+    #[ORM\Column(type: 'smallint', nullable: true)]
+    protected ?int $sex;
 
-    /**
-     *
-     *
-     * @Groups({"diseases:item:read"})
-     *
-     * @ORM\Column(type="integer",nullable=true)
-     *
-     * @var int|null
-     */
-    protected $upperAgeLimit;
+
+    #[Groups(['diseases:item:read'])]
+    #[ORM\Column(type: 'integer', nullable: true)]
+    protected ?int $lowerAgeLimit;
+
+
+    #[Groups(['diseases:item:read'])]
+    #[ORM\Column(type: 'integer', nullable: true)]
+    protected ?int $upperAgeLimit;
 
 
     public function __construct()
@@ -193,120 +113,79 @@ class Disease extends Thing implements Entity
         parent::__construct();
 
         $this->children = new ArrayCollection();
-
     }
 
-
-    /**
-     * @return string
-     */
-    public function getId() : string
+    public function getId(): string
     {
         return $this->id;
     }
 
-    /**
-     * @return string|null
-     */
     public function getCim(): ?string
     {
         return $this->cim;
     }
 
-    /**
-     * @param string|null $cim
-     */
     public function setCim(?string $cim): void
     {
         $this->cim = $cim;
     }
 
-    /**
-     * @return string|null
-     */
     public function getName(): ?string
     {
         return $this->name;
     }
 
-    /**
-     * @param string|null $name
-     */
     public function setName(?string $name): void
     {
         $this->name = $name;
     }
 
-    /**
-     * @return Disease|null
-     */
     public function getParent(): ?Disease
     {
         return $this->parent;
     }
 
-    /**
-     * @param Disease|null $parent
-     */
     public function setParent(?Disease $parent): void
     {
         $this->parent = $parent;
     }
 
-    /**
-     * @return array
-     */
-    public function getChildren(): array
+    public function getChildren(): Collection
     {
         return $this->children;
     }
 
-    /**
-     * @param array $children
-     */
-    public function setChildren(array $children): void
+    public function setChildren(Collection $children): void
     {
         $this->children = $children;
     }
 
-    /**
-     * @return int
-     */
     public function getHierarchyLevel(): int
     {
         return $this->hierarchyLevel;
     }
 
-    /**
-     * @param int $hierarchyLevel
-     */
     public function setHierarchyLevel(int $hierarchyLevel): void
     {
         $this->hierarchyLevel = $hierarchyLevel;
     }
 
-    /**
-     * @return int|null
-     */
     public function getSex(): ?int
     {
         return $this->sex;
     }
 
     /**
-     * @param int|null|string $sex
+     * @param int|string|null $sex
      */
-    public function setSex($sex): void
+    public function setSex(int|string|null $sex): void
     {
-        if(is_string($sex)) {
+        if (is_string($sex)) {
             $sex = $this->parseSex($sex);
         }
         $this->sex = $sex;
     }
 
-    /**
-     * @return int|null
-     */
     public function getLowerAgeLimit(): ?int
     {
         return $this->lowerAgeLimit;
@@ -315,9 +194,9 @@ class Disease extends Thing implements Entity
     /**
      * @param int|string|null $lowerAgeLimit
      */
-    public function setLowerAgeLimit($lowerAgeLimit): void
+    public function setLowerAgeLimit(int|string|null $lowerAgeLimit): void
     {
-        if(is_string($lowerAgeLimit)) {
+        if (is_string($lowerAgeLimit)) {
             $lowerAgeLimit = $this->parseAgeLimit($lowerAgeLimit);
         }
         $this->lowerAgeLimit = $lowerAgeLimit;
@@ -332,84 +211,61 @@ class Disease extends Thing implements Entity
     }
 
     /**
-     * @param int|null|string $upperAgeLimit
+     * @param int|string|null $upperAgeLimit
      */
-    public function setUpperAgeLimit($upperAgeLimit): void
+    public function setUpperAgeLimit(int|string|null $upperAgeLimit): void
     {
-        if(is_string($upperAgeLimit)) {
+        if (is_string($upperAgeLimit)) {
             $upperAgeLimit = $this->parseAgeLimit($upperAgeLimit);
         }
         $this->upperAgeLimit = $upperAgeLimit;
     }
 
-    /**
-     * @return DiseaseGroup|null
-     */
     public function getGroup(): ?DiseaseGroup
     {
         return $this->group;
     }
 
-    /**
-     * @param DiseaseGroup|null $group
-     */
     public function setGroup(?DiseaseGroup $group): void
     {
         $this->group = $group;
     }
 
-    /**
-     * @return DiseaseGroup|null
-     */
     public function getCategory(): ?DiseaseGroup
     {
         return $this->category;
     }
 
-    /**
-     * @param DiseaseGroup|null $category
-     */
     public function setCategory(?DiseaseGroup $category): void
     {
         $this->category = $category;
     }
 
-
     /**
      * @return string
      */
-    public function __toString() : string
+    public function __toString(): string
     {
         return $this->getName();
     }
 
 
-    /**
-     * @param string $ageLimit
-     * @return int
-     */
-    protected function parseAgeLimit(string $ageLimit) : ?int
+    protected function parseAgeLimit(string $ageLimit): ?int
     {
-        if($ageLimit === "9999") {
+        if ($ageLimit === "9999") {
             return null;
         }
 
-        if(strpos($ageLimit,"t") === 0) {
-            return (int)(trim($ageLimit,"t"));
+        if (str_starts_with($ageLimit, "t")) {
+            return (int)(trim($ageLimit, "t"));
         }
 
-        $ageLimit = (int)str_replace("j","",$ageLimit);
+        $ageLimit = (int)str_replace("j", "", $ageLimit);
 
-        return $ageLimit*365;
-
+        return $ageLimit * 365;
     }
 
-
-    /**
-     * @param string $sex
-     * @return int|null
-     */
-    protected function parseSex(string $sex) : ?int
+    protected function parseSex(string $sex): ?int
     {
         $sexes = [
             "9" => null,
@@ -419,5 +275,4 @@ class Disease extends Thing implements Entity
 
         return $sexes[$sex];
     }
-
 }

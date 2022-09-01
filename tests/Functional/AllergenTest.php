@@ -29,17 +29,15 @@ class AllergenTest extends ApiTestCase
      */
     public function testSearchData()
     {
-
-        $data = $this->get("allergens",['search' => "Chymopapa"]);
+        $data = $this->get("allergens", ['search' => "Chymopapa"]);
 
         $this->assertResponseStatusCodeSame(Response::HTTP_OK);
 
-        $this->assertEquals("Chymopapaïne",$data['hydra:member'][0]['name']);
-        $this->assertEquals("c209",$data['hydra:member'][0]['code']);
-        $this->assertEquals("Médicaments",$data['hydra:member'][0]['group']);
+        $this->assertEquals("Chymopapaïne", $data['hydra:member'][0]['name']);
+        $this->assertEquals("c209", $data['hydra:member'][0]['code']);
+        $this->assertEquals("Médicaments", $data['hydra:member'][0]['group']);
 
-        $this->assertCount(1,$data['hydra:member']);
-
+        $this->assertCount(1, $data['hydra:member']);
     }
 
     /**
@@ -50,12 +48,10 @@ class AllergenTest extends ApiTestCase
      */
     public function testGetData()
     {
-
         $data = $this->get("allergens/c209");
 
         $this->assertResponseStatusCodeSame(Response::HTTP_OK);
-        $this->assertEquals("Chymopapaïne",$data['name']);
-
+        $this->assertEquals("Chymopapaïne", $data['name']);
     }
 
 }

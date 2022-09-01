@@ -2,6 +2,7 @@
 
 namespace App\Validator;
 
+use Symfony\Component\HttpFoundation\Request;
 use App\Entity\Entity;
 use App\Entity\Thing;
 use Symfony\Component\HttpFoundation\RequestStack;
@@ -9,6 +10,7 @@ use Symfony\Component\Security\Core\Security;
 
 /**
  * Class UserGroupGenerator
+ *
  * @package App\Validator
  */
 final class GroupGenerator
@@ -16,26 +18,10 @@ final class GroupGenerator
 
 
     /**
-     * @var Security
-     */
-    private $security;
-
-
-    /**
-     * @var RequestStack
-     */
-    protected $requestStack;
-
-    /**
      * UserGroupGenerator constructor.
-     * @param RequestStack $request
-     * @param Security $security
      */
-    public function __construct(RequestStack $request,Security $security)
+    public function __construct(protected RequestStack $requestStack, private readonly Security $security)
     {
-        $this->security = $security;
-        $this->requestStack = $request;
-
     }
 
     /**
@@ -44,43 +30,41 @@ final class GroupGenerator
      */
     public function generateGroups($normalization = false): array
     {
-
         $request = $this->requestStack->getCurrentRequest();
 
-        $groups = $request->attributes->get("groups",[]);
+        $groups = $request->attributes->get("groups", []);
 
-        if(!$normalization) {
+        if (!$normalization) {
             $groups[] = "Default";
         }
 
-        if(null === $request) {
+        if (!$request instanceof Request) {
             return $groups;
         }
 
 
         $uri = $request->getPathInfo();
         // Removing extension
-        $ext = pathinfo($uri,PATHINFO_EXTENSION);
-        $uri = str_replace(".$ext","",$uri);
+        $ext = pathinfo($uri, PATHINFO_EXTENSION);
+        $uri = str_replace(".$ext", "", $uri);
 
         $route = $request->get('_route');
 
         $operation = strtolower($request->getMethod());
 
-        $op_type = strpos($route,'collection') === false ? 'item' : 'collection';
+        $op_type = str_contains((string)$route, 'collection') ? 'collection' : 'item';
 
         // Remove parameters at the end
-        if($op_type === 'item') {
-            $uri = preg_replace('#/[0-9a-zA-Z\-]+$#','',$uri);
+        if ($op_type === 'item') {
+            $uri = preg_replace('#/[0-9a-zA-Z\-]+$#', '', $uri);
         }
 
         $entity = basename($uri);
-        $entity = pathinfo($entity,PATHINFO_FILENAME);
+        $entity = pathinfo($entity, PATHINFO_FILENAME);
 
-        $subresource = $request->get('_api_subresource_context',null);
+        $subresource = $request->get('_api_subresource_context', null);
 
-        if($subresource) {
-
+        if ($subresource) {
             $op_type = $subresource['collection'] ? 'collection' : 'item';
 
             if (isset($subresource['property'])) {
@@ -89,7 +73,7 @@ final class GroupGenerator
         }
 
         // In post, and put, the return value is always an item
-        if($operation != "get") {
+        if ($operation != "get") {
             $op_type = 'item';
         }
 
@@ -103,7 +87,7 @@ final class GroupGenerator
         // entity:item
         $groups[] = "$entity:$op_type";
 
-        if($type) {
+        if ($type !== '' && $type !== '0') {
             // write
             $groups[] = $type;
             // entity:write
@@ -112,26 +96,21 @@ final class GroupGenerator
             $groups[] = "$entity:$op_type:$type";
         }
 
-        if($operation) {
+        if ($operation !== '' && $operation !== '0') {
             $groups[] = $operation;
         }
 
         return $groups;
-
     }
-
-
 
 
     public function prepareRequest()
     {
-
         $request = $this->requestStack->getCurrentRequest();
 
-        if(!$request->get('_api_collection_operation_name')) {
-            $request->attributes->set('_api_collection_operation_name',strtolower($request->getMethod()));
+        if (!$request->get('_api_collection_operation_name')) {
+            $request->attributes->set('_api_collection_operation_name', strtolower($request->getMethod()));
         }
-
     }
 
 

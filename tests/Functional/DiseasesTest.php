@@ -29,32 +29,34 @@ class DiseasesTest extends ApiTestCase
      */
     public function testSearchData()
     {
-
-        $data = $this->get("diseases",['search' => "Cholera"]);
-
-        $this->assertResponseStatusCodeSame(Response::HTTP_OK);
-
-        $this->assertEquals("A Vibrio cholerae 01, biovar cholerae",$data['hydra:member'][0]['name']);
-        $this->assertEquals("A000",$data['hydra:member'][0]['cim']);
-
-        $this->assertEquals("Cholera",$data['hydra:member'][1]['name']);
-        $this->assertEquals("A00",$data['hydra:member'][1]['cim']);
-        $this->assertEquals("01",$data['hydra:member'][1]['category']['cim']);
-        $this->assertEquals("Certaines maladies infectieuses et parasitaires",$data['hydra:member'][1]['category']['name']);
-        $this->assertEquals("A00-A09",$data['hydra:member'][1]['group']['cim']);
-        $this->assertEquals("Maladies intestinales infectieuses",$data['hydra:member'][1]['group']['name']);
-
-
-        $this->assertCount(2,$data['hydra:member']);
-
-
-        $data = $this->get("diseases",['search' => "Vibrio biovar"]);
+        $data = $this->get("diseases", ['search' => "Cholera"]);
 
         $this->assertResponseStatusCodeSame(Response::HTTP_OK);
-        $this->assertEquals("A Vibrio cholerae 01, biovar cholerae",$data['hydra:member'][0]['name']);
-        $this->assertEquals("A000",$data['hydra:member'][0]['cim']);
 
-        $this->assertCount(1,$data['hydra:member']);
+        $this->assertEquals("A Vibrio cholerae 01, biovar cholerae", $data['hydra:member'][0]['name']);
+        $this->assertEquals("A000", $data['hydra:member'][0]['cim']);
+
+        $this->assertEquals("Cholera", $data['hydra:member'][1]['name']);
+        $this->assertEquals("A00", $data['hydra:member'][1]['cim']);
+        $this->assertEquals("01", $data['hydra:member'][1]['category']['cim']);
+        $this->assertEquals(
+            "Certaines maladies infectieuses et parasitaires",
+            $data['hydra:member'][1]['category']['name']
+        );
+        $this->assertEquals("A00-A09", $data['hydra:member'][1]['group']['cim']);
+        $this->assertEquals("Maladies intestinales infectieuses", $data['hydra:member'][1]['group']['name']);
+
+
+        $this->assertCount(2, $data['hydra:member']);
+
+
+        $data = $this->get("diseases", ['search' => "Vibrio biovar"]);
+
+        $this->assertResponseStatusCodeSame(Response::HTTP_OK);
+        $this->assertEquals("A Vibrio cholerae 01, biovar cholerae", $data['hydra:member'][0]['name']);
+        $this->assertEquals("A000", $data['hydra:member'][0]['cim']);
+
+        $this->assertCount(1, $data['hydra:member']);
     }
 
 
@@ -66,17 +68,15 @@ class DiseasesTest extends ApiTestCase
      */
     public function testFilterData()
     {
+        $data = $this->get("diseases", ['hierarchyLevel[lte]' => 3]);
 
-        $data = $this->get("diseases",['hierarchyLevel[lte]' => 3]);
+        $this->assertCollectionKeyContains($data['hydra:member'], "cim", ['A00']);
+        $this->assertCollectionKeyNotContains($data['hydra:member'], "cim", ['A000']);
 
-        $this->assertCollectionKeyContains($data['hydra:member'],"cim",['A00']);
-        $this->assertCollectionKeyNotContains($data['hydra:member'],"cim",['A000']);
+        $data = $this->get("diseases", ['hierarchyLevel[gt]' => 3]);
 
-        $data = $this->get("diseases",['hierarchyLevel[gt]' => 3]);
-
-        $this->assertCollectionKeyContains($data['hydra:member'],"cim",['A000']);
-        $this->assertCollectionKeyNotContains($data['hydra:member'],"cim",['A00']);
-
+        $this->assertCollectionKeyContains($data['hydra:member'], "cim", ['A000']);
+        $this->assertCollectionKeyNotContains($data['hydra:member'], "cim", ['A00']);
     }
 
     /**
@@ -87,16 +87,14 @@ class DiseasesTest extends ApiTestCase
      */
     public function testGetData()
     {
-
         $data = $this->get("diseases/A000");
 
         $this->assertResponseStatusCodeSame(Response::HTTP_OK);
-        $this->assertEquals("A Vibrio cholerae 01, biovar cholerae",$data['name']);
+        $this->assertEquals("A Vibrio cholerae 01, biovar cholerae", $data['name']);
 
-        $this->assertEquals("Cholera",$data['parent']['name']);
+        $this->assertEquals("Cholera", $data['parent']['name']);
 
-        $this->assertEquals(Disease::SEX_FEMALE,$data['sex']);
-
+        $this->assertEquals(Disease::SEX_FEMALE, $data['sex']);
     }
 
 }
