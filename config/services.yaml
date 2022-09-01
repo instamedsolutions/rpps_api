@@ -4,6 +4,16 @@
 # Put parameters here that don't need to change on each machine where the app is deployed
 # https://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
 parameters:
+    env(RPPS_URL): 'https://service.annuaire.sante.fr/annuaire-sante-webservices/V300/services/extraction/ExtractionMonoTable_CAT18_ToutePopulation'
+    env(CPS_URL): 'https://service.annuaire.sante.fr/annuaire-sante-webservices/V300/services/extraction/Porteurs_CPS_CPF'
+    env(DRUGS_URL_CIS_BDPM): 'http://base-donnees-publique.medicaments.gouv.fr/telechargement.php?fichier=CIS_bdpm.txt'
+    env(DRUGS_URL_CIS_CIP_BDPM): 'http://base-donnees-publique.medicaments.gouv.fr/telechargement.php?fichier=CIS_CIP_bdpm.txt'
+    env(DRUGS_URL_CIS_CPD_BDPM): 'http://base-donnees-publique.medicaments.gouv.fr/telechargement.php?fichier=CIS_CPD_bdpm.txt'
+    env(DRUGS_URL_CIS_GENER_BDPM): 'http://base-donnees-publique.medicaments.gouv.fr/telechargement.php?fichier=CIS_GENER_bdpm.txt'
+    env(DRUGS_URL_CIS_InfoImportantes): 'http://base-donnees-publique.medicaments.gouv.fr/telechargement.php?fichier=CIS_InfoImportantes.txt'
+    env(CIM_10_URL): 'https://www.bfs.admin.ch/bfsstatic/dam/assets/15023315/master'
+    env(DATABASE_ENGINE): "mysql"
+    env(DATABASE_URL): '%env(DATABASE_ENGINE)%://%env(DATABASE_USER)%:%env(DATABASE_PASSWORD)%@%env(DATABASE_HOST)%:%env(DATABASE_PORT)%/%env(DATABASE_NAME)%?serverVersion=13&charset=utf8'
 
 services:
     # default configuration for services in *this* file
