@@ -29,7 +29,7 @@ class CCAMGroup extends Thing implements Entity, Stringable
     #[ApiFilter(SearchFilter::class, strategy: "exact")]
     #[Groups(['read'])]
     #[ORM\Column(type: 'string', unique: true)]
-    protected ?string $code;
+    protected ?string $code = null;
 
 
     #[ApiFilter(SearchFilter::class, strategy: "istart")]
@@ -41,7 +41,7 @@ class CCAMGroup extends Thing implements Entity, Stringable
     ])]
     #[Groups(['read'])]
     #[ORM\Column(type: 'string', length: 255)]
-    protected ?string $name;
+    protected ?string $name = null;
 
 
     #[ApiProperty(description: "The description of the disease group", required: true, attributes: [
@@ -52,7 +52,7 @@ class CCAMGroup extends Thing implements Entity, Stringable
     ])]
     #[Groups(['ccam_groups:item:read'])]
     #[ORM\Column(type: 'text', nullable: true)]
-    protected ?string $description;
+    protected ?string $description = null;
 
 
     #[Groups(['ccam_groups:read'])]

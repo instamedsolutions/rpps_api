@@ -35,7 +35,7 @@ class Drug extends Thing implements Entity, Stringable
         ]
     ])]
     #[Groups(['read'])]
-    #[ORM\Column(type: 'string', nullable: true, unique: true)]
+    #[ORM\Column(type: 'string', unique: true, nullable: true)]
     protected ?string $cisId;
 
 
@@ -139,7 +139,7 @@ class Drug extends Thing implements Entity, Stringable
         ]
     ])]
     #[Groups(['drugs:item:read'])]
-    #[ORM\Column(type: 'string', length: 255, nullable: true)]
+    #[ORM\Column(type: 'text', nullable: true)]
     protected ?string $genericType;
 
 

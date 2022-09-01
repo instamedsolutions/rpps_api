@@ -30,9 +30,6 @@ class DrugService extends ImporterService
     }
 
 
-    /**
-     * @throws NonUniqueResultException
-     */
     protected function processData(array $data, string $type): ?Drug
     {
         return match ($type) {
@@ -46,11 +43,6 @@ class DrugService extends ImporterService
     }
 
 
-    /**
-     *
-     *
-     * @throws NonUniqueResultException
-     */
     protected function processCisBDPM(array $data): ?Drug
     {
         $drug = $this->repository->find($data[0]);
@@ -69,16 +61,12 @@ class DrugService extends ImporterService
             $drug->setAdministrationForms(null);
         }
         $drug->setOwner($data[10]);
+        $drug->importId = $this->getImportId();
 
         return $drug;
     }
 
 
-    /**
-     *
-     *
-     * @throws NonUniqueResultException
-     */
     protected function processGenerBDPM(array $data): ?Drug
     {
         $drug = $this->repository->find($data[2]);
@@ -94,11 +82,7 @@ class DrugService extends ImporterService
         return $drug;
     }
 
-    /**
-     *
-     *
-     * @throws NonUniqueResultException
-     */
+
     protected function processCipBDPM(array $data): ?Drug
     {
         /** @var Drug $drug */
@@ -124,6 +108,8 @@ class DrugService extends ImporterService
             $drug->setPrice(null);
         }
 
+        $drug->importId = $this->getImportId();
+
         return $drug;
     }
 
@@ -142,6 +128,7 @@ class DrugService extends ImporterService
         }
 
         $drug->setPrescriptionConditions($data[1]);
+        $drug->importId = $this->getImportId();
 
         return $drug;
     }
@@ -161,6 +148,7 @@ class DrugService extends ImporterService
         }
 
         $drug->setSecurityText($data[3]);
+        $drug->importId = $this->getImportId();
 
         return $drug;
     }

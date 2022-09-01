@@ -11,10 +11,6 @@ use Symfony\Component\Console\Output\OutputInterface;
 abstract class ImporterService extends FileParserService
 {
 
-    /**
-     * @return bool
-     * @throws NonUniqueResultException
-     */
     public function importFile(OutputInterface $output, string $type): bool
     {
         /** Handling File */

@@ -39,7 +39,7 @@ class CCAMService extends FileParserService
     {
         parent::__construct(CCAM::class, $fileProcessor, $em);
         $this->groupRepository = $this->em->getRepository(CCAMGroup::class);
-        $this->setClearalbe(false);
+        $this->setClearable(false);
     }
 
 
@@ -75,6 +75,7 @@ class CCAMService extends FileParserService
             }
             $group->setName($data[2]);
             $group->setCode($data[0]);
+            $group->importId = $this->getImportId();
             if (!$this->isCategory($data)) {
                 $group->setParent($this->currentCategory);
             } else {
@@ -97,6 +98,7 @@ class CCAMService extends FileParserService
             $ccam->setRegroupementCode($data[10]);
             $ccam->setRate1($this->parseRate($data[5]));
             $ccam->setRate2($this->parseRate($data[6]));
+            $ccam->importId = $this->getImportId();
             $this->currentCCAM = $ccam;
             $this->currentCCAM->setGroup($this->currentGroup);
             $this->currentCCAM->setCategory($this->currentCategory);

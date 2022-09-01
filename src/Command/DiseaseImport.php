@@ -58,7 +58,7 @@ class DiseaseImport extends Command
      */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        $process = $input->getOption("process");
+        $this->diseaseService->setOutput($output);
 
         try {
             // Turning off doctrine default logs queries for saving memory

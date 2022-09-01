@@ -1,18 +1,21 @@
 name: Deploy Staging
 
 env:
-  ENVIRONMENT: 'staging'
+  ENVIRONMENT: 'production'
   IMAGE_NAME: ${{ github.repository }}
+  DOCKER_TAG: 'latest'
 
 on:
   push:
     branches:
-      - staging
-      - feature/production-release
+      - main
+    tags:
+      - 'v*' # Push events to matching v*, i.e. v1.0, v20.15.10
+
   workflow_dispatch:
 
 concurrency:
-  group: staging-release-${{ github.ref }}-1
+  group: production-release-${{ github.ref }}-1
   cancel-in-progress: true
 
 
@@ -21,26 +24,50 @@ jobs:
     name: Build Base Image
     runs-on: ubuntu-latest
     environment:
-      name: 'staging'
+      name: staging
     steps:
       - name: Checkout
         uses: actions/checkout@v2
 
-      - name: Build base image
+      - name: Build staging image
         uses: ./.github/actions/build-docker-image
         with:
           registry_username: ${{ github.actor }}
           registry_password: ${{ secrets.GITHUB_TOKEN }}
           docker_image: ${{ env.IMAGE_NAME }}-base
           docker_file: "base"
-          docker_tag: ${{ env.ENVIRONMENT }}
+          docker_tag: ${{ env.DOCKER_TAG }}
 
-  docker-build-staging:
-    name: Build Staging Image
+  docker-build-production:
+    name: Build Latest Image
     runs-on: ubuntu-latest
     needs: docker-build-base
+    if: startsWith(github.ref_name, 'main')
     environment:
-      name: 'staging'
+      name: production
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Build staging image
+        uses: ./.github/actions/build-docker-image
+        with:
+          registry_username: ${{ github.actor }}
+          registry_password: ${{ secrets.GITHUB_TOKEN }}
+          docker_file: 'deployed'
+          docker_env: ${{ env.ENVIRONMENT }}
+          docker_tag: ${{ env.ENVIRONMENT }}
+          base_image_tag: 'latest'
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+
+
+  docker-build-tag:
+    name: Build tag Image
+    runs-on: ubuntu-latest
+    needs: docker-build-base
+    if: startsWith(github.ref, 'refs/tags/v')
+    environment:
+      name: production
     steps:
       - name: Checkout
         uses: actions/checkout@v2
@@ -53,9 +80,10 @@ jobs:
           docker_image: ${{ env.IMAGE_NAME }}
           docker_file: 'deployed'
           docker_env: ${{ env.ENVIRONMENT }}
-          docker_tag: ${{ env.ENVIRONMENT }}
-          base_image_tag: ${{ env.ENVIRONMENT }}
+          base_image_tag: 'latest'
+          docker_tag: ${{github.ref_name}}
           github_token: ${{ secrets.GITHUB_TOKEN }}
+
 
   ecs-deploy:
     name: Trigger deployment on ECS
@@ -78,4 +106,3 @@ jobs:
           aws_api_service_name: ${{ secrets.AWS_API_SERVICE_NAME }}
           aws_workers_service_name: ${{ secrets.AWS_WORKERS_SERVICE_NAME }}
           aws_scheduled_service_name: ${{ secrets.AWS_SCHEDULED_WORKERS_SERVICE_NAME }}
-

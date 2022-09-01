@@ -1,0 +1,22 @@
+ARG BASE_IMAGE='latest'
+ARG DOCKER_ENV='production'
+
+FROM ghcr.io/instamedsolutions/rpps_api-base:${BASE_IMAGE}
+ARG DOCKER_ENV
+ARG GITHUB_TOKEN
+
+WORKDIR /var/www/html
+
+COPY --chown=www-data:www-data . /var/www/html/
+COPY ./docker/apache/conf/${DOCKER_ENV}-default.conf /etc/apache2/sites-available/000-default.conf
+COPY  ./docker/apache/custom.ini /usr/local/etc/php/conf.d/custom.ini
+
+RUN openssl req -x509 -nodes -days 365 -newkey rsa:2048 -subj "/C=FR/ST=Ile-De-France/L=Paris/O=Instamed/OU=IT Department/CN=localhost" -keyout /etc/ssl/private/${DOCKER_ENV}.mavy.fr.key -out /etc/ssl/certs/${DOCKER_ENV}.mavy.fr.crt
+
+RUN composer config github-oauth.github.com ${GITHUB_TOKEN}
+RUN composer install
+RUN php bin/console assets:install --symlink
+
+RUN rm -rf .env*
+RUN touch .env
+

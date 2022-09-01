@@ -53,6 +53,7 @@ class RppsImport extends Command
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         $process = $input->getOption("process");
+        $this->rppsService->setOutput($output);
 
         try {
             // Turning off doctrine default logs queries for saving memory
@@ -73,6 +74,7 @@ class RppsImport extends Command
             $end = new DateTime();
             $output->writeln('<comment>' . $end->format('d-m-Y G:i:s') . ' Stop processing :---</comment>');
 
+            $this->rppsService->loadTestData();
 
             return Command::SUCCESS;
         } catch (Exception $e) {

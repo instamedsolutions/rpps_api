@@ -38,12 +38,14 @@ class LoadDiseaseGroups extends Fixture implements FixtureInterface
 
         $group->setCim("01");
         $group->setName("Certaines maladies infectieuses et parasitaires");
+        $group->importId = "import_1";
 
         $this->em->persist($group);
 
         $group2 = new DiseaseGroup();
         $group2->setCim("A00-A09");
         $group2->setName("Maladies intestinales infectieuses");
+        $group2->importId = "import_1";
 
         $this->em->persist($group2);
 

@@ -16,4 +16,4 @@ import-rpps: # Import rpps' data
 	docker-compose run --rm apache php bin/console app:rpps:import
 
 import-test-data: # Import test data
-	docker-compose run --rm apache php bin/console app:test:create
+	docker-compose run --rm apache php bin/console app:test:create --legacy=true
