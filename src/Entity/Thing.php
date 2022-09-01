@@ -23,7 +23,7 @@ abstract class Thing implements Entity, ImportedEntity, Stringable
         ]
     ])]
     #[ORM\Column(type: 'guid', unique: true)]
-    protected ?string $id;
+    protected ?string $id = null;
 
 
     #[ApiProperty(description: "The created date of the entity", writable: false)]

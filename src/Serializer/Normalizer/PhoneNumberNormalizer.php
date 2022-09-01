@@ -18,8 +18,6 @@ class PhoneNumberNormalizer implements ContextAwareNormalizerInterface, Cacheabl
     /**
      * @param $object
      * @param string|null $format
-     * @param array $context
-     * @return string
      */
     public function normalize($object, string $format = null, array $context = []): string
     {
