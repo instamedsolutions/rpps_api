@@ -24,4 +24,4 @@ clear-cache-prod:
 	php bin/console cache:clear
 
 start-apache-prod:
-	/usr/sbin/apache2ctl", "-D", "FOREGROUND
+	/usr/sbin/apache2ctl -D FOREGROUND

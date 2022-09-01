@@ -8,7 +8,7 @@ load-fixtures: ## Loads fixtures into the database
 	make run-command command='doctrine:fixtures:load --no-interaction'
 
 sync-metadata-storage: ## Ensures that the metadata storage is at the latest version.
-	make run-command command='doctrine:migrations:sync-metadata-storage''
+	make run-command command='doctrine:migrations:sync-metadata-storage'
 
 migrate: ## [Development] Runs the migrations
 	make run-command command='doctrine:migrations:migrate --verbose --no-interaction'
