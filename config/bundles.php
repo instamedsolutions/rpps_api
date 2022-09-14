@@ -15,4 +15,5 @@ return [
     Symfony\Bundle\DebugBundle\DebugBundle::class => ['dev' => true, 'staging' => true, 'test' => true],
     Symfony\Bundle\WebProfilerBundle\WebProfilerBundle::class => ['dev' => true, 'staging' => true, 'test' => true],
     Liip\FunctionalTestBundle\LiipFunctionalTestBundle::class => ['dev' => true, 'test' => true],
+    Sentry\SentryBundle\SentryBundle::class => ['prod' => true, 'staging' => true],
 ];

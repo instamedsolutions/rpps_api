@@ -12,7 +12,7 @@ routes-dev: ## Lists all routes of the application
 
 
 shell: ## Gets a shell in the apache container
-	docker-compose run --rm apache bash
+	docker-compose exec apache bash
 
 clear-cache:
 	make run-command command='cache:clear'

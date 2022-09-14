@@ -1,4 +1,4 @@
-name: Deploy Staging
+name: Deploy Production
 
 env:
   ENVIRONMENT: 'production'
@@ -24,12 +24,12 @@ jobs:
     name: Build Base Image
     runs-on: ubuntu-latest
     environment:
-      name: staging
+      name: 'production'
     steps:
       - name: Checkout
         uses: actions/checkout@v2
 
-      - name: Build staging image
+      - name: Build production image
         uses: ./.github/actions/build-docker-image
         with:
           registry_username: ${{ github.actor }}
@@ -44,12 +44,12 @@ jobs:
     needs: docker-build-base
     if: startsWith(github.ref_name, 'main')
     environment:
-      name: production
+      name: 'production'
     steps:
       - name: Checkout
         uses: actions/checkout@v2
 
-      - name: Build staging image
+      - name: Build production image
         uses: ./.github/actions/build-docker-image
         with:
           registry_username: ${{ github.actor }}
@@ -67,12 +67,12 @@ jobs:
     needs: docker-build-base
     if: startsWith(github.ref, 'refs/tags/v')
     environment:
-      name: production
+      name: 'production'
     steps:
       - name: Checkout
         uses: actions/checkout@v2
 
-      - name: Build staging image
+      - name: Build production image
         uses: ./.github/actions/build-docker-image
         with:
           registry_username: ${{ github.actor }}
@@ -87,13 +87,13 @@ jobs:
 
   ecs-deploy:
     name: Trigger deployment on ECS
-    needs: docker-build-staging
+    needs: docker-build-production
     runs-on: ubuntu-latest
     permissions:
       id-token: write
       contents: read
     environment:
-      name: 'staging'
+      name: 'production'
     steps:
       - name: Checkout
         uses: actions/checkout@v2
