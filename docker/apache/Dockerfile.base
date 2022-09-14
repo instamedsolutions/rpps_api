@@ -49,7 +49,6 @@ RUN chmod +x /usr/local/bin/install-php-extensions && sync && \
 RUN a2enmod rewrite ssl headers
 
 RUN php -r "copy('https://getcomposer.org/installer', '/tmp/composer-setup.php');" && php /tmp/composer-setup.php --no-ansi --install-dir=/usr/local/bin --filename=composer && rm -rf /tmp/composer-setup.php
-RUN php /usr/local/bin/composer config --global --auth github-oauth.github.com 72cf2aa7d18c411d9a6776cf5bd388b805aac68d
 
 RUN rm -vf /var/lib/apt/lists/* && apt-get update && apt-get install -y git
 

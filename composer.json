@@ -23,6 +23,7 @@
         "nelmio/cors-bundle": "^2.1",
         "odolbeau/phone-number-bundle": "^3.1",
         "phpdocumentor/reflection-docblock": "^5.2",
+        "sentry/sentry-symfony": "^4.3",
         "symfony/asset": "5.4.*",
         "symfony/cache": "5.4.*",
         "symfony/console": "5.4.*",

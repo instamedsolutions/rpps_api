@@ -9,6 +9,7 @@ services:
       context: ./
       dockerfile: ./docker/apache/Dockerfile.${DOCKER_COMPOSE_ENV:-dev}
     container_name: rpps-apache-container
+    command: ["make", "start-apache-prod"]
     restart: always
     ports:
       - "443:443"
