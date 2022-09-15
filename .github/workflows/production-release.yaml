@@ -57,6 +57,7 @@ jobs:
           docker_file: 'deployed'
           docker_env: ${{ env.ENVIRONMENT }}
           docker_tag: ${{ env.DOCKER_TAG }}
+          docker_image: ${{ env.IMAGE_NAME }}
           base_image_tag: ${{ env.DOCKER_TAG }}
           github_token: ${{ secrets.GITHUB_TOKEN }}
 
