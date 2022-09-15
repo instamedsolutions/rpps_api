@@ -56,8 +56,8 @@ jobs:
           registry_password: ${{ secrets.GITHUB_TOKEN }}
           docker_file: 'deployed'
           docker_env: ${{ env.ENVIRONMENT }}
-          docker_tag: 'latest'
-          base_image_tag: 'latest'
+          docker_tag: ${{ env.DOCKER_TAG }}
+          base_image_tag: ${{ env.DOCKER_TAG }}
           github_token: ${{ secrets.GITHUB_TOKEN }}
 
 
@@ -80,7 +80,7 @@ jobs:
           docker_image: ${{ env.IMAGE_NAME }}
           docker_file: 'deployed'
           docker_env: ${{ env.ENVIRONMENT }}
-          base_image_tag: 'latest'
+          base_image_tag: ${{ env.DOCKER_TAG }}
           docker_tag: ${{github.ref_name}}
           github_token: ${{ secrets.GITHUB_TOKEN }}
 
