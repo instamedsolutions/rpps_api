@@ -56,7 +56,7 @@ jobs:
           registry_password: ${{ secrets.GITHUB_TOKEN }}
           docker_file: 'deployed'
           docker_env: ${{ env.ENVIRONMENT }}
-          docker_tag: ${{ env.ENVIRONMENT }}
+          docker_tag: 'latest'
           base_image_tag: 'latest'
           github_token: ${{ secrets.GITHUB_TOKEN }}
 
