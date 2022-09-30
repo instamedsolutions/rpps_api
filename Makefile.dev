@@ -1,11 +1,16 @@
 ## === Development === commands - meant to be used to run the project locally while developping on it
 
-setup-dev: run composer-install setup-db ## Installs the application without importing the data
+install-app: run composer-install setup-db ## Installs the application without importing the data
+
+setup-dev: install-app load-fixtures ## Installs the application with the fixtures data
 
 install: install-app import-data ## Installs the application & imports the data
 
 composer-install: ## Runs composer install in the container to install backend dependencies
 	docker-compose run --rm apache composer install
+
+composer-require: ## Runs composer require in the container to add a new dependency
+	docker-compose run --rm apache composer require $(package)
 
 routes-dev: ## Lists all routes of the application
 	make run-command command='debug:router'
