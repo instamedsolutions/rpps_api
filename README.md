@@ -58,6 +58,12 @@ make shell
 
 # Install a composer package
 make composer-require package='name/of/your/package'
+
+# Runs the doctrine migrations
+make migrate:
+
+# Creates a new doctrine migration
+make create-migration:
 ````
 
 
