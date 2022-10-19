@@ -26,9 +26,6 @@ class LoadRPPS extends Fixture
         $faker->seed(666);
 
         foreach ($this->getUsers() as $i => $user) {
-            $j = $i + 1;
-
-            $isDemo = $j > 6;
 
             $rpps = new RPPS();
             $rpps->setFirstName($user);
@@ -37,29 +34,29 @@ class LoadRPPS extends Fixture
                 $rpps->setTitle("Docteur");
             }
 
-            $first = $isDemo ? 2 : 1;
+            $rppsId = $this->getRpps($i);
 
-            $rpps->setIdRpps("$first{$j}{$j}{$j}{$j}{$j}{$j}{$j}{$j}{$j}{$j}");
+            $rpps->setIdRpps($rppsId);
 
-            if (in_array($i, [0, 1, 5])) {
-                $rpps->setCpsNumber("{$j}{$j}{$j}{$j}{$j}{$j}{$j}{$j}{$j}{$j}");
+            if (in_array($i, [0, 1, 5,8])) {
+                $rpps->setCpsNumber(substr($rppsId,1,10));
             }
 
-            if (in_array($i, [0, 2, 3])) {
-                $rpps->setFinessNumber("{$j}{$j}{$j}{$j}{$j}{$j}{$j}{$j}{$j}");
+            if (in_array($i, [0, 2, 3,8])) {
+                $rpps->setFinessNumber(substr($rppsId,1,9));
             }
-            if (in_array($i, [0, 4, 5])) {
+            if (in_array($i, [0, 4, 5,9])) {
                 $rpps->setEmail(strtolower((string)"$user@instamed.fr"));
             }
 
-            if (in_array($i, [0, 1, 4])) {
+            if (in_array($i, [0, 1, 4,8])) {
                 $rpps->setAddress($faker->streetAddress());
                 $rpps->setCity($faker->city());
                 $rpps->setZipcode($faker->postcode());
             }
             $rpps->setSpecialty($this->getSpecialties()[$i]);
 
-            if (in_array($i, [0, 3, 5])) {
+            if (in_array($i, [0, 3, 5,9])) {
                 $rpps->setPhoneNumber($faker->phoneNumber());
             }
 
@@ -76,11 +73,35 @@ class LoadRPPS extends Fixture
 
     protected function getUsers(): array
     {
-        return ["Bastien", "Jérémie", "Luv", "Julien", "Lauriane", "Maxime", "Johann", "Emilie"];
+        return ["Bastien", "Jérémie", "Luv", "Julien", "Lauriane", "Maxime", "Johann", "Emilie","Blandine","Quentin"];
     }
 
 
-    protected function getSpecialties(): array
+    private function getRpps(int $index) : string
+    {
+        $j = $index+1;
+
+        $isDemo = $j > 6;
+
+        $first = $isDemo ? 2 : 1;
+
+        if($j >= 10) {
+
+            $ids = [
+                10 => "{$first}1234567890",
+                11 => "{$first}0987654321",
+            ];
+
+            return $ids[$j];
+
+        }
+
+        return "$first$j$j$j$j$j$j$j$j$j$j";
+
+    }
+
+
+    private function getSpecialties(): array
     {
         return [
             'Qualifié en Médecine Générale',
@@ -90,7 +111,9 @@ class LoadRPPS extends Fixture
             'Pédiatrie',
             'Pharmacien',
             null,
-            'Biologie médicale'
+            'Biologie médicale',
+            'Radiologie',
+            null
         ];
     }
 
