@@ -341,7 +341,7 @@ class Drug extends Thing implements Entity, Stringable
         return (string)$this->getShortName();
     }
 
-    protected function splitName()
+    protected function splitName() : array
     {
         $name = $this->getName();
 
@@ -355,6 +355,14 @@ class Drug extends Thing implements Entity, Stringable
 
         $format = trim(array_pop($name));
         $name = implode($separator, $name);
+
+        // In some cases, the name does not contain a comma or a dotgi
+        if(!$name) {
+            $pharmaceuticalForm = $this->getPharmaceuticalForm();
+            $pharmaceuticalForm = str_replace(['(',')'], "", $pharmaceuticalForm);
+            $name = trim(str_replace($pharmaceuticalForm,"",$format));
+            $format = trim($pharmaceuticalForm);
+        }
 
         return [$name, $format];
     }

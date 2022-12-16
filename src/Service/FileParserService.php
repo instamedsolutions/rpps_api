@@ -146,7 +146,7 @@ abstract class FileParserService
             [$this->getImportId()]
         );
 
-        $this->output->writeln("Old data removed");
+        $this->output->writeln("Old data removed, keeping {$this->getImportId()} only");
 
     }
 
