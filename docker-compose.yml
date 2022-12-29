@@ -12,7 +12,7 @@ services:
     command: ["make", "start-apache-prod"]
     restart: always
     ports:
-      - "443:443"
+      - "446:443"
     volumes_from:
       - app-data
     links:
@@ -23,7 +23,9 @@ services:
     container_name: api-app-data-container
     volumes:
       - ./:/var/www/html/
-
+      - type: bind
+        source: ./test_db.sqlite
+        target: /var/test_db.sqlite
     command: "true"
 
   database:

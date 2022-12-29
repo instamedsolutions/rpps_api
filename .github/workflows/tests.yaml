@@ -2,7 +2,8 @@ name: PHPUnit
 
 env:
   PHP_VERSION: 8.1
-
+  DATABASE_URL: "/var/test_db.sqlite"
+  DATABASE_ENGINE: "pdo_sqlite"
 on:
   pull_request:
     branches:

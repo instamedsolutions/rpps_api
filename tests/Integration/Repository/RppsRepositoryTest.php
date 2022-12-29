@@ -1,9 +1,10 @@
 <?php
 
-namespace App\tests\Integration\Repository;
+namespace App\Tests\Integration\Repository;
 
 use App\DataFixtures\LoadRPPS;
 use App\Entity\RPPS;
+use Doctrine\ORM\EntityManager;
 use Liip\TestFixturesBundle\Test\FixturesTrait;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 
@@ -11,10 +12,7 @@ class RppsRepositoryTest extends KernelTestCase
 {
     use FixturesTrait;
 
-    /**
-     * @var \Doctrine\ORM\EntityManager
-     */
-    private $entityManager;
+    private EntityManager $entityManager;
 
     protected function setUp(): void
     {
@@ -29,7 +27,7 @@ class RppsRepositoryTest extends KernelTestCase
     /**
      * @return void
      */
-    public function testRppsImportToDatabase()
+    public function testRppsImportToDatabase(): void
     {
         $this->loadFixtures([
             LoadRPPS::class
@@ -38,7 +36,7 @@ class RppsRepositoryTest extends KernelTestCase
 
         $data = $this->entityManager->getRepository(RPPS::class)->findAll();
 
-        $this->assertCount(8, $data);
+        $this->assertCount(10, $data);
     }
 
 }
