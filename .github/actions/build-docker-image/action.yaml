@@ -74,3 +74,7 @@ runs:
           GITHUB_TOKEN=${{ inputs.github_token }}
           DATABASE_URL="./var/test_db.sqlite"
           DATABASE_ENGINE="pdo_sqlite"
+          DATABASE_USER="none"
+          DATABASE_HOST="none"
+          DATABASE_POST="none"
+          DATABASE_NAME="none"
