@@ -2,6 +2,7 @@ name: PHPUnit
 
 env:
   PHP_VERSION: 8.1
+  DATABASE_URL: "sqlite:///%kernel.project_dir%/var/test_db.sqlite"
 
 on:
   pull_request:
