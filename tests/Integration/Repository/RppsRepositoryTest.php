@@ -1,6 +1,6 @@
 <?php
 
-namespace App\tests\Integration\Repository;
+namespace App\Tests\Integration\Repository;
 
 use App\DataFixtures\LoadRPPS;
 use App\Entity\RPPS;
