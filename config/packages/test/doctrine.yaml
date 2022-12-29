@@ -3,8 +3,8 @@ doctrine:
     default_connection: default
     connections:
       default:
-        driver: pdo_sqlite
-        url: 'sqlite:///%kernel.project_dir%/var/test_db.sqlite'
+        driver: '%env(DATABASE_ENGINE)%'
+        url: '%env(DATABASE_URL)%'
         charset: UTF8
         default_table_options:
           charset: utf8
