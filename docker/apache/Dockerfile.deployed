@@ -25,6 +25,7 @@ ENV DATABASE_URL="/var/test_db.sqlite"
 ENV DATABASE_ENGINE="pdo_sqlite"
 
 RUN touch ${DATABASE_URL}
+RUN touch var/test_db.sqlite
 RUN php bin/console doctrine:schema:update --force --dump-sql
 RUN php bin/console doctrine:migrations:sync-metadata-storage
 RUN php bin/console doctrine:migrations:version --add --all --no-interaction
