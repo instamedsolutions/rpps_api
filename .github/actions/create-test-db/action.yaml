@@ -5,6 +5,9 @@ runs:
   steps:
     - name: Create test database
       shell: bash
+      env:
+        DATABASE_URL: "./var/test_db.sqlite"
+        DATABASE_ENGINE: "pdo_sqlite"
       run: |
         sudo chmod -R 777 ./var
         sudo touch ./var/test_db.sqlite
