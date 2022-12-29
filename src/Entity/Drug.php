@@ -357,7 +357,7 @@ class Drug extends Thing implements Entity, Stringable
         $name = implode($separator, $name);
 
         // In some cases, the name does not contain a comma or a dotgi
-        if(!$name) {
+        if($name === '' || $name === '0') {
             $pharmaceuticalForm = $this->getPharmaceuticalForm();
             $pharmaceuticalForm = str_replace(['(',')'], "", $pharmaceuticalForm);
             $name = trim(str_replace($pharmaceuticalForm,"",$format));
