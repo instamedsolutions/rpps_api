@@ -72,3 +72,5 @@ runs:
           DOCKER_ENV=${{ inputs.docker_env }}
           BASE_IMAGE=${{ inputs.base_image_tag }}
           GITHUB_TOKEN=${{ inputs.github_token }}
+          DATABASE_URL="./var/test_db.sqlite"
+          DATABASE_ENGINE="pdo_sqlite"
