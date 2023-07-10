@@ -54,6 +54,9 @@ RUN rm -vf /var/lib/apt/lists/* && apt-get update && apt-get install -y git
 
 RUN apt-get install -y vim
 
+# Fix issue with MAC M1
+RUN echo "Mutex posixsem" >> /etc/apache2/apache2.conf
+
 ADD https://github.com/mlocati/docker-php-extension-installer/releases/latest/download/install-php-extensions /usr/local/bin/
 
 RUN chmod +x /usr/local/bin/install-php-extensions && sync && \
