@@ -3,12 +3,12 @@
 namespace App\Service;
 
 use App\DataFixtures\LoadRPPS;
+use App\Entity\RPPS;
 use Doctrine\Common\DataFixtures\Executor\ORMExecutor;
 use Doctrine\DBAL\Connection;
-use Exception;
-use Doctrine\ORM\NonUniqueResultException;
-use App\Entity\RPPS;
 use Doctrine\ORM\EntityManagerInterface;
+use Doctrine\ORM\NonUniqueResultException;
+use Exception;
 use Symfony\Bridge\Doctrine\DataFixtures\ContainerAwareLoader;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\HttpKernel\KernelInterface;
@@ -18,8 +18,6 @@ use Symfony\Component\HttpKernel\KernelInterface;
  */
 class RPPSService extends ImporterService
 {
-
-
     public function __construct(
         protected readonly string $cps,
         protected readonly string $rpps,
@@ -30,25 +28,25 @@ class RPPSService extends ImporterService
         parent::__construct(RPPS::class, $fileProcessor, $em);
     }
 
-
     public function loadTestData(): void
     {
-        $this->output->writeln("Deletion of existing data in progress");
+        $this->output->writeln('Deletion of existing data in progress');
 
-        $ids = [];
-        for ($j = 1; $j <= 9; $j++) {
+        $ids = [
+            '21234567890',
+        ];
+        for ($j = 1; $j <= 9; ++$j) {
             $ids[] = "1{$j}{$j}{$j}{$j}{$j}{$j}{$j}{$j}{$j}{$j}";
             $ids[] = "2{$j}{$j}{$j}{$j}{$j}{$j}{$j}{$j}{$j}{$j}";
         }
 
         $this->em->getConnection()->executeQuery(
-            "DELETE FROM rpps WHERE id_rpps IN (:ids)",
-            ["ids" => $ids],
-            ["ids" => Connection::PARAM_STR_ARRAY]
+            'DELETE FROM rpps WHERE id_rpps IN (:ids)',
+            ['ids' => $ids],
+            ['ids' => Connection::PARAM_STR_ARRAY]
         );
 
-        $this->output->writeln("Existing data successfully deleted");
-
+        $this->output->writeln('Existing data successfully deleted');
 
         $loader = new ContainerAwareLoader($this->kernel->getContainer());
 
@@ -59,33 +57,31 @@ class RPPSService extends ImporterService
         $executor = new ORMExecutor($this->em);
         $executor->execute($loader->getFixtures(), true);
 
-        $this->output->writeln("Test data successfully loaded");
+        $this->output->writeln('Test data successfully loaded');
     }
-
 
     /**
      * @throws Exception
      */
-    public function importFile(OutputInterface $output, string $type): bool
+    public function importFile(OutputInterface $output, string $type, int $start = 0, int $limit = 0): bool
     {
         /** Handling File File */
         $file = $this->fileProcessor->getFile($this->$type, $type, true);
 
-        if ($type === "rpps") {
-            $options = ['delimiter' => ";", "utf8" => true, "headers" => true];
-        } elseif ($type === "cps") {
-            $options = ['delimiter' => "|", "utf8" => false, "headers" => true];
+        if ('rpps' === $type) {
+            $options = ['delimiter' => ';', 'utf8' => true, 'headers' => true];
+        } elseif ('cps' === $type) {
+            $options = ['delimiter' => '|', 'utf8' => false, 'headers' => true];
         } else {
             throw new Exception("Type $type not working");
         }
 
-        $process = $this->processFile($output, $file, $type, $options);
+        $process = $this->processFile($output, $file, $type, $options, $start, $limit);
 
         unlink($file);
 
         return $process;
     }
-
 
     /**
      * @throws NonUniqueResultException
@@ -93,20 +89,18 @@ class RPPSService extends ImporterService
     protected function processData(array $data, string $type): ?RPPS
     {
         return match ($type) {
-            "cps" => $this->processCPS($data),
-            "rpps" => $this->processRPPS($data),
+            'cps' => $this->processCPS($data),
+            'rpps' => $this->processRPPS($data),
             default => throw new Exception("Type $type is not supported yet"),
         };
     }
 
     /**
-     *
-     *
      * @throws NonUniqueResultException
      */
     protected function processCPS(array $data): ?RPPS
     {
-        /** @var RPPS $rpps */
+        /** @var RPPS|null $rpps */
         $rpps = $this->repository->find($data[0]);
 
         if (null === $rpps) {
@@ -118,10 +112,7 @@ class RPPSService extends ImporterService
         return $rpps;
     }
 
-
     /**
-     *
-     *
      * @throws NonUniqueResultException
      */
     protected function processRPPS(array $data): ?RPPS
@@ -138,14 +129,14 @@ class RPPSService extends ImporterService
         $rpps->setFirstName($data[6]);
         $rpps->setSpecialty($data[8]);
 
-        if ($data[12] && in_array($data[13], ["S", "CEX"])) {
+        if ($data[12] && in_array($data[13], ['S', 'CEX'])) {
             $rpps->setSpecialty($data[12]);
         }
 
-        $rpps->setAddress($data[24] . " " . $data[25] . " " . $data[27] . " " . $data[28] . " " . $data[29]);
+        $rpps->setAddress($data[24] . ' ' . $data[25] . ' ' . $data[27] . ' ' . $data[28] . ' ' . $data[29]);
         $rpps->setZipcode($data[31]);
         $rpps->setCity($data[30]);
-        $rpps->setPhoneNumber(str_replace(' ', '', (string)$data[36]));
+        $rpps->setPhoneNumber(str_replace(' ', '', (string) $data[36]));
         $rpps->setEmail($data[39]);
         $rpps->setFinessNumber($data[18]);
 
@@ -153,5 +144,4 @@ class RPPSService extends ImporterService
 
         return $rpps;
     }
-
 }

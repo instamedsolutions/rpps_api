@@ -2,22 +2,20 @@
 
 namespace App\Command;
 
-use DateTime;
-use Exception;
 use App\Service\RPPSService;
+use DateTime;
 use Doctrine\ORM\EntityManagerInterface;
+use Exception;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
-
 
 /**
  * Command to import file in empty database.
  */
 class RppsImport extends Command
 {
-
     // the name of the command (the part after "bin/console")
     protected static $defaultName = 'app:rpps:import';
 
@@ -29,11 +27,7 @@ class RppsImport extends Command
         parent::__construct(self::$defaultName);
     }
 
-
-    /**
-     *
-     */
-    protected function configure()
+    protected function configure(): void
     {
         $this->setDescription('Import RPPS File into database')
             ->setHelp('This command will import a RPPS CSV file into your database.');
@@ -44,15 +38,29 @@ class RppsImport extends Command
             InputOption::VALUE_OPTIONAL,
             'the process you want to run'
         );
+
+        $this->addOption(
+            'start-line',
+            'st',
+            InputOption::VALUE_OPTIONAL,
+            'The line to start the import from'
+        );
+
+        $this->addOption(
+            'limit',
+            'lt',
+            InputOption::VALUE_OPTIONAL,
+            'The limit of the import size'
+        );
     }
 
-
-    /**
-     * @return int|void
-     */
-    protected function execute(InputInterface $input, OutputInterface $output)
+    protected function execute(InputInterface $input, OutputInterface $output): int
     {
-        $process = $input->getOption("process");
+        $process = $input->getOption('process');
+
+        $startLine = $input->getOption('start-line') ?? 0;
+        $limit = $input->getOption('limit') ?? 0;
+
         $this->rppsService->setOutput($output);
 
         try {
@@ -64,10 +72,10 @@ class RppsImport extends Command
             $output->writeln('<comment>' . $start->format('d-m-Y G:i:s') . ' Start processing :---</comment>');
 
             if ($process) {
-                $this->rppsService->importFile($output, $process);
+                $this->rppsService->importFile($output, $process, $startLine, $limit);
             } else {
-                $this->rppsService->importFile($output, "rpps");
-                $this->rppsService->importFile($output, "cps");
+                $this->rppsService->importFile($output, 'rpps', $startLine, $limit);
+                $this->rppsService->importFile($output, 'cps', $startLine, $limit);
             }
 
             // Showing when the cps process is launched
@@ -80,6 +88,7 @@ class RppsImport extends Command
         } catch (Exception $e) {
             error_log($e->getMessage());
             $output->writeln($e->getTraceAsString());
+
             return Command::FAILURE;
         }
     }

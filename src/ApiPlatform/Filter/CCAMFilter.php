@@ -2,27 +2,18 @@
 
 namespace App\ApiPlatform\Filter;
 
-use Exception;
 use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\AbstractContextAwareFilter;
 use ApiPlatform\Core\Bridge\Doctrine\Orm\Util\QueryNameGeneratorInterface;
 use Doctrine\ORM\QueryBuilder;
-
-/*
- *
- */
+use Exception;
 
 final class CCAMFilter extends AbstractContextAwareFilter
 {
-
     use FilterTrait;
 
     protected ?QueryNameGeneratorInterface $queryNameGenerator = null;
 
-
     /**
-     * @param $value
-     * @param string|null $operationName
-     *
      * @throws Exception
      */
     protected function filterProperty(
@@ -32,7 +23,7 @@ final class CCAMFilter extends AbstractContextAwareFilter
         QueryNameGeneratorInterface $queryNameGenerator,
         string $resourceClass,
         string $operationName = null
-    ) {
+    ): void {
         $this->queryNameGenerator = $queryNameGenerator;
 
         if (!array_key_exists($property, $this->properties)) {
@@ -47,7 +38,6 @@ final class CCAMFilter extends AbstractContextAwareFilter
         $this->addSearchFilter($queryBuilder, $value);
     }
 
-
     /**
      * @throws Exception
      */
@@ -58,10 +48,9 @@ final class CCAMFilter extends AbstractContextAwareFilter
         // $value = str_replace(" ","%",trim($value));
         $value = trim($value);
 
-
         // Generate a unique parameter name to avoid collisions with other filters
-        $start = $this->queryNameGenerator->generateParameterName("search");
-        $full = $this->queryNameGenerator->generateParameterName("search");
+        $start = $this->queryNameGenerator->generateParameterName('search');
+        $full = $this->queryNameGenerator->generateParameterName('search');
 
         $queryBuilder->andWhere("$alias.name LIKE :$full OR $alias.code LIKE :$start");
 
@@ -70,7 +59,6 @@ final class CCAMFilter extends AbstractContextAwareFilter
 
         return $queryBuilder;
     }
-
 
     public function getDescription(string $resourceClass): array
     {
@@ -85,10 +73,10 @@ final class CCAMFilter extends AbstractContextAwareFilter
                 'type' => 'string',
                 'required' => false,
                 'swagger' => [
-                    'description' => "Search by code or name...",
+                    'description' => 'Search by code or name...',
                     'type' => 'string',
                     'name' => $property,
-                    'example' => "Jean Du"
+                    'example' => 'Jean Du',
                 ],
             ];
         }

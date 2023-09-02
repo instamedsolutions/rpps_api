@@ -3,7 +3,6 @@
 namespace App\Service;
 
 use App\Entity\NGAP;
-use App\Entity\Allergen;
 use Doctrine\ORM\EntityManagerInterface;
 
 /**
@@ -11,23 +10,20 @@ use Doctrine\ORM\EntityManagerInterface;
  */
 class NGAPService extends FileParserService
 {
-
     public function __construct(protected string $projectDir, FileProcessor $fileProcessor, EntityManagerInterface $em)
     {
         parent::__construct(NGAP::class, $fileProcessor, $em);
     }
-
 
     public function parse(): bool
     {
         return $this->processFile(
             $this->output,
             $this->getFile(),
-            "default",
-            ['delimiter' => ",", "utf8" => true, "headers" => true]
+            'default',
+            ['delimiter' => ',', 'utf8' => true, 'headers' => true]
         );
     }
-
 
     protected function processData(array $data, string $type): ?NGAP
     {
@@ -44,10 +40,8 @@ class NGAPService extends FileParserService
         $this->em->persist($ngap);
         $this->em->flush();
 
-
         return $ngap;
     }
-
 
     protected function getFile(): string
     {

@@ -2,27 +2,18 @@
 
 namespace App\ApiPlatform\Filter;
 
-use Exception;
 use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\AbstractContextAwareFilter;
 use ApiPlatform\Core\Bridge\Doctrine\Orm\Util\QueryNameGeneratorInterface;
 use Doctrine\ORM\QueryBuilder;
-
-/*
- *
- */
+use Exception;
 
 final class DiseaseFilter extends AbstractContextAwareFilter
 {
-
     use FilterTrait;
 
     protected ?QueryNameGeneratorInterface $queryNameGenerator = null;
 
-
     /**
-     * @param $value
-     * @param string|null $operationName
-     *
      * @throws Exception
      */
     protected function filterProperty(
@@ -32,7 +23,7 @@ final class DiseaseFilter extends AbstractContextAwareFilter
         QueryNameGeneratorInterface $queryNameGenerator,
         string $resourceClass,
         string $operationName = null
-    ) {
+    ): void {
         $this->queryNameGenerator = $queryNameGenerator;
 
         if (!array_key_exists($property, $this->properties)) {
@@ -47,7 +38,6 @@ final class DiseaseFilter extends AbstractContextAwareFilter
         $this->addSearchFilter($queryBuilder, $value);
     }
 
-
     /**
      * @throws Exception
      */
@@ -55,11 +45,11 @@ final class DiseaseFilter extends AbstractContextAwareFilter
     {
         $alias = $queryBuilder->getRootAliases()[0];
 
-        $value = str_replace(" ", "%", trim($value));
+        $value = str_replace(' ', '%', trim($value));
 
         // Generate a unique parameter name to avoid collisions with other filters
-        $start = $this->queryNameGenerator->generateParameterName("search");
-        $full = $this->queryNameGenerator->generateParameterName("search");
+        $start = $this->queryNameGenerator->generateParameterName('search');
+        $full = $this->queryNameGenerator->generateParameterName('search');
 
         $queryBuilder->andWhere("$alias.name LIKE :$full OR $alias.cim LIKE :$start");
 
@@ -70,7 +60,6 @@ final class DiseaseFilter extends AbstractContextAwareFilter
 
         return $queryBuilder;
     }
-
 
     public function getDescription(string $resourceClass): array
     {
@@ -85,10 +74,10 @@ final class DiseaseFilter extends AbstractContextAwareFilter
                 'type' => 'string',
                 'required' => false,
                 'swagger' => [
-                    'description' => "Search by first name, last name...",
+                    'description' => 'Search by first name, last name...',
                     'type' => 'string',
                     'name' => $property,
-                    'example' => "Jean Du"
+                    'example' => 'Jean Du',
                 ],
             ];
         }

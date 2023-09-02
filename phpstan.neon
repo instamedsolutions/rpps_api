@@ -1,0 +1,16 @@
+parameters:
+    level: 7
+    reportUnmatchedIgnoredErrors: false
+    checkMissingIterableValueType: false
+    checkGenericClassInNonGenericObjectType: false
+
+    excludePaths:
+        - '%currentWorkingDirectory%/src/Fixtures/*'
+        - '%currentWorkingDirectory%/src/DoctrineMigrations/*'
+        - '%currentWorkingDirectory%/src/Kernel.php'
+        - '%currentWorkingDirectory%/src/Services/ApiCacheService.php'
+        - '%currentWorkingDirectory%/src/Services/StripeService.php'
+        - '%currentWorkingDirectory%/src/Command/Tests/*'
+        - '%currentWorkingDirectory%/tests/*'
+
+    ignoreErrors: []

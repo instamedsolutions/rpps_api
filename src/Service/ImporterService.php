@@ -2,7 +2,6 @@
 
 namespace App\Service;
 
-use Doctrine\ORM\NonUniqueResultException;
 use Symfony\Component\Console\Output\OutputInterface;
 
 /**
@@ -10,8 +9,7 @@ use Symfony\Component\Console\Output\OutputInterface;
  */
 abstract class ImporterService extends FileParserService
 {
-
-    public function importFile(OutputInterface $output, string $type): bool
+    public function importFile(OutputInterface $output, string $type, int $start = 0, int $limit = 0): bool
     {
         /** Handling File */
         $file = $this->fileProcessor->getFile($this->$type, $type);
@@ -22,5 +20,4 @@ abstract class ImporterService extends FileParserService
 
         return $process;
     }
-
 }

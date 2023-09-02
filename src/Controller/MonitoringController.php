@@ -15,8 +15,8 @@ class MonitoringController extends AbstractController
             'healthy' => true,
             'services' => [
                 'api' => 'running',
-                'application' => 'running'
-            ]
+                'application' => 'running',
+            ],
         ]);
     }
 }

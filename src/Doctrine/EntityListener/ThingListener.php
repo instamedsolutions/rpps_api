@@ -2,16 +2,12 @@
 
 namespace App\Doctrine\EntityListener;
 
-use DateTime;
 use App\Entity\Thing;
+use DateTime;
 use Doctrine\ORM\Event\LifecycleEventArgs;
-
-
 
 class ThingListener
 {
-
-
     public function prePersist(LifecycleEventArgs $event): void
     {
         $entity = $event->getEntity();
@@ -20,9 +16,8 @@ class ThingListener
             return;
         }
 
-        if ($entity->getCreatedDate() === null) {
+        if (null === $entity->getCreatedDate()) {
             $entity->setCreatedDate(new DateTime());
         }
     }
-
 }

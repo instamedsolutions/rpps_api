@@ -2,62 +2,48 @@
 
 namespace App\Validator;
 
-use Symfony\Component\HttpFoundation\Request;
 use App\Entity\Entity;
-use App\Entity\Thing;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\RequestStack;
-use Symfony\Component\Security\Core\Security;
 
 use function Symfony\Component\String\u;
 
-/**
- * Class UserGroupGenerator
- *
- * @package App\Validator
- */
 final class GroupGenerator
 {
-
-
-    /**
-     * UserGroupGenerator constructor.
-     */
-    public function __construct(protected RequestStack $requestStack, private readonly Security $security)
+    public function __construct(protected RequestStack $requestStack)
     {
     }
 
     /**
-     * @param bool $normalization
      * @return string[]
      */
-    public function generateGroups($normalization = false): array
+    public function generateGroups(bool $normalization = false): array
     {
         $request = $this->requestStack->getCurrentRequest();
 
-        $groups = $request->attributes->get("groups", []);
+        $groups = $request->attributes->get('groups', []);
 
         if (!$normalization) {
-            $groups[] = "Default";
+            $groups[] = 'Default';
         }
 
         if (!$request instanceof Request) {
             return $groups;
         }
 
-
         $uri = $request->getPathInfo();
         // Removing extension
         $ext = pathinfo($uri, PATHINFO_EXTENSION);
-        $uri = str_replace(".$ext", "", $uri);
+        $uri = str_replace(".$ext", '', $uri);
 
         $route = $request->get('_route');
 
         $operation = strtolower($request->getMethod());
 
-        $op_type = str_contains((string)$route, 'collection') ? 'collection' : 'item';
+        $op_type = str_contains((string) $route, 'collection') ? 'collection' : 'item';
 
         // Remove parameters at the end
-        if ($op_type === 'item') {
+        if ('item' === $op_type) {
             $uri = preg_replace('#/[0-9a-zA-Z\-]+$#', '', $uri);
         }
 
@@ -75,11 +61,11 @@ final class GroupGenerator
         }
 
         // In post, and put, the return value is always an item
-        if ($operation != "get") {
+        if ('get' != $operation) {
             $op_type = 'item';
         }
 
-        $type = $normalization ? "read" : "write";
+        $type = $normalization ? 'read' : 'write';
 
         // entity
         $groups[] = $entity;
@@ -89,24 +75,21 @@ final class GroupGenerator
         // entity:item
         $groups[] = "$entity:$op_type";
 
-        if ($type !== '' && $type !== '0') {
-            // write
-            $groups[] = $type;
-            // entity:write
-            $groups[] = "$entity:$type";
-            // entity:item:read
-            $groups[] = "$entity:$op_type:$type";
-        }
+        // write
+        $groups[] = $type;
+        // entity:write
+        $groups[] = "$entity:$type";
+        // entity:item:read
+        $groups[] = "$entity:$op_type:$type";
 
-        if ($operation !== '' && $operation !== '0') {
+        if ($operation) {
             $groups[] = $operation;
         }
 
         return $groups;
     }
 
-
-    public function prepareRequest()
+    public function prepareRequest(): void
     {
         $request = $this->requestStack->getCurrentRequest();
 
@@ -115,7 +98,6 @@ final class GroupGenerator
         }
     }
 
-
     /**
      * @return array|string[]
      */
@@ -123,5 +105,4 @@ final class GroupGenerator
     {
         return $this->generateGroups();
     }
-
 }

@@ -2,27 +2,18 @@
 
 namespace App\ApiPlatform\Filter;
 
-use Exception;
 use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\AbstractContextAwareFilter;
 use ApiPlatform\Core\Bridge\Doctrine\Orm\Util\QueryNameGeneratorInterface;
 use Doctrine\ORM\QueryBuilder;
-
-/*
- *
- */
+use Exception;
 
 final class AllergenFilter extends AbstractContextAwareFilter
 {
-
     use FilterTrait;
 
     protected ?QueryNameGeneratorInterface $queryNameGenerator = null;
 
-
     /**
-     * @param $value
-     * @param string|null $operationName
-     *
      * @throws Exception
      */
     protected function filterProperty(
@@ -32,7 +23,7 @@ final class AllergenFilter extends AbstractContextAwareFilter
         QueryNameGeneratorInterface $queryNameGenerator,
         string $resourceClass,
         string $operationName = null
-    ) {
+    ): void {
         $this->queryNameGenerator = $queryNameGenerator;
 
         if (!array_key_exists($property, $this->properties)) {
@@ -47,7 +38,6 @@ final class AllergenFilter extends AbstractContextAwareFilter
         $this->addSearchFilter($queryBuilder, $value);
     }
 
-
     /**
      * @throws Exception
      */
@@ -56,7 +46,7 @@ final class AllergenFilter extends AbstractContextAwareFilter
         $alias = $queryBuilder->getRootAliases()[0];
 
         // Generate a unique parameter name to avoid collisions with other filters
-        $end = $this->queryNameGenerator->generateParameterName("search");
+        $end = $this->queryNameGenerator->generateParameterName('search');
 
         $queryBuilder->andWhere("$alias.name LIKE :$end OR $alias.group LIKE :$end");
 
@@ -66,7 +56,6 @@ final class AllergenFilter extends AbstractContextAwareFilter
 
         return $queryBuilder;
     }
-
 
     public function getDescription(string $resourceClass): array
     {
@@ -81,10 +70,10 @@ final class AllergenFilter extends AbstractContextAwareFilter
                 'type' => 'string',
                 'required' => false,
                 'swagger' => [
-                    'description' => "Search by first name, last name...",
+                    'description' => 'Search by first name, last name...',
                     'type' => 'string',
                     'name' => $property,
-                    'example' => "Jean Du"
+                    'example' => 'Jean Du',
                 ],
             ];
         }

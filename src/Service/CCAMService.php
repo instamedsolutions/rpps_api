@@ -2,46 +2,39 @@
 
 namespace App\Service;
 
-use Doctrine\ORM\NonUniqueResultException;
 use App\Entity\CCAM;
 use App\Entity\CCAMGroup;
 use App\Entity\Entity;
+use App\Repository\CCAMGroupRepository;
 use Doctrine\ORM\EntityManagerInterface;
-
+use Doctrine\ORM\NonUniqueResultException;
 
 /**
  * Contains all useful methods to process files and import them into database.
  */
 class CCAMService extends FileParserService
 {
+    /**
+     * @var CCAMGroup|null;
+     */
+    protected ?CCAMGroup $currentGroup;
 
     /**
      * @var CCAMGroup|null;
      */
-    protected $currentGroup;
+    protected ?CCAMGroup $currentCategory;
 
+    protected ?CCAM $currentCCAM;
 
-    /**
-     * @var CCAMGroup|null;
-     */
-    protected $currentCategory;
-
-
-    /**
-     * @var CCAM
-     */
-    protected $currentCCAM;
-
-
-    protected $groupRepository;
+    protected CCAMGroupRepository $groupRepository;
 
     public function __construct(protected string $projectDir, FileProcessor $fileProcessor, EntityManagerInterface $em)
     {
         parent::__construct(CCAM::class, $fileProcessor, $em);
+        /* @phpstan-ignore-next-line */
         $this->groupRepository = $this->em->getRepository(CCAMGroup::class);
         $this->setClearable(false);
     }
-
 
     /**
      * @throws NonUniqueResultException
@@ -51,14 +44,14 @@ class CCAMService extends FileParserService
         return $this->processFile(
             $this->output,
             $this->getFile(),
-            "default",
-            ['delimiter' => ",", "utf8" => true, "first_line" => 2, "headers" => true]
+            'default',
+            ['delimiter' => ',', 'utf8' => true, 'first_line' => 2, 'headers' => true]
         );
     }
 
-
     /**
      * @return CCAM|CCAMGroup
+     *
      * @throws NonUniqueResultException
      */
     protected function processData(array $data, string $type): ?Entity
@@ -85,6 +78,7 @@ class CCAMService extends FileParserService
             $this->em->persist($group);
             $this->currentGroup = $group;
             $this->currentCCAM = null;
+
             return $group;
         }
 
@@ -103,6 +97,7 @@ class CCAMService extends FileParserService
             $this->currentCCAM->setGroup($this->currentGroup);
             $this->currentCCAM->setCategory($this->currentCategory);
             $this->em->persist($ccam);
+
             return $ccam;
         }
 
@@ -119,64 +114,55 @@ class CCAMService extends FileParserService
             $this->currentGroup->addDescriptionLine($data[2]);
         }
 
-
         return $this->currentCCAM;
     }
-
 
     protected function isModifier(array $data): bool
     {
         // [A, F, J, K, T, P, S, U, 7]
-        return preg_match("#^\[[A-Z0-9+, ]+\]$#", (string)$data[0]) === 1;
+        return 1 === preg_match("#^\[[A-Z0-9+, ]+\]$#", (string) $data[0]);
     }
 
     protected function parseModifier(array $data): array
     {
         $m = $data[0];
-        $m = str_replace([" ", "[", "]"], "", (string)$m);
+        $m = str_replace([' ', '[', ']'], '', (string) $m);
 
-        return explode(",", $m);
+        return explode(',', $m);
     }
 
     protected function isGroup(array $data): bool
     {
         // 01.30.44
-        return preg_match("#^\\d{1,2}([0-9.]+)?\$#", (string)$data[0]) === 1;
+        return 1 === preg_match('#^\\d{1,2}([0-9.]+)?$#', (string) $data[0]);
     }
-
 
     protected function parseRate(string $rate): ?float
     {
-        if ($rate === "Non pris en charge") {
+        if ('Non pris en charge' === $rate) {
             return null;
         }
 
-        return (float)$rate;
+        return (float) $rate;
     }
 
-
     /**
-     *
-     * This is a main category
-     *
-     * @param array $data
+     * This is a main category.
      */
     protected function isCategory(array $data): bool
     {
-        return preg_match("#^\\d{1,2}\$#", (string)$data[0]) === 1;
+        return 1 === preg_match('#^\\d{1,2}$#', (string) $data[0]);
     }
 
     protected function isCCAM(array $data): bool
     {
-        return preg_match("#^[A-Z]{4}\\d{3}\$#", (string)$data[0]) === 1;
+        return 1 === preg_match('#^[A-Z]{4}\\d{3}$#', (string) $data[0]);
     }
-
 
     protected function empty(array $data): bool
     {
-        return !(bool)(trim(implode("", $data)));
+        return !(bool) trim(implode('', $data));
     }
-
 
     protected function getFile(): string
     {
