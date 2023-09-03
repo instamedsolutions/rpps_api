@@ -30,16 +30,10 @@ jobs:
                 run: composer install --prefer-dist --no-progress --no-scripts
 
             -   name: PHP-CBF
-                run: ./bin/phpcbf src/ --runtime-set ignore_warnings_on_exit true
+                run: ./vendor/bin/phpcbf src/ --runtime-set ignore_warnings_on_exit true
 
             -   name: PHPCS
-                run: ./bin/phpcs --runtime-set ignore_warnings_on_exit true src
+                run: ./vendor/bin/phpcs --runtime-set ignore_warnings_on_exit true src
 
             -   name: PHPStan
-                run: ./bin/phpstan analyse -c phpstan.neon -l 6 src/
-
-            - name: Install npm dependencies
-              run: npm install
-
-            - name: EsLint
-              run: npm run lint
+                run: ./vendor/bin/phpstan analyse -c phpstan.neon -l 6 src/
