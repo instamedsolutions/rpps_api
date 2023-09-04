@@ -2,28 +2,18 @@
 
 namespace App\ApiPlatform\Filter;
 
-use Exception;
 use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\AbstractContextAwareFilter;
 use ApiPlatform\Core\Bridge\Doctrine\Orm\Util\QueryNameGeneratorInterface;
 use Doctrine\ORM\QueryBuilder;
-
-/*
- *
- */
+use Exception;
 
 final class RPPSFilter extends AbstractContextAwareFilter
 {
-
     use FilterTrait;
-
 
     protected ?QueryNameGeneratorInterface $queryNameGenerator = null;
 
-
     /**
-     * @param $value
-     * @param string|null $operationName
-     *
      * @throws Exception
      */
     protected function filterProperty(
@@ -33,30 +23,27 @@ final class RPPSFilter extends AbstractContextAwareFilter
         QueryNameGeneratorInterface $queryNameGenerator,
         string $resourceClass,
         string $operationName = null
-    ) {
+    ): void {
         $this->queryNameGenerator = $queryNameGenerator;
 
         if (!array_key_exists($property, $this->properties)) {
             return;
         }
 
-
-        if ($property === "demo") {
+        if ('demo' === $property) {
             $value = self::parseBooleanValue($value);
             $this->addDemoFilter($queryBuilder, $value);
         }
-
 
         // Do not trigger if the value is empty
         if (!$value) {
             return;
         }
 
-        if ($property === "search") {
+        if ('search' === $property) {
             $this->addSearchFilter($queryBuilder, $value);
         }
     }
-
 
     /**
      * @throws Exception
@@ -66,7 +53,7 @@ final class RPPSFilter extends AbstractContextAwareFilter
         $alias = $queryBuilder->getRootAliases()[0];
 
         // Generate a unique parameter name to avoid collisions with other filters
-        $end = $this->queryNameGenerator->generateParameterName("search");
+        $end = $this->queryNameGenerator->generateParameterName('search');
 
         $value = $this->cleanValue($value);
 
@@ -75,14 +62,12 @@ final class RPPSFilter extends AbstractContextAwareFilter
            CONCAT($alias.lastName,' ',$alias.firstName) LIKE :$end
            )";
 
-
         $queryBuilder->andWhere($query);
 
         $queryBuilder->setParameter($end, "$value%");
 
         return $queryBuilder;
     }
-
 
     public function addDemoFilter(QueryBuilder $queryBuilder, ?bool $value): QueryBuilder
     {
@@ -98,11 +83,10 @@ final class RPPSFilter extends AbstractContextAwareFilter
             $queryBuilder->andWhere("$rootAlias.idRpps NOT LIKE :start");
         }
 
-        $queryBuilder->setParameter("start", "2%");
+        $queryBuilder->setParameter('start', '2%');
 
         return $queryBuilder;
     }
-
 
     public static function parseBooleanValue(string $string): ?bool
     {
@@ -111,9 +95,8 @@ final class RPPSFilter extends AbstractContextAwareFilter
         // If true or 1, returns true
         // if false or 0 returns false
         // Else, incorrect value : returns null
-        return in_array($string, ["1", "true"]) ? true : (in_array($string, ["0", "false"]) ? false : null);
+        return in_array($string, ['1', 'true']) ? true : (in_array($string, ['0', 'false']) ? false : null);
     }
-
 
     public function getDescription(string $resourceClass): array
     {
@@ -128,10 +111,10 @@ final class RPPSFilter extends AbstractContextAwareFilter
                 'type' => 'string',
                 'required' => false,
                 'swagger' => [
-                    'description' => "Search by first name, last name...",
+                    'description' => 'Search by first name, last name...',
                     'type' => 'string',
                     'name' => $property,
-                    'example' => "Jean Du"
+                    'example' => 'Jean Du',
                 ],
             ];
         }

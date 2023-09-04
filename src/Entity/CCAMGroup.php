@@ -2,63 +2,58 @@
 
 namespace App\Entity;
 
-use Stringable;
 use ApiPlatform\Core\Annotation\ApiFilter;
 use ApiPlatform\Core\Annotation\ApiProperty;
 use ApiPlatform\Core\Annotation\ApiSubresource;
 use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\SearchFilter;
+use App\Repository\CCAMGroupRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Stringable;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Serializer\Annotation\Groups;
-use App\Repository\CCAMGroupRepository;
 
 #[ORM\Entity(repositoryClass: CCAMGroupRepository::class)]
 #[ORM\Table(name: 'ccam_group')]
 #[UniqueEntity('code')]
 class CCAMGroup extends Thing implements Entity, Stringable
 {
-
-    #[ApiProperty(description: "The unique code in the government database", required: true, attributes: [
-        "openapi_context" => [
-            "type" => "string",
-            "example" => "01"
-        ]
+    #[ApiProperty(description: 'The unique code in the government database', required: true, attributes: [
+        'openapi_context' => [
+            'type' => 'string',
+            'example' => '01',
+        ],
     ])]
-    #[ApiFilter(SearchFilter::class, strategy: "exact")]
+    #[ApiFilter(SearchFilter::class, strategy: 'exact')]
     #[Groups(['read'])]
     #[ORM\Column(type: 'string', unique: true)]
     protected ?string $code = null;
 
-
-    #[ApiFilter(SearchFilter::class, strategy: "istart")]
-    #[ApiProperty(description: "The name of the disease group", required: true, attributes: [
-        "openapi_context" => [
-            "type" => "string",
-            "example" => "Certaines maladies infectieuses et parasitaires"
-        ]
+    #[ApiFilter(SearchFilter::class, strategy: 'istart')]
+    #[ApiProperty(description: 'The name of the disease group', required: true, attributes: [
+        'openapi_context' => [
+            'type' => 'string',
+            'example' => 'Certaines maladies infectieuses et parasitaires',
+        ],
     ])]
     #[Groups(['read'])]
     #[ORM\Column(type: 'string', length: 255)]
     protected ?string $name = null;
 
-
-    #[ApiProperty(description: "The description of the disease group", required: true, attributes: [
-        "openapi_context" => [
-            "type" => "string",
-            "example" => "Certaines maladies infectieuses et parasitaires"
-        ]
+    #[ApiProperty(description: 'The description of the disease group', required: true, attributes: [
+        'openapi_context' => [
+            'type' => 'string',
+            'example' => 'Certaines maladies infectieuses et parasitaires',
+        ],
     ])]
     #[Groups(['ccam_groups:item:read'])]
     #[ORM\Column(type: 'text', nullable: true)]
     protected ?string $description = null;
 
-
     #[Groups(['ccam_groups:read'])]
     #[ORM\ManyToOne(targetEntity: CCAMGroup::class, cascade: ['persist'], fetch: 'EXTRA_LAZY', inversedBy: 'children')]
     protected ?CCAMGroup $parent = null;
-
 
     /**
      * @var Collection<int,CCAMGroup>
@@ -67,7 +62,6 @@ class CCAMGroup extends Thing implements Entity, Stringable
     #[Groups(['ccam_groups:item:read'])]
     #[ORM\OneToMany(mappedBy: 'parent', targetEntity: CCAMGroup::class, cascade: ['persist'], fetch: 'EXTRA_LAZY')]
     protected Collection $children;
-
 
     public function __construct()
     {
@@ -96,9 +90,9 @@ class CCAMGroup extends Thing implements Entity, Stringable
         $this->description = $description;
     }
 
-    public function addDescriptionLine(string $description)
+    public function addDescriptionLine(string $description): void
     {
-        if (trim($description) !== '' && trim($description) !== '0') {
+        if ('' !== trim($description) && '0' !== trim($description)) {
             $this->description .= trim((string) ",$description");
         }
     }
@@ -141,23 +135,20 @@ class CCAMGroup extends Thing implements Entity, Stringable
         $this->children = $children;
     }
 
-    public function addChild(CCAMGroup $cCAMGroup)
+    public function addChild(CCAMGroup $cCAMGroup): void
     {
         if (!$this->getChildren()->contains($cCAMGroup)) {
             $this->children->add($cCAMGroup);
         }
     }
 
-    public function removeChild(CCAMGroup $cCAMGroup)
+    public function removeChild(CCAMGroup $cCAMGroup): void
     {
         $this->children->removeElement($cCAMGroup);
     }
 
-    /**
-     * @return string
-     */
     public function __toString(): string
     {
-        return (string)$this->getName();
+        return (string) $this->getName();
     }
 }

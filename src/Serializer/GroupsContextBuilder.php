@@ -6,11 +6,8 @@ use ApiPlatform\Core\Serializer\SerializerContextBuilderInterface;
 use App\Validator\GroupGenerator;
 use Symfony\Component\HttpFoundation\Request;
 
-
-
 final class GroupsContextBuilder implements SerializerContextBuilderInterface
 {
-
     public function __construct(
         protected GroupGenerator $groupGenerator,
         private readonly SerializerContextBuilderInterface $decorated
@@ -36,5 +33,4 @@ final class GroupsContextBuilder implements SerializerContextBuilderInterface
 
         return $context;
     }
-
 }

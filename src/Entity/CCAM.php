@@ -2,37 +2,35 @@
 
 namespace App\Entity;
 
-use ApiPlatform\Core\Bridge\Doctrine\Common\Filter\SearchFilterInterface;
-use Stringable;
 use ApiPlatform\Core\Annotation\ApiFilter;
 use ApiPlatform\Core\Annotation\ApiProperty;
+use ApiPlatform\Core\Bridge\Doctrine\Common\Filter\SearchFilterInterface;
 use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\SearchFilter;
+use App\ApiPlatform\Filter\CCAMFilter;
+use App\Repository\CCAMRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Stringable;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Serializer\Annotation\Groups;
 use Symfony\Component\Serializer\Annotation\MaxDepth;
-use App\Repository\CCAMRepository;
-use App\ApiPlatform\Filter\CCAMFilter;
-
 
 // http://www.cpam21.fr/Flashs/flashs/Medecins/Docs/SC506_fichesCCAM.pdf
-#[ApiFilter(CCAMFilter::class, properties: ["search"])]
-#[ApiFilter(SearchFilter::class, properties: ["category.code", "group.code"])]
+#[ApiFilter(CCAMFilter::class, properties: ['search'])]
+#[ApiFilter(SearchFilter::class, properties: ['category.code', 'group.code'])]
 #[ORM\Entity(repositoryClass: CCAMRepository::class)]
 #[ORM\Table(name: 'ccam')]
 #[ORM\Index(name: 'ccam_index', columns: ['code'])]
 #[UniqueEntity('code')]
 class CCAM extends Thing implements Entity, Stringable
 {
-
     #[ApiProperty(
-        description: "The uniq code of the CCAM",
+        description: 'The uniq code of the CCAM',
         required: true,
         attributes: [
-            "openapi_context" => [
-                "type" => "string",
-                "example" => "66595239"
-            ]
+            'openapi_context' => [
+                'type' => 'string',
+                'example' => '66595239',
+            ],
         ]
     )]
     #[ApiFilter(SearchFilter::class, strategy: SearchFilterInterface::STRATEGY_EXACT)]
@@ -40,15 +38,14 @@ class CCAM extends Thing implements Entity, Stringable
     #[ORM\Column(type: 'string', unique: true)]
     protected ?string $code = null;
 
-
     #[ApiProperty(
-        description: "The name of the CCAM",
+        description: 'The name of the CCAM',
         required: true,
         attributes: [
-            "openapi_context" => [
-                "type" => "string",
-                "example" => "Électromyographie par électrode de surface, avec enregistrement vidéo"
-            ]
+            'openapi_context' => [
+                'type' => 'string',
+                'example' => 'Électromyographie par électrode de surface, avec enregistrement vidéo',
+            ],
         ]
     )]
     #[ApiFilter(SearchFilter::class, strategy: SearchFilterInterface::STRATEGY_START)]
@@ -56,15 +53,14 @@ class CCAM extends Thing implements Entity, Stringable
     #[ORM\Column(type: 'text')]
     protected ?string $name = null;
 
-
     #[ApiProperty(
-        description: "The description of the CCAM",
+        description: 'The description of the CCAM',
         required: true,
         attributes: [
-            "openapi_context" => [
-                "type" => "string",
-                "example" => "Électromyographie par électrode de surface, avec enregistrement vidéo"
-            ]
+            'openapi_context' => [
+                'type' => 'string',
+                'example' => 'Électromyographie par électrode de surface, avec enregistrement vidéo',
+            ],
         ]
     )]
     #[ApiFilter(SearchFilter::class, strategy: SearchFilterInterface::STRATEGY_START)]
@@ -72,30 +68,28 @@ class CCAM extends Thing implements Entity, Stringable
     #[ORM\Column(type: 'text', nullable: true)]
     protected ?string $description = null;
 
-
     #[ApiProperty(
-        description: "The price rate for the secteur 1",
+        description: 'The price rate for the secteur 1',
         required: true,
         attributes: [
-            "openapi_context" => [
-                "type" => "number",
-                "example" => 33.56
-            ]
+            'openapi_context' => [
+                'type' => 'number',
+                'example' => 33.56,
+            ],
         ]
     )]
     #[Groups(['read'])]
     #[ORM\Column(type: 'float', nullable: true)]
     protected ?float $rate1 = null;
 
-
     #[ApiProperty(
-        description: "The price rate for the secteur 2",
+        description: 'The price rate for the secteur 2',
         required: true,
         attributes: [
-            "openapi_context" => [
-                "type" => "number",
-                "example" => 33.56
-            ]
+            'openapi_context' => [
+                'type' => 'number',
+                'example' => 33.56,
+            ],
         ]
     )]
     #[Groups(['read'])]
@@ -103,30 +97,29 @@ class CCAM extends Thing implements Entity, Stringable
     protected ?float $rate2 = null;
 
     #[ApiProperty(
-        description: "The group the CCAM is a part of",
+        description: 'The group the CCAM is a part of',
         required: true,
         attributes: [
-            "openapi_context" => [
-                '$ref' => "#/components/schemas/CCAMGroup",
-                "example" => "66595239"
-            ]
+            'openapi_context' => [
+                '$ref' => '#/components/schemas/CCAMGroup',
+                'example' => '66595239',
+            ],
         ]
     )]
     #[Groups(['ccams:read'])]
     #[MaxDepth(1)]
     #[ORM\ManyToOne(targetEntity: CCAMGroup::class, cascade: ['persist'])]
     #[ORM\JoinColumn(nullable: false)]
-    protected ?CCAMGroup $group  = null;
-
+    protected ?CCAMGroup $group = null;
 
     #[ApiProperty(
-        description: "The category the CCAM is a part of",
+        description: 'The category the CCAM is a part of',
         required: true,
         attributes: [
-            "openapi_context" => [
-                '$ref' => "#/components/schemas/CCAMGroup",
-                "example" => "66595239"
-            ]
+            'openapi_context' => [
+                '$ref' => '#/components/schemas/CCAMGroup',
+                'example' => '66595239',
+            ],
         ]
     )]
     #[MaxDepth(1)]
@@ -135,27 +128,24 @@ class CCAM extends Thing implements Entity, Stringable
     #[ORM\JoinColumn(nullable: false)]
     protected ?CCAMGroup $category = null;
 
-
     #[Groups(['ccams:read'])]
     #[ORM\Column(type: 'json')]
     protected array $modifiers = [];
 
-
     #[ApiProperty(
-        description: "The unique regroupement code in the government database",
+        description: 'The unique regroupement code in the government database',
         required: true,
         attributes: [
-            "openapi_context" => [
-                "type" => "string",
-                "example" => "ADE"
-            ]
+            'openapi_context' => [
+                'type' => 'string',
+                'example' => 'ADE',
+            ],
         ]
     )]
     #[Groups(['read'])]
     #[ApiFilter(SearchFilter::class, strategy: SearchFilterInterface::STRATEGY_EXACT)]
     #[ORM\Column(type: 'string', length: 4, nullable: false)]
     protected ?string $regroupementCode = null;
-
 
     public function getId(): string
     {
@@ -192,10 +182,10 @@ class CCAM extends Thing implements Entity, Stringable
         $this->description = $description;
     }
 
-    public function addDescriptionLine(string $description)
+    public function addDescriptionLine(string $description): void
     {
-        if (trim($description) !== '' && trim($description) !== '0') {
-            $this->description .= trim((string)",$description");
+        if ('' !== trim($description) && '0' !== trim($description)) {
+            $this->description .= trim((string) ",$description");
         }
     }
 
@@ -259,9 +249,8 @@ class CCAM extends Thing implements Entity, Stringable
         $this->regroupementCode = $regroupementCode;
     }
 
-
     public function __toString(): string
     {
-        return (string)$this->getName();
+        return (string) $this->getName();
     }
 }

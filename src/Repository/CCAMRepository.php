@@ -2,12 +2,7 @@
 
 namespace App\Repository;
 
-use Doctrine\ORM\NonUniqueResultException;
 use App\Entity\CCAM;
-use App\Entity\CCAMGroup;
-use App\Entity\DiseaseGroup;
-use App\Entity\Drug;
-use App\Entity\RPPS;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
@@ -18,13 +13,10 @@ use Doctrine\Persistence\ManagerRegistry;
  */
 class CCAMRepository extends ServiceEntityRepository
 {
-
-
     public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, CCAM::class);
     }
-
 
     public function find($id, $lockMode = null, $lockVersion = null): ?CCAM
     {
@@ -39,6 +31,4 @@ class CCAMRepository extends ServiceEntityRepository
             ->getQuery()
             ->getOneOrNullResult();
     }
-
-
 }

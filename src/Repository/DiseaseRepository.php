@@ -2,10 +2,9 @@
 
 namespace App\Repository;
 
-use Doctrine\ORM\NonUniqueResultException;
 use App\Entity\Disease;
-use App\Entity\Drug;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\ORM\NonUniqueResultException;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
@@ -15,8 +14,6 @@ use Doctrine\Persistence\ManagerRegistry;
  */
 class DiseaseRepository extends ServiceEntityRepository
 {
-
-
     /**
      * RPPSRepository constructor.
      */
@@ -27,11 +24,12 @@ class DiseaseRepository extends ServiceEntityRepository
 
     /**
      * @param mixed $id
-     * @param null $lockMode
-     * @param null $lockVersion
+     * @param null  $lockMode
+     * @param null  $lockVersion
+     *
      * @throws NonUniqueResultException
      */
-    public function find($id, $lockMode = null, $lockVersion = null) : ?Disease
+    public function find($id, $lockMode = null, $lockVersion = null): ?Disease
     {
         if (null === $id || 0 === $id) {
             return null;
@@ -44,6 +42,4 @@ class DiseaseRepository extends ServiceEntityRepository
             ->getQuery()
             ->getOneOrNullResult();
     }
-
-
 }

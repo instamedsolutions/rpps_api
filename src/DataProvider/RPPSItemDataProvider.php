@@ -1,4 +1,5 @@
 <?php
+
 // api/src/DataProvider/RPPSItemDataProvider.php
 
 namespace App\DataProvider;
@@ -11,30 +12,24 @@ use Symfony\Component\HttpFoundation\RequestStack;
 
 final class RPPSItemDataProvider implements ItemDataProviderInterface, RestrictedDataProviderInterface
 {
-
     public function __construct(protected readonly RequestStack $requestStack, protected EntityManagerInterface $em)
     {
     }
 
-    /**
-     * @param string|null $operationName
-     */
     public function supports(string $resourceClass, string $operationName = null, array $context = []): bool
     {
-        return RPPS::class === $resourceClass && "get" === $operationName;
+        return RPPS::class === $resourceClass && 'get' === $operationName;
     }
-
 
     /**
      * @param array|int|string $id
-     * @param string|null $operationName
      */
     public function getItem(string $resourceClass, $id, string $operationName = null, array $context = []): ?RPPS
     {
         $request = $this->requestStack->getMainRequest();
 
         if (0 === $id) {
-            $id = $request->get("id", null);
+            $id = $request->get('id', null);
         }
 
         if (null === $id) {
@@ -42,7 +37,7 @@ final class RPPSItemDataProvider implements ItemDataProviderInterface, Restricte
         }
 
         // Some uuId start with 00
-        if (!str_contains((string)$id, '-')) {
+        if (!str_contains((string) $id, '-')) {
             $id = preg_replace('#^0+#', '', $id);
         }
 

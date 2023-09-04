@@ -11,6 +11,6 @@ class MainController extends AbstractController
     #[Route(path: '/', name: 'main')]
     public function index(): Response
     {
-        return $this->redirectToRoute("api_entrypoint");
+        return $this->redirectToRoute('api_entrypoint');
     }
 }

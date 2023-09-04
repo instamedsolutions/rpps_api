@@ -26,3 +26,16 @@
 ###< phpunit/phpunit ###
 
 test_db.sqlite
+
+public/Porteurs_CPS_CPF_202309011021.zip
+public/ExtractionMonoTable_CAT18_ToutePopulation_202307251217 (1).zip
+.idea
+###> squizlabs/php_codesniffer ###
+/.phpcs-cache
+/phpcs.xml
+###< squizlabs/php_codesniffer ###
+
+###> friendsofphp/php-cs-fixer ###
+/.php-cs-fixer.php
+/.php-cs-fixer.cache
+###< friendsofphp/php-cs-fixer ###

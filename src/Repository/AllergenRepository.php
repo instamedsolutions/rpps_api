@@ -2,11 +2,10 @@
 
 namespace App\Repository;
 
-use Doctrine\ORM\NonUniqueResultException;
 use App\Entity\Allergen;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\ORM\NonUniqueResultException;
 use Doctrine\Persistence\ManagerRegistry;
-use Symfony\Component\Validator\Constraints\All;
 
 /**
  * @method Allergen|null findOneBy(array $criteria, array $orderBy = null)
@@ -15,8 +14,6 @@ use Symfony\Component\Validator\Constraints\All;
  */
 class AllergenRepository extends ServiceEntityRepository
 {
-
-
     /**
      * RPPSRepository constructor.
      */
@@ -27,9 +24,11 @@ class AllergenRepository extends ServiceEntityRepository
 
     /**
      * @param mixed $id
-     * @param null $lockMode
-     * @param null $lockVersion
+     * @param null  $lockMode
+     * @param null  $lockVersion
+     *
      * @return Allergen|null
+     *
      * @throws NonUniqueResultException
      */
     public function find($id, $lockMode = null, $lockVersion = null)
@@ -45,6 +44,4 @@ class AllergenRepository extends ServiceEntityRepository
             ->getQuery()
             ->getOneOrNullResult();
     }
-
-
 }

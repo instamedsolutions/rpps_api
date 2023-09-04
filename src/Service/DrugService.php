@@ -2,21 +2,16 @@
 
 namespace App\Service;
 
+use App\Entity\Drug;
+use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\NonUniqueResultException;
 use Exception;
-use App\Entity\Drug;
-use App\Repository\DrugRepository;
-use App\Repository\RPPSRepository;
-use Doctrine\ORM\EntityManagerInterface;
-use Symfony\Component\Console\Output\OutputInterface;
-use Symfony\Component\HttpClient\HttpClient;
 
 /**
  * Contains all useful methods to process files and import them into database.
  */
 class DrugService extends ImporterService
 {
-
     public function __construct(
         protected string $DRUGS_URL_CIS_InfoImportantes,
         protected string $DRUGS_URL_CIS_GENER_BDPM,
@@ -29,19 +24,17 @@ class DrugService extends ImporterService
         parent::__construct(Drug::class, $fileProcessor, $em);
     }
 
-
     protected function processData(array $data, string $type): ?Drug
     {
         return match ($type) {
-            "DRUGS_URL_CIS_BDPM" => $this->processCisBDPM($data),
-            "DRUGS_URL_CIS_CIP_BDPM" => $this->processCipBDPM($data),
-            "DRUGS_URL_CIS_CPD_BDPM" => $this->processCdpBDPM($data),
-            "DRUGS_URL_CIS_GENER_BDPM" => $this->processGenerBDPM($data),
-            "DRUGS_URL_CIS_InfoImportantes" => $this->processInfoImportantes($data),
+            'DRUGS_URL_CIS_BDPM' => $this->processCisBDPM($data),
+            'DRUGS_URL_CIS_CIP_BDPM' => $this->processCipBDPM($data),
+            'DRUGS_URL_CIS_CPD_BDPM' => $this->processCdpBDPM($data),
+            'DRUGS_URL_CIS_GENER_BDPM' => $this->processGenerBDPM($data),
+            'DRUGS_URL_CIS_InfoImportantes' => $this->processInfoImportantes($data),
             default => throw new Exception("Type $type is not supported yet"),
         };
     }
-
 
     protected function processCisBDPM(array $data): ?Drug
     {
@@ -56,7 +49,7 @@ class DrugService extends ImporterService
         $drug->setPharmaceuticalForm($data[2]);
 
         if ($data[3]) {
-            $drug->setAdministrationForms(explode(";", (string)$data[3]));
+            $drug->setAdministrationForms(explode(';', (string) $data[3]));
         } else {
             $drug->setAdministrationForms(null);
         }
@@ -65,7 +58,6 @@ class DrugService extends ImporterService
 
         return $drug;
     }
-
 
     protected function processGenerBDPM(array $data): ?Drug
     {
@@ -82,10 +74,9 @@ class DrugService extends ImporterService
         return $drug;
     }
 
-
     protected function processCipBDPM(array $data): ?Drug
     {
-        /** @var Drug $drug */
+        /** @var Drug|null $drug */
         $drug = $this->repository->find($data[0]);
 
         if (null === $drug) {
@@ -95,13 +86,13 @@ class DrugService extends ImporterService
         $drug->setPresentationLabel($data[2]);
 
         if ($data[8]) {
-            $drug->setReimbursementRates(explode(";", (string)$data[8]));
+            $drug->setReimbursementRates(explode(';', (string) $data[8]));
         } else {
             $drug->setReimbursementRates(null);
         }
 
         if ($data[9]) {
-            $data[9] = floatval(str_replace(",", "", (string)$data[9]));
+            $data[9] = floatval(str_replace(',', '', (string) $data[9]));
             $data[9] /= 100;
             $drug->setPrice($data[9]);
         } else {
@@ -113,10 +104,7 @@ class DrugService extends ImporterService
         return $drug;
     }
 
-
     /**
-     *
-     *
      * @throws NonUniqueResultException
      */
     protected function processCdpBDPM(array $data): ?Drug
@@ -133,10 +121,7 @@ class DrugService extends ImporterService
         return $drug;
     }
 
-
     /**
-     *
-     *
      * @throws NonUniqueResultException
      */
     protected function processInfoImportantes(array $data): ?Drug
@@ -152,6 +137,4 @@ class DrugService extends ImporterService
 
         return $drug;
     }
-
-
 }

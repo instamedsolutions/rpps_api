@@ -13,8 +13,6 @@ use Symfony\Component\Console\Output\OutputInterface;
  */
 abstract class FileParserService
 {
-
-
     protected ObjectRepository $repository;
 
     protected OutputInterface $output;
@@ -29,58 +27,66 @@ abstract class FileParserService
         $this->init($entity);
     }
 
-
     private ?string $importId = null;
 
     public function getImportId(): string
     {
         if (!$this->importId) {
-            $this->importId = uniqid("import_");
+            $this->importId = uniqid('import_');
         }
 
         return $this->importId;
     }
 
-
     protected function init(string $entity): void
     {
+        /* @phpstan-ignore-next-line */
         $this->repository = $this->em->getRepository($entity);
         $this->entity = $entity;
     }
 
-
     protected function processFile(
         OutputInterface $output,
         string $file,
-        string $type = "default",
-        array $options = ['delimiter' => "\t", "utf8" => false, "headers" => false]
+        string $type = 'default',
+        array $options = ['delimiter' => "\t", 'utf8' => false, 'headers' => false],
+        int $start = 0,
+        int $limit = 0
     ): bool {
         $batchSize = 20;
 
         $lineCount = $this->fileProcessor->getLinesCount($file);
 
         // Showing when the drugs process is launched
-        $start = new DateTime();
+        $startTime = new DateTime();
         $end = new DateTime();
 
         $output->writeln(
-            '<comment>Start : ' . $start->format(
+            '<comment>Start : ' . $startTime->format(
                 'd-m-Y G:i:s'
             ) . ' | You have ' . $lineCount . ' lines to import from your ' . $type . ' file to your database ---</comment>'
         );
 
+        if ($start && $limit) {
+            $output->writeln(
+                '<comment>Start : ' . $startTime->format(
+                    'd-m-Y G:i:s'
+                ) . ' | Importing ' . $limit . ' lines starting at linee ' . $start . ' ---</comment>'
+            );
+        }
+
         // Will go through file by iterating on each line to save memory
-        if (($handle = fopen($file, "r")) !== false) {
+        if (($handle = fopen($file, 'r')) !== false) {
             $row = 0;
 
             while (($data = fgetcsv($handle, 0, $options['delimiter'])) !== false) {
                 if ($options['headers'] && 0 === $row) {
-                    $row++;
+                    ++$row;
                     continue;
                 }
 
                 if (isset($options['first_line']) && $row < $options['first_line']) {
-                    $row++;
+                    ++$row;
                     continue;
                 }
 
@@ -90,8 +96,20 @@ abstract class FileParserService
                     $data[0] = preg_replace('/\x{EF}\x{BB}\x{BF}/', '', $data[0]);
                 }
 
+                if (0 !== $start && $row < $start) {
+                    if (0 === $row % 50000) {
+                        $output->writeln("Skipped to row $row");
+                    }
+                    ++$row;
+                    continue;
+                }
+
+                if (($row > $start + $limit) && $limit) {
+                    break;
+                }
+
                 if (!$options['utf8']) {
-                    $data = array_map(fn($d) => utf8_encode((string)$d), $data);
+                    $data = array_map(fn ($d) => utf8_encode((string) $d), $data);
                 }
 
                 $entity = $this->processData($data, $type);
@@ -101,7 +119,7 @@ abstract class FileParserService
                     $this->em->flush();
                 }
 
-                //Used to save some memory out of Doctrine every 20 lines
+                // Used to save some memory out of Doctrine every 20 lines
                 if (($row % $batchSize) === 0) {
                     if ($this->isClearable()) {
                         // Detaches all objects from Doctrine for memory save
@@ -111,18 +129,18 @@ abstract class FileParserService
                     // Showing progression of the process
                     $end = new DateTime();
                     $output->writeln(
-                        $row . ' of lines imported out of ' . $lineCount . ' | ' . $end->format('d-m-Y G:i:s')
+                        ($row - $start) . ' of lines imported out of ' . ($limit ? $limit : $lineCount) . ' | ' . $end->format('d-m-Y G:i:s')
                     );
                 }
 
-                $row++;
+                ++$row;
             }
 
             fclose($handle);
 
             // Showing when the rpps process is done
             $output->writeln(
-                '<comment>End of loading : (Started at ' . $start->format(
+                '<comment>End of loading : (Started at ' . $startTime->format(
                     'd-m-Y G:i:s'
                 ) . ' / Ended at ' . $end->format(
                     'd-m-Y G:i:s'
@@ -130,15 +148,13 @@ abstract class FileParserService
             );
         }
 
-        $this->removeOldData();
+        //  $this->removeOldData();
 
         return true;
     }
 
-
     public function removeOldData(): void
     {
-
         $metadata = $this->em->getClassMetadata($this->entity);
 
         $this->em->getConnection()->executeQuery(
@@ -147,9 +163,7 @@ abstract class FileParserService
         );
 
         $this->output->writeln("Old data removed, keeping {$this->getImportId()} only");
-
     }
-
 
     public function setClearable(bool $clearable): void
     {
@@ -161,9 +175,6 @@ abstract class FileParserService
         return $this->clearable;
     }
 
-    /**
-     * @return OutputInterface
-     */
     public function getOutput(): OutputInterface
     {
         return $this->output;
@@ -174,7 +185,5 @@ abstract class FileParserService
         $this->output = $output;
     }
 
-
     abstract protected function processData(array $data, string $type): ?Entity;
-
 }

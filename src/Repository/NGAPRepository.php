@@ -13,13 +13,10 @@ use Doctrine\Persistence\ManagerRegistry;
  */
 class NGAPRepository extends ServiceEntityRepository
 {
-
-
     public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, NGAP::class);
     }
-
 
     public function find($id, $lockMode = null, $lockVersion = null): ?NGAP
     {
@@ -34,6 +31,4 @@ class NGAPRepository extends ServiceEntityRepository
             ->getQuery()
             ->getOneOrNullResult();
     }
-
-
 }

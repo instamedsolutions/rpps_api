@@ -2,57 +2,53 @@
 
 namespace App\Entity;
 
-use Stringable;
 use ApiPlatform\Core\Annotation\ApiFilter;
 use ApiPlatform\Core\Annotation\ApiProperty;
 use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\SearchFilter;
 use App\ApiPlatform\Filter\AllergenFilter;
 use App\Repository\AllergenRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Stringable;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Serializer\Annotation\Groups;
-
 
 // Liste extracted from
 // https://biologiepathologie.chu-lille.fr/fichiers/42_795catalogue-rast-i.pdf
 
-#[ApiFilter(AllergenFilter::class, properties: ["search"])]
+#[ApiFilter(AllergenFilter::class, properties: ['search'])]
 #[ORM\Entity(repositoryClass: AllergenRepository::class)]
 #[ORM\Table(name: 'allergens')]
-#[ORM\Index(name: 'allergens_index', columns: ['allergen_code'])]
+#[ORM\Index(columns: ['allergen_code'], name: 'allergens_index')]
 #[UniqueEntity('code')]
 class Allergen extends Thing implements Entity, Stringable
 {
-
-    #[ApiProperty(description: "The unique code of the allergen", required: true, attributes: [
-        "openapi_context" => [
-            "type" => "string",
-            "example" => "01"
-        ]
+    #[ApiProperty(description: 'The unique code of the allergen', required: true, attributes: [
+        'openapi_context' => [
+            'type' => 'string',
+            'example' => '01',
+        ],
     ])]
-    #[ApiFilter(SearchFilter::class, strategy: "exact")]
+    #[ApiFilter(SearchFilter::class, strategy: 'exact')]
     #[Groups(['read'])]
     #[ORM\Column(name: 'allergen_code', type: 'string', length: 10, unique: true)]
     protected ?string $code = null;
 
-
-    #[ApiProperty(description: "The name of the allergen", required: true, attributes: [
-        "openapi_context" => [
-            "type" => "string",
-            "example" => "Corn"
-        ]
+    #[ApiProperty(description: 'The name of the allergen', required: true, attributes: [
+        'openapi_context' => [
+            'type' => 'string',
+            'example' => 'Corn',
+        ],
     ])]
-    #[ApiFilter(SearchFilter::class, strategy: "istart")]
+    #[ApiFilter(SearchFilter::class, strategy: 'istart')]
     #[Groups(['read'])]
     #[ORM\Column(type: 'string', length: 255)]
     protected ?string $name = null;
 
-
-    #[ApiProperty(description: "The parent group of the allergen", required: true, attributes: [
-        "openapi_context" => [
-            "type" => "string",
-            "example" => "Pollens de graminées"
-        ]
+    #[ApiProperty(description: 'The parent group of the allergen', required: true, attributes: [
+        'openapi_context' => [
+            'type' => 'string',
+            'example' => 'Pollens de graminées',
+        ],
     ])]
     #[Groups(['read'])]
     #[ORM\Column(name: 'allergen_group', type: 'string', length: 255)]
@@ -88,11 +84,8 @@ class Allergen extends Thing implements Entity, Stringable
         $this->group = trim($group);
     }
 
-    /**
-     * @return string
-     */
     public function __toString(): string
     {
-        return (string)$this->getName();
+        return (string) $this->getName();
     }
 }

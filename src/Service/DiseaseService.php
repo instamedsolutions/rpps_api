@@ -2,13 +2,11 @@
 
 namespace App\Service;
 
-use Doctrine\ORM\NonUniqueResultException;
-use Exception;
 use App\Entity\Disease;
 use App\Entity\DiseaseGroup;
-use App\Entity\Drug;
 use App\Entity\Thing;
 use Doctrine\ORM\EntityManagerInterface;
+use Exception;
 use Symfony\Component\Console\Output\OutputInterface;
 
 /**
@@ -16,18 +14,17 @@ use Symfony\Component\Console\Output\OutputInterface;
  */
 class DiseaseService extends ImporterService
 {
-
     protected array $diseases = [];
 
     protected array $groups = [];
 
-    private const PARSING_OPTIONS = ["delimiter" => ";", "utf8" => true, "headers" => false];
+    private const PARSING_OPTIONS = ['delimiter' => ';', 'utf8' => true, 'headers' => false];
 
-    final const CODES = "codes";
+    final public const CODES = 'codes';
 
-    final const CHAPITRES = "chapitres";
+    final public const CHAPITRES = 'chapitres';
 
-    final const GROUPES = "groupes";
+    final public const GROUPES = 'groupes';
 
     public function __construct(
         protected string $cim10,
@@ -37,7 +34,6 @@ class DiseaseService extends ImporterService
         parent::__construct(DiseaseGroup::class, $fileProcessor, $em);
         $this->setClearable(false);
     }
-
 
     public function importFiles(OutputInterface $output, string $type): bool
     {
@@ -50,12 +46,10 @@ class DiseaseService extends ImporterService
         foreach ($files as $file) {
             $type = $this->getTypeFromFileName($file);
 
-
             if ($type) {
                 $types[$type] = $file;
             }
         }
-
 
         // Import in a specific order
         $first = $this->processFile($output, $types[self::CHAPITRES], self::CHAPITRES, self::PARSING_OPTIONS);
@@ -68,7 +62,6 @@ class DiseaseService extends ImporterService
 
         return $first && $second && $third;
     }
-
 
     /**
      * @throws Exception
@@ -83,10 +76,9 @@ class DiseaseService extends ImporterService
         };
     }
 
-
     protected function parseChapters(array $data): ?DiseaseGroup
     {
-        /** @var DiseaseGroup $group */
+        /** @var DiseaseGroup|null $group */
         $group = $this->repository->find($data[0]);
 
         if (null === $group) {
@@ -102,12 +94,11 @@ class DiseaseService extends ImporterService
         return $group;
     }
 
-
     protected function parseGroups(array $data): ?DiseaseGroup
     {
         $cim10 = "{$data[0]}-{$data[1]}";
 
-        /** @var DiseaseGroup $group */
+        /** @var DiseaseGroup|null $group */
         $group = $this->repository->find($cim10);
 
         if (null === $group) {
@@ -124,12 +115,11 @@ class DiseaseService extends ImporterService
         return $group;
     }
 
-
     protected function parseCodes(array $data): ?Disease
     {
         $this->init(Disease::class);
 
-        /** @var Disease $disease */
+        /** @var Disease|null $disease */
         $disease = $this->repository->find($data[7]);
 
         if (null === $disease) {
@@ -147,7 +137,7 @@ class DiseaseService extends ImporterService
         $disease->setGroup($this->groups[$data[4]]);
         $disease->setCategory($this->groups[self::transformToDoubleDigit($data[3])]);
 
-        $parentId = explode(".", (string)$data[6])[0];
+        $parentId = explode('.', (string) $data[6])[0];
         if ($parentId !== $disease->getCim()) {
             $disease->setParent($this->diseases[$parentId]);
         }
@@ -157,7 +147,6 @@ class DiseaseService extends ImporterService
 
         return $disease;
     }
-
 
     protected function getTypeFromFileName(string $fileName): ?string
     {
@@ -176,14 +165,12 @@ class DiseaseService extends ImporterService
         return null;
     }
 
-
     public static function transformToDoubleDigit(int $int): string
     {
         if ($int < 10) {
             return "0{$int}";
         }
 
-        return (string)$int;
+        return (string) $int;
     }
-
 }

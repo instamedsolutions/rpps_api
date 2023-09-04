@@ -13,7 +13,7 @@ class FileProcessorTest extends KernelTestCase
 
     use ProphecyTrait;
 
-    public function testCountFileLines()
+    public function testCountFileLines() : void
     {
         $prophecy = $this->prophesize(EntityManagerInterface::class);
 

@@ -2,10 +2,9 @@
 
 namespace App\Repository;
 
-use Doctrine\ORM\NonUniqueResultException;
-use App\Entity\CCAM;
 use App\Entity\CCAMGroup;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\ORM\NonUniqueResultException;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
@@ -15,8 +14,6 @@ use Doctrine\Persistence\ManagerRegistry;
  */
 class CCAMGroupRepository extends ServiceEntityRepository
 {
-
-
     /**
      * RPPSRepository constructor.
      */
@@ -27,9 +24,9 @@ class CCAMGroupRepository extends ServiceEntityRepository
 
     /**
      * @param mixed $id
-     * @param null $lockMode
-     * @param null $lockVersion
-     * @return CCAM|null
+     * @param null  $lockMode
+     * @param null  $lockVersion
+     *
      * @throws NonUniqueResultException
      */
     public function find($id, $lockMode = null, $lockVersion = null): ?CCAMGroup
@@ -45,6 +42,4 @@ class CCAMGroupRepository extends ServiceEntityRepository
             ->getQuery()
             ->getOneOrNullResult();
     }
-
-
 }

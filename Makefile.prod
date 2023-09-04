@@ -16,7 +16,7 @@ import-prod-drugs: # Import drugs' data
 	php bin/console app:drugs:import
 
 import-prod-rpps: # Import rpps' data
-	php bin/console app:rpps:import
+	php bin/console app:rpps:import --start-line=$(start) --limit=$(limit)
 
 make start-prod: clear-cache-prod start-apache-prod
 
