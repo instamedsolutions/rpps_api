@@ -1,0 +1,95 @@
+<?php
+
+namespace App\Entity;
+
+use ApiPlatform\Core\Annotation\ApiFilter;
+use ApiPlatform\Core\Annotation\ApiProperty;
+use ApiPlatform\Core\Bridge\Doctrine\Common\Filter\SearchFilterInterface;
+use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\RangeFilter;
+use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\SearchFilter;
+use App\ApiPlatform\Filter\DiseaseFilter;
+use App\Repository\DiseaseRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
+use Doctrine\ORM\Mapping as ORM;
+use Stringable;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Symfony\Component\Serializer\Annotation\Groups;
+
+#[ORM\Entity()]
+#[ORM\Table(name: 'cim_11_modifier_value')]
+#[ORM\Index(columns: ['code'])]
+#[UniqueEntity(['code','whoId'])]
+class Cim11ModifierValue extends Thing implements Entity, Stringable
+{
+
+
+    #[Groups(['read'])]
+    #[ORM\Column(type: 'string',length: 16, unique: true)]
+    protected ?string $code = null;
+
+
+    #[Groups(['read'])]
+    #[ORM\Column(type: 'text')]
+    protected ?string $name = null;
+
+    #[Groups(['read'])]
+    #[ORM\Column(type: 'string',length: 32, unique: true)]
+    protected ?string $whoId = null;
+
+    #[ORM\Column(type: 'simple_array')]
+    protected array $synonyms = [];
+
+
+    public function getId(): string
+    {
+        return $this->id;
+    }
+
+
+    public function getName(): ?string
+    {
+        return $this->name;
+    }
+
+    public function setName(?string $name): void
+    {
+        $this->name = $name;
+    }
+
+    public function getCode(): ?string
+    {
+        return $this->code;
+    }
+
+    public function setCode(?string $code): void
+    {
+        $this->code = $code;
+    }
+
+    public function getWhoId(): ?string
+    {
+        return $this->whoId;
+    }
+
+    public function setWhoId(?string $whoId): void
+    {
+        $this->whoId = $whoId;
+    }
+
+    public function getSynonyms(): array
+    {
+        return $this->synonyms;
+    }
+
+    public function setSynonyms(array $synonyms): void
+    {
+        $this->synonyms = $synonyms;
+    }
+
+    public function __toString(): string
+    {
+        return $this->getName();
+    }
+
+}

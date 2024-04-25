@@ -75,6 +75,9 @@ services:
         arguments:
             $decorated: '@App\Serializer\GroupsContextBuilder.inner'
 
+    App\Command\Cim11Import:
+        arguments:
+            $projectDir : '%kernel.project_dir%'
 
     App\Doctrine\EntityListener\ThingListener:
         class: App\Doctrine\EntityListener\ThingListener

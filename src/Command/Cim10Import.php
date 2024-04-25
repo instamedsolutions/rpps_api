@@ -14,10 +14,10 @@ use Symfony\Component\Console\Output\OutputInterface;
 /**
  * Command to import file in empty database.
  **/
-class DiseaseImport extends Command
+class Cim10Import extends Command
 {
     // the name of the command (the part after "bin/console")
-    protected static $defaultName = 'app:disease:import';
+    protected static $defaultName = 'app:cim10:import';
 
     protected string $projectDir;
 
