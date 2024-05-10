@@ -70,7 +70,7 @@ class Cim11Import extends Command
 
             if(isset($this->modifierValues[$data['id']])) {
                 $this->output->writeln("{$data['id']} is a modifier, ignore");
-                return;
+              //  return;
             }
 
             $existing = $this->em->getRepository(Cim11::class)->findOneBy([
@@ -78,17 +78,22 @@ class Cim11Import extends Command
             ]);
             if ($existing) {
                 $this->output->writeln("{$data['title']} already exists");
-                return;
+             //   return;
             }
 
             $this->output->writeln("Importing {$data['title']}");
 
-            $cim11Disease = new Cim11();
+            $cim11Disease = $existing ?? new Cim11();
             $cim11Disease->setWhoId($data['id']);
             $cim11Disease->setCode($data['code']);
             $cim11Disease->setName($data['title']);
             $cim11Disease->setSynonyms(explode(";", $data['synonyms']));
-            $cim11Disease->setHierarchyLevel($data['hierarchyLevel']);
+
+            $basicHierarchyLevel = 2;
+            $explode = explode(".", $data['code']);
+            $hierarchyLevel = strlen($explode[1] ?? '') + $basicHierarchyLevel;
+
+            $cim11Disease->setHierarchyLevel($hierarchyLevel);
             $cim11Disease->setCim10Code($this->cim11Mapping[$data['code']] ?? null);
             $cim11Disease->importId = $this->importId;
 
