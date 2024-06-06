@@ -35,7 +35,27 @@ final class Cim11Filter extends AbstractContextAwareFilter
             return;
         }
 
-        $this->addSearchFilter($queryBuilder, $value);
+        if ('search' === $property) {
+            $this->addSearchFilter($queryBuilder, $value);
+
+            return;
+        }
+
+        if ('ids' === $property) {
+            $this->addIdsFilter($queryBuilder, $value);
+        }
+    }
+
+    protected function addIdsFilter(QueryBuilder $queryBuilder, ?string $value): QueryBuilder
+    {
+        $alias = $queryBuilder->getRootAliases()[0];
+
+        $ids = explode(',', $value);
+
+        $queryBuilder->andWhere("$alias.id IN (:ids) OR $alias.code IN (:ids)");
+        $queryBuilder->setParameter('ids', $ids);
+
+        return $queryBuilder;
     }
 
     /**

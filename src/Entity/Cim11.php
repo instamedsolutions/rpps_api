@@ -18,7 +18,7 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Serializer\Annotation\Groups;
 
 #[ORM\Entity(repositoryClass: Cim11Repository::class)]
-#[ApiFilter(Cim11Filter::class, properties: ['search'])]
+#[ApiFilter(Cim11Filter::class, properties: ['search', 'ids'])]
 #[ORM\Table(name: 'cim_11')]
 #[ORM\Index(columns: ['code'])]
 #[UniqueEntity(['code', 'whoId'])]
