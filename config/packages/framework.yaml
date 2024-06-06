@@ -15,3 +15,8 @@ framework:
     #fragments: true
     php_errors:
         log: true
+
+    http_client:
+        scoped_clients:
+            cim11.client:
+                base_uri: '%env(CIM_11_API)%/icd/release/11/2023-01/mms/'

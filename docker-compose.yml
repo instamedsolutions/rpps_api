@@ -4,19 +4,22 @@ volumes:
   db-data:
 
 services:
-  apache:
+  rpps-database:
     build:
       context: ./
       dockerfile: ./docker/apache/Dockerfile.${DOCKER_COMPOSE_ENV:-dev}
-    container_name: rpps-apache-container
+    container_name: rpps-data-item-container
     command: ["make", "start-apache-prod"]
     restart: always
     ports:
-      - "446:443"
+      - "447:443"
     volumes_from:
       - app-data
     links:
-      - database
+      - rpps-db
+    networks:
+      - instamed
+      - rpps_db
 
   app-data:
     image: alpine:3
@@ -28,9 +31,9 @@ services:
         target: /var/test_db.sqlite
     command: "true"
 
-  database:
+  rpps-db:
     image: mysql:8
-    container_name: rpps-database-container
+    container_name: rpps-db-container
     restart: always
     ports:
       - "3333:3306"
@@ -43,3 +46,25 @@ services:
       MYSQL_USER: ${DATABASE_USER}
       MYSQL_PASSWORD: ${DATABASE_PASSWORD}
       MYSQL_ROOT_PASSWORD: root
+    networks:
+      - rpps_db
+
+  icd_11_api:
+    platform: linux/x86_64
+    image: whoicd/icd-api:2.3.0
+    environment:
+      - include=2023-01_fr
+      - acceptLicense=true
+      - saveAnalytics=false
+    ports:
+      - "89:80"
+    networks:
+      - instamed
+      - rpps_db
+
+networks:
+  rpps_db:
+    name: instamed
+    driver: bridge
+  instamed:
+    external: true

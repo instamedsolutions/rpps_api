@@ -79,6 +79,11 @@ services:
         arguments:
             $projectDir : '%kernel.project_dir%'
 
+
+    App\Command\Cim11Export:
+        arguments:
+            $projectDir : '%kernel.project_dir%'
+
     App\Doctrine\EntityListener\ThingListener:
         class: App\Doctrine\EntityListener\ThingListener
         tags:

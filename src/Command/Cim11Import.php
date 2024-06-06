@@ -12,11 +12,9 @@ use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
-
 #[AsCommand('app:cim11:import')]
 class Cim11Import extends Command
 {
-
     private array $modifierValues = [];
 
     private array $diseases = [];
@@ -29,12 +27,10 @@ class Cim11Import extends Command
 
     public function __construct(
         private readonly EntityManagerInterface $em,
-        private readonly string                 $projectDir
-    )
-    {
+        private readonly string $projectDir
+    ) {
         parent::__construct();
     }
-
 
     public function execute(InputInterface $input, OutputInterface $output): int
     {
@@ -49,36 +45,36 @@ class Cim11Import extends Command
 
     private function importDiseases(): void
     {
-
         $this->buildCim10Cim11Database();
 
-        $this->output->writeln("Importing diseases...");
+        $this->output->writeln('Importing diseases...');
 
         $file = "{$this->projectDir}/var/cim-11.csv";
 
-        $this->readCsv($file, ",", function (array $data) {
-
-            if(!$data['code']) {
+        $this->readCsv($file, ',', function (array $data) {
+            if (!$data['code']) {
                 $this->output->writeln("No code found, skipping {$data['title']}");
+
                 return;
             }
 
-            if(!$data['id']) {
+            if (!$data['id']) {
                 $this->output->writeln("No id found, skipping {$data['title']}");
+
                 return;
             }
 
-            if(isset($this->modifierValues[$data['id']])) {
+            if (isset($this->modifierValues[$data['id']])) {
                 $this->output->writeln("{$data['id']} is a modifier, ignore");
-              //  return;
+                //  return;
             }
 
             $existing = $this->em->getRepository(Cim11::class)->findOneBy([
-                'code' => $data['code']
+                'code' => $data['code'],
             ]);
             if ($existing) {
                 $this->output->writeln("{$data['title']} already exists");
-             //   return;
+                //   return;
             }
 
             $this->output->writeln("Importing {$data['title']}");
@@ -87,10 +83,10 @@ class Cim11Import extends Command
             $cim11Disease->setWhoId($data['id']);
             $cim11Disease->setCode($data['code']);
             $cim11Disease->setName($data['title']);
-            $cim11Disease->setSynonyms(explode(";", $data['synonyms']));
+            $cim11Disease->setSynonyms(explode(';', $data['synonyms']));
 
             $basicHierarchyLevel = 2;
-            $explode = explode(".", $data['code']);
+            $explode = explode('.', $data['code']);
             $hierarchyLevel = strlen($explode[1] ?? '') + $basicHierarchyLevel;
 
             $cim11Disease->setHierarchyLevel($hierarchyLevel);
@@ -111,10 +107,9 @@ class Cim11Import extends Command
                 $modifier->setType($case);
                 $modifier->importId = $this->importId;
 
-
                 $elem = json_decode($data[$case->value], true);
 
-                $modifier->setMultiple($elem['allowMultipleValues'] !== "NotAllowed");
+                $modifier->setMultiple('NotAllowed' !== $elem['allowMultipleValues']);
 
                 foreach ($elem['ids'] as $id) {
                     $value = $this->modifierValues[$id] ?? null;
@@ -124,53 +119,48 @@ class Cim11Import extends Command
                         continue;
                     }
                     $modifier->addValue($value);
-
                 }
                 $modifier->setCim11($cim11Disease);
-
             }
 
-            if($data['parent_id'] && isset($this->diseases[$data['parent_id']])) {
+            if ($data['parent_id'] && isset($this->diseases[$data['parent_id']])) {
                 $cim11Disease->setParent($this->diseases[$data['parent_id']]);
             }
 
             $this->em->persist($cim11Disease);
 
             $this->diseases[$data['id']] = $cim11Disease;
-
         });
 
         $this->em->flush();
-
     }
-
 
     private function importModifiers(): void
     {
-        $this->output->writeln("Importing modifiers...");
+        $this->output->writeln('Importing modifiers...');
 
         $file = "{$this->projectDir}/var/modifiers.csv";
 
-        $this->readCsv($file, ",", function (array $data) {
-
-            if(!$data['code']) {
+        $this->readCsv($file, ',', function (array $data) {
+            if (!$data['code']) {
                 $this->output->writeln("No code found, skipping {$data['title']}");
+
                 return;
             }
 
+            if (!$data['id']) {
+                $this->output->writeln('Id is empty');
 
-            if(!$data['id']) {
-                $this->output->writeln("Id is empty");
                 return;
             }
-
 
             $existing = $this->em->getRepository(Cim11ModifierValue::class)->findOneBy([
-                'code' => $data['code']
+                'code' => $data['code'],
             ]);
             if ($existing) {
                 $this->modifierValues[$existing->getWhoId()] = $existing;
                 $this->output->writeln("{$data['title']} already exists");
+
                 return;
             }
 
@@ -179,21 +169,18 @@ class Cim11Import extends Command
             $value->setWhoId($data['id']);
             $value->setCode($data['code']);
             $value->setName($data['title']);
-            $value->setSynonyms(explode(";", $data['synonyms']));
+            $value->setSynonyms(explode(';', $data['synonyms']));
             $value->importId = $this->importId;
 
             $this->em->persist($value);
 
             $this->modifierValues[$data['id']] = $value;
-
         });
 
         $this->em->flush();
 
-        $this->output->writeln("All modifiers imported successfully...");
-
+        $this->output->writeln('All modifiers imported successfully...');
     }
-
 
     private function readCsv(string $fileName, string $separator, callable $callback, bool $convertToUtf8 = false): void
     {
@@ -217,7 +204,7 @@ class Cim11Import extends Command
             rewind($handle);
 
             while (($data = fgetcsv($handle, separator: $separator)) !== false) {
-                $data = array_map(fn($item) => preg_replace("/^b'(.*)'$/", '$1', $item), $data);
+                $data = array_map(fn ($item) => preg_replace("/^b'(.*)'$/", '$1', $item), $data);
 
                 if (!$header) {
                     $header = $data;
@@ -227,8 +214,8 @@ class Cim11Import extends Command
 
                 $length = count($header) - count($data);
 
-                for ($i = 0; $i < ($length); $i++) {
-                    $data[] = "";
+                for ($i = 0; $i < $length; ++$i) {
+                    $data[] = '';
                 }
 
                 $value = array_combine($header, $data);
@@ -238,18 +225,12 @@ class Cim11Import extends Command
         }
     }
 
-
     private function buildCim10Cim11Database(): void
     {
-
         $file = "{$this->projectDir}/var/mapping-cim-11.csv";
 
-        $this->readCsv($file, ",", function (array $data) {
-
+        $this->readCsv($file, ',', function (array $data) {
             $this->cim11Mapping[$data['icd11Code']] = $data['icd10Code'];
-
         });
     }
-
-
 }

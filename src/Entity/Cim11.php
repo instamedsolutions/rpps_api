@@ -9,25 +9,21 @@ use ApiPlatform\Core\Bridge\Doctrine\Common\Filter\SearchFilterInterface;
 use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\RangeFilter;
 use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\SearchFilter;
 use App\ApiPlatform\Filter\Cim11Filter;
-use App\ApiPlatform\Filter\DiseaseFilter;
-use App\Repository\DiseaseRepository;
+use App\Repository\Cim11Repository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Stringable;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Serializer\Annotation\Groups;
-use Symfony\Component\Serializer\Annotation\MaxDepth;
 
-
-#[ORM\Entity()]
+#[ORM\Entity(repositoryClass: Cim11Repository::class)]
 #[ApiFilter(Cim11Filter::class, properties: ['search'])]
 #[ORM\Table(name: 'cim_11')]
 #[ORM\Index(columns: ['code'])]
-#[UniqueEntity(['code','whoId'])]
+#[UniqueEntity(['code', 'whoId'])]
 class Cim11 extends Thing implements Entity, Stringable
 {
-
     #[ApiFilter(SearchFilter::class, strategy: SearchFilterInterface::STRATEGY_EXACT)]
     #[ApiProperty(description: 'The unique CIM-10 Id in the international database', required: true, attributes: [
         'openapi_context' => [
@@ -55,7 +51,6 @@ class Cim11 extends Thing implements Entity, Stringable
     #[ORM\JoinColumn(name: 'parent_id', referencedColumnName: 'id', nullable: true, onDelete: 'SET NULL')]
     protected ?Cim11 $parent = null;
 
-
     /**
      * @var Collection<int,Disease>
      */
@@ -82,7 +77,7 @@ class Cim11 extends Thing implements Entity, Stringable
      * @var Collection<int,Cim11Modifier>
      */
     #[Groups(['read'])]
-    #[ORM\OneToMany(mappedBy: 'cim11', targetEntity: Cim11Modifier::class, cascade: ['persist','remove'])]
+    #[ORM\OneToMany(mappedBy: 'cim11', targetEntity: Cim11Modifier::class, cascade: ['persist', 'remove'])]
     protected Collection $modifiers;
 
     #[Groups(['read'])]
@@ -182,19 +177,20 @@ class Cim11 extends Thing implements Entity, Stringable
         $this->modifiers = $modifiers;
     }
 
-    public function hasModifier(ModifierType $type) : bool
+    public function hasModifier(ModifierType $type): bool
     {
         foreach ($this->modifiers as $modifier) {
-            if($modifier->getType() === $type) {
+            if ($modifier->getType() === $type) {
                 return true;
             }
         }
+
         return false;
     }
 
-    public function addModifier(Cim11Modifier $modifier) : void
+    public function addModifier(Cim11Modifier $modifier): void
     {
-        if(!$this->modifiers->contains($modifier)) {
+        if (!$this->modifiers->contains($modifier)) {
             $this->modifiers->add($modifier);
         }
     }
@@ -213,5 +209,4 @@ class Cim11 extends Thing implements Entity, Stringable
     {
         return $this->getName();
     }
-
 }

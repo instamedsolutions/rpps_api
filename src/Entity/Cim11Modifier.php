@@ -13,7 +13,6 @@ use Symfony\Component\Serializer\Annotation\MaxDepth;
 #[ORM\Table(name: 'cim_11_modifier')]
 class Cim11Modifier extends Thing implements Entity, Stringable
 {
-
     // API Only, this field will be populated during the normalisation with the corresponding translation
     #[Groups(['read'])]
     protected ?string $name = null;
@@ -22,11 +21,10 @@ class Cim11Modifier extends Thing implements Entity, Stringable
     #[ORM\Column(type: 'string', length: 64, nullable: false, enumType: ModifierType::class)]
     protected ?ModifierType $type = null;
 
-
     #[Groups(['cim_11_modifers:read'])]
     #[MaxDepth(1)]
-    #[ORM\ManyToOne( targetEntity: Cim11::class, inversedBy: 'modifiers')]
-    #[ORM\JoinColumn('cim11_id',onDelete: 'CASCADE')]
+    #[ORM\ManyToOne(targetEntity: Cim11::class, inversedBy: 'modifiers')]
+    #[ORM\JoinColumn('cim11_id', onDelete: 'CASCADE')]
     protected Cim11 $cim11;
 
     #[Groups(['read'])]
@@ -36,6 +34,7 @@ class Cim11Modifier extends Thing implements Entity, Stringable
      * @var Collection<int,Cim11ModifierValue>
      */
     #[Groups(['read'])]
+    #[ORM\ManyToMany(targetEntity: Cim11ModifierValue::class, mappedBy: 'modifiers')]
     protected ?Collection $values;
 
     public function __construct()
@@ -48,7 +47,6 @@ class Cim11Modifier extends Thing implements Entity, Stringable
     {
         return $this->id;
     }
-
 
     public function getName(): ?string
     {
@@ -91,10 +89,11 @@ class Cim11Modifier extends Thing implements Entity, Stringable
         $this->values = $values;
     }
 
-    public function addValue(Cim11ModifierValue $value) : void
+    public function addValue(Cim11ModifierValue $value): void
     {
-        if(!$this->values->contains($value)) {
+        if (!$this->values->contains($value)) {
             $this->values->add($value);
+            $value->addModifier($this);
         }
     }
 
@@ -108,10 +107,8 @@ class Cim11Modifier extends Thing implements Entity, Stringable
         $this->multiple = $multiple;
     }
 
-
     public function __toString(): string
     {
-        return (string)$this->getName();
+        return (string) $this->getName();
     }
-
 }
