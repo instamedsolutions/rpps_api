@@ -1,7 +1,7 @@
 version: '2.4'
 
 volumes:
-  db-data:
+  rpps-db-data:
 
 services:
   rpps-database:
@@ -36,9 +36,9 @@ services:
     container_name: rpps-db-container
     restart: always
     ports:
-      - "3333:3306"
+      - "3334:3306"
     volumes:
-      - db-data:/var/lib/mysql
+      - rpps-db-data:/var/lib/mysql
       - ./docker/mysql/:/home/mysql/
       - ./docker/mysql/my.cnf:/etc/mysql/conf.d/mysql.cnf
     environment:

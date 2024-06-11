@@ -71,12 +71,15 @@ final class Cim11Filter extends AbstractContextAwareFilter
         $start = $this->queryNameGenerator->generateParameterName('search');
         $full = $this->queryNameGenerator->generateParameterName('search');
 
-        $queryBuilder->andWhere("$alias.name LIKE :$full OR $alias.code LIKE :$start OR $alias.synonyms LIKE :$full");
+        $exact = $this->queryNameGenerator->generateParameterName('exact');
+
+        $queryBuilder->andWhere("$alias.code = :$exact OR $alias.name LIKE :$full OR $alias.code LIKE :$start OR $alias.synonyms LIKE :$full");
 
         $value = $this->cleanValue($value);
 
         $queryBuilder->setParameter($full, "%$value%");
         $queryBuilder->setParameter($start, "$value%");
+        $queryBuilder->setParameter($exact, "$value");
 
         return $queryBuilder;
     }
