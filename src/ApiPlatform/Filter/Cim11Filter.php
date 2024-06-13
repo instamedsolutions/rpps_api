@@ -46,11 +46,15 @@ final class Cim11Filter extends AbstractContextAwareFilter
         }
     }
 
-    protected function addIdsFilter(QueryBuilder $queryBuilder, ?string $value): QueryBuilder
+    protected function addIdsFilter(QueryBuilder $queryBuilder, string|array|null $value): QueryBuilder
     {
         $alias = $queryBuilder->getRootAliases()[0];
 
-        $ids = explode(',', $value);
+        if (!$value) {
+            return $queryBuilder;
+        }
+
+        $ids = is_string($value) ? explode(',', $value) : $value;
 
         $queryBuilder->andWhere("$alias.id IN (:ids) OR $alias.code IN (:ids)");
         $queryBuilder->setParameter('ids', $ids);

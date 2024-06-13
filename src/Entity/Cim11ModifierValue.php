@@ -30,7 +30,7 @@ class Cim11ModifierValue extends Thing implements Entity, Stringable
     #[ORM\Column(type: 'simple_array')]
     protected array $synonyms = [];
 
-    #[ORM\ManyToMany(targetEntity: Cim11Modifier::class, inversedBy: 'values')]
+    #[ORM\ManyToMany(targetEntity: Cim11Modifier::class, inversedBy: 'values', cascade: ['persist', 'remove'])]
     protected Collection $modifiers;
 
     public function __construct()

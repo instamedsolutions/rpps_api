@@ -17,7 +17,7 @@ use \Symfony\Contracts\HttpClient\Exception\TransportExceptionInterface;
  *
  * @package App\Tests\Functional
  */
-class DiseasesTest extends ApiTestCase
+class Cim10sTest extends ApiTestCase
 {
 
 
@@ -59,7 +59,7 @@ class DiseasesTest extends ApiTestCase
      * @throws ServerExceptionInterface
      * @throws TransportExceptionInterface
      */
-    public function testFilterData()
+    public function testFilterData() : void
     {
         $data = $this->get("cim10s", ['hierarchyLevel[lte]' => 3]);
 
