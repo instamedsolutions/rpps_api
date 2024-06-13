@@ -1,9 +1,9 @@
-App\Entity\Disease:
-  shortName: cim10
+App\Entity\Cim11Modifier:
+  shortName: cim11_modifier
   attributes:
     allow_extra_attributes: false
     order:
-      name: ASC
+      type: ASC
   collectionOperations:
     get: ~
   itemOperations:

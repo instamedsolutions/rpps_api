@@ -9,6 +9,7 @@ use ApiPlatform\Core\Bridge\Symfony\Bundle\Test\Response;
 use App\DataFixtures\LoadAllergens;
 use App\DataFixtures\LoadCCAM;
 use App\DataFixtures\LoadCCAMGroup;
+use App\DataFixtures\LoadDCim11;
 use App\DataFixtures\LoadDiseaseGroups;
 use App\DataFixtures\LoadDiseases;
 use App\DataFixtures\LoadDrugs;
@@ -55,16 +56,17 @@ abstract class ApiTestCase extends BaseTestCase
     /**
      * @var string[]
      */
-    public $fixtures = array(
+    public $fixtures = [
         LoadRPPS::class,
         LoadDrugs::class,
         LoadDiseaseGroups::class,
         LoadDiseases::class,
         LoadCCAMGroup::class,
+        LoadDCim11::class,
         LoadCCAM::class,
         LoadAllergens::class,
         LoadNGAP::class
-    );
+    ];
 
 
     /**

@@ -2,13 +2,13 @@
 setup-test: update-test-schema sync-test-metadata-storage load-test-fixtures
 
 update-test-schema: ## Updates the SQL schema
-	docker-compose run --rm apache php bin/console doctrine:schema:update --env=test --force
+	docker-compose run --rm rpps-database php bin/console doctrine:schema:update --env=test --force
 
 load-test-fixtures: ## Loads fixtures into the database
-	docker-compose run --rm apache php bin/console doctrine:fixtures:load --env=test --no-interaction
+	docker-compose run --rm rpps-database php bin/console doctrine:fixtures:load --env=test --no-interaction
 
 sync-test-metadata-storage: ## Ensures that the metadata storage is at the latest version.
-	docker-compose run --rm apache php bin/console doctrine:migrations:sync-metadata-storage --env=test
+	docker-compose run --rm rpps-database php bin/console doctrine:migrations:sync-metadata-storage --env=test
 
 phpunit:
-	docker-compose run --rm apache ./vendor/bin/phpunit --testdox
+	docker-compose run --rm rpps-database ./vendor/bin/phpunit --testdox
