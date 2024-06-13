@@ -13,6 +13,8 @@ COPY  ./docker/apache/custom.ini /usr/local/etc/php/conf.d/custom.ini
 
 RUN openssl req -x509 -nodes -days 365 -newkey rsa:2048 -subj "/C=FR/ST=Ile-De-France/L=Paris/O=Instamed/OU=IT Department/CN=localhost" -keyout /etc/ssl/private/${DOCKER_ENV}.mavy.fr.key -out /etc/ssl/certs/${DOCKER_ENV}.mavy.fr.crt
 
+USER www-data
+
 RUN composer config github-oauth.github.com ${GITHUB_TOKEN}
 RUN composer install
 RUN php bin/console assets:install --symlink
