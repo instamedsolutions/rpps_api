@@ -6,25 +6,23 @@ use App\Service\RPPSService;
 use DateTime;
 use Doctrine\ORM\EntityManagerInterface;
 use Exception;
+use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 
-/**
- * Command to import file in empty database.
- */
+#[AsCommand(
+    name: 'app:rpps:import',
+    description: 'Import RPPS File into database'
+)]
 class RppsImport extends Command
 {
-    // the name of the command (the part after "bin/console")
-    protected static $defaultName = 'app:rpps:import';
-
-    /**
-     * RppsImport constructor.
-     */
-    public function __construct(protected RPPSService $rppsService, protected EntityManagerInterface $em)
-    {
-        parent::__construct(self::$defaultName);
+    public function __construct(
+        protected readonly RPPSService $rppsService,
+        protected readonly EntityManagerInterface $em
+    ) {
+        parent::__construct();
     }
 
     protected function configure(): void

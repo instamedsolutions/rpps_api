@@ -129,7 +129,7 @@ abstract class FileParserService
                     // Showing progression of the process
                     $end = new DateTime();
                     $output->writeln(
-                        ($row - $start) . ' of lines imported out of ' . ($limit ? $limit : $lineCount) . ' | ' . $end->format('d-m-Y G:i:s')
+                        ($row - $start) . ' of lines imported out of ' . ($limit ?: $lineCount) . ' | ' . $end->format('d-m-Y G:i:s')
                     );
                 }
 

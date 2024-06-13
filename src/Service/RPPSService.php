@@ -66,10 +66,10 @@ class RPPSService extends ImporterService
     public function importFile(OutputInterface $output, string $type, int $start = 0, int $limit = 0): bool
     {
         /** Handling File File */
-        $file = $this->fileProcessor->getFile($this->$type, $type, true);
+        $file = $this->fileProcessor->getFile($this->$type, $type, true, 'rpps' === $type ? 1 : 0);
 
         if ('rpps' === $type) {
-            $options = ['delimiter' => ';', 'utf8' => true, 'headers' => true];
+            $options = ['delimiter' => '|', 'utf8' => true, 'headers' => true];
         } elseif ('cps' === $type) {
             $options = ['delimiter' => '|', 'utf8' => false, 'headers' => true];
         } else {
@@ -124,21 +124,21 @@ class RPPSService extends ImporterService
         }
 
         $rpps->setIdRpps($data[1]);
-        $rpps->setTitle($data[4]);
-        $rpps->setLastName($data[5]);
-        $rpps->setFirstName($data[6]);
-        $rpps->setSpecialty($data[8]);
+        $rpps->setTitle($data[6]);
+        $rpps->setLastName($data[7]);
+        $rpps->setFirstName($data[8]);
+        $rpps->setSpecialty($data[10]);
 
-        if ($data[12] && in_array($data[13], ['S', 'CEX'])) {
-            $rpps->setSpecialty($data[12]);
+        if ($data[16] && in_array($data[13], ['S', 'CEX'])) {
+            $rpps->setSpecialty($data[16]);
         }
 
-        $rpps->setAddress($data[24] . ' ' . $data[25] . ' ' . $data[27] . ' ' . $data[28] . ' ' . $data[29]);
-        $rpps->setZipcode($data[31]);
-        $rpps->setCity($data[30]);
-        $rpps->setPhoneNumber(str_replace(' ', '', (string) $data[36]));
-        $rpps->setEmail($data[39]);
-        $rpps->setFinessNumber($data[18]);
+        $rpps->setAddress($data[28] . ' ' . $data[31] . ' ' . $data[31] . ' ' . $data[33]);
+        $rpps->setZipcode($data[35]);
+        $rpps->setCity($data[37]);
+        $rpps->setPhoneNumber(str_replace(' ', '', (string) $data[40]));
+        $rpps->setEmail($data[43]);
+        $rpps->setFinessNumber($data[21]);
 
         $rpps->importId = $this->getImportId();
 
