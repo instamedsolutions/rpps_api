@@ -1,0 +1,42 @@
+cim11_modifiers:
+  associatedWith: 'Associé avec'
+  infectiousAgent: 'Agent infectieux'
+  temporalPatternAndOnset: 'Modèle temporel et début'
+  hasManifestation: 'Manifestation'
+  specificAnatomy: 'Anatomie spécifique'
+  course: 'Évolution'
+  diagnosisConfirmedBy: 'Diagnostic confirmé par'
+  laterality: 'Latéralité'
+  hasCausingCondition: 'Condition causale'
+  histopathology: 'Histopathologie'
+  hasSeverity: 'Sévérité'
+  hasAlternativeSeverity1: 'Sévérité'
+  hasAlternativeSeverity2: 'Etat'
+  timeInLife: 'Période de la vie'
+  medication: 'Médication'
+  hasPupilReactionScore: 'Score de réaction pupillaire'
+  hasGCSEyeScore: 'Score GCS des yeux'
+  hasGCSMotorScore: 'Score GCS moteur'
+  hasGCSVerbalScore: 'Score GCS verbal'
+  chemicalAgent: 'Agent chimique'
+  distribution: 'Distribution'
+  causality: 'Causalité'
+  relational: 'Relationnel'
+  typeOfInjury: 'Type de blessure'
+  fractureSubtype: 'Sous-type de fracture'
+  fractureOpenOrClosed: 'Fracture ouverte ou fermée'
+  jointInvolvementInFracture: 'Implication articulaire dans la fracture'
+  extentOfBurnByBodySurface: 'Étendue des brûlures par surface corporelle'
+  extentOfFullThicknessBurnByBodySurface: 'Étendue des brûlures totales par surface corporelle'
+  outcomeOfFullThicknessBurn: 'Issue des brûlures totales'
+  activityWhenInjured: 'Activité lors de la blessure'
+  placeOfOccurrence: "Lieu de l'occurrence"
+  transportEventDescriptor: "Description de l'événement de transport"
+  alcoholUseInInjury: "Consommation d'alcool lors de la blessure"
+  psychoactiveDrugUseInInjury: 'Consommation de drogues psychoactives lors de la blessure'
+  objectOrSubstanceProducingInjury: 'Objet ou substance causant la blessure'
+  sportsActivityDescriptor: "Descripteur d'activité sportive"
+  aspectsOfIntentionalSelfHarm: "Aspects de l'automutilation intentionnelle"
+  aspectsOfAssaultAndMaltreatment: "Aspects d'agression et de mauvais traitements"
+  mechanismOfInjury: 'Mécanisme de la blessure'
+  aspectsOfArmedConflict: 'Aspects du conflit armé'

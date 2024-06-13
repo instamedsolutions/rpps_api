@@ -7,36 +7,36 @@ setup-dev: install-app load-fixtures ## Installs the application with the fixtur
 install: install-app import-data ## Installs the application & imports the data
 
 composer-install: ## Runs composer install in the container to install backend dependencies
-	docker-compose run --rm apache composer install
+	docker-compose run --rm rpps-database composer install
 
 composer-require: ## Runs composer require in the container to add a new dependency
-	docker-compose run --rm apache composer require $(package)
+	docker-compose run --rm rpps-database composer require $(package)
 
 routes-dev: ## Lists all routes of the application
 	make run-command command='debug:router'
 
 
-shell: ## Gets a shell in the apache container
-	docker-compose exec apache bash
+shell: ## Gets a shell in the rpps-database container
+	docker-compose exec rpps-database bash
 
 clear-cache:
 	make run-command command='cache:clear'
 
 # Loaded config default from "/var/www/html/.php-cs-fixer.dist.php"
 csfixer:
-	docker-compose exec apache ./vendor/bin/php-cs-fixer fix -v src/
+	docker-compose exec rpps-database ./vendor/bin/php-cs-fixer fix -v src/
 
 phpcbf:
-	docker-compose exec apache ./vendor/bin/phpcbf src/ --runtime-set ignore_warnings_on_exit true
+	docker-compose exec rpps-database ./vendor/bin/phpcbf src/ --runtime-set ignore_warnings_on_exit true
 
 phpcs:
-	docker-compose exec apache ./vendor/bin/phpcs --runtime-set ignore_warnings_on_exit true src
+	docker-compose exec rpps-database ./vendor/bin/phpcs --runtime-set ignore_warnings_on_exit true src
 
 php-stan:
-	docker-compose exec apache ./vendor/bin/phpstan analyse -c phpstan.neon -l 6 src/
+	docker-compose exec rpps-database ./vendor/bin/phpstan analyse -c phpstan.neon -l 6 src/
 
 rector:
-	docker-compose exec apache ./vendor/bin/rector process src/ -v
+	docker-compose exec rpps-database ./vendor/bin/rector process src/ -v
 
 lint:
 	make phpcbf && make csfixer && make php-stan

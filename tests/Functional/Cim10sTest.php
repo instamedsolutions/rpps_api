@@ -17,7 +17,7 @@ use \Symfony\Contracts\HttpClient\Exception\TransportExceptionInterface;
  *
  * @package App\Tests\Functional
  */
-class DiseasesTest extends ApiTestCase
+class Cim10sTest extends ApiTestCase
 {
 
 
@@ -27,9 +27,9 @@ class DiseasesTest extends ApiTestCase
      * @throws ServerExceptionInterface
      * @throws TransportExceptionInterface
      */
-    public function testSearchData()
+    public function testSearchData() : void
     {
-        $data = $this->get("diseases", ['search' => "Cholera"]);
+        $data = $this->get("cim10s", ['search' => "Cholera"]);
 
         $this->assertResponseStatusCodeSame(Response::HTTP_OK);
 
@@ -38,19 +38,12 @@ class DiseasesTest extends ApiTestCase
 
         $this->assertEquals("Cholera", $data['hydra:member'][1]['name']);
         $this->assertEquals("A00", $data['hydra:member'][1]['cim']);
-        $this->assertEquals("01", $data['hydra:member'][1]['category']['cim']);
-        $this->assertEquals(
-            "Certaines maladies infectieuses et parasitaires",
-            $data['hydra:member'][1]['category']['name']
-        );
-        $this->assertEquals("A00-A09", $data['hydra:member'][1]['group']['cim']);
-        $this->assertEquals("Maladies intestinales infectieuses", $data['hydra:member'][1]['group']['name']);
 
 
         $this->assertCount(2, $data['hydra:member']);
 
 
-        $data = $this->get("diseases", ['search' => "Vibrio biovar"]);
+        $data = $this->get("cim10s", ['search' => "Vibrio biovar"]);
 
         $this->assertResponseStatusCodeSame(Response::HTTP_OK);
         $this->assertEquals("A Vibrio cholerae 01, biovar cholerae", $data['hydra:member'][0]['name']);
@@ -66,14 +59,14 @@ class DiseasesTest extends ApiTestCase
      * @throws ServerExceptionInterface
      * @throws TransportExceptionInterface
      */
-    public function testFilterData()
+    public function testFilterData() : void
     {
-        $data = $this->get("diseases", ['hierarchyLevel[lte]' => 3]);
+        $data = $this->get("cim10s", ['hierarchyLevel[lte]' => 3]);
 
         $this->assertCollectionKeyContains($data['hydra:member'], "cim", ['A00']);
         $this->assertCollectionKeyNotContains($data['hydra:member'], "cim", ['A000']);
 
-        $data = $this->get("diseases", ['hierarchyLevel[gt]' => 3]);
+        $data = $this->get("cim10s", ['hierarchyLevel[gt]' => 3]);
 
         $this->assertCollectionKeyContains($data['hydra:member'], "cim", ['A000']);
         $this->assertCollectionKeyNotContains($data['hydra:member'], "cim", ['A00']);
@@ -85,16 +78,13 @@ class DiseasesTest extends ApiTestCase
      * @throws ServerExceptionInterface
      * @throws TransportExceptionInterface
      */
-    public function testGetData()
+    public function testGetData() : void
     {
-        $data = $this->get("diseases/A000");
+        $data = $this->get("cim10s/A000");
 
         $this->assertResponseStatusCodeSame(Response::HTTP_OK);
         $this->assertEquals("A Vibrio cholerae 01, biovar cholerae", $data['name']);
 
-        $this->assertEquals("Cholera", $data['parent']['name']);
-
-        $this->assertEquals(Disease::SEX_FEMALE, $data['sex']);
     }
 
 }

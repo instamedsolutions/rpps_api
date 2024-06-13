@@ -1,4 +1,5 @@
 App\Entity\DiseaseGroup:
+  shortName: cim10Group
   attributes:
     allow_extra_attributes: false
   collectionOperations:

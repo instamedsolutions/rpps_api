@@ -1,5 +1,5 @@
-App\Entity\Disease:
-  shortName: cim10
+App\Entity\Cim11:
+  shortName: cim11
   attributes:
     allow_extra_attributes: false
     order:
