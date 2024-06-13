@@ -227,7 +227,7 @@ class Cim11Import extends Command
 
     private function buildCim10Cim11Database(): void
     {
-        $file = "{$this->projectDir}/var/mapping-cim-11.csv";
+        $file = "{$this->projectDir}/mapping-cim-11.csv";
 
         $this->readCsv($file, ',', function (array $data) {
             $this->cim11Mapping[$data['icd11Code']] = $data['icd10Code'];
