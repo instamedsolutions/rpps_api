@@ -19,6 +19,8 @@ RUN composer config github-oauth.github.com ${GITHUB_TOKEN}
 RUN composer install
 RUN php bin/console assets:install --symlink
 
+USER root
+
 RUN rm -rf .env*
 RUN touch .env
 
