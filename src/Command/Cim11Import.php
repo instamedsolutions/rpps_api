@@ -34,6 +34,7 @@ class Cim11Import extends Command
 
     public function execute(InputInterface $input, OutputInterface $output): int
     {
+        ini_set('memory_limit', '-1');
         $this->importId = uniqid();
         $this->output = $output;
 
