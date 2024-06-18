@@ -65,7 +65,7 @@ class LoadRPPS extends Fixture
 
     protected function getUsers(): array
     {
-        return ['Bastien', 'Jérémie', 'Luv', 'Julien', 'Lauriane', 'Maxime', 'Johann', 'Emilie', 'Blandine', 'Quentin'];
+        return ['Bastien', 'Jérémie', 'Luv', 'Julien', 'Lauriane', 'Maxime', 'Johann', 'Emilie', 'Blandine', 'Quentin', 'Achile'];
     }
 
     private function getRpps(int $index): string
@@ -80,6 +80,7 @@ class LoadRPPS extends Fixture
             $ids = [
                 10 => "{$first}1234567890",
                 11 => "{$first}0987654321",
+                12 => "{$first}4444455555",
             ];
 
             return $ids[$j];
@@ -101,6 +102,7 @@ class LoadRPPS extends Fixture
             'Biologie médicale',
             'Radiologie',
             null,
+            'Infirmier',
         ];
     }
 }

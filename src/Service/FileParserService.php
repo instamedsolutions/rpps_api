@@ -53,7 +53,7 @@ abstract class FileParserService
         int $start = 0,
         int $limit = 0
     ): bool {
-        $batchSize = 20;
+        $batchSize = 50;
 
         $lineCount = $this->fileProcessor->getLinesCount($file);
 
@@ -116,11 +116,11 @@ abstract class FileParserService
 
                 if ($entity instanceof $this->entity) {
                     $this->em->persist($entity);
-                    $this->em->flush();
                 }
 
                 // Used to save some memory out of Doctrine every 20 lines
                 if (($row % $batchSize) === 0) {
+                    $this->em->flush();
                     if ($this->isClearable()) {
                         // Detaches all objects from Doctrine for memory save
                         $this->em->clear();
@@ -129,7 +129,7 @@ abstract class FileParserService
                     // Showing progression of the process
                     $end = new DateTime();
                     $output->writeln(
-                        ($row - $start) . ' of lines imported out of ' . ($limit ? $limit : $lineCount) . ' | ' . $end->format('d-m-Y G:i:s')
+                        ($row - $start) . ' of lines imported out of ' . ($limit ?: $lineCount) . ' | ' . $end->format('d-m-Y G:i:s')
                     );
                 }
 

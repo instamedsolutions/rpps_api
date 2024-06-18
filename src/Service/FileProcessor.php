@@ -3,7 +3,9 @@
 namespace App\Service;
 
 use Doctrine\ORM\EntityManagerInterface;
+use Psr\Log\LoggerInterface;
 use Symfony\Component\HttpClient\HttpClient;
+use Throwable;
 use ZipArchive;
 
 /**
@@ -14,8 +16,11 @@ class FileProcessor
     /**
      * FileProcessor constructor.
      */
-    public function __construct(protected string $projectDir, protected EntityManagerInterface $em)
-    {
+    public function __construct(
+        protected string $projectDir,
+        private LoggerInterface $logger,
+        protected EntityManagerInterface $em
+    ) {
     }
 
     /**
@@ -52,45 +57,67 @@ class FileProcessor
      * @param bool   $isZip
      *                      If the file you're getting is a zip and needs to be unzipped
      */
-    public function getFiles(string $url, $name = 'file', $isZip = false): array
+    public function getFiles(string $url, string $name = 'file', bool $isZip = false): array
     {
         $ext = $isZip ? 'zip' : 'txt';
 
         $filePath = $this->projectDir . "/var/{$name}.$ext";
 
-        $fileHandler = fopen($filePath, 'w+');
+        if (!file_exists($filePath)) {
+            $this->logger->info("File does not exist locally, fetching it from $url");
+            $fileHandler = fopen($filePath, 'w+');
 
-        $client = HttpClient::create(['timeout' => null, 'verify_peer' => false, 'verify_host' => false]);
+            $client = HttpClient::create(['timeout' => 1200, 'verify_peer' => false, 'verify_host' => false]);
 
-        $response = $client->request('GET', $url);
-        foreach ($client->stream($response) as $chunk) {
-            fwrite($fileHandler, $chunk->getContent());
+            $response = $client->request('GET', $url);
+            foreach ($client->stream($response) as $chunk) {
+                fwrite($fileHandler, $chunk->getContent());
+            }
+
+            fclose($fileHandler);
+        } else {
+            $this->logger->info('File already exists locally, skipping fetch');
         }
-
-        fclose($fileHandler);
 
         if (!$isZip) {
             return [$filePath];
         }
 
-        $zip = new ZipArchive();
+        $this->logger->info('File is a zip, extract files');
 
-        $zip->open($filePath);
-        $zip->extractTo($this->projectDir . "/var/$name");
-        $files = [];
-        for ($i = 0; $i < $zip->numFiles; ++$i) {
-            $files[] = $this->projectDir . "/var/$name/" . $zip->getNameIndex($i);
+        try {
+            $zip = new ZipArchive();
+            $zip->open($filePath);
+            $zip->extractTo($this->projectDir . "/var/$name");
+            $files = [];
+
+            $this->logger->info("Extracting {$zip->numFiles} files");
+
+            for ($i = 0; $i < $zip->numFiles; ++$i) {
+                $files[] = $this->projectDir . "/var/$name/" . $zip->getNameIndex($i);
+            }
+
+            $zip->close();
+
+            $this->logger->info("All {$zip->numFiles} files extracted successfully");
+
+            // Delete zip
+            // unlink($filePath);
+
+            return $files;
+        } catch (Throwable $e) {
+            if ('Invalid or uninitialized Zip object' === $e->getMessage()) {
+                $this->logger->error('Error while extracting zip, retrying');
+                unlink($filePath);
+
+                return $this->getFiles($url, $name, $isZip);
+            }
+            throw $e;
         }
-        $zip->close();
-
-        // Delete zip
-        unlink($filePath);
-
-        return $files;
     }
 
-    public function getFile(string $url, string $name = 'file', bool $isZip = false): string
+    public function getFile(string $url, string $name = 'file', bool $isZip = false, int $index = 0): string
     {
-        return $this->getFiles($url, $name, $isZip)[0];
+        return $this->getFiles($url, $name, $isZip)[$index];
     }
 }

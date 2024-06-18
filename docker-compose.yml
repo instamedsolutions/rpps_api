@@ -49,18 +49,18 @@ services:
     networks:
       - rpps_db
 
-  icd_11_api:
-    platform: linux/x86_64
-    image: whoicd/icd-api:2.3.0
-    environment:
-      - include=2023-01_fr
-      - acceptLicense=true
-      - saveAnalytics=false
-    ports:
-      - "89:80"
-    networks:
-      - instamed
-      - rpps_db
+        #icd_11_api:
+        #platform: linux/x86_64
+        #image: whoicd/icd-api:2.3.0
+        # environment:
+        # - include=2023-01_fr
+        # - acceptLicense=true
+        # - saveAnalytics=false
+        #    ports:
+        # - "89:80"
+        # networks:
+        #- instamed
+        #- rpps_db
 
 networks:
   rpps_db:

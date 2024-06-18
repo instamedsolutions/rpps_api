@@ -25,7 +25,7 @@ class RPPSTest extends ApiTestCase
      * @throws ServerExceptionInterface
      * @throws TransportExceptionInterface
      */
-    public function testGetRppsData()
+    public function testGetRppsData() : void
     {
         $data = $this->get("rpps");
 
@@ -37,6 +37,9 @@ class RPPSTest extends ApiTestCase
             ["Bastien", "Julien", "Emilie", "Jérémie"]
         );
         $this->assertCollectionKeyContains($data['hydra:member'], "lastName", ["TEST"]);
+
+        // Removing Infirmier
+        $this->assertCollectionKeyNotContains($data['hydra:member'], "firstName", ["Achile"]);
     }
 
 
@@ -46,7 +49,7 @@ class RPPSTest extends ApiTestCase
      * @throws ServerExceptionInterface
      * @throws TransportExceptionInterface
      */
-    public function testSearchRppsData()
+    public function testSearchRppsData() : void
     {
         $data = $this->get("rpps", [
             'search' => "Bastien"
