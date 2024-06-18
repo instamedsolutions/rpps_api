@@ -17,7 +17,7 @@ class RPPSExtension implements QueryCollectionExtensionInterface
 
         $rootAlias = $queryBuilder->getRootAliases()[0];
 
-        $queryBuilder->andWhere("$rootAlias.specialty != :specialty_ignored");
+        $queryBuilder->andWhere("$rootAlias.specialty IS NULL OR $rootAlias.specialty != :specialty_ignored");
         $queryBuilder->setParameter('specialty_ignored', 'Infirmier');
     }
 }
