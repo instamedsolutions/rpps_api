@@ -19,7 +19,8 @@ use Symfony\Component\Serializer\Annotation\Groups;
 #[ApiFilter(RPPSFilter::class, properties: ['search', 'demo'])]
 #[ORM\Entity(repositoryClass: RPPSRepository::class)]
 #[ORM\Table(name: 'rpps')]
-#[ORM\Index(name: 'rpps_index', columns: ['id_rpps'])]
+#[ORM\Index(columns: ['id_rpps'], name: 'rpps_index')]
+#[ORM\Index(columns: ['specialty'], name: 'specialty_index')]
 #[UniqueEntity('idRpps')]
 class RPPS extends Thing implements Entity, Stringable
 {
