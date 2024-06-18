@@ -5,6 +5,7 @@ namespace App\Service;
 use Doctrine\ORM\EntityManagerInterface;
 use Psr\Log\LoggerInterface;
 use Symfony\Component\HttpClient\HttpClient;
+use Throwable;
 use ZipArchive;
 
 /**
@@ -66,7 +67,7 @@ class FileProcessor
             $this->logger->info("File does not exist locally, fetching it from $url");
             $fileHandler = fopen($filePath, 'w+');
 
-            $client = HttpClient::create(['timeout' => null, 'verify_peer' => false, 'verify_host' => false]);
+            $client = HttpClient::create(['timeout' => 1200, 'verify_peer' => false, 'verify_host' => false]);
 
             $response = $client->request('GET', $url);
             foreach ($client->stream($response) as $chunk) {
@@ -84,26 +85,35 @@ class FileProcessor
 
         $this->logger->info('File is a zip, extract files');
 
-        $zip = new ZipArchive();
+        try {
+            $zip = new ZipArchive();
+            $zip->open($filePath);
+            $zip->extractTo($this->projectDir . "/var/$name");
+            $files = [];
 
-        $zip->open($filePath);
-        $zip->extractTo($this->projectDir . "/var/$name");
-        $files = [];
+            $this->logger->info("Extracting {$zip->numFiles} files");
 
-        $this->logger->info("Extracting {$zip->numFiles} files");
+            for ($i = 0; $i < $zip->numFiles; ++$i) {
+                $files[] = $this->projectDir . "/var/$name/" . $zip->getNameIndex($i);
+            }
 
-        for ($i = 0; $i < $zip->numFiles; ++$i) {
-            $files[] = $this->projectDir . "/var/$name/" . $zip->getNameIndex($i);
+            $zip->close();
+
+            $this->logger->info("All {$zip->numFiles} files extracted successfully");
+
+            // Delete zip
+            // unlink($filePath);
+
+            return $files;
+        } catch (Throwable $e) {
+            if ('Invalid or uninitialized Zip object' === $e->getMessage()) {
+                $this->logger->error('Error while extracting zip, retrying');
+                unlink($filePath);
+
+                return $this->getFiles($url, $name, $isZip);
+            }
+            throw $e;
         }
-
-        $zip->close();
-
-        $this->logger->info("All {$zip->numFiles} files extracted successfully");
-
-        // Delete zip
-        // unlink($filePath);
-
-        return $files;
     }
 
     public function getFile(string $url, string $name = 'file', bool $isZip = false, int $index = 0): string

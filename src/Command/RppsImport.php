@@ -69,6 +69,8 @@ class RppsImport extends Command
             $start = new DateTime();
             $output->writeln('<comment>' . $start->format('d-m-Y G:i:s') . ' Start processing :---</comment>');
 
+            $output->writeln("Import id is {$this->rppsService->getImportId()}");
+
             if ($process) {
                 $this->rppsService->importFile($output, $process, $startLine, $limit);
             } else {
@@ -79,6 +81,8 @@ class RppsImport extends Command
             // Showing when the cps process is launched
             $end = new DateTime();
             $output->writeln('<comment>' . $end->format('d-m-Y G:i:s') . ' Stop processing :---</comment>');
+
+            $output->writeln("Import id was {$this->rppsService->getImportId()}");
 
             $this->rppsService->loadTestData();
 

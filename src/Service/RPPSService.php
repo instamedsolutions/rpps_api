@@ -65,7 +65,7 @@ class RPPSService extends ImporterService
      */
     public function importFile(OutputInterface $output, string $type, int $start = 0, int $limit = 0): bool
     {
-        /** Handling File File */
+        /** Handling File */
         $file = $this->fileProcessor->getFile($this->$type, $type, true, 'rpps' === $type ? 1 : 0);
 
         if ('rpps' === $type) {
@@ -78,7 +78,7 @@ class RPPSService extends ImporterService
 
         $process = $this->processFile($output, $file, $type, $options, $start, $limit);
 
-        unlink($file);
+        // unlink($file);
 
         return $process;
     }
