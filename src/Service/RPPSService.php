@@ -117,9 +117,9 @@ class RPPSService extends ImporterService
      */
     protected function processRPPS(array $data): ?RPPS
     {
-        $rpps = $this->repository->find($data[1]);
+        $rpps = $this->entities[$data[1]] ?? $this->repository->find($data[1]);
 
-        if (!$rpps instanceof RPPS) {
+        if (!($rpps instanceof RPPS)) {
             $rpps = new RPPS();
         }
 
@@ -141,6 +141,8 @@ class RPPSService extends ImporterService
         $rpps->setFinessNumber($data[21]);
 
         $rpps->importId = $this->getImportId();
+
+        $this->entities[$rpps->getIdRpps()] = $rpps;
 
         return $rpps;
     }

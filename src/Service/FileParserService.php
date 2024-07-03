@@ -13,6 +13,8 @@ use Symfony\Component\Console\Output\OutputInterface;
  */
 abstract class FileParserService
 {
+    protected array $entities = [];
+
     protected ObjectRepository $repository;
 
     protected OutputInterface $output;
@@ -122,6 +124,7 @@ abstract class FileParserService
                 if (($row % $batchSize) === 0) {
                     $this->em->flush();
                     if ($this->isClearable()) {
+                        $this->clearCache();
                         // Detaches all objects from Doctrine for memory save
                         $this->em->clear();
                     }
@@ -186,4 +189,9 @@ abstract class FileParserService
     }
 
     abstract protected function processData(array $data, string $type): ?Entity;
+
+    protected function clearCache(): void
+    {
+        $this->entities = [];
+    }
 }
