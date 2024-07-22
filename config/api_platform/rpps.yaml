@@ -4,6 +4,8 @@ App\Entity\RPPS:
     name: ASC
   attributes:
     allow_extra_attributes: false
+    pagination_partial: true
+    pagination_client_partial: true
   collectionOperations:
     get: ~
   itemOperations:
