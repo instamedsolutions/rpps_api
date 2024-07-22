@@ -58,8 +58,8 @@ final class RPPSFilter extends AbstractContextAwareFilter
         $value = $this->cleanValue($value);
 
         $query = "(
-           CONCAT($alias.firstName,' ',$alias.lastName) LIKE :$end OR 
-           CONCAT($alias.lastName,' ',$alias.firstName) LIKE :$end
+        $alias.fullName LIKE :$end OR 
+        $alias.fullNameInversed LIKE :$end
            )";
 
         $queryBuilder->andWhere($query);

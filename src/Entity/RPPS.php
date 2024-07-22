@@ -15,10 +15,13 @@ use Misd\PhoneNumberBundle\Validator\Constraints\PhoneNumber as AssertPhoneNumbe
 use Stringable;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Serializer\Annotation\Groups;
+use Symfony\Component\Serializer\Annotation\SerializedName;
 
 #[ApiFilter(RPPSFilter::class, properties: ['search', 'demo'])]
 #[ORM\Entity(repositoryClass: RPPSRepository::class)]
 #[ORM\Table(name: 'rpps')]
+#[ORM\Index(columns: ['full_name'], name: 'full_name_index')]
+#[ORM\Index(columns: ['full_name_inversed'], name: 'full_name_inversed_index')]
 #[ORM\Index(columns: ['id_rpps'], name: 'rpps_index')]
 #[ORM\Index(columns: ['specialty'], name: 'specialty_index')]
 #[UniqueEntity('idRpps')]
@@ -149,6 +152,14 @@ class RPPS extends Thing implements Entity, Stringable
     #[ORM\Column(type: 'string', length: 255, nullable: true)]
     protected ?string $cpsNumber = null;
 
+    #[ApiProperty(readable: false, writable: false)]
+    #[ORM\Column(type: 'string', length: 255, nullable: false)]
+    private ?string $fullName = null;
+
+    #[ApiProperty(readable: false, writable: false)]
+    #[ORM\Column(type: 'string', length: 255, nullable: false)]
+    private ?string $fullNameInversed = null;
+
     public function getIdRpps(): ?string
     {
         return $this->idRpps;
@@ -191,6 +202,8 @@ class RPPS extends Thing implements Entity, Stringable
     {
         $this->lastName = $lastName;
 
+        $this->concatFullNames();
+
         return $this;
     }
 
@@ -205,6 +218,8 @@ class RPPS extends Thing implements Entity, Stringable
     public function setFirstName(?string $firstName): self
     {
         $this->firstName = $firstName;
+
+        $this->concatFullNames();
 
         return $this;
     }
@@ -364,14 +379,41 @@ class RPPS extends Thing implements Entity, Stringable
     }
 
     #[Groups(['read'])]
-    public function getFullName(): string
+    #[SerializedName('fullName')]
+    public function getFullNameWithTitle(): string
     {
         return trim((string) "{$this->shortTitle()} {$this->getFirstName()} {$this->getLastName()}");
+    }
+
+    public function getFullNameInversed(): ?string
+    {
+        return $this->fullNameInversed;
+    }
+
+    public function setFullNameInversed(?string $fullNameInversed): void
+    {
+        $this->fullNameInversed = $fullNameInversed;
+    }
+
+    public function getFullName(): ?string
+    {
+        return $this->fullName;
+    }
+
+    public function setFullName(?string $fullName): void
+    {
+        $this->fullName = $fullName;
     }
 
     public function __toString(): string
     {
         return $this->getFullName();
+    }
+
+    private function concatFullNames(): void
+    {
+        $this->fullName = "{$this->getFirstName()} {$this->getLastName()}";
+        $this->fullNameInversed = "{$this->getLastName()} {$this->getFirstName()}";
     }
 
     protected function shortTitle(): ?string
