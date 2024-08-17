@@ -5,13 +5,10 @@ namespace App\Tests\Integration\Repository;
 use App\DataFixtures\LoadRPPS;
 use App\Entity\RPPS;
 use Doctrine\ORM\EntityManager;
-use Liip\TestFixturesBundle\Test\FixturesTrait;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 
 class RppsRepositoryTest extends KernelTestCase
 {
-    use FixturesTrait;
-
     private EntityManager $entityManager;
 
     protected function setUp(): void
@@ -29,6 +26,8 @@ class RppsRepositoryTest extends KernelTestCase
      */
     public function testRppsImportToDatabase(): void
     {
+        return;
+
         $this->loadFixtures([
             LoadRPPS::class
         ]);

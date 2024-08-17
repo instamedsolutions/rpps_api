@@ -3,9 +3,8 @@
 
 namespace App\Tests\Functional;
 
-use ApiPlatform\Core\Bridge\Symfony\Bundle\Test\ApiTestCase as BaseTestCase;
-use ApiPlatform\Core\Bridge\Symfony\Bundle\Test\Client;
-use ApiPlatform\Core\Bridge\Symfony\Bundle\Test\Response;
+
+use ApiPlatform\Symfony\Bundle\Test\Client;
 use App\DataFixtures\LoadAllergens;
 use App\DataFixtures\LoadCCAM;
 use App\DataFixtures\LoadCCAMGroup;
@@ -15,24 +14,18 @@ use App\DataFixtures\LoadDiseases;
 use App\DataFixtures\LoadDrugs;
 use App\DataFixtures\LoadNGAP;
 use App\DataFixtures\LoadRPPS;
-use App\Entity\Entity;
-use App\Entity\GlobalEntity;
-use App\Entity\Thing;
-use App\Entity\User;
-use App\Kernel;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\Common\DataFixtures\Executor\ORMExecutor;
 use Doctrine\Common\DataFixtures\Purger\ORMPurger;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bridge\Doctrine\DataFixtures\ContainerAwareLoader;
-use Symfony\Contracts\Translation\TranslatorInterface;
 
 /**
  * Class ApiTestCase
  *
  * @package App\Tests\Functional
  */
-abstract class ApiTestCase extends BaseTestCase
+abstract class ApiTestCase extends \ApiPlatform\Symfony\Bundle\Test\ApiTestCase
 {
 
     /**

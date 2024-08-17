@@ -13,7 +13,7 @@ jobs:
                 uses: shivammathur/setup-php@v2
                 with:
                     extensions: calendar, dom, exif, fileinfo, gd, http, imagick, intl, json, openssl, tidy, xml, zip
-                    php-version: 8.1
+                    php-version: 8.3
                     tools: composer:v2
 
             -   name: Validate composer.json and composer.lock

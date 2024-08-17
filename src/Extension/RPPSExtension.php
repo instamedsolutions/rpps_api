@@ -9,7 +9,7 @@ use Doctrine\ORM\QueryBuilder;
 
 class RPPSExtension implements QueryCollectionExtensionInterface
 {
-    public function applyToCollection(QueryBuilder $queryBuilder, LegacyQueryNameGeneratorInterface $queryNameGenerator, string $resourceClass, string $operationName = null): void
+    public function applyToCollection(QueryBuilder $queryBuilder, LegacyQueryNameGeneratorInterface $queryNameGenerator, string $resourceClass, ?string $operationName = null): void
     {
         if (RPPS::class !== $resourceClass) {
             return;

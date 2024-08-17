@@ -2,6 +2,9 @@
 
 namespace App\Entity;
 
+use ApiPlatform\Metadata\ApiResource;
+use ApiPlatform\Metadata\Get;
+use ApiPlatform\Metadata\GetCollection;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
@@ -11,6 +14,14 @@ use Symfony\Component\Serializer\Annotation\MaxDepth;
 
 #[ORM\Entity()]
 #[ORM\Table(name: 'cim_11_modifier')]
+#[ApiResource(
+    operations: [
+        new GetCollection(),
+        new Get(),
+    ],
+    paginationClientEnabled: true,
+    paginationPartial: true,
+)]
 class Cim11Modifier extends Thing implements Entity, Stringable
 {
     // API Only, this field will be populated during the normalisation with the corresponding translation
@@ -21,7 +32,7 @@ class Cim11Modifier extends Thing implements Entity, Stringable
     #[ORM\Column(type: 'string', length: 64, nullable: false, enumType: ModifierType::class)]
     protected ?ModifierType $type = null;
 
-    #[Groups(['cim_11_modifers:read'])]
+    #[Groups(['cim_11_modifer:read'])]
     #[MaxDepth(1)]
     #[ORM\ManyToOne(targetEntity: Cim11::class, inversedBy: 'modifiers')]
     #[ORM\JoinColumn('cim11_id', onDelete: 'CASCADE')]
@@ -35,7 +46,7 @@ class Cim11Modifier extends Thing implements Entity, Stringable
      */
     #[Groups(['read'])]
     #[ORM\ManyToMany(targetEntity: Cim11ModifierValue::class, mappedBy: 'modifiers')]
-    protected ?Collection $values;
+    protected Collection $values;
 
     public function __construct()
     {

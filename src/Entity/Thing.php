@@ -2,7 +2,7 @@
 
 namespace App\Entity;
 
-use ApiPlatform\Core\Annotation\ApiProperty;
+use ApiPlatform\Metadata\ApiProperty;
 use DateTime;
 use DateTimeInterface;
 use Doctrine\ORM\Mapping as ORM;
@@ -13,13 +13,15 @@ abstract class Thing implements Entity, ImportedEntity, Stringable
 {
     #[Groups(['read'])]
     #[ORM\Id]
-    #[ORM\GeneratedValue(strategy: 'UUID')]
-    #[ApiProperty(description: 'The id of the resource', required: true, attributes: [
-        'openapi_context' => [
+    #[ORM\GeneratedValue(strategy: 'CUSTOM')]
+    #[ApiProperty(
+        description: 'The id of the resource',
+        required: true,
+        openapiContext: [
             'type' => 'string',
             'format' => 'uuid',
-        ],
-    ])]
+        ]
+    )]
     #[ORM\Column(type: 'guid', unique: true)]
     protected ?string $id = null;
 
@@ -49,7 +51,7 @@ abstract class Thing implements Entity, ImportedEntity, Stringable
         return $this->createdDate;
     }
 
-    public function setCreatedDate(DateTimeInterface|null $createdDate): void
+    public function setCreatedDate(?DateTimeInterface $createdDate): void
     {
         $this->createdDate = $createdDate;
     }

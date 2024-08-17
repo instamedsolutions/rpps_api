@@ -65,15 +65,15 @@ services:
             $DRUGS_URL_CIS_GENER_BDPM: '%env(DRUGS_URL_CIS_GENER_BDPM)%'
             $DRUGS_URL_CIS_InfoImportantes: '%env(DRUGS_URL_CIS_InfoImportantes)%'
 
-    'App\Swagger\SwaggerDecorator':
-        decorates: 'api_platform.swagger.normalizer.api_gateway'
-        arguments: [ '@App\Swagger\SwaggerDecorator.inner' ]
-        autoconfigure: false
+    App\OpenApi\PhoneDecorator:
+        decorates: 'api_platform.openapi.factory'
 
-    App\Serializer\GroupsContextBuilder:
+
+    App\Serializer\SerialisationGroupGenerator:
         decorates: 'api_platform.serializer.context_builder'
         arguments:
-            $decorated: '@App\Serializer\GroupsContextBuilder.inner'
+            $decorated: '@App\Serializer\SerialisationGroupGenerator.inner'
+
 
     App\Command\Cim11Import:
         arguments:

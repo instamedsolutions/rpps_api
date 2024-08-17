@@ -1,8 +1,0 @@
-App\Entity\NGAP:
-  shortName: Ngap
-  attributes:
-    allow_extra_attributes: false
-  collectionOperations:
-    get: ~
-  itemOperations:
-    get: ~
