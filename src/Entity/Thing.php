@@ -13,7 +13,8 @@ abstract class Thing implements Entity, ImportedEntity, Stringable
 {
     #[Groups(['read'])]
     #[ORM\Id]
-    #[ORM\GeneratedValue(strategy: 'CUSTOM')]
+    /** @phpstan-ignore-next-line  */
+    #[ORM\GeneratedValue(strategy: 'UUID')]
     #[ApiProperty(
         description: 'The id of the resource',
         required: true,
