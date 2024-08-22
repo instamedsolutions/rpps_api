@@ -9,7 +9,6 @@ api_platform:
     mapping:
         paths:
             - '%kernel.project_dir%/src/Entity'
-            - '%kernel.project_dir%/config/api_platform'
     defaults:
         pagination_client_items_per_page: true
         pagination_maximum_items_per_page: 100
