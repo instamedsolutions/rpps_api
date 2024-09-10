@@ -19,7 +19,6 @@ security:
             http_basic:
                 realm: Secured Area
         main:
-            anonymous: true
             lazy: true
             provider: users_in_memory
 

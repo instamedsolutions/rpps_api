@@ -2,11 +2,15 @@
 
 namespace App\Entity;
 
-use ApiPlatform\Core\Annotation\ApiFilter;
-use ApiPlatform\Core\Annotation\ApiProperty;
-use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\SearchFilter;
+use ApiPlatform\Doctrine\Orm\Filter\SearchFilter;
+use ApiPlatform\Metadata\ApiFilter;
+use ApiPlatform\Metadata\ApiProperty;
+use ApiPlatform\Metadata\ApiResource;
+use ApiPlatform\Metadata\Get;
+use ApiPlatform\Metadata\GetCollection;
 use App\ApiPlatform\Filter\AllergenFilter;
 use App\Repository\AllergenRepository;
+use App\StateProvider\DefaultItemDataProvider;
 use Doctrine\ORM\Mapping as ORM;
 use Stringable;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
@@ -20,36 +24,55 @@ use Symfony\Component\Serializer\Annotation\Groups;
 #[ORM\Table(name: 'allergens')]
 #[ORM\Index(columns: ['allergen_code'], name: 'allergens_index')]
 #[UniqueEntity('code')]
+#[ApiResource(
+    shortName: 'allergen',
+    operations: [
+        new GetCollection(
+            order: ['name' => 'ASC'],
+        ),
+        new Get(
+            provider: DefaultItemDataProvider::class
+        ),
+    ],
+    paginationClientEnabled: true,
+    paginationPartial: true,
+)]
 class Allergen extends Thing implements Entity, Stringable
 {
-    #[ApiProperty(description: 'The unique code of the allergen', required: true, attributes: [
-        'openapi_context' => [
+    #[ApiProperty(
+        description: 'The unique code of the allergen',
+        required: true,
+        openapiContext: [
             'type' => 'string',
             'example' => '01',
-        ],
-    ])]
+        ]
+    )]
     #[ApiFilter(SearchFilter::class, strategy: 'exact')]
     #[Groups(['read'])]
     #[ORM\Column(name: 'allergen_code', type: 'string', length: 10, unique: true)]
     protected ?string $code = null;
 
-    #[ApiProperty(description: 'The name of the allergen', required: true, attributes: [
-        'openapi_context' => [
+    #[ApiProperty(
+        description: 'The name of the allergen',
+        required: true,
+        openapiContext: [
             'type' => 'string',
             'example' => 'Corn',
-        ],
-    ])]
+        ]
+    )]
     #[ApiFilter(SearchFilter::class, strategy: 'istart')]
     #[Groups(['read'])]
     #[ORM\Column(type: 'string', length: 255)]
     protected ?string $name = null;
 
-    #[ApiProperty(description: 'The parent group of the allergen', required: true, attributes: [
-        'openapi_context' => [
+    #[ApiProperty(
+        description: 'The parent group of the allergen',
+        required: true,
+        openapiContext: [
             'type' => 'string',
             'example' => 'Pollens de graminées',
-        ],
-    ])]
+        ]
+    )]
     #[Groups(['read'])]
     #[ORM\Column(name: 'allergen_group', type: 'string', length: 255)]
     protected ?string $group = null;

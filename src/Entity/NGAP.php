@@ -2,12 +2,16 @@
 
 namespace App\Entity;
 
-use ApiPlatform\Core\Annotation\ApiFilter;
-use ApiPlatform\Core\Annotation\ApiProperty;
-use ApiPlatform\Core\Bridge\Doctrine\Common\Filter\SearchFilterInterface;
-use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\SearchFilter;
+use ApiPlatform\Doctrine\Common\Filter\SearchFilterInterface;
+use ApiPlatform\Doctrine\Orm\Filter\SearchFilter;
+use ApiPlatform\Metadata\ApiFilter;
+use ApiPlatform\Metadata\ApiProperty;
+use ApiPlatform\Metadata\ApiResource;
+use ApiPlatform\Metadata\Get;
+use ApiPlatform\Metadata\GetCollection;
 use App\ApiPlatform\Filter\NGAPFilter;
 use App\Repository\NGAPRepository;
+use App\StateProvider\DefaultItemDataProvider;
 use Doctrine\ORM\Mapping as ORM;
 use Stringable;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
@@ -17,18 +21,27 @@ use Symfony\Component\Serializer\Annotation\Groups;
 #[ApiFilter(NGAPFilter::class, properties: ['search'])]
 #[ORM\Entity(repositoryClass: NGAPRepository::class)]
 #[ORM\Table(name: 'ngap')]
-#[ORM\Index(name: 'ngap_index', columns: ['code'])]
+#[ORM\Index(columns: ['code'], name: 'ngap_index')]
 #[UniqueEntity('code')]
+#[ApiResource(
+    shortName: 'Ngap',
+    operations: [
+        new GetCollection(),
+        new Get(
+            provider: DefaultItemDataProvider::class
+        ),
+    ],
+    paginationClientEnabled: true,
+    paginationPartial: true,
+)]
 class NGAP extends Thing implements Entity, Stringable
 {
     #[ApiProperty(
         description: 'The uniq code of the NGAP',
         required: true,
-        attributes: [
-            'openapi_context' => [
-                'type' => 'string',
-                'example' => 'AAD',
-            ],
+        openapiContext: [
+            'type' => 'string',
+            'example' => 'AAD',
         ]
     )]
     #[ApiFilter(SearchFilter::class, strategy: SearchFilterInterface::STRATEGY_EXACT)]
@@ -39,11 +52,9 @@ class NGAP extends Thing implements Entity, Stringable
     #[ApiProperty(
         description: 'The description of the NGAP',
         required: true,
-        attributes: [
-            'openapi_context' => [
-                'type' => 'string',
-                'example' => 'Autres accessoires traitement à domicile (Titre I Chapitre I de la LPP)',
-            ],
+        openapiContext: [
+            'type' => 'string',
+            'example' => 'Autres accessoires traitement à domicile (Titre I Chapitre I de la LPP)',
         ]
     )]
     #[ApiFilter(SearchFilter::class, strategy: SearchFilterInterface::STRATEGY_START)]

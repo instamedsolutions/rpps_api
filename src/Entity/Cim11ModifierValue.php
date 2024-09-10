@@ -2,6 +2,9 @@
 
 namespace App\Entity;
 
+use ApiPlatform\Metadata\ApiResource;
+use ApiPlatform\Metadata\Get;
+use ApiPlatform\Metadata\GetCollection;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
@@ -13,6 +16,14 @@ use Symfony\Component\Serializer\Annotation\Groups;
 #[ORM\Table(name: 'cim_11_modifier_value')]
 #[ORM\Index(columns: ['code'])]
 #[UniqueEntity(['code', 'whoId'])]
+#[ApiResource(
+    operations: [
+        new GetCollection(),
+        new Get(),
+    ],
+    paginationClientEnabled: true,
+    paginationPartial: true,
+)]
 class Cim11ModifierValue extends Thing implements Entity, Stringable
 {
     #[Groups(['read'])]

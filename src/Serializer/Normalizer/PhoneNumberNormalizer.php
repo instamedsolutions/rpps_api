@@ -12,12 +12,12 @@ class PhoneNumberNormalizer implements ContextAwareNormalizerInterface, Cacheabl
 {
     use NormalizerAwareTrait;
 
-    public function normalize($object, string $format = null, array $context = []): string
+    public function normalize($object, ?string $format = null, array $context = []): string
     {
         return "+{$object->getCountryCode()}{$object->getNationalNumber()}";
     }
 
-    public function supportsNormalization($data, string $format = null, $context = []): bool
+    public function supportsNormalization($data, ?string $format = null, $context = []): bool
     {
         return $data instanceof PhoneNumber;
     }

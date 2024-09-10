@@ -2,14 +2,18 @@
 
 namespace App\Entity;
 
-use ApiPlatform\Core\Annotation\ApiFilter;
-use ApiPlatform\Core\Annotation\ApiProperty;
-use ApiPlatform\Core\Annotation\ApiSubresource;
-use ApiPlatform\Core\Bridge\Doctrine\Common\Filter\SearchFilterInterface;
-use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\RangeFilter;
-use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\SearchFilter;
+use ApiPlatform\Doctrine\Common\Filter\SearchFilterInterface;
+use ApiPlatform\Doctrine\Orm\Filter\RangeFilter;
+use ApiPlatform\Doctrine\Orm\Filter\SearchFilter;
+use ApiPlatform\Metadata\ApiFilter;
+use ApiPlatform\Metadata\ApiProperty;
+use ApiPlatform\Metadata\ApiResource;
+use ApiPlatform\Metadata\Get;
+use ApiPlatform\Metadata\GetCollection;
+use ApiPlatform\Metadata\Link;
 use App\ApiPlatform\Filter\Cim11Filter;
 use App\Repository\Cim11Repository;
+use App\StateProvider\DefaultItemDataProvider;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
@@ -22,25 +26,48 @@ use Symfony\Component\Serializer\Annotation\Groups;
 #[ORM\Table(name: 'cim_11')]
 #[ORM\Index(columns: ['code'])]
 #[UniqueEntity(['code', 'whoId'])]
+#[ApiResource(
+    shortName: 'cim11',
+    operations: [
+        new GetCollection(
+            order: ['name' => 'ASC'],
+        ),
+        new GetCollection(
+            uriTemplate: '/cim11s/{id}/children{._format}',
+            uriVariables: [
+                'id' => new Link(toProperty: 'parent', fromClass: Cim11::class),
+            ]
+        ),
+        new Get(
+            provider: DefaultItemDataProvider::class
+        ),
+    ],
+    paginationClientEnabled: true,
+    paginationPartial: true,
+)]
 class Cim11 extends Thing implements Entity, Stringable
 {
     #[ApiFilter(SearchFilter::class, strategy: SearchFilterInterface::STRATEGY_EXACT)]
-    #[ApiProperty(description: 'The unique CIM-10 Id in the international database', required: true, attributes: [
-        'openapi_context' => [
+    #[ApiProperty(
+        description: 'The unique CIM-10 Id in the international database',
+        required: true,
+        openapiContext: [
             'type' => 'string',
             'example' => '1A00',
-        ],
-    ])]
+        ]
+    )]
     #[Groups(['read'])]
     #[ORM\Column(type: 'string', length: 16, unique: true)]
     protected ?string $code = null;
 
-    #[ApiProperty(description: 'The name of the disease', required: true, attributes: [
-        'openapi_context' => [
+    #[ApiProperty(
+        description: 'The name of the disease',
+        required: true,
+        openapiContext: [
             'type' => 'string',
             'example' => 'Choléra',
-        ],
-    ])]
+        ]
+    )]
     #[ApiFilter(SearchFilter::class, strategy: SearchFilterInterface::STRATEGY_START)]
     #[Groups(['read'])]
     #[ORM\Column(type: 'text')]
@@ -55,7 +82,6 @@ class Cim11 extends Thing implements Entity, Stringable
      * @var Collection<int,Disease>
      */
     #[ApiProperty(description: 'The child diseases', required: false)]
-    #[ApiSubresource(maxDepth: 1)]
     #[ORM\OneToMany(mappedBy: 'parent', targetEntity: Cim11::class, cascade: ['persist'], fetch: 'EXTRA_LAZY')]
     protected Collection $children;
 

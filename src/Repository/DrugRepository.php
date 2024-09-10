@@ -23,9 +23,8 @@ class DrugRepository extends ServiceEntityRepository
     }
 
     /**
-     * @param mixed $id
-     * @param null  $lockMode
-     * @param null  $lockVersion
+     * @param null $lockMode
+     * @param null $lockVersion
      *
      * @throws NonUniqueResultException
      */

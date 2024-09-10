@@ -167,6 +167,31 @@ class LoadDCim11 extends Fixture implements FixtureInterface
         $this->em->persist($disease2);
         $this->em->persist($modifier2);
 
+        $disease3 = new Cim11();
+        $disease3->setCode('CA00.1');
+        $disease3->setName('Rhinopharyngite aigüe de la gorge');
+        $disease3->setWhoId('2066255379');
+        $disease3->setHierarchyLevel(3);
+        $disease3->setCim10Code('J0B');
+        $disease3->setSynonyms([
+            'coryza aigu',
+            'maladie inflammatoire de la membrane muqueuse',
+            'inflammation des muqueuses',
+            'rhinite infectieuse aigüe',
+            'coup de froid',
+            'rhume banal',
+            'coryza',
+            'rhume',
+            'rhinopharyngite infectieuse',
+            'Rhinopharyngite',
+        ]);
+
+        $disease3->importId = 'import_1';
+
+        $disease3->setParent($disease2);
+
+        $this->em->persist($disease3);
+
         $this->em->flush();
     }
 }

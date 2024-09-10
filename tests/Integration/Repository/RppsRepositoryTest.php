@@ -4,21 +4,25 @@ namespace App\Tests\Integration\Repository;
 
 use App\DataFixtures\LoadRPPS;
 use App\Entity\RPPS;
+use Doctrine\Common\DataFixtures\Executor\ORMExecutor;
+use Doctrine\Common\DataFixtures\Purger\ORMPurger;
 use Doctrine\ORM\EntityManager;
-use Liip\TestFixturesBundle\Test\FixturesTrait;
+use Symfony\Bridge\Doctrine\DataFixtures\ContainerAwareLoader;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
+use Symfony\Component\HttpKernel\KernelInterface;
 
 class RppsRepositoryTest extends KernelTestCase
 {
-    use FixturesTrait;
+
+    private KernelInterface $symfonyKernel;
 
     private EntityManager $entityManager;
 
     protected function setUp(): void
     {
-        $kernel = self::bootKernel();
+        $this->symfonyKernel = self::bootKernel();
 
-        $this->entityManager = $kernel->getContainer()
+        $this->entityManager = $this->symfonyKernel->getContainer()
             ->get('doctrine')
             ->getManager();
     }
@@ -29,9 +33,16 @@ class RppsRepositoryTest extends KernelTestCase
      */
     public function testRppsImportToDatabase(): void
     {
-        $this->loadFixtures([
-            LoadRPPS::class
-        ]);
+        $loader = new ContainerAwareLoader($this->symfonyKernel->getContainer());
+
+        $purger = new ORMPurger($this->entityManager);
+        $purger->purge();
+
+        $fixture = new LoadRPPS();
+        $loader->addFixture($fixture);
+
+        $executor = new ORMExecutor($this->entityManager);
+        $executor->execute($loader->getFixtures(), true);
 
 
         $data = $this->entityManager->getRepository(RPPS::class)->findAll();

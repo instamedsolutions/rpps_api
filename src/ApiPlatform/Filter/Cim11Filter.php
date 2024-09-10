@@ -2,12 +2,13 @@
 
 namespace App\ApiPlatform\Filter;
 
-use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\AbstractContextAwareFilter;
-use ApiPlatform\Core\Bridge\Doctrine\Orm\Util\QueryNameGeneratorInterface;
+use ApiPlatform\Doctrine\Orm\Filter\AbstractFilter;
+use ApiPlatform\Doctrine\Orm\Util\QueryNameGeneratorInterface;
+use ApiPlatform\Metadata\Operation;
 use Doctrine\ORM\QueryBuilder;
 use Exception;
 
-final class Cim11Filter extends AbstractContextAwareFilter
+final class Cim11Filter extends AbstractFilter
 {
     use FilterTrait;
 
@@ -18,11 +19,12 @@ final class Cim11Filter extends AbstractContextAwareFilter
      */
     protected function filterProperty(
         string $property,
-        $value,
+        mixed $value,
         QueryBuilder $queryBuilder,
         QueryNameGeneratorInterface $queryNameGenerator,
         string $resourceClass,
-        string $operationName = null
+        ?Operation $operation = null,
+        array $context = []
     ): void {
         $this->queryNameGenerator = $queryNameGenerator;
 

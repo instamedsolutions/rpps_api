@@ -1,4 +1,4 @@
-FROM ghcr.io/instamedsolutions/rpps_api-base
+FROM rpps-api-base
 
 COPY --chown=www-data:www-data . /var/www/html/
 COPY ./docker/apache/conf/dev-default.conf /etc/apache2/sites-available/000-default.conf

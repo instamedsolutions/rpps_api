@@ -44,6 +44,20 @@ class Cim11sTest extends ApiTestCase
         $this->assertCount(1, $data['hydra:member']);
     }
 
+    public function testGetChildren() : void
+    {
+        $item = $this->get("cim11s/CA00-0");
+
+        $id = explode("/", $item['@id'])[3];
+
+        $data = $this->get("cim11s/$id/children");
+
+        $this->assertCount(1,$data['hydra:member']);
+
+        $this->assertCollectionKeyContains($data['hydra:member'], "code", ['CA00.1']);
+        $this->assertCollectionKeyContains($data['hydra:member'], "name", ['Rhinopharyngite aigüe de la gorge']);
+
+    }
 
     /**
      * @throws ClientExceptionInterface

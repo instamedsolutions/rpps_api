@@ -2,11 +2,15 @@
 
 namespace App\Entity;
 
-use ApiPlatform\Core\Annotation\ApiFilter;
-use ApiPlatform\Core\Annotation\ApiProperty;
-use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\SearchFilter;
+use ApiPlatform\Doctrine\Orm\Filter\SearchFilter;
+use ApiPlatform\Metadata\ApiFilter;
+use ApiPlatform\Metadata\ApiProperty;
+use ApiPlatform\Metadata\ApiResource;
+use ApiPlatform\Metadata\Get;
+use ApiPlatform\Metadata\GetCollection;
 use App\ApiPlatform\Filter\RPPSFilter;
 use App\Repository\RPPSRepository;
+use App\StateProvider\DefaultItemDataProvider;
 use Doctrine\ORM\Mapping as ORM;
 use Exception;
 use libphonenumber\PhoneNumber;
@@ -25,129 +29,166 @@ use Symfony\Component\Serializer\Annotation\SerializedName;
 #[ORM\Index(columns: ['id_rpps'], name: 'rpps_index')]
 #[ORM\Index(columns: ['specialty'], name: 'specialty_index')]
 #[UniqueEntity('idRpps')]
+#[ApiResource(
+    shortName: 'Rpps',
+    operations: [
+        new GetCollection(
+            order: ['lastName' => 'ASC'],
+        ),
+        new Get(
+            provider: DefaultItemDataProvider::class
+        ),
+    ],
+    paginationClientEnabled: true,
+    paginationPartial: true,
+)]
 class RPPS extends Thing implements Entity, Stringable
 {
     #[ApiFilter(SearchFilter::class, strategy: 'exact')]
-    #[ApiProperty(description: 'The unique RPPS identifier of the medic', required: false, attributes: [
-        'openapi_context' => [
+    #[ApiProperty(
+        description: 'The unique RPPS identifier of the medic',
+        required: false,
+        openapiContext: [
             'type' => 'string',
             'example' => '810003820189',
-        ],
-    ])]
+        ]
+    )]
     #[Groups(['read'])]
     #[ORM\Column(type: 'string', unique: true, nullable: true)]
     protected ?string $idRpps = null;
 
-    #[ApiProperty(description: 'The civility of the doctor', required: false, attributes: [
-        'openapi_context' => [
+    #[ApiProperty(
+        description: 'The civility of the doctor',
+        required: false,
+        openapiContext: [
             'type' => 'string',
             'example' => 'Docteur',
-        ],
-    ])]
+        ]
+    )]
     #[Groups(['read'])]
     #[ORM\Column(type: 'string', length: 255, nullable: true)]
     protected ?string $title = null;
 
     #[ApiFilter(SearchFilter::class, strategy: 'istart')]
-    #[ApiProperty(description: 'The last name of the doctor', required: false, attributes: [
-        'openapi_context' => [
+    #[ApiProperty(
+        description: 'The last name of the doctor',
+        required: false,
+        openapiContext: [
             'type' => 'string',
             'example' => 'RENE',
-        ],
-    ])]
+        ]
+    )]
     #[Groups(['read'])]
     #[ORM\Column(type: 'string', length: 255, nullable: true)]
     protected ?string $lastName = null;
 
     #[ApiFilter(SearchFilter::class, strategy: 'istart')]
-    #[ApiProperty(description: 'The first name of the doctor', required: false, attributes: [
-        'openapi_context' => [
+    #[ApiProperty(
+        description: 'The first name of the doctor',
+        required: false,
+        openapiContext: [
             'type' => 'string',
             'example' => 'Marc',
-        ],
-    ])]
+        ]
+    )]
     #[Groups(['read'])]
     #[ORM\Column(type: 'string', length: 255, nullable: true)]
     protected ?string $firstName = null;
 
-    #[ApiProperty(description: 'The specialty of the doctor', required: false, attributes: [
-        'openapi_context' => [
+    #[ApiProperty(
+        description: 'The specialty of the doctor',
+        required: false,
+        openapiContext: [
             'type' => 'string',
             'example' => 'Médecin',
-        ],
-    ])]
+        ]
+    )]
     #[Groups(['read'])]
     #[ORM\Column(type: 'string', length: 255, nullable: true)]
     protected ?string $specialty = null;
 
-    #[ApiProperty(description: 'The address of the doctor', required: false, attributes: [
-        'openapi_context' => [
+    #[ApiProperty(
+        description: 'The address of the doctor',
+        required: false,
+        openapiContext: [
             'type' => 'string',
             'example' => '12 Rue de Paris',
-        ],
-    ])]
+        ]
+    )]
     #[Groups(['read'])]
     #[ORM\Column(type: 'string', length: 255, nullable: true)]
     protected ?string $address = null;
 
-    #[ApiProperty(description: 'The postal code of the doctor', required: false, attributes: [
-        'openapi_context' => [
+    #[ApiProperty(
+        description: 'The postal code of the doctor',
+        required: false,
+        openapiContext: [
             'type' => 'string',
             'example' => '75019',
-        ],
-    ])]
+        ]
+    )]
     #[Groups(['read'])]
     #[ORM\Column(type: 'string', length: 255, nullable: true)]
     protected ?string $zipcode = null;
 
-    #[ApiProperty(description: 'The city of the doctor', required: false, attributes: [
-        'openapi_context' => [
+    #[ApiProperty(
+        description: 'The city of the doctor',
+        required: false,
+        openapiContext: [
             'type' => 'string',
             'example' => 'Paris',
-        ],
-    ])]
+        ]
+    )]
     #[Groups(['read'])]
     #[ORM\Column(type: 'string', length: 255, nullable: true)]
     protected ?string $city = null;
 
-    #[ApiProperty(description: 'The phone number of the doctor', required: false, attributes: [
-        'openapi_context' => [
+    #[ApiProperty(
+        description: 'The phone number of the doctor',
+        required: false,
+        openapiContext: [
             'type' => 'string',
             'example' => '+33144955555',
-        ],
-    ])]
+        ]
+    )]
     #[AssertPhoneNumber(defaultRegion: 'FR')]
     #[Groups(['read'])]
     #[ORM\Column(type: 'phone_number', nullable: true)]
     protected ?PhoneNumber $phoneNumber = null;
 
-    #[ApiProperty(description: 'The email of the doctor', required: false, attributes: [
-        'openapi_context' => [
+    #[ApiProperty(
+        description: 'The email of the doctor',
+        required: false,
+        openapiContext: [
             'type' => 'string',
             'example' => 'jean.doe@free.fr',
-        ],
-    ])]
+        ]
+    )]
     #[ApiFilter(SearchFilter::class, strategy: 'istart')]
     #[ORM\Column(type: 'string', length: 255, nullable: true)]
     #[Groups(['read'])]
     protected ?string $email = null;
 
-    #[ApiProperty(description: 'The Finess number of the doctor', required: false, attributes: [
-        'openapi_context' => [
+    #[ApiProperty(
+        description: 'The Finess number of the doctor',
+        required: false,
+        openapiContext: [
             'type' => 'string',
             'example' => '740787791',
-        ],
-    ])]
+        ]
+    )]
     #[Groups(['read'])]
     #[ORM\Column(type: 'string', length: 255, nullable: true)]
     protected ?string $finessNumber = null;
 
-    #[ApiProperty(description: 'The CPS number of the doctor', required: false, attributes: [
-        'openapi_context' => [
+    #[ApiProperty(
+        description: 'The CPS number of the doctor',
+        required: false,
+        openapiContext: [
             'type' => 'string',
             'example' => '2800089831',
-        ],
-    ])]
+        ]
+    )]
     #[Groups(['read'])]
     #[ORM\Column(type: 'string', length: 255, nullable: true)]
     protected ?string $cpsNumber = null;
