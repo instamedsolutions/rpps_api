@@ -4,11 +4,20 @@ volumes:
   rpps-db-data:
 
 services:
+
+  base:
+    build:
+      context: .
+      dockerfile: ./docker/apache/Dockerfile.base
+    image: rpps-api-base
+
   rpps-database:
     build:
       context: ./
       dockerfile: ./docker/apache/Dockerfile.${DOCKER_COMPOSE_ENV:-dev}
     container_name: rpps-data-item-container
+    depends_on:
+      - base
     command: ["make", "start-apache-prod"]
     restart: always
     ports:

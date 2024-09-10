@@ -22,7 +22,7 @@ class Cim11ModifierNormalizer implements ContextAwareNormalizerInterface, Cachea
     /**
      * @param Cim11Modifier $object
      */
-    public function normalize($object, string $format = null, array $context = []): array
+    public function normalize($object, ?string $format = null, array $context = []): array
     {
         $context[self::ALREADY_CALLED] = true;
 
@@ -31,7 +31,7 @@ class Cim11ModifierNormalizer implements ContextAwareNormalizerInterface, Cachea
         return $this->normalizer->normalize($object, $format, $context);
     }
 
-    public function supportsNormalization($data, string $format = null, $context = []): bool
+    public function supportsNormalization($data, ?string $format = null, $context = []): bool
     {
         if (isset($context[self::ALREADY_CALLED])) {
             return false;

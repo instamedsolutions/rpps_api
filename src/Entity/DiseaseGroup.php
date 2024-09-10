@@ -2,10 +2,13 @@
 
 namespace App\Entity;
 
-use ApiPlatform\Core\Annotation\ApiFilter;
-use ApiPlatform\Core\Annotation\ApiProperty;
-use ApiPlatform\Core\Annotation\ApiSubresource;
-use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\SearchFilter;
+use ApiPlatform\Doctrine\Orm\Filter\SearchFilter;
+use ApiPlatform\Metadata\ApiFilter;
+use ApiPlatform\Metadata\ApiProperty;
+use ApiPlatform\Metadata\ApiResource;
+use ApiPlatform\Metadata\Get;
+use ApiPlatform\Metadata\GetCollection;
+use ApiPlatform\Metadata\Link;
 use App\ApiPlatform\Filter\DiseaseGroupFilter;
 use App\Repository\DiseaseGroupRepository;
 use Doctrine\Common\Collections\ArrayCollection;
@@ -19,31 +22,52 @@ use Symfony\Component\Serializer\Annotation\Groups;
 #[ORM\Entity(repositoryClass: DiseaseGroupRepository::class)]
 #[ORM\Table(name: 'diseases_group')]
 #[UniqueEntity('cim')]
+#[ApiResource(
+    shortName: 'cim10Group',
+    operations: [
+        new GetCollection(
+            order: ['name' => 'ASC'],
+        ),
+        new GetCollection(
+            uriTemplate: '/cim10_groups/{id}/children{._format}',
+            uriVariables: [
+                'id' => new Link(toProperty: 'parent', fromClass: DiseaseGroup::class),
+            ]
+        ),
+        new Get(),
+    ],
+    paginationClientEnabled: true,
+    paginationPartial: true,
+)]
 class DiseaseGroup extends Thing implements Entity, Stringable
 {
     #[ApiFilter(SearchFilter::class, strategy: 'exact')]
-    #[ApiProperty(description: 'The unique CIS Id in the government database', required: true, attributes: [
-        'openapi_context' => [
+    #[ApiProperty(
+        description: 'The unique CIS Id in the government database',
+        required: true,
+        openapiContext: [
             'type' => 'string',
             'example' => '1',
-        ],
-    ])]
+        ]
+    )]
     #[Groups(['read'])]
     #[ORM\Column(type: 'string', unique: true)]
     protected ?string $cim = null;
 
     #[ApiFilter(SearchFilter::class, strategy: 'istart')]
-    #[ApiProperty(description: 'The name of the disease group', required: true, attributes: [
-        'openapi_context' => [
+    #[ApiProperty(
+        description: 'The name of the disease group',
+        required: true,
+        openapiContext: [
             'type' => 'string',
             'example' => 'Certaines maladies infectieuses et parasitaires',
-        ],
-    ])]
+        ]
+    )]
     #[Groups(['read'])]
     #[ORM\Column(type: 'string', length: 255)]
     protected ?string $name = null;
 
-    #[Groups(['diseases_groups:read'])]
+    #[Groups(['diseases_group:read'])]
     #[ORM\ManyToOne(targetEntity: DiseaseGroup::class, cascade: ['persist', 'remove'], fetch: 'EXTRA_LAZY', inversedBy: 'children')]
     #[ORM\JoinColumn(name: 'parent_id', referencedColumnName: 'id', nullable: true, onDelete: 'SET NULL')]
     protected ?DiseaseGroup $parent = null;
@@ -51,7 +75,6 @@ class DiseaseGroup extends Thing implements Entity, Stringable
     /**
      * @var Collection<int,DiseaseGroup>
      */
-    #[ApiSubresource(maxDepth: 2)]
     #[Groups(['diseases_groups:item:read'])]
     #[ORM\OneToMany(mappedBy: 'parent', targetEntity: DiseaseGroup::class, cascade: ['persist', 'remove'], fetch: 'EXTRA_LAZY')]
     protected Collection $children;

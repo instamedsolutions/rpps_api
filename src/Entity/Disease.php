@@ -2,14 +2,18 @@
 
 namespace App\Entity;
 
-use ApiPlatform\Core\Annotation\ApiFilter;
-use ApiPlatform\Core\Annotation\ApiProperty;
-use ApiPlatform\Core\Annotation\ApiSubresource;
-use ApiPlatform\Core\Bridge\Doctrine\Common\Filter\SearchFilterInterface;
-use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\RangeFilter;
-use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\SearchFilter;
+use ApiPlatform\Doctrine\Common\Filter\SearchFilterInterface;
+use ApiPlatform\Doctrine\Orm\Filter\RangeFilter;
+use ApiPlatform\Doctrine\Orm\Filter\SearchFilter;
+use ApiPlatform\Metadata\ApiFilter;
+use ApiPlatform\Metadata\ApiProperty;
+use ApiPlatform\Metadata\ApiResource;
+use ApiPlatform\Metadata\Get;
+use ApiPlatform\Metadata\GetCollection;
+use ApiPlatform\Metadata\Link;
 use App\ApiPlatform\Filter\DiseaseFilter;
 use App\Repository\DiseaseRepository;
+use App\StateProvider\DefaultItemDataProvider;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
@@ -25,6 +29,25 @@ use Symfony\Component\Serializer\Annotation\MaxDepth;
 #[ORM\Table(name: 'diseases')]
 #[ORM\Index(columns: ['cim'], name: 'diseases_index')]
 #[UniqueEntity('cim')]
+#[ApiResource(
+    shortName: 'cim10',
+    operations: [
+        new GetCollection(
+            order: ['name' => 'ASC'],
+        ),
+        new GetCollection(
+            uriTemplate: '/cim10s/{id}/children{._format}',
+            uriVariables: [
+                'id' => new Link(toProperty: 'parent', fromClass: Disease::class),
+            ]
+        ),
+        new Get(
+            provider: DefaultItemDataProvider::class
+        ),
+    ],
+    paginationClientEnabled: true,
+    paginationPartial: true,
+)]
 class Disease extends Thing implements Entity, Stringable
 {
     final public const SEX_MALE = 1;
@@ -32,22 +55,26 @@ class Disease extends Thing implements Entity, Stringable
     final public const SEX_FEMALE = 2;
 
     #[ApiFilter(SearchFilter::class, strategy: SearchFilterInterface::STRATEGY_EXACT)]
-    #[ApiProperty(description: 'The unique CIM-10 Id in the international database', required: true, attributes: [
-        'openapi_context' => [
+    #[ApiProperty(
+        description: 'The unique CIM-10 Id in the international database',
+        required: true,
+        openapiContext: [
             'type' => 'string',
             'example' => '66595239',
-        ],
-    ])]
+        ]
+    )]
     #[Groups(['read'])]
     #[ORM\Column(type: 'string', unique: true)]
     protected ?string $cim = null;
 
-    #[ApiProperty(description: 'The name of the disease', required: true, attributes: [
-        'openapi_context' => [
+    #[ApiProperty(
+        description: 'The name of the disease',
+        required: true,
+        openapiContext: [
             'type' => 'string',
             'example' => 'PANTOPRAZOLE KRKA 40 mg, comprimé gastro-résistant',
-        ],
-    ])]
+        ]
+    )]
     #[ApiFilter(SearchFilter::class, strategy: SearchFilterInterface::STRATEGY_START)]
     #[Groups(['read'])]
     #[ORM\Column(type: 'text')]
@@ -61,7 +88,7 @@ class Disease extends Thing implements Entity, Stringable
     protected ?Disease $parent = null;
 
     #[ApiProperty(description: 'The subgroup the disease is a part of. A group is itself linked to a category', required: false)]
-    #[Groups(['diseases:read'])]
+    #[Groups(['disease:read'])]
     #[MaxDepth(1)]
     #[ORM\ManyToOne(targetEntity: DiseaseGroup::class, cascade: ['persist'])]
     #[ORM\JoinColumn(name: 'group_id', referencedColumnName: 'id', nullable: true, onDelete: 'SET NULL')]
@@ -69,7 +96,7 @@ class Disease extends Thing implements Entity, Stringable
 
     #[ApiProperty(description: 'The main category the disease is a part of', required: false)]
     #[MaxDepth(1)]
-    #[Groups(['diseases:read'])]
+    #[Groups(['disease:read'])]
     #[ORM\ManyToOne(targetEntity: DiseaseGroup::class, cascade: ['persist'])]
     #[ORM\JoinColumn(name: 'category_id', referencedColumnName: 'id', nullable: true, onDelete: 'SET NULL')]
     protected ?DiseaseGroup $category = null;
@@ -78,14 +105,13 @@ class Disease extends Thing implements Entity, Stringable
      * @var Collection<int,Disease>
      */
     #[ApiProperty(description: 'The child diseases', required: false)]
-    #[ApiSubresource(maxDepth: 2)]
     #[ORM\OneToMany(mappedBy: 'parent', targetEntity: Disease::class, cascade: ['persist'], fetch: 'EXTRA_LAZY')]
     protected Collection $children;
 
     #[ApiProperty(description: 'The hierarchy level of the disease in the tree', required: false)]
     #[ApiFilter(RangeFilter::class)]
     #[ORM\Column(type: 'smallint')]
-    #[Groups(['diseases:read'])]
+    #[Groups(['disease:read'])]
     protected ?int $hierarchyLevel = null;
 
     #[ApiProperty(description: 'The sex of the patient if the disease only targets a specific individual', required: false)]

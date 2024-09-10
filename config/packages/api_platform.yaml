@@ -6,18 +6,17 @@ api_platform:
     enable_entrypoint: true
     enable_docs: true
     enable_re_doc: true
-    allow_plain_identifiers: true
     mapping:
         paths:
             - '%kernel.project_dir%/src/Entity'
-            - '%kernel.project_dir%/config/api_platform'
+    defaults:
+        pagination_client_items_per_page: true
+        pagination_maximum_items_per_page: 100
 
     collection:
         order_parameter_name: '_order'
         pagination:
-            client_items_per_page: true
             items_per_page_parameter_name: _per_page
-            maximum_items_per_page: 100
     doctrine:
         enabled: true
     formats:

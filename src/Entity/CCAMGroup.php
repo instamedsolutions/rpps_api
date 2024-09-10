@@ -2,10 +2,13 @@
 
 namespace App\Entity;
 
-use ApiPlatform\Core\Annotation\ApiFilter;
-use ApiPlatform\Core\Annotation\ApiProperty;
-use ApiPlatform\Core\Annotation\ApiSubresource;
-use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\SearchFilter;
+use ApiPlatform\Doctrine\Orm\Filter\SearchFilter;
+use ApiPlatform\Metadata\ApiFilter;
+use ApiPlatform\Metadata\ApiProperty;
+use ApiPlatform\Metadata\ApiResource;
+use ApiPlatform\Metadata\Get;
+use ApiPlatform\Metadata\GetCollection;
+use ApiPlatform\Metadata\Link;
 use App\Repository\CCAMGroupRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
@@ -16,49 +19,72 @@ use Symfony\Component\Serializer\Annotation\Groups;
 
 #[ORM\Entity(repositoryClass: CCAMGroupRepository::class)]
 #[ORM\Table(name: 'ccam_group')]
-#[UniqueEntity('code')]
+#[UniqueEntity('code')] #[ApiResource(
+    shortName: 'CcamGroup',
+    operations: [
+        new GetCollection(
+            order: ['name' => 'ASC'],
+        ),
+        new GetCollection(
+            uriTemplate: '/ccam_group/{id}/children{._format}',
+            uriVariables: [
+                'id' => new Link(toProperty: 'parent', fromClass: CCAMGroup::class),
+            ]
+        ),
+        new Get(),
+    ],
+    paginationClientEnabled: true,
+    paginationPartial: true,
+)]
 class CCAMGroup extends Thing implements Entity, Stringable
 {
-    #[ApiProperty(description: 'The unique code in the government database', required: true, attributes: [
-        'openapi_context' => [
-            'type' => 'string',
-            'example' => '01',
-        ],
-    ])]
+    #[ApiProperty(
+        description: 'The unique code in the government database',
+        required: true,
+        openapiContext: [
+            'openapi_context' => [
+                'type' => 'string',
+                'example' => '01',
+            ],
+        ]
+    )]
     #[ApiFilter(SearchFilter::class, strategy: 'exact')]
     #[Groups(['read'])]
     #[ORM\Column(type: 'string', unique: true)]
     protected ?string $code = null;
 
     #[ApiFilter(SearchFilter::class, strategy: 'istart')]
-    #[ApiProperty(description: 'The name of the disease group', required: true, attributes: [
-        'openapi_context' => [
+    #[ApiProperty(
+        description: 'The name of the disease group',
+        required: true,
+        openapiContext: [
             'type' => 'string',
             'example' => 'Certaines maladies infectieuses et parasitaires',
-        ],
-    ])]
+        ]
+    )]
     #[Groups(['read'])]
     #[ORM\Column(type: 'string', length: 255)]
     protected ?string $name = null;
 
-    #[ApiProperty(description: 'The description of the disease group', required: true, attributes: [
-        'openapi_context' => [
+    #[ApiProperty(
+        description: 'The description of the disease group',
+        required: true,
+        openapiContext: [
             'type' => 'string',
             'example' => 'Certaines maladies infectieuses et parasitaires',
-        ],
-    ])]
+        ]
+    )]
     #[Groups(['ccam_groups:item:read'])]
     #[ORM\Column(type: 'text', nullable: true)]
     protected ?string $description = null;
 
-    #[Groups(['ccam_groups:read'])]
+    #[Groups(['ccam_group:read'])]
     #[ORM\ManyToOne(targetEntity: CCAMGroup::class, cascade: ['persist'], fetch: 'EXTRA_LAZY', inversedBy: 'children')]
     protected ?CCAMGroup $parent = null;
 
     /**
      * @var Collection<int,CCAMGroup>
      */
-    #[ApiSubresource(maxDepth: 2)]
     #[Groups(['ccam_groups:item:read'])]
     #[ORM\OneToMany(mappedBy: 'parent', targetEntity: CCAMGroup::class, cascade: ['persist'], fetch: 'EXTRA_LAZY')]
     protected Collection $children;

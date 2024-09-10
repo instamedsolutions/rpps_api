@@ -2,11 +2,12 @@
 
 namespace App\ApiPlatform\Filter;
 
-use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\AbstractContextAwareFilter;
-use ApiPlatform\Core\Bridge\Doctrine\Orm\Util\QueryNameGeneratorInterface;
+use ApiPlatform\Doctrine\Orm\Filter\AbstractFilter;
+use ApiPlatform\Doctrine\Orm\Util\QueryNameGeneratorInterface;
+use ApiPlatform\Metadata\Operation;
 use Doctrine\ORM\QueryBuilder;
 
-final class NGAPFilter extends AbstractContextAwareFilter
+final class NGAPFilter extends AbstractFilter
 {
     use FilterTrait;
 
@@ -14,11 +15,12 @@ final class NGAPFilter extends AbstractContextAwareFilter
 
     protected function filterProperty(
         string $property,
-        $value,
+        mixed $value,
         QueryBuilder $queryBuilder,
         QueryNameGeneratorInterface $queryNameGenerator,
         string $resourceClass,
-        string $operationName = null
+        ?Operation $operation = null,
+        array $context = []
     ): void {
         $this->queryNameGenerator = $queryNameGenerator;
 
