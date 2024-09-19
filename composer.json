@@ -12,6 +12,7 @@
         "ext-json": "*",
         "ext-zip": "*",
         "api-platform/core": "^3",
+        "cocur/slugify": "^4.6",
         "doctrine/annotations": "^1.0",
         "doctrine/cache": "^2.2",
         "doctrine/dbal": "2.*",

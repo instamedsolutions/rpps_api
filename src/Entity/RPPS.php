@@ -131,17 +131,30 @@ class RPPS extends Thing implements Entity, Stringable
     #[ORM\Column(type: 'string', length: 255, nullable: true)]
     protected ?string $zipcode = null;
 
+    /**
+     * @deprecated since v2.0, use $cityEntity instead
+     */
     #[ApiProperty(
-        description: 'The city of the doctor',
+        description: 'Deprecated. The city of the doctor, use cityEntity instead.',
         required: false,
         openapiContext: [
             'type' => 'string',
             'example' => 'Paris',
+            'deprecated' => true,
         ]
     )]
     #[Groups(['read'])]
     #[ORM\Column(type: 'string', length: 255, nullable: true)]
     protected ?string $city = null;
+
+    #[ApiProperty(
+        description: 'The city entity of the doctor, with more detailed information such as population and coordinates.',
+        required: false,
+    )]
+    #[Groups(['read'])]
+    #[ORM\ManyToOne(targetEntity: City::class)]
+    #[ORM\JoinColumn(nullable: true)]
+    private ?City $cityEntity = null;
 
     #[ApiProperty(
         description: 'The phone number of the doctor',
@@ -316,24 +329,6 @@ class RPPS extends Thing implements Entity, Stringable
         return $this;
     }
 
-    public function getCity(): ?string
-    {
-        if (!$this->city) {
-            return null;
-        }
-
-        return trim(preg_replace('#^\\d{5,6}#', '', $this->city));
-    }
-
-    public function setCity(?string $city): self
-    {
-        $city = trim(preg_replace('#^\\d{5,6}#', '', $city));
-
-        $this->city = $city;
-
-        return $this;
-    }
-
     public function getPhoneNumber(): ?PhoneNumber
     {
         return $this->phoneNumber;
@@ -466,5 +461,40 @@ class RPPS extends Thing implements Entity, Stringable
             'Monsieur' => 'M.',
             default => null,
         };
+    }
+
+    public function getCityEntity(): ?City
+    {
+        return $this->cityEntity;
+    }
+
+    public function setCityEntity(?City $cityEntity): self
+    {
+        $this->cityEntity = $cityEntity;
+
+        return $this;
+    }
+
+    public function getCity(): ?string
+    {
+
+        if ($this->cityEntity) {
+            return $this->cityEntity->getName();
+        }
+
+        if (!$this->city) {
+                return null;
+        }
+
+            return trim(preg_replace('#^\\d{5,6}#', '', $this->city));
+    }
+
+    public function setCity(?string $city): self
+    {
+        $city = trim(preg_replace('#^\\d{5,6}#', '', $city));
+
+        $this->city = $city;
+
+        return $this;
     }
 }
