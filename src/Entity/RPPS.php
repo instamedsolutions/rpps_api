@@ -21,13 +21,15 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Serializer\Annotation\Groups;
 use Symfony\Component\Serializer\Annotation\SerializedName;
 
+// TODO - remove this index when the migration to specialtyEntity is done.  @Bastien
+#[ORM\Index(columns: ['specialty'], name: 'specialty_index')]
+
 #[ApiFilter(RPPSFilter::class, properties: ['search', 'demo'])]
 #[ORM\Entity(repositoryClass: RPPSRepository::class)]
 #[ORM\Table(name: 'rpps')]
 #[ORM\Index(columns: ['full_name'], name: 'full_name_index')]
 #[ORM\Index(columns: ['full_name_inversed'], name: 'full_name_inversed_index')]
 #[ORM\Index(columns: ['id_rpps'], name: 'rpps_index')]
-#[ORM\Index(columns: ['specialty'], name: 'specialty_index')]
 #[UniqueEntity('idRpps')]
 #[ApiResource(
     shortName: 'Rpps',
@@ -95,17 +97,30 @@ class RPPS extends Thing implements Entity, Stringable
     #[ORM\Column(type: 'string', length: 255, nullable: true)]
     protected ?string $firstName = null;
 
+    /**
+     * @deprecated use $specialtyEntity instead
+     */
     #[ApiProperty(
-        description: 'The specialty of the doctor',
+        description: 'Deprecated. The specialty of the doctor. Use specialtyEntity instead.',
         required: false,
         openapiContext: [
             'type' => 'string',
             'example' => 'Médecin',
+            'deprecated' => true,
         ]
     )]
     #[Groups(['read'])]
     #[ORM\Column(type: 'string', length: 255, nullable: true)]
     protected ?string $specialty = null;
+
+    #[ApiProperty(
+        description: 'The specialty entity of the doctor',
+        required: false,
+    )]
+    #[Groups(['read'])]
+    #[ORM\ManyToOne(targetEntity: Specialty::class, cascade: ['persist'])]
+    #[ORM\JoinColumn(nullable: true)]
+    private ?Specialty $specialtyEntity = null;
 
     #[ApiProperty(
         description: 'The address of the doctor',
@@ -132,7 +147,7 @@ class RPPS extends Thing implements Entity, Stringable
     protected ?string $zipcode = null;
 
     /**
-     * @deprecated since v2.0, use $cityEntity instead
+     * @deprecated use $cityEntity instead
      */
     #[ApiProperty(
         description: 'Deprecated. The city of the doctor, use cityEntity instead.',
@@ -274,21 +289,6 @@ class RPPS extends Thing implements Entity, Stringable
         $this->firstName = $firstName;
 
         $this->concatFullNames();
-
-        return $this;
-    }
-
-    public function getSpecialty(): ?string
-    {
-        return $this->specialty;
-    }
-
-    /**
-     * @return $this
-     */
-    public function setSpecialty(?string $specialty): self
-    {
-        $this->specialty = $specialty;
 
         return $this;
     }
@@ -496,5 +496,31 @@ class RPPS extends Thing implements Entity, Stringable
         $this->city = $city;
 
         return $this;
+    }
+
+    public function getSpecialty(): ?string
+    {
+        if ($this->specialtyEntity) {
+            return $this->specialtyEntity->getName();
+        }
+
+        return $this->specialty;
+    }
+
+    public function setSpecialty(?string $specialty): self
+    {
+        $this->specialty = $specialty;
+
+        return $this;
+    }
+
+    public function getSpecialtyEntity(): ?Specialty
+    {
+        return $this->specialtyEntity;
+    }
+
+    public function setSpecialtyEntity(?Specialty $specialtyEntity): void
+    {
+        $this->specialtyEntity = $specialtyEntity;
     }
 }

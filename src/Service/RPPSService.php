@@ -5,6 +5,7 @@ namespace App\Service;
 use App\DataFixtures\LoadRPPS;
 use App\Entity\City;
 use App\Entity\RPPS;
+use App\Entity\Specialty;
 use Cocur\Slugify\Slugify;
 use Doctrine\Common\DataFixtures\Executor\ORMExecutor;
 use Doctrine\DBAL\Connection;
@@ -23,6 +24,9 @@ class RPPSService extends ImporterService
     private int $matchedCitiesCount = 0;
     private int $unmatchedCitiesCount = 0;
 
+    private array $specialtyByName = [];
+    private array $specialtyByCanonical = [];
+
     public function __construct(
         protected readonly string $cps,
         protected readonly string $rpps,
@@ -31,6 +35,18 @@ class RPPSService extends ImporterService
         private readonly KernelInterface $kernel
     ) {
         parent::__construct(RPPS::class, $fileProcessor, $em);
+        $this->initializeSpecialtyMaps();
+    }
+
+    // Initialize the hashmaps for specialties
+    private function initializeSpecialtyMaps(): void
+    {
+        $specialties = $this->em->getRepository(Specialty::class)->findAll();
+
+        foreach ($specialties as $specialty) {
+            $this->specialtyByName[$specialty->getName()] = true; // Use `true` as a placeholder
+            $this->specialtyByCanonical[$specialty->getCanonical()] = true;
+        }
     }
 
     public function loadTestData(): void
@@ -132,10 +148,26 @@ class RPPSService extends ImporterService
         $rpps->setTitle($data[6]);
         $rpps->setLastName($data[7]);
         $rpps->setFirstName($data[8]);
-        $rpps->setSpecialty($data[10]);
 
+        // Determine which specialty field to use
         if ($data[16] && in_array($data[13], ['S', 'CEX'])) {
-            $rpps->setSpecialty($data[16]);
+            $specialtyName = $data[16];
+        } else {
+            // Fallback to $data[10] if $data[16] is not valid
+            $specialtyName = $data[10];
+        }
+
+        // If a valid specialty is found, find or create the SpecialtyEntity
+        if ($specialtyName) {
+            $specialtyEntity = $this->findSpecialtyEntity($specialtyName);
+            if ($specialtyEntity) {
+                $rpps->setSpecialtyEntity($specialtyEntity);
+            } else {
+                // Fallback previous flow
+                $rpps->setSpecialty($specialtyName);
+                // Log or handle cases where the specialty is not found
+                $this->output->writeln('No specialty found for: ' . $specialtyName);
+            }
         }
 
         $rpps->setAddress($data[28] . ' ' . $data[31] . ' ' . $data[31] . ' ' . $data[33]);
@@ -159,6 +191,28 @@ class RPPSService extends ImporterService
         $this->entities[$rpps->getIdRpps()] = $rpps;
 
         return $rpps;
+    }
+
+    private function findSpecialtyEntity(string $specialtyName): ?Specialty
+    {
+        // Check for exact match
+        if (isset($this->specialtyByName[$specialtyName])) {
+            // Fetch from DB to ensure we have the most up-to-date entity,
+            // avoiding memory overhead of storing full entities in the hashmap.
+            // If we keep assigning the same entity in batch processing, form the hashmap value, somehow doctrine will not be happy.
+            return $this->em->getRepository(Specialty::class)->findOneBy(['name' => $specialtyName]);
+        }
+
+        $slugify = new Slugify();
+        $canonicalName = $slugify->slugify($specialtyName);
+
+        // Check for canonical match
+        if (isset($this->specialtyByCanonical[$canonicalName])) {
+            // Same reasoning applies for the canonical match.
+            return $this->em->getRepository(Specialty::class)->findOneBy(['canonical' => $canonicalName]);
+        }
+
+        return null;
     }
 
     private function findCityEntity(mixed $zipCode, mixed $cityName): ?City

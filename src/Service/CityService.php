@@ -41,7 +41,7 @@ class CityService extends ImporterService
         FileProcessor $fileProcessor,
         EntityManagerInterface $em
     ) {
-        parent::__construct(Drug::class, $fileProcessor, $em);
+        parent::__construct(City::class, $fileProcessor, $em);
     }
 
     public function setVerbose(bool $verbose): void
