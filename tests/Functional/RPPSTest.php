@@ -12,9 +12,7 @@ use \Symfony\Contracts\HttpClient\Exception\TransportExceptionInterface;
 
 
 /**
- * Class RPPSTest
- *
- * @package App\Tests\Functional
+ * @group
  */
 class RPPSTest extends ApiTestCase
 {
@@ -60,6 +58,15 @@ class RPPSTest extends ApiTestCase
         $this->assertCollectionKeyContains($data['hydra:member'], "firstName", ["Bastien"]);
         $this->assertCollectionKeyNotContains($data['hydra:member'], "firstName", ["Julien", "Emilie", "Jérémie"]);
         $this->assertCollectionKeyContains($data['hydra:member'], "lastName", ["TEST"]);
+
+        // Legacy specialty
+        $this->assertCollectionKeyContains($data['hydra:member'], "specialty", ["Médecine Générale"]);
+
+        // Specialty v2
+        $specialty = $data['hydra:member'][0]['specialtyEntity'];
+        $this->assertEquals("Médecine Générale", $specialty['name']);
+        $this->assertEquals("medecine-generale", $specialty['canonical']);
+        $this->assertEquals("Médecin généraliste", $specialty['specialistName']);
 
         $this->assertCount(1, $data['hydra:member']);
     }

@@ -83,7 +83,7 @@ class SpecialtyService extends ImporterService
 
     private function processSpecialty(array $data, Slugify $slugify): void
     {
-        [$specialtyName] = $data;
+        [$specialtyName, $specialistName] = $data;
 
         // Create canonical form
         $canonical = $slugify->slugify($specialtyName);
@@ -92,6 +92,7 @@ class SpecialtyService extends ImporterService
         $specialty = new Specialty();
         $specialty->setName($specialtyName);
         $specialty->setCanonical($canonical);
+        $specialty->setSpecialistName($specialistName);
         $specialty->importId = $this->getImportId();
 
         $this->em->persist($specialty);

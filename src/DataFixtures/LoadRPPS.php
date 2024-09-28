@@ -2,12 +2,16 @@
 
 namespace App\DataFixtures;
 
+use App\Entity\City;
 use App\Entity\RPPS;
+use App\Entity\Specialty;
 use Doctrine\Bundle\FixturesBundle\Fixture;
+use Doctrine\Common\DataFixtures\DependentFixtureInterface;
+use Doctrine\Common\DataFixtures\FixtureInterface;
 use Doctrine\Persistence\ObjectManager;
 use Faker\Factory;
 
-class LoadRPPS extends Fixture
+class LoadRPPS extends Fixture implements DependentFixtureInterface, FixtureInterface
 {
     public string $importId = 'import_1';
 
@@ -20,6 +24,15 @@ class LoadRPPS extends Fixture
         $faker = Factory::create('fr_FR');
 
         $faker->seed(666);
+
+        // Get some specialties from LoadSpecialty fixture
+        $specialtyRepo = $this->em->getRepository(Specialty::class);
+        $generalSpecialty = $specialtyRepo->findOneBy(['canonical' => 'medecine-generale']);
+        $pediatricsSpecialty = $specialtyRepo->findOneBy(['canonical' => 'pediatrie']);
+        $pharmacySpecialty = $specialtyRepo->findOneBy(['canonical' => 'pharmacien']);
+        $radiologySpecialty = $specialtyRepo->findOneBy(['canonical' => 'radiologie']);
+        $sageFemmeSpecialty = $specialtyRepo->findOneBy(['canonical' => 'sage-femme']);
+
 
         foreach ($this->getUsers() as $i => $user) {
             $rpps = new RPPS();
@@ -49,10 +62,45 @@ class LoadRPPS extends Fixture
                 $rpps->setCity($faker->city());
                 $rpps->setZipcode($faker->postcode());
             }
-            $rpps->setSpecialty($this->getSpecialties()[$i]);
+            $rpps->setSpecialty($this->getLegacySpecialties()[$i]);
+
+            // Set new specialty entity based on specialty type
+            switch ($i) {
+                case 0:
+                case 1:
+                    $rpps->setSpecialtyEntity($generalSpecialty);
+                    break;
+                case 2:
+                case 3:
+                    $rpps->setSpecialtyEntity($sageFemmeSpecialty);
+                    break;
+                case 4:
+                case 5:
+                case 6:
+                case 7:
+                    $rpps->setSpecialtyEntity($pediatricsSpecialty);
+                    break;
+                case 8:
+                    $rpps->setSpecialtyEntity($pharmacySpecialty);
+                    break;
+                case 9:
+                case 10:
+                case 11:
+                    $rpps->setSpecialtyEntity($radiologySpecialty);
+                    break;
+            }
 
             if (in_array($i, [0, 3, 5, 9])) {
                 $rpps->setPhoneNumber($faker->phoneNumber());
+            }
+
+
+            // Dynamically link cityEntity based on the INSEE code
+            $cityInseeCode = $this->getCityInseeCode($i);
+            $city = $this->em->getRepository(City::class)->findOneBy(['inseeCode' => $cityInseeCode]);
+
+            if ($city) {
+                $rpps->setCityEntity($city);
             }
 
             $rpps->importId = $this->importId;
@@ -89,7 +137,27 @@ class LoadRPPS extends Fixture
         return "$first$j$j$j$j$j$j$j$j$j$j";
     }
 
-    private function getSpecialties(): array
+    private function getCityInseeCode(int $index): string
+    {
+        // TODO update - cities fixture have changed
+        $cityInseeCodes = [
+            '02008', // Aizy-Jouy
+            '02009', // Alaincourt
+            '02010', // Allemant
+            '02011', // Ambleny
+            '02012', // Ambrief
+            '02013', // Amifontaine
+            '02014', // Amigny-Rouy
+            '02015', // Ancienville
+            '02016', // Andelain
+            '02017', // Anguilcourt-le-Sart
+            '02018', // Anizy-le-Château
+        ];
+
+        return $cityInseeCodes[$index % count($cityInseeCodes)];
+    }
+
+    private function getLegacySpecialties(): array
     {
         return [
             'Qualifié en Médecine Générale',
@@ -104,5 +172,10 @@ class LoadRPPS extends Fixture
             null,
             'Infirmier',
         ];
+    }
+
+    public function getDependencies(): array
+    {
+        return [LoadSpecialty::class, LoadCity::class];
     }
 }

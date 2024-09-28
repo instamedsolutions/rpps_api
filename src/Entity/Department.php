@@ -7,19 +7,23 @@ use App\Repository\DepartmentRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 #[ORM\Entity(repositoryClass: DepartmentRepository::class)]
 class Department extends Thing implements Entity
 {
+    #[Groups(['read'])]
     #[ORM\Column(length: 255)]
     private ?string $name = null;
 
+    #[Groups(['read'])]
     #[ORM\Column(length: 255, unique: true)]
     private ?string $codeDepartment = null;
 
     #[ORM\OneToMany(mappedBy: 'department', targetEntity: City::class)]
     private Collection $cities;
 
+    #[Groups(['read'])]
     #[ORM\ManyToOne(inversedBy: 'departments')]
     #[ORM\JoinColumn(nullable: false)]
     private ?Region $region = null;
@@ -28,6 +32,7 @@ class Department extends Thing implements Entity
     #[ORM\JoinColumn(nullable: true)]
     private ?City $chefLieu = null;
 
+    #[Groups(['read'])]
     #[ORM\Column(type: 'string', enumType: DepartmentType::class)]
     private DepartmentType $departmentType;
 

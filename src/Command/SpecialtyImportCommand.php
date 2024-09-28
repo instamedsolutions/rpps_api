@@ -26,8 +26,8 @@ class SpecialtyImportCommand extends Command
     {
         $io = new SymfonyStyle($input, $output);
 
-        $specialtiesFilePath = __DIR__ . '/../../data/specialties.csv';
-        $linkFilePath = __DIR__ . '/../../data/specialties_link.csv';
+        $specialtiesFilePath = __DIR__ . '/../../data/specialties/specialties.csv';
+        $linkFilePath = __DIR__ . '/../../data/specialties/specialties_link.csv';
 
         $this->specialtyService->setOutput($output);
 

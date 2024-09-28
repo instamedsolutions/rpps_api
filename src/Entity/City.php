@@ -2,12 +2,20 @@
 
 namespace App\Entity;
 
+use ApiPlatform\Doctrine\Orm\Filter\SearchFilter;
+use ApiPlatform\Metadata\ApiFilter;
 use ApiPlatform\Metadata\ApiResource;
+use ApiPlatform\Metadata\Get;
+use ApiPlatform\Metadata\GetCollection;
 use App\Repository\CityRepository;
+use App\StateProvider\DefaultItemDataProvider;
+use App\StateProvider\SimilarCitiesProvider;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
+use Symfony\Component\Serializer\Annotation\MaxDepth;
 
 #[ORM\Entity(repositoryClass: CityRepository::class)]
 #[ApiResource]
@@ -17,14 +25,35 @@ use Doctrine\ORM\Mapping as ORM;
     new ORM\Index(columns: ['subCityAltName'], name: 'idx_sub_city_alt_name'),
     new ORM\Index(columns: ['inseeCode'], name: 'idx_insee_code'),
 ])]
+#[ApiResource(
+    shortName: 'City',
+    operations: [
+        new GetCollection(order: ['name' => 'ASC']),
+        new Get(provider: DefaultItemDataProvider::class),
+        new GetCollection(
+            uriTemplate: '/cities/{id}/sub_cities',
+            normalizationContext: ['groups' => ['city:sub_cities:read']],
+        ),
+        new GetCollection(
+            uriTemplate: '/cities/{id}/similar',
+            provider: SimilarCitiesProvider::class,
+        ),
+    ],
+    paginationClientEnabled: true,
+    paginationPartial: true,
+)]
+#[ApiFilter(SearchFilter::class, properties: ['name' => 'partial'])]
+//#[ApiFilter(LocationFilter::class)]
 class City extends Thing implements Entity
 {
+    #[Groups(['read'])]
     #[ORM\Column(length: 255, unique: true)]
     private ?string $canonical = null;
 
     // Normalized name of the main city : Bourg-Saint-Christophe
     // With accents when we could match the data with the coordinates import file.
     // Expanded : ST DENIS => Saint-Denis
+    #[Groups(['read'])]
     #[ORM\Column(length: 255)]
     private ?string $name = null;
 
@@ -33,6 +62,7 @@ class City extends Thing implements Entity
     private ?string $rawName = null;
 
     // Normalized sub-city name  ex : Marfoz
+    #[Groups(['read', 'city:item:read'])]
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $subCityName = null;
 
@@ -40,28 +70,37 @@ class City extends Thing implements Entity
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $rawSubName = null;
 
+    #[Groups(['city:item:read'])]
     #[ORM\Column(length: 8, nullable: false)]
     private ?string $inseeCode = null;
 
+    #[Groups(['read'])]
     #[ORM\Column(length: 12)]
     private ?string $postalCode = null;
 
+    #[Groups(['city:item:read'])]
     #[ORM\ManyToOne(inversedBy: 'cities')]
     #[ORM\JoinColumn(nullable: false)]
     private ?Department $department = null;
 
+    #[Groups(['city:item:read'])]
     #[ORM\Column(type: Types::DECIMAL, precision: 22, scale: 16, nullable: true)]
     private ?string $latitude = null;
 
+    #[Groups(['city:item:read'])]
     #[ORM\Column(type: Types::DECIMAL, precision: 22, scale: 16, nullable: true)]
     private ?string $longitude = null;
 
+    #[Groups(['city:item:read'])]
     #[ORM\Column(type: 'integer', nullable: true)]
     private ?int $population = null;
 
+    #[Groups(['read'])]
+    #[MaxDepth(1)]
     #[ORM\ManyToOne(targetEntity: self::class, inversedBy: 'subCities')]
     private ?self $mainCity = null;
 
+    #[Groups(['city:sub_cities:read'])]
     #[ORM\OneToMany(mappedBy: 'mainCity', targetEntity: self::class, cascade: ['persist', 'remove'])]
     private Collection $subCities;
 

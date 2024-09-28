@@ -24,8 +24,9 @@ class RPPSService extends ImporterService
     private int $matchedCitiesCount = 0;
     private int $unmatchedCitiesCount = 0;
 
-    private array $specialtyByName = [];
-    private array $specialtyByCanonical = [];
+    // Hashmaps for specialties to avoid unnecessary DB queries
+    private array $specialtyByName = [];  // The name field of the Specialty entity
+    private array $specialtyByAltName = []; // Mapping of Instamed RPPS db specialties to our specialties
 
     public function __construct(
         protected readonly string $cps,
@@ -45,10 +46,14 @@ class RPPSService extends ImporterService
 
         foreach ($specialties as $specialty) {
             $this->specialtyByName[$specialty->getName()] = true; // Use `true` as a placeholder
-            $this->specialtyByCanonical[$specialty->getCanonical()] = true;
         }
+
+        $this->specialtyByAltName = SpecialtyMappingService::SPECIALTY_MAPPING;
     }
 
+    /**
+     * @throws \Doctrine\DBAL\Exception
+     */
     public function loadTestData(): void
     {
         $this->output->writeln('Deletion of existing data in progress');
@@ -109,6 +114,7 @@ class RPPSService extends ImporterService
 
     /**
      * @throws NonUniqueResultException
+     * @throws Exception
      */
     protected function processData(array $data, string $type): ?RPPS
     {
@@ -119,9 +125,6 @@ class RPPSService extends ImporterService
         };
     }
 
-    /**
-     * @throws NonUniqueResultException
-     */
     protected function processCPS(array $data): ?RPPS
     {
         /** @var RPPS|null $rpps */
@@ -203,14 +206,13 @@ class RPPSService extends ImporterService
             return $this->em->getRepository(Specialty::class)->findOneBy(['name' => $specialtyName]);
         }
 
-        $slugify = new Slugify();
-        $canonicalName = $slugify->slugify($specialtyName);
-
-        // Check for canonical match
-        if (isset($this->specialtyByCanonical[$canonicalName])) {
-            // Same reasoning applies for the canonical match.
-            return $this->em->getRepository(Specialty::class)->findOneBy(['canonical' => $canonicalName]);
+        // Check for alternative name match using the static array
+        if (isset($this->specialtyByAltName[$specialtyName])) {
+            return $this->em->getRepository(Specialty::class)->findOneBy(['name' => $this->specialtyByAltName[$specialtyName]]);
         }
+
+        // Log or handle case when no match is found
+        $this->output->writeln("<error>No specialty found for: $specialtyName <error>");
 
         return null;
     }
