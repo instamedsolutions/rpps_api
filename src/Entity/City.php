@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use ApiPlatform\Doctrine\Orm\Filter\OrderFilter;
 use ApiPlatform\Doctrine\Orm\Filter\SearchFilter;
 use ApiPlatform\Metadata\ApiFilter;
 use ApiPlatform\Metadata\ApiResource;
@@ -43,7 +44,7 @@ use Symfony\Component\Serializer\Annotation\MaxDepth;
     paginationPartial: true,
 )]
 #[ApiFilter(SearchFilter::class, properties: ['name' => 'partial'])]
-//#[ApiFilter(LocationFilter::class)]
+#[ApiFilter(OrderFilter::class, properties: ['population' => 'ASC'], arguments: ['orderParameterName' => '_orderBy'])]
 class City extends Thing implements Entity
 {
     #[Groups(['read'])]
@@ -91,7 +92,7 @@ class City extends Thing implements Entity
     #[ORM\Column(type: Types::DECIMAL, precision: 22, scale: 16, nullable: true)]
     private ?string $longitude = null;
 
-    #[Groups(['city:item:read'])]
+    #[Groups(['read'])]
     #[ORM\Column(type: 'integer', nullable: true)]
     private ?int $population = null;
 

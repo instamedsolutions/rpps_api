@@ -9,7 +9,7 @@ use Symfony\Contracts\HttpClient\Exception\ServerExceptionInterface;
 use Symfony\Contracts\HttpClient\Exception\TransportExceptionInterface;
 
 /**
- * @group
+ * @group mygroup
  */
 class CityTest extends ApiTestCase
 {
@@ -237,6 +237,97 @@ class CityTest extends ApiTestCase
             $this->assertEquals(
                 $cityWithoutCoordinatesNoSubCity->getDepartment()->getId(),
                 $city->getDepartment()->getId(),
+            );
+        }
+    }
+
+    /**
+     * @group
+     * @throws ClientExceptionInterface
+     * @throws RedirectionExceptionInterface
+     * @throws ServerExceptionInterface
+     * @throws TransportExceptionInterface
+     */
+    public function testGetCitiesSortedByPopulationAsc(): void
+    {
+        $data = $this->get("cities?_orderBy[population]=ASC");
+        $this->assertResponseStatusCodeSame(Response::HTTP_OK);
+
+        $populations = array_column($data['hydra:member'], 'population');
+        $this->assertNotEmpty($populations);
+        $this->assertSortedAscending($populations);
+    }
+
+    /**
+     * @group
+     * @throws ClientExceptionInterface
+     * @throws RedirectionExceptionInterface
+     * @throws ServerExceptionInterface
+     * @throws TransportExceptionInterface
+     */
+    public function testGetCitiesSortedByPopulationDesc(): void
+    {
+        $data = $this->get("cities?_orderBy[population]=DESC");
+        $this->assertResponseStatusCodeSame(Response::HTTP_OK);
+
+        $populations = array_column($data['hydra:member'], 'population');
+        $this->assertNotEmpty($populations);
+        $this->assertSortedDescending($populations);
+    }
+
+    /**
+     * @group
+     * @throws ClientExceptionInterface
+     * @throws RedirectionExceptionInterface
+     * @throws ServerExceptionInterface
+     * @throws TransportExceptionInterface
+     */
+    public function testSearchAndSortByPopulation(): void
+    {
+        // Test search for cities containing "Paris" and sorting by population in ascending order
+        $data = $this->get("cities", [
+            "name" => "Paris",
+            "_orderBy[population]" => "DESC"
+        ]);
+        $this->assertResponseStatusCodeSame(Response::HTTP_OK);
+
+        // Verify that the returned cities all match the search term "Paris"
+        $this->assertNotEmpty($data['hydra:member']);
+        foreach ($data['hydra:member'] as $city) {
+            $this->assertEquals("Paris", $city['name']);
+        }
+
+        // Validate the sorting order of population
+        $populations = array_column($data['hydra:member'], 'population');
+        $this->assertSortedDescending($populations);
+    }
+
+    /**
+     * Helper function to check if an array is sorted in ascending order.
+     *
+     * @param array $array
+     */
+    private function assertSortedAscending(array $array): void
+    {
+        for ($i = 0; $i < count($array) - 1; $i++) {
+            $this->assertTrue(
+                $array[$i] <= $array[$i + 1],
+                "Array is not sorted in ascending order at index $i."
+            );
+        }
+    }
+
+    /**
+     * Helper function to check if an array is sorted in descending order.
+     *
+     * @param array $array
+     */
+    private function assertSortedDescending(array $array): void
+    {
+        for ($i = 0; $i < count($array) - 1; $i++) {
+            $this->assertTrue(
+                $array[$i] >= $array[$i + 1],
+                "Array is not sorted in descending order at index $i."
             );
         }
     }
