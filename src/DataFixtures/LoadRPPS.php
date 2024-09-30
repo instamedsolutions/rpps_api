@@ -139,19 +139,18 @@ class LoadRPPS extends Fixture implements DependentFixtureInterface, FixtureInte
 
     private function getCityInseeCode(int $index): string
     {
-        // TODO update - cities fixture have changed
         $cityInseeCodes = [
-            '02008', // Aizy-Jouy
-            '02009', // Alaincourt
-            '02010', // Allemant
-            '02011', // Ambleny
-            '02012', // Ambrief
-            '02013', // Amifontaine
-            '02014', // Amigny-Rouy
-            '02015', // Ancienville
-            '02016', // Andelain
-            '02017', // Anguilcourt-le-Sart
-            '02018', // Anizy-le-Château
+            '75104',
+            '75104',
+            '75105',
+            '75105',
+            '75120',
+            '01050',
+            '01050',
+            '01050',
+            '01053',
+            '01053',
+            '01053',
         ];
 
         return $cityInseeCodes[$index % count($cityInseeCodes)];

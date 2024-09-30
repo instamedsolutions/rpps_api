@@ -23,7 +23,7 @@ class RPPSTest extends ApiTestCase
      * @throws ServerExceptionInterface
      * @throws TransportExceptionInterface
      */
-    public function testGetRppsData() : void
+    public function testGetRppsData(): void
     {
         $data = $this->get("rpps");
 
@@ -42,12 +42,13 @@ class RPPSTest extends ApiTestCase
 
 
     /**
+     * @group
      * @throws ClientExceptionInterface
      * @throws RedirectionExceptionInterface
      * @throws ServerExceptionInterface
      * @throws TransportExceptionInterface
      */
-    public function testSearchRppsData() : void
+    public function testSearchRppsData(): void
     {
         $data = $this->get("rpps", [
             'search' => "Bastien"
@@ -67,6 +68,15 @@ class RPPSTest extends ApiTestCase
         $this->assertEquals("Médecine Générale", $specialty['name']);
         $this->assertEquals("medecine-generale", $specialty['canonical']);
         $this->assertEquals("Médecin généraliste", $specialty['specialistName']);
+
+        // Legacy city
+        $this->assertCollectionKeyContains($data['hydra:member'], "city", ["Paris"]);
+
+        // City v2
+        $specialty = $data['hydra:member'][0]['cityEntity'];
+        $this->assertEquals("Paris", $specialty['name']);
+        $this->assertEquals("Paris 04", $specialty['subCityName']);
+        $this->assertEquals("75004", $specialty['postalCode']);
 
         $this->assertCount(1, $data['hydra:member']);
     }

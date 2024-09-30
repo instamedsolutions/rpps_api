@@ -283,6 +283,18 @@ class CityService extends ImporterService
         // Check if this entry is a main city or a sub city
         $isMainCity = empty($ligne5);
         $mainCityKey = $normalizedCommuneName . '-' . $postalCode;
+
+        // Arrondissement has different postal code
+        if ($communeName === 'PARIS') {
+            $mainCityKey = 'Paris-75000';
+        }
+        if ($communeName === 'LYON') {
+            $mainCityKey = 'Lyon-69000';
+        }
+        if ($communeName === 'MARSEILLE') {
+            $mainCityKey = 'Marseille-13000';
+        }
+
         $mainCity = $mainCities[$mainCityKey] ?? null;
 
         if (!$mainCity) {
@@ -540,7 +552,7 @@ class CityService extends ImporterService
     public function purgeAllData(): void
     {
         // Step 0: Clear all City references in RPPS
-        $this->em->createQuery('UPDATE App\Entity\Rpps r SET r.cityEntity = NULL')->execute();
+        $this->em->createQuery('UPDATE App\Entity\RPPS r SET r.cityEntity = NULL')->execute();
         $this->output->writeln('<info>Cleared all city references in RPPS.</info>');
 
         // Step 1: Clear all chef-lieu references in departments
