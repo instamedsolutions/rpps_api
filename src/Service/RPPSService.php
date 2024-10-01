@@ -148,7 +148,31 @@ class RPPSService extends ImporterService
         }
 
         $rpps->setIdRpps($data[1]);
-        $rpps->setTitle($data[6]);
+
+        // $data[3] : DR
+        // $data[4] : Docteur
+        // $data[5] : M
+        // $data[6] : Monsieur
+        // Title assignment based on priority: data[4] / data[3] / data[6] / data[5]
+        $title = null;
+        foreach ([$data[4], $data[3], $data[6], $data[5]] as $candidate) {
+            if (!empty($candidate)) {
+                $title = $candidate;
+                break;
+            }
+        }
+
+        // Map short titles to extended versions
+        $titleMapping = [
+            'M' => 'Monsieur',
+            'DR' => 'Docteur',
+            'MME' => 'Madame',
+            'PR' => 'Professeur',
+        ];
+
+        $expandedTitle = $titleMapping[$title] ?? $title;
+        $rpps->setTitle($expandedTitle);
+
         $rpps->setLastName($data[7]);
         $rpps->setFirstName($data[8]);
 
