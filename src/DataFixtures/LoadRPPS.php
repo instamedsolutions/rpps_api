@@ -25,7 +25,6 @@ class LoadRPPS extends Fixture implements DependentFixtureInterface, FixtureInte
 
         $faker->seed(666);
 
-        // Get some specialties from LoadSpecialty fixture
         $specialtyRepo = $this->em->getRepository(Specialty::class);
         $generalSpecialty = $specialtyRepo->findOneBy(['canonical' => 'medecine-generale']);
         $pediatricsSpecialty = $specialtyRepo->findOneBy(['canonical' => 'pediatrie']);
@@ -53,7 +52,7 @@ class LoadRPPS extends Fixture implements DependentFixtureInterface, FixtureInte
                 $rpps->setFinessNumber(substr($rppsId, 1, 9));
             }
             if (in_array($i, [0, 4, 5, 9])) {
-                $rpps->setEmail(strtolower((string) "$user@instamed.fr"));
+                $rpps->setEmail(strtolower("$user@instamed.fr"));
             }
 
             if (in_array($i, [0, 1, 4, 8])) {
@@ -63,7 +62,6 @@ class LoadRPPS extends Fixture implements DependentFixtureInterface, FixtureInte
             }
             $rpps->setSpecialty($this->getLegacySpecialties()[$i]);
 
-            // Set new specialty entity based on specialty type
             switch ($i) {
                 case 0:
                 case 1:
@@ -113,7 +111,19 @@ class LoadRPPS extends Fixture implements DependentFixtureInterface, FixtureInte
 
     protected function getUsers(): array
     {
-        return ['Bastien', 'Jérémie', 'Luv', 'Julien', 'Lauriane', 'Maxime', 'Johann', 'Emilie', 'Blandine', 'Quentin', 'Achile'];
+        return [
+            'Bastien',
+            'Jérémie',
+            'Luv',
+            'Julien',
+            'Lauriane',
+            'Maxime',
+            'Johann',
+            'Emilie',
+            'Blandine',
+            'Quentin',
+            'Achile'
+        ];
     }
 
     private function getRpps(int $index): string

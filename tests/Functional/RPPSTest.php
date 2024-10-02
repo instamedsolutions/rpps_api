@@ -12,7 +12,7 @@ use \Symfony\Contracts\HttpClient\Exception\TransportExceptionInterface;
 
 
 /**
- * @group mygroup
+ * @group
  */
 class RPPSTest extends ApiTestCase
 {

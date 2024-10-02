@@ -37,7 +37,6 @@ final class RPPSFilter extends AbstractFilter
             $this->addDemoFilter($queryBuilder, $value);
         }
 
-        // Do not trigger if the value is empty
         if (!$value) {
             return;
         }
@@ -63,16 +62,13 @@ final class RPPSFilter extends AbstractFilter
 
         $value = $this->cleanValue($value);
 
-        // Add `idRpps` to the search filter along with other fields
         $query = "(
         $alias.fullName LIKE CONCAT(:$paramName, '%') OR 
         $alias.fullNameInversed LIKE CONCAT(:$paramName, '%') OR
         $alias.idRpps = :$paramName
-    )";
+)";
 
         $queryBuilder->andWhere($query);
-
-        // Set the parameter without the `%` wildcard
         $queryBuilder->setParameter($paramName, $value);
 
         return $queryBuilder;

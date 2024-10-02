@@ -363,7 +363,7 @@ class RPPSService extends ImporterService
         $canonical = $canonicalBase;
         $suffix = 1;
 
-        // Check if canonical already exists in the database and add suffix if needed
+        // Check if canonical already exists and add suffix if needed
         while (isset($this->existingCanonicals[$canonical])) {
             $suffix++;
             $canonical = $canonicalBase . '-' . $suffix;
