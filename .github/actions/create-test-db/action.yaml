@@ -10,13 +10,15 @@ runs:
         php-version: 8.3
         extensions: mbstring, intl, pdo_sqlite
 
+    - name: Adjust ownership
+      run: sudo chown -R $USER:$GROUP ./var
+
     - name: Create test database
       shell: bash
       env:
         DATABASE_URL: "/var/test_db.sqlite"
         DATABASE_ENGINE: "pdo_sqlite"
       run: |
-        chmod -R 777 ./var
         touch ./var/test_db.sqlite
         chmod 777 ./var/test_db.sqlite
         php bin/console doctrine:schema:update --force --env=test
