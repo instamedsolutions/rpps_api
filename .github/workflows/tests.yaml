@@ -41,7 +41,7 @@ jobs:
         with:
           php_extensions: xdebug mbstring xml iconv intl
           php_version: ${{ env.PHP_VERSION }}
-          version: '9.5'
+          version: '10'
           args: --coverage-text --testdox
         env:
           XDEBUG_MODE: coverage
