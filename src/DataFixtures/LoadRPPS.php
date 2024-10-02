@@ -33,7 +33,6 @@ class LoadRPPS extends Fixture implements DependentFixtureInterface, FixtureInte
         $radiologySpecialty = $specialtyRepo->findOneBy(['canonical' => 'radiologie']);
         $sageFemmeSpecialty = $specialtyRepo->findOneBy(['canonical' => 'sage-femme']);
 
-
         foreach ($this->getUsers() as $i => $user) {
             $rpps = new RPPS();
             $rpps->setFirstName($user);
@@ -94,7 +93,6 @@ class LoadRPPS extends Fixture implements DependentFixtureInterface, FixtureInte
                 $rpps->setPhoneNumber($faker->phoneNumber());
             }
 
-
             // Dynamically link cityEntity based on the INSEE code
             $cityInseeCode = $this->getCityInseeCode($i);
             $city = $this->em->getRepository(City::class)->findOneBy(['inseeCode' => $cityInseeCode]);
@@ -102,6 +100,8 @@ class LoadRPPS extends Fixture implements DependentFixtureInterface, FixtureInte
             if ($city) {
                 $rpps->setCityEntity($city);
             }
+
+            $rpps->setCanonical('fixture-canonical-' . $i);
 
             $rpps->importId = $this->importId;
 

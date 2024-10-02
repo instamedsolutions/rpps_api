@@ -12,12 +12,13 @@ use \Symfony\Contracts\HttpClient\Exception\TransportExceptionInterface;
 
 
 /**
- * @group
+ * @group mygroup
  */
 class RPPSTest extends ApiTestCase
 {
 
     /**
+     * @group
      * @throws ClientExceptionInterface
      * @throws RedirectionExceptionInterface
      * @throws ServerExceptionInterface
@@ -26,7 +27,6 @@ class RPPSTest extends ApiTestCase
     public function testGetRppsData(): void
     {
         $data = $this->get("rpps");
-
         $this->assertResponseStatusCodeSame(Response::HTTP_OK);
 
         $this->assertCollectionKeyContains(
@@ -50,8 +50,10 @@ class RPPSTest extends ApiTestCase
      */
     public function testSearchRppsData(): void
     {
+
+        // Search by first name - partial match
         $data = $this->get("rpps", [
-            'search' => "Bastien"
+            'search' => "Bas"
         ]);
 
         $this->assertResponseStatusCodeSame(Response::HTTP_OK);
@@ -59,6 +61,8 @@ class RPPSTest extends ApiTestCase
         $this->assertCollectionKeyContains($data['hydra:member'], "firstName", ["Bastien"]);
         $this->assertCollectionKeyNotContains($data['hydra:member'], "firstName", ["Julien", "Emilie", "Jérémie"]);
         $this->assertCollectionKeyContains($data['hydra:member'], "lastName", ["TEST"]);
+
+        $this->assertCollectionKeyContains($data['hydra:member'], "canonical", ["fixture-canonical-0"]);
 
         // Legacy specialty
         $this->assertCollectionKeyContains($data['hydra:member'], "specialty", ["Médecine Générale"]);
@@ -133,6 +137,57 @@ class RPPSTest extends ApiTestCase
         $this->assertResponseStatusCodeSame(Response::HTTP_OK);
         $this->assertEquals("Bastien", $data['firstName']);
         $this->assertEquals("TEST", $data['lastName']);
+    }
+
+    /**
+     * @throws ClientExceptionInterface
+     * @throws RedirectionExceptionInterface
+     * @throws ServerExceptionInterface
+     * @throws TransportExceptionInterface
+     */
+    public function testSearchByRppsNumber(): void
+    {
+        $data = $this->get("rpps", [
+            'search' => "12222222222"
+        ]);
+
+        $this->assertResponseStatusCodeSame(Response::HTTP_OK);
+        $this->assertCount(1, $data['hydra:member']);
+
+        $rpps = $data['hydra:member'][0];
+        $this->assertEquals("Jérémie", $rpps['firstName']);
+        $this->assertEquals("TEST", $rpps['lastName']);
+        $this->assertEquals("12222222222", $rpps['idRpps']);
+
+
+        //Check partial search not working on idRpps
+        $data = $this->get("rpps", [
+            'search' => "1222222222"
+        ]);
+
+        $this->assertResponseStatusCodeSame(Response::HTTP_OK);
+        $this->assertCount(0, $data['hydra:member']);
+    }
+
+    /**
+     * @group
+     * @throws ClientExceptionInterface
+     * @throws RedirectionExceptionInterface
+     * @throws ServerExceptionInterface
+     * @throws TransportExceptionInterface
+     */
+    public function testExcludedRppsFilter(): void
+    {
+        //Exclude single syntax
+        $data = $this->get("rpps", ['excluded_rpps' => '12222222222']);
+        $this->assertResponseStatusCodeSame(Response::HTTP_OK);
+        $this->assertCollectionKeyNotContains($data['hydra:member'], "idRpps", ["12222222222"]);
+
+        // Exclude multiple syntax
+        $excludedRpps = ["12222222222", "13333333333"];
+        $data = $this->get("rpps", ['excluded_rpps' => $excludedRpps]);
+        $this->assertResponseStatusCodeSame(Response::HTTP_OK);
+        $this->assertCollectionKeyNotContains($data['hydra:member'], "idRpps", $excludedRpps);
     }
 
 }

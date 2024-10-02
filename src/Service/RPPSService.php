@@ -27,6 +27,8 @@ class RPPSService extends ImporterService
     // Hashmaps for specialties to avoid unnecessary DB queries
     private array $specialtyByName = [];  // The name field of the Specialty entity
     private array $specialtyByAltName = []; // Mapping of Instamed RPPS db specialties to our specialties
+    private array $existingCanonicals = []; // Hashmap to store existing canonicals to avoid duplicate queries
+
 
     public function __construct(
         protected readonly string $cps,
@@ -37,6 +39,7 @@ class RPPSService extends ImporterService
     ) {
         parent::__construct(RPPS::class, $fileProcessor, $em);
         $this->initializeSpecialtyMaps();
+        $this->initializeCanonicalMap();
     }
 
     // Initialize the hashmaps for specialties
@@ -49,6 +52,19 @@ class RPPSService extends ImporterService
         }
 
         $this->specialtyByAltName = SpecialtyMappingService::SPECIALTY_MAPPING;
+    }
+
+    // Initialize the hashmap for existing canonicals
+    private function initializeCanonicalMap(): void
+    {
+        $existingCanonicals = $this->em->getRepository(RPPS::class)->createQueryBuilder('r')
+            ->select('r.canonical')
+            ->getQuery()
+            ->getResult();
+
+        foreach ($existingCanonicals as $entry) {
+            $this->existingCanonicals[$entry['canonical']] = true;
+        }
     }
 
     /**
@@ -184,7 +200,6 @@ class RPPSService extends ImporterService
             $specialtyName = $data[10];
         }
 
-        // If a valid specialty is found, find or create the SpecialtyEntity
         if ($specialtyName) {
             $specialtyEntity = $this->findSpecialtyEntity($specialtyName);
             if ($specialtyEntity) {
@@ -213,6 +228,9 @@ class RPPSService extends ImporterService
         $rpps->setEmail($data[43]);
         $rpps->setFinessNumber($data[21]);
 
+        // Set canonical
+        $canonical = $this->generateCanonical($rpps);
+        $rpps->setCanonical($canonical);
         $rpps->importId = $this->getImportId();
 
         $this->entities[$rpps->getIdRpps()] = $rpps;
@@ -222,6 +240,8 @@ class RPPSService extends ImporterService
 
     private function findSpecialtyEntity(string $specialtyName): ?Specialty
     {
+        $specialtyName = trim($specialtyName);
+
         // Check for exact match
         if (isset($this->specialtyByName[$specialtyName])) {
             // Fetch from DB to ensure we have the most up-to-date entity,
@@ -236,7 +256,7 @@ class RPPSService extends ImporterService
         }
 
         // Log or handle case when no match is found
-        $this->output->writeln("<error>No specialty found for: $specialtyName <error>");
+        $this->output->writeln("<error>No specialty found for: $specialtyName</error>");
 
         return null;
     }
@@ -322,5 +342,36 @@ class RPPSService extends ImporterService
         //$this->output->writeln('No unique city found for zip code: ' . $zipCode . ' and city name: ' . $cityName);
 
         return null;
+    }
+
+    /**
+     * Generate a unique canonical string for the RPPS entity.
+     * The canonical format is "firstname-lastname-city-zipcode".
+     * If duplicates are found, a numerical suffix is added to ensure uniqueness,
+     * e.g., "anatole-cessot-neuilly-sur-seine-92200", "anatole-cessot-neuilly-sur-seine-92200-2".
+     */
+    private function generateCanonical(RPPS $rpps): string
+    {
+        $slugify = new Slugify(['separator' => '-', 'lowercase' => true, 'trim' => true]);
+        $canonicalBase = $slugify->slugify(implode('-', [
+            $rpps->getFirstName(),
+            $rpps->getLastName(),
+            $rpps->getCity(),
+            $rpps->getZipcode()
+        ]));
+
+        $canonical = $canonicalBase;
+        $suffix = 1;
+
+        // Check if canonical already exists in the database and add suffix if needed
+        while (isset($this->existingCanonicals[$canonical])) {
+            $suffix++;
+            $canonical = $canonicalBase . '-' . $suffix;
+        }
+
+        // Add the generated canonical to the hashmap to prevent future duplicates
+        $this->existingCanonicals[$canonical] = true;
+
+        return $canonical;
     }
 }

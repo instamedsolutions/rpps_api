@@ -24,12 +24,13 @@ use Symfony\Component\Serializer\Annotation\SerializedName;
 // TODO - remove this index when the migration to specialtyEntity is done.  @Bastien
 #[ORM\Index(columns: ['specialty'], name: 'specialty_index')]
 
-#[ApiFilter(RPPSFilter::class, properties: ['search', 'demo'])]
+#[ApiFilter(RPPSFilter::class, properties: ['search', 'idRpps', 'demo', 'excluded_rpps'])]
 #[ORM\Entity(repositoryClass: RPPSRepository::class)]
 #[ORM\Table(name: 'rpps')]
 #[ORM\Index(columns: ['full_name'], name: 'full_name_index')]
 #[ORM\Index(columns: ['full_name_inversed'], name: 'full_name_inversed_index')]
 #[ORM\Index(columns: ['id_rpps'], name: 'rpps_index')]
+#[ORM\Index(columns: ['canonical'], name: 'canonical_index')]
 #[UniqueEntity('idRpps')]
 #[ApiResource(
     shortName: 'Rpps',
@@ -46,6 +47,14 @@ use Symfony\Component\Serializer\Annotation\SerializedName;
 )]
 class RPPS extends Thing implements Entity, Stringable
 {
+    #[ApiProperty(
+        description: 'A unique canonical identifier for the doctor, based on name and address',
+        required: false,
+    )]
+    #[Groups(['read'])]
+    #[ORM\Column(type: 'string', length: 255, unique: true, nullable: false)]
+    private ?string $canonical = null;
+
     #[ApiFilter(SearchFilter::class, strategy: 'exact')]
     #[ApiProperty(
         description: 'The unique RPPS identifier of the medic',
@@ -228,6 +237,16 @@ class RPPS extends Thing implements Entity, Stringable
     #[ApiProperty(readable: false, writable: false)]
     #[ORM\Column(type: 'string', length: 255, nullable: false)]
     private ?string $fullNameInversed = null;
+
+    public function getCanonical(): ?string
+    {
+        return $this->canonical;
+    }
+
+    public function setCanonical(?string $canonical): void
+    {
+        $this->canonical = $canonical;
+    }
 
     public function getIdRpps(): ?string
     {

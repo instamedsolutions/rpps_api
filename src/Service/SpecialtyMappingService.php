@@ -122,7 +122,7 @@ class SpecialtyMappingService
         'Psychothérapeute' => 'Psychothérapeute',
         'Qualifié en Médecine Générale' => 'Médecine Générale',
         'Radio-diagnostic' => 'Radiologie',
-        'Radio-thérapie' => 'Radio-thérapie',
+        'Radio-thérapie' => 'Radio-Thérapie',
         'Radiologie et imagerie médicale opt radio inter av' => 'Radiologie',
         'Recherche médicale' => 'Recherche médicale',
         'Rhumatologie' => 'Rhumatologie',

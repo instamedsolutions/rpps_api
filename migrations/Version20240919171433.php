@@ -29,6 +29,10 @@ final class Version20240919171433 extends AbstractMigration
         $this->addSql('ALTER TABLE rpps ADD CONSTRAINT FK_52B0862B63FDC5F2 FOREIGN KEY (specialty_entity_id) REFERENCES specialty (id)');
         $this->addSql('CREATE INDEX IDX_52B0862B63FDC5F2 ON rpps (specialty_entity_id)');
         $this->addSql('CREATE INDEX specialty_name_index ON specialty (name)');
+
+        $this->addSql('ALTER TABLE rpps ADD canonical VARCHAR(255) NOT NULL');
+        $this->addSql('CREATE UNIQUE INDEX UNIQ_52B0862BAFD2F094 ON rpps (canonical)');
+        $this->addSql('CREATE INDEX canonical_index ON rpps (canonical)');
     }
 
     public function down(Schema $schema): void
@@ -43,5 +47,9 @@ final class Version20240919171433 extends AbstractMigration
         $this->addSql('DROP INDEX IDX_52B0862B63FDC5F2 ON rpps');
         $this->addSql('ALTER TABLE rpps DROP specialty_entity_id');
         $this->addSql('DROP INDEX specialty_name_index ON specialty');
+
+        $this->addSql('DROP INDEX UNIQ_52B0862BAFD2F094 ON rpps');
+        $this->addSql('DROP INDEX canonical_index ON rpps');
+        $this->addSql('ALTER TABLE rpps DROP canonical');
     }
 }

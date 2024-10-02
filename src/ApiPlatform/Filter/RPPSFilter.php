@@ -45,6 +45,10 @@ final class RPPSFilter extends AbstractFilter
         if ('search' === $property) {
             $this->addSearchFilter($queryBuilder, $value);
         }
+
+        if ('excluded_rpps' === $property) {
+            $this->addExcludedRppsFilter($queryBuilder, $value);
+        }
     }
 
     /**
@@ -55,18 +59,35 @@ final class RPPSFilter extends AbstractFilter
         $alias = $queryBuilder->getRootAliases()[0];
 
         // Generate a unique parameter name to avoid collisions with other filters
-        $end = $this->queryNameGenerator->generateParameterName('search');
+        $paramName = $this->queryNameGenerator->generateParameterName('search');
 
         $value = $this->cleanValue($value);
 
+        // Add `idRpps` to the search filter along with other fields
         $query = "(
-        $alias.fullName LIKE :$end OR 
-        $alias.fullNameInversed LIKE :$end
-           )";
+        $alias.fullName LIKE CONCAT(:$paramName, '%') OR 
+        $alias.fullNameInversed LIKE CONCAT(:$paramName, '%') OR
+        $alias.idRpps = :$paramName
+    )";
 
         $queryBuilder->andWhere($query);
 
-        $queryBuilder->setParameter($end, "$value%");
+        // Set the parameter without the `%` wildcard
+        $queryBuilder->setParameter($paramName, $value);
+
+        return $queryBuilder;
+    }
+
+    protected function addExcludedRppsFilter(QueryBuilder $queryBuilder, mixed $excludedRpps): QueryBuilder
+    {
+        if (!is_array($excludedRpps)) {
+            $excludedRpps = [$excludedRpps];
+        }
+
+        $alias = $queryBuilder->getRootAliases()[0];
+
+        $queryBuilder->andWhere("$alias.idRpps NOT IN (:excludedRpps)")
+            ->setParameter('excludedRpps', $excludedRpps);
 
         return $queryBuilder;
     }
@@ -108,17 +129,47 @@ final class RPPSFilter extends AbstractFilter
 
         $description = [];
         foreach ($this->properties as $property => $strategy) {
-            $description[$property] = [
-                'property' => $property,
-                'type' => 'string',
-                'required' => false,
-                'swagger' => [
-                    'description' => 'Search by first name, last name...',
+            if ($property === 'search') {
+                $description[$property] = [
+                    'property' => $property,
                     'type' => 'string',
-                    'name' => $property,
-                    'example' => 'Jean Du',
-                ],
-            ];
+                    'required' => false,
+                    'swagger' => [
+                        'description' => 'Search by first name, last name, RPPS number...',
+                        'type' => 'string',
+                        'name' => $property,
+                        'example' => 'Jean Du',
+                    ],
+                ];
+            } elseif ($property === 'demo') {
+                $description[$property] = [
+                    'property' => $property,
+                    'type' => 'boolean',
+                    'required' => false,
+                    'swagger' => [
+                        'description' => 'Filter by demo flag (true or false)',
+                        'type' => 'boolean',
+                        'name' => $property,
+                        'example' => 'true',
+                    ],
+                ];
+            } elseif ($property === 'excluded_rpps') {
+                $description[$property] = [
+                    'property' => $property,
+                    'type' => 'array',
+                    'required' => false,
+                    'swagger' => [
+                        'description' => 'Exclude specific RPPS numbers from the result set. Provide one or more RPPS numbers.',
+                        'type' => 'array',
+                        'items' => [
+                            'type' => 'string',
+                            'example' => '12222222222',
+                        ],
+                        'name' => $property,
+                        'example' => ['12222222222', '13333333333'],
+                    ],
+                ];
+            }
         }
 
         return $description;
