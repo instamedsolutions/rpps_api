@@ -2,11 +2,11 @@
 
 namespace App\Entity;
 
-use ApiPlatform\Doctrine\Orm\Filter\SearchFilter;
 use ApiPlatform\Metadata\ApiFilter;
 use ApiPlatform\Metadata\ApiResource;
 use ApiPlatform\Metadata\Get;
 use ApiPlatform\Metadata\GetCollection;
+use App\ApiPlatform\Filter\SpecialtyFilter;
 use App\Repository\SpecialtyRepository;
 use App\StateProvider\DefaultItemDataProvider;
 use App\StateProvider\SimilarSpecialtiesProvider;
@@ -35,7 +35,7 @@ use Symfony\Component\Serializer\Annotation\Groups;
     paginationClientEnabled: true,
     paginationPartial: true,
 )]
-#[ApiFilter(SearchFilter::class, properties: ['name' => 'partial'])]
+#[ApiFilter(SpecialtyFilter::class, properties: ['search'])]
 class Specialty extends Thing implements Entity
 {
     #[Groups(['read'])]

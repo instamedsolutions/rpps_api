@@ -13,7 +13,7 @@ use \Symfony\Contracts\HttpClient\Exception\TransportExceptionInterface;
 
 
 /**
- * @group mygroup
+ * @group
  */
 class AllergenTest extends ApiTestCase
 {

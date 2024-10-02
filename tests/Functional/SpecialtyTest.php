@@ -44,12 +44,13 @@ class SpecialtyTest extends ApiTestCase
      */
     public function testGetSpecialtyByName(): void
     {
-        $data = $this->get("specialties", ["name" => "Cardiologie"]);
+        $data = $this->get("specialties", ["search" => "Cardiologie"]);
         $this->assertResponseStatusCodeSame(Response::HTTP_OK);
+
         $this->assertEquals(1, count($data['hydra:member']));
         $this->assertCollectionKeyContains($data['hydra:member'], "name", ["Cardiologie"]);
 
-        $data = $this->get("specialties", ["name" => "chirurgie"]);
+        $data = $this->get("specialties", ["search" => "chirurgie"]);
         $this->assertResponseStatusCodeSame(Response::HTTP_OK);
         $this->assertCollectionKeyContains($data['hydra:member'], "name", ["Neuro-Chirurgie", "Chirurgien-Dentiste", "Chirurgie Vasculaire"]);
     }
