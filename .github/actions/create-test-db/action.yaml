@@ -11,16 +11,18 @@ runs:
         extensions: mbstring, intl, pdo_sqlite
 
     - name: Adjust ownership
-      run: sudo chown -R $USER:$GROUP ./var
+      run: |
+        sudo chown -R $USER:$GROUPS ./var
+      shell: bash
 
     - name: Create test database
-      shell: bash
-      env:
-        DATABASE_URL: "/var/test_db.sqlite"
-        DATABASE_ENGINE: "pdo_sqlite"
       run: |
         touch ./var/test_db.sqlite
         chmod 777 ./var/test_db.sqlite
         php bin/console doctrine:schema:update --force --env=test
         php bin/console doctrine:fixtures:load --env=test
         php bin/console cache:clear --env=test
+      shell: bash
+      env:
+        DATABASE_URL: "/var/test_db.sqlite"
+        DATABASE_ENGINE: "pdo_sqlite"
