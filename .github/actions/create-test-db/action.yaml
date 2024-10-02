@@ -1,17 +1,24 @@
 name: create-test-db
 description: Creates the test database
+
 runs:
   using: 'composite'
   steps:
+    - name: Set up PHP
+      uses: shivammathur/setup-php@v2
+      with:
+        php-version: 8.3
+        extensions: mbstring, intl, pdo_sqlite
+
     - name: Create test database
       shell: bash
       env:
         DATABASE_URL: "/var/test_db.sqlite"
         DATABASE_ENGINE: "pdo_sqlite"
       run: |
-        sudo chmod -R 777 ./var
-        sudo touch ./var/test_db.sqlite
-        sudo chmod 777 ./var/test_db.sqlite
+        chmod -R 777 ./var
+        touch ./var/test_db.sqlite
+        chmod 777 ./var/test_db.sqlite
         php bin/console doctrine:schema:update --force --env=test
         php bin/console doctrine:fixtures:load --env=test
         php bin/console cache:clear --env=test
