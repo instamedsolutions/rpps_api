@@ -37,10 +37,10 @@ use Symfony\Component\Serializer\Annotation\SerializedName;
 )]
 class Drug extends Thing implements Entity, Stringable
 {
-    final public const  GENERIC_LABEL_PRINCEPS = 1;
-    final public const  GENERIC_LABEL_GENERIC = 2;
-    final public const  GENERIC_LABEL_GENERIC_BY_COMPLEMENTARITY_POSOLOGIC = 3;
-    final public const  GENERIC_LABEL_GENERIC_SUBSTITUABLE = 3;
+    final public const  int GENERIC_LABEL_PRINCEPS = 1;
+    final public const  int GENERIC_LABEL_GENERIC = 2;
+    final public const  int GENERIC_LABEL_GENERIC_BY_COMPLEMENTARITY_POSOLOGIC = 3;
+    final public const  int GENERIC_LABEL_GENERIC_SUBSTITUABLE = 3;
 
     #[ApiFilter(SearchFilter::class, strategy: 'exact')]
     #[ApiProperty(
