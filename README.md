@@ -1,4 +1,4 @@
-# Welcome to thee Medical Database & API
+# Welcome to the Medical Database & API
 
 ## Description
 
@@ -6,27 +6,27 @@ This project contains all scripts to fetch and store data as well as a fully fun
 
 The project is based on **PHP 8.1**,  **[API-Platform 2.5](https://api-platform.com/docs/v2.5/distribution/)** and **[Symfony 5.4](https://symfony.com/)**
 
-Live API is available at https://data.instamed.fr
+Live API is available at [https://data.instamed.fr](https://data.instamed.fr).
 
-5 type of data are currently available :
+Six types of data are currently available:
 
-##### RPPS Data
-- The RPPS (Répertoire Partagé des Professionnels de Santé) contains all the data of French health professionals
+### RPPS Data
+- The RPPS (Répertoire Partagé des Professionnels de Santé) contains all the data of French health professionals.
 
-##### Drugs data
-- The drugs data contains all the data of allowed drugs on the French Market
+### Drugs Data
+- Contains all the data of allowed drugs on the French market.
 
-##### Diseases data
-- The diseases data contains all the data from the OMS CIM-10 database
+### Diseases Data
+- Contains all data from the OMS CIM-10 database.
 
-##### Allergens data
-- The allergens data contains all the alergens that are known
+### Allergens Data
+- Contains all known allergens.
 
-##### CCAM data
-- The CCAM data contains all the medical acts and their reimbursment rate by the social security
+### CCAM Data
+- Contains all the medical acts and their reimbursement rates by the social security.
 
-##### NGAP data
-- The NGAP data contains a database of medical acts
+### NGAP Data
+- Contains a database of medical acts.
 
 ## Installation
 
@@ -36,6 +36,41 @@ Live API is available at https://data.instamed.fr
 
 - Have docker installed
 - Have docker-compose installed
+
+**Installation:**
+
+1. Clone the repository:
+
+   ```bash
+   git clone git@github.com:instamedsolutions/rpps_api.git
+   ```
+   
+2. Navigate to the project directory:
+
+   ```bash
+   cd rpps_api
+   ```
+   
+3. Create an empty SQLite file that will be used by Docker:
+
+   ```bash
+   touch test_db.sqlite
+   ```
+
+4. Start the Instamed project to ensure the instamed network is up. 
+
+5. Start the Docker services for this project:
+
+   ```bash
+   docker-compose up -d
+   ```
+
+6. Access the shell in the rpps-database container and install Composer dependencies:
+
+   ```bash
+   make shell
+   composer install
+   ```
 
 **Setup with test data:**
 
