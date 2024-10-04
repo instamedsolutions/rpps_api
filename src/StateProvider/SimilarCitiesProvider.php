@@ -33,19 +33,21 @@ class SimilarCitiesProvider implements ProviderInterface
                 throw new NotFoundHttpException('City not found');
             }
 
+            $limit = $context['filters']['limit'] ?? 10;
+
             if (!$city->getLatitude() || !$city->getLongitude()) {
                 // Try to find a sub city with coordinates
                 $subCityWithCoordinates = $this->cityRepository->findSubCityWithCoordinates($city);
 
                 if (!$subCityWithCoordinates) {
                     // If not found, take any city in the same department
-                    return $this->cityRepository->findSimilarCitiesInDepartment($city);
+                    return $this->cityRepository->findSimilarCitiesInDepartment($city, $limit);
                 } else {
                     $city = $subCityWithCoordinates;
                 }
             }
 
-            return $this->cityRepository->findSimilarCitiesByCoordinates($city);
+            return $this->cityRepository->findSimilarCitiesByCoordinates($city, $limit);
         }
 
         //  throw new Exception('This operation is not supported');

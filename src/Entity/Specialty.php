@@ -35,7 +35,7 @@ use Symfony\Component\Serializer\Annotation\Groups;
     paginationClientEnabled: true,
     paginationPartial: true,
 )]
-#[ApiFilter(SpecialtyFilter::class, properties: ['search'])]
+#[ApiFilter(SpecialtyFilter::class, properties: ['search', 'by_rpps'])]
 class Specialty extends Thing implements Entity
 {
     #[Groups(['read'])]
