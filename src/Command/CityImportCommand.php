@@ -79,6 +79,7 @@ class CityImportCommand extends Command
             $io->success('Population purge completed successfully.');
 
             $this->cityService->importData($populationFilePath, 'population', ';');
+            $this->cityService->aggregatePopulationForMainCities();
         } elseif ($coordinatesOnly) {
             $io->writeln('<info>Purging all coordinates data...</info>');
             $this->cityService->purgeCoordinates();
@@ -97,6 +98,7 @@ class CityImportCommand extends Command
             $this->cityService->importData($citiesFilePath, 'city', ';');
             $this->cityService->importData($coordinateFilePath, 'coordinates');
             $this->cityService->importData($populationFilePath, 'population', ';');
+            $this->cityService->aggregatePopulationForMainCities();
         }
 
         $end = new DateTime();
