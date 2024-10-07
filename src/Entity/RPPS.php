@@ -21,13 +21,16 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Serializer\Annotation\Groups;
 use Symfony\Component\Serializer\Annotation\SerializedName;
 
-#[ApiFilter(RPPSFilter::class, properties: ['search', 'demo'])]
+// TODO - remove this index when the migration to specialtyEntity is done.  @Bastien
+#[ORM\Index(columns: ['specialty'], name: 'specialty_index')]
+
+#[ApiFilter(RPPSFilter::class, properties: ['search', 'idRpps', 'demo', 'excluded_rpps'])]
 #[ORM\Entity(repositoryClass: RPPSRepository::class)]
 #[ORM\Table(name: 'rpps')]
 #[ORM\Index(columns: ['full_name'], name: 'full_name_index')]
 #[ORM\Index(columns: ['full_name_inversed'], name: 'full_name_inversed_index')]
 #[ORM\Index(columns: ['id_rpps'], name: 'rpps_index')]
-#[ORM\Index(columns: ['specialty'], name: 'specialty_index')]
+#[ORM\Index(columns: ['canonical'], name: 'canonical_index')]
 #[UniqueEntity('idRpps')]
 #[ApiResource(
     shortName: 'Rpps',
@@ -44,6 +47,14 @@ use Symfony\Component\Serializer\Annotation\SerializedName;
 )]
 class RPPS extends Thing implements Entity, Stringable
 {
+    #[ApiProperty(
+        description: 'A unique canonical identifier for the doctor, based on name and address',
+        required: false,
+    )]
+    #[Groups(['read'])]
+    #[ORM\Column(type: 'string', length: 255, unique: true, nullable: false)]
+    private ?string $canonical = null;
+
     #[ApiFilter(SearchFilter::class, strategy: 'exact')]
     #[ApiProperty(
         description: 'The unique RPPS identifier of the medic',
@@ -95,17 +106,30 @@ class RPPS extends Thing implements Entity, Stringable
     #[ORM\Column(type: 'string', length: 255, nullable: true)]
     protected ?string $firstName = null;
 
+    /**
+     * @deprecated use $specialtyEntity instead
+     */
     #[ApiProperty(
-        description: 'The specialty of the doctor',
+        description: 'Deprecated. The specialty of the doctor. Use specialtyEntity instead.',
         required: false,
         openapiContext: [
             'type' => 'string',
             'example' => 'Médecin',
+            'deprecated' => true,
         ]
     )]
     #[Groups(['read'])]
     #[ORM\Column(type: 'string', length: 255, nullable: true)]
     protected ?string $specialty = null;
+
+    #[ApiProperty(
+        description: 'The specialty entity of the doctor',
+        required: false,
+    )]
+    #[Groups(['read'])]
+    #[ORM\ManyToOne(targetEntity: Specialty::class, cascade: ['persist'])]
+    #[ORM\JoinColumn(nullable: true)]
+    private ?Specialty $specialtyEntity = null;
 
     #[ApiProperty(
         description: 'The address of the doctor',
@@ -131,17 +155,30 @@ class RPPS extends Thing implements Entity, Stringable
     #[ORM\Column(type: 'string', length: 255, nullable: true)]
     protected ?string $zipcode = null;
 
+    /**
+     * @deprecated use $cityEntity instead
+     */
     #[ApiProperty(
-        description: 'The city of the doctor',
+        description: 'Deprecated. The city of the doctor, use cityEntity instead.',
         required: false,
         openapiContext: [
             'type' => 'string',
             'example' => 'Paris',
+            'deprecated' => true,
         ]
     )]
     #[Groups(['read'])]
     #[ORM\Column(type: 'string', length: 255, nullable: true)]
     protected ?string $city = null;
+
+    #[ApiProperty(
+        description: 'The city entity of the doctor, with more detailed information such as population and coordinates.',
+        required: false,
+    )]
+    #[Groups(['read'])]
+    #[ORM\ManyToOne(targetEntity: City::class)]
+    #[ORM\JoinColumn(nullable: true)]
+    private ?City $cityEntity = null;
 
     #[ApiProperty(
         description: 'The phone number of the doctor',
@@ -200,6 +237,16 @@ class RPPS extends Thing implements Entity, Stringable
     #[ApiProperty(readable: false, writable: false)]
     #[ORM\Column(type: 'string', length: 255, nullable: false)]
     private ?string $fullNameInversed = null;
+
+    public function getCanonical(): ?string
+    {
+        return $this->canonical;
+    }
+
+    public function setCanonical(?string $canonical): void
+    {
+        $this->canonical = $canonical;
+    }
 
     public function getIdRpps(): ?string
     {
@@ -265,21 +312,6 @@ class RPPS extends Thing implements Entity, Stringable
         return $this;
     }
 
-    public function getSpecialty(): ?string
-    {
-        return $this->specialty;
-    }
-
-    /**
-     * @return $this
-     */
-    public function setSpecialty(?string $specialty): self
-    {
-        $this->specialty = $specialty;
-
-        return $this;
-    }
-
     public function getAddress(): ?string
     {
         $address = trim((string) $this->address);
@@ -312,24 +344,6 @@ class RPPS extends Thing implements Entity, Stringable
     public function setZipcode(?string $zipcode): self
     {
         $this->zipcode = $zipcode;
-
-        return $this;
-    }
-
-    public function getCity(): ?string
-    {
-        if (!$this->city) {
-            return null;
-        }
-
-        return trim(preg_replace('#^\\d{5,6}#', '', $this->city));
-    }
-
-    public function setCity(?string $city): self
-    {
-        $city = trim(preg_replace('#^\\d{5,6}#', '', $city));
-
-        $this->city = $city;
 
         return $this;
     }
@@ -466,5 +480,66 @@ class RPPS extends Thing implements Entity, Stringable
             'Monsieur' => 'M.',
             default => null,
         };
+    }
+
+    public function getCityEntity(): ?City
+    {
+        return $this->cityEntity;
+    }
+
+    public function setCityEntity(?City $cityEntity): self
+    {
+        $this->cityEntity = $cityEntity;
+
+        return $this;
+    }
+
+    public function getCity(): ?string
+    {
+
+        if ($this->cityEntity) {
+            return $this->cityEntity->getName();
+        }
+
+        if (!$this->city) {
+                return null;
+        }
+
+            return trim(preg_replace('#^\\d{5,6}#', '', $this->city));
+    }
+
+    public function setCity(?string $city): self
+    {
+        $city = trim(preg_replace('#^\\d{5,6}#', '', $city));
+
+        $this->city = $city;
+
+        return $this;
+    }
+
+    public function getSpecialty(): ?string
+    {
+        if ($this->specialtyEntity) {
+            return $this->specialtyEntity->getName();
+        }
+
+        return $this->specialty;
+    }
+
+    public function setSpecialty(?string $specialty): self
+    {
+        $this->specialty = $specialty;
+
+        return $this;
+    }
+
+    public function getSpecialtyEntity(): ?Specialty
+    {
+        return $this->specialtyEntity;
+    }
+
+    public function setSpecialtyEntity(?Specialty $specialtyEntity): void
+    {
+        $this->specialtyEntity = $specialtyEntity;
     }
 }
