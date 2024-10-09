@@ -53,18 +53,18 @@ final class RPPSFilter extends AbstractContextAwareFilter
         $alias = $queryBuilder->getRootAliases()[0];
 
         // Generate a unique parameter name to avoid collisions with other filters
-        $end = $this->queryNameGenerator->generateParameterName('search');
+        $paramName = $this->queryNameGenerator->generateParameterName('search');
 
         $value = $this->cleanValue($value);
 
         $query = "(
-        $alias.fullName LIKE :$end OR 
-        $alias.fullNameInversed LIKE :$end
-           )";
+        $alias.fullName LIKE CONCAT(:$paramName, '%') OR 
+        $alias.fullNameInversed LIKE CONCAT(:$paramName, '%') OR
+        $alias.idRpps = :$paramName
+)";
 
         $queryBuilder->andWhere($query);
-
-        $queryBuilder->setParameter($end, "$value%");
+        $queryBuilder->setParameter($paramName, $value);
 
         return $queryBuilder;
     }

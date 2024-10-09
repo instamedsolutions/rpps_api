@@ -118,4 +118,34 @@ class RPPSTest extends ApiTestCase
         $this->assertEquals("TEST", $data['lastName']);
     }
 
+    /**
+     * @throws ClientExceptionInterface
+     * @throws RedirectionExceptionInterface
+     * @throws ServerExceptionInterface
+     * @throws TransportExceptionInterface
+     */
+    public function testSearchByRppsNumber(): void
+    {
+        $data = $this->get("rpps", [
+            'search' => "12222222222"
+        ]);
+
+        $this->assertResponseStatusCodeSame(Response::HTTP_OK);
+        $this->assertCount(1, $data['hydra:member']);
+
+        $rpps = $data['hydra:member'][0];
+        $this->assertEquals("Jérémie", $rpps['firstName']);
+        $this->assertEquals("TEST", $rpps['lastName']);
+        $this->assertEquals("12222222222", $rpps['idRpps']);
+
+
+        //Check partial search not working on idRpps
+        $data = $this->get("rpps", [
+            'search' => "1222222222"
+        ]);
+
+        $this->assertResponseStatusCodeSame(Response::HTTP_OK);
+        $this->assertCount(0, $data['hydra:member']);
+    }
+
 }
