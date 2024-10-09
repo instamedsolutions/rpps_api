@@ -47,14 +47,14 @@ class CityRepository extends ServiceEntityRepository
      *
      * @return City[]
      */
-    public function findSimilarCitiesInDepartment(City $city): array
+    public function findSimilarCitiesInDepartment(City $city, int $limit = 10): array
     {
         return $this->createQueryBuilder('c')
             ->where('c.department = :department')
             ->andWhere('c.id != :cityId')
             ->setParameter('department', $city->getDepartment())
             ->setParameter('cityId', $city->getId())
-            ->setMaxResults(10)
+            ->setMaxResults($limit)
             ->getQuery()
             ->getResult();
     }
@@ -64,12 +64,12 @@ class CityRepository extends ServiceEntityRepository
      * Calculates distance using the Haversine formula, sorts cities by distance, and limits the result to 10 cities.
      * Returns an array of City entities in the correct order by proximity.
      *
-     * @throws Exception
+     * @return City[]
      * @throws \Doctrine\DBAL\Exception
      *
-     * @return City[]
+     * @throws Exception
      */
-    public function findSimilarCitiesByCoordinates(City $city): array
+    public function findSimilarCitiesByCoordinates(City $city, int $limit = 10): array
     {
         $latitude = $city->getLatitude();
         $longitude = $city->getLongitude();
@@ -112,8 +112,8 @@ class CityRepository extends ServiceEntityRepository
             return [];
         }
 
-        // Limit to the closest 10 cities
-        $closestCities = array_slice($results, 0, 10);
+        // Limit to $limit cities
+        $closestCities = array_slice($results, 0, $limit);
 
         // Fetch City entities for the results
         $cityIds = array_column($closestCities, 'id');
