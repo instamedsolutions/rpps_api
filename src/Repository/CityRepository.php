@@ -11,6 +11,7 @@ use Doctrine\Persistence\ManagerRegistry;
 /**
  * @extends ServiceEntityRepository<City>
  *
+ * @method City|null find($id, $lockMode = null, $lockVersion = null)
  * @method City|null findOneBy(array $criteria, array $orderBy = null)
  * @method City[]    findAll()
  * @method City[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
@@ -46,7 +47,7 @@ class CityRepository extends ServiceEntityRepository
      *
      * @return City[]
      */
-    public function findSimilarCitiesInDepartment(City $city, ?int $limit = 10): array
+    public function findSimilarCitiesInDepartment(City $city, int $limit = 10): array
     {
         return $this->createQueryBuilder('c')
             ->where('c.department = :department')
@@ -64,18 +65,18 @@ class CityRepository extends ServiceEntityRepository
      * Returns an array of City entities in the correct order by proximity.
      *
      * @return City[]
+     * @throws \Doctrine\DBAL\Exception
      *
      * @throws Exception
-     * @throws \Doctrine\DBAL\Exception
      */
-    public function findSimilarCitiesByCoordinates(City $city): array
+    public function findSimilarCitiesByCoordinates(City $city, int $limit = 10): array
     {
         $latitude = $city->getLatitude();
         $longitude = $city->getLongitude();
         $regionId = $city->getDepartment()->getRegion()->getId();
 
         // Check if we have valid coordinates
-        if (null === $latitude || null === $longitude) {
+        if ($latitude === null || $longitude === null) {
             return [];
         }
 
@@ -111,30 +112,15 @@ class CityRepository extends ServiceEntityRepository
             return [];
         }
 
-        // Limit to the closest 10 cities
-        $closestCities = array_slice($results, 0, 10);
+        // Limit to $limit cities
+        $closestCities = array_slice($results, 0, $limit);
 
         // Fetch City entities for the results
         $cityIds = array_column($closestCities, 'id');
-
         return $this->createQueryBuilder('c')
             ->where('c.id IN (:cityIds)')
             ->setParameter('cityIds', $cityIds)
             ->getQuery()
             ->getResult();
-    }
-
-    public function find($id, $lockMode = null, $lockVersion = null): ?City
-    {
-        if (null === $id || 0 === $id) {
-            return null;
-        }
-
-        return $this->createQueryBuilder('d')
-            ->where('d.id = :id')
-            ->orWhere('d.canonical = :id')
-            ->setParameter('id', $id)
-            ->getQuery()
-            ->getOneOrNullResult();
     }
 }

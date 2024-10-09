@@ -480,12 +480,37 @@ class CityService extends ImporterService
 
         // Try fallback methods to find the city
         if ($this->verbose) {
-            $this->output->writeln("<comment>No main city found for INSEE code: $inseeCode. Attempting to match by city name: $communeName</comment>");
+            $this->output->writeln("<comment>No main city found for INSEE code: $inseeCode. Attempting to find a sub city</comment>");
+        }
+
+        $subCities = $this->em->getRepository(City::class)->findBy(['inseeCode' => $inseeCode,]);
+
+        if ($subCities && count($subCities) === 1) {
+            $subCity = $subCities[0];
+            $subCity->setPopulation((int)$totalPopulation);
+            $this->populationUpdates[] = $subCity;
+            $this->nbSuccessPopulation++;
+
+            if (count($this->populationUpdates) >= $this->batchSize) {
+                $this->flushBatch();
+            }
+
+            if ($this->verbose) {
+                $this->output->writeln("<info>Updated population for sub city: {$subCity->getSubCityName()} (INSEE: $inseeCode)</info>");
+            }
+            return;
+        }
+
+        // Try fallback methods to find the city
+        if ($this->verbose) {
+            $this->output->writeln("<comment>No sub city found for INSEE code: $inseeCode. Attempting to match by city name: $communeName</comment>");
         }
 
         // Try to match by communeName in altName, subCityName, or subCityAltName
         $matchingCities = $this->em->getRepository(City::class)->createQueryBuilder('c')
-            ->where('LOWER(c.name) = :name OR LOWER(c.rawName) = :name OR LOWER(c.subCityName) = :name OR LOWER(c.rawSubName) = :name')
+            ->where(
+                'LOWER(c.name) = :name OR LOWER(c.rawName) = :name OR LOWER(c.subCityName) = :name OR LOWER(c.rawSubName) = :name'
+            )
             ->setParameter('name', strtolower($communeName))
             ->getQuery()
             ->getResult();
@@ -509,13 +534,52 @@ class CityService extends ImporterService
 
             return;
         } elseif ($numMatches > 1) {
-            $this->output->writeln("<error>Ambiguous matches found for commune name: $communeName (INSEE: $inseeCode)</error>");
+            $this->output->writeln(
+                "<error>Ambiguous matches found for commune name: $communeName (INSEE: $inseeCode)</error>"
+            );
         } else {
-            $this->output->writeln("<error>No main city found for INSEE code: $inseeCode and no city matched the commune name: $communeName</error>");
+            $this->output->writeln(
+                "<error>No main city found for INSEE code: $inseeCode and no city matched the commune name: $communeName</error>"
+            );
         }
 
         ++$this->nbFailedPopulation;
     }
+
+    public function aggregatePopulationForMainCities(): void
+    {
+        // Fetch all main cities (mainCity is NULL) with no population set (population is NULL)
+        $mainCities = $this->em->getRepository(City::class)->createQueryBuilder('c')
+            ->where('c.mainCity IS NULL')
+            ->andWhere('c.population IS NULL')
+            ->getQuery()
+            ->getResult();
+
+        // Iterate through each main city and calculate the total population of its subtitles
+        /** @var City $mainCity */
+        foreach ($mainCities as $mainCity) {
+            $subCities = $mainCity->getSubCities();
+            $totalPopulation = 0;
+            foreach ($subCities as $subCity) {
+                if ($subCity->getPopulation() !== null) {
+                    $totalPopulation += $subCity->getPopulation();
+                }
+            }
+
+            if ($totalPopulation > 0) {
+                $mainCity->setPopulation($totalPopulation);
+                $this->em->persist($mainCity);
+
+                if ($this->verbose) {
+                    $this->output->writeln("<info>Updated population for main city: {$mainCity->getName()} to $totalPopulation</info>");
+                }
+            }
+        }
+
+        $this->em->flush();
+        $this->output->writeln("<info>Population aggregation completed for main cities.</info>");
+    }
+
 
     private function normalizeCityName(string $name): string
     {

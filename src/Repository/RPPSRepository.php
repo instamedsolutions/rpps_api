@@ -41,4 +41,19 @@ class RPPSRepository extends ServiceEntityRepository
             ->getQuery()
             ->getOneOrNullResult();
     }
+
+    /**
+     * Retourne le nombre de médecins associés à une spécialité donnée.
+     */
+    public function getNbRppsForSpecialty(string $specialtyId): int
+    {
+        // Création du QueryBuilder
+        $queryBuilder = $this->createQueryBuilder('r')
+            ->select('COUNT(r.id)')
+            ->where('r.specialtyEntity = :specialtyId')
+            ->setParameter('specialtyId', $specialtyId);
+
+        // Exécution de la requête et retour du résultat sous forme de nombre entier
+        return (int)$queryBuilder->getQuery()->getSingleScalarResult();
+    }
 }
