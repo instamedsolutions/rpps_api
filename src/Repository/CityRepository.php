@@ -11,7 +11,6 @@ use Doctrine\Persistence\ManagerRegistry;
 /**
  * @extends ServiceEntityRepository<City>
  *
- * @method City|null find($id, $lockMode = null, $lockVersion = null)
  * @method City|null findOneBy(array $criteria, array $orderBy = null)
  * @method City[]    findAll()
  * @method City[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
@@ -47,14 +46,14 @@ class CityRepository extends ServiceEntityRepository
      *
      * @return City[]
      */
-    public function findSimilarCitiesInDepartment(City $city): array
+    public function findSimilarCitiesInDepartment(City $city, ?int $limit = 10): array
     {
         return $this->createQueryBuilder('c')
             ->where('c.department = :department')
             ->andWhere('c.id != :cityId')
             ->setParameter('department', $city->getDepartment())
             ->setParameter('cityId', $city->getId())
-            ->setMaxResults(10)
+            ->setMaxResults($limit)
             ->getQuery()
             ->getResult();
     }
@@ -64,10 +63,10 @@ class CityRepository extends ServiceEntityRepository
      * Calculates distance using the Haversine formula, sorts cities by distance, and limits the result to 10 cities.
      * Returns an array of City entities in the correct order by proximity.
      *
+     * @return City[]
+     *
      * @throws Exception
      * @throws \Doctrine\DBAL\Exception
-     *
-     * @return City[]
      */
     public function findSimilarCitiesByCoordinates(City $city): array
     {
@@ -76,7 +75,7 @@ class CityRepository extends ServiceEntityRepository
         $regionId = $city->getDepartment()->getRegion()->getId();
 
         // Check if we have valid coordinates
-        if ($latitude === null || $longitude === null) {
+        if (null === $latitude || null === $longitude) {
             return [];
         }
 
@@ -117,10 +116,25 @@ class CityRepository extends ServiceEntityRepository
 
         // Fetch City entities for the results
         $cityIds = array_column($closestCities, 'id');
+
         return $this->createQueryBuilder('c')
             ->where('c.id IN (:cityIds)')
             ->setParameter('cityIds', $cityIds)
             ->getQuery()
             ->getResult();
+    }
+
+    public function find($id, $lockMode = null, $lockVersion = null): ?City
+    {
+        if (null === $id || 0 === $id) {
+            return null;
+        }
+
+        return $this->createQueryBuilder('d')
+            ->where('d.id = :id')
+            ->orWhere('d.canonical = :id')
+            ->setParameter('id', $id)
+            ->getQuery()
+            ->getOneOrNullResult();
     }
 }

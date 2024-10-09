@@ -41,7 +41,7 @@ class LoadCity extends Fixture implements DependentFixtureInterface, FixtureInte
             $city->setInseeCode($data[3]);
             $city->setLatitude($data[4]);
             $city->setLongitude($data[5]);
-            $city->setPopulation((int)$data[6]);
+            $city->setPopulation((int) $data[6]);
             $city->importId = 'import_1';
 
             $department = match ($data[7]) {
@@ -58,26 +58,26 @@ class LoadCity extends Fixture implements DependentFixtureInterface, FixtureInte
 
         $subCityData = [
             // Paris arrondissements (1st to 20th as requested with 'Paris 01', 'Paris 02', ...)
-            ['Paris 01', 'paris-1er', '75001', '75101', '48.862725', '2.287592',100001],
-            ['Paris 02', 'paris-2eme', '75002', '75102', '48.868957', '2.344488',100002],
-            ['Paris 03', 'paris-3eme', '75003', '75103', '48.863844', '2.360029',100003],
-            ['Paris 04', 'paris-4eme', '75004', '75104', '48.858844', '2.354264',100004],
-            ['Paris 05', 'paris-5eme', '75005', '75105', '48.844721', '2.347183',100005],
-            ['Paris 06', 'paris-6eme', '75006', '75106', '48.850958', '2.333985',100006],
-            ['Paris 07', 'paris-7eme', '75007', '75107', '48.858370', '2.294481',100007],
-            ['Paris 08', 'paris-8eme', '75008', '75108', '48.870637', '2.318747',100008],
-            ['Paris 09', 'paris-9eme', '75009', '75109', '48.876319', '2.343028',100009],
-            ['Paris 10', 'paris-10eme', '75010', '75110', '48.878319', '2.358083',100010],
-            ['Paris 11', 'paris-11eme', '75011', '75111', '48.857908', '2.378890',100011],
-            ['Paris 12', 'paris-12eme', '75012', '75112', '48.841402', '2.384743',100012],
-            ['Paris 13', 'paris-13eme', '75013', '75113', '48.832338', '2.355618',100013],
-            ['Paris 14', 'paris-14eme', '75014', '75114', '48.833675', '2.315948',100014],
-            ['Paris 15', 'paris-15eme', '75015', '75115', '48.841759', '2.292292',100015],
-            ['Paris 16', 'paris-16eme', '75016', '75116', '48.863776', '2.276995',100016],
-            ['Paris 17', 'paris-17eme', '75017', '75117', '48.886163', '2.309384',100017],
-            ['Paris 18', 'paris-18eme', '75018', '75118', '48.892401', '2.344324',100018],
-            ['Paris 19', 'paris-19eme', '75019', '75119', '48.889716', '2.375062',100019],
-            ['Paris 20', 'paris-20eme', '75020', '75120', '48.864173', '2.398300',100020],
+            ['Paris 01', 'paris-1er', '75001', '75101', '48.862725', '2.287592', 100001],
+            ['Paris 02', 'paris-2eme', '75002', '75102', '48.868957', '2.344488', 100002],
+            ['Paris 03', 'paris-3eme', '75003', '75103', '48.863844', '2.360029', 100003],
+            ['Paris 04', 'paris-4eme', '75004', '75104', '48.858844', '2.354264', 100004],
+            ['Paris 05', 'paris-5eme', '75005', '75105', '48.844721', '2.347183', 100005],
+            ['Paris 06', 'paris-6eme', '75006', '75106', '48.850958', '2.333985', 100006],
+            ['Paris 07', 'paris-7eme', '75007', '75107', '48.858370', '2.294481', 100007],
+            ['Paris 08', 'paris-8eme', '75008', '75108', '48.870637', '2.318747', 100008],
+            ['Paris 09', 'paris-9eme', '75009', '75109', '48.876319', '2.343028', 100009],
+            ['Paris 10', 'paris-10eme', '75010', '75110', '48.878319', '2.358083', 100010],
+            ['Paris 11', 'paris-11eme', '75011', '75111', '48.857908', '2.378890', 100011],
+            ['Paris 12', 'paris-12eme', '75012', '75112', '48.841402', '2.384743', 100012],
+            ['Paris 13', 'paris-13eme', '75013', '75113', '48.832338', '2.355618', 100013],
+            ['Paris 14', 'paris-14eme', '75014', '75114', '48.833675', '2.315948', 100014],
+            ['Paris 15', 'paris-15eme', '75015', '75115', '48.841759', '2.292292', 100015],
+            ['Paris 16', 'paris-16eme', '75016', '75116', '48.863776', '2.276995', 100016],
+            ['Paris 17', 'paris-17eme', '75017', '75117', '48.886163', '2.309384', 100017],
+            ['Paris 18', 'paris-18eme', '75018', '75118', '48.892401', '2.344324', 100018],
+            ['Paris 19', 'paris-19eme', '75019', '75119', '48.889716', '2.375062', 100019],
+            ['Paris 20', 'paris-20eme', '75020', '75120', '48.864173', '2.398300', 100020],
         ];
 
         // Find main city by its canonical and link it
@@ -101,7 +101,6 @@ class LoadCity extends Fixture implements DependentFixtureInterface, FixtureInte
 
             $this->em->persist($subCity);
         }
-
 
         // Set Bourg-en-Bresse as the chef-lieu of Ain department
         $bourgEnBresse = $this->em->getRepository(City::class)->findOneBy(['canonical' => 'bourg-en-bresse']);

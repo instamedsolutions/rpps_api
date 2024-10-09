@@ -19,7 +19,6 @@ use Symfony\Component\Serializer\Annotation\Groups;
 use Symfony\Component\Serializer\Annotation\MaxDepth;
 
 #[ORM\Entity(repositoryClass: CityRepository::class)]
-#[ApiResource]
 #[ORM\Table(name: 'city', indexes: [
     new ORM\Index(columns: ['postalCode'], name: 'idx_postal_code'),
     new ORM\Index(columns: ['altName'], name: 'idx_alt_name'),
@@ -30,13 +29,15 @@ use Symfony\Component\Serializer\Annotation\MaxDepth;
     shortName: 'City',
     operations: [
         new GetCollection(order: ['name' => 'ASC']),
-        new Get(provider: DefaultItemDataProvider::class),
+        new Get(
+            provider: DefaultItemDataProvider::class
+        ),
         new GetCollection(
             uriTemplate: '/cities/{id}/sub_cities',
             normalizationContext: ['groups' => ['city:sub_cities:read']],
         ),
         new GetCollection(
-            uriTemplate: '/cities/{id}/similar',
+            uriTemplate: '/cities/{id}/similar{._format}',
             provider: SimilarCitiesProvider::class,
         ),
     ],
@@ -98,7 +99,7 @@ class City extends Thing implements Entity
 
     #[Groups(['read'])]
     #[MaxDepth(1)]
-    #[ORM\ManyToOne(targetEntity: self::class, inversedBy: 'subCities')]
+    #[ORM\ManyToOne(targetEntity: self::class, fetch: 'EAGER', inversedBy: 'subCities')]
     private ?self $mainCity = null;
 
     #[Groups(['city:sub_cities:read'])]
@@ -124,6 +125,7 @@ class City extends Thing implements Entity
     public function setName(string $name): static
     {
         $this->name = $name;
+
         return $this;
     }
 
@@ -165,6 +167,7 @@ class City extends Thing implements Entity
     public function setCanonical(string $canonical): static
     {
         $this->canonical = $canonical;
+
         return $this;
     }
 
@@ -176,7 +179,8 @@ class City extends Thing implements Entity
     public function setLatitude(?string $latitude): static
     {
         // Convert empty strings to null
-        $this->latitude = $latitude === '' ? null : $latitude;
+        $this->latitude = '' === $latitude ? null : $latitude;
+
         return $this;
     }
 
@@ -188,7 +192,8 @@ class City extends Thing implements Entity
     public function setLongitude(?string $longitude): static
     {
         // Convert empty strings to null
-        $this->longitude = $longitude === '' ? null : $longitude;
+        $this->longitude = '' === $longitude ? null : $longitude;
+
         return $this;
     }
 
@@ -200,6 +205,7 @@ class City extends Thing implements Entity
     public function setPostalCode(string $postalCode): static
     {
         $this->postalCode = $postalCode;
+
         return $this;
     }
 
@@ -211,6 +217,7 @@ class City extends Thing implements Entity
     public function setDepartment(?Department $department): static
     {
         $this->department = $department;
+
         return $this;
     }
 
@@ -222,6 +229,7 @@ class City extends Thing implements Entity
     public function setMainCity(?self $mainCity): static
     {
         $this->mainCity = $mainCity;
+
         return $this;
     }
 
@@ -239,6 +247,7 @@ class City extends Thing implements Entity
             $this->subCities->add($subCity);
             $subCity->setMainCity($this);
         }
+
         return $this;
     }
 
@@ -250,6 +259,7 @@ class City extends Thing implements Entity
                 $subCity->setMainCity(null);
             }
         }
+
         return $this;
     }
 
@@ -276,13 +286,13 @@ class City extends Thing implements Entity
     // Helper method to determine if this city is a main city
     public function isMainCity(): bool
     {
-        return $this->mainCity === null;
+        return null === $this->mainCity;
     }
 
     // Helper method to determine if this city is a sub city
     public function isSubCity(): bool
     {
-        return $this->mainCity !== null;
+        return null !== $this->mainCity;
     }
 
     // Returns the concatenated full city name
@@ -291,16 +301,23 @@ class City extends Thing implements Entity
         if ($this->subCityName) {
             return $this->name . ' - ' . $this->subCityName;
         }
+
         return $this->name;
+    }
+
+    #[Groups(['read'])]
+    public function getCityName(): string
+    {
+        return $this->subCityName ?? $this->name;
     }
 
     // Helper method to check if the city matches a given name or any of its alternative names
     public function matchesName(string $name): bool
     {
-        return strcasecmp($this->name, $name) === 0 ||
-            strcasecmp($this->rawName, $name) === 0 ||
-            strcasecmp($this->subCityName, $name) === 0 ||
-            strcasecmp($this->rawSubName, $name) === 0;
+        return 0 === strcasecmp($this->name, $name)
+            || 0 === strcasecmp($this->rawName, $name)
+            || 0 === strcasecmp($this->subCityName, $name)
+            || 0 === strcasecmp($this->rawSubName, $name);
     }
 
     public function __toString(): string

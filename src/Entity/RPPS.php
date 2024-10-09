@@ -23,10 +23,10 @@ use Symfony\Component\Serializer\Annotation\SerializedName;
 
 // TODO - remove this index when the migration to specialtyEntity is done.  @Bastien
 #[ORM\Index(columns: ['specialty'], name: 'specialty_index')]
-
-#[ApiFilter(RPPSFilter::class, properties: ['search', 'idRpps', 'demo', 'excluded_rpps'])]
+#[ApiFilter(RPPSFilter::class, properties: ['search', 'first_letter', 'city', 'specialty', 'demo', 'excluded_rpps'])]
 #[ORM\Entity(repositoryClass: RPPSRepository::class)]
 #[ORM\Table(name: 'rpps')]
+#[ORM\Index(columns: ['last_name'], name: 'last_name_index')]
 #[ORM\Index(columns: ['full_name'], name: 'full_name_index')]
 #[ORM\Index(columns: ['full_name_inversed'], name: 'full_name_inversed_index')]
 #[ORM\Index(columns: ['id_rpps'], name: 'rpps_index')]
@@ -42,8 +42,6 @@ use Symfony\Component\Serializer\Annotation\SerializedName;
             provider: DefaultItemDataProvider::class
         ),
     ],
-    paginationClientEnabled: true,
-    paginationPartial: true,
 )]
 class RPPS extends Thing implements Entity, Stringable
 {
@@ -496,16 +494,15 @@ class RPPS extends Thing implements Entity, Stringable
 
     public function getCity(): ?string
     {
-
         if ($this->cityEntity) {
             return $this->cityEntity->getName();
         }
 
         if (!$this->city) {
-                return null;
+            return null;
         }
 
-            return trim(preg_replace('#^\\d{5,6}#', '', $this->city));
+        return trim(preg_replace('#^\\d{5,6}#', '', $this->city));
     }
 
     public function setCity(?string $city): self

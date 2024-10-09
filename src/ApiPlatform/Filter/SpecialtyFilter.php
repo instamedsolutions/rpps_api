@@ -54,13 +54,11 @@ final class SpecialtyFilter extends AbstractFilter
         $alias.specialistName LIKE CONCAT('%', :searchValue, '%')
         )";
 
-
         $queryBuilder->andWhere($query);
         $queryBuilder->setParameter('searchValue', $value);
 
         return $queryBuilder;
     }
-
 
     public function getDescription(string $resourceClass): array
     {

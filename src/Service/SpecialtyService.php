@@ -5,7 +5,8 @@ namespace App\Service;
 use App\Entity\Entity;
 use App\Entity\Specialty;
 use Doctrine\ORM\EntityManagerInterface;
-use Cocur\Slugify\Slugify;
+
+use function Symfony\Component\String\u;
 
 class SpecialtyService extends ImporterService
 {
@@ -28,34 +29,35 @@ class SpecialtyService extends ImporterService
     {
         if (!file_exists($filePath)) {
             $this->output->writeln('<error>File not found: ' . $filePath . '</error>');
+
             return false;
         }
 
         $handle = fopen($filePath, 'r');
-        if ($handle === false) {
+        if (false === $handle) {
             $this->output->writeln('<error>Unable to open file: ' . $filePath . '</error>');
+
             return false;
         }
 
         // Skip the header row
         fgetcsv($handle, 1000, $separator);
 
-        if ($type === 'link') {
+        if ('link' === $type) {
             // Build the specialty map
             $this->buildSpecialtyMap();
         }
 
-        $slugify = new Slugify();
         $lineCounter = 0;
 
         while (($data = fgetcsv($handle, 1000, $separator)) !== false) {
-            if ($type === 'specialties') {
-                $this->processSpecialty($data, $slugify);
-            } elseif ($type === 'link') {
+            if ('specialties' === $type) {
+                $this->processSpecialty($data);
+            } elseif ('link' === $type) {
                 $this->processLink($data);
             }
 
-            $lineCounter++;
+            ++$lineCounter;
         }
 
         fclose($handle);
@@ -77,22 +79,23 @@ class SpecialtyService extends ImporterService
         }
 
         if ($this->verbose) {
-            $this->output->writeln("<info>Specialty map built with " . count($this->specialtyMap) . " entries.</info>");
+            $this->output->writeln('<info>Specialty map built with ' . count($this->specialtyMap) . ' entries.</info>');
         }
     }
 
-    private function processSpecialty(array $data, Slugify $slugify): void
+    private function processSpecialty(array $data): void
     {
-        [$specialtyName, $specialistName] = $data;
+        [$specialtyName, $specialistName,$isParamedical] = $data;
 
         // Create canonical form
-        $canonical = $slugify->slugify($specialtyName);
+        $canonical = u($specialtyName)->trim()->lower()->ascii()->replace('_', '-')->replace(' ', '-')->replace('--', '-')->toString();
 
         // Create new specialty entity
         $specialty = new Specialty();
         $specialty->setName($specialtyName);
         $specialty->setCanonical($canonical);
         $specialty->setSpecialistName($specialistName);
+        $specialty->setIsParamedical((bool) $isParamedical);
         $specialty->importId = $this->getImportId();
 
         $this->em->persist($specialty);
@@ -112,6 +115,7 @@ class SpecialtyService extends ImporterService
 
         if (!$mainSpecialty) {
             $this->output->writeln("<error>Main specialty not found: $mainSpecialtyName</error>");
+
             return;
         }
 

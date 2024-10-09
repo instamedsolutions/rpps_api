@@ -39,7 +39,7 @@ class SimilarCitiesProvider implements ProviderInterface
 
                 if (!$subCityWithCoordinates) {
                     // If not found, take any city in the same department
-                    return $this->cityRepository->findSimilarCitiesInDepartment($city);
+                    return $this->cityRepository->findSimilarCitiesInDepartment($city, $context['filters']['_per_page'] ?? 10);
                 } else {
                     $city = $subCityWithCoordinates;
                 }

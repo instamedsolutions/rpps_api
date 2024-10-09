@@ -2,20 +2,17 @@
 
 namespace App\StateProvider;
 
+use ApiPlatform\Metadata\Get;
 use ApiPlatform\Metadata\Operation;
 use ApiPlatform\State\ProviderInterface;
 use App\Repository\SpecialtyRepository;
-use ApiPlatform\Metadata\Get;
 use Exception;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class SimilarSpecialtiesProvider implements ProviderInterface
 {
-    private SpecialtyRepository $repository;
-
-    public function __construct(SpecialtyRepository $repository)
+    public function __construct(private readonly SpecialtyRepository $repository)
     {
-        $this->repository = $repository;
     }
 
     /**
