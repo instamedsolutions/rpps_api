@@ -86,7 +86,7 @@ class SpecialtyService extends ImporterService
         [$specialtyName, $specialistName] = $data;
 
         // Create canonical form
-        $canonical = $slugify->slugify($specialtyName);
+        $canonical = $slugify->slugify($specialistName);
 
         // Create new specialty entity
         $specialty = new Specialty();

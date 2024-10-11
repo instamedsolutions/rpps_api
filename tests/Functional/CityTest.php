@@ -28,7 +28,7 @@ class CityTest extends ApiTestCase
     }
 
     /**
-     * @group
+     * @group mygroup
      * @throws ClientExceptionInterface
      * @throws RedirectionExceptionInterface
      * @throws ServerExceptionInterface
@@ -39,6 +39,8 @@ class CityTest extends ApiTestCase
         $city = $this->getCity("paris-13eme");
         $data = $this->get("cities/" . $city->getId());
         $this->assertResponseStatusCodeSame(Response::HTTP_OK);
+
+        dump($data);
 
         // Check that the response contains expected keys
         $this->assertArrayHasKey('@context', $data);
@@ -52,6 +54,8 @@ class CityTest extends ApiTestCase
         $this->assertArrayHasKey('longitude', $data);
         $this->assertArrayHasKey('population', $data);
         $this->assertArrayHasKey('department', $data);
+        $this->assertArrayHasKey('hasSubCities', $data);
+        $this->assertArrayHasKey('realName', $data);
 
         // Check specific field values
         $this->assertEquals($city->getCanonical(), $data['canonical']);
@@ -61,6 +65,8 @@ class CityTest extends ApiTestCase
         $this->assertEquals($city->getLatitude(), $data['latitude']);
         $this->assertEquals($city->getLongitude(), $data['longitude']);
         $this->assertEquals($city->getPopulation(), $data['population']);
+        $this->assertEquals($city->getSubCityName(), $data['realName']);
+        $this->assertFalse($data['hasSubCities']);
 
         // Check that the department object has the correct structure
         $this->assertArrayHasKey('@type', $data['department']);

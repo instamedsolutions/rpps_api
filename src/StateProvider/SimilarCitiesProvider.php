@@ -33,7 +33,9 @@ class SimilarCitiesProvider implements ProviderInterface
                 throw new NotFoundHttpException('City not found');
             }
 
-            $limit = $context['filters']['limit'] ?? 10;
+            // TODO Fix ?
+            //$limit = $context['filters']['limit'] ?? 10;
+            $limit = 20;
 
             if (!$city->getLatitude() || !$city->getLongitude()) {
                 // Try to find a sub city with coordinates
@@ -43,7 +45,8 @@ class SimilarCitiesProvider implements ProviderInterface
                     // If not found, take any city in the same department
                     return $this->cityRepository->findSimilarCitiesInDepartment($city, $limit);
                 } else {
-                    $city = $subCityWithCoordinates;
+                    $city->setLongitude($subCityWithCoordinates->getLongitude()) ;
+                    $city->setLatitude($subCityWithCoordinates->getLatitude());
                 }
             }
 

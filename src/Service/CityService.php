@@ -24,6 +24,7 @@ class CityService extends ImporterService
 
     // Counters for cities
     private int $nbSuccessCity = 0;
+    private int $nbMergedCity = 0;
     private int $nbMainCity = 0;
     private int $nbSubCity = 0;
     private int $nbFailedCity = 0;
@@ -35,6 +36,7 @@ class CityService extends ImporterService
 
     private array $populationUpdates = [];
     private array $coordinateUpdates = [];
+    private array $canonicalMap = [];
 
     public function __construct(
         FileProcessor $fileProcessor,
@@ -105,6 +107,7 @@ class CityService extends ImporterService
 
         $this->output->writeln("<info>Cities imported successfully: $this->nbSuccessCity</info>");
         $this->output->writeln("<info>- Main cities: $this->nbMainCity</info>");
+        $this->output->writeln("<info>- Merged cities: $this->nbMergedCity</info>");
         $this->output->writeln("<info>- Subcities: $this->nbSubCity</info>");
         $this->output->writeln("<info>- ChefLieu: $this->nbChefLieu</info>");
 
@@ -132,6 +135,7 @@ class CityService extends ImporterService
             }
             $this->em->flush();
             $this->coordinateUpdates = [];
+            $this->em->clear(); // Clear the entity manager to free up memory
         }
 
         if (!empty($this->populationUpdates)) {
@@ -143,15 +147,16 @@ class CityService extends ImporterService
             }
             $this->em->flush();
             $this->populationUpdates = [];
+            $this->em->clear(); // Clear the entity manager to free up memory
         }
     }
 
     private function initializeMainCities(array &$mainCities): void
     {
         $essentialCities = [
-            ['75000', 'PARIS', '75000', 'Paris', ''],
-            ['13200', 'MARSEILLE', '13000', 'Marseille', ''],
-            ['69380', 'LYON', '69000', 'Lyon', ''],
+            ['75056', 'PARIS', '75000', 'Paris', ''],
+            ['13055', 'MARSEILLE', '13000', 'Marseille', ''],
+            ['69123', 'LYON', '69000', 'Lyon', ''],
         ];
 
         foreach ($essentialCities as $cityData) {
@@ -255,12 +260,14 @@ class CityService extends ImporterService
         // Normalize the city name (handle "ST" to "Saint" and other abbreviations)
         $normalizedCommuneName = $this->normalizeCityName($communeName);
 
+        // Almost always the same as the commune name, but sometimes different specially for the Dom-Tom
+        $normalizedRoutingLabel = $this->normalizeCityName($routingLabel);
+
         // Determine the department code, accounting for overseas departments
         $codeDepartment = (str_starts_with($inseeCode, '97') || str_starts_with($inseeCode, '98'))
             ? substr($inseeCode, 0, 3)
             : substr($inseeCode, 0, 2);
 
-        // Find the department based on the determined code
         $department = $this->em->getRepository(Department::class)->findOneBy(['codeDepartment' => $codeDepartment]);
 
         if (!$department) {
@@ -273,36 +280,34 @@ class CityService extends ImporterService
 
         // Generate the canonical value
         $slugify = new Slugify();
-        $mainCityCanonical = $inseeCode . '-' . $postalCode . '-' . $routingLabel;
-        $subCityCanonical = $inseeCode . '-' . $postalCode . '-' . $routingLabel . '-' . $ligne5;
-
-        $mainCitySlug = $slugify->slugify($mainCityCanonical, '-');
-        $subCitySlug = $slugify->slugify($subCityCanonical, '-');
+        $canonicalMain = $slugify->slugify($normalizedRoutingLabel);
 
         // Check if this entry is a main city or a sub city
         $isMainCity = empty($ligne5);
-        $mainCityKey = $normalizedCommuneName . '-' . $postalCode;
-
-        // Arrondissement has different postal code
-        if ($communeName === 'PARIS') {
-            $mainCityKey = 'Paris-75000';
+        $mainCityKey = $normalizedCommuneName . '-' . $inseeCode;
+        if(!$isMainCity) {
+            $mainCityKey = $this->handleArrondissements($normalizedCommuneName, $mainCityKey);
         }
-        if ($communeName === 'LYON') {
-            $mainCityKey = 'Lyon-69000';
-        }
-        if ($communeName === 'MARSEILLE') {
-            $mainCityKey = 'Marseille-13000';
-        }
-
         $mainCity = $mainCities[$mainCityKey] ?? null;
 
         if (!$mainCity) {
+
+            $canonical = $canonicalMain;
+            // Checking for duplicate against the hashmap
+            if (isset($this->canonicalMap[$canonical])) {
+                // Add the postal code to resolve the duplicate
+                $canonical = $canonical . '-' . $postalCode;
+            }
+
+            // Store the canonical in the hashmap to ensure future uniqueness checks
+            $this->canonicalMap[$canonical] = true;
+
             $mainCity = new City();
-            $mainCity->setCanonical($mainCitySlug);
+            $mainCity->setCanonical($canonical);
             $mainCity->setRawName($communeName);
             $mainCity->setName($normalizedCommuneName);
             $mainCity->setInseeCode($inseeCode);
-            $mainCity->setPostalCode($postalCode);
+            $mainCity->setPostalCode($postalCode); // First postal code set as the main one
             $mainCity->setDepartment($department);
             $mainCity->importId = $this->getImportId();
 
@@ -312,12 +317,35 @@ class CityService extends ImporterService
 
             // Track the main city
             $mainCities[$mainCityKey] = $mainCity;
+        }elseif($isMainCity) {
+            if ($this->verbose) {
+                $this->output->writeln("<info>Adding additional postal code: $postalCode for city: {$mainCity->getName()} (INSEE: $inseeCode)</info>");
+            }
+
+            // Add the additional postal code to the existing city
+            $mainCity->addAdditionalPostalCode($postalCode);
+            $this->nbMergedCity++;
         }
 
         if (!$isMainCity) {
+
+            $normalizedLigne5 = $slugify->slugify($this->normalizeCityName($ligne5));
+
+            // Add main city to the slug for subcities except for arrondissements
+            $canonicalSub = $canonicalMain . '-' . $normalizedLigne5;
+            $canonicalSub = $this->handleArrondissementsSlug($normalizedCommuneName, $normalizedLigne5, $canonicalSub);
+
+            // Checking for duplicate against the hashmap
+            if (isset($this->canonicalMap[$canonicalSub])) {
+                // Add the postal code to resolve the duplicate
+                $canonicalSub = $canonicalSub . '-' . $postalCode;
+            }
+
+            $this->canonicalMap[$canonicalSub] = true;
+
             // Create the sub city and link it to the main city
             $subCity = new City();
-            $subCity->setCanonical($subCitySlug);
+            $subCity->setCanonical($canonicalSub);
             $subCity->setRawName($communeName);
             $subCity->setRawSubName($ligne5);
             $subCity->setName($normalizedCommuneName);
@@ -335,11 +363,12 @@ class CityService extends ImporterService
             $this->nbSuccessCity++;
         }
 
-        // Only consider main cities for chef-lieu assignment
-        if ($isMainCity && !$department->getChefLieu()) {
+        // Chef-lieu assignment
+        if (!$department->getChefLieu()) {
+
             $normalizedChefLieuName = $this->normalizeCityName($department->tempChefLieuName);
 
-            if ($normalizedChefLieuName === $normalizedCommuneName) {
+            if ($normalizedChefLieuName === $mainCity->getName()) {
                 $department->setChefLieu($mainCity);
                 $this->em->persist($department);
                 $this->nbChefLieu++;
@@ -374,20 +403,8 @@ class CityService extends ImporterService
         // Format postal code and INSEE code to ensure consistency
         $zipCode = str_pad($zipCode, 5, '0', STR_PAD_LEFT);
         $inseeCode = str_pad($inseeCode, 5, '0', STR_PAD_LEFT);
-        $isMainCity = empty($ligne5);
 
-        if ($isMainCity) {
-            $matchingCities = $this->em->getRepository(City::class)->findBy([
-                'inseeCode' => $inseeCode,
-                'postalCode' => $zipCode,
-                'mainCity' => null
-            ]);
-        } else {
-            $matchingCities = $this->em->getRepository(City::class)->findBy([
-                'inseeCode' => $inseeCode,
-                'postalCode' => $zipCode,
-            ]);
-        }
+        $matchingCities = $this->em->getRepository(City::class)->findCitiesByInseeAndPostalCode($inseeCode, $zipCode);
 
         // Check if no city was found
         if (!$matchingCities) {
@@ -397,22 +414,36 @@ class CityService extends ImporterService
 
         if (count($matchingCities) === 1) {
             $city = $matchingCities[0];
-        } else {
+        }else{
             $city = null;
 
+            // 1st attempt to match, should be a safe match.
             foreach ($matchingCities as $matchingCity) {
-                if ($isMainCity) {
-                    if ($matchingCity->getRawName() === $nomCommunePostal) {
-                        $city = $matchingCity;
-                        break;
-                    }
-                } else {
-                    if ($matchingCity->isSubCity() && $matchingCity->getRawSubName() === $ligne5) {
-                        $city = $matchingCity;
-                        break;
-                    }
+                if ($matchingCity->isSubCity() && !empty($ligne5) && $matchingCity->getRawSubName() === $ligne5) {
+                    $city = $matchingCity;
+                    break;
+                }
+
+                if ($matchingCity->getRawName() === $nomCommunePostal) {
+                    $city = $matchingCity;
+                    break;
                 }
             }
+        }
+
+        if(!$city){
+            // 2nd attempt to match, less safe
+            foreach ($matchingCities as $matchingCity) {
+                if ($matchingCity->getRawSubName() === $nomCommunePostal) {
+                    $city = $matchingCity;
+                    break;
+                }
+            }
+        }
+
+        if(!$city){
+            // 3rd attempt to match, random
+            $city = $matchingCities[0];
         }
 
         if ($city) {
@@ -655,4 +686,33 @@ class CityService extends ImporterService
     {
         return null;
     }
+
+    private function handleArrondissements(string $normalizedCommuneName, string $mainCityKey) : string
+    {
+        if($normalizedCommuneName === 'Paris') {
+            return 'Paris-75056';
+        }
+        elseif($normalizedCommuneName === 'Marseille') {
+            return 'Marseille-13055';
+        }elseif ($normalizedCommuneName === 'Lyon') {
+            return 'Lyon-69123';
+        }
+
+        return $mainCityKey;
+    }
+
+    private function handleArrondissementsSlug(string $normalizedCommuneName, string $ligne5, string $canonicalSub) : string
+    {
+        if($normalizedCommuneName === 'Paris') {
+            return $ligne5;
+        }
+        elseif($normalizedCommuneName === 'Marseille') {
+            return $ligne5;
+        }elseif ($normalizedCommuneName === 'Lyon') {
+            return $ligne5;
+        }
+
+        return $canonicalSub;
+    }
+
 }

@@ -79,6 +79,10 @@ class City extends Thing implements Entity
     #[ORM\Column(length: 12)]
     private ?string $postalCode = null;
 
+    #[ORM\Column(type: Types::JSON, nullable: true)]
+    #[Groups(['city:item:read'])]
+    private ?array $additionalPostalCodes = [];
+
     #[Groups(['city:item:read'])]
     #[ORM\ManyToOne(inversedBy: 'cities')]
     #[ORM\JoinColumn(nullable: false)]
@@ -273,6 +277,32 @@ class City extends Thing implements Entity
         $this->population = $population;
     }
 
+    public function getAdditionalPostalCodes(): ?array
+    {
+        return $this->additionalPostalCodes;
+    }
+
+    public function setAdditionalPostalCodes(?array $additionalPostalCodes): static
+    {
+        $this->additionalPostalCodes = $additionalPostalCodes;
+        return $this;
+    }
+
+    public function addAdditionalPostalCode(string $postalCode): static
+    {
+        if ($this->additionalPostalCodes === null) {
+            $this->additionalPostalCodes = [];
+        }
+
+        // Ensure that the postal code is not already in the array
+        if (!in_array($postalCode, $this->additionalPostalCodes, true)) {
+            $this->additionalPostalCodes[] = $postalCode;
+        }
+
+        return $this;
+    }
+
+
     // Helper method to determine if this city is a main city
     public function isMainCity(): bool
     {
@@ -283,6 +313,18 @@ class City extends Thing implements Entity
     public function isSubCity(): bool
     {
         return $this->mainCity !== null;
+    }
+
+    #[Groups(['read'])]
+    public function getHasSubCities(): bool
+    {
+        return !$this->subCities->isEmpty();
+    }
+
+    #[Groups(['read'])]
+    public function getRealName(): string
+    {
+        return $this->subCityName ?? $this->name;
     }
 
     // Returns the concatenated full city name

@@ -93,7 +93,8 @@ class CityRepository extends ServiceEntityRepository
         AND c.latitude IS NOT NULL
         AND c.longitude IS NOT NULL
         AND c.population > :population
-        AND c.id != :cityId
+        AND c.main_city_id IS NULL   -- Filter out sub-cities
+        AND c.id != :cityId          -- Exclude the given city
         ORDER BY distance
     ';
 
@@ -117,6 +118,40 @@ class CityRepository extends ServiceEntityRepository
 
         // Fetch City entities for the results
         $cityIds = array_column($closestCities, 'id');
+        return $this->createQueryBuilder('c')
+            ->where('c.id IN (:cityIds)')
+            ->setParameter('cityIds', $cityIds)
+            ->getQuery()
+            ->getResult();
+    }
+
+
+    public function findCitiesByInseeAndPostalCode(string $inseeCode, string $zipCode): array
+    {
+        $conn = $this->getEntityManager()->getConnection();
+
+        $sql = '
+        SELECT * 
+        FROM city 
+        WHERE insee_code = :inseeCode 
+        AND (postal_code = :postalCode OR JSON_CONTAINS(additional_postal_codes, :zipCode))
+    ';
+
+        $stmt = $conn->prepare($sql);
+        $stmt->execute([
+            'inseeCode' => $inseeCode,
+            'postalCode' => $zipCode,
+            'zipCode' => json_encode($zipCode) // Make sure to JSON-encode the zip code
+        ]);
+
+        $results = $stmt->fetchAllAssociative();
+
+        if (!$results) {
+            return [];
+        }
+
+        // Fetch City entities for the results
+        $cityIds = array_column($results, 'id');
         return $this->createQueryBuilder('c')
             ->where('c.id IN (:cityIds)')
             ->setParameter('cityIds', $cityIds)
