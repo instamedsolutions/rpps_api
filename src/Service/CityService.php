@@ -479,58 +479,58 @@ class CityService extends ImporterService
             $totalPopulation  // PTOT (Total Population)
         ] = $data;
 
-        // Search for the main city with this INSEE code
-        $mainCity = $this->em->getRepository(City::class)->findOneBy([
-            'inseeCode' => $inseeCode,
-            'mainCity' => null
-        ]);
+        // Get matching city by INSEE code
+        $cities = $this->em->getRepository(City::class)->findBy(['inseeCode' => $inseeCode]);
 
-        if ($mainCity) {
-            // Update the population for the found main city
-            $mainCity->setPopulation((int)$totalPopulation);
-            $this->populationUpdates[] = $mainCity;
+        $numMatches = count($cities);
+
+        // Easy case: only one city matches the INSEE code
+        if ($numMatches === 1) {
+            $city = $cities[0];
+            $city->setPopulation((int)$totalPopulation);
             $this->nbSuccessPopulation++;
-
-            if (count($this->populationUpdates) >= $this->batchSize) {
-                $this->flushBatch();
-            }
-
-            if ($this->verbose) {
-                $this->output->writeln("<info>Updated population for city: {$mainCity->getName()} (INSEE: $inseeCode)</info>");
-            }
-
             return;
         }
 
-        // Try fallback methods to find the city
-        if ($this->verbose) {
-            $this->output->writeln("<comment>No main city found for INSEE code: $inseeCode. Attempting to find a sub city</comment>");
-        }
+        // Multiple cities found, proceed with sub-city and main-city separation
+        $slugify = new Slugify();
+        $cityName = $slugify->slugify($this->normalizeCityName($communeName));
 
-        $subCities = $this->em->getRepository(City::class)->findBy(['inseeCode' => $inseeCode,]);
+        // Separate cities into sub-cities and main cities
+        $mainCities = [];
+        $subCities = [];
 
-        if ($subCities && count($subCities) === 1) {
-            $subCity = $subCities[0];
-            $subCity->setPopulation((int)$totalPopulation);
-            $this->populationUpdates[] = $subCity;
-            $this->nbSuccessPopulation++;
-
-            if (count($this->populationUpdates) >= $this->batchSize) {
-                $this->flushBatch();
+        foreach ($cities as $city) {
+            if ($city->isMainCity()) {
+                $mainCities[] = $city;
+            } else {
+                $subCities[] = $city;
             }
+        }
 
-            if ($this->verbose) {
-                $this->output->writeln("<info>Updated population for sub city: {$subCity->getSubCityName()} (INSEE: $inseeCode)</info>");
+        foreach ($subCities as $city) {
+            $subCityMatch = $slugify->slugify($this->normalizeCityName($city->getRawSubName()));
+
+            if ($subCityMatch === $cityName) {
+                $city->setPopulation((int)$totalPopulation);
+                $this->nbSuccessPopulation++;
+                return;
             }
-            return;
         }
 
-        // Try fallback methods to find the city
-        if ($this->verbose) {
-            $this->output->writeln("<comment>No sub city found for INSEE code: $inseeCode. Attempting to match by city name: $communeName</comment>");
+        foreach ($mainCities as $city) {
+            $mainCityMatch = $slugify->slugify($this->normalizeCityName($city->getRawName()));
+
+            if ($mainCityMatch === $cityName) {
+                $city->setPopulation((int)$totalPopulation);
+                $this->nbSuccessPopulation++;
+                return;
+            }
         }
 
-        // Try to match by communeName in altName, subCityName, or subCityAltName
+
+        // Insee code does not match any city - try to match by name
+
         $matchingCities = $this->em->getRepository(City::class)->createQueryBuilder('c')
             ->where(
                 'LOWER(c.name) = :name OR LOWER(c.rawName) = :name OR LOWER(c.subCityName) = :name OR LOWER(c.rawSubName) = :name'
@@ -542,28 +542,27 @@ class CityService extends ImporterService
         $numMatches = count($matchingCities);
 
         if ($numMatches === 1) {
-            // Unique match found, update population
             $city = $matchingCities[0];
-            $city->setPopulation((int)$totalPopulation);
-            $this->populationUpdates[] = $city;
-            $this->nbSuccessPopulation++;
 
-            if (count($this->populationUpdates) >= $this->batchSize) {
-                $this->flushBatch();
+            // Check if the current population is zero before updating
+            if ((int) $city->getPopulation() > 0) {
+                $this->output->writeln("<error>Warning: Current population for city {$city->getName()} (INSEE: $inseeCode) is not zero :".$city->getPopulation().". Please review this case for potential issues.</error>");
+                $this->nbFailedPopulation++;
+                return;
             }
+
+            // Unique match found, update population
+            $city->setPopulation((int)$totalPopulation);
+            $this->nbSuccessPopulation++;
 
             if ($this->verbose) {
                 $this->output->writeln("<info>Updated population for matched city based on name: {$city->getName()} (Matched with: $communeName, INSEE: $inseeCode)</info>");
             }
             return;
         } elseif ($numMatches > 1) {
-            $this->output->writeln(
-                "<error>Ambiguous matches found for commune name: $communeName (INSEE: $inseeCode)</error>"
-            );
+            $this->output->writeln("<error>Ambiguous matches found for commune name: $communeName (INSEE: $inseeCode)</error>");
         } else {
-            $this->output->writeln(
-                "<error>No main city found for INSEE code: $inseeCode and no city matched the commune name: $communeName</error>"
-            );
+            $this->output->writeln("<error>No main city found for INSEE code: $inseeCode and no city matched the commune name: $communeName</error>");
         }
 
         $this->nbFailedPopulation++;
