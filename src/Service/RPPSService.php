@@ -6,7 +6,6 @@ use App\DataFixtures\LoadRPPS;
 use App\Entity\City;
 use App\Entity\RPPS;
 use App\Entity\Specialty;
-use Cocur\Slugify\Slugify;
 use Doctrine\Common\DataFixtures\Executor\ORMExecutor;
 use Doctrine\DBAL\Connection;
 use Doctrine\ORM\EntityManagerInterface;
@@ -15,6 +14,8 @@ use Exception;
 use Symfony\Bridge\Doctrine\DataFixtures\ContainerAwareLoader;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\HttpKernel\KernelInterface;
+
+use function Symfony\Component\String\u;
 
 /**
  * Contains all useful methods to process files and import them into database.
@@ -28,7 +29,6 @@ class RPPSService extends ImporterService
     private array $specialtyByName = [];  // The name field of the Specialty entity
     private array $specialtyByAltName = []; // Mapping of Instamed RPPS db specialties to our specialties
     private array $existingCanonicals = []; // Hashmap to store existing canonicals to avoid duplicate queries
-
 
     public function __construct(
         protected readonly string $cps,
@@ -219,9 +219,9 @@ class RPPSService extends ImporterService
         $cityEntity = $this->findCityEntity($data[35], $data[37]);
         if ($cityEntity) {
             $rpps->setCityEntity($cityEntity);
-            $this->matchedCitiesCount++;
+            ++$this->matchedCitiesCount;
         } else {
-            $this->unmatchedCitiesCount++;
+            ++$this->unmatchedCitiesCount;
         }
 
         $rpps->setPhoneNumber(str_replace(' ', '', (string) $data[40]));
@@ -263,7 +263,6 @@ class RPPSService extends ImporterService
 
     private function findCityEntity(mixed $zipCode, mixed $cityName): ?City
     {
-
         if (empty($zipCode) && empty($cityName)) {
             return null;
         }
@@ -284,23 +283,23 @@ class RPPSService extends ImporterService
             return null;
         }
 
-
-        if (count($cities) === 1) {
+        if (1 === count($cities)) {
             // If only one city found, return it
             return $cities[0];
         }
 
         // Try to find a city matching the normalized name
         if ($cityName) {
-            $slugify = new Slugify(['separator' => '-', 'lowercase' => true, 'trim' => true]);
-            $normalizedCityName = $slugify->slugify($cityName);
+            $normalizedCityName = u($cityName)->lower()->ascii()->replace('_', '-')->replace(' ', '-')->replace('--', '-')->toString();
 
             // Check for matching city name
-            $matchingNameCities = array_filter($cities, function ($city) use ($normalizedCityName, $slugify) {
-                return $slugify->slugify($city->getName()) === $normalizedCityName;
+            $matchingNameCities = array_filter($cities, function ($city) use ($normalizedCityName) {
+                $n2 = u($city->getName())->lower()->ascii()->replace('_', '-')->replace(' ', '-')->replace('--', '-')->toString();
+
+                return $n2 === $normalizedCityName;
             });
 
-            if (count($matchingNameCities) === 1) {
+            if (1 === count($matchingNameCities)) {
                 return array_pop($matchingNameCities);
             }
 
@@ -309,20 +308,22 @@ class RPPSService extends ImporterService
                 return $city->isMainCity();
             });
 
-            if (count($matchingNameMainCities) === 1) {
+            if (1 === count($matchingNameMainCities)) {
                 return array_pop($matchingNameMainCities);
             }
 
-
             // Check for matching sub-city name
-            $matchingSubCities = array_filter($matchingNameCities, function ($city) use ($normalizedCityName, $slugify) {
+            $matchingSubCities = array_filter($matchingNameCities, function ($city) use ($normalizedCityName) {
                 if (null === $city->getSubCityName()) {
                     return false;
                 }
-                return $slugify->slugify($city->getSubCityName()) === $normalizedCityName;
+
+                $normalized = u($city->getSubCityName())->trim()->lower()->ascii()->replace('_', '-')->replace(' ', '-')->replace('--', '-')->toString();
+
+                return $normalized === $normalizedCityName;
             });
 
-            if (count($matchingSubCities) === 1) {
+            if (1 === count($matchingSubCities)) {
                 return array_pop($matchingSubCities);
             }
         }
@@ -333,13 +334,14 @@ class RPPSService extends ImporterService
                 return $city->isMainCity();
             });
 
-            if (count($mainCities) === 1) {
+            if (1 === count($mainCities)) {
                 return array_pop($mainCities);
             }
         }
 
         // If no unique match is found, log and return null
-        //$this->output->writeln('No unique city found for zip code: ' . $zipCode . ' and city name: ' . $cityName);
+        // TODO Ici il faut le lier a la 1ere ville trouvée
+        // $this->output->writeln('No unique city found for zip code: ' . $zipCode . ' and city name: ' . $cityName);
 
         return null;
     }
@@ -352,20 +354,19 @@ class RPPSService extends ImporterService
      */
     private function generateCanonical(RPPS $rpps): string
     {
-        $slugify = new Slugify(['separator' => '-', 'lowercase' => true, 'trim' => true]);
-        $canonicalBase = $slugify->slugify(implode('-', [
+        $canonicalBase = u(implode('-', [
             $rpps->getFirstName(),
             $rpps->getLastName(),
             $rpps->getCity(),
-            $rpps->getZipcode()
-        ]));
+            $rpps->getZipcode(),
+        ]))->lower()->ascii()->replace('_', '-')->replace(' ', '-')->replace('--', '-')->toString();
 
         $canonical = $canonicalBase;
         $suffix = 1;
 
         // Check if canonical already exists and add suffix if needed
         while (isset($this->existingCanonicals[$canonical])) {
-            $suffix++;
+            ++$suffix;
             $canonical = $canonicalBase . '-' . $suffix;
         }
 

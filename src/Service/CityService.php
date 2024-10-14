@@ -7,6 +7,7 @@ use App\Entity\Department;
 use App\Entity\Entity;
 use App\Entity\Region;
 use App\Enum\DepartmentType;
+use App\Repository\CityRepository;
 use Cocur\Slugify\Slugify;
 use Doctrine\ORM\EntityManagerInterface;
 
@@ -54,13 +55,14 @@ class CityService extends ImporterService
     {
         if (!file_exists($filePath)) {
             $this->output->writeln('<error>File not found: ' . $filePath . '</error>');
+
             return false;
         }
 
         // Initialize the main cities array to keep track of main cities during import
         $mainCities = [];
 
-        if ($type === 'city') {
+        if ('city' === $type) {
             $this->initializeMainCities($mainCities);
         }
 
@@ -73,8 +75,8 @@ class CityService extends ImporterService
             while (($data = fgetcsv($handle, 1000, $separator)) !== false) {
                 $this->processLine($data, $type, $mainCities);
 
-                $lineCounter++;
-                if ($lineCounter % 500 === 0 && !$this->verbose) {
+                ++$lineCounter;
+                if (0 === $lineCounter % 500 && !$this->verbose) {
                     // Output a progress message every 500 lines
                     $this->output->writeln("<comment>Processed $lineCounter lines...</comment>");
                 }
@@ -85,18 +87,20 @@ class CityService extends ImporterService
             $this->flushBatch();
         } else {
             $this->output->writeln('<error>Unable to open file: ' . $filePath . '</error>');
+
             return false;
         }
 
         $this->em->flush();
 
         $this->printFinalStat();
+
         return true;
     }
 
     private function printFinalStat(): void
     {
-        $this->output->writeln("<info>===== Import Summary  =====</info>");
+        $this->output->writeln('<info>===== Import Summary  =====</info>');
 
         $this->output->writeln("<info>Regions imported: $this->nbSuccessRegion</info>");
 
@@ -121,7 +125,7 @@ class CityService extends ImporterService
         }
 
         // General completion message
-        $this->output->writeln("<info>===== Import Completed =====</info>");
+        $this->output->writeln('<info>===== Import Completed =====</info>');
     }
 
     private function flushBatch(): void
@@ -167,15 +171,15 @@ class CityService extends ImporterService
 
     private function processLine(array $data, string $type, array &$mainCities): void
     {
-        if ($type === 'region') {
+        if ('region' === $type) {
             $this->processRegionData($data);
-        } elseif ($type === 'department') {
+        } elseif ('department' === $type) {
             $this->processDepartmentData($data);
-        } elseif ($type === 'city') {
+        } elseif ('city' === $type) {
             $this->processCity($data, $mainCities);
-        } elseif ($type === 'population') {
+        } elseif ('population' === $type) {
             $this->processPopulation($data);
-        } elseif ($type === 'coordinates') {
+        } elseif ('coordinates' === $type) {
             $this->processCityCoordinates($data);
         } else {
             $this->output->writeln('<error>Unknown type: ' . $type . '</error>');
@@ -193,7 +197,7 @@ class CityService extends ImporterService
 
         $this->em->persist($region);
 
-        $this->nbSuccessRegion++;
+        ++$this->nbSuccessRegion;
         if ($this->verbose) {
             $this->output->writeln("<info>Imported region: $name</info>");
         }
@@ -214,18 +218,20 @@ class CityService extends ImporterService
         $region = $this->em->getRepository(Region::class)->findOneBy(['name' => $regionName]);
         if (!$region) {
             $this->output->writeln("<error>Region not found: $regionName for department: $name</error>");
-            $this->nbFailedDepartment++;
+            ++$this->nbFailedDepartment;
+
             return;
         }
 
-        if ($type === 'DPT') {
+        if ('DPT' === $type) {
             $type = 'department';
         }
 
         $departmentType = DepartmentType::tryFrom(strtolower($type));
-        if ($departmentType === null) {
+        if (null === $departmentType) {
             $this->output->writeln("<error>Invalid department type: $type for department: $name</error>");
-            $this->nbFailedDepartment++;
+            ++$this->nbFailedDepartment;
+
             return;
         }
 
@@ -238,7 +244,7 @@ class CityService extends ImporterService
 
         $this->em->persist($department);
 
-        $this->nbSuccessDepartment++;
+        ++$this->nbSuccessDepartment;
 
         $department->tempChefLieuName = $chefLieuName;
 
@@ -274,7 +280,8 @@ class CityService extends ImporterService
             $this->output->writeln(
                 "<error>Department not found for city: $communeName with department code: $codeDepartment</error>"
             );
-            $this->nbFailedCity++;
+            ++$this->nbFailedCity;
+
             return;
         }
 
@@ -285,13 +292,12 @@ class CityService extends ImporterService
         // Check if this entry is a main city or a sub city
         $isMainCity = empty($ligne5);
         $mainCityKey = $normalizedCommuneName . '-' . $inseeCode;
-        if(!$isMainCity) {
+        if (!$isMainCity) {
             $mainCityKey = $this->handleArrondissements($normalizedCommuneName, $mainCityKey);
         }
         $mainCity = $mainCities[$mainCityKey] ?? null;
 
         if (!$mainCity) {
-
             $canonical = $canonicalMain;
             // Checking for duplicate against the hashmap
             if (isset($this->canonicalMap[$canonical])) {
@@ -312,12 +318,12 @@ class CityService extends ImporterService
             $mainCity->importId = $this->getImportId();
 
             $this->em->persist($mainCity);
-            $this->nbMainCity++;
-            $this->nbSuccessCity++;
+            ++$this->nbMainCity;
+            ++$this->nbSuccessCity;
 
             // Track the main city
             $mainCities[$mainCityKey] = $mainCity;
-        }elseif($isMainCity) {
+        } elseif ($isMainCity) {
             if ($this->verbose) {
                 $this->output->writeln("<info>Adding additional postal code: $postalCode for city: {$mainCity->getName()} (INSEE: $inseeCode)</info>");
             }
@@ -328,7 +334,6 @@ class CityService extends ImporterService
         }
 
         if (!$isMainCity) {
-
             $normalizedLigne5 = $slugify->slugify($this->normalizeCityName($ligne5));
 
             // Add main city to the slug for subcities except for arrondissements
@@ -359,19 +364,18 @@ class CityService extends ImporterService
             $this->em->persist($subCity);
             $mainCity->addSubCity($subCity);
 
-            $this->nbSubCity++;
-            $this->nbSuccessCity++;
+            ++$this->nbSubCity;
+            ++$this->nbSuccessCity;
         }
 
         // Chef-lieu assignment
         if (!$department->getChefLieu()) {
-
             $normalizedChefLieuName = $this->normalizeCityName($department->tempChefLieuName);
 
             if ($normalizedChefLieuName === $mainCity->getName()) {
                 $department->setChefLieu($mainCity);
                 $this->em->persist($department);
-                $this->nbChefLieu++;
+                ++$this->nbChefLieu;
 
                 if ($this->verbose) {
                     $this->output->writeln("<info>Set chef-lieu for department: {$department->getName()} to city: $communeName</info>");
@@ -404,17 +408,20 @@ class CityService extends ImporterService
         $zipCode = str_pad($zipCode, 5, '0', STR_PAD_LEFT);
         $inseeCode = str_pad($inseeCode, 5, '0', STR_PAD_LEFT);
 
-        $matchingCities = $this->em->getRepository(City::class)->findCitiesByInseeAndPostalCode($inseeCode, $zipCode);
+        /** @var CityRepository $cityRepo */
+        $cityRepo = $this->em->getRepository(City::class);
+        $matchingCities = $cityRepo->findCitiesByInseeAndPostalCode($inseeCode, $zipCode);
 
         // Check if no city was found
         if (!$matchingCities) {
             $this->output->writeln("<error>No match found for INSEE code: $inseeCode and Postal code: $zipCode</error>");
+
             return;
         }
 
-        if (count($matchingCities) === 1) {
+        if (1 === count($matchingCities)) {
             $city = $matchingCities[0];
-        }else{
+        } else {
             $city = null;
 
             // 1st attempt to match, should be a safe match.
@@ -431,7 +438,7 @@ class CityService extends ImporterService
             }
         }
 
-        if(!$city){
+        if (!$city) {
             // 2nd attempt to match, less safe
             foreach ($matchingCities as $matchingCity) {
                 if ($matchingCity->getRawSubName() === $nomCommunePostal) {
@@ -441,7 +448,7 @@ class CityService extends ImporterService
             }
         }
 
-        if(!$city){
+        if (!$city) {
             // 3rd attempt to match, random
             $city = $matchingCities[0];
         }
@@ -546,7 +553,7 @@ class CityService extends ImporterService
 
             // Check if the current population is zero before updating
             if ((int) $city->getPopulation() > 0) {
-                $this->output->writeln("<error>Warning: Current population for city {$city->getName()} (INSEE: $inseeCode) is not zero :".$city->getPopulation().". Please review this case for potential issues.</error>");
+                $this->output->writeln("<error>Warning: Current population for city {$city->getName()} (INSEE: $inseeCode) is not zero :" . $city->getPopulation() . ". Please review this case for potential issues.</error>");
                 $this->nbFailedPopulation++;
                 return;
             }
@@ -558,6 +565,7 @@ class CityService extends ImporterService
             if ($this->verbose) {
                 $this->output->writeln("<info>Updated population for matched city based on name: {$city->getName()} (Matched with: $communeName, INSEE: $inseeCode)</info>");
             }
+
             return;
         } elseif ($numMatches > 1) {
             $this->output->writeln("<error>Ambiguous matches found for commune name: $communeName (INSEE: $inseeCode)</error>");
@@ -565,7 +573,7 @@ class CityService extends ImporterService
             $this->output->writeln("<error>No main city found for INSEE code: $inseeCode and no city matched the commune name: $communeName</error>");
         }
 
-        $this->nbFailedPopulation++;
+        ++$this->nbFailedPopulation;
     }
 
     public function aggregatePopulationForMainCities(): void
@@ -618,7 +626,8 @@ class CityService extends ImporterService
             function ($matches) {
                 $word = strtolower($matches[0]);
                 // List of words that should remain in lowercase
-                $lowercaseWords = ['de', 'du', 'des', 'sur', 'sous', 'et', 'aux', 'le', 'la', 'les', "-d-"];
+                $lowercaseWords = ['de', 'du', 'des', 'sur', 'sous', 'et', 'aux', 'le', 'la', 'les', '-d-'];
+
                 return in_array($word, $lowercaseWords) ? $word : ucfirst($word);
             },
             $normalized
@@ -686,32 +695,29 @@ class CityService extends ImporterService
         return null;
     }
 
-    private function handleArrondissements(string $normalizedCommuneName, string $mainCityKey) : string
+    private function handleArrondissements(string $normalizedCommuneName, string $mainCityKey): string
     {
-        if($normalizedCommuneName === 'Paris') {
+        if ($normalizedCommuneName === 'Paris') {
             return 'Paris-75056';
-        }
-        elseif($normalizedCommuneName === 'Marseille') {
+        } elseif ($normalizedCommuneName === 'Marseille') {
             return 'Marseille-13055';
-        }elseif ($normalizedCommuneName === 'Lyon') {
+        } elseif ($normalizedCommuneName === 'Lyon') {
             return 'Lyon-69123';
         }
 
         return $mainCityKey;
     }
 
-    private function handleArrondissementsSlug(string $normalizedCommuneName, string $ligne5, string $canonicalSub) : string
+    private function handleArrondissementsSlug(string $normalizedCommuneName, string $ligne5, string $canonicalSub): string
     {
-        if($normalizedCommuneName === 'Paris') {
+        if ($normalizedCommuneName === 'Paris') {
             return $ligne5;
-        }
-        elseif($normalizedCommuneName === 'Marseille') {
+        } elseif ($normalizedCommuneName === 'Marseille') {
             return $ligne5;
-        }elseif ($normalizedCommuneName === 'Lyon') {
+        } elseif ($normalizedCommuneName === 'Lyon') {
             return $ligne5;
         }
 
         return $canonicalSub;
     }
-
 }

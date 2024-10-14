@@ -59,6 +59,7 @@ class Department extends Thing implements Entity
     public function setName(string $name): static
     {
         $this->name = $name;
+
         return $this;
     }
 
@@ -70,6 +71,7 @@ class Department extends Thing implements Entity
     public function setCodeDepartment(string $codeDepartment): static
     {
         $this->codeDepartment = $codeDepartment;
+
         return $this;
     }
 
@@ -87,6 +89,7 @@ class Department extends Thing implements Entity
             $this->cities->add($city);
             $city->setDepartment($this);
         }
+
         return $this;
     }
 
@@ -97,6 +100,7 @@ class Department extends Thing implements Entity
                 $city->setDepartment(null);
             }
         }
+
         return $this;
     }
 
@@ -108,6 +112,7 @@ class Department extends Thing implements Entity
     public function setRegion(?Region $region): static
     {
         $this->region = $region;
+
         return $this;
     }
 
@@ -119,6 +124,7 @@ class Department extends Thing implements Entity
     public function setChefLieu(?City $chefLieu): static
     {
         $this->chefLieu = $chefLieu;
+
         return $this;
     }
 
@@ -130,6 +136,7 @@ class Department extends Thing implements Entity
     public function setDepartmentType(DepartmentType $departmentType): static
     {
         $this->departmentType = $departmentType;
+
         return $this;
     }
 

@@ -122,7 +122,7 @@ class LoadRPPS extends Fixture implements DependentFixtureInterface, FixtureInte
             'Emilie',
             'Blandine',
             'Quentin',
-            'Achile'
+            'Achile',
         ];
     }
 

@@ -5,6 +5,7 @@ namespace App\ApiPlatform\Filter;
 use ApiPlatform\Doctrine\Orm\Filter\AbstractFilter;
 use ApiPlatform\Doctrine\Orm\Util\QueryNameGeneratorInterface;
 use ApiPlatform\Metadata\Operation;
+use Doctrine\ORM\Query\Expr\Join;
 use Doctrine\ORM\QueryBuilder;
 use Exception;
 
@@ -41,6 +42,18 @@ final class RPPSFilter extends AbstractFilter
             return;
         }
 
+        if ('specialty' === $property) {
+            $this->addSpecialtyFilter($queryBuilder, $value);
+        }
+
+        if ('city' === $property) {
+            $this->addCityFilter($queryBuilder, $value);
+        }
+
+        if ('first_letter' === $property) {
+            $this->addFirstLetterFilter($queryBuilder, $value);
+        }
+
         if ('search' === $property) {
             $this->addSearchFilter($queryBuilder, $value);
         }
@@ -48,6 +61,46 @@ final class RPPSFilter extends AbstractFilter
         if ('excluded_rpps' === $property) {
             $this->addExcludedRppsFilter($queryBuilder, $value);
         }
+    }
+
+    protected function addCityFilter(QueryBuilder $queryBuilder, ?string $value): void
+    {
+        if (!$value) {
+            return;
+        }
+
+        $rootAlias = $queryBuilder->getRootAliases()[0];
+
+        $queryBuilder->innerJoin("$rootAlias.cityEntity", 'city', Join::WITH, 'city.canonical = :cityId');
+        $queryBuilder->setParameter('cityId', $value);
+    }
+
+    public function addSpecialtyFilter(QueryBuilder $queryBuilder, ?string $value): QueryBuilder
+    {
+        if (!$value) {
+            return $queryBuilder;
+        }
+
+        $rootAlias = $queryBuilder->getRootAliases()[0];
+
+        $queryBuilder->innerJoin("$rootAlias.specialtyEntity", 'specialty', Join::WITH, 'specialty.canonical = :specialtyId');
+        $queryBuilder->setParameter('specialtyId', $value);
+
+        return $queryBuilder;
+    }
+
+    protected function addFirstLetterFilter(QueryBuilder $queryBuilder, ?string $value): QueryBuilder
+    {
+        if (!$value) {
+            return $queryBuilder;
+        }
+
+        $rootAlias = $queryBuilder->getRootAliases()[0];
+
+        $queryBuilder->andWhere("$rootAlias.lastName LIKE :firstLetter");
+        $queryBuilder->setParameter('firstLetter', $value . '%');
+
+        return $queryBuilder;
     }
 
     /**
@@ -125,7 +178,7 @@ final class RPPSFilter extends AbstractFilter
 
         $description = [];
         foreach ($this->properties as $property => $strategy) {
-            if ($property === 'search') {
+            if ('search' === $property) {
                 $description[$property] = [
                     'property' => $property,
                     'type' => 'string',
@@ -137,7 +190,7 @@ final class RPPSFilter extends AbstractFilter
                         'example' => 'Jean Du',
                     ],
                 ];
-            } elseif ($property === 'demo') {
+            } elseif ('demo' === $property) {
                 $description[$property] = [
                     'property' => $property,
                     'type' => 'boolean',
@@ -149,7 +202,7 @@ final class RPPSFilter extends AbstractFilter
                         'example' => 'true',
                     ],
                 ];
-            } elseif ($property === 'excluded_rpps') {
+            } elseif ('excluded_rpps' === $property) {
                 $description[$property] = [
                     'property' => $property,
                     'type' => 'array',

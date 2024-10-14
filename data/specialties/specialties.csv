@@ -1,82 +1,82 @@
-MainSpecialty,SpecialistName
-Allergologie,Allergologue
-Anatomie Et Cytologie Pathologiques,Anatomopathologiste
-Anesthésie-Réanimation,Anesthésiste-réanimateur
-Assistant Dentaire,Assistant dentaire
-Assistant Social,Assistant social
-Audio-Prothésiste,Audio-prothésiste
-Autre,Professionnel de santé
-Biologie,Biologiste médical
-Cardiologie,Cardiologue
-Chiropracteur,Chiropracteur
-Chirurgie Générale,Chirurgien général
-Chirurgie Infantile,Chirurgien infantile
-Chirurgie Maxillo-Facial,Chirurgien maxillo-facial
-Chirurgie Orale,Chirurgien oral
-Chirurgie Orthopédique,Chirurgien orthopédique
-Chirurgie Plastique,Chirurgien plasticien
-Chirurgie Pédiatrique,Chirurgien pédiatrique
-Chirurgie Thoracique Et Cardio-Vasculaire,Chirurgien thoracique et cardio-vasculaire
-Chirurgie Urologique,Chirurgien urologique
-Chirurgie Vasculaire,Chirurgien vasculaire
-Chirurgie Viscérale Et Digestive,Chirurgien viscéral et digestif
-Chirurgien-Dentiste,Chirurgien-dentiste
-Dentiste,Chirurgien bucco-dentaire
-Dermatologie,Dermatologue
-Diététicien,Diététicien
-Endocrinologie,Endocrinologue
-Epithésiste,Épithésiste
-Ergothérapeute,Ergothérapeute
-Gastro-Entérologie Et Hépatologie,Gastro-entérologue
-Gynécologie,Gynécologue médical
-Génétique Médicale,Généticien médical
-Gériatrie,Gériatre
-Hématologie,Hématologue
-Infirmier,Infirmier en pratique avancée
-Maladies Infectieuses Et Tropicales,Infectiologue
-Manipulateur Erm,Manipulateur en électroradiologie médicale
-Masseur-Kinésithérapeute,Masseur-kinésithérapeute
-Médecine Cardiovasculaire,Cardiologue interventionnel
-Médecine D'Urgence,Urgentiste
-Médecine Du Travail,Médecin du travail
-Médecine Générale,Médecin généraliste
-Médecine Intensive-Réanimation,Réanimateur médical
-Médecine Interne,Interniste
-Médecine Légale Et Expertises Médicales,Médecin légiste
-Médecine Nucléaire,Médecin nucléaire
-Médecine Physique Et Réadaptation,Rééducateur fonctionnel
-Médecine Vasculaire,Angiologue
-Neuro-Chirurgie,Neurochirurgien
-Neuro-Psychiatrie,Neuropsychiatre
-Neurologie,Neurologue
-Néphrologie,Néphrologue
-Obstétrique,Obstétricien
-Oculariste,Oculariste
-Oncologie,Oncologue
-Ophtalmologie,Ophtalmologue
-Opticien,Opticien
-Orl,ORL
-Orthophoniste,Orthophoniste
-Orthoprothésiste,Orthoprothésiste
-Orthoptiste,Orthoptiste
-Orthopédie,Orthopédiste
-Ostéopathe,Ostéopathe
-Pharmacien,Pharmacien
-Physicien Médical,Physicien médical
-Pneumologie,Pneumologue
-Podo-Orthésiste,Podo-orthésiste
-Psychiatrie,Psychiatre
-Psychologue,Psychologue
-Psychomotricien,Psychomotricien
-Psychothérapeute,Psychothérapeute
-Pédiatrie,Pédiatre
-Pédicure-Podologue,Pédicure-podologue
-Radio-Thérapie,Radiothérapeute
-Radiologie,Radiologue
-Recherche Médicale,Chercheur médical
-Rhumatologie,Rhumatologue
-Sage-Femme,Sage-femme
-Santé Publique,Médecin de santé publique
-Stomatologie,Stomatologue
-Technicien De Laboratoire,Technicien de laboratoire
-Urologie,Urologue
+MainSpecialty,SpecialistName,Paramedical
+Allergologie,Allergologue,0
+Anatomie Et Cytologie Pathologiques,Anatomopathologiste,0
+Anesthésie-Réanimation,Anesthésiste-réanimateur,0
+Assistant Dentaire,Assistant dentaire,1
+Assistant Social,Assistant social,1
+Audio-Prothésiste,Audio-prothésiste,1
+Autre,Professionnel de santé,1
+Biologie,Biologiste médical,1
+Cardiologie,Cardiologue,0
+Chiropracteur,Chiropracteur,1
+Chirurgie Générale,Chirurgien général,0
+Chirurgie Infantile,Chirurgien infantile,0
+Chirurgie Maxillo-Facial,Chirurgien maxillo-facial,0
+Chirurgie Orale,Chirurgien oral,0
+Chirurgie Orthopédique,Chirurgien orthopédique,0
+Chirurgie Plastique,Chirurgien plasticien,0
+Chirurgie Pédiatrique,Chirurgien pédiatrique,0
+Chirurgie Thoracique Et Cardio-Vasculaire,Chirurgien thoracique et cardio-vasculaire,0
+Chirurgie Urologique,Chirurgien urologique,0
+Chirurgie Vasculaire,Chirurgien vasculaire,0
+Chirurgie Viscérale Et Digestive,Chirurgien viscéral et digestif,0
+Chirurgien-Dentiste,Chirurgien-dentiste,0
+Dentiste,Chirurgien bucco-dentaire,0
+Dermatologie,Dermatologue,0
+Diététicien,Diététicien,1
+Endocrinologie,Endocrinologue,0
+Epithésiste,Épithésiste,1
+Ergothérapeute,Ergothérapeute,1
+Gastro-Entérologie Et Hépatologie,Gastro-entérologue,0
+Gynécologie,Gynécologue médical,0
+Génétique Médicale,Généticien médical,0
+Gériatrie,Gériatre,0
+Hématologie,Hématologue,0
+Infirmier,Infirmier en pratique avancée,1
+Maladies Infectieuses Et Tropicales,Infectiologue,0
+Manipulateur Erm,Manipulateur en électroradiologie médicale,1
+Masseur-Kinésithérapeute,Masseur-kinésithérapeute,1
+Médecine Cardiovasculaire,Cardiologue interventionnel,0
+Médecine D'Urgence,Urgentiste,0
+Médecine Du Travail,Médecin du travail,0
+Médecine Générale,Médecin généraliste,0
+Médecine Intensive-Réanimation,Réanimateur médical,0
+Médecine Interne,Interniste,0
+Médecine Légale Et Expertises Médicales,Médecin légiste,0
+Médecine Nucléaire,Médecin nucléaire,0
+Médecine Physique Et Réadaptation,Rééducateur fonctionnel,0
+Médecine Vasculaire,Angiologue,0
+Neuro-Chirurgie,Neurochirurgien,0
+Neuro-Psychiatrie,Neuropsychiatre,0
+Neurologie,Neurologue,0
+Néphrologie,Néphrologue,0
+Obstétrique,Obstétricien,0
+Oculariste,Oculariste,0
+Oncologie,Oncologue,0
+Ophtalmologie,Ophtalmologue,0
+Opticien,Opticien,1
+Orl,ORL,0
+Orthophoniste,Orthophoniste,1
+Orthoprothésiste,Orthoprothésiste,1
+Orthoptiste,Orthoptiste,0
+Orthopédie,Orthopédiste,0
+Ostéopathe,Ostéopathe,1
+Pharmacien,Pharmacien,1
+Physicien Médical,Physicien médical,1
+Pneumologie,Pneumologue,0
+Podo-Orthésiste,Podo-orthésiste,1
+Psychiatrie,Psychiatre,0
+Psychologue,Psychologue,1
+Psychomotricien,Psychomotricien,1
+Psychothérapeute,Psychothérapeute,1
+Pédiatrie,Pédiatre,0
+Pédicure-Podologue,Pédicure-podologue,0
+Radio-Thérapie,Radiothérapeute,0
+Radiologie,Radiologue,0
+Recherche Médicale,Chercheur médical,1
+Rhumatologie,Rhumatologue,0
+Sage-Femme,Sage-femme,1
+Santé Publique,Médecin de santé publique,0
+Stomatologie,Stomatologue,0
+Technicien De Laboratoire,Technicien de laboratoire,1
+Urologie,Urologue,0

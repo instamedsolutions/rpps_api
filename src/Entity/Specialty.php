@@ -17,13 +17,15 @@ use Symfony\Component\Serializer\Annotation\Groups;
 
 #[ORM\Entity(repositoryClass: SpecialtyRepository::class)]
 #[ORM\Index(columns: ['name'], name: 'specialty_name_index')]
+#[ORM\Index(columns: ['is_paramedical', 'id'], name: 'idx_specialty_composite')]
+#[ORM\Index(columns: ['is_paramedical'], name: 'specialty_is_paramedical_index')]
 #[ApiResource(
     shortName: 'Specialty',
     operations: [
-        new GetCollection(order: ['name' => 'ASC'],),
+        new GetCollection(order: ['name' => 'ASC']),
         new Get(provider: DefaultItemDataProvider::class),
         new Get(
-            uriTemplate: '/specialties/{id}/similar',
+            uriTemplate: '/specialties/{id}/similar{._format}',
             openapiContext: [
                 'summary' => 'Get similar specialties linked to this specialty',
                 'description' => 'Returns a list of specialties linked via the specialties field',
@@ -50,6 +52,10 @@ class Specialty extends Thing implements Entity
     #[ORM\Column(length: 255)]
     private ?string $specialistName = null;
 
+    #[Groups(['read'])]
+    #[ORM\Column(type: 'boolean', nullable: false, options: ['default' => false])]
+    private bool $isParamedical = false;
+
     #[ORM\ManyToMany(targetEntity: self::class, inversedBy: 'specialties')]
     #[ORM\JoinTable(name: 'specialty_links')]
     private Collection $specialties;
@@ -73,6 +79,7 @@ class Specialty extends Thing implements Entity
     public function setName(string $name): static
     {
         $this->name = $name;
+
         return $this;
     }
 
@@ -84,6 +91,7 @@ class Specialty extends Thing implements Entity
     public function setCanonical(string $canonical): static
     {
         $this->canonical = $canonical;
+
         return $this;
     }
 
@@ -95,6 +103,16 @@ class Specialty extends Thing implements Entity
     public function setSpecialistName(?string $specialistName): void
     {
         $this->specialistName = $specialistName;
+    }
+
+    public function isParamedical(): bool
+    {
+        return $this->isParamedical;
+    }
+
+    public function setIsParamedical(bool $isParamedical): void
+    {
+        $this->isParamedical = $isParamedical;
     }
 
     /**
@@ -110,12 +128,14 @@ class Specialty extends Thing implements Entity
         if (!$this->specialties->contains($specialty)) {
             $this->specialties->add($specialty);
         }
+
         return $this;
     }
 
     public function removeSpecialty(self $specialty): static
     {
         $this->specialties->removeElement($specialty);
+
         return $this;
     }
 
