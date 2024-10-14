@@ -8,8 +8,9 @@ use App\Entity\Entity;
 use App\Entity\Region;
 use App\Enum\DepartmentType;
 use App\Repository\CityRepository;
-use Cocur\Slugify\Slugify;
 use Doctrine\ORM\EntityManagerInterface;
+
+use function Symfony\Component\String\u;
 
 class CityService extends ImporterService
 {
@@ -286,8 +287,7 @@ class CityService extends ImporterService
         }
 
         // Generate the canonical value
-        $slugify = new Slugify();
-        $canonicalMain = $slugify->slugify($normalizedRoutingLabel);
+        $canonicalMain = $this->slugify($normalizedRoutingLabel);
 
         // Check if this entry is a main city or a sub city
         $isMainCity = empty($ligne5);
@@ -334,7 +334,7 @@ class CityService extends ImporterService
         }
 
         if (!$isMainCity) {
-            $normalizedLigne5 = $slugify->slugify($this->normalizeCityName($ligne5));
+            $normalizedLigne5 = $this->slugify($this->normalizeCityName($ligne5));
 
             // Add main city to the slug for subcities except for arrondissements
             $canonicalSub = $canonicalMain . '-' . $normalizedLigne5;
@@ -500,8 +500,7 @@ class CityService extends ImporterService
         }
 
         // Multiple cities found, proceed with sub-city and main-city separation
-        $slugify = new Slugify();
-        $cityName = $slugify->slugify($this->normalizeCityName($communeName));
+        $cityName = $this->slugify($this->normalizeCityName($communeName));
 
         // Separate cities into sub-cities and main cities
         $mainCities = [];
@@ -516,7 +515,7 @@ class CityService extends ImporterService
         }
 
         foreach ($subCities as $city) {
-            $subCityMatch = $slugify->slugify($this->normalizeCityName($city->getRawSubName()));
+            $subCityMatch = $this->slugify($this->normalizeCityName($city->getRawSubName()));
 
             if ($subCityMatch === $cityName) {
                 $city->setPopulation((int)$totalPopulation);
@@ -526,7 +525,7 @@ class CityService extends ImporterService
         }
 
         foreach ($mainCities as $city) {
-            $mainCityMatch = $slugify->slugify($this->normalizeCityName($city->getRawName()));
+            $mainCityMatch = $this->slugify($this->normalizeCityName($city->getRawName()));
 
             if ($mainCityMatch === $cityName) {
                 $city->setPopulation((int)$totalPopulation);
@@ -534,7 +533,6 @@ class CityService extends ImporterService
                 return;
             }
         }
-
 
         // Insee code does not match any city - try to match by name
 
@@ -617,8 +615,7 @@ class CityService extends ImporterService
         $name = preg_replace('/^(L |LE |LA |LES |DU |DE |DES |D )/i', '', $name);
 
         // Normalize the string: convert to lowercase, remove accents, and replace spaces with dashes
-        $slugify = new Slugify(['separator' => '-', 'lowercase' => true, 'trim' => true]);
-        $normalized = $slugify->slugify($name);
+        $normalized = $this->slugify($name);
 
         // Capitalize the first letter of each word except certain lowercase words
         $normalized = preg_replace_callback(
@@ -719,5 +716,17 @@ class CityService extends ImporterService
         }
 
         return $canonicalSub;
+    }
+
+    private function slugify(string $string): string
+    {
+        return u($string)
+            ->trim()                // Remove whitespace from the beginning and end
+            ->lower()               // Convert to lowercase
+            ->ascii()               // Convert to ASCII, removing accents
+            ->replace('_', '-')      // Replace underscores with hyphens
+            ->replace(' ', '-')      // Replace spaces with hyphens
+            ->replace('--', '-')     // Replace double hyphens with a single hyphen
+            ->toString();            // Convert back to a string
     }
 }
