@@ -142,6 +142,18 @@ class RPPS extends Thing implements Entity, Stringable
     protected ?string $address = null;
 
     #[ApiProperty(
+        description: 'The address extension of the doctor',
+        required: false,
+        openapiContext: [
+            'type' => 'string',
+            'example' => 'BP 75',
+        ]
+    )]
+    #[Groups(['read'])]
+    #[ORM\Column(type: 'string', length: 255, nullable: true)]
+    protected ?string $addressExtension = null;
+
+    #[ApiProperty(
         description: 'The postal code of the doctor',
         required: false,
         openapiContext: [
@@ -168,6 +180,30 @@ class RPPS extends Thing implements Entity, Stringable
     #[Groups(['read'])]
     #[ORM\Column(type: 'string', length: 255, nullable: true)]
     protected ?string $city = null;
+
+    #[ApiProperty(
+        description: 'The latitude of the doctor',
+        required: false,
+        openapiContext: [
+            'type' => 'number',
+            'example' => 48.8566,
+        ]
+    )]
+    #[Groups(['read'])]
+    #[ORM\Column(type: 'float', nullable: true)]
+    protected ?float $latitude = null;
+
+    #[ApiProperty(
+        description: 'The latitude of the doctor',
+        required: false,
+        openapiContext: [
+            'type' => 'number',
+            'example' => 48.8566,
+        ]
+    )]
+    #[Groups(['read'])]
+    #[ORM\Column(type: 'float', nullable: true)]
+    protected ?float $longitude = null;
 
     #[ApiProperty(
         description: 'The city entity of the doctor, with more detailed information such as population and coordinates.',
@@ -538,5 +574,35 @@ class RPPS extends Thing implements Entity, Stringable
     public function setSpecialtyEntity(?Specialty $specialtyEntity): void
     {
         $this->specialtyEntity = $specialtyEntity;
+    }
+
+    public function getAddressExtension(): ?string
+    {
+        return $this->addressExtension;
+    }
+
+    public function setAddressExtension(?string $addressExtension): void
+    {
+        $this->addressExtension = $addressExtension;
+    }
+
+    public function getLatitude(): ?float
+    {
+        return $this->latitude;
+    }
+
+    public function setLatitude(?float $latitude): void
+    {
+        $this->latitude = $latitude;
+    }
+
+    public function getLongitude(): ?float
+    {
+        return $this->longitude;
+    }
+
+    public function setLongitude(?float $longitude): void
+    {
+        $this->longitude = $longitude;
     }
 }

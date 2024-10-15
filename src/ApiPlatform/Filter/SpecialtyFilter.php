@@ -79,7 +79,7 @@ final class SpecialtyFilter extends AbstractFilter
 
         // Sélectionner le nombre de médecins associés pour chaque spécialité et trier par ce nombre
         $queryBuilder->addSelect("COUNT($rppsAlias.id) as HIDDEN rpps_count");
-        $queryBuilder->orderBy("rpps_count", "DESC");
+        $queryBuilder->orderBy('rpps_count', 'DESC');
     }
 
     public function getDescription(string $resourceClass): array

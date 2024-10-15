@@ -483,13 +483,13 @@ class CityService extends ImporterService
             $this->output->writeln("<comment>No main city found for INSEE code: $inseeCode. Attempting to find a sub city</comment>");
         }
 
-        $subCities = $this->em->getRepository(City::class)->findBy(['inseeCode' => $inseeCode,]);
+        $subCities = $this->em->getRepository(City::class)->findBy(['inseeCode' => $inseeCode]);
 
-        if ($subCities && count($subCities) === 1) {
+        if ($subCities && 1 === count($subCities)) {
             $subCity = $subCities[0];
-            $subCity->setPopulation((int)$totalPopulation);
+            $subCity->setPopulation((int) $totalPopulation);
             $this->populationUpdates[] = $subCity;
-            $this->nbSuccessPopulation++;
+            ++$this->nbSuccessPopulation;
 
             if (count($this->populationUpdates) >= $this->batchSize) {
                 $this->flushBatch();
@@ -498,6 +498,7 @@ class CityService extends ImporterService
             if ($this->verbose) {
                 $this->output->writeln("<info>Updated population for sub city: {$subCity->getSubCityName()} (INSEE: $inseeCode)</info>");
             }
+
             return;
         }
 
@@ -561,7 +562,7 @@ class CityService extends ImporterService
             $subCities = $mainCity->getSubCities();
             $totalPopulation = 0;
             foreach ($subCities as $subCity) {
-                if ($subCity->getPopulation() !== null) {
+                if (null !== $subCity->getPopulation()) {
                     $totalPopulation += $subCity->getPopulation();
                 }
             }
@@ -577,9 +578,8 @@ class CityService extends ImporterService
         }
 
         $this->em->flush();
-        $this->output->writeln("<info>Population aggregation completed for main cities.</info>");
+        $this->output->writeln('<info>Population aggregation completed for main cities.</info>');
     }
-
 
     private function normalizeCityName(string $name): string
     {

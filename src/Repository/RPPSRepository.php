@@ -54,6 +54,6 @@ class RPPSRepository extends ServiceEntityRepository
             ->setParameter('specialtyId', $specialtyId);
 
         // Exécution de la requête et retour du résultat sous forme de nombre entier
-        return (int)$queryBuilder->getQuery()->getSingleScalarResult();
+        return (int) $queryBuilder->getQuery()->getSingleScalarResult();
     }
 }
