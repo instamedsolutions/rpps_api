@@ -589,7 +589,7 @@ class CityService extends ImporterService
             $subCities = $mainCity->getSubCities();
             $totalPopulation = 0;
             foreach ($subCities as $subCity) {
-                if ($subCity->getPopulation() !== null) {
+                if (null !== $subCity->getPopulation()) {
                     $totalPopulation += $subCity->getPopulation();
                 }
             }
@@ -605,9 +605,8 @@ class CityService extends ImporterService
         }
 
         $this->em->flush();
-        $this->output->writeln("<info>Population aggregation completed for main cities.</info>");
+        $this->output->writeln('<info>Population aggregation completed for main cities.</info>');
     }
-
 
     private function normalizeCityName(string $name): string
     {

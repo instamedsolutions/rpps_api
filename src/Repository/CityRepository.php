@@ -65,8 +65,8 @@ class CityRepository extends ServiceEntityRepository
      * Returns an array of City entities in the correct order by proximity.
      *
      * @return City[]
-     * @throws \Doctrine\DBAL\Exception
      *
+     * @throws \Doctrine\DBAL\Exception
      * @throws Exception
      */
     public function findSimilarCitiesByCoordinates(City $city, int $limit = 10): array
@@ -76,7 +76,7 @@ class CityRepository extends ServiceEntityRepository
         $regionId = $city->getDepartment()->getRegion()->getId();
 
         // Check if we have valid coordinates
-        if ($latitude === null || $longitude === null) {
+        if (null === $latitude || null === $longitude) {
             return [];
         }
 
@@ -118,6 +118,7 @@ class CityRepository extends ServiceEntityRepository
 
         // Fetch City entities for the results
         $cityIds = array_column($closestCities, 'id');
+
         return $this->createQueryBuilder('c')
             ->where('c.id IN (:cityIds)')
             ->setParameter('cityIds', $cityIds)
