@@ -8,6 +8,8 @@ use ApiPlatform\Metadata\ApiFilter;
 use ApiPlatform\Metadata\ApiResource;
 use ApiPlatform\Metadata\Get;
 use ApiPlatform\Metadata\GetCollection;
+use App\ApiPlatform\Filter\CityFilter;
+use App\Doctrine\Types\PointType;
 use App\Repository\CityRepository;
 use App\StateProvider\DefaultItemDataProvider;
 use App\StateProvider\SimilarCitiesProvider;
@@ -18,12 +20,16 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Serializer\Annotation\Groups;
 use Symfony\Component\Serializer\Annotation\MaxDepth;
 
+
+#[ApiFilter(CityFilter::class,properties: ['search'])]
 #[ORM\Entity(repositoryClass: CityRepository::class)]
 #[ORM\Table(name: 'city', indexes: [
     new ORM\Index(columns: ['postalCode'], name: 'idx_postal_code'),
-    new ORM\Index(columns: ['altName'], name: 'idx_alt_name'),
+    new ORM\Index(columns: ['name'], name: 'idx_name'),
+    new ORM\Index(columns: ['rawName'], name: 'idx_raw_name'),
     new ORM\Index(columns: ['subCityAltName'], name: 'idx_sub_city_alt_name'),
     new ORM\Index(columns: ['inseeCode'], name: 'idx_insee_code'),
+    new ORM\Index(columns: ['coordinates'], name: 'idx_coordinates')
 ])]
 #[ApiResource(
     shortName: 'City',
@@ -89,13 +95,16 @@ class City extends Thing implements Entity
     #[ORM\JoinColumn(nullable: false)]
     private ?Department $department = null;
 
-    #[Groups(['city:item:read'])]
+    #[Groups(['read'])]
     #[ORM\Column(type: Types::DECIMAL, precision: 22, scale: 16, nullable: true)]
     private ?string $latitude = null;
 
-    #[Groups(['city:item:read'])]
+    #[Groups(['read'])]
     #[ORM\Column(type: Types::DECIMAL, precision: 22, scale: 16, nullable: true)]
     private ?string $longitude = null;
+
+    #[ORM\Column(type: PointType::POINT, nullable: false)]
+    private array $coordinates = [];
 
     #[Groups(['read'])]
     #[ORM\Column(type: 'integer', nullable: true)]
@@ -103,11 +112,11 @@ class City extends Thing implements Entity
 
     #[Groups(['read'])]
     #[MaxDepth(1)]
-    #[ORM\ManyToOne(targetEntity: self::class, fetch: 'EAGER', inversedBy: 'subCities')]
+    #[ORM\ManyToOne(targetEntity: self::class, fetch: 'EXTRA_LAZY', inversedBy: 'subCities')]
     private ?self $mainCity = null;
 
     #[Groups(['city:sub_cities:read'])]
-    #[ORM\OneToMany(mappedBy: 'mainCity', targetEntity: self::class, cascade: ['persist', 'remove'])]
+    #[ORM\OneToMany(mappedBy: 'mainCity', targetEntity: self::class, cascade: ['persist', 'remove'], fetch: 'EXTRA_LAZY')]
     private Collection $subCities;
 
     public function __construct()
@@ -175,9 +184,17 @@ class City extends Thing implements Entity
         return $this;
     }
 
-    public function getLatitude(): ?string
+    public function getLatitude(): ?float
     {
-        return $this->latitude;
+        if(isset($this->coordinates['latitude']) && $this->coordinates['latitude']) {
+            return (float)$this->coordinates['latitude'];
+        }
+
+        if(!$this->latitude) {
+            $subcity = $this->getSubCities()->first();
+            return $subcity ? $subcity->getLatitude() : null;
+        }
+        return (float)$this->latitude;
     }
 
     public function setLatitude(?string $latitude): static
@@ -185,12 +202,25 @@ class City extends Thing implements Entity
         // Convert empty strings to null
         $this->latitude = '' === $latitude ? null : $latitude;
 
+        $this->coordinates = [
+            'latitude' => $this->latitude ?? 0,
+            'longitude' => $this->longitude ?? 0,
+        ];
+
         return $this;
     }
 
-    public function getLongitude(): ?string
+    public function getLongitude(): ?float
     {
-        return $this->longitude;
+        if(isset($this->coordinates['longitude']) && $this->coordinates['longitude']) {
+            return (float)$this->coordinates['longitude'];
+        }
+
+        if(!$this->latitude) {
+            $subcity = $this->getSubCities()->first();
+            return $subcity ? $subcity->getLongitude() : null;
+        }
+        return $this->longitude ? (float)$this->longitude : null;
     }
 
     public function setLongitude(?string $longitude): static
@@ -198,7 +228,22 @@ class City extends Thing implements Entity
         // Convert empty strings to null
         $this->longitude = '' === $longitude ? null : $longitude;
 
+        $this->coordinates = [
+            'latitude' => $this->latitude,
+            'longitude' => $this->longitude,
+        ];
+
         return $this;
+    }
+
+    public function getCoordinates(): array
+    {
+        return $this->coordinates;
+    }
+
+    public function setCoordinates(array $coordinates): void
+    {
+        $this->coordinates = $coordinates;
     }
 
     public function getPostalCode(): ?string

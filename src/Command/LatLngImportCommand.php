@@ -117,8 +117,8 @@ class LatLngImportCommand extends Command
         $address2 = (new UnicodeString("$line[2] $line[18] $line[7]"))->ascii()->lower()->toString();
 
         return [
-            $address1 => ['longitude' => $line[12], 'latitude' => $line[13], 'address' => "{$line[2]} {$line[4]}"],
-            $address2 => ['longitude' => $line[12], 'latitude' => $line[13], 'address' => "{$line[2]} {$line[4]}"],
+            $address1 => ['longitude' => $line[12], 'latitude' => $line[13], 'address' => "$line[2] $line[4]"],
+            $address2 => ['longitude' => $line[12], 'latitude' => $line[13], 'address' => "$line[2] $line[4]"],
         ];
     }
 
@@ -135,8 +135,8 @@ class LatLngImportCommand extends Command
 
         foreach ($rpps as $item) {
             $address = $this->normalizeAddress($item['address']);
-            $addressKey = "{$address} {$item['zipcode']}";
-            $cityKey = "{$address} {$item['city']}";
+            $addressKey = "$address {$item['zipcode']}";
+            $cityKey = "$address {$item['city']}";
 
             if (isset($addresses[$addressKey]) || isset($addresses[$cityKey])) {
                 $found = $addresses[$addressKey] ?? $addresses[$cityKey];

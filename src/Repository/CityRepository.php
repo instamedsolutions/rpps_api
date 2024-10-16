@@ -11,7 +11,6 @@ use Doctrine\Persistence\ManagerRegistry;
 /**
  * @extends ServiceEntityRepository<City>
  *
- * @method City|null find($id, $lockMode = null, $lockVersion = null)
  * @method City|null findOneBy(array $criteria, array $orderBy = null)
  * @method City[]    findAll()
  * @method City[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
@@ -159,4 +158,28 @@ class CityRepository extends ServiceEntityRepository
             ->getQuery()
             ->getResult();
     }
+
+
+    /**
+     * @param null $lockMode
+     * @param null $lockVersion
+     *
+     * @return City|null
+     *
+     * @throws NonUniqueResultException
+     */
+    public function find($id, $lockMode = null, $lockVersion = null)
+    {
+        if (null === $id || 0 === $id) {
+            return null;
+        }
+
+        return $this->createQueryBuilder('d')
+            ->where('d.id = :id')
+            ->orWhere('d.canonical = :id')
+            ->setParameter('id', $id)
+            ->getQuery()
+            ->getOneOrNullResult();
+    }
+
 }

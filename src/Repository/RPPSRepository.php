@@ -37,6 +37,7 @@ class RPPSRepository extends ServiceEntityRepository
         return $this->createQueryBuilder('r')
             ->where('r.id = :id')
             ->orWhere('r.idRpps = :id')
+            ->orWhere('r.canonical = :id')
             ->setParameter('id', $id)
             ->getQuery()
             ->getOneOrNullResult();

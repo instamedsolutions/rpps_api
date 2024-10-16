@@ -8,10 +8,12 @@ use ApiPlatform\Metadata\Operation;
 use App\Entity\RPPS;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\QueryBuilder;
+use Symfony\Component\HttpFoundation\RequestStack;
 
 class RPPSExtension implements QueryCollectionExtensionInterface
 {
     public function __construct(
+        private readonly RequestStack $requestStack,
         private readonly EntityManagerInterface $em,
     ) {
     }
@@ -19,6 +21,12 @@ class RPPSExtension implements QueryCollectionExtensionInterface
     public function applyToCollection(QueryBuilder $queryBuilder, QueryNameGeneratorInterface $queryNameGenerator, string $resourceClass, ?Operation $operation = null, array $context = []): void
     {
         if (RPPS::class !== $operation->getClass()) {
+            return;
+        }
+
+        $request = $this->requestStack->getCurrentRequest();
+
+        if($request->query->getBoolean('include_paramedical',false)) {
             return;
         }
 

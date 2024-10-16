@@ -9,6 +9,7 @@ use ApiPlatform\Metadata\ApiResource;
 use ApiPlatform\Metadata\Get;
 use ApiPlatform\Metadata\GetCollection;
 use App\ApiPlatform\Filter\RPPSFilter;
+use App\Doctrine\Types\PointType;
 use App\Repository\RPPSRepository;
 use App\StateProvider\DefaultItemDataProvider;
 use Doctrine\ORM\Mapping as ORM;
@@ -23,9 +24,10 @@ use Symfony\Component\Serializer\Annotation\SerializedName;
 
 // TODO - remove this index when the migration to specialtyEntity is done.  @Bastien
 #[ORM\Index(columns: ['specialty'], name: 'specialty_index')]
-#[ApiFilter(RPPSFilter::class, properties: ['search', 'first_letter', 'city', 'specialty', 'demo', 'excluded_rpps'])]
+#[ApiFilter(RPPSFilter::class, properties: ['search', 'first_letter', 'city', 'specialty', 'demo','latitude','longitude', 'excluded_rpps'])]
 #[ORM\Entity(repositoryClass: RPPSRepository::class)]
 #[ORM\Table(name: 'rpps')]
+#[ORM\Index(columns: ['coordinates'], name: 'idx_coordinates')]
 #[ORM\Index(columns: ['last_name'], name: 'last_name_index')]
 #[ORM\Index(columns: ['full_name'], name: 'full_name_index')]
 #[ORM\Index(columns: ['full_name_inversed'], name: 'full_name_inversed_index')]
@@ -192,6 +194,9 @@ class RPPS extends Thing implements Entity, Stringable
     #[Groups(['read'])]
     #[ORM\Column(type: 'float', nullable: true)]
     protected ?float $latitude = null;
+
+    #[ORM\Column(type: PointType::POINT, nullable: false)]
+    private array $coordinates = [];
 
     #[ApiProperty(
         description: 'The latitude of the doctor',
@@ -588,21 +593,47 @@ class RPPS extends Thing implements Entity, Stringable
 
     public function getLatitude(): ?float
     {
+        if (isset($this->coordinates['latitude']) && $this->coordinates['latitude'] !== 0) {
+            return $this->coordinates['latitude'];
+        }
+
         return $this->latitude;
     }
 
     public function setLatitude(?float $latitude): void
     {
         $this->latitude = $latitude;
+        $this->coordinates = [
+            'latitude' => $latitude ?? 0,
+            'longitude' => $this->longitude ?? 0
+        ];
     }
 
     public function getLongitude(): ?float
     {
+        if(isset($this->coordinates['longitude']) && $this->coordinates['longitude'] !== 0) {
+            return $this->coordinates['longitude'];
+        }
         return $this->longitude;
     }
 
     public function setLongitude(?float $longitude): void
     {
         $this->longitude = $longitude;
+        $this->coordinates = [
+            'latitude' => $this->latitude ?? 0,
+            'longitude' => $longitude ?? 0
+        ];
     }
+
+    public function getCoordinates(): array
+    {
+        return $this->coordinates;
+    }
+
+    public function setCoordinates(array $coordinates): void
+    {
+        $this->coordinates = $coordinates;
+    }
+
 }

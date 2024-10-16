@@ -54,7 +54,7 @@ class LoadSpecialty extends Fixture
             ['Génétique Médicale', 'genetique-medicale', 'Généticien médical', 0],
             ['Gériatrie', 'geriatrie', 'Gériatre', 0],
             ['Hématologie', 'hematologie', 'Hématologue', 0],
-            ['Infirmier', 'infirmier', 'Infirmier en pratique avancée', 1],
+            ['Infirmier', 'infirmier', 'Infirmier', 1],
             ['Maladies Infectieuses Et Tropicales', 'maladies-infectieuses-et-tropicales', 'Infectiologue', 0],
             ['Manipulateur Erm', 'manipulateur-erm', 'Manipulateur en électroradiologie médicale', 0],
             ['Masseur-Kinésithérapeute', 'masseur-kinesitherapeute', 'Masseur-kinésithérapeute', 1],
