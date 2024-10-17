@@ -34,6 +34,10 @@ inputs:
     description: "The environment image to build"
     required: false
     default: latest
+  php_version:
+    description: "The version of PHP to use"
+    required: false
+    default: '8.3'
 
 runs:
   using: 'composite'
@@ -72,3 +76,4 @@ runs:
           DOCKER_ENV=${{ inputs.docker_env }}
           BASE_IMAGE=${{ inputs.base_image_tag }}
           GITHUB_TOKEN=${{ inputs.github_token }}
+          PHP_VERSION=${{ inputs.php_version }}

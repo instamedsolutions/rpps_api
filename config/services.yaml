@@ -89,6 +89,9 @@ services:
         tags:
             - { name: doctrine.event_listener, event: prePersist }
 
+    App\Command\LatLngImportCommand:
+        arguments:
+            $projectDir: '%kernel.project_dir%'
 
     Sentry\Integration\IgnoreErrorsIntegration:
         arguments:

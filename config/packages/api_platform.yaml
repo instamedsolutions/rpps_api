@@ -11,7 +11,7 @@ api_platform:
             - '%kernel.project_dir%/src/Entity'
     defaults:
         pagination_client_items_per_page: true
-        pagination_maximum_items_per_page: 100
+        pagination_maximum_items_per_page: 500
 
     collection:
         order_parameter_name: '_order'
