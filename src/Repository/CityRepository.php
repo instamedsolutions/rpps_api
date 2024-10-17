@@ -125,7 +125,6 @@ class CityRepository extends ServiceEntityRepository
             ->getResult();
     }
 
-
     public function findCitiesByInseeAndPostalCode(string $inseeCode, string $zipCode): array
     {
         $conn = $this->getEntityManager()->getConnection();
@@ -141,7 +140,7 @@ class CityRepository extends ServiceEntityRepository
         $stmt->execute([
             'inseeCode' => $inseeCode,
             'postalCode' => $zipCode,
-            'zipCode' => json_encode($zipCode) // Make sure to JSON-encode the zip code
+            'zipCode' => json_encode($zipCode), // Make sure to JSON-encode the zip code
         ]);
 
         $results = $stmt->fetchAllAssociative();
@@ -152,13 +151,13 @@ class CityRepository extends ServiceEntityRepository
 
         // Fetch City entities for the results
         $cityIds = array_column($results, 'id');
+
         return $this->createQueryBuilder('c')
             ->where('c.id IN (:cityIds)')
             ->setParameter('cityIds', $cityIds)
             ->getQuery()
             ->getResult();
     }
-
 
     /**
      * @param null $lockMode
@@ -181,5 +180,4 @@ class CityRepository extends ServiceEntityRepository
             ->getQuery()
             ->getOneOrNullResult();
     }
-
 }

@@ -39,8 +39,8 @@ class LoadCity extends Fixture implements DependentFixtureInterface, FixtureInte
             $city->setCanonical($data[1]);
             $city->setPostalCode($data[2]);
             $city->setInseeCode($data[3]);
-            $city->setLatitude($data[4]);
-            $city->setLongitude($data[5]);
+            $city->setLatitude((float) $data[4]);
+            $city->setLongitude((float) $data[5]);
             $city->setPopulation((int) $data[6]);
             $city->importId = 'import_1';
 
@@ -93,8 +93,8 @@ class LoadCity extends Fixture implements DependentFixtureInterface, FixtureInte
             $subCity->setCanonical($data[1]);
             $subCity->setPostalCode($data[2]);
             $subCity->setInseeCode($data[3]);
-            $subCity->setLatitude($data[4]);
-            $subCity->setLongitude($data[5]);
+            $subCity->setLatitude((float) $data[4]);
+            $subCity->setLongitude((float) $data[5]);
             $subCity->setPopulation($data[6]);
 
             $subCity->importId = 'import_1';

@@ -34,8 +34,6 @@ use Symfony\Component\Serializer\Annotation\Groups;
             provider: SimilarSpecialtiesProvider::class,
         ),
     ],
-    paginationClientEnabled: true,
-    paginationPartial: true,
 )]
 #[ApiFilter(SpecialtyFilter::class, properties: ['search', 'by_rpps'])]
 class Specialty extends Thing implements Entity

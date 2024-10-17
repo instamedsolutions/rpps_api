@@ -6,6 +6,7 @@ use ApiPlatform\Doctrine\Orm\Filter\AbstractFilter;
 use ApiPlatform\Doctrine\Orm\Util\QueryNameGeneratorInterface;
 use ApiPlatform\Metadata\Operation;
 use App\Entity\City;
+use App\Entity\Specialty;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\Query\Expr\Join;
 use Doctrine\ORM\QueryBuilder;
@@ -21,12 +22,12 @@ final class RPPSFilter extends AbstractFilter
 
     public function __construct(
         private readonly EntityManagerInterface $em,
-        protected ManagerRegistry               $managerRegistry, private readonly RequestStack $requestStack,
-        ?LoggerInterface                        $logger = null,
-        protected ?array                        $properties = null,
-        protected ?NameConverterInterface       $nameConverter = null
-    )
-    {
+        protected ManagerRegistry $managerRegistry,
+        private readonly RequestStack $requestStack,
+        ?LoggerInterface $logger = null,
+        protected ?array $properties = null,
+        protected ?NameConverterInterface $nameConverter = null
+    ) {
         parent::__construct($this->managerRegistry, $logger, $properties, $nameConverter);
     }
 
@@ -36,15 +37,14 @@ final class RPPSFilter extends AbstractFilter
      * @throws Exception
      */
     protected function filterProperty(
-        string                      $property,
-        mixed                       $value,
-        QueryBuilder                $queryBuilder,
+        string $property,
+        mixed $value,
+        QueryBuilder $queryBuilder,
         QueryNameGeneratorInterface $queryNameGenerator,
-        string                      $resourceClass,
-        ?Operation                  $operation = null,
-        array                       $context = []
-    ): void
-    {
+        string $resourceClass,
+        ?Operation $operation = null,
+        array $context = []
+    ): void {
         $this->queryNameGenerator = $queryNameGenerator;
 
         if (!array_key_exists($property, $this->properties)) {
@@ -56,7 +56,7 @@ final class RPPSFilter extends AbstractFilter
             $this->addDemoFilter($queryBuilder, $value);
         }
 
-        if('latitude' === $property) {
+        if ('latitude' === $property) {
             $this->addLatitudeFilter($queryBuilder, $value);
         }
 
@@ -87,25 +87,24 @@ final class RPPSFilter extends AbstractFilter
 
     protected function addCityFilter(QueryBuilder $queryBuilder, ?string $value): void
     {
-
         if (!$value) {
             return;
         }
 
-        /** @var City $city */
+        /** @var City|null $city */
         $city = $this->em->getRepository(City::class)->findOneBy(['canonical' => $value]);
 
-        if(!$city) {
+        if (!$city) {
             return;
         }
 
         $rootAlias = $queryBuilder->getRootAliases()[0];
 
-        if($city->getSubCities()->toArray()) {
+        if ($city->getSubCities()->toArray()) {
             $queryBuilder->innerJoin("$rootAlias.cityEntity", 'city', Join::WITH, 'city.canonical IN (:cityId)');
             $queryBuilder->setParameter('cityId', [
                 $value,
-                ...array_map(fn(City $city) => $city->getCanonical(), $city->getSubCities()->toArray())
+                ...array_map(fn (City $city) => $city->getCanonical(), $city->getSubCities()->toArray()),
             ]);
         } else {
             $queryBuilder->innerJoin("$rootAlias.cityEntity", 'city', Join::WITH, 'city.canonical = :cityId');
@@ -119,10 +118,18 @@ final class RPPSFilter extends AbstractFilter
             return $queryBuilder;
         }
 
+        $specialty = $this->em->getRepository(Specialty::class)->findOneBy(['canonical' => $value]);
+
+        if (!$specialty) {
+            $queryBuilder->andWhere('1 = 2');
+
+            return $queryBuilder;
+        }
+
         $rootAlias = $queryBuilder->getRootAliases()[0];
 
-        $queryBuilder->innerJoin("$rootAlias.specialtyEntity", 'specialty', Join::WITH, 'specialty.canonical = :specialtyId');
-        $queryBuilder->setParameter('specialtyId', $value);
+        $queryBuilder->andWhere("$rootAlias.specialtyEntity = :specialty");
+        $queryBuilder->setParameter('specialty', $specialty->getId());
 
         return $queryBuilder;
     }
@@ -179,10 +186,10 @@ final class RPPSFilter extends AbstractFilter
         return $queryBuilder;
     }
 
-
-    public function addLatitudeFilter(QueryBuilder $queryBuilder, ?string $latitude) : QueryBuilder
+    public function addLatitudeFilter(QueryBuilder $queryBuilder, ?string $latitude): QueryBuilder
     {
         $longitude = $this->requestStack->getCurrentRequest()?->query->get('longitude');
+
         if (!$latitude || !$longitude) {
             return $queryBuilder;
         }
@@ -195,13 +202,13 @@ final class RPPSFilter extends AbstractFilter
 
         // Calculate latitude and longitude offsets in degrees
         $latOffset = $distance / $earthRadius; // ~0.27027 degrees for 30km
-        $lngOffset = $distance / ($earthRadius * cos(deg2rad($latitude))); // Longitude offset
+        $lngOffset = $distance / ($earthRadius * cos(deg2rad((float) $latitude))); // Longitude offset
 
         // Calculate min/max latitudes and longitudes
-        $minLat = (float)$latitude - (float)$latOffset;
-        $maxLat = (float)$latitude + (float)$latOffset;
-        $minLng = (float)$longitude - (float)$lngOffset;
-        $maxLng = (float)$longitude + (float)$lngOffset;
+        $minLat = (float) $latitude - (float) $latOffset;
+        $maxLat = (float) $latitude + (float) $latOffset;
+        $minLng = (float) $longitude - (float) $lngOffset;
+        $maxLng = (float) $longitude + (float) $lngOffset;
 
         // Add bounding box condition using the POINT function
         $queryBuilder->andWhere(
@@ -210,20 +217,28 @@ final class RPPSFilter extends AbstractFilter
 
         // Apply the more accurate distance filter
         $queryBuilder->andWhere(
-            'ST_Distance_Sphere(POINT(:longitude, :latitude), ' . $rootAlias . '.coordinates) < :distance'
+            "ST_Distance_Sphere(POINT(:longitude, :latitude), $rootAlias.coordinates) < :distance"
+        )
+        ->addSelect(
+            "ST_Distance_Sphere(POINT(:longitude, :latitude), $rootAlias.coordinates) AS HIDDEN distance"
         );
+
         // Set parameters
-        $queryBuilder->setParameter('latitude', (float)$latitude);
-        $queryBuilder->setParameter('longitude', (float)$longitude);
-        $queryBuilder->setParameter('distance', (float)$distance);
+        $queryBuilder->setParameter('latitude', (float) $latitude);
+        $queryBuilder->setParameter('longitude', (float) $longitude);
+        $queryBuilder->setParameter('distance', (float) $distance);
         $queryBuilder->setParameter('minLat', $minLat);
         $queryBuilder->setParameter('maxLat', $maxLat);
         $queryBuilder->setParameter('minLng', $minLng);
         $queryBuilder->setParameter('maxLng', $maxLng);
 
+        $queryBuilder->orderBy(
+            'distance',
+            'ASC'
+        );
+
         return $queryBuilder;
     }
-
 
     public function addDemoFilter(QueryBuilder $queryBuilder, ?bool $value): QueryBuilder
     {

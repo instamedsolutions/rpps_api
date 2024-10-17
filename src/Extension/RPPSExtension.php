@@ -26,7 +26,7 @@ class RPPSExtension implements QueryCollectionExtensionInterface
 
         $request = $this->requestStack->getCurrentRequest();
 
-        if($request->query->getBoolean('include_paramedical',false)) {
+        if ($request->query->getBoolean('include_paramedical', false)) {
             return;
         }
 

@@ -330,7 +330,7 @@ class CityService extends ImporterService
 
             // Add the additional postal code to the existing city
             $mainCity->addAdditionalPostalCode($postalCode);
-            $this->nbMergedCity++;
+            ++$this->nbMergedCity;
         }
 
         if (!$isMainCity) {
@@ -492,10 +492,11 @@ class CityService extends ImporterService
         $numMatches = count($cities);
 
         // Easy case: only one city matches the INSEE code
-        if ($numMatches === 1) {
+        if (1 === $numMatches) {
             $city = $cities[0];
-            $city->setPopulation((int)$totalPopulation);
-            $this->nbSuccessPopulation++;
+            $city->setPopulation((int) $totalPopulation);
+            ++$this->nbSuccessPopulation;
+
             return;
         }
 
@@ -518,8 +519,9 @@ class CityService extends ImporterService
             $subCityMatch = $this->slugify($this->normalizeCityName($city->getRawSubName()));
 
             if ($subCityMatch === $cityName) {
-                $city->setPopulation((int)$totalPopulation);
-                $this->nbSuccessPopulation++;
+                $city->setPopulation((int) $totalPopulation);
+                ++$this->nbSuccessPopulation;
+
                 return;
             }
         }
@@ -528,8 +530,9 @@ class CityService extends ImporterService
             $mainCityMatch = $this->slugify($this->normalizeCityName($city->getRawName()));
 
             if ($mainCityMatch === $cityName) {
-                $city->setPopulation((int)$totalPopulation);
-                $this->nbSuccessPopulation++;
+                $city->setPopulation((int) $totalPopulation);
+                ++$this->nbSuccessPopulation;
+
                 return;
             }
         }
@@ -546,19 +549,20 @@ class CityService extends ImporterService
 
         $numMatches = count($matchingCities);
 
-        if ($numMatches === 1) {
+        if (1 === $numMatches) {
             $city = $matchingCities[0];
 
             // Check if the current population is zero before updating
             if ((int) $city->getPopulation() > 0) {
-                $this->output->writeln("<error>Warning: Current population for city {$city->getName()} (INSEE: $inseeCode) is not zero :" . $city->getPopulation() . ". Please review this case for potential issues.</error>");
-                $this->nbFailedPopulation++;
+                $this->output->writeln("<error>Warning: Current population for city {$city->getName()} (INSEE: $inseeCode) is not zero :" . $city->getPopulation() . '. Please review this case for potential issues.</error>');
+                ++$this->nbFailedPopulation;
+
                 return;
             }
 
             // Unique match found, update population
-            $city->setPopulation((int)$totalPopulation);
-            $this->nbSuccessPopulation++;
+            $city->setPopulation((int) $totalPopulation);
+            ++$this->nbSuccessPopulation;
 
             if ($this->verbose) {
                 $this->output->writeln("<info>Updated population for matched city based on name: {$city->getName()} (Matched with: $communeName, INSEE: $inseeCode)</info>");
@@ -693,11 +697,11 @@ class CityService extends ImporterService
 
     private function handleArrondissements(string $normalizedCommuneName, string $mainCityKey): string
     {
-        if ($normalizedCommuneName === 'Paris') {
+        if ('Paris' === $normalizedCommuneName) {
             return 'Paris-75056';
-        } elseif ($normalizedCommuneName === 'Marseille') {
+        } elseif ('Marseille' === $normalizedCommuneName) {
             return 'Marseille-13055';
-        } elseif ($normalizedCommuneName === 'Lyon') {
+        } elseif ('Lyon' === $normalizedCommuneName) {
             return 'Lyon-69123';
         }
 
@@ -706,11 +710,11 @@ class CityService extends ImporterService
 
     private function handleArrondissementsSlug(string $normalizedCommuneName, string $ligne5, string $canonicalSub): string
     {
-        if ($normalizedCommuneName === 'Paris') {
+        if ('Paris' === $normalizedCommuneName) {
             return $ligne5;
-        } elseif ($normalizedCommuneName === 'Marseille') {
+        } elseif ('Marseille' === $normalizedCommuneName) {
             return $ligne5;
-        } elseif ($normalizedCommuneName === 'Lyon') {
+        } elseif ('Lyon' === $normalizedCommuneName) {
             return $ligne5;
         }
 

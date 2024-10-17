@@ -20,8 +20,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Serializer\Annotation\Groups;
 use Symfony\Component\Serializer\Annotation\MaxDepth;
 
-
-#[ApiFilter(CityFilter::class,properties: ['search'])]
+#[ApiFilter(CityFilter::class, properties: ['search', 'latitude'])]
 #[ORM\Entity(repositoryClass: CityRepository::class)]
 #[ORM\Table(name: 'city', indexes: [
     new ORM\Index(columns: ['postalCode'], name: 'idx_postal_code'),
@@ -29,7 +28,7 @@ use Symfony\Component\Serializer\Annotation\MaxDepth;
     new ORM\Index(columns: ['rawName'], name: 'idx_raw_name'),
     new ORM\Index(columns: ['subCityAltName'], name: 'idx_sub_city_alt_name'),
     new ORM\Index(columns: ['inseeCode'], name: 'idx_insee_code'),
-    new ORM\Index(columns: ['coordinates'], name: 'idx_coordinates')
+    new ORM\Index(columns: ['coordinates'], name: 'idx_coordinates'),
 ])]
 #[ApiResource(
     shortName: 'City',
@@ -51,7 +50,7 @@ use Symfony\Component\Serializer\Annotation\MaxDepth;
     paginationPartial: true,
 )]
 #[ApiFilter(SearchFilter::class, properties: ['name' => 'partial'])]
-#[ApiFilter(OrderFilter::class, properties: ['population' => 'ASC'], arguments: ['orderParameterName' => '_orderBy'])]
+#[ApiFilter(OrderFilter::class, properties: ['population' => 'DESC'], arguments: ['orderParameterName' => '_orderBy'])]
 class City extends Thing implements Entity
 {
     #[Groups(['read'])]
@@ -97,11 +96,11 @@ class City extends Thing implements Entity
 
     #[Groups(['read'])]
     #[ORM\Column(type: Types::DECIMAL, precision: 22, scale: 16, nullable: true)]
-    private ?string $latitude = null;
+    private ?float $latitude = null;
 
     #[Groups(['read'])]
     #[ORM\Column(type: Types::DECIMAL, precision: 22, scale: 16, nullable: true)]
-    private ?string $longitude = null;
+    private ?float $longitude = null;
 
     #[ORM\Column(type: PointType::POINT, nullable: false)]
     private array $coordinates = [];
@@ -186,21 +185,23 @@ class City extends Thing implements Entity
 
     public function getLatitude(): ?float
     {
-        if(isset($this->coordinates['latitude']) && $this->coordinates['latitude']) {
-            return (float)$this->coordinates['latitude'];
+        if (isset($this->coordinates['latitude']) && $this->coordinates['latitude']) {
+            return (float) $this->coordinates['latitude'];
         }
 
-        if(!$this->latitude) {
+        if (!$this->latitude) {
             $subcity = $this->getSubCities()->first();
+
             return $subcity ? $subcity->getLatitude() : null;
         }
-        return (float)$this->latitude;
+
+        return (float) $this->latitude;
     }
 
-    public function setLatitude(?string $latitude): static
+    public function setLatitude(?float $latitude): static
     {
         // Convert empty strings to null
-        $this->latitude = '' === $latitude ? null : $latitude;
+        $this->latitude = $latitude;
 
         $this->coordinates = [
             'latitude' => $this->latitude ?? 0,
@@ -212,21 +213,23 @@ class City extends Thing implements Entity
 
     public function getLongitude(): ?float
     {
-        if(isset($this->coordinates['longitude']) && $this->coordinates['longitude']) {
-            return (float)$this->coordinates['longitude'];
+        if (isset($this->coordinates['longitude']) && $this->coordinates['longitude']) {
+            return (float) $this->coordinates['longitude'];
         }
 
-        if(!$this->latitude) {
+        if (!$this->latitude) {
             $subcity = $this->getSubCities()->first();
+
             return $subcity ? $subcity->getLongitude() : null;
         }
-        return $this->longitude ? (float)$this->longitude : null;
+
+        return $this->longitude ? (float) $this->longitude : null;
     }
 
-    public function setLongitude(?string $longitude): static
+    public function setLongitude(?float $longitude): static
     {
         // Convert empty strings to null
-        $this->longitude = '' === $longitude ? null : $longitude;
+        $this->longitude = $longitude;
 
         $this->coordinates = [
             'latitude' => $this->latitude,
@@ -340,12 +343,13 @@ class City extends Thing implements Entity
     public function setAdditionalPostalCodes(?array $additionalPostalCodes): static
     {
         $this->additionalPostalCodes = $additionalPostalCodes;
+
         return $this;
     }
 
     public function addAdditionalPostalCode(string $postalCode): static
     {
-        if ($this->additionalPostalCodes === null) {
+        if (null === $this->additionalPostalCodes) {
             $this->additionalPostalCodes = [];
         }
 
@@ -356,7 +360,6 @@ class City extends Thing implements Entity
 
         return $this;
     }
-
 
     // Helper method to determine if this city is a main city
     public function isMainCity(): bool

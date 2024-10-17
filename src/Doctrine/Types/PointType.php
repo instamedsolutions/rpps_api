@@ -7,21 +7,22 @@ use Doctrine\DBAL\Types\Type;
 
 class PointType extends Type
 {
-    const POINT = 'point'; // Custom type name
+    public const POINT = 'point'; // Custom type name
 
-    public function getSQLDeclaration(array $column, AbstractPlatform $platform) : string
+    public function getSQLDeclaration(array $column, AbstractPlatform $platform): string
     {
         return 'POINT';
     }
 
-    public function convertToPHPValue($value, AbstractPlatform $platform) : ?array
+    public function convertToPHPValue($value, AbstractPlatform $platform): ?array
     {
-        if ($value === null) {
+        if (null === $value) {
             return null;
         }
 
         // Convert the database format (POINT) into a PHP array
         $point = sscanf($value, 'POINT(%f %f)');
+
         return [
             'longitude' => $point[0] ?? null,
             'latitude' => $point[1] ?? null,
@@ -30,7 +31,7 @@ class PointType extends Type
 
     public function convertToDatabaseValue($value, AbstractPlatform $platform)
     {
-        if ($value === null) {
+        if (null === $value) {
             return [];
         }
 
@@ -38,12 +39,12 @@ class PointType extends Type
         return sprintf('POINT(%f %f)', $value['longitude'] ?? 0, $value['latitude'] ?? 0);
     }
 
-    public function getName() : string
+    public function getName(): string
     {
         return self::POINT;
     }
 
-    public function requiresSQLCommentHint(AbstractPlatform $platform) : bool
+    public function requiresSQLCommentHint(AbstractPlatform $platform): bool
     {
         return true;
     }

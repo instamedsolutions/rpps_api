@@ -24,7 +24,7 @@ use Symfony\Component\Serializer\Annotation\SerializedName;
 
 // TODO - remove this index when the migration to specialtyEntity is done.  @Bastien
 #[ORM\Index(columns: ['specialty'], name: 'specialty_index')]
-#[ApiFilter(RPPSFilter::class, properties: ['search', 'first_letter', 'city', 'specialty', 'demo','latitude','longitude', 'excluded_rpps'])]
+#[ApiFilter(RPPSFilter::class, properties: ['search', 'first_letter', 'city', 'specialty', 'demo', 'latitude', 'longitude', 'excluded_rpps'])]
 #[ORM\Entity(repositoryClass: RPPSRepository::class)]
 #[ORM\Table(name: 'rpps')]
 #[ORM\Index(columns: ['coordinates'], name: 'idx_coordinates')]
@@ -593,7 +593,7 @@ class RPPS extends Thing implements Entity, Stringable
 
     public function getLatitude(): ?float
     {
-        if (isset($this->coordinates['latitude']) && $this->coordinates['latitude'] !== 0) {
+        if (isset($this->coordinates['latitude']) && 0 !== $this->coordinates['latitude']) {
             return $this->coordinates['latitude'];
         }
 
@@ -605,15 +605,16 @@ class RPPS extends Thing implements Entity, Stringable
         $this->latitude = $latitude;
         $this->coordinates = [
             'latitude' => $latitude ?? 0,
-            'longitude' => $this->longitude ?? 0
+            'longitude' => $this->longitude ?? 0,
         ];
     }
 
     public function getLongitude(): ?float
     {
-        if(isset($this->coordinates['longitude']) && $this->coordinates['longitude'] !== 0) {
+        if (isset($this->coordinates['longitude']) && 0 !== $this->coordinates['longitude']) {
             return $this->coordinates['longitude'];
         }
+
         return $this->longitude;
     }
 
@@ -622,7 +623,7 @@ class RPPS extends Thing implements Entity, Stringable
         $this->longitude = $longitude;
         $this->coordinates = [
             'latitude' => $this->latitude ?? 0,
-            'longitude' => $longitude ?? 0
+            'longitude' => $longitude ?? 0,
         ];
     }
 
@@ -635,5 +636,4 @@ class RPPS extends Thing implements Entity, Stringable
     {
         $this->coordinates = $coordinates;
     }
-
 }
