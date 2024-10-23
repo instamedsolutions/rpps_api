@@ -27,6 +27,7 @@ RUN touch .env
 # Install a test db
 ENV DATABASE_URL="./var/test_db.sqlite"
 ENV DATABASE_ENGINE="pdo_sqlite"
+ENV CIM_11_API="http://icd_11_api"
 
 RUN touch /var/test_db.sqlite
 RUN php bin/console doctrine:schema:update --force --dump-sql --env=test
