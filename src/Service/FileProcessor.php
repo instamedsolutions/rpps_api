@@ -19,7 +19,7 @@ class FileProcessor
     public function __construct(
         protected string $projectDir,
         private LoggerInterface $logger,
-        protected EntityManagerInterface $em
+        protected EntityManagerInterface $em,
     ) {
     }
 

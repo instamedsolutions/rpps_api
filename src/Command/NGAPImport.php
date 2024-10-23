@@ -20,7 +20,7 @@ class NGAPImport extends Command
 
     public function __construct(
         protected readonly NGAPService $ngapService,
-        protected readonly EntityManagerInterface $em
+        protected readonly EntityManagerInterface $em,
     ) {
         parent::__construct(self::$defaultName);
     }

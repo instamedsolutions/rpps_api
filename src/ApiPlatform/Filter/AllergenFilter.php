@@ -24,7 +24,7 @@ final class AllergenFilter extends AbstractFilter
         QueryNameGeneratorInterface $queryNameGenerator,
         string $resourceClass,
         ?Operation $operation = null,
-        array $context = []
+        array $context = [],
     ): void {
         $this->queryNameGenerator = $queryNameGenerator;
 

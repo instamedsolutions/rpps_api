@@ -191,7 +191,7 @@ class Drug extends Thing implements Entity, Stringable
     ])]
     #[Groups(['drugs:item:read'])]
     #[ORM\Column(type: 'smallint', nullable: true)]
-    protected ?string $genericLabel = null;
+    protected ?int $genericLabel = null;
 
     #[Groups(['drugs:item:read'])]
     #[ORM\Column(type: 'text', nullable: true)]
@@ -325,12 +325,12 @@ class Drug extends Thing implements Entity, Stringable
         $this->genericType = $genericType;
     }
 
-    public function getGenericLabel(): ?string
+    public function getGenericLabel(): ?int
     {
         return $this->genericLabel;
     }
 
-    public function setGenericLabel(?string $genericLabel): void
+    public function setGenericLabel(?int $genericLabel): void
     {
         $this->genericLabel = $genericLabel;
     }

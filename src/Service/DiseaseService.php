@@ -29,7 +29,7 @@ class DiseaseService extends ImporterService
     public function __construct(
         protected string $cim10,
         FileProcessor $fileProcessor,
-        EntityManagerInterface $em
+        EntityManagerInterface $em,
     ) {
         parent::__construct(DiseaseGroup::class, $fileProcessor, $em);
         $this->setClearable(false);

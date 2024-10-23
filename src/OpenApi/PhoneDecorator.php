@@ -11,7 +11,7 @@ use ArrayObject;
 final class PhoneDecorator implements OpenApiFactoryInterface
 {
     public function __construct(
-        private readonly OpenApiFactoryInterface $decorated
+        private readonly OpenApiFactoryInterface $decorated,
     ) {
     }
 
