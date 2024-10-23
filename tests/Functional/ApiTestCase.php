@@ -8,17 +8,26 @@ use ApiPlatform\Symfony\Bundle\Test\Client;
 use App\DataFixtures\LoadAllergens;
 use App\DataFixtures\LoadCCAM;
 use App\DataFixtures\LoadCCAMGroup;
+use App\DataFixtures\LoadCity;
 use App\DataFixtures\LoadDCim11;
+use App\DataFixtures\LoadDepartment;
 use App\DataFixtures\LoadDiseaseGroups;
 use App\DataFixtures\LoadDiseases;
 use App\DataFixtures\LoadDrugs;
 use App\DataFixtures\LoadNGAP;
+use App\DataFixtures\LoadRegion;
 use App\DataFixtures\LoadRPPS;
+use App\DataFixtures\LoadSpecialty;
+use App\Entity\City;
+use App\Entity\Specialty;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\Common\DataFixtures\Executor\ORMExecutor;
 use Doctrine\Common\DataFixtures\Purger\ORMPurger;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bridge\Doctrine\DataFixtures\ContainerAwareLoader;
+use Symfony\Component\VarDumper\Cloner\VarCloner;
+use Symfony\Component\VarDumper\Dumper\CliDumper;
+use Symfony\Component\VarDumper\VarDumper;
 
 /**
  * Class ApiTestCase
@@ -58,7 +67,11 @@ abstract class ApiTestCase extends \ApiPlatform\Symfony\Bundle\Test\ApiTestCase
         LoadDCim11::class,
         LoadCCAM::class,
         LoadAllergens::class,
-        LoadNGAP::class
+        LoadNGAP::class,
+        LoadSpecialty::class,
+        LoadRegion::class,
+        LoadDepartment::class,
+        LoadCity::class
     ];
 
 
@@ -93,6 +106,12 @@ abstract class ApiTestCase extends \ApiPlatform\Symfony\Bundle\Test\ApiTestCase
         $executor->execute($loader->getFixtures(), true);
 
         $this->client = $client;
+
+        VarDumper::setHandler(function ($var) {
+            $cloner = new VarCloner();
+            $dumper = new CliDumper();
+            $dumper->dump($cloner->cloneVar($var));
+        });
     }
 
 
@@ -321,5 +340,15 @@ abstract class ApiTestCase extends \ApiPlatform\Symfony\Bundle\Test\ApiTestCase
         die();
     }
 
+
+    protected function getSpecialty(string $canonical = 'medecine-generale'): ?Specialty
+    {
+        return $this->em->getRepository(Specialty::class)->findOneBy(['canonical' => $canonical]);
+    }
+
+    protected function getCity(string $canonical = 'paris'): ?City
+    {
+        return $this->em->getRepository(City::class)->findOneBy(['canonical' => $canonical]);
+    }
 
 }

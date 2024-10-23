@@ -17,7 +17,7 @@ class SerialisationGroupGenerator implements SerializerContextBuilderInterface
     public function __construct(
         private readonly Security $security,
         private readonly ResourceMetadataCollectionFactoryInterface $metadataFactory,
-        private readonly SerializerContextBuilderInterface $decorated
+        private readonly SerializerContextBuilderInterface $decorated,
     ) {
     }
 

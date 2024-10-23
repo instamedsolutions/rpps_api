@@ -24,7 +24,7 @@ abstract class FileParserService
     public function __construct(
         protected string $entity,
         protected readonly FileProcessor $fileProcessor,
-        protected readonly EntityManagerInterface $em
+        protected readonly EntityManagerInterface $em,
     ) {
         $this->init($entity);
     }
@@ -53,7 +53,7 @@ abstract class FileParserService
         string $type = 'default',
         array $options = ['delimiter' => "\t", 'utf8' => false, 'headers' => false],
         int $start = 0,
-        int $limit = 0
+        int $limit = 0,
     ): bool {
         $batchSize = 50;
 

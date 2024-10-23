@@ -8,6 +8,7 @@ doctrine:
 
         types:
             phone_number: Misd\PhoneNumberBundle\Doctrine\DBAL\Types\PhoneNumberType
+            point: App\Doctrine\Types\PointType
 
     orm:
         auto_generate_proxy_classes: true
@@ -19,3 +20,9 @@ doctrine:
                 dir: '%kernel.project_dir%/src/Entity'
                 prefix: 'App\Entity'
                 alias: App
+        dql:
+            string_functions:
+                ST_Distance_Sphere: App\Doctrine\Functions\StDistanceSphere
+                POINT: App\Doctrine\Functions\PointFunction
+                MBRContains: App\Doctrine\Functions\MBRContains
+                ST_MakeEnvelope: App\Doctrine\Functions\STMakeEnvelope

@@ -1,9 +1,9 @@
-import-data: import-allergens import-ccam import-diseases import-drugs import-rpps # Import all data but test data
+import-data: import-allergens import-ccam import-diseases import-drugs import-cities import-specialties import-rpps # Import all data except test data
 
-import-allergens: # Import allergets' data
+import-allergens: # Import allergens' data
 	docker-compose run --rm rpps-database php bin/console app:allergen:import
 
-import-ccam: # Import CCAM' data
+import-ccam: # Import CCAM data
 	docker-compose run --rm rpps-database php bin/console app:ccam:import
 
 import-diseases: # Import diseases' data
@@ -12,7 +12,13 @@ import-diseases: # Import diseases' data
 import-drugs: # Import drugs' data
 	docker-compose run --rm rpps-database php bin/console app:drugs:import
 
-import-rpps: # Import rpps' data
+import-cities: # Import city, department, and region data
+	docker-compose run --rm rpps-database php bin/console app:city:import --purge
+
+import-specialties: # Import specialties' data
+	docker-compose run --rm rpps-database php bin/console app:specialty:import
+
+import-rpps: # Import RPPS data
 	docker-compose run --rm rpps-database php bin/console app:rpps:import
 
 import-test-data: # Import test data

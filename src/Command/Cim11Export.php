@@ -21,7 +21,7 @@ class Cim11Export extends Command
 
     public function __construct(
         private readonly string $projectDir,
-        private readonly HttpClientInterface $cim11Client
+        private readonly HttpClientInterface $cim11Client,
     ) {
         parent::__construct();
     }

@@ -27,7 +27,7 @@ class Cim11Import extends Command
 
     public function __construct(
         private readonly EntityManagerInterface $em,
-        private readonly string $projectDir
+        private readonly string $projectDir,
     ) {
         parent::__construct();
     }
