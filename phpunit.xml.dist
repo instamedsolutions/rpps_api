@@ -12,6 +12,7 @@
     <ini name="error_reporting" value="-1"/>
     <server name="APP_ENV" value="test" force="true"/>
     <server name="SHELL_VERBOSITY" value="-1"/>
+    <server name="CIM_11_API" value=""/>
     <server name="SYMFONY_PHPUNIT_REMOVE" value=""/>
     <server name="DEBUG_USERNAME" value="debug"/>
     <server name="DEBUG_ENCRYPTED_PASSWORD" value="$2a$12$B/4OfIMheqGSU7d8mhv94uO2EgzAeECRXqS7kdYafzNn2W47G64HK"/>
