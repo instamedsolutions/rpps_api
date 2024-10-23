@@ -157,7 +157,7 @@ class RPPSService extends ImporterService
             $rpps->setSpecialty($data[16]);
         }
 
-        $rpps->setAddress($data[28] . ' ' . $data[31] . ' ' . $data[31] . ' ' . $data[33]);
+        $rpps->setAddress($data[28] . ' ' . $data[31] . ' ' . $data[32]);
         $rpps->setZipcode($data[35]);
         $rpps->setCity($data[37]);
         $rpps->setPhoneNumber(str_replace(' ', '', (string) $data[40]));
