@@ -215,7 +215,7 @@ class RPPS extends Thing implements Entity, Stringable
         required: false,
     )]
     #[Groups(['read'])]
-    #[ORM\ManyToOne(targetEntity: City::class)]
+    #[ORM\ManyToOne(targetEntity: City::class, fetch: 'EXTRA_LAZY')]
     #[ORM\JoinColumn(nullable: true)]
     private ?City $cityEntity = null;
 

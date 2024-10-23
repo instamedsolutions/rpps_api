@@ -89,6 +89,11 @@ services:
         tags:
             - { name: doctrine.event_listener, event: prePersist }
 
+    App\EventListener\RppsLatitudeLongitudeOperationOptimizerListener:
+        class: App\EventListener\RppsLatitudeLongitudeOperationOptimizerListener
+        tags:
+            - { name: kernel.event_listener, event: kernel.request, priority: 5 }
+
     App\Command\LatLngImportCommand:
         arguments:
             $projectDir: '%kernel.project_dir%'

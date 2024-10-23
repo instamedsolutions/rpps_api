@@ -57,7 +57,7 @@ final class RPPSFilter extends AbstractFilter
         }
 
         if ('latitude' === $property) {
-            $this->addLatitudeFilter($queryBuilder, $value);
+            $this->addLatitudeFilter($queryBuilder, $value, $operation);
         }
 
         if (!$value) {
@@ -186,13 +186,18 @@ final class RPPSFilter extends AbstractFilter
         return $queryBuilder;
     }
 
-    public function addLatitudeFilter(QueryBuilder $queryBuilder, ?string $latitude): QueryBuilder
+    public function addLatitudeFilter(QueryBuilder $queryBuilder, ?string $latitude, ?Operation &$operation): QueryBuilder
     {
-        $longitude = $this->requestStack->getCurrentRequest()?->query->get('longitude');
+        $request = $this->requestStack->getCurrentRequest();
+        $longitude = $request?->query->get('longitude');
 
         if (!$latitude || !$longitude) {
             return $queryBuilder;
         }
+        $operation = $operation->withPaginationClientEnabled(false);
+        $operation = $operation->withPaginationClientPartial(true);
+
+        $request->attributes->set('_api_operation', $operation);
 
         $rootAlias = $queryBuilder->getRootAliases()[0];
 
@@ -232,10 +237,10 @@ final class RPPSFilter extends AbstractFilter
         $queryBuilder->setParameter('minLng', $minLng);
         $queryBuilder->setParameter('maxLng', $maxLng);
 
-        $queryBuilder->orderBy(
-            'distance',
-            'ASC'
-        );
+        //    $queryBuilder->orderBy(
+        //        'distance',
+        //        'ASC'
+        //    );
 
         return $queryBuilder;
     }

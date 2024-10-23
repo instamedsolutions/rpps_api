@@ -95,11 +95,11 @@ class City extends Thing implements Entity
     private ?Department $department = null;
 
     #[Groups(['read'])]
-    #[ORM\Column(type: Types::DECIMAL, precision: 22, scale: 16, nullable: true)]
+    #[ORM\Column(type: Types::FLOAT, precision: 22, scale: 16, nullable: true)]
     private ?float $latitude = null;
 
     #[Groups(['read'])]
-    #[ORM\Column(type: Types::DECIMAL, precision: 22, scale: 16, nullable: true)]
+    #[ORM\Column(type: Types::FLOAT, precision: 22, scale: 16, nullable: true)]
     private ?float $longitude = null;
 
     #[ORM\Column(type: PointType::POINT, nullable: false)]
