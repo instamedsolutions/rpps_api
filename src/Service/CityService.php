@@ -42,7 +42,7 @@ class CityService extends ImporterService
 
     public function __construct(
         FileProcessor $fileProcessor,
-        EntityManagerInterface $em
+        EntityManagerInterface $em,
     ) {
         parent::__construct(City::class, $fileProcessor, $em);
     }
@@ -213,7 +213,7 @@ class CityService extends ImporterService
             $chefLieuName,
             $regionName,
             $debutValidite,
-            $finValidite
+            $finValidite,
         ] = $data;
 
         $region = $this->em->getRepository(Region::class)->findOneBy(['name' => $regionName]);
@@ -401,7 +401,7 @@ class CityService extends ImporterService
             $codeDepartment,      // code_departement
             $departmentName,      // nom_departement
             $codeRegion,          // code_region
-            $regionName           // nom_region
+            $regionName,           // nom_region
         ] = $data;
 
         // Format postal code and INSEE code to ensure consistency
@@ -483,7 +483,7 @@ class CityService extends ImporterService
             $communeName,     // COM (Commune Name)
             $municipalPopulation, // PMUN (Municipal Population)
             $capitalPopulation,   // PCAP (Capital Population)
-            $totalPopulation  // PTOT (Total Population)
+            $totalPopulation,  // PTOT (Total Population)
         ] = $data;
 
         // Get matching city by INSEE code

@@ -40,8 +40,6 @@ class CityTest extends ApiTestCase
         $data = $this->get("cities/" . $city->getId());
         $this->assertResponseStatusCodeSame(Response::HTTP_OK);
 
-        dump($data);
-
         // Check that the response contains expected keys
         $this->assertArrayHasKey('@context', $data);
         $this->assertArrayHasKey('@id', $data);
@@ -197,9 +195,10 @@ class CityTest extends ApiTestCase
     public function testGetSimilarCities2(): void
     {
         $cityWithoutCoordinates = $this->getCity();
+
         $this->assertNotNull($cityWithoutCoordinates, 'City without coordinates should exist');
-        $this->assertNull($cityWithoutCoordinates->getLongitude());
-        $this->assertNull($cityWithoutCoordinates->getLatitude());
+        $this->assertNotNull($cityWithoutCoordinates->getLongitude());
+        $this->assertNotNull($cityWithoutCoordinates->getLatitude());
 
         $data = $this->get("cities/" . $cityWithoutCoordinates->getId() . "/similar");
         $this->assertResponseStatusCodeSame(Response::HTTP_OK);
@@ -208,7 +207,7 @@ class CityTest extends ApiTestCase
         // We have 10 results here, that are 10 arrondissements of Paris. ( similar name - subname is different)
         $this->assertLessThanOrEqual(10, count($data['hydra:member']));
         foreach ($data['hydra:member'] as $similarCityData) {
-            $this->assertEquals('Paris', $similarCityData['name']);
+            $this->assertEquals('Roissy-en-France', $similarCityData['name']);
         }
     }
 

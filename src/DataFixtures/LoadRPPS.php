@@ -29,7 +29,7 @@ class LoadRPPS extends Fixture implements DependentFixtureInterface, FixtureInte
         $generalSpecialty = $specialtyRepo->findOneBy(['canonical' => 'medecine-generale']);
         $pediatricsSpecialty = $specialtyRepo->findOneBy(['canonical' => 'pediatrie']);
         $pharmacySpecialty = $specialtyRepo->findOneBy(['canonical' => 'pharmacien']);
-        $radiologySpecialty = $specialtyRepo->findOneBy(['canonical' => 'radiologie']);
+        $infirmierSpecialty = $specialtyRepo->findOneBy(['canonical' => 'infirmier']);
         $sageFemmeSpecialty = $specialtyRepo->findOneBy(['canonical' => 'sage-femme']);
 
         foreach ($this->getUsers() as $i => $user) {
@@ -83,7 +83,7 @@ class LoadRPPS extends Fixture implements DependentFixtureInterface, FixtureInte
                 case 9:
                 case 10:
                 case 11:
-                    $rpps->setSpecialtyEntity($radiologySpecialty);
+                    $rpps->setSpecialtyEntity($infirmierSpecialty);
                     break;
             }
 

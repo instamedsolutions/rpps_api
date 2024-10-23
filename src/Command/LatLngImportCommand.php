@@ -20,7 +20,7 @@ class LatLngImportCommand extends Command
 
     public function __construct(
         private readonly string $projectDir,
-        private readonly EntityManagerInterface $em
+        private readonly EntityManagerInterface $em,
     ) {
         parent::__construct();
     }

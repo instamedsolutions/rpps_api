@@ -32,12 +32,12 @@ class RPPSTest extends ApiTestCase
         $this->assertCollectionKeyContains(
             $data['hydra:member'],
             "firstName",
-            ["Bastien", "Julien", "Emilie", "Jérémie"]
+            ["Bastien", "Emilie", "Jérémie"]
         );
         $this->assertCollectionKeyContains($data['hydra:member'], "lastName", ["TEST"]);
 
-        // Removing Infirmier
-        $this->assertCollectionKeyNotContains($data['hydra:member'], "firstName", ["Achile"]);
+        // Removing Paramedical
+        $this->assertCollectionKeyNotContains($data['hydra:member'], "firstName", ["Achile","Julien"]);
     }
 
 
@@ -92,7 +92,7 @@ class RPPSTest extends ApiTestCase
      * @throws ServerExceptionInterface
      * @throws TransportExceptionInterface
      */
-    public function testWithDemoTrueReturnsRppsDemoData()
+    public function testWithDemoTrueReturnsRppsDemoData() : void
     {
         $data = $this->get("rpps", [
             'demo' => true
@@ -111,10 +111,11 @@ class RPPSTest extends ApiTestCase
      * @throws ServerExceptionInterface
      * @throws TransportExceptionInterface
      */
-    public function testWithDemoFalseDoesNotReturnRppsDemoData()
+    public function testWithDemoFalseDoesNotReturnRppsDemoData() : void
     {
         $data = $this->get("rpps", [
-            'demo' => false
+            'demo' => false,
+            'include_paramedical' => true
         ]);
 
         $this->assertResponseStatusCodeSame(Response::HTTP_OK);

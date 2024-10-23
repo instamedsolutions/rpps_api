@@ -20,7 +20,7 @@ class RppsImport extends Command
 {
     public function __construct(
         protected readonly RPPSService $rppsService,
-        protected readonly EntityManagerInterface $em
+        protected readonly EntityManagerInterface $em,
     ) {
         parent::__construct();
     }

@@ -15,7 +15,7 @@ class SpecialtyService extends ImporterService
 
     public function __construct(
         FileProcessor $fileProcessor,
-        EntityManagerInterface $em
+        EntityManagerInterface $em,
     ) {
         parent::__construct(Specialty::class, $fileProcessor, $em);
     }

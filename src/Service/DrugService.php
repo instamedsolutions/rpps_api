@@ -19,7 +19,7 @@ class DrugService extends ImporterService
         protected string $DRUGS_URL_CIS_BDPM,
         protected string $DRUGS_URL_CIS_CIP_BDPM,
         FileProcessor $fileProcessor,
-        EntityManagerInterface $em
+        EntityManagerInterface $em,
     ) {
         parent::__construct(Drug::class, $fileProcessor, $em);
     }

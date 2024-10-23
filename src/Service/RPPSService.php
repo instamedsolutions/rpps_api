@@ -35,7 +35,7 @@ class RPPSService extends ImporterService
         protected readonly string $rpps,
         FileProcessor $fileProcessor,
         EntityManagerInterface $em,
-        private readonly KernelInterface $kernel
+        private readonly KernelInterface $kernel,
     ) {
         parent::__construct(RPPS::class, $fileProcessor, $em);
         $this->initializeSpecialtyMaps();

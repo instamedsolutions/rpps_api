@@ -26,7 +26,7 @@ final class RPPSFilter extends AbstractFilter
         private readonly RequestStack $requestStack,
         ?LoggerInterface $logger = null,
         protected ?array $properties = null,
-        protected ?NameConverterInterface $nameConverter = null
+        protected ?NameConverterInterface $nameConverter = null,
     ) {
         parent::__construct($this->managerRegistry, $logger, $properties, $nameConverter);
     }
@@ -43,7 +43,7 @@ final class RPPSFilter extends AbstractFilter
         QueryNameGeneratorInterface $queryNameGenerator,
         string $resourceClass,
         ?Operation $operation = null,
-        array $context = []
+        array $context = [],
     ): void {
         $this->queryNameGenerator = $queryNameGenerator;
 
