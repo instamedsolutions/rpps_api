@@ -52,7 +52,7 @@ class CityService extends ImporterService
         $this->verbose = $verbose;
     }
 
-    public function importData(string $filePath, string $type, string $separator = ','): bool
+    public function importData(string $filePath, string $type, string $separator = ',', ?int $startLine = 0): bool
     {
         if (!file_exists($filePath)) {
             $this->output->writeln('<error>File not found: ' . $filePath . '</error>');
@@ -64,7 +64,8 @@ class CityService extends ImporterService
         $mainCities = [];
 
         if ('city' === $type) {
-            $this->initializeMainCities($mainCities);
+            $this->initializeMainCities($mainCities, $startLine);
+            $this->initCanonicals($startLine);
         }
 
         if (($handle = fopen($filePath, 'r')) !== false) {
@@ -74,7 +75,15 @@ class CityService extends ImporterService
             $lineCounter = 0;
 
             while (($data = fgetcsv($handle, 1000, $separator)) !== false) {
-                $this->processLine($data, $type, $mainCities);
+                if (0 !== $startLine && $lineCounter < $startLine) {
+                    if (0 === $lineCounter % 2000) {
+                        $this->output->writeln("Skipped to row $lineCounter in type $type");
+                    }
+                    ++$lineCounter;
+                    continue;
+                }
+
+                $this->processLine($data, $type, $mainCities, $startLine);
 
                 ++$lineCounter;
                 if (0 === $lineCounter % 500 && !$this->verbose) {
@@ -156,7 +165,7 @@ class CityService extends ImporterService
         }
     }
 
-    private function initializeMainCities(array &$mainCities): void
+    private function initializeMainCities(array &$mainCities, ?int $startLine = 0): void
     {
         $essentialCities = [
             ['75056', 'PARIS', '75000', 'Paris', ''],
@@ -165,19 +174,19 @@ class CityService extends ImporterService
         ];
 
         foreach ($essentialCities as $cityData) {
-            $this->processLine($cityData, 'city', $mainCities);
+            $this->processLine($cityData, 'city', $mainCities, $startLine);
         }
         $this->flushBatch();
     }
 
-    private function processLine(array $data, string $type, array &$mainCities): void
+    private function processLine(array $data, string $type, array &$mainCities, ?int $startLine = 0): void
     {
         if ('region' === $type) {
             $this->processRegionData($data);
         } elseif ('department' === $type) {
             $this->processDepartmentData($data);
         } elseif ('city' === $type) {
-            $this->processCity($data, $mainCities);
+            $this->processCity($data, $mainCities, $startLine);
         } elseif ('population' === $type) {
             $this->processPopulation($data);
         } elseif ('coordinates' === $type) {
@@ -191,7 +200,14 @@ class CityService extends ImporterService
     {
         [$codeRegion, $name] = $data;
 
-        $region = new Region();
+        $region = $this->em->getRepository(Region::class)->findOneBy([
+            'codeRegion' => $codeRegion,
+        ]);
+
+        if (!$region) {
+            $region = new Region();
+        }
+
         $region->setCodeRegion($codeRegion);
         $region->setName($name);
         $region->importId = $this->getImportId();
@@ -236,7 +252,13 @@ class CityService extends ImporterService
             return;
         }
 
-        $department = new Department();
+        $department = $this->em->getRepository(Department::class)->findOneBy([
+            'codeDepartment' => $codeDepartment,
+        ]);
+
+        if (!$department) {
+            $department = new Department();
+        }
         $department->setCodeDepartment($codeDepartment);
         $department->setName($name);
         $department->setRegion($region);
@@ -254,7 +276,7 @@ class CityService extends ImporterService
         }
     }
 
-    private function processCity(array $data, array &$mainCities): void
+    private function processCity(array $data, array &$mainCities, ?int $startLine = 0): void
     {
         [
             $inseeCode,          // code_commune_INSEE
@@ -308,7 +330,12 @@ class CityService extends ImporterService
             // Store the canonical in the hashmap to ensure future uniqueness checks
             $this->canonicalMap[$canonical] = true;
 
-            $mainCity = new City();
+            if (0 != $startLine) {
+                $mainCity = $this->em->getRepository(City::class)->findOneBy(['canonical' => $canonical]);
+                $mainCity = $mainCity ?? new City();
+            } else {
+                $mainCity = new City();
+            }
             $mainCity->setCanonical($canonical);
             $mainCity->setRawName($communeName);
             $mainCity->setName($normalizedCommuneName);
@@ -349,7 +376,14 @@ class CityService extends ImporterService
             $this->canonicalMap[$canonicalSub] = true;
 
             // Create the sub city and link it to the main city
-            $subCity = new City();
+
+            if (0 != $startLine) {
+                $subCity = $this->em->getRepository(City::class)->findOneBy(['canonical' => $canonicalSub]);
+                $subCity = $subCity ?? new City();
+            } else {
+                $subCity = new City();
+            }
+
             $subCity->setCanonical($canonicalSub);
             $subCity->setRawName($communeName);
             $subCity->setRawSubName($ligne5);
@@ -719,6 +753,23 @@ class CityService extends ImporterService
         }
 
         return $canonicalSub;
+    }
+
+    private function initCanonicals(?int $startLine = 0): void
+    {
+        if (!$startLine) {
+            return;
+        }
+
+        $this->output->writeln('<info>Initializing canonicals...</info>');
+
+        $canonicals = $this->em->getConnection()->fetchFirstColumn('SELECT canonical FROM city');
+
+        $this->output->writeln('<info>Found ' . count($canonicals) . ' canonicals.</info>');
+
+        foreach ($canonicals as $canonical) {
+            $this->canonicalMap[$canonical] = true;
+        }
     }
 
     private function slugify(string $string): string
