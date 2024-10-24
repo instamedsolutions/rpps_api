@@ -43,15 +43,31 @@ class CityImportCommand extends Command
                 'c',
                 InputOption::VALUE_NONE,
                 'Import only coordinates data, purging coordinates data before'
+            )
+            ->addOption(
+                'cities-only',
+                'co',
+                InputOption::VALUE_NONE,
+                'Import only cities data, purging coordinates data before'
             );
+
+        $this->addOption(
+            'start-line',
+            'st',
+            InputOption::VALUE_OPTIONAL,
+            'The line to start the import from'
+        );
     }
 
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
+        $startLine = $input->getOption('start-line') ?? 0;
+
         $io = new SymfonyStyle($input, $output);
         $purge = $input->getOption('purge');
         $populationOnly = $input->getOption('population-only');
         $coordinatesOnly = $input->getOption('coordinates-only');
+        $citiesOnly = $input->getOption('cities-only');
 
         $regionFilePath = __DIR__ . '/../../data/cities/regions.csv';
         $departmentFilePath = __DIR__ . '/../../data/cities/departments.csv';
@@ -95,10 +111,12 @@ class CityImportCommand extends Command
 
             $this->cityService->importData($regionFilePath, 'region');
             $this->cityService->importData($departmentFilePath, 'department');
-            $this->cityService->importData($citiesFilePath, 'city', ';');
-            $this->cityService->importData($coordinateFilePath, 'coordinates');
-            $this->cityService->importData($populationFilePath, 'population', ';');
-            $this->cityService->aggregatePopulationForMainCities();
+            $this->cityService->importData($citiesFilePath, 'city', ';', $startLine);
+            if (!$citiesOnly) {
+                $this->cityService->importData($coordinateFilePath, 'coordinates', startLine: $startLine);
+                $this->cityService->importData($populationFilePath, 'population', ';', $startLine);
+                $this->cityService->aggregatePopulationForMainCities();
+            }
         }
 
         $end = new DateTime();

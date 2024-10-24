@@ -11,6 +11,7 @@
     "ext-intl": "*",
     "ext-json": "*",
     "ext-zip": "*",
+    "ext-zlib": "*",
     "api-platform/core": "^3",
     "cocur/slugify": "^4.6",
     "doctrine/annotations": "^1.0",
@@ -43,8 +44,7 @@
     "symfony/uid": "6.4.*",
     "symfony/validator": "6.4.*",
     "symfony/yaml": "6.4.*",
-    "twig/twig": "^3",
-    "ext-zlib": "*"
+    "twig/twig": "^3"
   },
   "require-dev": {
     "doctrine/doctrine-fixtures-bundle": "^3.4",

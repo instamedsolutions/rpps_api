@@ -95,12 +95,12 @@ class City extends Thing implements Entity
     private ?Department $department = null;
 
     #[Groups(['read'])]
-    #[ORM\Column(type: Types::FLOAT, precision: 22, scale: 16, nullable: true)]
-    private ?float $latitude = null;
+    #[ORM\Column(type: Types::DECIMAL, precision: 22, scale: 16, nullable: true)]
+    private ?string $latitude = null;
 
     #[Groups(['read'])]
-    #[ORM\Column(type: Types::FLOAT, precision: 22, scale: 16, nullable: true)]
-    private ?float $longitude = null;
+    #[ORM\Column(type: Types::DECIMAL, precision: 22, scale: 16, nullable: true)]
+    private ?string $longitude = null;
 
     #[ORM\Column(type: PointType::POINT, nullable: false)]
     private array $coordinates = [];
@@ -183,10 +183,10 @@ class City extends Thing implements Entity
         return $this;
     }
 
-    public function getLatitude(): ?float
+    public function getLatitude(): ?string
     {
         if (isset($this->coordinates['latitude']) && $this->coordinates['latitude']) {
-            return (float) $this->coordinates['latitude'];
+            return (string) $this->coordinates['latitude'];
         }
 
         if (!$this->latitude) {
@@ -195,10 +195,10 @@ class City extends Thing implements Entity
             return $subcity ? $subcity->getLatitude() : null;
         }
 
-        return (float) $this->latitude;
+        return (string) $this->latitude;
     }
 
-    public function setLatitude(?float $latitude): static
+    public function setLatitude(?string $latitude): static
     {
         // Convert empty strings to null
         $this->latitude = $latitude;
@@ -211,10 +211,10 @@ class City extends Thing implements Entity
         return $this;
     }
 
-    public function getLongitude(): ?float
+    public function getLongitude(): ?string
     {
         if (isset($this->coordinates['longitude']) && $this->coordinates['longitude']) {
-            return (float) $this->coordinates['longitude'];
+            return (string) $this->coordinates['longitude'];
         }
 
         if (!$this->latitude) {
@@ -223,10 +223,10 @@ class City extends Thing implements Entity
             return $subcity ? $subcity->getLongitude() : null;
         }
 
-        return $this->longitude ? (float) $this->longitude : null;
+        return $this->longitude ? (string) $this->longitude : null;
     }
 
-    public function setLongitude(?float $longitude): static
+    public function setLongitude(?string $longitude): static
     {
         // Convert empty strings to null
         $this->longitude = $longitude;
