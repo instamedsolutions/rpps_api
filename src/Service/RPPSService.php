@@ -365,6 +365,7 @@ class RPPSService extends ImporterService
             $rpps->getZipcode(),
         ]))->lower()->ascii()->replace('_', '-')->replace(' ', '-')->replace('--', '-')->toString();
 
+        $canonicalBase = trim($canonicalBase, '-');
         $canonical = $canonicalBase;
         $suffix = 1;
 
@@ -387,8 +388,6 @@ class RPPSService extends ImporterService
         }
 
         $existing = $this->em->getConnection()->fetchOne('SELECT 1 FROM rpps WHERE canonical = ?', [$canonical]);
-
-        dump($existing);
 
         if ($existing) {
             $this->existingCanonicals[$canonical] = true;
