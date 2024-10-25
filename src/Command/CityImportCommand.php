@@ -90,18 +90,20 @@ class CityImportCommand extends Command
         $this->em->getConnection()->getConfiguration()->setSQLLogger();
 
         if ($populationOnly) {
-            $io->writeln('<info>Purging all population data...</info>');
-            $this->cityService->purgePopulation();
-            $io->success('Population purge completed successfully.');
-
-            $this->cityService->importData($populationFilePath, 'population', ';');
+            if (!$startLine) {
+                $io->writeln('<info>Purging all population data...</info>');
+                $this->cityService->purgePopulation();
+                $io->success('Population purge completed successfully.');
+            }
+            $this->cityService->importData($populationFilePath, 'population', ';', $startLine);
             $this->cityService->aggregatePopulationForMainCities();
         } elseif ($coordinatesOnly) {
-            $io->writeln('<info>Purging all coordinates data...</info>');
-            $this->cityService->purgeCoordinates();
-            $io->success('Coordinates purge completed successfully.');
-
-            $this->cityService->importData($coordinateFilePath, 'coordinates');
+            if (!$startLine) {
+                $io->writeln('<info>Purging all coordinates data...</info>');
+                $this->cityService->purgeCoordinates();
+                $io->success('Coordinates purge completed successfully.');
+            }
+            $this->cityService->importData($coordinateFilePath, 'coordinates', startLine: $startLine);
         } else {
             if ($purge) {
                 $io->writeln('<info>Purging all existing regions, departments, and cities...</info>');

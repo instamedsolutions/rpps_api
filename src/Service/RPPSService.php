@@ -39,7 +39,7 @@ class RPPSService extends ImporterService
     ) {
         parent::__construct(RPPS::class, $fileProcessor, $em);
         $this->initializeSpecialtyMaps();
-        $this->initializeCanonicalMap();
+        //      $this->initializeCanonicalMap();
     }
 
     // Initialize the hashmaps for specialties
@@ -55,17 +55,17 @@ class RPPSService extends ImporterService
     }
 
     // Initialize the hashmap for existing canonicals
-    private function initializeCanonicalMap(): void
-    {
-        $existingCanonicals = $this->em->getRepository(RPPS::class)->createQueryBuilder('r')
-            ->select('r.canonical')
-            ->getQuery()
-            ->getResult();
+    /* private function initializeCanonicalMap(): void
+     {
+         $existingCanonicals = $this->em->getRepository(RPPS::class)->createQueryBuilder('r')
+             ->select('r.canonical')
+             ->getQuery()
+             ->getResult();
 
-        foreach ($existingCanonicals as $entry) {
-            $this->existingCanonicals[$entry['canonical']] = true;
-        }
-    }
+         foreach ($existingCanonicals as $entry) {
+             $this->existingCanonicals[$entry['canonical']] = true;
+         }
+     } */
 
     /**
      * @throws \Doctrine\DBAL\Exception
@@ -230,9 +230,11 @@ class RPPSService extends ImporterService
         $rpps->setEmail($data[43]);
         $rpps->setFinessNumber($data[21]);
 
-        // Set canonical
-        $canonical = $this->generateCanonical($rpps);
-        $rpps->setCanonical($canonical);
+        // Set canonical only if it is not already set
+        if (!$rpps->getId() || !$rpps->getCanonical()) {
+            $canonical = $this->generateCanonical($rpps);
+            $rpps->setCanonical($canonical);
+        }
         $rpps->importId = $this->getImportId();
 
         $this->entities[$rpps->getIdRpps()] = $rpps;
@@ -367,7 +369,7 @@ class RPPSService extends ImporterService
         $suffix = 1;
 
         // Check if canonical already exists and add suffix if needed
-        while (isset($this->existingCanonicals[$canonical])) {
+        while ($this->canonicalExists($canonical)) {
             ++$suffix;
             $canonical = $canonicalBase . '-' . $suffix;
         }
@@ -376,5 +378,24 @@ class RPPSService extends ImporterService
         $this->existingCanonicals[$canonical] = true;
 
         return $canonical;
+    }
+
+    private function canonicalExists(string $canonical): bool
+    {
+        if (isset($this->existingCanonicals[$canonical])) {
+            return true;
+        }
+
+        $existing = $this->em->getConnection()->fetchOne('SELECT 1 FROM rpps WHERE canonical = ?', [$canonical]);
+
+        dump($existing);
+
+        if ($existing) {
+            $this->existingCanonicals[$canonical] = true;
+
+            return true;
+        }
+
+        return false;
     }
 }

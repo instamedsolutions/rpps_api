@@ -21,7 +21,7 @@ class SpecialtyMappingService
         'Biologie médicale option médecine moléculaire génétique et pharmacologie' => 'Biologie',
         'Cardiologie et maladies vasculaires' => 'Cardiologie',
         'Chiropracteur' => 'Chiropracteur',
-        'Chirurgie générale' => 'Chirurgie général',
+        'Chirurgie générale' => 'Chirurgie Générale',
         'Chirurgie infantile' => 'Chirurgie infantile',
         'Chirurgie maxillo-faciale' => 'Chirurgie maxillo-facial',
         'Chirurgie maxillo-faciale (réforme 2017)' => 'Chirurgie maxillo-facial',
