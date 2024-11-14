@@ -6,7 +6,7 @@ use DateTimeInterface;
 
 interface Entity
 {
-    public function getId(): string;
+    public function getId(): ?string;
 
     public function getCreatedDate(): ?DateTimeInterface;
 

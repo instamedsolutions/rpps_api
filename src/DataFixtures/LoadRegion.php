@@ -8,8 +8,12 @@ use Doctrine\Persistence\ObjectManager;
 
 class LoadRegion extends Fixture
 {
+    protected ObjectManager $em;
+
     public function load(ObjectManager $manager): void
     {
+        $this->em = $manager;
+
         $regionsData = [
             ['Guadeloupe', '01'],
             ['Martinique', '02'],
@@ -40,9 +44,14 @@ class LoadRegion extends Fixture
         ];
 
         foreach ($regionsData as [$name, $codeRegion]) {
-            $region = new Region();
-            $region->setName($name);
-            $region->setCodeRegion($codeRegion);
+            $region = $this->em->getRepository(Region::class)->findOneBy([
+                'codeRegion' => $codeRegion,
+            ]);
+            if (!$region) {
+                $region = new Region();
+                $region->setName($name);
+                $region->setCodeRegion($codeRegion);
+            }
             $region->importId = 'import_1';
 
             $manager->persist($region);

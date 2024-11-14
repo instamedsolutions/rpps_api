@@ -106,42 +106,15 @@ class LoadSpecialty extends Fixture
 
         // Create and persist specialties
         foreach ($specialtiesData as $data) {
-            $specialty = new Specialty();
-            $specialty->setName($data[0]);
-            $specialty->setCanonical($data[1]);
-            $specialty->setSpecialistName($data[2]);
-            $specialty->setIsParamedical((bool) $data[3]);
-            $specialty->importId = 'import_1';
-
-            $this->em->persist($specialty);
-        }
-
-        $this->em->flush();
-
-        // Fetch the 4 specialties that will be linked to all others
-        $allergologie = $this->em->getRepository(Specialty::class)->findOneBy(['canonical' => 'allergologie']);
-        $anatomie = $this->em->getRepository(Specialty::class)->findOneBy(['canonical' => 'anatomie-et-cytologie-pathologiques']);
-        $generale = $this->em->getRepository(Specialty::class)->findOneBy(['canonical' => 'medecine-generale']);
-        $stomatologie = $this->em->getRepository(Specialty::class)->findOneBy(['canonical' => 'stomatologie']);
-
-        // Add relationships between specialties (same 3 specialties for simplicity)
-        foreach ($this->em->getRepository(Specialty::class)->findAll() as $specialty) {
-            if ($specialty !== $allergologie) {
-                $specialty->addSpecialty($allergologie);
-            } else {
-                $specialty->addSpecialty($stomatologie);
-            }
-
-            if ($specialty !== $anatomie) {
-                $specialty->addSpecialty($anatomie);
-            } else {
-                $specialty->addSpecialty($stomatologie);
-            }
-
-            if ($specialty !== $generale) {
-                $specialty->addSpecialty($generale);
-            } else {
-                $specialty->addSpecialty($stomatologie);
+            $specialty = $this->em->getRepository(Specialty::class)->findOneBy([
+                'canonical' => $data[1],
+            ]);
+            if (!$specialty) {
+                $specialty = new Specialty();
+                $specialty->setName($data[0]);
+                $specialty->setCanonical($data[1]);
+                $specialty->setSpecialistName($data[2]);
+                $specialty->setIsParamedical((bool) $data[3]);
             }
 
             $this->em->persist($specialty);

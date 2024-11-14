@@ -42,7 +42,7 @@ abstract class Thing implements Entity, ImportedEntity, Stringable
         $this->createdDate = new DateTime();
     }
 
-    public function getId(): string
+    public function getId(): ?string
     {
         return $this->id;
     }
