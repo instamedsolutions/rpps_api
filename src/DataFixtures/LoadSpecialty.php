@@ -115,6 +115,7 @@ class LoadSpecialty extends Fixture
                 $specialty->setCanonical($data[1]);
                 $specialty->setSpecialistName($data[2]);
                 $specialty->setIsParamedical((bool) $data[3]);
+                $specialty->importId = 'import_1';
             }
 
             $this->em->persist($specialty);
