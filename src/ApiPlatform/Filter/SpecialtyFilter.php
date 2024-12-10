@@ -40,10 +40,26 @@ final class SpecialtyFilter extends AbstractFilter
             $this->addSearchFilter($queryBuilder, $value);
         }
 
+        if ('excluded_specialties' === $property) {
+            $this->addExcludedSpecialtiesFilter($queryBuilder, $value);
+        }
+
         if ('by_rpps' === $property) {
             $this->addSortByRppsCount($queryBuilder);
         }
     }
+
+
+    protected function addExcludedSpecialtiesFilter(QueryBuilder $queryBuilder, string|array $value): QueryBuilder
+    {
+
+        $value = is_string($value) ? [$value] : $value;
+
+        $queryBuilder->andWhere('alias.canonical NOT IN (:excludedSpecialties)');
+
+        return $queryBuilder;
+    }
+
 
     protected function addSearchFilter(QueryBuilder $queryBuilder, ?string $value): QueryBuilder
     {

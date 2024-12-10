@@ -35,7 +35,7 @@ use Symfony\Component\Serializer\Annotation\Groups;
         ),
     ],
 )]
-#[ApiFilter(SpecialtyFilter::class, properties: ['search', 'by_rpps'])]
+#[ApiFilter(SpecialtyFilter::class, properties: ['search', 'by_rpps','excluded_specialties'])]
 class Specialty extends Thing implements Entity
 {
     #[Groups(['read'])]
