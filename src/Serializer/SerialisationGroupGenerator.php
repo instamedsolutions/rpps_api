@@ -36,6 +36,11 @@ class SerialisationGroupGenerator implements SerializerContextBuilderInterface
     private function buildGroupsFromRequest(Request $request, bool $normalization): array
     {
         $shortName = $this->extractShortName($request);
+
+        if (!$shortName) {
+            return [];
+        }
+
         $operationType = $this->extractOperationType($request);
         $method = $this->extractMethod($request);
         $role = $this->getRole();
@@ -77,9 +82,13 @@ class SerialisationGroupGenerator implements SerializerContextBuilderInterface
         return array_filter($groups, fn (string $group) => !str_contains($group, 'unknown'));
     }
 
-    private function extractShortName(Request $request): string
+    private function extractShortName(Request $request): ?string
     {
         $class = $request->attributes->get('_api_resource_class', null);
+
+        if (!$class) {
+            return null;
+        }
 
         $metadata = $this->metadataFactory->create($class);
 
