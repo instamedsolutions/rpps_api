@@ -160,14 +160,28 @@ final class RPPSFilter extends AbstractFilter
 
         $value = $this->cleanValue($value);
 
-        $query = "(
+        if (str_contains($value, '%')) {
+            $result = $this->em->getConnection()->fetchFirstColumn('(SELECT id FROM rpps WHERE full_name LIKE :search
+ LIMIT 500)
+UNION
+(SELECT id FROM rpps WHERE full_name_inversed LIKE :search
+ LIMIT 500)
+LIMIT 500;', [
+                'search' => "$value%",
+            ]);
+
+            $queryBuilder->andWhere("$alias.id IN (:result)");
+            $queryBuilder->setParameter('result', $result);
+        } else {
+            $query = "(
         $alias.fullName LIKE CONCAT(:$paramName, '%') OR 
         $alias.fullNameInversed LIKE CONCAT(:$paramName, '%') OR
         $alias.idRpps = :$paramName
 )";
 
-        $queryBuilder->andWhere($query);
-        $queryBuilder->setParameter($paramName, $value);
+            $queryBuilder->andWhere($query);
+            $queryBuilder->setParameter($paramName, $value);
+        }
 
         return $queryBuilder;
     }
@@ -224,9 +238,9 @@ final class RPPSFilter extends AbstractFilter
         $queryBuilder->andWhere(
             "ST_Distance_Sphere(POINT(:longitude, :latitude), $rootAlias.coordinates) < :distance"
         )
-        ->addSelect(
-            "ST_Distance_Sphere(POINT(:longitude, :latitude), $rootAlias.coordinates) AS HIDDEN distance"
-        );
+            ->addSelect(
+                "ST_Distance_Sphere(POINT(:longitude, :latitude), $rootAlias.coordinates) AS HIDDEN distance"
+            );
 
         // Set parameters
         $queryBuilder->setParameter('latitude', (float) $latitude);
