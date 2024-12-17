@@ -82,20 +82,11 @@ final class SpecialtyFilter extends AbstractFilter
 
     protected function addSortByRppsCount(QueryBuilder $queryBuilder): void
     {
-        $alias = $queryBuilder->getRootAliases()[0];
+        // sort by main and name
+        $rootAlias = $queryBuilder->getRootAliases()[0];
 
-        // Générer un alias unique pour la table RPPS
-        $rppsAlias = $this->queryNameGenerator->generateJoinAlias('rpps');
-
-        // Joindre la table RPPS en utilisant la relation specialtyEntity de l'entité RPPS
-        $queryBuilder->leftJoin('App\Entity\RPPS', $rppsAlias, 'WITH', "$rppsAlias.specialtyEntity = $alias");
-
-        // Group by specialty pour compter le nombre de médecins associés par spécialité
-        $queryBuilder->addGroupBy("$alias.id");
-
-        // Sélectionner le nombre de médecins associés pour chaque spécialité et trier par ce nombre
-        $queryBuilder->addSelect("COUNT($rppsAlias.id) as HIDDEN rpps_count");
-        $queryBuilder->orderBy('rpps_count', 'DESC');
+        $queryBuilder->addOrderBy("$rootAlias.main", 'DESC');
+        $queryBuilder->addOrderBy("$rootAlias.name", 'ASC');
     }
 
     public function getDescription(string $resourceClass): array

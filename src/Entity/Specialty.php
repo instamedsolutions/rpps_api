@@ -58,6 +58,9 @@ class Specialty extends Thing implements Entity
     #[ORM\JoinTable(name: 'specialty_links')]
     private Collection $specialties;
 
+    #[ORM\Column(type: 'boolean', nullable: false, options: ['default' => false])]
+    protected bool $main = false;
+
     public function __construct()
     {
         parent::__construct();
