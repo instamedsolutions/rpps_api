@@ -1,25 +1,21 @@
 security:
     password_hashers:
-        Symfony\Component\Security\Core\User\InMemoryUser: 'bcrypt'
+        Symfony\Component\Security\Core\User\InMemoryUser: auto
 
     providers:
-        users_in_memory: { memory: null }
         developers:
             memory:
                 users:
-                    '%env(DEBUG_USERNAME)%': { password: '%env(DEBUG_ENCRYPTED_PASSWORD)%', roles: [ 'ROLE_DEBUG' ] }
+                    '%env(DEBUG_USERNAME)%':
+                        password: '%env(DEBUG_ENCRYPTED_PASSWORD)%'
+                        roles: [ 'ROLE_DEBUG' ]
 
     firewalls:
-        dev:
-            pattern: ^/(_(wdt)|css|images|js)/
-            security: false
         profiler:
             pattern: ^/(_profiler)/
             provider: developers
-            http_basic:
-                realm: Secured Area
-        main:
-            lazy: true
-            provider: users_in_memory
+            http_basic: ~
+            stateless: true
 
     access_control:
+        - { path: ^/(_profiler)/, roles: ROLE_DEBUG }
