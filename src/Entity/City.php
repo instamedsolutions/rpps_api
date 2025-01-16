@@ -13,6 +13,7 @@ use App\Doctrine\Types\PointType;
 use App\Repository\CityRepository;
 use App\StateProvider\DefaultItemDataProvider;
 use App\StateProvider\SimilarCitiesProvider;
+use App\StateProvider\SubCitiesProvider;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
@@ -20,7 +21,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Serializer\Annotation\Groups;
 use Symfony\Component\Serializer\Annotation\MaxDepth;
 
-#[ApiFilter(CityFilter::class, properties: ['search', 'latitude'])]
+#[ApiFilter(CityFilter::class, properties: ['search', 'latitude', 'exclude_subcities'])]
 #[ORM\Entity(repositoryClass: CityRepository::class)]
 #[ORM\Table(name: 'city', indexes: [
     new ORM\Index(columns: ['postalCode'], name: 'idx_postal_code'),
@@ -40,6 +41,7 @@ use Symfony\Component\Serializer\Annotation\MaxDepth;
         new GetCollection(
             uriTemplate: '/cities/{id}/sub_cities',
             normalizationContext: ['groups' => ['city:sub_cities:read']],
+            provider: SubCitiesProvider::class
         ),
         new GetCollection(
             uriTemplate: '/cities/{id}/similar{._format}',

@@ -1,39 +1,49 @@
 api_platform:
-    title: Instamed Rpps Database
-    description: This is a database of medical infos
-    version: 4.0.0
-    show_webby: false
-    enable_entrypoint: true
-    enable_docs: true
-    enable_re_doc: true
-    mapping:
-        paths:
-            - '%kernel.project_dir%/src/Entity'
-    defaults:
-        pagination_client_items_per_page: true
-        pagination_maximum_items_per_page: 500
+  title: Instamed Rpps Database
+  description: This is a database of medical infos
+  version: 4.0.0
+  show_webby: false
+  enable_entrypoint: true
+  enable_docs: true
+  enable_re_doc: true
 
-    collection:
-        order_parameter_name: '_order'
-        pagination:
-            items_per_page_parameter_name: _per_page
-    doctrine:
-        enabled: true
-    formats:
-        jsonld:
-            mime_types: ['application/ld+json']
-        json:
-            mime_types: ['application/json']
-        jsonapi:
-            mime_types: [ 'application/vnd.api+json' ]
-        html:
-            mime_types: ['text/html']
-        csv:
-            mime_types: ['text/csv']
+  http_cache:
+    public: true
 
-    patch_formats:
-        json: ['application/merge-patch+json']
 
-    error_formats:
-        jsonld:
-            mime_types: ['application/ld+json']
+
+  mapping:
+    paths:
+      - '%kernel.project_dir%/src/Entity'
+  defaults:
+    pagination_client_items_per_page: true
+    pagination_maximum_items_per_page: 500
+    cache_headers:
+      max_age: 86400
+      shared_max_age: 86400
+      public: true
+      vary: [ 'Content-Type', 'Authorization', 'Origin', 'Accept-Language' ]
+  collection:
+    order_parameter_name: '_order'
+    pagination:
+      items_per_page_parameter_name: _per_page
+  doctrine:
+    enabled: true
+  formats:
+    jsonld:
+      mime_types: [ 'application/ld+json' ]
+    json:
+      mime_types: [ 'application/json' ]
+    jsonapi:
+      mime_types: [ 'application/vnd.api+json' ]
+    html:
+      mime_types: [ 'text/html' ]
+    csv:
+      mime_types: [ 'text/csv' ]
+
+  patch_formats:
+    json: [ 'application/merge-patch+json' ]
+
+  error_formats:
+    jsonld:
+      mime_types: [ 'application/ld+json' ]
