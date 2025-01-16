@@ -5,14 +5,14 @@ namespace App\Entity;
 use ApiPlatform\Metadata\ApiResource;
 use ApiPlatform\Metadata\Get;
 use ApiPlatform\Metadata\GetCollection;
+use App\Entity\Traits\ImportIdTrait;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
-use Stringable;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Serializer\Annotation\Groups;
 
-#[ORM\Entity()]
+#[ORM\Entity]
 #[ORM\Table(name: 'cim_11_modifier_value')]
 #[ORM\Index(columns: ['code'])]
 #[UniqueEntity(['code', 'whoId'])]
@@ -24,8 +24,10 @@ use Symfony\Component\Serializer\Annotation\Groups;
     paginationClientEnabled: true,
     paginationPartial: true,
 )]
-class Cim11ModifierValue extends Thing implements Entity, Stringable
+class Cim11ModifierValue extends BaseEntity implements ImportableEntityInterface
 {
+    use ImportIdTrait;
+
     #[Groups(['read'])]
     #[ORM\Column(type: 'string', length: 16, unique: true)]
     protected ?string $code = null;

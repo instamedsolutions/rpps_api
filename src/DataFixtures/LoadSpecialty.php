@@ -41,7 +41,12 @@ class LoadSpecialty extends Fixture
             ],
             ['Chirurgie Urologique', 'chirurgie-urologique', 'Chirurgien urologique', 0],
             ['Chirurgie Vasculaire', 'chirurgie-vasculaire', 'Chirurgien vasculaire', 0],
-            ['Chirurgie Viscérale Et Digestive', 'chirurgie-viscerale-et-digestive', 'Chirurgien viscéral et digestif', 0],
+            [
+                'Chirurgie Viscérale Et Digestive',
+                'chirurgie-viscerale-et-digestive',
+                'Chirurgien viscéral et digestif',
+                0,
+            ],
             ['Chirurgien-Dentiste', 'chirurgien-dentiste', 'Chirurgien-dentiste', 0],
             ['Dentiste', 'dentiste', 'Chirurgien bucco-dentaire', 0],
             ['Dermatologie', 'dermatologie', 'Dermatologue', 0],
@@ -64,7 +69,12 @@ class LoadSpecialty extends Fixture
             ['Médecine Générale', 'medecine-generale', 'Médecin généraliste', 0, ['stomatologie', 'allergologie', 'anatomie-et-cytologie-pathologiques']],
             ['Médecine Intensive-Réanimation', 'medecine-intensive-reanimation', 'Réanimateur', 0],
             ['Médecine Interne', 'medecine-interne', 'Interniste', 0],
-            ['Médecine Légale Et Expertises Médicales', 'medecine-legale-et-expertises-medicales', 'Médecin légiste', 0],
+            [
+                'Médecine Légale Et Expertises Médicales',
+                'medecine-legale-et-expertises-medicales',
+                'Médecin légiste',
+                0,
+            ],
             ['Médecine Nucléaire', 'medecine-nucleaire', 'Médecin nucléaire', 0],
             ['Médecine Physique Et Réadaptation', 'medecine-physique-et-readaptation', 'Rééducateur fonctionnel', 1],
             ['Médecine Vasculaire', 'medecine-vasculaire', 'Angiologue', 0],
@@ -117,7 +127,40 @@ class LoadSpecialty extends Fixture
                 $specialty->setCanonical($data[1]);
                 $specialty->setSpecialistName($data[2]);
                 $specialty->setIsParamedical((bool) $data[3]);
-                $specialty->importId = 'import_1';
+                $specialty->setImportId('import_1');
+            }
+
+            $this->em->persist($specialty);
+        }
+
+        $this->em->flush();
+
+        // Fetch the 4 specialties that will be linked to all others
+        $allergologie = $this->em->getRepository(Specialty::class)->findOneBy(['canonical' => 'allergologie']);
+        $anatomie = $this->em->getRepository(Specialty::class)->findOneBy(
+            ['canonical' => 'anatomie-et-cytologie-pathologiques']
+        );
+        $generale = $this->em->getRepository(Specialty::class)->findOneBy(['canonical' => 'medecine-generale']);
+        $stomatologie = $this->em->getRepository(Specialty::class)->findOneBy(['canonical' => 'stomatologie']);
+
+        // Add relationships between specialties (same 3 specialties for simplicity)
+        foreach ($this->em->getRepository(Specialty::class)->findAll() as $specialty) {
+            if ($specialty !== $allergologie) {
+                $specialty->addSpecialty($allergologie);
+            } else {
+                $specialty->addSpecialty($stomatologie);
+            }
+
+            if ($specialty !== $anatomie) {
+                $specialty->addSpecialty($anatomie);
+            } else {
+                $specialty->addSpecialty($stomatologie);
+            }
+
+            if ($specialty !== $generale) {
+                $specialty->addSpecialty($generale);
+            } else {
+                $specialty->addSpecialty($stomatologie);
             }
 
             $specialties[$specialty->getCanonical()] = $specialty;

@@ -9,7 +9,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Stringable;
 use Symfony\Component\Serializer\Annotation\Groups;
 
-abstract class Thing implements Entity, ImportedEntity, Stringable
+abstract class BaseEntity implements Entity, Stringable
 {
     #[Groups(['read'])]
     #[ORM\Id]
@@ -30,13 +30,6 @@ abstract class Thing implements Entity, ImportedEntity, Stringable
     #[ORM\Column(name: 'created_date', type: 'datetime')]
     protected ?DateTimeInterface $createdDate;
 
-    #[ApiProperty(readable: false, writable: false)]
-    #[ORM\Column(name: 'import_id', type: 'string', length: 20, nullable: false)]
-    public ?string $importId = null;
-
-    /**
-     * Thing constructor.
-     */
     public function __construct()
     {
         $this->createdDate = new DateTime();

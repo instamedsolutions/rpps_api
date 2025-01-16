@@ -84,8 +84,8 @@ services:
         arguments:
             $projectDir : '%kernel.project_dir%'
 
-    App\Doctrine\EntityListener\ThingListener:
-        class: App\Doctrine\EntityListener\ThingListener
+    App\Doctrine\EntityListener\BaseEntityListener:
+        class: App\Doctrine\EntityListener\BaseEntityListener
         tags:
             - { name: doctrine.event_listener, event: prePersist }
 

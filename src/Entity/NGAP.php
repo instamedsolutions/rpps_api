@@ -10,10 +10,10 @@ use ApiPlatform\Metadata\ApiResource;
 use ApiPlatform\Metadata\Get;
 use ApiPlatform\Metadata\GetCollection;
 use App\ApiPlatform\Filter\NGAPFilter;
+use App\Entity\Traits\ImportIdTrait;
 use App\Repository\NGAPRepository;
 use App\StateProvider\DefaultItemDataProvider;
 use Doctrine\ORM\Mapping as ORM;
-use Stringable;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Serializer\Annotation\Groups;
 
@@ -34,8 +34,10 @@ use Symfony\Component\Serializer\Annotation\Groups;
     paginationClientEnabled: true,
     paginationPartial: true,
 )]
-class NGAP extends Thing implements Entity, Stringable
+class NGAP extends BaseEntity implements ImportableEntityInterface
 {
+    use ImportIdTrait;
+
     #[ApiProperty(
         description: 'The uniq code of the NGAP',
         required: true,

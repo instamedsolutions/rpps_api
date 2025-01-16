@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use App\Entity\Traits\ImportIdTrait;
 use App\Enum\DepartmentType;
 use App\Repository\DepartmentRepository;
 use Doctrine\Common\Collections\ArrayCollection;
@@ -10,8 +11,10 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Serializer\Annotation\Groups;
 
 #[ORM\Entity(repositoryClass: DepartmentRepository::class)]
-class Department extends Thing implements Entity
+class Department extends BaseEntity implements ImportableEntityInterface
 {
+    use ImportIdTrait;
+
     #[Groups(['read'])]
     #[ORM\Column(length: 255)]
     private ?string $name = null;

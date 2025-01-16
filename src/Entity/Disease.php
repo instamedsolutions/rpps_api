@@ -12,12 +12,12 @@ use ApiPlatform\Metadata\Get;
 use ApiPlatform\Metadata\GetCollection;
 use ApiPlatform\Metadata\Link;
 use App\ApiPlatform\Filter\DiseaseFilter;
+use App\Entity\Traits\ImportIdTrait;
 use App\Repository\DiseaseRepository;
 use App\StateProvider\DefaultItemDataProvider;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
-use Stringable;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Serializer\Annotation\Groups;
 use Symfony\Component\Serializer\Annotation\MaxDepth;
@@ -48,11 +48,13 @@ use Symfony\Component\Serializer\Annotation\MaxDepth;
     paginationClientEnabled: true,
     paginationPartial: true,
 )]
-class Disease extends Thing implements Entity, Stringable
+class Disease extends BaseEntity implements ImportableEntityInterface
 {
-    final public const SEX_MALE = 1;
+    use ImportIdTrait;
 
-    final public const SEX_FEMALE = 2;
+    final public const int SEX_MALE = 1;
+
+    final public const int SEX_FEMALE = 2;
 
     #[ApiFilter(SearchFilter::class, strategy: SearchFilterInterface::STRATEGY_EXACT)]
     #[ApiProperty(

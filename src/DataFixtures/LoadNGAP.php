@@ -19,13 +19,13 @@ class LoadNGAP extends Fixture
         $entity->code = 'C';
         $entity->description = 'Consultation';
 
-        $entity->importId = 'import_1';
+        $entity->setImportId('import_1');
         $this->em->persist($entity);
 
         $entity2 = new NGAP();
         $entity2->code = 'BDC';
         $entity2->description = 'Examen bucco-dentaire';
-        $entity2->importId = 'import_1';
+        $entity2->setImportId('import_1');
 
         $this->em->persist($entity2);
 

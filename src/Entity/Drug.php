@@ -9,10 +9,10 @@ use ApiPlatform\Metadata\ApiResource;
 use ApiPlatform\Metadata\Get;
 use ApiPlatform\Metadata\GetCollection;
 use App\ApiPlatform\Filter\DrugsFilter;
+use App\Entity\Traits\ImportIdTrait;
 use App\Repository\DrugRepository;
 use App\StateProvider\DefaultItemDataProvider;
 use Doctrine\ORM\Mapping as ORM;
-use Stringable;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Serializer\Annotation\Groups;
 use Symfony\Component\Serializer\Annotation\SerializedName;
@@ -35,8 +35,10 @@ use Symfony\Component\Serializer\Annotation\SerializedName;
     paginationClientEnabled: true,
     paginationPartial: true,
 )]
-class Drug extends Thing implements Entity, Stringable
+class Drug extends BaseEntity implements ImportableEntityInterface
 {
+    use ImportIdTrait;
+
     final public const int GENERIC_LABEL_PRINCEPS = 1;
     final public const int GENERIC_LABEL_GENERIC = 2;
     final public const int GENERIC_LABEL_GENERIC_BY_COMPLEMENTARITY_POSOLOGIC = 3;

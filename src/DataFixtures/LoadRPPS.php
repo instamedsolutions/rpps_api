@@ -101,7 +101,7 @@ class LoadRPPS extends Fixture implements DependentFixtureInterface, FixtureInte
 
             $rpps->setCanonical('fixture-canonical-' . $i);
 
-            $rpps->importId = $this->importId;
+            $rpps->setImportId($this->importId);
 
             $this->em->persist($rpps);
         }

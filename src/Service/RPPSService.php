@@ -235,7 +235,7 @@ class RPPSService extends ImporterService
             $canonical = $this->generateCanonical($rpps);
             $rpps->setCanonical($canonical);
         }
-        $rpps->importId = $this->getImportId();
+        $rpps->setImportId($this->getImportId());
 
         $this->entities[$rpps->getIdRpps()] = $rpps;
 

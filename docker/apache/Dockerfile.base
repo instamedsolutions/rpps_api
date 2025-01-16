@@ -1,6 +1,6 @@
 ARG PHP_VERSION=8.3
 
-FROM php:${PHP_VERSION}-apache-bookworm as rpps-base
+FROM php:${PHP_VERSION}-apache-bookworm AS rpps-base
 
 ENV DEBIAN_FRONTEND noninteractive
 

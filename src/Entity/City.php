@@ -10,6 +10,7 @@ use ApiPlatform\Metadata\Get;
 use ApiPlatform\Metadata\GetCollection;
 use App\ApiPlatform\Filter\CityFilter;
 use App\Doctrine\Types\PointType;
+use App\Entity\Traits\ImportIdTrait;
 use App\Repository\CityRepository;
 use App\StateProvider\DefaultItemDataProvider;
 use App\StateProvider\SimilarCitiesProvider;
@@ -53,8 +54,10 @@ use Symfony\Component\Serializer\Annotation\MaxDepth;
 )]
 #[ApiFilter(SearchFilter::class, properties: ['name' => 'partial'])]
 #[ApiFilter(OrderFilter::class, properties: ['population' => 'DESC'], arguments: ['orderParameterName' => '_orderBy'])]
-class City extends Thing implements Entity
+class City extends BaseEntity implements ImportableEntityInterface
 {
+    use ImportIdTrait;
+
     #[Groups(['read'])]
     #[ORM\Column(length: 255, unique: true)]
     private ?string $canonical = null;
@@ -104,7 +107,7 @@ class City extends Thing implements Entity
     #[ORM\Column(type: Types::DECIMAL, precision: 22, scale: 16, nullable: true)]
     private ?string $longitude = null;
 
-    #[ORM\Column(type: PointType::POINT, nullable: false)]
+    #[ORM\Column(type: PointType::POINT, nullable: true)]
     private array $coordinates = [];
 
     #[Groups(['read'])]

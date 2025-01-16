@@ -25,7 +25,7 @@ class LoadDiseases extends Fixture implements DependentFixtureInterface, Fixture
         $disease->setCategory($this->getReference(LoadDiseaseGroups::CATEGORY));
         $disease->setName('Cholera');
         $disease->setHierarchyLevel(3);
-        $disease->importId = 'import_1';
+        $disease->setImportId('import_1');
 
         $this->em->persist($disease);
 
@@ -37,7 +37,7 @@ class LoadDiseases extends Fixture implements DependentFixtureInterface, Fixture
         $disease2->setHierarchyLevel(4);
         $disease2->setParent($disease);
         $disease2->setSex(Disease::SEX_FEMALE);
-        $disease2->importId = 'import_1';
+        $disease2->setImportId('import_1');
 
         $this->em->persist($disease2);
 

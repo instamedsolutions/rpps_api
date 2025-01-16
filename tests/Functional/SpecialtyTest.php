@@ -9,15 +9,9 @@ use Symfony\Contracts\HttpClient\Exception\RedirectionExceptionInterface;
 use Symfony\Contracts\HttpClient\Exception\ServerExceptionInterface;
 use Symfony\Contracts\HttpClient\Exception\TransportExceptionInterface;
 
-
-/**
- * @group
- */
 class SpecialtyTest extends ApiTestCase
 {
-
     /**
-     * @group
      * @throws ClientExceptionInterface
      * @throws RedirectionExceptionInterface
      * @throws ServerExceptionInterface
@@ -25,19 +19,18 @@ class SpecialtyTest extends ApiTestCase
      */
     public function testGetSpecialtyData(): void
     {
-        $data = $this->get("specialties");
+        $data = $this->get('specialties');
         $this->assertResponseStatusCodeSame(Response::HTTP_OK);
         $this->assertCollectionKeyContains(
             $data['hydra:member'],
-            "name",
-            ["Allergologie", "Anatomie Et Cytologie Pathologiques", "Biologie", "Cardiologie"]
+            'name',
+            ['Allergologie', 'Anatomie Et Cytologie Pathologiques', 'Biologie', 'Cardiologie']
         );
-        $this->assertCollectionKeyContains($data['hydra:member'], "specialistName", ["Cardiologue"]);
-        $this->assertCollectionKeyContains($data['hydra:member'], "canonical", ["chirurgie-general"]);
+        $this->assertCollectionKeyContains($data['hydra:member'], 'specialistName', ['Cardiologue']);
+        $this->assertCollectionKeyContains($data['hydra:member'], 'canonical', ['chirurgie-general']);
     }
 
     /**
-     * @group
      * @throws ClientExceptionInterface
      * @throws RedirectionExceptionInterface
      * @throws ServerExceptionInterface
@@ -45,13 +38,12 @@ class SpecialtyTest extends ApiTestCase
      */
     public function testGetSpecialtiesWithLimit(): void
     {
-        $data = $this->get("specialties", ["_per_page" => 5]);
+        $data = $this->get('specialties', ['_per_page' => 5]);
         $this->assertResponseStatusCodeSame(Response::HTTP_OK);
         $this->assertCount(5, $data['hydra:member']);
     }
 
     /**
-     * @group
      * @throws ClientExceptionInterface
      * @throws RedirectionExceptionInterface
      * @throws ServerExceptionInterface
@@ -59,23 +51,22 @@ class SpecialtyTest extends ApiTestCase
      */
     public function testGetSpecialtyByName(): void
     {
-        $data = $this->get("specialties", ["search" => "Cardiologie"]);
+        $data = $this->get('specialties', ['search' => 'Cardiologie']);
         $this->assertResponseStatusCodeSame(Response::HTTP_OK);
 
         $this->assertEquals(1, count($data['hydra:member']));
-        $this->assertCollectionKeyContains($data['hydra:member'], "name", ["Cardiologie"]);
+        $this->assertCollectionKeyContains($data['hydra:member'], 'name', ['Cardiologie']);
 
-        $data = $this->get("specialties", ["search" => "chirurgie"]);
+        $data = $this->get('specialties', ['search' => 'chirurgie']);
         $this->assertResponseStatusCodeSame(Response::HTTP_OK);
         $this->assertCollectionKeyContains(
             $data['hydra:member'],
-            "name",
-            ["Neuro-Chirurgie", "Chirurgien-Dentiste", "Chirurgie Vasculaire"]
+            'name',
+            ['Neuro-Chirurgie', 'Chirurgien-Dentiste', 'Chirurgie Vasculaire']
         );
     }
 
     /**
-     * @group
      * @throws ClientExceptionInterface
      * @throws RedirectionExceptionInterface
      * @throws ServerExceptionInterface
@@ -83,7 +74,7 @@ class SpecialtyTest extends ApiTestCase
      */
     public function testGetSimilarSpecialties(): void
     {
-        $specialty = $this->getSpecialty("hematologie");
+        $specialty = $this->getSpecialty('hematologie');
         $this->assertNotNull($specialty);
 
         $data = $this->get("specialties/{$specialty->getId()}/similar");
@@ -91,10 +82,9 @@ class SpecialtyTest extends ApiTestCase
         $this->assertEquals(3, $data['hydra:totalItems']);
         $this->assertCollectionKeyContains(
             $data['hydra:member'],
-            "name",
-            ["Médecine Générale", "Anatomie Et Cytologie Pathologiques", "Allergologie"]
+            'name',
+            ['Médecine Générale', 'Anatomie Et Cytologie Pathologiques', 'Allergologie']
         );
-
 
         $specialty = $this->getSpecialty();
         $this->assertNotNull($specialty);
@@ -104,13 +94,14 @@ class SpecialtyTest extends ApiTestCase
         $this->assertEquals(3, $data['hydra:totalItems']);
         $this->assertCollectionKeyContains(
             $data['hydra:member'],
-            "name",
-            ["Stomatologie", "Anatomie Et Cytologie Pathologiques", "Allergologie"]
+            'name',
+            ['Stomatologie', 'Anatomie Et Cytologie Pathologiques', 'Allergologie']
         );
     }
 
     /**
      * @group
+     *
      * @throws ClientExceptionInterface
      * @throws RedirectionExceptionInterface
      * @throws ServerExceptionInterface
@@ -118,7 +109,7 @@ class SpecialtyTest extends ApiTestCase
      */
     public function testGetSpecialtiesSortedByRppsCount(): void
     {
-        $data = $this->get("specialties", ["by_rpps" => "true", "_per_page" => 10]);
+        $data = $this->get('specialties', ['by_rpps' => 'true', '_per_page' => 10]);
         $this->assertResponseStatusCodeSame(Response::HTTP_OK);
 
         $previousCount = null;
@@ -131,7 +122,7 @@ class SpecialtyTest extends ApiTestCase
             // dump("Specialty: {$specialtyName}, RPPS Count: {$rppsCount}");
 
             // Si ce n'est pas la première itération, vérifier que le nombre est décroissant
-            if ($previousCount !== null) {
+            if (null !== $previousCount) {
                 $this->assertGreaterThanOrEqual($rppsCount, $previousCount);
             }
 

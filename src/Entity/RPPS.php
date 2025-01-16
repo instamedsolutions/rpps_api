@@ -10,6 +10,7 @@ use ApiPlatform\Metadata\Get;
 use ApiPlatform\Metadata\GetCollection;
 use App\ApiPlatform\Filter\RPPSFilter;
 use App\Doctrine\Types\PointType;
+use App\Entity\Traits\ImportIdTrait;
 use App\Repository\RPPSRepository;
 use App\StateProvider\DefaultItemDataProvider;
 use Doctrine\ORM\Mapping as ORM;
@@ -17,7 +18,6 @@ use Exception;
 use libphonenumber\PhoneNumber;
 use libphonenumber\PhoneNumberUtil;
 use Misd\PhoneNumberBundle\Validator\Constraints\PhoneNumber as AssertPhoneNumber;
-use Stringable;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Serializer\Annotation\Groups;
 use Symfony\Component\Serializer\Annotation\SerializedName;
@@ -45,8 +45,10 @@ use Symfony\Component\Serializer\Annotation\SerializedName;
         ),
     ],
 )]
-class RPPS extends Thing implements Entity, Stringable
+class RPPS extends BaseEntity implements ImportableEntityInterface
 {
+    use ImportIdTrait;
+
     #[ApiProperty(
         description: 'A unique canonical identifier for the doctor, based on name and address',
         required: false,

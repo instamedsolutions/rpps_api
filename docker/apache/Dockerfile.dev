@@ -1,24 +1,39 @@
 FROM rpps-api-base
 
+# Copie du code et config Apache / PHP
 COPY --chown=www-data:www-data . /var/www/html/
 COPY ./docker/apache/conf/dev-default.conf /etc/apache2/sites-available/000-default.conf
-COPY  ./docker/apache/custom.ini /usr/local/etc/php/conf.d/custom.ini
+COPY ./docker/apache/custom.ini /usr/local/etc/php/conf.d/custom.ini
 
-RUN openssl req -x509 -nodes -days 365 -newkey rsa:2048 -subj "/C=FR/ST=Ile-De-France/L=Paris/O=Instamed/OU=IT Department/CN=localhost" -keyout /etc/ssl/private/apache-selfsigned.key -out /etc/ssl/certs/apache-selfsigned.crt
+# Génération d'un certificat SSL auto-signé
+RUN openssl req -x509 -nodes -days 365 -newkey rsa:2048 \
+    -subj "/C=FR/ST=Ile-De-France/L=Paris/O=Instamed/OU=IT Department/CN=localhost" \
+    -keyout /etc/ssl/private/apache-selfsigned.key -out /etc/ssl/certs/apache-selfsigned.crt
 
-RUN rm -rf ~/.composer/auth.json
-
+# On bascule sur l'utilisateur www-data pour installer via Composer
 USER www-data
 
-RUN composer install --dev
-RUN php bin/console assets:install --symlink
+# Installation des dépendances, assets, etc.
+RUN composer install --dev --no-interaction --optimize-autoloader --no-progress && \
+    php bin/console assets:install --symlink && \
+    # On recrée le lien vers phpunit si besoin
+    if [ -e /var/www/html/bin/phpunit ]; then rm /var/www/html/bin/phpunit; fi && \
+    ln -s /var/www/html/vendor/bin/phpunit /var/www/html/bin/phpunit
 
+# On repasse en root
 USER root
 
-# Install a test db
-RUN touch /var/test_db.sqlite
-RUN php bin/console doctrine:schema:update --force --dump-sql --env=test
-RUN php bin/console doctrine:migrations:sync-metadata-storage --env=test
-RUN php bin/console doctrine:migrations:version --add --all --no-interaction --env=test
+# (Re)création de la base SQLite de test
+RUN rm -f /var/test_db.sqlite && touch /var/test_db.sqlite
 
-CMD ["make","start-prod"]
+# Enregistrement du type "point" et mise à jour du schéma
+RUN php scripts/register_doctrine_types.php && \
+    php bin/console doctrine:schema:update --force --complete --env=test
+
+# Optionnel : si vous utilisez les migrations pour le schéma
+# RUN php bin/console doctrine:migrations:migrate --no-interaction --env=test
+
+# Variable d'env pour phpunit (optionnel)
+ENV SYMFONY_PHPUNIT_DIR="/var/www/html/vendor/bin/.phpunit"
+
+CMD ["make", "start-prod"]

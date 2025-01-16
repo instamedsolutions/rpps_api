@@ -18,14 +18,14 @@ class LoadAllergens extends Fixture
         $entity->setCode('g1');
         $entity->setGroup('Pollens de graminées');
         $entity->setName('Flouve odorante');
-        $entity->importId = 'import_1';
+        $entity->setImportId('import_1');
         $this->em->persist($entity);
 
         $entity2 = new Allergen();
         $entity2->setCode('c209');
         $entity2->setGroup('Médicaments');
         $entity2->setName('Chymopapaïne');
-        $entity2->importId = 'import_1';
+        $entity2->setImportId('import_1');
         $this->em->persist($entity2);
 
         $this->em->flush();

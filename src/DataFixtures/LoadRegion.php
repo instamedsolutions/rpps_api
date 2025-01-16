@@ -52,7 +52,7 @@ class LoadRegion extends Fixture
                 $region->setName($name);
                 $region->setCodeRegion($codeRegion);
             }
-            $region->importId = 'import_1';
+            $region->setImportId('import_1');
 
             $manager->persist($region);
         }

@@ -7,6 +7,7 @@ use ApiPlatform\Metadata\ApiResource;
 use ApiPlatform\Metadata\Get;
 use ApiPlatform\Metadata\GetCollection;
 use App\ApiPlatform\Filter\SpecialtyFilter;
+use App\Entity\Traits\ImportIdTrait;
 use App\Repository\SpecialtyRepository;
 use App\StateProvider\DefaultItemDataProvider;
 use App\StateProvider\SimilarSpecialtiesProvider;
@@ -36,8 +37,10 @@ use Symfony\Component\Serializer\Annotation\Groups;
     ],
 )]
 #[ApiFilter(SpecialtyFilter::class, properties: ['search', 'by_rpps', 'excluded_specialties'])]
-class Specialty extends Thing implements Entity
+class Specialty extends BaseEntity implements ImportableEntityInterface
 {
+    use ImportIdTrait;
+
     #[Groups(['read'])]
     #[ORM\Column(length: 255)]
     private ?string $name = null;
