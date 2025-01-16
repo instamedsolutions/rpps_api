@@ -130,7 +130,7 @@ class CityTest extends ApiTestCase
 
 
     /**
-     * @group
+     * @group test
      * @throws ClientExceptionInterface
      * @throws RedirectionExceptionInterface
      * @throws ServerExceptionInterface
@@ -145,7 +145,7 @@ class CityTest extends ApiTestCase
         $this->assertResponseStatusCodeSame(Response::HTTP_OK);
 
         // Check that the response contains the expected number of subCities
-        $this->assertEquals(20, count($data['hydra:member'][0]['subCities']));
+        $this->assertEquals(20, count($data['hydra:member']));
 
         // Check that each subCity has the minimal fields
         foreach ($data['hydra:member'] as $subCityData) {

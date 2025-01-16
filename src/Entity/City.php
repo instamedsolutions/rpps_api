@@ -116,7 +116,6 @@ class City extends Thing implements Entity
     #[ORM\ManyToOne(targetEntity: self::class, fetch: 'EXTRA_LAZY', inversedBy: 'subCities')]
     private ?self $mainCity = null;
 
-    #[Groups(['city:sub_cities:read'])]
     #[ORM\OneToMany(mappedBy: 'mainCity', targetEntity: self::class, cascade: ['persist', 'remove'], fetch: 'EXTRA_LAZY')]
     private Collection $subCities;
 
