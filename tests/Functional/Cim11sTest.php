@@ -94,11 +94,14 @@ class Cim11sTest extends ApiTestCase
         $this->assertResponseStatusCodeSame(Response::HTTP_OK);
         $this->assertEquals('CA00.0', $data['code']);
         $this->assertEquals('Rhinopharyngite aigüe', $data['name']);
+        $this->assertIsArray($data['synonyms']);
+        $this->assertEquals('coryza aigu', $data['synonyms'][0]);
 
         // Ask for English
         $data = $this->get('cim11s/CA00-0', headers: ['Accept-Language' => 'en']);
         $this->assertResponseStatusCodeSame(Response::HTTP_OK);
         $this->assertEquals('CA00.0', $data['code']);
         $this->assertEquals('Acute Nasopharyngitis', $data['name']);
+        $this->assertEquals('This is an english synonym', $data['synonyms'][0]);
     }
 }

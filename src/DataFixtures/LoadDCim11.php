@@ -168,6 +168,12 @@ class LoadDCim11 extends Fixture implements FixtureInterface
         $disease2Ts->setTranslation('Acute Nasopharyngitis');
         $disease2->addTranslation($disease2Ts);
 
+        $disease2TsSyn = new Translation();
+        $disease2TsSyn->setLang('en');
+        $disease2TsSyn->setField('synonyms');
+        $disease2TsSyn->setTranslation('This is an english synonym');
+        $disease2->addTranslation($disease2TsSyn);
+
         $modifier2 = new Cim11Modifier();
         $modifier2->setName('Agent infectieux');
         $modifier2->setType(ModifierType::infectiousAgent);
