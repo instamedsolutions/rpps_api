@@ -53,7 +53,7 @@ class LoadSpecialty extends Fixture
             ['Gynécologie', 'gynecologie', 'Gynécologue', 0],
             ['Génétique Médicale', 'genetique-medicale', 'Généticien', 0],
             ['Gériatrie', 'geriatrie', 'Gériatre', 0],
-            ['Hématologie', 'hematologie', 'Hématologue', 0],
+            ['Hématologie', 'hematologie', 'Hématologue', 0, ['medecine-generale', 'allergologie', 'anatomie-et-cytologie-pathologiques']],
             ['Infirmier', 'infirmier', 'Infirmier', 1],
             ['Maladies Infectieuses Et Tropicales', 'maladies-infectieuses-et-tropicales', 'Infectiologue', 0],
             ['Manipulateur Erm', 'manipulateur-erm', 'Manipulateur en électroradiologie médicale', 0],
@@ -61,7 +61,7 @@ class LoadSpecialty extends Fixture
             ['Médecine Cardiovasculaire', 'medecine-cardiovasculaire', 'Cardiologue interventionnel', 0],
             ['Médecine D\'Urgence', 'medecine-d-urgence', 'Urgentiste', 0],
             ['Médecine Du Travail', 'medecine-du-travail', 'Médecin du travail', 0],
-            ['Médecine Générale', 'medecine-generale', 'Médecin généraliste', 0],
+            ['Médecine Générale', 'medecine-generale', 'Médecin généraliste', 0, ['stomatologie', 'allergologie', 'anatomie-et-cytologie-pathologiques']],
             ['Médecine Intensive-Réanimation', 'medecine-intensive-reanimation', 'Réanimateur', 0],
             ['Médecine Interne', 'medecine-interne', 'Interniste', 0],
             ['Médecine Légale Et Expertises Médicales', 'medecine-legale-et-expertises-medicales', 'Médecin légiste', 0],
@@ -104,6 +104,8 @@ class LoadSpecialty extends Fixture
             ['Urologie', 'urologie', 'Urologue', 0],
         ];
 
+        $specialties = [];
+
         // Create and persist specialties
         foreach ($specialtiesData as $data) {
             $specialty = $this->em->getRepository(Specialty::class)->findOneBy([
@@ -118,9 +120,27 @@ class LoadSpecialty extends Fixture
                 $specialty->importId = 'import_1';
             }
 
+            $specialties[$specialty->getCanonical()] = $specialty;
+
             $this->em->persist($specialty);
         }
 
-        $this->em->flush();
+        foreach ($specialtiesData as $data) {
+            /** @var Specialty|null $specialty */
+            $specialty = $specialties[$data[1]] ?? null;
+
+            /* @phpstan-ignore-next-line */
+            if ($specialty && isset($data[4]) && is_array($data[4])) {
+                foreach ($data[4] as $canonical) {
+                    $similarSpecialty = $specialties[$canonical] ?? null;
+                    if ($similarSpecialty) {
+                        $specialty->addSpecialty($similarSpecialty);
+                    }
+                }
+                $this->em->persist($specialty);
+            }
+
+            $this->em->flush();
+        }
     }
 }

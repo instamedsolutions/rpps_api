@@ -33,9 +33,7 @@ class SimilarCitiesProvider implements ProviderInterface
                 throw new NotFoundHttpException('City not found');
             }
 
-            // TODO Fix ?
-            // $limit = $context['filters']['limit'] ?? 10;
-            $limit = 20;
+            $limit = $context['filters']['_per_page'] ?? 20;
 
             if (!$city->getLatitude() || !$city->getLongitude()) {
                 // Try to find a sub city with coordinates

@@ -94,6 +94,10 @@ services:
         tags:
             - { name: kernel.event_listener, event: kernel.request, priority: 5 }
 
+    App\EventListener\CacheHeaderListener:
+        tags:
+            - { name: kernel.event_listener, event: kernel.response }
+
     App\Command\LatLngImportCommand:
         arguments:
             $projectDir: '%kernel.project_dir%'

@@ -57,7 +57,28 @@ final class CityFilter extends AbstractFilter
             return;
         }
 
+        if ('exclude_subcities' === $property) {
+            $this->addExcludeSubCitiesFilter($queryBuilder, $value);
+
+            return;
+        }
+
         $this->addSearchFilter($queryBuilder, $value);
+    }
+
+    public function addExcludeSubCitiesFilter(QueryBuilder $queryBuilder, ?string $excludeSubCities): QueryBuilder
+    {
+        $excludeSubCities = filter_var($excludeSubCities, FILTER_VALIDATE_BOOLEAN);
+
+        if (!$excludeSubCities) {
+            return $queryBuilder;
+        }
+
+        $rootAlias = $queryBuilder->getRootAliases()[0];
+
+        $queryBuilder->andWhere("$rootAlias.mainCity IS NULL");
+
+        return $queryBuilder;
     }
 
     public function addLatitudeFilter(QueryBuilder $queryBuilder, ?string $latitude): QueryBuilder
