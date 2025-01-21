@@ -116,7 +116,8 @@ class Cim11TranslationCommand extends Command
         $output->writeln(sprintf('<info>Number of successful NAME translations: %d</info>', $this->successNameCount));
         $output->writeln(sprintf(
             '<info>Number of successful SYNONYMS translations: %d/%d</info>',
-            $this->successSynonymsCount, $this->nbSynonyms
+            $this->successSynonymsCount,
+            $this->nbSynonyms
         ));
         $output->writeln(sprintf('<info>Number of failed translations: %d</info>', $this->failureCount));
 

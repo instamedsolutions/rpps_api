@@ -54,9 +54,6 @@ class TranslatableEntityNormalizer implements ContextAwareNormalizerInterface, C
             // Similarly, build and call the setter method
             $setter = 'set' . ucfirst($key);
             if (method_exists($object, $setter)) {
-
-                // TODO here can we detect if the setter wants an array or string ?
-
                 if ('synonyms' === $key) {
                     $object->$setter([$value]);
                 } else {

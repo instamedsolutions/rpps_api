@@ -27,7 +27,12 @@ class SerialisationGroupGenerator implements SerializerContextBuilderInterface
 
         $context['groups'] = [...$context['groups'] ?? [], ...$groups];
         $context['enable_max_depth'] = true;
+
+        // Ensure 'languages' is always set with a default value
         $context['languages'] = $request->getLanguages();
+        if (empty($context['languages'])) {
+            $context['languages'] = ['fr']; // Default to 'fr' if no languages are provided
+        }
 
         return $context;
     }
