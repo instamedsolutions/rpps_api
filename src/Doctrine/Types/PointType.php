@@ -12,13 +12,8 @@ class PointType extends Type
 
     public function getSQLDeclaration(array $column, AbstractPlatform $platform): string
     {
-        // Pour SQLite, on stocke tout dans un champ "TEXT"
-        if ('sqlite' === $platform->getName()) {
-            return 'TEXT';
-        }
-
-        // Pour MySQL, on peut utiliser POINT, etc.
-        return 'POINT';
+        // If SQLite, store as TEXT. If MySQL, store as POINT.
+        return 'sqlite' === $platform->getName() ? 'TEXT' : 'POINT';
     }
 
     /**
@@ -26,7 +21,7 @@ class PointType extends Type
      */
     public function convertToPHPValue($value, AbstractPlatform $platform): ?array
     {
-        if (null === $value) {
+        if (null === $value || '' === $value) {
             return null;
         }
 
@@ -39,6 +34,9 @@ class PointType extends Type
         ];
     }
 
+    /**
+     * Convert a PHP array ['longitude' => x, 'latitude' => y] into a WKT string "POINT(x y)".
+     */
     public function convertToDatabaseValue($value, AbstractPlatform $platform)
     {
         if (null === $value) {
@@ -69,6 +67,10 @@ class PointType extends Type
         return $sqlExpr;
     }
 
+    /**
+     * Tells Doctrine how to place our parameter into the final SQL for MySQL so
+     * it becomes ST_GeomFromText(?), not a quoted string literal.
+     */
     public function convertToDatabaseValueSQL($sqlExpr, AbstractPlatform $platform): string
     {
         if ($platform instanceof MySqlPlatform) {
