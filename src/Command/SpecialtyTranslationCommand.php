@@ -85,7 +85,7 @@ class SpecialtyTranslationCommand extends Command
         $translation = new Translation();
         $translation->setLang('en');
         $translation->setField($field);
-        $translation->setTranslation($value);
+        $translation->setTranslation(trim($value));
         $entity->addTranslation($translation);
         $this->em->persist($translation);
     }
