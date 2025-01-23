@@ -96,7 +96,7 @@ class SpecialtyService extends ImporterService
         $specialty->setCanonical($canonical);
         $specialty->setSpecialistName($specialistName);
         $specialty->setIsParamedical((bool) $isParamedical);
-        $specialty->importId = $this->getImportId();
+        $specialty->setImportId($this->getImportId());
 
         $this->em->persist($specialty);
 

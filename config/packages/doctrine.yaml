@@ -1,11 +1,12 @@
 doctrine:
     dbal:
         url: '%env(resolve:DATABASE_URL)%'
+        server_version: '8.0'
         default_table_options:
             charset: utf8mb4
             collate: utf8mb4_unicode_ci
-
-
+        mapping_types:
+            point: point
         types:
             phone_number: Misd\PhoneNumberBundle\Doctrine\DBAL\Types\PhoneNumberType
             point: App\Doctrine\Types\PointType

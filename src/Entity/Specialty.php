@@ -7,6 +7,8 @@ use ApiPlatform\Metadata\ApiResource;
 use ApiPlatform\Metadata\Get;
 use ApiPlatform\Metadata\GetCollection;
 use App\ApiPlatform\Filter\SpecialtyFilter;
+use App\Entity\Traits\ImportIdTrait;
+use App\Entity\Traits\TranslatableTrait;
 use App\Repository\SpecialtyRepository;
 use App\StateProvider\DefaultItemDataProvider;
 use App\StateProvider\SimilarSpecialtiesProvider;
@@ -36,8 +38,11 @@ use Symfony\Component\Serializer\Annotation\Groups;
     ],
 )]
 #[ApiFilter(SpecialtyFilter::class, properties: ['search', 'by_rpps', 'excluded_specialties'])]
-class Specialty extends Thing implements Entity
+class Specialty extends BaseEntity implements ImportableEntityInterface, TranslatableEntityInterface
 {
+    use ImportIdTrait;
+    use TranslatableTrait;
+
     #[Groups(['read'])]
     #[ORM\Column(length: 255)]
     private ?string $name = null;
@@ -65,6 +70,7 @@ class Specialty extends Thing implements Entity
     {
         parent::__construct();
         $this->specialties = new ArrayCollection();
+        $this->translations = new ArrayCollection();
     }
 
     public function getId(): string

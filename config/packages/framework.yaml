@@ -23,3 +23,7 @@ framework:
         scoped_clients:
             cim11.client:
                 base_uri: '%env(CIM_11_API)%/icd/release/11/2023-01/mms/'
+
+    set_locale_from_accept_language: true
+    set_content_language_from_locale: true
+    enabled_locales: ['fr', 'en']

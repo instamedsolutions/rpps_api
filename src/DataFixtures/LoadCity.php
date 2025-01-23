@@ -42,7 +42,7 @@ class LoadCity extends Fixture implements DependentFixtureInterface, FixtureInte
             $city->setLatitude($data[4]);
             $city->setLongitude($data[5]);
             $city->setPopulation((int) $data[6]);
-            $city->importId = 'import_1';
+            $city->setImportId('import_1');
 
             $department = match ($data[7]) {
                 '01' => $ainDepartment,
@@ -97,7 +97,7 @@ class LoadCity extends Fixture implements DependentFixtureInterface, FixtureInte
             $subCity->setLongitude($data[5]);
             $subCity->setPopulation($data[6]);
 
-            $subCity->importId = 'import_1';
+            $subCity->setImportId('import_1');
 
             $this->em->persist($subCity);
         }

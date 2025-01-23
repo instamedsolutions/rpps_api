@@ -165,6 +165,11 @@ abstract class ApiTestCase extends \ApiPlatform\Symfony\Bundle\Test\ApiTestCase
      */
     protected function get($url, $data = array(), $raw = false, $headers = array())
     {
+        // Check if the 'Accept-Language' header is not already set
+        if (!isset($headers['Accept-Language'])) {
+            $headers['Accept-Language'] = 'fr'; // Add the default language
+        }
+
         return $this->doRequest("GET", $url, null, $data, $raw, $headers);
     }
 

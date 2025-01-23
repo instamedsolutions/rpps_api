@@ -2,7 +2,7 @@
 setup-test: update-test-schema sync-test-metadata-storage load-test-fixtures
 
 update-test-schema: ## Updates the SQL schema
-	docker-compose run --rm rpps-database php bin/console doctrine:schema:update --env=test --force
+	docker-compose run --rm rpps-database php bin/console doctrine:schema:update --env=test --force --complete
 
 load-test-fixtures: ## Loads fixtures into the database
 	docker-compose run --rm rpps-database php bin/console doctrine:fixtures:load --env=test --no-interaction

@@ -210,7 +210,7 @@ class CityService extends ImporterService
 
         $region->setCodeRegion($codeRegion);
         $region->setName($name);
-        $region->importId = $this->getImportId();
+        $region->setImportId($this->getImportId());
 
         $this->em->persist($region);
 
@@ -263,7 +263,7 @@ class CityService extends ImporterService
         $department->setName($name);
         $department->setRegion($region);
         $department->setDepartmentType($departmentType);
-        $department->importId = $this->getImportId();
+        $department->setImportId($this->getImportId());
 
         $this->em->persist($department);
 
@@ -342,7 +342,7 @@ class CityService extends ImporterService
             $mainCity->setInseeCode($inseeCode);
             $mainCity->setPostalCode($postalCode); // First postal code set as the main one
             $mainCity->setDepartment($department);
-            $mainCity->importId = $this->getImportId();
+            $mainCity->setImportId($this->getImportId());
 
             $this->em->persist($mainCity);
             ++$this->nbMainCity;
@@ -393,7 +393,7 @@ class CityService extends ImporterService
             $subCity->setPostalCode($postalCode);
             $subCity->setDepartment($department);
             $subCity->setMainCity($mainCity);
-            $subCity->importId = $this->getImportId();
+            $subCity->setImportId($this->getImportId());
 
             $this->em->persist($subCity);
             $mainCity->addSubCity($subCity);
@@ -448,7 +448,9 @@ class CityService extends ImporterService
 
         // Check if no city was found
         if (!$matchingCities) {
-            $this->output->writeln("<error>No match found for INSEE code: $inseeCode and Postal code: $zipCode</error>");
+            $this->output->writeln(
+                "<error>No match found for INSEE code: $inseeCode and Postal code: $zipCode</error>"
+            );
 
             return;
         }

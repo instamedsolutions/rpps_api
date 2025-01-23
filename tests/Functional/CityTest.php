@@ -15,6 +15,7 @@ class CityTest extends ApiTestCase
 {
     /**
      * @group
+     *
      * @throws ClientExceptionInterface
      * @throws RedirectionExceptionInterface
      * @throws ServerExceptionInterface
@@ -22,13 +23,12 @@ class CityTest extends ApiTestCase
      */
     public function testGetCityData(): void
     {
-        $data = $this->get("cities");
+        $data = $this->get('cities');
         $this->assertResponseStatusCodeSame(Response::HTTP_OK);
-        $this->assertCollectionKeyContains($data['hydra:member'], "name", ["Paris", "Bouligneux", "Bourg-en-Bresse"]);
+        $this->assertCollectionKeyContains($data['hydra:member'], 'name', ['Paris', 'Bouligneux', 'Bourg-en-Bresse']);
     }
 
     /**
-     * @group mygroup
      * @throws ClientExceptionInterface
      * @throws RedirectionExceptionInterface
      * @throws ServerExceptionInterface
@@ -36,8 +36,8 @@ class CityTest extends ApiTestCase
      */
     public function testGetCityById(): void
     {
-        $city = $this->getCity("paris-13eme");
-        $data = $this->get("cities/" . $city->getId());
+        $city = $this->getCity('paris-13eme');
+        $data = $this->get('cities/' . $city->getId());
         $this->assertResponseStatusCodeSame(Response::HTTP_OK);
 
         // Check that the response contains expected keys
@@ -105,6 +105,7 @@ class CityTest extends ApiTestCase
 
     /**
      * @group
+     *
      * @throws ClientExceptionInterface
      * @throws RedirectionExceptionInterface
      * @throws ServerExceptionInterface
@@ -113,24 +114,23 @@ class CityTest extends ApiTestCase
     public function testGetCityByName(): void
     {
         // Test by exact city name
-        $data = $this->get("cities", ["name" => "Bouligneux"]);
+        $data = $this->get('cities', ['name' => 'Bouligneux']);
         $this->assertResponseStatusCodeSame(Response::HTTP_OK);
         $this->assertEquals(1, count($data['hydra:member']));
 
         // Test by partial name search
-        $data = $this->get("cities", ["name" => "Bou"]);
+        $data = $this->get('cities', ['name' => 'Bou']);
         $this->assertResponseStatusCodeSame(Response::HTTP_OK);
         $this->assertEquals(3, count($data['hydra:member']));
         $this->assertCollectionKeyContains(
             $data['hydra:member'],
-            "name",
-            ["Bourg-en-Bresse", "Bourg-Saint-Christophe", "Bouligneux"]
+            'name',
+            ['Bourg-en-Bresse', 'Bourg-Saint-Christophe', 'Bouligneux']
         );
     }
 
-
     /**
-     * @group test
+     * @group
      * @throws ClientExceptionInterface
      * @throws RedirectionExceptionInterface
      * @throws ServerExceptionInterface
@@ -141,7 +141,7 @@ class CityTest extends ApiTestCase
         $mainCityParis = $this->getCity();
 
         // Fetch the sub_cities endpoint
-        $data = $this->get("cities/" . $mainCityParis->getId() . "/sub_cities");
+        $data = $this->get('cities/' . $mainCityParis->getId() . '/sub_cities');
         $this->assertResponseStatusCodeSame(Response::HTTP_OK);
 
         // Check that the response contains the expected number of subCities
@@ -161,8 +161,10 @@ class CityTest extends ApiTestCase
     }
 
     /**
-     * 1. Test for City with Latitude and Longitude (e.g., "Bourg-en-Bresse")
+     * 1. Test for City with Latitude and Longitude (e.g., "Bourg-en-Bresse").
+     *
      * @group
+     *
      * @throws ClientExceptionInterface
      * @throws RedirectionExceptionInterface
      * @throws ServerExceptionInterface
@@ -175,18 +177,19 @@ class CityTest extends ApiTestCase
         $this->assertNotNull($cityWithCoordinates->getLongitude());
         $this->assertNotNull($cityWithCoordinates->getLatitude());
 
-        $data = $this->get("cities/" . $cityWithCoordinates->getId() . "/similar");
+        $data = $this->get('cities/' . $cityWithCoordinates->getId() . '/similar');
         $this->assertResponseStatusCodeSame(Response::HTTP_OK);
 
         // By data fixtures only 2 cities match. The other cities are too far away or with too low population.
         $this->assertEquals(2, count($data['hydra:member']));
-        $this->assertCollectionKeyContains($data['hydra:member'], "name", ["Bolozon", "Bourg-Saint-Christophe"]);
+        $this->assertCollectionKeyContains($data['hydra:member'], 'name', ['Bolozon', 'Bourg-Saint-Christophe']);
     }
 
     /**
-     * 2. Test for City without Coordinates but with Sub-city with Coordinates (e.g., "Paris")
+     * 2. Test for City without Coordinates but with Sub-city with Coordinates (e.g., "Paris").
      *
      * @group
+     *
      * @throws ClientExceptionInterface
      * @throws RedirectionExceptionInterface
      * @throws ServerExceptionInterface
@@ -200,7 +203,7 @@ class CityTest extends ApiTestCase
         $this->assertNotNull($cityWithoutCoordinates->getLongitude());
         $this->assertNotNull($cityWithoutCoordinates->getLatitude());
 
-        $data = $this->get("cities/" . $cityWithoutCoordinates->getId() . "/similar");
+        $data = $this->get('cities/' . $cityWithoutCoordinates->getId() . '/similar');
         $this->assertResponseStatusCodeSame(Response::HTTP_OK);
 
         // Paris has no coordinates but has sub-cities with coordinates.
@@ -212,9 +215,10 @@ class CityTest extends ApiTestCase
     }
 
     /**
-     * 3. Test for City without Coordinates or Sub-city with Coordinates
+     * 3. Test for City without Coordinates or Sub-city with Coordinates.
      *
      * @group
+     *
      * @throws ClientExceptionInterface
      * @throws RedirectionExceptionInterface
      * @throws ServerExceptionInterface
@@ -230,7 +234,7 @@ class CityTest extends ApiTestCase
         $this->assertNull($cityWithoutCoordinatesNoSubCity->getLatitude());
         $this->assertTrue($cityWithoutCoordinatesNoSubCity->getSubCities()->isEmpty());
 
-        $data = $this->get("cities/" . $cityWithoutCoordinatesNoSubCity->getId() . "/similar");
+        $data = $this->get('cities/' . $cityWithoutCoordinatesNoSubCity->getId() . '/similar');
         $this->assertResponseStatusCodeSame(Response::HTTP_OK);
 
         // Validate response: similar cities should be from the same department
@@ -248,6 +252,7 @@ class CityTest extends ApiTestCase
 
     /**
      * @group
+     *
      * @throws ClientExceptionInterface
      * @throws RedirectionExceptionInterface
      * @throws ServerExceptionInterface
@@ -255,7 +260,7 @@ class CityTest extends ApiTestCase
      */
     public function testGetCitiesSortedByPopulationAsc(): void
     {
-        $data = $this->get("cities?_orderBy[population]=ASC");
+        $data = $this->get('cities?_orderBy[population]=ASC');
         $this->assertResponseStatusCodeSame(Response::HTTP_OK);
 
         $populations = array_column($data['hydra:member'], 'population');
@@ -265,6 +270,7 @@ class CityTest extends ApiTestCase
 
     /**
      * @group
+     *
      * @throws ClientExceptionInterface
      * @throws RedirectionExceptionInterface
      * @throws ServerExceptionInterface
@@ -272,7 +278,7 @@ class CityTest extends ApiTestCase
      */
     public function testGetCitiesSortedByPopulationDesc(): void
     {
-        $data = $this->get("cities?_orderBy[population]=DESC");
+        $data = $this->get('cities?_orderBy[population]=DESC');
         $this->assertResponseStatusCodeSame(Response::HTTP_OK);
 
         $populations = array_column($data['hydra:member'], 'population');
@@ -282,6 +288,7 @@ class CityTest extends ApiTestCase
 
     /**
      * @group
+     *
      * @throws ClientExceptionInterface
      * @throws RedirectionExceptionInterface
      * @throws ServerExceptionInterface
@@ -290,16 +297,16 @@ class CityTest extends ApiTestCase
     public function testSearchAndSortByPopulation(): void
     {
         // Test search for cities containing "Paris" and sorting by population in ascending order
-        $data = $this->get("cities", [
-            "name" => "Paris",
-            "_orderBy[population]" => "DESC"
+        $data = $this->get('cities', [
+            'name' => 'Paris',
+            '_orderBy[population]' => 'DESC',
         ]);
         $this->assertResponseStatusCodeSame(Response::HTTP_OK);
 
         // Verify that the returned cities all match the search term "Paris"
         $this->assertNotEmpty($data['hydra:member']);
         foreach ($data['hydra:member'] as $city) {
-            $this->assertEquals("Paris", $city['name']);
+            $this->assertEquals('Paris', $city['name']);
         }
 
         // Validate the sorting order of population
@@ -309,12 +316,10 @@ class CityTest extends ApiTestCase
 
     /**
      * Helper function to check if an array is sorted in ascending order.
-     *
-     * @param array $array
      */
     private function assertSortedAscending(array $array): void
     {
-        for ($i = 0; $i < count($array) - 1; $i++) {
+        for ($i = 0; $i < count($array) - 1; ++$i) {
             $this->assertTrue(
                 $array[$i] <= $array[$i + 1],
                 "Array is not sorted in ascending order at index $i."
@@ -324,12 +329,10 @@ class CityTest extends ApiTestCase
 
     /**
      * Helper function to check if an array is sorted in descending order.
-     *
-     * @param array $array
      */
     private function assertSortedDescending(array $array): void
     {
-        for ($i = 0; $i < count($array) - 1; $i++) {
+        for ($i = 0; $i < count($array) - 1; ++$i) {
             $this->assertTrue(
                 $array[$i] >= $array[$i + 1],
                 "Array is not sorted in descending order at index $i."

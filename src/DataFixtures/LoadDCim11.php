@@ -6,6 +6,7 @@ use App\Entity\Cim11;
 use App\Entity\Cim11Modifier;
 use App\Entity\Cim11ModifierValue;
 use App\Entity\ModifierType;
+use App\Entity\Translation;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\DataFixtures\FixtureInterface;
 use Doctrine\Persistence\ObjectManager;
@@ -35,12 +36,18 @@ class LoadDCim11 extends Fixture implements FixtureInterface
             'tumeur maligne du tissu conjonctif du sein',
         ]);
 
+        $diseaseTs = new Translation();
+        $diseaseTs->setLang('en');
+        $diseaseTs->setField('name');
+        $diseaseTs->setTranslation('other malignant tumors of the breast');
+        $disease->addTranslation($diseaseTs);
+
         $modifier = new Cim11Modifier();
         $modifier->setName('Manifestation');
         $modifier->setType(ModifierType::hasManifestation);
         $modifier->setMultiple(false);
         $disease->addModifier($modifier);
-        $modifier->importId = 'import_1';
+        $modifier->setImportId('import_1');
 
         $cim11Value2 = new Cim11ModifierValue();
         $cim11Value2->setName('Douleur cancéreuse chronique');
@@ -49,7 +56,7 @@ class LoadDCim11 extends Fixture implements FixtureInterface
         ]);
         $cim11Value2->setCode('MG30.10');
         $cim11Value2->setWhoId('322466810');
-        $cim11Value2->importId = 'import_1';
+        $cim11Value2->setImportId('import_1');
 
         // ----
         $modifier1 = new Cim11Modifier();
@@ -57,7 +64,7 @@ class LoadDCim11 extends Fixture implements FixtureInterface
         $modifier1->setType(ModifierType::specificAnatomy);
         $modifier1->setMultiple(false);
         $disease->addModifier($modifier1);
-        $modifier1->importId = 'import_1';
+        $modifier1->setImportId('import_1');
 
         $cim11Value1 = new Cim11ModifierValue();
         $cim11Value1->setName('Sein');
@@ -67,7 +74,7 @@ class LoadDCim11 extends Fixture implements FixtureInterface
         $cim11Value1->setCode('XA12C1');
         $cim11Value1->setWhoId('831985561');
         $modifier1->addValue($cim11Value1);
-        $cim11Value1->importId = 'import_1';
+        $cim11Value1->setImportId('import_1');
 
         // -----
         $modifier2 = new Cim11Modifier();
@@ -75,7 +82,7 @@ class LoadDCim11 extends Fixture implements FixtureInterface
         $modifier2->setType(ModifierType::laterality);
         $modifier2->setMultiple(false);
         $disease->addModifier($modifier2);
-        $modifier2->importId = 'import_1';
+        $modifier2->setImportId('import_1');
 
         $cim11Value2 = new Cim11ModifierValue();
         $cim11Value2->setName('Bilatéral');
@@ -85,7 +92,7 @@ class LoadDCim11 extends Fixture implements FixtureInterface
         $cim11Value2->setCode('XK9J');
         $cim11Value2->setWhoId('627678743');
         $modifier2->addValue($cim11Value2);
-        $cim11Value2->importId = 'import_1';
+        $cim11Value2->setImportId('import_1');
 
         $cim11Value3 = new Cim11ModifierValue();
         $cim11Value3->setName('Gauche');
@@ -95,7 +102,7 @@ class LoadDCim11 extends Fixture implements FixtureInterface
         $cim11Value3->setCode('XK8G');
         $cim11Value3->setWhoId('271422288');
         $modifier2->addValue($cim11Value3);
-        $cim11Value3->importId = 'import_1';
+        $cim11Value3->setImportId('import_1');
 
         $cim11Value4 = new Cim11ModifierValue();
         $cim11Value4->setName('Droit');
@@ -105,7 +112,7 @@ class LoadDCim11 extends Fixture implements FixtureInterface
         $cim11Value4->setCode('XK9K');
         $cim11Value4->setWhoId('876572005');
         $modifier2->addValue($cim11Value4);
-        $cim11Value4->importId = 'import_1';
+        $cim11Value4->setImportId('import_1');
 
         $cim11Value5 = new Cim11ModifierValue();
         $cim11Value5->setName('Unilatéral');
@@ -115,9 +122,9 @@ class LoadDCim11 extends Fixture implements FixtureInterface
         $cim11Value5->setCode('XK70');
         $cim11Value5->setWhoId('1038788978');
         $modifier2->addValue($cim11Value5);
-        $cim11Value5->importId = 'import_1';
+        $cim11Value5->setImportId('import_1');
 
-        $disease->importId = 'import_1';
+        $disease->setImportId('import_1');
 
         $this->em->persist($disease);
         $this->em->persist($modifier1);
@@ -155,14 +162,26 @@ class LoadDCim11 extends Fixture implements FixtureInterface
             'Rhinopharyngite',
         ]);
 
+        $disease2Ts = new Translation();
+        $disease2Ts->setLang('en');
+        $disease2Ts->setField('name');
+        $disease2Ts->setTranslation('Acute Nasopharyngitis');
+        $disease2->addTranslation($disease2Ts);
+
+        $disease2TsSyn = new Translation();
+        $disease2TsSyn->setLang('en');
+        $disease2TsSyn->setField('synonyms');
+        $disease2TsSyn->setTranslation('This is an english synonym');
+        $disease2->addTranslation($disease2TsSyn);
+
         $modifier2 = new Cim11Modifier();
         $modifier2->setName('Agent infectieux');
         $modifier2->setType(ModifierType::infectiousAgent);
         $modifier2->setMultiple(false);
         $disease2->addModifier($modifier2);
-        $modifier2->importId = 'import_1';
+        $modifier2->setImportId('import_1');
 
-        $disease2->importId = 'import_1';
+        $disease2->setImportId('import_1');
 
         $this->em->persist($disease2);
         $this->em->persist($modifier2);
@@ -186,7 +205,7 @@ class LoadDCim11 extends Fixture implements FixtureInterface
             'Rhinopharyngite',
         ]);
 
-        $disease3->importId = 'import_1';
+        $disease3->setImportId('import_1');
 
         $disease3->setParent($disease2);
 

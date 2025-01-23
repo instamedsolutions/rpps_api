@@ -92,7 +92,7 @@ class Cim11Import extends Command
 
             $cim11Disease->setHierarchyLevel($hierarchyLevel);
             $cim11Disease->setCim10Code($this->cim11Mapping[$data['code']] ?? null);
-            $cim11Disease->importId = $this->importId;
+            $cim11Disease->setImportId($this->importId);
 
             foreach (ModifierType::cases() as $case) {
                 if (!$data[$case->value]) {
@@ -106,7 +106,7 @@ class Cim11Import extends Command
 
                 $modifier = new Cim11Modifier();
                 $modifier->setType($case);
-                $modifier->importId = $this->importId;
+                $modifier->setImportId($this->importId);
 
                 $elem = json_decode($data[$case->value], true);
 
@@ -171,7 +171,7 @@ class Cim11Import extends Command
             $value->setCode($data['code']);
             $value->setName($data['title']);
             $value->setSynonyms(explode(';', $data['synonyms']));
-            $value->importId = $this->importId;
+            $value->setImportId($this->importId);
 
             $this->em->persist($value);
 

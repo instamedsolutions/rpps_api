@@ -1,11 +1,31 @@
 doctrine:
   dbal:
-    default_connection: default
-    connections:
-      default:
-        driver: '%env(DATABASE_ENGINE)%'
-        url: '%env(DATABASE_URL)%'
-        charset: UTF8
-        default_table_options:
-          charset: utf8
-          collate: utf8_unicode_ci
+    driver: '%env(DATABASE_ENGINE)%' # pdo_sqlite
+    url: '%env(DATABASE_URL)%'       # ex: "sqlite:///%kernel.project_dir%/var/test_db.sqlite"
+    charset: UTF8
+    default_table_options:
+      charset: utf8
+      collate: utf8_unicode_ci
+
+    # Mappage du type "point" --> "string" pour SQLite
+    mapping_types:
+      point: string
+
+    # Déclaration du custom type
+    types:
+      point: App\Doctrine\Types\PointType
+
+  orm:
+    auto_generate_proxy_classes: true
+    naming_strategy: doctrine.orm.naming_strategy.underscore_number_aware
+    auto_mapping: true
+    mappings:
+      App:
+        is_bundle: false
+        dir: '%kernel.project_dir%/src/Entity'
+        prefix: 'App\Entity'
+        alias: App
+
+    # Au besoin, on désactive certains custom DQL pour SQLite
+    dql:
+      string_functions: ~

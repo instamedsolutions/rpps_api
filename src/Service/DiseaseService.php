@@ -2,9 +2,9 @@
 
 namespace App\Service;
 
+use App\Entity\BaseEntity;
 use App\Entity\Disease;
 use App\Entity\DiseaseGroup;
-use App\Entity\Thing;
 use Doctrine\ORM\EntityManagerInterface;
 use Exception;
 use Symfony\Component\Console\Output\OutputInterface;
@@ -18,13 +18,13 @@ class DiseaseService extends ImporterService
 
     protected array $groups = [];
 
-    private const PARSING_OPTIONS = ['delimiter' => ';', 'utf8' => true, 'headers' => false];
+    private const array PARSING_OPTIONS = ['delimiter' => ';', 'utf8' => true, 'headers' => false];
 
-    final public const CODES = 'codes';
+    final public const string CODES = 'codes';
 
-    final public const CHAPITRES = 'chapitres';
+    final public const string CHAPITRES = 'chapitres';
 
-    final public const GROUPES = 'groupes';
+    final public const string GROUPES = 'groupes';
 
     public function __construct(
         protected string $cim10,
@@ -42,7 +42,6 @@ class DiseaseService extends ImporterService
 
         $types = [];
 
-        $process = true;
         foreach ($files as $file) {
             $type = $this->getTypeFromFileName($file);
 
@@ -66,7 +65,7 @@ class DiseaseService extends ImporterService
     /**
      * @throws Exception
      */
-    protected function processData(array $data, string $type): ?Thing
+    protected function processData(array $data, string $type): ?BaseEntity
     {
         return match ($type) {
             self::CHAPITRES => $this->parseChapters($data),
@@ -87,7 +86,7 @@ class DiseaseService extends ImporterService
         }
 
         $group->setName($data[1]);
-        $group->importId = $this->getImportId();
+        $group->setImportId($this->getImportId());
 
         $this->groups[$group->getCim()] = $group;
 
@@ -96,7 +95,7 @@ class DiseaseService extends ImporterService
 
     protected function parseGroups(array $data): ?DiseaseGroup
     {
-        $cim10 = "{$data[0]}-{$data[1]}";
+        $cim10 = "$data[0]-$data[1]";
 
         /** @var DiseaseGroup|null $group */
         $group = $this->repository->find($cim10);
@@ -108,7 +107,7 @@ class DiseaseService extends ImporterService
 
         $group->setParent($this->groups[$data[2]]);
         $group->setName($data[3]);
-        $group->importId = $this->getImportId();
+        $group->setImportId($this->getImportId());
 
         $this->groups[$data[0]] = $group;
 
@@ -141,7 +140,7 @@ class DiseaseService extends ImporterService
         if ($parentId !== $disease->getCim()) {
             $disease->setParent($this->diseases[$parentId]);
         }
-        $disease->importId = $this->getImportId();
+        $disease->setImportId($this->getImportId());
 
         $this->diseases[$disease->getCim()] = $disease;
 
@@ -168,7 +167,7 @@ class DiseaseService extends ImporterService
     public static function transformToDoubleDigit(int $int): string
     {
         if ($int < 10) {
-            return "0{$int}";
+            return "0$int";
         }
 
         return (string) $int;

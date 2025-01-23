@@ -1,13 +1,13 @@
-
-setup-db: update-schema load-fixtures sync-metadata-storage migrate-sync ## Installs the application without importing the data
+## Installs the application and loads the base data
+setup-db: update-schema load-fixtures sync-metadata-storage migrate-sync
 
 update-schema: ## Updates the SQL schema
-	make run-command command='doctrine:schema:update --force'
+	make run-command command='doctrine:schema:update --force --complete'
 
 load-fixtures: ## Loads fixtures into the database
 	make run-command command='doctrine:fixtures:load --no-interaction'
 
-sync-metadata-storage: ## Ensures that the metadata storage is at the latest version.
+sync-metadata-storage: ## Ensures that the metadata storage is up-to-date.
 	make run-command command='doctrine:migrations:sync-metadata-storage'
 
 migrate: ## [Development] Runs the migrations
@@ -16,5 +16,13 @@ migrate: ## [Development] Runs the migrations
 create-migration: ## [Development] Creates the migration
 	make run-command command='doctrine:migrations:diff'
 
-migrate-sync: ## Runs the migrations
+migrate-sync: ## Bumps all migrations as "executed" in the DB
 	make run-command command='doctrine:migrations:version --add --all --no-interaction'
+
+drop-db: ## [Development] Drop the database
+	make run-command command='doctrine:database:drop --force'
+
+create-db: ## [Development] create the database
+	make run-command command='doctrine:database:create'
+
+reset-dev : drop-db create-db setup-db

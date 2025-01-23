@@ -43,7 +43,7 @@ class LoadDepartment extends Fixture implements DependentFixtureInterface
             $department->setCodeDepartment($codeDepartment);
             $department->setRegion($region);
             $department->setDepartmentType($departmentType);
-            $department->importId = 'import_1';
+            $department->setImportId('import_1');
             $manager->persist($department);
         }
 

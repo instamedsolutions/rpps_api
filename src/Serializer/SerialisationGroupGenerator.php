@@ -8,14 +8,12 @@ use ApiPlatform\Metadata\Resource\Factory\ResourceMetadataCollectionFactoryInter
 use ApiPlatform\Metadata\Resource\ResourceMetadataCollection;
 use ApiPlatform\Serializer\SerializerContextBuilderInterface;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\Security\Core\Security;
 
 use function Symfony\Component\String\u;
 
 class SerialisationGroupGenerator implements SerializerContextBuilderInterface
 {
     public function __construct(
-        private readonly Security $security,
         private readonly ResourceMetadataCollectionFactoryInterface $metadataFactory,
         private readonly SerializerContextBuilderInterface $decorated,
     ) {
@@ -29,6 +27,12 @@ class SerialisationGroupGenerator implements SerializerContextBuilderInterface
 
         $context['groups'] = [...$context['groups'] ?? [], ...$groups];
         $context['enable_max_depth'] = true;
+
+        // Ensure 'languages' is always set with a default value
+        $context['languages'] = $request->getLanguages();
+        if (empty($context['languages'])) {
+            $context['languages'] = ['fr']; // Default to 'fr' if no languages are provided
+        }
 
         return $context;
     }
@@ -84,7 +88,7 @@ class SerialisationGroupGenerator implements SerializerContextBuilderInterface
 
     private function extractShortName(Request $request): ?string
     {
-        $class = $request->attributes->get('_api_resource_class', null);
+        $class = $request->attributes->get('_api_resource_class');
 
         if (!$class) {
             return null;
@@ -111,8 +115,6 @@ class SerialisationGroupGenerator implements SerializerContextBuilderInterface
 
     private function getRole(): string
     {
-        $user = $this->security->getUser();
-
         return 'role_public';
     }
 

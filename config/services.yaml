@@ -13,7 +13,7 @@ parameters:
     env(DRUGS_URL_CIS_InfoImportantes): 'http://base-donnees-publique.medicaments.gouv.fr/telechargement.php?fichier=CIS_InfoImportantes.txt'
     env(CIM_10_URL): 'https://www.bfs.admin.ch/bfsstatic/dam/assets/15023315/master'
     env(DATABASE_ENGINE): "mysql"
-    env(DATABASE_URL): '%env(DATABASE_ENGINE)%://%env(DATABASE_USER)%:%env(DATABASE_PASSWORD)%@%env(DATABASE_HOST)%:%env(DATABASE_PORT)%/%env(DATABASE_NAME)%?serverVersion=13&charset=utf8'
+    env(DATABASE_URL): '%env(DATABASE_ENGINE)%://%env(DATABASE_USER)%:%env(DATABASE_PASSWORD)%@%env(DATABASE_HOST)%:%env(DATABASE_PORT)%/%env(DATABASE_NAME)%?serverVersion=8.0&charset=utf8'
 
 services:
     # default configuration for services in *this* file
@@ -84,8 +84,8 @@ services:
         arguments:
             $projectDir : '%kernel.project_dir%'
 
-    App\Doctrine\EntityListener\ThingListener:
-        class: App\Doctrine\EntityListener\ThingListener
+    App\Doctrine\EntityListener\BaseEntityListener:
+        class: App\Doctrine\EntityListener\BaseEntityListener
         tags:
             - { name: doctrine.event_listener, event: prePersist }
 

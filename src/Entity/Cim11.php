@@ -12,12 +12,13 @@ use ApiPlatform\Metadata\Get;
 use ApiPlatform\Metadata\GetCollection;
 use ApiPlatform\Metadata\Link;
 use App\ApiPlatform\Filter\Cim11Filter;
+use App\Entity\Traits\ImportIdTrait;
+use App\Entity\Traits\TranslatableTrait;
 use App\Repository\Cim11Repository;
 use App\StateProvider\DefaultItemDataProvider;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
-use Stringable;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Serializer\Annotation\Groups;
 
@@ -45,8 +46,11 @@ use Symfony\Component\Serializer\Annotation\Groups;
     paginationClientEnabled: true,
     paginationPartial: true,
 )]
-class Cim11 extends Thing implements Entity, Stringable
+class Cim11 extends BaseEntity implements TranslatableEntityInterface, ImportableEntityInterface
 {
+    use TranslatableTrait;
+    use ImportIdTrait;
+
     #[ApiFilter(SearchFilter::class, strategy: SearchFilterInterface::STRATEGY_EXACT)]
     #[ApiProperty(
         description: 'The unique CIM-10 Id in the international database',
@@ -116,6 +120,7 @@ class Cim11 extends Thing implements Entity, Stringable
 
         $this->children = new ArrayCollection();
         $this->modifiers = new ArrayCollection();
+        $this->translations = new ArrayCollection();
     }
 
     public function getId(): string

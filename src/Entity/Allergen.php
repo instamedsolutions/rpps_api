@@ -9,10 +9,10 @@ use ApiPlatform\Metadata\ApiResource;
 use ApiPlatform\Metadata\Get;
 use ApiPlatform\Metadata\GetCollection;
 use App\ApiPlatform\Filter\AllergenFilter;
+use App\Entity\Traits\ImportIdTrait;
 use App\Repository\AllergenRepository;
 use App\StateProvider\DefaultItemDataProvider;
 use Doctrine\ORM\Mapping as ORM;
-use Stringable;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Serializer\Annotation\Groups;
 
@@ -37,8 +37,10 @@ use Symfony\Component\Serializer\Annotation\Groups;
     paginationClientEnabled: true,
     paginationPartial: true,
 )]
-class Allergen extends Thing implements Entity, Stringable
+class Allergen extends BaseEntity
 {
+    use ImportIdTrait;
+
     #[ApiProperty(
         description: 'The unique code of the allergen',
         required: true,

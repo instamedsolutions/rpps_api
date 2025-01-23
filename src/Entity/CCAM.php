@@ -10,10 +10,10 @@ use ApiPlatform\Metadata\ApiResource;
 use ApiPlatform\Metadata\Get;
 use ApiPlatform\Metadata\GetCollection;
 use App\ApiPlatform\Filter\CCAMFilter;
+use App\Entity\Traits\ImportIdTrait;
 use App\Repository\CCAMRepository;
 use App\StateProvider\DefaultItemDataProvider;
 use Doctrine\ORM\Mapping as ORM;
-use Stringable;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Serializer\Annotation\Groups;
 use Symfony\Component\Serializer\Annotation\MaxDepth;
@@ -38,8 +38,10 @@ use Symfony\Component\Serializer\Annotation\MaxDepth;
     paginationClientEnabled: true,
     paginationPartial: true,
 )]
-class CCAM extends Thing implements Entity, Stringable
+class CCAM extends BaseEntity implements ImportableEntityInterface
 {
+    use ImportIdTrait;
+
     #[ApiProperty(
         description: 'The uniq code of the CCAM',
         required: true,

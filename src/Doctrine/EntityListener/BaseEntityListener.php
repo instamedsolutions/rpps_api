@@ -2,17 +2,17 @@
 
 namespace App\Doctrine\EntityListener;
 
-use App\Entity\Thing;
+use App\Entity\BaseEntity;
 use DateTime;
 use Doctrine\ORM\Event\LifecycleEventArgs;
 
-class ThingListener
+class BaseEntityListener
 {
     public function prePersist(LifecycleEventArgs $event): void
     {
         $entity = $event->getEntity();
 
-        if (!($entity instanceof Thing)) {
+        if (!($entity instanceof BaseEntity)) {
             return;
         }
 

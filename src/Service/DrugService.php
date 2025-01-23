@@ -51,10 +51,10 @@ class DrugService extends ImporterService
         if ($data[3]) {
             $drug->setAdministrationForms(explode(';', (string) $data[3]));
         } else {
-            $drug->setAdministrationForms(null);
+            $drug->setAdministrationForms();
         }
         $drug->setOwner($data[10]);
-        $drug->importId = $this->getImportId();
+        $drug->setImportId($this->getImportId());
 
         return $drug;
     }
@@ -99,7 +99,7 @@ class DrugService extends ImporterService
             $drug->setPrice(null);
         }
 
-        $drug->importId = $this->getImportId();
+        $drug->setImportId($this->getImportId());
 
         return $drug;
     }
