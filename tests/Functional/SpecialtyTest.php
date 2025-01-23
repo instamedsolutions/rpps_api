@@ -67,6 +67,28 @@ class SpecialtyTest extends ApiTestCase
     }
 
     /**
+     *
+     * @group test
+     *
+     * @throws ClientExceptionInterface
+     * @throws RedirectionExceptionInterface
+     * @throws ServerExceptionInterface
+     * @throws TransportExceptionInterface
+     */
+    public function testGetSpecialtyTranslated(): void
+    {
+
+        $data = $this->get('specialties/medecine-generale',[],false,[
+            'Accept-Language' => 'en'
+        ]);
+        $this->assertResponseStatusCodeSame(Response::HTTP_OK);
+
+        $this->assertEquals('General Medecine', $data['name']);
+        $this->assertEquals('General Practitioner', $data['specialistName']);
+
+    }
+
+    /**
      * @throws ClientExceptionInterface
      * @throws RedirectionExceptionInterface
      * @throws ServerExceptionInterface

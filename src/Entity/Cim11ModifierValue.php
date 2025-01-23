@@ -6,6 +6,7 @@ use ApiPlatform\Metadata\ApiResource;
 use ApiPlatform\Metadata\Get;
 use ApiPlatform\Metadata\GetCollection;
 use App\Entity\Traits\ImportIdTrait;
+use App\Entity\Traits\TranslatableTrait;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
@@ -24,9 +25,10 @@ use Symfony\Component\Serializer\Annotation\Groups;
     paginationClientEnabled: true,
     paginationPartial: true,
 )]
-class Cim11ModifierValue extends BaseEntity implements ImportableEntityInterface
+class Cim11ModifierValue extends BaseEntity implements ImportableEntityInterface, TranslatableEntityInterface
 {
     use ImportIdTrait;
+    use TranslatableTrait;
 
     #[Groups(['read'])]
     #[ORM\Column(type: 'string', length: 16, unique: true)]
@@ -50,6 +52,7 @@ class Cim11ModifierValue extends BaseEntity implements ImportableEntityInterface
     {
         parent::__construct();
         $this->modifiers = new ArrayCollection();
+        $this->translations = new ArrayCollection();
     }
 
     public function getId(): string

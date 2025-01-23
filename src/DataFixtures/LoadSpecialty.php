@@ -3,6 +3,7 @@
 namespace App\DataFixtures;
 
 use App\Entity\Specialty;
+use App\Entity\Translation;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
 
@@ -66,7 +67,7 @@ class LoadSpecialty extends Fixture
             ['Médecine Cardiovasculaire', 'medecine-cardiovasculaire', 'Cardiologue interventionnel', 0],
             ['Médecine D\'Urgence', 'medecine-d-urgence', 'Urgentiste', 0],
             ['Médecine Du Travail', 'medecine-du-travail', 'Médecin du travail', 0],
-            ['Médecine Générale', 'medecine-generale', 'Médecin généraliste', 0, ['stomatologie', 'allergologie', 'anatomie-et-cytologie-pathologiques']],
+            ['Médecine Générale', 'medecine-generale', 'Médecin généraliste', 0, ['stomatologie', 'allergologie', 'anatomie-et-cytologie-pathologiques'], 'General Medecine', 'General Practitioner'],
             ['Médecine Intensive-Réanimation', 'medecine-intensive-reanimation', 'Réanimateur', 0],
             ['Médecine Interne', 'medecine-interne', 'Interniste', 0],
             [
@@ -128,6 +129,22 @@ class LoadSpecialty extends Fixture
                 $specialty->setSpecialistName($data[2]);
                 $specialty->setIsParamedical((bool) $data[3]);
                 $specialty->setImportId('import_1');
+            }
+
+            if (isset($data[5]) && isset($data[6])) {
+                $translation = new Translation();
+                $translation->setLang('en');
+                $translation->setField('name');
+                $translation->setTranslation($data[5]);
+                $specialty->addTranslation($translation);
+                $this->em->persist($translation);
+
+                $translation = new Translation();
+                $translation->setLang('en');
+                $translation->setField('specialistName');
+                $translation->setTranslation($data[6]);
+                $specialty->addTranslation($translation);
+                $this->em->persist($translation);
             }
 
             $this->em->persist($specialty);

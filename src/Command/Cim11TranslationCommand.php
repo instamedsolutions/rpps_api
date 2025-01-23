@@ -3,6 +3,8 @@
 namespace App\Command;
 
 use App\Entity\Cim11;
+use App\Entity\Cim11ModifierValue;
+use App\Entity\TranslatableEntityInterface;
 use App\Entity\Translation;
 use Doctrine\ORM\EntityManagerInterface;
 use Exception;
@@ -107,6 +109,32 @@ class Cim11TranslationCommand extends Command
             }
         }
 
+        // Step 1: Retrieve all Cim11 entities
+        $repository = $this->em->getRepository(Cim11ModifierValue::class);
+        $cim11Modifiers = $repository->findAll();
+
+        foreach ($cim11Modifiers as $modifier) {
+            $whoId = $modifier->getWhoId();
+            if (str_ends_with($whoId, '/other')) {
+                // Track `/other` WHO IDs to handle later
+                $this->otherIds[] = $modifier;
+            } elseif (str_ends_with($whoId, '/unspecified')) {
+                // Process `/unspecified` WHO IDs
+                $this->processTranslation($modifier, '/unspecified');
+            } else {
+                // Process normal WHO IDs
+                $this->processTranslation($modifier);
+            }
+        }
+
+        // Second pass: Handle `/other` WHO IDs
+        $output->writeln('<info>Handling /OTHER WHO IDs...</info>');
+        foreach ($this->otherIds as $entity) {
+            $this->handleOtherTranslation($entity);
+        }
+
+        $this->em->flush();
+
         $endTime = microtime(true);
         $totalTime = round($endTime - $startTime, 2);
 
@@ -124,7 +152,7 @@ class Cim11TranslationCommand extends Command
         return Command::SUCCESS;
     }
 
-    private function processTranslation(Cim11 $entity, ?string $suffix = null): void
+    private function processTranslation(Cim11ModifierValue|Cim11 $entity, ?string $suffix = null): void
     {
         $whoId = $entity->getWhoId();
         if ($suffix) {
@@ -182,7 +210,7 @@ class Cim11TranslationCommand extends Command
         }
     }
 
-    private function handleOtherTranslation(Cim11 $entity): void
+    private function handleOtherTranslation(Cim11ModifierValue|Cim11 $entity): void
     {
         $whoId = $entity->getWhoId();
         $parentWhoId = str_replace('/other', '', $whoId);
@@ -211,7 +239,7 @@ class Cim11TranslationCommand extends Command
         }
     }
 
-    private function createTranslation(Cim11 $entity, string $value, string $field): void
+    private function createTranslation(TranslatableEntityInterface $entity, string $value, string $field): void
     {
         $translation = new Translation();
         $translation->setLang('en');
@@ -252,6 +280,19 @@ class Cim11TranslationCommand extends Command
             $cim11Entities = $this->em->getRepository(Cim11::class)->findAll();
 
             foreach ($cim11Entities as $cim11) {
+                $translations = $cim11->getTranslations()->filter(function (Translation $translation) {
+                    return 'en' === $translation->getLang() && in_array($translation->getField(), ['name', 'synonyms']);
+                });
+
+                foreach ($translations as $translation) {
+                    $cim11->getTranslations()->removeElement($translation);
+                    $this->em->remove($translation);
+                }
+            }
+
+            $cim11Modifiers = $this->em->getRepository(Cim11ModifierValue::class)->findAll();
+
+            foreach ($cim11Modifiers as $cim11) {
                 $translations = $cim11->getTranslations()->filter(function (Translation $translation) {
                     return 'en' === $translation->getLang() && in_array($translation->getField(), ['name', 'synonyms']);
                 });
