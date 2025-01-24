@@ -37,7 +37,7 @@ class AllergenService extends FileParserService
         $allergen->setName($data[1]);
         $allergen->setGroup($data[2]);
 
-        $allergen->importId = $this->getImportId();
+        $allergen->setImportId($this->getImportId());
 
         $this->em->persist($allergen);
         $this->em->flush();

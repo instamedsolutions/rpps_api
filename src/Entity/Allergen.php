@@ -10,8 +10,10 @@ use ApiPlatform\Metadata\Get;
 use ApiPlatform\Metadata\GetCollection;
 use App\ApiPlatform\Filter\AllergenFilter;
 use App\Entity\Traits\ImportIdTrait;
+use App\Entity\Traits\TranslatableTrait;
 use App\Repository\AllergenRepository;
 use App\StateProvider\DefaultItemDataProvider;
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Serializer\Annotation\Groups;
@@ -37,9 +39,10 @@ use Symfony\Component\Serializer\Annotation\Groups;
     paginationClientEnabled: true,
     paginationPartial: true,
 )]
-class Allergen extends BaseEntity
+class Allergen extends BaseEntity implements TranslatableEntityInterface
 {
     use ImportIdTrait;
+    use TranslatableTrait;
 
     #[ApiProperty(
         description: 'The unique code of the allergen',
@@ -78,6 +81,12 @@ class Allergen extends BaseEntity
     #[Groups(['read'])]
     #[ORM\Column(name: 'allergen_group', type: 'string', length: 255)]
     protected ?string $group = null;
+
+    public function __construct()
+    {
+        parent::__construct();
+        $this->translations = new ArrayCollection();
+    }
 
     public function getCode(): ?string
     {

@@ -1,0 +1,923 @@
+code,name,goup,english_name,english_group
+am4,Ammonium quaternaire ; myorelaxant,Médicaments,Quaternary ammonium; muscle relaxant,Drugs
+c1,Pénicilline G,Médicaments,Penicillin G,Drugs
+c1,Pénicilline G,Médicaments,Penicillin G,Drugs
+c1,Pénicilline G,Médicaments,Penicillin G,Drugs
+c2,Penicilline V,Médicaments,Penicillin V,Drugs
+c2,Pénicilline V,Médicaments,Penicillin V,Drugs
+c2,Pénicilline V,Médicaments,Penicillin V,Drugs
+c201,"Céphalosporines-mélange (Céfaclor, Céfaxine, Céfotaxime, Céfuroxime)",Médicaments,"Cephalosporins-mixture (Cefaclor, Cefaxin, Cefotaxime, Cefuroxime)",Drugs
+c202,Suxamethonium,Médicaments,Suxamethonium,Drugs
+c206,ACTH,Médicaments,ACTH,Drugs
+c207,Protamine,Médicaments,Protamine,Drugs
+c208,Tétanus toxoïd,Médicaments,Toxoid tetanus,Drugs
+c209,Chymopapaine,Médicaments,Chymopapain,Drugs
+c212,Erythromycine,Médicaments,Erythromycin,Drugs
+c213,Gentamicine,Médicaments,Gentamicin,Drugs
+c216,Doxycycline,Médicaments,Doxycycline,Drugs
+c217,Acide acétylsalicylique,Médicaments,Acetylsalicylic acid,Drugs
+c222,Mélange de macrolides,Médicaments,Macrolide mixture,Drugs
+c223,Sulfaméthoxazol,Médicaments,Sulfamethoxazol,Drugs
+c231,Articaïne,Médicaments,Articaine,Drugs
+c232,Lidocaïne ; Xylocaïne®,Médicaments,Lidocaine; Xylocaine®,Drugs
+c242,Triméthoprime,Médicaments,Trimethoprim,Drugs
+c251,Allopurinol ; Zyloric®,Médicaments,Allopurinol; Zyloric®,Drugs
+c253,Tétracaïne,Médicaments,Tetracaine,Drugs
+c281,Diclofénac®,Médicaments,Diclofenac®,Drugs
+c284,Procaïne,Médicaments,Procaine,Drugs
+c285,Bupivacaïne ; Marcaïne®,Médicaments,Bupivacaine; Marcaine®,Drugs
+c286,Ibuprofène,Médicaments,Ibuprofen,Drugs
+c300,Codeïne,Médicaments,Codeine,Drugs
+c301,Rifampicine,Médicaments,Rifampicin,Drugs
+c304,Piroxicam,Médicaments,Piroxicam,Drugs
+c305,Acide clavulanique,Médicaments,Clavulanic acid,Drugs
+c308,Céfuroxime ; Zinnat,Médicaments,Cefuroxime; Zinnat,Drugs
+c330,Chlorure de benzalconium,Médicaments,Benzalkonium chloride,Drugs
+c338,Carbamazépine,Médicaments,Carbamazepine,Drugs
+c388,Kétoprofène,Médicaments,Ketoprofen,Drugs
+c398,Métronidazole,Médicaments,Metronidazole,Drugs
+c409,Ofloxacine ; Oflocet®,Médicaments,Ofloxacin; Oflocet®,Drugs
+c436,Spiramycine,Médicaments,Spiramycin,Drugs
+c5,Ampicilline,Médicaments,Ampicillin,Drugs
+c6,Amoxicilline,Médicaments,Amoxicillin,Drugs
+c6,Amoxicilline,Médicaments,Amoxicillin,Drugs
+c7,Céfaclor,Médicaments,Cefaclor,Drugs
+c70,Insuline porcine,Médicaments,Porcine insulin,Drugs
+c702,Acide ascorbique,Médicaments,Ascorbic acid,Drugs
+c703,Acide benzoïque,Médicaments,Benzoic acid,Drugs
+c704,Quinoleine (E104),Médicaments,Quinoline (E104),Drugs
+c706,Colorant(jaune,Médicaments,Coloring (yellow,Drugs
+c707,Cyclamate de sodium,Médicaments,Sodium cyclamate,Drugs
+c71,Insuline bovine,Médicaments,Bovine insulin,Drugs
+c711,Nitrite de sodium,Médicaments,Sodium nitrite,Drugs
+c712,Sulfite de sodium,Médicaments,Sodium Sulphite,Drugs
+c713,Parabène,Médicaments,Paraben,Drugs
+c715,Saccharose,Médicaments,Sucrose,Drugs
+c717,Tartrazine,Médicaments,Tartrazine,Drugs
+c719,Vitamine B1,Médicaments,Vitamin B1,Drugs
+c720,Vitamine B6,Médicaments,Vitamin B6,Drugs
+c725,Amaranthe,Médicaments,Amaranth,Drugs
+c73,Insuline humaine,Médicaments,Human insulin,Drugs
+c74,Gélatine,Médicaments,Gelatin,Drugs
+c8,Chlorexidine,Médicaments,Chlorexidine,Drugs
+dip,Propofol (Diprivan®),Médicaments,Propofol (Diprivan®),Drugs
+d1,DermatophagoÏdes pteronyssinus,"Acariens, poussières",Dermatophagoides pteronyssinus,"Mites, dust"
+d1,DermatophagoÏdes pteronyssinus,"Acariens, poussières",Dermatophagoides pteronyssinus,"Mites, dust"
+d1,DermatophagoÏdes pteronyssinus,"Acariens, poussières",Dermatophagoides pteronyssinus,"Mites, dust"
+d2,DermatophagoÏdes farinae,"Acariens, poussières",Dermatophagoides farinae,"Mites, dust"
+d2,Dermatophagoïdes farinae,"Acariens, poussières",Dermatophagoides farinae,"Mites, dust"
+d2,Dermatophagoïdes farinae,"Acariens, poussières",Dermatophagoides farinae,"Mites, dust"
+d201,Blomia tropicalis,"Acariens, poussières",Blomia tropicalis,"Mites, dust"
+d201,Blomia tropicalis,"Acariens, poussières",Blomia tropicalis,"Mites, dust"
+d3,Dermatophagoides microceras,"Acariens, poussières",Dermatophagoides microceras,"Mites, dust"
+d3,Dermatophagoides microceras,"Acariens, poussières",Dermatophagoides microceras,"Mites, dust"
+d500,Argas reflexus,"Acariens, poussières",Argas reflexus,"Mites, dust"
+d70,Acarus siro,"Acariens, poussières",Acarus siro,"Mites, dust"
+d71,Lepidoglyphus destructor,"Acariens, poussières",Lepidoglyphus destroyer,"Mites, dust"
+d71,Lepidoglyphus destructor,"Acariens, poussières",Lepidoglyphus destroyer,"Mites, dust"
+d71,Lepidoglyphus destructor,"Acariens, poussières",Lepidoglyphus destroyer,"Mites, dust"
+d72,Thyrophagus putreus,"Acariens, poussières",Thyrophagus putreus,"Mites, dust"
+d72,Tyrophagus putreus,"Acariens, poussières",Tyrophagus putreus,"Mites, dust"
+d72,Tyrophagus putreus,"Acariens, poussières",Tyrophagus putreus,"Mites, dust"
+d73,Glycyphagus domesticus,"Acariens, poussières",Glycyphagus domesticus,"Mites, dust"
+d73s,Glycyphagus domesticus,"Acariens, poussières",Glycyphagus domesticus,"Mites, dust"
+d74,Euroglyphus maynei,"Acariens, poussières",Euroglyphus maynei,"Mites, dust"
+d74,Euroglyphus maynei,"Acariens, poussières",Euroglyphus maynei,"Mites, dust"
+d74,Euroglyphyus maynei,"Acariens, poussières",Euroglyphyus maynei,"Mites, dust"
+ex1,"Phanères ; e1, e5, e3, e4",Animaux,"Appanders; e1, e5, e3, e4",Animals
+ex2,"Animaux ; e1, e5, e6, e87, e88",Animaux,"Animals ; e1, e5, e6, e87, e88",Animals
+ex70,"Animaux ; e6, e82, e84, e87, e88",Animaux,"Animals ; e6, e82, e84, e87, e88",Animals
+ex71,"Mélange de plumes ; e70, e85, e86, e89",Animaux,"Mixed feathers; e70, e85, e86, e89",Animals
+ex72,"Mélange de plumes ; e78, e201, Parakeet, e213, e214",Animaux,"Mixed feathers; e78, e201, Parakeet, e213, e214",Animals
+ex73,"Mélange de plumes ; e70, e85, e86, e213",Animaux,"Mixed feathers; e70, e85, e86, e213",Animals
+e1,Chat ; epithelium,Animaux,Cat ; epithelium,Animals
+e1,Chat ; epithelium,Animaux,Cat ; epithelium,Animals
+e1,Chat,Animaux,Cat,Animals
+e101,rCan f1 Chien ; recombinant,Animaux,rCan f1 Dog; recombinant,Animals
+e102,rCan f2 Chien ; reconbinant,Animaux,rCan f2 Dog; reconbining,Animals
+e196,Perruche callopsitte ; plumes,Animaux,Callopsitte parakeet; feathers,Animals
+E197,Perruche callopsitte ; déjections,Animaux,Callopsitte parakeet; droppings,Animals
+E198,Perruche callopsitte ; protéines,Animaux,Callopsitte parakeet; proteins,Animals
+e199,Canari ; protéines sériques,Animaux,Canary; serum proteins,Animals
+e2,Chien (Epithelium),Animaux,Dog (Epithelium),Animals
+e2,Chien ; epithelium,Animaux,Dog ; epithelium,Animals
+e2,Chien ; epithelium,Animaux,Dog ; epithelium,Animals
+e200,Canari ; déjections,Animaux,Canary; droppings,Animals
+e201,Canari ; plumes,Animaux,Canary; feathers,Animals
+e202,Renne ; epithelium,Animaux,Reindeer; epithelium,Animals
+e203,Vison ; epithelium,Animaux,Mink; epithelium,Animals
+e204,Sérum albumine bovine,Animaux,Bovine serum albumin,Animals
+e204,Sérum albumine bovine,Animaux,Bovine serum albumin,Animals
+e205,Cheval ; protéines du serum,Animaux,Horse ; serum proteins,Animals
+e206,Lapin ; protéines du serum,Animaux,Rabbit ; serum proteins,Animals
+e208,Chinchilla,Animaux,Chinchilla,Animals
+e209,Gerbille,Animaux,Gerbil,Animals
+e210,Renard,Animaux,Fox,Animals
+e211,Lapin ; protéines urinaires,Animaux,Rabbit ; urine proteins,Animals
+e212,Cochon ; protéines urinaires,Animaux,Pig ; urine proteins,Animals
+e213,Perroquet ; plumes,Animaux,Parrot ; feathers,Animals
+e214,Pinson ; plumes,Animaux,Pinson; feathers,Animals
+e215,PIgE,Animaux,PIgE,Animals
+e216,Cerf ; epithelium,Animaux,Deer ; epithelium,Animals
+e217,Furet ; epithelium,Animaux,Ferret; epithelium,Animals
+e218,Poulet ; fientes,Animaux,Chicken ; droppings,Animals
+e219,Poulet ; protéines du serum,Animaux,Chicken ; serum proteins,Animals
+e220,Chat ; albumine sérique,Animaux,Cat ; serum albumin,Animals
+e221,Chien ; albumine sérique,Animaux,Dog ; serum albumin,Animals
+e222,Porc ; albumine sérique,Animaux,Pork ; serum albumin,Animals
+e3,Cheval ; squames,Animaux,Horse ; dander,Animals
+e3,Cheval ; squames,Animaux,Horse ; dander,Animals
+e3,Cheval (Poils et squames),Animaux,Horse (Hair and dander),Animals
+e4,Vache ; squames,Animaux,Cow ; dander,Animals
+e5,Chien,Animaux,Dog,Animals
+e5,Chien,Animaux,Dog,Animals
+e5,Chien ; squames,Animaux,Dog ; dander,Animals
+e6,Cobaye ; epithelium,Animaux,Guinea pig; epithelium,Animals
+e7,PIgE,Animaux,PIgE,Animals
+e70,Plumes d&rsquo;oie,Animaux,Goose feathers,Animals
+e70,Oie ; plumes,Animaux,Goose ; feathers,Animals
+e71,Souris ; epithelium,Animaux,Mouse ; epithelium,Animals
+e72,Souris ; protéines urinaires,Animaux,Mouse ; urine proteins,Animals
+e73,Rat ; epithelium,Animaux,Rat ; epithelium,Animals
+e74,Rat ; protéines urinaires,Animaux,Rat ; urine proteins,Animals
+e75,Rat ; protéines du sérum,Animaux,Rat ; serum proteins,Animals
+e76,Souris ; protéines du serum,Animaux,Mouse ; serum proteins,Animals
+e77,Perruche ; déjections,Animaux,Parakeet; droppings,Animals
+e78,Perruche ; plumes,Animaux,Parakeet; feathers,Animals
+e79,Perruche ; protéines du serum,Animaux,Parakeet; serum proteins,Animals
+e80,Chèvre(épithélia),Animaux,Goat(epithelia),Animals
+e80,Chèvre ; epithelium,Animaux,Goat ; epithelium,Animals
+e81,Mouton ; epithelium,Animaux,Sheep ; epithelium,Animals
+e82,Lapin ; epithelium,Animaux,Rabbit ; epithelium,Animals
+e83,Porc ; epithelium,Animaux,Pork ; epithelium,Animals
+e84,Hamster ; epithelium,Animaux,Hamster; epithelium,Animals
+e84,Hamster (squames),Animaux,Hamster (dander),Animals
+e85,Poulet ; plumes,Animaux,Chicken ; feathers,Animals
+e86,Canard ; plumes,Animaux,Duck ; feathers,Animals
+e87,Rat ; epithelium + protéines,Animaux,Rat ; epithelium + proteins,Animals
+e88,Souris ; epithelium + protéines,Animaux,Mouse ; epithelium + proteins,Animals
+e89,Dinde ; plumes,Animaux,Turkey ; feathers,Animals
+e94,rFel d 1 Felis domesticus ; recombinant,Animaux,rFel d 1 Felis domesticus; recombinant,Animals
+fx1,"Noix ; f13, f17, f18, f20, f36",Mélanges d’aliments,"Nut ; f13, f17, f18, f20, f36",Food Mixtures
+fx10,"Viandes ; f27, f26, f75, f83, f284",Mélanges d’aliments,"Meats; f27, f26, f75, f83, f284",Food Mixtures
+fx11,"Légumes ; f8, f12, f15, f31, f206",Mélanges d’aliments,"Vegetables ; f8, f12, f15, f31, f206",Food Mixtures
+fx13,"Légumes ; f12, f15, f31, f35",Mélanges d’aliments,"Vegetables ; f12, f15, f31, f35",Food Mixtures
+fx14,Mélange légumes,Mélanges d’aliments,Vegetable mix,Food Mixtures
+fx15,"Fruits ; f33, f49, f92, f95",Mélanges d’aliments,"Fruits; f33, f49, f92, f95",Food Mixtures
+fx16,"Fruits ; f44, f94, f208, f210",Mélanges d’aliments,"Fruits; f44, f94, f208, f210",Food Mixtures
+fx17,"Fruits ; f49, f92, f94, f95",Mélanges d’aliments,"Fruits; f49, f92, f94, f95",Food Mixtures
+fx18,"Aliments ; f12, f13, f14",Mélanges d’aliments,"Food; f12, f13, f14",Food Mixtures
+fx19,"Légumes ; f31, f35, f214, f244",Mélanges d’aliments,"Vegetables ; f31, f35, f214, f244",Food Mixtures
+fx2,"Produits de la mer ; f3, f24, f40, f41, f37",Mélanges d’aliments,"Seafood products; f3, f24, f40, f41, f37",Food Mixtures
+fx20,"Céréales ; f4, f5, f6, f9",Mélanges d’aliments,"Cereals; f4, f5, f6, f9",Food Mixtures
+fx21,"Fruits ; f84, f87, f92, f95, f210",Mélanges d’aliments,"Fruits; f84, f87, f92, f95, f210",Food Mixtures
+fx22,"Noix de pécan,noix de cajou,pistache,noix",Mélanges d’aliments,"Pecans, cashews, pistachio, walnuts",Food Mixtures
+fx22,"Fruits secs ; f201, f202, f203, f256",Mélanges d’aliments,"Dried fruits; f201, f202, f203, f256",Food Mixtures
+fx23,"Trophatop 3 ; f26, f27, f83, f284",Mélanges d’aliments,"Trophatop 3; f26, f27, f83, f284",Food Mixtures
+fx24,"Trophatop 2 ; f17, F24, F84, F92",Mélanges d’aliments,"Trophatop 2; f17, F24, F84, F92",Food Mixtures
+fx25,"Trophatop 4 ; f10, f45, f47, f85",Mélanges d’aliments,"Trophatop 4; f10, f45, f47, f85",Food Mixtures
+fx26,"Trophatop (Blanc d&rsquo;oeuf,lait,arachide,moutarde)",Mélanges d’aliments,"Trophatop (Egg white, milk, peanut, mustard)",Food Mixtures
+fx27,"Trophatop (Poisson,noisette,soja,blé)",Mélanges d’aliments,"Trophatop (Fish, hazelnut, soy, wheat)",Food Mixtures
+fx28,"Trophatop (Crevette,kiwi,boeuf,sésame)",Mélanges d’aliments,"Trophatop (Shrimp, kiwi, beef, sesame)",Food Mixtures
+fx29,"Mélange Orange, Citron, Mandarine, Pamplemousse",Mélanges d’aliments,"Orange, Lemon, Mandarin, Grapefruit Mixture",Food Mixtures
+fx3,"Farines ; f4, f7, f8, f10, f11",Mélanges d’aliments,"Flours; f4, f7, f8, f10, f11",Food Mixtures
+fx30,"Fruits (Kiwi, Mangue, Banane, Avocat, Papaye)",Mélanges d’aliments,"Fruits (Kiwi, Mango, Banana, Avocado, Papaya)",Food Mixtures
+fx31,"Fruits (Pomme, Poire, Pêche, Cerise, Prune)",Mélanges d’aliments,"Fruits (Apple, Pear, Peach, Cherry, Plum)",Food Mixtures
+fx32,"Légumes (Lentille, Pois, Haricot blanc, Caroube)",Mélanges d’aliments,"Vegetables (Lentils, Peas, White Beans, Carob)",Food Mixtures
+fx7,"Légumes ; f25, f48, f47, f45, f85",Mélanges d’aliments,"Vegetables ; f25, f48, f47, f45, f85",Food Mixtures
+fx70,"Aromates ; f272, f274, f273, f275",Mélanges d’aliments,"Herbs; f272, f274, f273, f275",Food Mixtures
+fx71,"Aromates ; f265, f266, f267, f268",Mélanges d’aliments,"Herbs; f265, f266, f267, f268",Food Mixtures
+fx72,"Aromates ; f269, f219, f270, f271",Mélanges d’aliments,"Herbs; f269, f219, f270, f271",Food Mixtures
+fx73,"Viandes ; f26, f27, f83",Mélanges d’aliments,"Meats; f26, f27, f83",Food Mixtures
+fx74,"Poissons ; f206, f205, f3, f254",Mélanges d’aliments,"Fish; f206, f205, f3, f254",Food Mixtures
+fx8,"Fruits ; f49, f17, f18, f33, f93",Mélanges d’aliments,"Fruits; f49, f17, f18, f33, f93",Food Mixtures
+fx9,"Fruits exotiques ; f84, f87, f92, f259, f20",Mélanges d’aliments,"Exotic fruits; f84, f87, f92, f259, f20",Food Mixtures
+f1,Blanc d&rsquo;oeuf,Aliments d’origine animale,Egg white,Foods of animal origin
+f1,Blanc d&rsquo;oeuf,Aliments d’origine animale,Egg white,Foods of animal origin
+f1,Oeuf ; blanc,Aliments d’origine animale,Egg ; white,Foods of animal origin
+f10,Sésame ; graine ; aliment,Aliments d’origine végétale,Sesame; seed ; food,Plant-based foods
+f11,Sarrasin ; graine ; aliment,Aliments d’origine végétale,Buckwheat; seed ; food,Plant-based foods
+f118,Courgette,Aliments d’origine végétale,Zucchini,Plant-based foods
+f119,Radis,Aliments d’origine végétale,Radish,Plant-based foods
+f12,Pois ; graine,Aliments d’origine végétale,Peas; seed,Plant-based foods
+f12,Pois,Aliments d’origine végétale,Peas,Plant-based foods
+f13,Arachide,Aliments d’origine végétale,Peanut,Plant-based foods
+f13,Arachide,Aliments d’origine végétale,Peanut,Plant-based foods
+f13,Arachide,Aliments d’origine végétale,Peanut,Plant-based foods
+f14,Soja,Aliments d’origine végétale,Soy,Plant-based foods
+f14,Soja,Aliments d’origine végétale,Soy,Plant-based foods
+f14,Soja,Aliments d’origine végétale,Soy,Plant-based foods
+f15,Haricot blanc,Aliments d’origine végétale,White bean,Plant-based foods
+f17,Noisette,Aliments d’origine végétale,Hazelnut,Plant-based foods
+f17,Noisette,Aliments d’origine végétale,Hazelnut,Plant-based foods
+f178,Rhubarbe,Aliments d’origine végétale,Rhubarb,Plant-based foods
+f18,Noix du Brésil,Aliments d’origine végétale,Brazil nuts,Plant-based foods
+f182,Haricot de Lima,Aliments d’origine végétale,Lima bean,Plant-based foods
+f2,Lait de vache,Aliments d’origine animale,Cow's milk,Foods of animal origin
+f2,Lait de vache,Aliments d’origine végétale,Cow's milk,Plant-based foods
+f20,Amande,Aliments d’origine végétale,Almond,Plant-based foods
+f20,Amande,Aliments d’origine végétale,Almond,Plant-based foods
+f201,Noix de pécan,Aliments d’origine végétale,Pecans,Plant-based foods
+f202,Noix de cajou,Aliments d’origine végétale,Cashew nuts,Plant-based foods
+f203,Pistache,Aliments d’origine végétale,Pistachio,Plant-based foods
+f204,Truite,Aliments d’origine animale,Trout,Foods of animal origin
+f205,Hareng,Aliments d’origine animale,Herring,Foods of animal origin
+f206,Maquereau,Aliments d’origine animale,Mackerel,Foods of animal origin
+f207,Palourde,Aliments d’origine animale,Clam,Foods of animal origin
+f208,Citron,Aliments d’origine végétale,Lemon,Plant-based foods
+f208,Citron,Aliments d’origine végétale,Lemon,Plant-based foods
+f209,Pamplemousse,Aliments d’origine végétale,Grapefruit,Plant-based foods
+f210,Ananas,Aliments d’origine végétale,Pineapple,Plant-based foods
+f210,Ananas,Aliments d’origine végétale,Pineapple,Plant-based foods
+f211,Mûre,Aliments d’origine végétale,Blackberry,Plant-based foods
+f212,Champignon,Aliments d’origine végétale,Mushroom,Plant-based foods
+f213,Lapin ; viande,Aliments d’origine animale,Rabbit ; meat,Foods of animal origin
+f214,Epinard,Aliments d’origine végétale,Spinach,Plant-based foods
+f215,Laitue,Aliments d’origine végétale,Lettuce,Plant-based foods
+f216,Chou,Aliments d’origine végétale,Cabbage,Plant-based foods
+f217,Chou de Bruxelles,Aliments d’origine végétale,Brussels sprouts,Plant-based foods
+f218,Paprika,Aliments d’origine végétale,Paprika,Plant-based foods
+f219,Fenouil ; graine,Aliments d’origine végétale,Fennel; seed,Plant-based foods
+f22,Framboise,Aliments d’origine végétale,Raspberry,Plant-based foods
+f220,Cannelle,Aliments d’origine végétale,Cinnamon,Plant-based foods
+f221,Café,Aliments d’origine végétale,Coffee,Plant-based foods
+f221,Café,Aliments d’origine végétale,Coffee,Plant-based foods
+f222,Thé,Aliments d’origine végétale,Tea,Plant-based foods
+f222,Thé,Aliments d’origine végétale,Tea,Plant-based foods
+f224,Pavot ; graine ; aliment,Aliments d’origine végétale,Poppy; seed ; food,Plant-based foods
+f225,Potiron Citrouille,Aliments d’origine végétale,Pumpkin Pumpkin,Plant-based foods
+f226,Citrouille ; graine ; aliment,Aliments d’origine végétale,Pumpkin ; seed ; food,Plant-based foods
+f227,Bettrave à sucre,Aliments d’origine végétale,Sugar beet,Plant-based foods
+f227,Bettrave à sucre,Aliments d’origine végétale,Sugar beet,Plant-based foods
+f227,Bettrave à sucre ; graine ; aliment,Aliments d’origine végétale,Sugar beet; seed ; food,Plant-based foods
+f23,Crabe,Aliments d’origine animale,Crab,Foods of animal origin
+f231,Lait bouilli,Aliments d’origine animale,Boiled milk,Foods of animal origin
+f232,Ovalbumine,Aliments d’origine animale,Ovalbumin,Foods of animal origin
+f232,Ovalbumine,Aliments d’origine animale,Ovalbumin,Foods of animal origin
+f232,Ovalbumine,Aliments d’origine animale,Ovalbumin,Foods of animal origin
+f233,Ovomucoïde,Aliments d’origine animale,Ovomucoid,Foods of animal origin
+f234,Vanille,Aliments d’origine végétale,Vanilla,Plant-based foods
+f235,Lentille,Aliments d’origine végétale,Lens,Plant-based foods
+f235,Lentilles,Aliments d’origine végétale,Lenses,Plant-based foods
+f236,Petit lait,Aliments d’origine animale,Whey,Foods of animal origin
+f237,Abricot,Aliments d’origine végétale,Apricot,Plant-based foods
+f24,Crevette,Aliments d’origine animale,Shrimp,Foods of animal origin
+f24,Crevette,Aliments d’origine animale,Shrimp,Foods of animal origin
+f242,Cerise,Aliments d’origine végétale,Cherry,Plant-based foods
+f244,Concombre,Aliments d’origine végétale,Cucumber,Plant-based foods
+f245,Oeuf entier,Aliments d’origine animale,Whole egg,Foods of animal origin
+f245,Oeuf,Aliments d’origine animale,Egg,Foods of animal origin
+f245,Oeuf,Aliments d’origine animale,Egg,Foods of animal origin
+f246,Gomme de guar ; Agar,Aliments d’origine végétale,Guar gum; Agar,Plant-based foods
+f247,Miel,Aliments d’origine animale,Honey,Foods of animal origin
+f248,Romarin,Aliments d’origine végétale,Rosemary,Plant-based foods
+f25,Tomate,Aliments d’origine végétale,Tomato,Plant-based foods
+f25,Tomate,Aliments d’origine végétale,Tomato,Plant-based foods
+f253,Pignon de pin,Aliments d’origine végétale,Pine nut,Plant-based foods
+f254,Limande ; carrelet,Aliments d’origine animale,Dab; plaice,Foods of animal origin
+f255,Prune,Aliments d’origine végétale,Plum,Plant-based foods
+f256,Noix,Aliments d’origine végétale,Nut,Plant-based foods
+f258,Calamar,Aliments d’origine animale,Squid,Foods of animal origin
+f259,Raisin,Aliments d’origine végétale,Grapes,Plant-based foods
+f26,Porc,Aliments d’origine animale,Pork,Foods of animal origin
+f26,Porc,Aliments d’origine animale,Pork,Foods of animal origin
+f26,Porc,Aliments d’origine animale,Pork,Foods of animal origin
+f260,Brocolis,Aliments d’origine végétale,Broccoli,Plant-based foods
+f261,Asperge,Aliments d’origine végétale,Asparagus,Plant-based foods
+f262,Aubergine,Aliments d’origine végétale,Eggplant,Plant-based foods
+f263,Poivre vert,Aliments d’origine végétale,Green pepper,Plant-based foods
+f264,Anguille,Aliments d’origine animale,Eel,Foods of animal origin
+f265,Cumin,Aliments d’origine végétale,Cumin,Plant-based foods
+f266,Muscade ; fleur ; aliment,Aliments d’origine végétale,Nutmeg; flower ; food,Plant-based foods
+f267,Cardamome,Aliments d’origine végétale,Cardamom,Plant-based foods
+f268,Clou de girofle,Aliments d’origine végétale,Clove,Plant-based foods
+f269,Basilic,Aliments d’origine végétale,Basil,Plant-based foods
+f27,Boeuf,Aliments d’origine animale,Beef,Foods of animal origin
+f27,Boeuf,Aliments d’origine animale,Beef,Foods of animal origin
+f27,Boeuf,Aliments d’origine animale,Beef,Foods of animal origin
+f270,Gingembre,Aliments d’origine végétale,Ginger,Plant-based foods
+f271,Anis,Aliments d’origine végétale,Anise,Plant-based foods
+f272,Estragon,Aliments d’origine végétale,Tarragon,Plant-based foods
+f273,Thym,Aliments d’origine végétale,Thyme,Plant-based foods
+f274,Marjolaine,Aliments d’origine végétale,Marjoram,Plant-based foods
+f275,Livèche,Aliments d’origine végétale,Lovage,Plant-based foods
+f276,Fenouil,Aliments d’origine végétale,Fennel,Plant-based foods
+f277,Aneth,Aliments d’origine végétale,Dill,Plant-based foods
+f278,Feuille de laurier,Aliments d’origine végétale,Bay leaf,Plant-based foods
+f279,Piment,Aliments d’origine végétale,Pepper,Plant-based foods
+f280,Poivre noir,Aliments d’origine végétale,Black pepper,Plant-based foods
+f280,Poivre noir,Aliments d’origine végétale,Black pepper,Plant-based foods
+f281,Curry,Aliments d’origine végétale,Curry,Plant-based foods
+f282,Noix de muscade,Aliments d’origine végétale,Nutmeg,Plant-based foods
+f283,Origan,Aliments d’origine végétale,Oregano,Plant-based foods
+f284,Dinde ; viande,Aliments d’origine animale,Turkey ; meat,Foods of animal origin
+f285,Elan ; viande,Aliments d’origine animale,Elk; meat,Foods of animal origin
+f286,Lait de jument,Aliments d’origine animale,mare's milk,Foods of animal origin
+f287,Haricot rouge,Aliments d’origine végétale,Red bean,Plant-based foods
+f288,Airelle,Aliments d’origine végétale,Airelle,Plant-based foods
+f289,Datte,Aliments d’origine végétale,Date,Plant-based foods
+f290,Huître,Aliments d’origine animale,Oyster,Foods of animal origin
+f291,Chou fleur,Aliments d’origine végétale,Cauliflower,Plant-based foods
+f292,Goyave,Aliments d’origine végétale,Guava,Plant-based foods
+f293,Papaye,Aliments d’origine végétale,Papaya,Plant-based foods
+f294,Fruit de la passion,Aliments d’origine végétale,Passion fruit,Plant-based foods
+f295,Carrambole,Aliments d’origine végétale,Carrambola,Plant-based foods
+f296,Caroube,Aliments d’origine végétale,Carob,Plant-based foods
+f297,Gomme arabique,Aliments d’origine végétale,Gum arabic,Plant-based foods
+f298,Gomme tragacanthe,Aliments d’origine végétale,Tragacanth gum,Plant-based foods
+f299,Châtaigne ; aliment,Aliments d’origine végétale,Chestnut; food,Plant-based foods
+f3,Poisson ; morue,Aliments d’origine animale,Fish ; cod,Foods of animal origin
+f3,Poisson ; morue,Aliments d’origine animale,Fish ; cod,Foods of animal origin
+f3,Poisson ; morue,Aliments d’origine animale,Fish ; cod,Foods of animal origin
+f300,Lait de chèvre,Aliments d’origine animale,Goat's milk,Foods of animal origin
+f300,Lait de chèvre,Aliments d’origine animale,Goat's milk,Foods of animal origin
+f301,Kaki,Aliments d’origine végétale,Khaki,Plant-based foods
+f303,Flétan,Aliments d’origine animale,Halibut,Foods of animal origin
+f304,Langouste,Aliments d’origine animale,Lobster,Foods of animal origin
+f305,Fenu grec,Aliments d’origine végétale,Greek Fenu,Plant-based foods
+f306,Citron vert ; lime,Aliments d’origine végétale,Lime; lime,Plant-based foods
+f307,"Merluche ; Merlu, colin",Aliments d’origine animale,"Hake; Hake, hake",Foods of animal origin
+f308,Sardine ; S. pilchardus,Aliments d’origine animale,Sardine; S. pilchardus,Foods of animal origin
+f309,Pois chiche,Aliments d’origine végétale,Chickpea,Plant-based foods
+f31,Carotte,Aliments d’origine végétale,Carrot,Plant-based foods
+f31,Carotte,Aliments d’origine végétale,Carrot,Plant-based foods
+f310,Vesce bleu,Aliments d’origine végétale,Blue vetch,Plant-based foods
+f311,Limande,Aliments d’origine animale,Lemon,Foods of animal origin
+f312,Espadon,Aliments d’origine animale,Swordfish,Foods of animal origin
+f313,Anchois,Aliments d’origine animale,Anchovy,Foods of animal origin
+f314,Escargot ; helix aspersa,Aliments d’origine animale,Snail ; helix aspersa,Foods of animal origin
+f315,Haricot vert,Aliments d’origine végétale,Green bean,Plant-based foods
+f316,Colza ; graine ; aliment,Aliments d’origine végétale,Rapeseed; seed ; food,Plant-based foods
+f317,Coriandre,Aliments d’origine végétale,Coriander,Plant-based foods
+f318,Arbre à pain ; fruit,Aliments d’origine végétale,Breadfruit; fruit,Plant-based foods
+f319,Betterave ; potagère,Aliments d’origine végétale,Beet ; vegetable garden,Plant-based foods
+f320,Ecrevisse,Aliments d’origine animale,Crayfish,Foods of animal origin
+f321,Cheval ; viande,Aliments d’origine animale,Horse ; meat,Foods of animal origin
+f322,Groseille,Aliments d’origine végétale,Currant,Plant-based foods
+f323,Conalbumine,Aliments d’origine animale,Conalbumin,Foods of animal origin
+f324,Houblon,Aliments d’origine végétale,Hop,Plant-based foods
+f325,Lait de brebis,Aliments d’origine animale,Sheep's milk,Foods of animal origin
+f326,Petit lait de brebis,Aliments d’origine animale,Sheep's milk,Foods of animal origin
+f328,Figue,Aliments d’origine végétale,Fig,Plant-based foods
+f329,Pastèque,Aliments d’origine végétale,Watermelon,Plant-based foods
+f33,Orange,Aliments d’origine végétale,Orange,Plant-based foods
+f33,Orange,Aliments d’origine végétale,Orange,Plant-based foods
+f33,Orange,Aliments d’origine végétale,Orange,Plant-based foods
+f331,Safran,Aliments d’origine végétale,Saffron,Plant-based foods
+f332,Menthe,Aliments d’origine végétale,Mint,Plant-based foods
+f333,Lin ; graines ; aliment,Aliments d’origine végétale,Flax; seeds; food,Plant-based foods
+f334g,Lactoferrine bovine,Aliments d’origine animale,Bovine lactoferrin,Foods of animal origin
+f335,Lupin ; graines ; aliment,Aliments d’origine végétale,Lupine; seeds; food,Plant-based foods
+f337,Sole,Aliments d’origine animale,Sole,Foods of animal origin
+f338,Coquille St Jacques,Aliments d’origine animale,Scallop shell,Foods of animal origin
+f340,Rouge Carmin ; cochenille,Aliments d’origine animale,Carmine Red; cochineal,Foods of animal origin
+f341,Canneberge,Aliments d’origine végétale,Cranberry,Plant-based foods
+f342,Olive noire,Aliments d’origine végétale,Black olive,Plant-based foods
+f343,Framboise,Aliments d’origine végétale,Raspberry,Plant-based foods
+f344,Sauge,Aliments d’origine végétale,Sage,Plant-based foods
+f345,Noix de macadamia,Aliments d’origine végétale,Macadamia nuts,Plant-based foods
+f346,Ormeau,Aliments d’origine animale,Abalone,Foods of animal origin
+f347,Quinoa,Aliments d’origine végétale,Quinoa,Plant-based foods
+f347,Quinoa,Aliments d’origine végétale,Quinoa,Plant-based foods
+f348,Litchi,Aliments d’origine végétale,Litchi,Plant-based foods
+f35,Pomme de terre,Aliments d’origine végétale,Potato,Plant-based foods
+f35,Pomme de terre,Aliments d’origine végétale,Potato,Plant-based foods
+f351,Crevette rPen a 1 Tropomyosine (recombinant),Aliments d’origine animale,Shrimp rPen a 1 Tropomyosin (recombinant),Foods of animal origin
+f352,rAra h 8 Arachis hypogaea ; recombinant,Aliments d’origine végétale,rAra h 8 Arachis hypogaea; recombinant,Plant-based foods
+f353,rGly m 4 Glycine max ; recombinant,Aliments d’origine végétale,rGly m 4 Glycine max; recombinant,Plant-based foods
+f354,Noix du Brésil recombinant (rBer e1),Aliments d’origine végétale,Recombinant Brazil nut (rBer e1),Plant-based foods
+f355,rCyp c1 Parvalbumine ; recombinant,Aliments d’origine animale,rCyp c1 Parvalbumin; recombinant,Foods of animal origin
+f356,Cassis,Aliments d’origine végétale,Blackcurrant,Plant-based foods
+f358,Artichaut,Aliments d’origine végétale,Artichoke,Plant-based foods
+f36,Noix de coco,Aliments d’origine végétale,Coconut,Plant-based foods
+f37,Moule,Aliments d’origine animale,Mold,Foods of animal origin
+f4,Blé ; aliment,Aliments d’origine végétale,Wheat ; food,Plant-based foods
+f4,Blé,Aliments d’origine végétale,Wheat,Plant-based foods
+f4,Blé ; aliment,Aliments d’origine végétale,Wheat ; food,Plant-based foods
+f40,Thon,Aliments d’origine animale,Tuna,Foods of animal origin
+f41,Saumon,Aliments d’origine animale,Salmon,Foods of animal origin
+f41,Saumon,Aliments d’origine animale,Salmon,Foods of animal origin
+f412,Empereur,Aliments d’origine animale,Emperor,Foods of animal origin
+f413,Lieu noir,Aliments d’origine animale,Saithe,Foods of animal origin
+f416,rTri a 19 Oméga-5 gliadine,Aliments d’origine végétale,rTri a 19 Omega-5 gliadin,Plant-based foods
+f419,rPru p 1 Pêche ; recombinant,Aliments d’origine végétale,rPru p 1 Fishing; recombinant,Plant-based foods
+f420,rPru p 3 Pêche ; recombinant,Aliments d’origine végétale,rPru p 3 Fishing; recombinant,Plant-based foods
+f421,rPru p 4 Pêche ; recombinant,Aliments d’origine végétale,rPru p 4 Fishing; recombinant,Plant-based foods
+f422,r Ara h 1 Arachis hypogaea ; recombinant,Aliments d’origine végétale,r Ara h 1 Arachis hypogaea; recombinant,Plant-based foods
+f423,r Ara h 2 Arachis hypogaea ; recombinant,Aliments d’origine végétale,r Ara h 2 Arachis hypogaea; recombinant,Plant-based foods
+f424,r Ara h 3 Arachis hypogaea ; recombinant,Aliments d’origine végétale,r Ara h 3 Arachis hypogaea; recombinant,Plant-based foods
+f44,Fraise,Aliments d’origine végétale,Strawberry,Plant-based foods
+f44,Fraise,Aliments d’origine végétale,Strawberry,Plant-based foods
+f45,Levure de bière,Aliments d’origine végétale,Brewer's yeast,Plant-based foods
+f47,Ail,Aliments d’origine végétale,Garlic,Plant-based foods
+f47,Ail,Aliments d’origine végétale,Garlic,Plant-based foods
+f47,Ail,Aliments d’origine végétale,Garlic,Plant-based foods
+f48,Oignon,Aliments d’origine végétale,Onion,Plant-based foods
+f49,Pomme,Aliments d’origine végétale,Apple,Plant-based foods
+f49,Pomme,Aliments d’origine végétale,Apple,Plant-based foods
+f49,Pomme,Aliments d’origine végétale,Apple,Plant-based foods
+f5,Seigle,Aliments d’origine végétale,Rye,Plant-based foods
+f5,Seigle,Aliments d’origine végétale,Rye,Plant-based foods
+f50,Maquereau du pacifique,Aliments d’origine animale,Pacific mackerel,Foods of animal origin
+f51,Pousse de bambou,Aliments d’origine végétale,Bamboo shoot,Plant-based foods
+f54,Patate douce,Aliments d’origine végétale,Sweet potato,Plant-based foods
+f55,Millet commun,Aliments d’origine végétale,Common millet,Plant-based foods
+f56,Millet italien,Aliments d’origine végétale,Italian millet,Plant-based foods
+f57,Millet japonais,Aliments d’origine végétale,Japanese millet,Plant-based foods
+f58,Calmar du pacifique,Aliments d’origine animale,Pacific squid,Foods of animal origin
+f59,Pieuvre,Aliments d’origine animale,Octopus,Foods of animal origin
+f6,Orge ; aliment,Aliments d’origine végétale,Barley ; food,Plant-based foods
+f6g,Orge ; aliment,Aliments d’origine végétale,Barley ; food,Plant-based foods
+f60,Maquereau commun,Aliments d’origine animale,Common mackerel,Foods of animal origin
+f61,Sardine,Aliments d’origine animale,Sardine,Foods of animal origin
+f7,Avoine,Aliments d’origine végétale,Oats,Plant-based foods
+f7,Avoine ; aliment,Aliments d’origine végétale,Oats; food,Plant-based foods
+f75,Jaune d&rsquo;oeuf,Aliments d’origine animale,Egg yolk,Foods of animal origin
+f75,Oeuf ; Jaune,Aliments d’origine animale,Egg ; YELLOW,Foods of animal origin
+f75,Jaune d&rsquo;oeuf,Aliments d’origine animale,Egg yolk,Foods of animal origin
+f76,A. lactalbumine ; protéines du lait,Aliments d’origine animale,A. lactalbumin; milk proteins,Foods of animal origin
+f76,A. lactalbumine ; protéines du lait,Aliments d’origine animale,A. lactalbumin; milk proteins,Foods of animal origin
+f76,A. lactalbumine ; protéines du lait,Aliments d’origine animale,A. lactalbumin; milk proteins,Foods of animal origin
+f77,B.lactoglobuline ; protéines du lait,Aliments d’origine animale,B.lactoglobulin; milk proteins,Foods of animal origin
+f77,B.lactoglobuline ; protéines du lait,Aliments d’origine animale,B.lactoglobulin; milk proteins,Foods of animal origin
+f77,B.lactoglobuline ; protéines du lait,Aliments d’origine animale,B.lactoglobulin; milk proteins,Foods of animal origin
+f78,Caséine ; protéines du lait,Aliments d’origine animale,Casein; milk proteins,Foods of animal origin
+f78,Caséine ; protéines du lait,Aliments d’origine animale,Casein; milk proteins,Foods of animal origin
+f78,Caséine ; protéines du lait,Aliments d’origine animale,Casein; milk proteins,Foods of animal origin
+f79,Gluten,Aliments d’origine végétale,Gluten,Plant-based foods
+f79,Gluten,Aliments d’origine végétale,Gluten,Plant-based foods
+f79,Gluten,Aliments d’origine végétale,Gluten,Plant-based foods
+f8,Maïs ; aliment,Aliments d’origine végétale,But ; food,Plant-based foods
+f8,Maïs,Aliments d’origine végétale,But,Plant-based foods
+f80,Homard,Aliments d’origine animale,Lobster,Foods of animal origin
+f81,Fromage ; pâte cuite,Aliments d’origine animale,Cheese ; cooked dough,Foods of animal origin
+f81,Fromage (pâte cuite),Aliments d’origine animale,Cheese (cooked paste),Foods of animal origin
+f82,Fromage (fermenté),Aliments d’origine animale,Cheese (fermented),Foods of animal origin
+f82,Fromage ; fermenté,Aliments d’origine animale,Cheese ; fermented,Foods of animal origin
+f83,Poulet (viande),Aliments d’origine animale,Chicken (meat),Foods of animal origin
+f83,Poulet,Aliments d’origine animale,Chicken,Foods of animal origin
+f83,Poulet,Aliments d’origine animale,Chicken,Foods of animal origin
+f84,Kiwi,Aliments d’origine végétale,Kiwi,Plant-based foods
+f84,Kiwi,Aliments d’origine végétale,Kiwi,Plant-based foods
+f84,Kiwi,Aliments d’origine végétale,Kiwi,Plant-based foods
+f85,Céleri,Aliments d’origine végétale,Celery,Plant-based foods
+f85,Céleri,Aliments d’origine végétale,Celery,Plant-based foods
+f86,Persil,Aliments d’origine végétale,Parsley,Plant-based foods
+f87,Melon,Aliments d’origine végétale,Melon,Plant-based foods
+f88,Mouton,Aliments d’origine animale,Sheep,Foods of animal origin
+f89,Moutarde,Aliments d’origine végétale,Mustard,Plant-based foods
+f9,Riz,Aliments d’origine végétale,Rice,Plant-based foods
+f9,Riz ; grain entier ; pollen,Aliments d’origine végétale,Rice ; whole grain; pollen,Plant-based foods
+f9,Riz ; grain entier ; pollen,Aliments d’origine végétale,Rice ; whole grain; pollen,Plant-based foods
+f90,Malt,Aliments d’origine végétale,Malt,Plant-based foods
+f91,Mangue,Aliments d’origine végétale,Mango,Plant-based foods
+f92,Banane,Aliments d’origine végétale,Banana,Plant-based foods
+f92,Banane,Aliments d’origine végétale,Banana,Plant-based foods
+f92,Banane,Aliments d’origine végétale,Banana,Plant-based foods
+f93,Cacao,Aliments d’origine végétale,Cocoa,Plant-based foods
+f93,Cacao,Aliments d’origine végétale,Cocoa,Plant-based foods
+f93,Cacao,Aliments d’origine végétale,Cocoa,Plant-based foods
+f94,Poire,Aliments d’origine végétale,Pear,Plant-based foods
+f95,Pêche,Aliments d’origine végétale,Fishing,Plant-based foods
+f96,Avocat,Aliments d’origine végétale,Lawyer,Plant-based foods
+f96,Avocat,Aliments d’origine végétale,Lawyer,Plant-based foods
+Ge90,Perruche ; protéines du sérum ; déjections,Perruche ; protéines du sérum ; déjections,Parakeet; serum proteins; droppings,Parakeet; serum proteins; droppings
+Gm27,Penicillium spp,Microorganismes,Penicillium spp,Microorganisms
+gx1,"Pollens de graminées ; g3, g4, g5, g6, g8",Pollens de graminées,"Grass pollen; g3, g4, g5, g6, g8",Grass pollen
+gx1,"Pollens de graminées (Dactyle, fétuque, ivraie, phléole, paturin)",Pollens de graminées,"Grass pollens (Dactyl, fescue, ryegrass, timothy, bluegrass)",Grass pollen
+gx1,"Pollens de graminées (Dactyle, fétuque, ivraie, phléole, paturin)",Pollens de graminées,"Grass pollens (Dactyl, fescue, ryegrass, timothy, bluegrass)",Grass pollen
+gx2,"Pollens de graminées ; g2, g5, g6, g8, g10",Pollens de graminées,"Grass pollen; g2, g5, g6, g8, g10",Grass pollen
+gx3,"Pollens de graminées ; g1, g5, g6, g12, g13",Pollens de graminées,"Grass pollen; g1, g5, g6, g12, g13",Grass pollen
+gx3,"Pollens de graminées (Flouve, ivraie, phléole, seigle et houlque)",Pollens de graminées,"Grass pollens (Flouve, ryegrass, timothy, rye and coulque)",Grass pollen
+gx4,"Pollens de graminées ; g1, g5, g7, g12, g13",Pollens de graminées,"Grass pollen; g1, g5, g7, g12, g13",Grass pollen
+gx6,"Pollens de graminées ; g2, g5, g10, g11, g13, g17",Pollens de graminées,"Grass pollen; g2, g5, g10, g11, g13, g17",Grass pollen
+g1,Flouve odorante,Pollens de graminées,Fragrant River,Grass pollen
+g1,Flouve odorante,Pollens de graminées,Fragrant River,Grass pollen
+g10,Sorgho,Pollens de graminées,Sorghum,Grass pollen
+g11,Brome,Pollens de graminées,Bromine,Grass pollen
+g12,Seigle,Pollens de graminées,Rye,Grass pollen
+g12,Seigle,Pollens de graminées,Rye,Grass pollen
+g12,Seigle,Pollens de graminées,Rye,Grass pollen
+g13,Houlque laineuse,Pollens de graminées,Woolly coulque,Grass pollen
+g13,Houlque laineuse,Pollens de graminées,Woolly coulque,Grass pollen
+g14,Avoine ; pollen-,Pollens de graminées,Oats; pollen-,Grass pollen
+g14,Avoine ; pollen,Pollens de graminées,Oats; pollen,Grass pollen
+g14,Avoine,Pollens de graminées,Oats,Grass pollen
+g15,Blé ; pollen,Pollens de graminées,Wheat ; pollen,Grass pollen
+g15,Blé,Pollens de graminées,Wheat,Grass pollen
+g15,Blé ; pollen,Pollens de graminées,Wheat ; pollen,Grass pollen
+g16,Vulpin des prés ; Alopecurus pratensis,Pollens de graminées,Meadow foxtail; Alopecurus pratensis,Grass pollen
+g16,Vulpin des prés,Pollens de graminées,Meadow foxtail,Grass pollen
+g17,Herbe de Bahia,Pollens de graminées,Bahia grass,Grass pollen
+g2,Chiendent,Pollens de graminées,Quackgrass,Grass pollen
+g2,Chiendent digité,Pollens de graminées,Digital quackgrass,Grass pollen
+g2,Chiendent,Pollens de graminées,Quackgrass,Grass pollen
+g201,Orge ; pollen,Pollens de graminées,Barley ; pollen,Grass pollen
+g202,Maïs ; pollen,Pollens de graminées,But ; pollen,Grass pollen
+g202,Maïs ; pollen,Pollens de graminées,But ; pollen,Grass pollen
+g202,Maïs ; pollen,Pollens de graminées,But ; pollen,Grass pollen
+g203,Herbe des prés salés,Pollens de graminées,Salt meadow grass,Grass pollen
+g204,Fromental,Pollens de graminées,Fromental,Grass pollen
+g205,rPhl p 1 Phéole ; recombinant,Pollens de graminées,rPhl p 1 Phéole; recombinant,Grass pollen
+g206,rPhl p 2 ; Phléole ; recombinant,Pollens de graminées,rPhl p 2; Phleola; recombinant,Grass pollen
+g208,"nPhl p 4 Phéole, natif ; recombinant",Pollens de graminées,"nPhl p 4 Phéole, native; recombinant",Grass pollen
+g209,rPhl p 6 Phéole ; recombinant,Pollens de graminées,rPhl p 6 Phéole; recombinant,Grass pollen
+g210,rPhl p 7 Phéole ; recombinant,Pollens de graminées,rPhl p 7 Phéole; recombinant,Grass pollen
+g211,rPhl p 11 Phléole ; recombinant,Pollens de graminées,rPhl p 11 Timothy; recombinant,Grass pollen
+g212,rPhl p 12 Phléole ; recombinant,Pollens de graminées,rPhl p 12 Timothy; recombinant,Grass pollen
+g213,"rPhl p 1, rPhl p 5b Phléole ; recombinants",Pollens de graminées,"rPhl p 1, rPhl p 5b Timothy; recombinants",Grass pollen
+g214,"rPhl p 7, rPhl p 12 Phléole ; recombinants",Pollens de graminées,"rPhl p 7, rPhl p 12 Timothy; recombinants",Grass pollen
+g215,rPhl p 5 Phléole ; recombinant,Pollens de graminées,rPhl p 5 Timothy; recombinant,Grass pollen
+g3,Dactyle,Pollens de graminées,Dactyl,Grass pollen
+g3,Dactyle,Pollens de graminées,Dactyl,Grass pollen
+g3,Dactyle pelotonné,Pollens de graminées,Orchardgrass,Grass pollen
+g4,Fétuque des prés,Pollens de graminées,Meadow fescue,Grass pollen
+g4,Fétuque des prés,Pollens de graminées,Meadow fescue,Grass pollen
+g4,Fétuque des prés,Pollens de graminées,Meadow fescue,Grass pollen
+g5,Ivraie vivace,Pollens de graminées,Perennial ryegrass,Grass pollen
+g5,Ivraie,Pollens de graminées,Tare,Grass pollen
+g5,Ivraie,Pollens de graminées,Tare,Grass pollen
+g6,Phléole des prés,Pollens de graminées,timothy,Grass pollen
+g6,Phléole des prés,Pollens de graminées,timothy,Grass pollen
+g6,Phléole des prés,Pollens de graminées,timothy,Grass pollen
+g6,Phléole des prés,Pollens de graminées,timothy,Grass pollen
+g7,Roseau à balais,Pollens de graminées,Broom reed,Grass pollen
+g70,Ivraie sauvage,Pollens de graminées,Wild ryegrass,Grass pollen
+g71,Alpiste,Pollens de graminées,Canary grass,Grass pollen
+g8,Paturin des prés,Pollens de graminées,Kentucky bluegrass,Grass pollen
+g8,Paturin,Pollens de graminées,Paturin,Grass pollen
+g8,Paturin,Pollens de graminées,Paturin,Grass pollen
+g9,Agrostide,Pollens de graminées,Bentgrass,Grass pollen
+g900,Fleur de canne à surcre,Pollens de graminées,Sugarcane flower,Grass pollen
+hex,Héxabrix,"Acariens, poussières",Hexabrix,"Mites, dust"
+hx2,Poussières de maison,"Acariens, poussières",House dust,"Mites, dust"
+h1,Poussières ; Greer,"Acariens, poussières",Dust; Rig,"Mites, dust"
+h1,Poussières ; Greer,"Acariens, poussières",Dust; Rig,"Mites, dust"
+h1,Poussières ; Greer,"Acariens, poussières",Dust; Rig,"Mites, dust"
+h2,Poussières ; Hollister-Stier,"Acariens, poussières",Dust; Hollister Stier,"Mites, dust"
+i1,Abeille,Venins,Bee,Venoms
+i1,Abeille,Venins,Bee,Venoms
+i1,Abeille,Venins,Bee,Venoms
+i2,Frelon tête blanche,Venins,White-headed hornet,Venoms
+i2,Frelon tête blanche,Venins,White-headed hornet,Venoms
+i2,Frelon tête blanche,Venins,White-headed hornet,Venoms
+i201,Taon du cheval ; Gasterophilus intestinalis,"Insectes, venins et parasites ",Horsefly; Gasterophilus intestinalis,"Insects, venoms and parasites "
+i201,Mouche du cheval,"Insectes, venins et parasites ",Horse fly,"Insects, venoms and parasites "
+i202,Charançon du blé,"Insectes, venins et parasites ",Wheat weevil,"Insects, venoms and parasites "
+i202,Sitophilus granarius,"Insectes, venins et parasites ",Sitophilus granarius,"Insects, venoms and parasites "
+i203,Ephestia,"Insectes, venins et parasites ",Ephestia,"Insects, venoms and parasites "
+i204,Taon,"Insectes, venins et parasites ",Horsefly,"Insects, venoms and parasites "
+i204,Taon,"Insectes, venins et parasites ",Horsefly,"Insects, venoms and parasites "
+i204,Taon,"Insectes, venins et parasites ",Horsefly,"Insects, venoms and parasites "
+i205,Bourdon,"Insectes, venins et parasites ",Bumblebee,"Insects, venoms and parasites "
+i205,Bourdon,"Insectes, venins et parasites ",Bumblebee,"Insects, venoms and parasites "
+i205,Bourdon,"Insectes, venins et parasites ",Bumblebee,"Insects, venoms and parasites "
+i206,Blatte américaine,"Insectes, venins et parasites ",American cockroach,"Insects, venoms and parasites "
+i206,Blatte américaine,"Insectes, venins et parasites ",American cockroach,"Insects, venoms and parasites "
+i207,Blatte orientale,"Insectes, venins et parasites ",Oriental cockroach,"Insects, venoms and parasites "
+i3,Venin de guêpe ; vespula,Venins,Wasp venom; vespula,Venoms
+i3,Venin de guêpe ; vespula,Venins,Wasp venom; vespula,Venoms
+i3,Venin de guêpe ; vespula,Venins,Wasp venom; vespula,Venoms
+i4,Venin de guêpe ; poliste,Venins,Wasp venom; polisher,Venoms
+i4,Venin de guêpe ; poliste,Venins,Wasp venom; polisher,Venoms
+i4,Venin de guêpe ; poliste,Venins,Wasp venom; polisher,Venoms
+i5,Frelon tête jaune,Venins,Yellow head hornet,Venoms
+i5,Frelon tête jaune,Venins,Yellow head hornet,Venoms
+i5,Frelon tête jaune,Venins,Yellow head hornet,Venoms
+i6,Cafard ; Blatte germanique,"Insectes, venins et parasites ",Cockroach ; German cockroach,"Insects, venoms and parasites "
+i6,Cafard ; Blatte germanique,"Insectes, venins et parasites ",Cockroach ; German cockroach,"Insects, venoms and parasites "
+i6,Cafard ; Blatte germanique,"Insectes, venins et parasites ",Cockroach ; German cockroach,"Insects, venoms and parasites "
+i70,Fourmi rouge,"Insectes, venins et parasites ",Red ant,"Insects, venoms and parasites "
+i70,Fourmi rouge,"Insectes, venins et parasites ",Red ant,"Insects, venoms and parasites "
+i70,Fourmi rouge,"Insectes, venins et parasites ",Red ant,"Insects, venoms and parasites "
+i71,Moustique ; aedes communs,"Insectes, venins et parasites ",Mosquito; common aedes,"Insects, venoms and parasites "
+i71,Moustique,"Insectes, venins et parasites ",Mosquito,"Insects, venoms and parasites "
+i71,Moustique,"Insectes, venins et parasites ",Mosquito,"Insects, venoms and parasites "
+i72,Mouche du Soudan,"Insectes, venins et parasites ",Sudan fly,"Insects, venoms and parasites "
+i72,Mouche du Soudan,"Insectes, venins et parasites ",Sudan fly,"Insects, venoms and parasites "
+i73,Larve de ver de vase,"Insectes, venins et parasites ",Bloodworm larva,"Insects, venoms and parasites "
+i75,Venin de frelon,Venins,Hornet venom,Venoms
+i75,Venin de frelon ; Vespa crabro,Venins,Hornet venom; Vespa crabro,Venoms
+i75,Venin de frelon,Venins,Hornet venom,Venoms
+i76,Scarabé,"Insectes, venins et parasites ",Beetle,"Insects, venoms and parasites "
+i77,Venin de guêpe ; poliste dominulus,Venins,Wasp venom; dominulus poliste,Venoms
+i8,Ver à soie ; Bombyx mori,"Insectes, venins et parasites ",Silkworm; Bombyx mori,"Insects, venoms and parasites "
+kx4,"Mélange de bois tendres (Hêtre, Pin, Cèdre rouge, Sapin argenté)",Allergènes professionnels,"Mixture of soft woods (Beech, Pine, Red Cedar, Silver Fir)",Professional allergens
+k1,Fibre acrylique,Allergènes professionnels,Acrylic fiber,Professional allergens
+k14,Kapok,Allergènes professionnels,Kapok,Professional allergens
+k17,Nylon,Allergènes professionnels,Nylon,Professional allergens
+k201,Papaïne,Allergènes professionnels,Papain,Professional allergens
+k202,Bromeline,Allergènes professionnels,Bromelain,Professional allergens
+k203,Phospholipase,Allergènes professionnels,Phospholipase,Professional allergens
+k204,Maxatase,Allergènes professionnels,Maxatase,Professional allergens
+k205,Alkalase,Allergènes professionnels,Alkalase,Professional allergens
+k206,Savinase,Allergènes professionnels,Savinase,Professional allergens
+k208,Lysozyme,Allergènes professionnels,Lysozyme,Professional allergens
+k209,Anhydride hexahydrophtalique,Allergènes professionnels,Hexahydrophthalic anhydride,Professional allergens
+k21,Laine de mouton,Allergènes professionnels,Sheep's wool,Professional allergens
+k210,Anhydride maléique,Allergènes professionnels,Maleic anhydride,Professional allergens
+k211,Anhydride méthyltétrahydrophtalique,Allergènes professionnels,Methyltetrahydrophthalic anhydride,Professional allergens
+k212,Poussière de bois ; Triphochiton scteroxylon,Allergènes professionnels,Wood dust; Triphochiton scteroxylon,Professional allergens
+k213,Pepsine,Allergènes professionnels,Pepsin,Professional allergens
+k214,Bougainvillée,Allergènes professionnels,Bougainvillea,Professional allergens
+k215,Latex rHev b 1 (recombinant),Allergènes professionnels,rHev b 1 latex (recombinant),Professional allergens
+k216,Latex rHev b 2 (recombinant),Allergènes professionnels,rHev b 2 latex (recombinant),Professional allergens
+k217,Latex rHev b 3 (recombinant),Allergènes professionnels,rHev b 3 latex (recombinant),Professional allergens
+k218,Latex rHev b 5 (recombinant),Allergènes professionnels,rHev b 5 latex (recombinant),Professional allergens
+k219,Latex rHev b 6.01 (recombinant),Allergènes professionnels,Latex rHev b 6.01 (recombinant),Professional allergens
+k220,Latex rHev b 6.02 (recombinant),Allergènes professionnels,Latex rHev b 6.02 (recombinant),Professional allergens
+k221,Latex rHev b 8 (recombinant),Allergènes professionnels,rHev b 8 latex (recombinant),Professional allergens
+k221,Latex rHev b 8 (recombinant),Allergènes professionnels,rHev b 8 latex (recombinant),Professional allergens
+k224,Latex rHev b 11(recombinant),Allergènes professionnels,rHev b 11 latex (recombinant),Professional allergens
+k32,Hêtre (bois),Allergènes professionnels,Beech (wood),Professional allergens
+k33,Chêne ; Bois ; sciure,Allergènes professionnels,Oak; Drink ; sawdust,Professional allergens
+k37,Bois de Limba,Allergènes professionnels,Limba wood,Professional allergens
+k40,Noyer ; Bois,Allergènes professionnels,Walnut ; Drink,Professional allergens
+k43,Cèdre rouge,Allergènes professionnels,Red cedar,Professional allergens
+k44,Sapin argenté,Allergènes professionnels,Silver fir,Professional allergens
+k5,Lin ; graine,Allergènes professionnels,Flax; seed,Professional allergens
+k7,Poussière de foin,Allergènes professionnels,Hay dust,Professional allergens
+k70,Café vert ; graine,Allergènes professionnels,Green coffee; seed,Professional allergens
+k71,Ricin ; graine ; allerfène professionnel,Allergènes professionnels,Castor; seed ; professional allerfen,Professional allergens
+k72,Ispaghule,Allergènes professionnels,Ispaghula,Professional allergens
+k73,Soie déchets,Allergènes professionnels,Waste silk,Professional allergens
+k74,Soie naturelle,Allergènes professionnels,Natural silk,Professional allergens
+k75,Isocyanate TDI,Allergènes professionnels,Isocyanate TDI,Professional allergens
+k76,Isocyanate MDI,Allergènes professionnels,Isocyanate MDI,Professional allergens
+k77,Isocyanate HDI,Allergènes professionnels,HDI isocyanate,Professional allergens
+k78,Oxyde d&rsquo;éthylène,Allergènes professionnels,Ethylene oxide,Professional allergens
+k79,Anhydride phtalique,Allergènes professionnels,Phthalic anhydride,Professional allergens
+k79,Anhydride phtalique,Allergènes professionnels,Phthalic anhydride,Professional allergens
+k80,Formol,Allergènes professionnels,Formalin,Professional allergens
+k81,Ficus spp,Allergènes professionnels,Ficus spp.,Professional allergens
+k82,Latex,Allergènes professionnels,Latex,Professional allergens
+k82,Latex Recombi +,Allergènes professionnels,Latex Recombi +,Professional allergens
+k82,Latex,Allergènes professionnels,Latex,Professional allergens
+k83,Coton ; graine,Allergènes professionnels,Cotton ; seed,Professional allergens
+k84,Tournesol ; graine,Allergènes professionnels,Sunflower; seed,Professional allergens
+k85,Chloramine T,Allergènes professionnels,Chloramine T,Professional allergens
+k86,Anhydride trimellitique,Allergènes professionnels,Trimellitic anhydride,Professional allergens
+k87,Alpha-amylase,Allergènes professionnels,Alpha-amylase,Professional allergens
+mor,Morphine,Médicaments,Morphine,Drugs
+mx1,"Moisissures ; m1, m2, m3, m6",Microorganismes,"Mold; m1, m2, m3, m6",Microorganisms
+mx2,"Moisissures ; m1, m2, m3, m5, m6, m8",Microorganismes,"Mold; m1, m2, m3, m5, m6, m8",Microorganisms
+mx4,"Moisissures ; m3, m36, m207, m228",Microorganismes,"Mold; m3, m36, m207, m228",Microorganisms
+m1,Penicillium notatum,Microorganismes,Penicillium notatum,Microorganisms
+m1,Penicillium notatum,Microorganismes,Penicillium notatum,Microorganisms
+m1,Penicillum notatum,Microorganismes,Penicillum notatum,Microorganisms
+m10,Stemphylium,Microorganismes,Stemphylium,Microorganisms
+m10,Stemphyllium botryosum,Microorganismes,Stemphyllium botryosum,Microorganisms
+m11,Rhizopus nigricans,Microorganismes,Rhizopus nigricans,Microorganisms
+m11,Rhizopus nigricans,Microorganismes,Rhizopus nigricans,Microorganisms
+m12,Aureabasidium pullulans,Microorganismes,Aureabasidium pullulans,Microorganisms
+m13,Phoma betae,Microorganismes,Phoma betae,Microorganisms
+m14,Epicoccum purpurascens,Microorganismes,Epicoccum purpurascens,Microorganisms
+m15,Trichoderma viride,Microorganismes,Trichoderma viride,Microorganisms
+m16,Curvularia lunata,Microorganismes,Curvularia lunata,Microorganisms
+m2,Cladosporium herbarum,Microorganismes,Cladosporium herbarum,Microorganisms
+m2,Cladosporium herbarum,Microorganismes,Cladosporium herbarum,Microorganisms
+m2,Cladosporium herbarum,Microorganismes,Cladosporium herbarum,Microorganisms
+m201,Ustilago nuda ou tritici,Microorganismes,Ustilago nuda or tritici,Microorganisms
+m202,Cephalosporium acremonium,Microorganismes,Cephalosporium acremonium,Microorganisms
+m203,Trichosporon pullulans,Microorganismes,Trichosporon pullulans,Microorganisms
+m204,Ulocladium chartarum,Microorganismes,Ulocladium chartarum,Microorganisms
+m205,Trichophyton rubrum,Microorganismes,Trichophyton rubrum,Microorganisms
+m207,Aspergillus nIgE,Microorganismes,Aspergillus nIgE,Microorganisms
+m208,Chaetomium globosum,Microorganismes,Chaetomium globosum,Microorganisms
+m209,Penicillium frequentans,Microorganismes,Penicillium frequentans,Microorganisms
+m210,Trichophyton ; Qoetzii,Microorganismes,Trichophyton; Qoetzii,Microorganisms
+m211,Trichophyton ; Interdigitale,Microorganismes,Trichophyton; Interdigital,Microorganisms
+m22,Micropolyspora Faeni,Microorganismes,Micropolyspora Faeni,Microorganisms
+m223,Entérotoxine staphylococcique C,Microorganismes,Staphylococcal enterotoxin C,Microorganisms
+m224,Entérotoxine staphylococcique D,Microorganismes,Staphylococcal enterotoxin D,Microorganisms
+m225,Entérotoxine staphylococcique E,Microorganismes,Staphylococcal enterotoxin E,Microorganisms
+m226,Entérotoxine staphylococcique TSST,Microorganismes,Staphylococcal enterotoxin TSST,Microorganisms
+m227,Malassezia spp,Microorganismes,Malassezia spp,Microorganisms
+m228,Aspergillus flavus,Microorganismes,Aspergillus flavus,Microorganisms
+m23,Thermoactinomyces Vulgaris,Microorganismes,Thermoactinomyces Vulgaris,Microorganisms
+m3,Aspergillus,Microorganismes,Aspergillus,Microorganisms
+m3,Aspergillus,Microorganismes,Aspergillus,Microorganisms
+m3,Aspergillus fumigatus,Microorganismes,Aspergillus fumigatus,Microorganisms
+m36,Aspergillus terreus,Microorganismes,Aspergillus terreus,Microorganisms
+m4,Mucor racemosus,Microorganismes,Mucor racemosus,Microorganisms
+m5,Candida albicans,Microorganismes,Candida albicans,Microorganisms
+m5,Candida albican,Microorganismes,Candida albican,Microorganisms
+m5,Candida albican,Microorganismes,Candida albican,Microorganisms
+m54,Aspergillus flavius,Microorganismes,Aspergillus flavius,Microorganisms
+m6,Alternaria alternata,Microorganismes,Alternaria alternata,Microorganisms
+m6,Alternaria,Microorganismes,Alternaria,Microorganisms
+m6,Altenaria,Microorganismes,Altenaria,Microorganisms
+m7,Botrytis cinerea,Microorganismes,Botrytis cinerea,Microorganisms
+m7,Botrytis cinerea,Microorganismes,Botrytis cinerea,Microorganisms
+m7,Botrytis cinerea,Microorganismes,Botrytis cinerea,Microorganisms
+m70,Pityrosporum orbiculaire,Microorganismes,Pityrosporum orbicularis,Microorganisms
+m8,Helminthosporium halodes,Microorganismes,Helminthosporium halodes,Microorganisms
+m80,Entérotoxine staphylococcique A,Microorganismes,Staphylococcal enterotoxin A,Microorganisms
+m81,Entérotoxine staphylococcique B,Microorganismes,Staphylococcal enterotoxin B,Microorganisms
+m9,Fusarium monoliforme,Microorganismes,Fusarium monoliform,Microorganisms
+m9,Fusarium monoliforme,Microorganismes,Fusarium monoliform,Microorganisms
+nes,Nesdonal,Médicaments,Nesdonal,Drugs
+o1,Coton ; fibres,Divers,Cotton ; fibers,Miscellaneous
+o201,Feuille de tabac,Divers,Tobacco leaf,Miscellaneous
+o202,Artemisia salina,Divers,Artemisia salina,Miscellaneous
+o203,Tétramine,Divers,Tetramin,Miscellaneous
+o205,Séricine (colle à soie),Divers,Sericin (silk glue),Miscellaneous
+o206,Chortoglyphus arcuatus,Divers,Chortoglyphus arcuatus,Miscellaneous
+o207,Daphnie,Divers,Daphnia,Miscellaneous
+o210,Pseudomonas aeruginosa,Microorganismes,Pseudomonas aeruginosa,Microorganisms
+o211,Ver de farine,Divers,Mealworm,Miscellaneous
+o214,CCD MUXF3 de la broméline,Divers,Bromelain CCD MUXF3,Miscellaneous
+o51,Streptoccocus viridans,Microorganismes,Streptoccocus viridans,Microorganisms
+o70,Liquide séminal,Divers,Seminal fluid,Miscellaneous
+o71,Staphylococcus aureus,Microorganismes,Staphylococcus aureus,Microorganisms
+pax1,"Squames d&rsquo;animaux, plumes ; e3, e4, e70, e85",Animaux,"Animal dander, feathers; e3, e4, e70, e85",Animals
+pax3,"Pollens, moisissures ; m3, m6, g15, g12",Divers,"Pollens, molds; m3, m6, g15, g12",Miscellaneous
+pax4,"Industrie alimentaire ; f4, f14, k87, Ri202",Allergènes professionnels,"Food industry; f4, f14, k87, Ri202",Professional allergens
+pax5,"Produits chimique ; k75, k76, k77, k79",Allergènes professionnels,"Chemical products; k75, k76, k77, k79",Professional allergens
+pax6,"Agents désinfectants ; k78, k79, k80, k85",Allergènes professionnels,"Disinfectant agents; k78, k79, k80, k85",Professional allergens
+p1,Ascaris,Parasites,Roundworm,Parasites
+p2,Echinococcus,Parasites,Echinococcus,Parasites
+p4,Anisakis,Parasites,Anisakis,Parasites
+Rfx12,"Mélange f5, f9, f35, Rf212, f225",Aliments d'origine végétale,"Mix f5, f9, f35, Rf212, f225",Plant-based foods
+Rf302,Mandarine,Aliments d'origine végétale,Mandarin,Plant-based foods
+Rf330,Cynorrhodon,Aliments d'origine végétale,Rosehip,Plant-based foods
+Rf334,Lactoferrine bovine,Aliments d'origine animale,Bovine lactoferrin,Foods of animal origin
+Rf336,Jujube,Aliments d'origine végétale,Jujube,Plant-based foods
+Rf339,Poivre de la jamaique,Aliments d'origine végétale,Jamaican pepper,Plant-based foods
+rm218,Aspergillus rAspf1 (recombinant),Microorganismes,Aspergillus rAspf1 (recombinant),Microorganisms
+rm219,Aspergillus rAspf2 (recombinant),Microorganismes,Aspergillus rAspf2 (recombinant),Microorganisms
+rm220,Aspergillus rAspf3 (recombinant),Microorganismes,Aspergillus rAspf3 (recombinant),Microorganisms
+rm221,Aspergillus rAspf4 (recombinant),Microorganismes,Aspergillus rAspf4 (recombinant),Microorganisms
+rm222,Aspergillus rAspf6 (recombinant),Microorganismes,Aspergillus rAspf6 (recombinant),Microorganisms
+Rt217,Poivrier,Pollens d'arbres,Pepper plant,Tree pollen
+rx3,Mélange pneumallergènes RX3,Pollens d'arbres,RX3 pneumallergen mixture,Tree pollen
+rx4,Mélange pneumallergènes RX4,Pollens d'arbres,RX4 pneumallergenic mixture,Tree pollen
+rx5,Mélange pneumallergènes RX5,Pollens d'arbres,RX5 pneumallergen mixture,Tree pollen
+sx1,"D.ptéronyssinus,chat,chien,phléole,seigle,C.herbarum, bouleau,armoise",Pollens d'arbres,"D. pteronyssinus, cat, dog, timothy, rye, C. herbarum, birch, mugwort",Tree pollen
+sx22,"Noix de pécan,noix de cajou,pistache,noix",Aliments d'origine végétale,"Pecans, cashews, pistachio, walnuts",Plant-based foods
+tea,Triethylamine,Divers,Triethylamine,Miscellaneous
+tma,Trimethylamine,Divers,Trimethylamine,Miscellaneous
+tx1,"Arbres ; t1, t3, t7, t8, t10",Pollen d'arbres,"Trees; t1, t3, t7, t8, t10",Tree pollen
+tx10,"Arbres ; t2, t3, t4, t15",Pollen d'arbres,"Trees; t2, t3, t4, t15",Tree pollen
+tx2,"Arbres ; t1, t7, t8, t14, t22",Pollen d'arbres,"Trees; t1, t7, t8, t14, t22",Tree pollen
+tx3,"Arbres ; t6, t7, t8, t14, t20",Pollen d'arbres,"Trees; t6, t7, t8, t14, t20",Tree pollen
+tx4,"Arbres ; t7, t8, t11, t12, t14",Pollen d'arbres,"Trees; t7, t8, t11, t12, t14",Tree pollen
+tx5,"Arbres ; t2, t4, t8, t12, t14",Pollen d'arbres,"Trees; t2, t4, t8, t12, t14",Tree pollen
+tx6,"Arbres ; t1, t3, t5, t7, t10",Pollen d'arbres,"Trees; t1, t3, t5, t7, t10",Tree pollen
+tx7,"Arbres méditerrannéens ; t9, t12, t16, t18, t19, t21",Pollen d'arbres,"Mediterranean trees; t9, t12, t16, t18, t19, t21",Tree pollen
+tx8,"Arbres ; t1, t3, t4, t7, t11",Pollen d'arbres,"Trees; t1, t3, t4, t7, t11",Tree pollen
+tx9,"Arbres ; t2, t3, t4, t7, t11",Pollen d'arbres,"Trees; t2, t3, t4, t7, t11",Tree pollen
+t1,Erable,Pollen d'arbres,Maple,Tree pollen
+t10,Noyer,Pollen d'arbres,Walnut,Tree pollen
+t11,Platane,Pollen d'arbres,Plane tree,Tree pollen
+t11,Platane,Pollen d'arbres,Plane tree,Tree pollen
+t11,Platane,Pollen d'arbres,Plane tree,Tree pollen
+t12,Saule,Pollen d'arbres,Willow,Tree pollen
+t14,Pleuplier,Pollen d'arbres,Pleup,Tree pollen
+t14,Peuplier,Pollen d'arbres,Poplar,Tree pollen
+t15,Frêne ; Fraxinus americana,Pollen d'arbres,Ash; Fraxinus americana,Tree pollen
+t15,Frêne ; Fraxinus americana,Pollen d'arbres,Ash; Fraxinus americana,Tree pollen
+t16,Pin ; Pinus strobus,Pollen d'arbres,Pine; Pinus strobus,Tree pollen
+t16,Pin,Pollen d'arbres,Pine,Tree pollen
+t17,Cèdre du Japon,Pollen d'arbres,Japanese cedar,Tree pollen
+t18,Eucalyptus,Pollen d'arbres,Eucalyptus,Tree pollen
+t19,Mimosa,Pollen d'arbres,Mimosa,Tree pollen
+t2,Aulne,Pollen d'arbres,Alder,Tree pollen
+t2s,Aulne,Pollen d'arbres,Alder,Tree pollen
+t20,Prosopis,Pollen d'arbres,Prosopis,Tree pollen
+t201,Sapin,Pollen d'arbres,Fir tree,Tree pollen
+t203,Marronnier,Pollen d'arbres,Chestnut tree,Tree pollen
+t205,Sureau,Pollen d'arbres,Elderberry,Tree pollen
+t206,Châtaignier,Pollen d'arbres,Chestnut,Tree pollen
+t207,Sapin de Douglas,Pollen d'arbres,Douglas fir,Tree pollen
+t208,Tilleul,Pollen d'arbres,Linden,Tree pollen
+t209,Charme,Pollen d'arbres,Charm,Tree pollen
+t209,Charme,Pollen d'arbres,Charm,Tree pollen
+t21,Cajeputier,Pollen d'arbres,Cajeputier,Tree pollen
+t210,Troène,Pollen d'arbres,Privet,Tree pollen
+t211,Liquidambar,Pollen d'arbres,Liquidambar,Tree pollen
+t212,Cèdre,Pollen d'arbres,Cedar,Tree pollen
+t213,Pin ; Pinatus rabiata,Pollen d'arbres,Pine; Pinatus rabiata,Tree pollen
+t214,Datte,Pollen d'arbres,Date,Tree pollen
+t215,rBet v 1 bouleau ; recombinant,Pollen d'arbres,rBet v 1 birch; recombinant,Tree pollen
+t216,rBet V2 profiline ; recombinant,Pollen d'arbres,rBet V2 profilin; recombinant,Tree pollen
+t218,Chêne de Virginie,Pollen d'arbres,Virginia oak,Tree pollen
+t22,Pacanier,Pollen d'arbres,Pecan,Tree pollen
+t220,rBet V4 profiline ; recombinant,Pollen d'arbres,rBet V4 profilin; recombinant,Tree pollen
+t221,"Bouleau rBet v2, rBet v 4 (recombinants)",Pollen d'arbres,"Birch rBet v2, rBet v 4 (recombinant)",Tree pollen
+t222,Cyprès d&rsquo;Arizona,Pollen d'arbres,Arizona Cypress,Tree pollen
+t223,Palmier à huile,Pollen d'arbres,Oil palm,Tree pollen
+t224,Olivier recombinant (nOle e1),Pollen d'arbres,Recombinant olive tree (nOle e1),Tree pollen
+t225,rBet v 6 bouleau ; recombinant,Pollen d'arbres,rBet v 6 birch; recombinant,Tree pollen
+t23,Cyprès,Pollen d'arbres,Cypress,Tree pollen
+t23,Cyprès,Pollen d'arbres,Cypress,Tree pollen
+t23,Cyprès,Pollen d'arbres,Cypress,Tree pollen
+t25,Frêne Commun,Pollen d'arbres,Common Ash,Tree pollen
+t25,Frêne Commun,Pollen d'arbres,Common Ash,Tree pollen
+t250,Lilas ; pollen,Pollen d'arbres,Lilac; pollen,Tree pollen
+t3,Bouleau,Pollen d'arbres,Birch,Tree pollen
+t3,Bouleau,Pollen d'arbres,Birch,Tree pollen
+t3,Bouleau,Pollen d'arbres,Birch,Tree pollen
+t37,Cyprès chauve,Pollen d'arbres,Bald Cypress,Tree pollen
+t4,Noisetier,Pollen d'arbres,Hazel,Tree pollen
+t4,Noisetier,Pollen d'arbres,Hazel,Tree pollen
+t4,Noisetier,Pollen d'arbres,Hazel,Tree pollen
+t44,Micocoulier de Virginie,Pollen d'arbres,Virginia Hackberry,Tree pollen
+t5,Hêtre,Pollen d'arbres,Beech,Tree pollen
+t55,Genêt à balai,Pollen d'arbres,Broomstick,Tree pollen
+t6,Genèvrier,Pollen d'arbres,Juniper,Tree pollen
+t6,Genèvrier,Pollen d'arbres,Juniper,Tree pollen
+t7,Chêne ; pollen,Pollen d'arbres,Oak; pollen,Tree pollen
+t70,Mûrier,Pollen d'arbres,Mulberry,Tree pollen
+t72,Palmier,Pollen d'arbres,Palm,Tree pollen
+t72,Palmier,Pollen d'arbres,Palm,Tree pollen
+t73,Pin d&rsquo;Australie,Pollen d'arbres,Australian pine,Tree pollen
+t75,Genêt,Pollen d'arbres,Broom,Tree pollen
+t8,Orme,Pollen d'arbres,Elm,Tree pollen
+t89,Thuya,Pollen d'arbres,Thuya,Tree pollen
+t9,Olivier,Pollen d'arbres,Olive,Tree pollen
+t9,Olivier,Pollen d'arbres,Olive,Tree pollen
+t9,Olivier,Pollen d'arbres,Olive,Tree pollen
+u203,Ampicilline,Médicaments,Ampicillin,Drugs
+u209,Paracétamol,Médicaments,Paracetamol,Drugs
+u219,Sauge,Aliments d'origine végétale,Sage,Plant-based foods
+u340,Gélatine,Médicaments,Gelatin,Drugs
+wx1,"Herbacées ; w1, w6, w9, w10, w11",Pollens d’herbacées,"Herbaceous; w1, w6, w9, w10, w11",Grass pollen
+wx2,"Herbacées ; w2, w6, w9, w10, w15",Pollens d’herbacées,"Herbaceous; w2, w6, w9, w10, w15",Grass pollen
+wx209,"Mélange d&rsquo;ambroisies (Ambroisie,Ambroisie à épi grêle,Ambroisie trilobée)",Pollens d’herbacées,"Mixture of ragweed (Ambrosia, Spiny ragweed, Three-lobed ragweed)",Grass pollen
+wx3,"Herbacées ; w6, w9, w10, w12, w20",Pollens d’herbacées,"Herbaceous; w6, w9, w10, w12, w20",Grass pollen
+wx5,"Herbacées ; w1, w6, w7, w8, w12",Pollens d’herbacées,"Herbaceous; w1, w6, w7, w8, w12",Grass pollen
+wx6,"Plantago lanceolata, Chenopodium album, Salsola kali, Rumex acetosella",Pollens d’herbacées,"Plantago lanceolata, Chenopodium album, Salsola kali, Rumex acetosella",Grass pollen
+wx7,"Herbacées ; w7, w8, w9, w10, w12",Pollens d’herbacées,"Herbaceous; w7, w8, w9, w10, w12",Grass pollen
+w1,Ambroise,Pollens d’herbacées,Ambroise,Grass pollen
+w1,Ambroisie,Pollens d’herbacées,Ambrosia,Grass pollen
+w1,Ambroisie,Pollens d’herbacées,Ambrosia,Grass pollen
+w10,Chénopode,Pollens d’herbacées,Goosefoot,Grass pollen
+w10,Chénopode blanc,Pollens d’herbacées,Lamb's-quarters,Grass pollen
+w11,Soude,Pollens d’herbacées,Soda,Grass pollen
+w12,Solidage,Pollens d’herbacées,Solidification,Grass pollen
+w12,Solidage,Pollens d’herbacées,Solidification,Grass pollen
+w13,Petite bardane,Pollens d’herbacées,Small burdock,Grass pollen
+w14,Amaranthe,Pollens d’herbacées,Amaranth,Grass pollen
+w15,Arroche,Pollens d’herbacées,Arroche,Grass pollen
+w16,Iva,Pollens d’herbacées,Ivan,Grass pollen
+w17,Kochia,Pollens d’herbacées,Kochia,Grass pollen
+w18,Petite oseille,Pollens d’herbacées,Sheep sorrel,Grass pollen
+w18,Petite oseille,Pollens d’herbacées,Sheep sorrel,Grass pollen
+w18,Petite oseille,Pollens d’herbacées,Sheep sorrel,Grass pollen
+w19,Pariétaire officinalis,Pollens d’herbacées,Parietaria officinalis,Grass pollen
+w2,Ambroisie à épi grêle,Pollens d’herbacées,Slender ragweed,Grass pollen
+w20,Ortie,Pollens d’herbacées,Nettle,Grass pollen
+w203,Colza ; pollen,Pollens d’herbacées,Rapeseed; pollen,Grass pollen
+w204,Tournesol,Pollens d’herbacées,Sunflower,Grass pollen
+w206,Camomille,Pollens d’herbacées,Chamomile,Grass pollen
+w207,Lupin ; pollen,Pollens d’herbacées,Lupine; pollen,Grass pollen
+w208,Lycopodium,Pollens d’herbacées,Lycopodium,Grass pollen
+w21,Pariétaire,Pollens d’herbacées,Parietary,Grass pollen
+w21,Pariétaire,Pollens d’herbacées,Parietary,Grass pollen
+w21,Pariétaire judaica,Pollens d’herbacées,Parietary judaica,Grass pollen
+w210,Betterave sucrière,Pollens d’herbacées,Sugar beet,Grass pollen
+w211,rPar j 2 Pariétaire ; recombinant,Pollens d’herbacées,rBy j 2 Parietary; recombinant,Grass pollen
+w22,Chrysanthème,Pollens d’herbacées,Chrysanthemum,Grass pollen
+W26,Narcissus pseudonarcissus ; Narcisse,Pollens d’herbacées,Narcissus pseudonarcissus; Narcissus,Grass pollen
+w3,Ambroisie trilobée,Pollens d’herbacées,Three-lobed ragweed,Grass pollen
+w33,Trèfle,Pollens d’herbacées,Clover,Grass pollen
+w4,Fausse ambroisie,Pollens d’herbacées,False ambrosia,Grass pollen
+w44,Forsythia,Pollens d’herbacées,Forsythia,Grass pollen
+w45,Luzerne,Pollens d’herbacées,Alfalfa,Grass pollen
+w5,Absinthe,Pollens d’herbacées,Absinthe,Grass pollen
+w55,Lavande,Pollens d’herbacées,Lavender,Grass pollen
+w6,Armoise commune,Pollens d’herbacées,Common mugwort,Grass pollen
+w6,Armoise commune,Pollens d’herbacées,Common mugwort,Grass pollen
+w6,Armoise commune,Pollens d’herbacées,Common mugwort,Grass pollen
+w7,Grande Marguerite,Pollens d’herbacées,Big Daisy,Grass pollen
+w7,Grande marguerite,Pollens d’herbacées,Big daisy,Grass pollen
+w8,Pissenlit,Pollens d’herbacées,Dandelion,Grass pollen
+w8,Pissenlit,Pollens d’herbacées,Dandelion,Grass pollen
+w9,Plantain,Pollens d’herbacées,Plantain,Grass pollen
+w9,Plantain,Pollens d’herbacées,Plantain,Grass pollen
+w9,Plantain,Pollens d’herbacées,Plantain,Grass pollen
+g201,Orge,Pollens de graminées,Barley,Grass pollen
+g202,Maïs,Pollens de graminées,But,Grass pollen
+Rg203,Herbe des prés salés,Pollens de graminées,Salt meadow grass,Grass pollen
+Rg204,Fromental,Pollens de graminées,Fromental,Grass pollen
+t217,Poivrier,Pollens d'arbres,Pepper plant,Tree pollen
+t219,Palo Verde,Pollens d'arbres,Palo Verde,Tree pollen
+d201,Blomita tropicalis,Acariens de stockage,Blomita tropicalis,Storage mites
+e197,Perruche calopsitte (déjections),Animaux,Cockatiel (droppings),Animals
+e198,Perruche calopsitte (protéines sériques),Animaux,Cockatiel (serum protein),Animals
+i205,Bourdon,Venins,Bumblebee,Venoms
+o212,Streptavidin,Divers,Streptavidin,Miscellaneous
+o213,MBP (maltose binding protein),Divers,MBP (maltose binding protein),Miscellaneous
+f2,Lait de vache,Aliments - produits laitiers,Cow's milk,Food - dairy products
+f334,Lactoferrine bovine,Aliments - produits laitiers,Bovine lactoferrin,Food - dairy products
+f302,Mandarine,Aliments - fruits et légumes,Mandarin,Food - fruits and vegetables
+f330,Cynorrhodon,Aliments - fruits et légumes,Rosehip,Food - fruits and vegetables
+f336,Jujube,Aliments - fruits et légumes,Jujube,Food - fruits and vegetables
+f124,Epeautre,"Graines, légumineuses et noix",Spelled,"Seeds, legumes and nuts"
+f339,Poivre de la Jamaïque,Aliments - épices,Jamaican pepper,Foods - spices
+c260,Ammonium quaternaire (myorelaxants),Médicaments,Quaternary ammonium (muscle relaxants),Drugs
+c261,Pholcodine,Médicaments,Pholcodine,Drugs
+Rk21-1,Anhydride Méthyltétrahydrophtalique,Allergènes professionnels,Methyltetrahydrophthalic Anhydride,Professional allergens
+Rk21-2,Poussière de bois d'Abachi,Allergènes professionnels,Abachi wood dust,Professional allergens
+Rk21-3,Pepsine,Allergènes professionnels,Pepsin,Professional allergens
