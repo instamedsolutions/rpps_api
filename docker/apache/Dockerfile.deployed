@@ -36,3 +36,10 @@ RUN php bin/console doctrine:migrations:version --add --all --no-interaction --e
 RUN php bin/console doctrine:fixtures:load --env=test --no-interaction
 RUN chmod 777 /var/test_db.sqlite
 RUN chmod 777 /var/www/html/var
+RUN mkdir -p /var/www/html/var/cache
+RUN chmod 777 /var/www/html/var/cache
+RUN mkdir -p /var/www/html/var/cache/prod
+RUN chmod 777 /var/www/html/var/cache/prod
+RUN chown -R www-data:www-data /var/www/html/var
+RUN mkdir -p /var/www/html/var/log
+RUN chmod 777 /var/www/html/var/log
