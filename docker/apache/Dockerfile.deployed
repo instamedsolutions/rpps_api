@@ -35,3 +35,4 @@ RUN php bin/console doctrine:migrations:sync-metadata-storage --env=test
 RUN php bin/console doctrine:migrations:version --add --all --no-interaction --env=test
 RUN php bin/console doctrine:fixtures:load --env=test --no-interaction
 RUN chmod 777 /var/test_db.sqlite
+RUN chmod 777 /var/www/html/var

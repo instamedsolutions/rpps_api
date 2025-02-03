@@ -6,12 +6,10 @@ use App\DataFixtures\LoadRPPS;
 use App\Entity\City;
 use App\Entity\RPPS;
 use App\Entity\Specialty;
-use Doctrine\Common\DataFixtures\Executor\ORMExecutor;
 use Doctrine\DBAL\Connection;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\NonUniqueResultException;
 use Exception;
-use Symfony\Bridge\Doctrine\DataFixtures\ContainerAwareLoader;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\HttpKernel\KernelInterface;
 
@@ -91,14 +89,9 @@ class RPPSService extends ImporterService
 
         $this->output->writeln('Existing data successfully deleted');
 
-        $loader = new ContainerAwareLoader($this->kernel->getContainer());
-
         $fixture = new LoadRPPS();
         $fixture->importId = $this->getImportId();
-        $loader->addFixture($fixture);
-
-        $executor = new ORMExecutor($this->em);
-        $executor->execute($loader->getFixtures(), true);
+        $fixture->load($this->em);
 
         $this->output->writeln('Test data successfully loaded');
     }

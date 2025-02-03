@@ -59,6 +59,8 @@ class LoadRPPS extends Fixture implements DependentFixtureInterface, FixtureInte
                 $rpps->setAddress($faker->streetAddress());
                 $rpps->setCity($faker->city());
                 $rpps->setZipcode($faker->postcode());
+                $rpps->setLatitude($faker->latitude());
+                $rpps->setLongitude($faker->longitude());
             }
             $rpps->setSpecialty($this->getLegacySpecialties()[$i]);
 
