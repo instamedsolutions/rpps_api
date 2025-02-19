@@ -5,6 +5,9 @@ namespace App\ApiPlatform\Filter;
 use ApiPlatform\Doctrine\Orm\Filter\AbstractFilter;
 use ApiPlatform\Doctrine\Orm\Util\QueryNameGeneratorInterface;
 use ApiPlatform\Metadata\Operation;
+use App\Entity\Allergen;
+use Doctrine\ORM\Query\Expr\Join;
+use Doctrine\ORM\Query\Expr\Orx;
 use Doctrine\ORM\QueryBuilder;
 use Exception;
 
@@ -37,20 +40,39 @@ final class AllergenFilter extends AbstractFilter
             return;
         }
 
-        $this->addSearchFilter($queryBuilder, $value);
+        $this->addSearchFilter($queryBuilder, $value, $context['languages'] ?? []);
     }
 
     /**
      * @throws Exception
      */
-    protected function addSearchFilter(QueryBuilder $queryBuilder, ?string $value): QueryBuilder
+    protected function addSearchFilter(QueryBuilder $queryBuilder, ?string $value, array $languages = []): QueryBuilder
     {
         $alias = $queryBuilder->getRootAliases()[0];
 
         // Generate a unique parameter name to avoid collisions with other filters
         $end = $this->queryNameGenerator->generateParameterName('search');
 
-        $queryBuilder->andWhere("$alias.name LIKE :$end OR $alias.group LIKE :$end");
+        $defaultLanguage = (new Allergen())->getDefaultLanguage();
+
+        if (in_array($defaultLanguage, $languages) || !$languages) {
+            $queryBuilder->andWhere("$alias.name LIKE :$end OR $alias.group LIKE :$end");
+        }
+
+        foreach ($languages as $language) {
+            if ($language !== $defaultLanguage) {
+                $queryBuilder
+                    ->leftJoin("$alias.translations", "tr_$language", Join::WITH, "tr_$language.lang = :tr_$language");
+
+                $or = [
+                    "tr_$language.field = 'name' AND tr_$language.translation LIKE :$end",
+                    "tr_$language.field = 'group' AND tr_$language.translation LIKE :$end",
+                ];
+
+                $queryBuilder->andWhere(new Orx($or));
+                $queryBuilder->setParameter("tr_$language", $language);
+            }
+        }
 
         $value = $this->cleanValue($value);
 

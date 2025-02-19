@@ -16,7 +16,7 @@ class AllergenTest extends ApiTestCase
      * @throws ServerExceptionInterface
      * @throws TransportExceptionInterface
      */
-    public function testSearchData()
+    public function testSearchData() : void
     {
         $data = $this->get('allergens', ['search' => 'Chymopapa']);
 
@@ -27,6 +27,38 @@ class AllergenTest extends ApiTestCase
         $this->assertEquals('Médicaments', $data['hydra:member'][0]['group']);
 
         $this->assertCount(1, $data['hydra:member']);
+
+        $data = $this->get('allergens', ['search' => 'Chymopapa'],false,[
+            'Accept-Language' => 'en'
+        ]);
+
+        $this->assertResponseStatusCodeSame(Response::HTTP_OK);
+
+        $this->assertEquals('Chymopapain', $data['hydra:member'][0]['name']);
+        $this->assertEquals('c209', $data['hydra:member'][0]['code']);
+        $this->assertEquals('Drugs', $data['hydra:member'][0]['group']);
+
+        $this->assertCount(1, $data['hydra:member']);
+
+
+        $data = $this->get('allergens', ['search' => 'Chymopapaïne'],false,[
+            'Accept-Language' => 'en'
+        ]);
+
+        $this->assertResponseStatusCodeSame(Response::HTTP_OK);
+        $this->assertCount(0,$data['hydra:member']);
+
+        $data = $this->get('allergens', ['search' => 'Chymopapain'],false,[
+            'Accept-Language' => 'en'
+        ]);
+
+        $this->assertResponseStatusCodeSame(Response::HTTP_OK);
+
+        $this->assertEquals('Chymopapain', $data['hydra:member'][0]['name']);
+        $this->assertEquals('c209', $data['hydra:member'][0]['code']);
+        $this->assertEquals('Drugs', $data['hydra:member'][0]['group']);
+
+        $this->assertCount(1, $data['hydra:member']);
     }
 
     /**
@@ -35,7 +67,7 @@ class AllergenTest extends ApiTestCase
      * @throws ServerExceptionInterface
      * @throws TransportExceptionInterface
      */
-    public function testGetData()
+    public function testGetData() : void
     {
         $data = $this->get('allergens/c209');
 
