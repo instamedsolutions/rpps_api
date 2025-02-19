@@ -25,6 +25,8 @@ class LoadAllergens extends Fixture
         $entity2->setCode('c209');
         $entity2->setGroup('Médicaments');
         $entity2->setName('Chymopapaïne');
+        $entity2->setTranslation('en', 'name', 'Chymopapain');
+        $entity2->setTranslation('en', 'group', 'Drugs');
         $entity2->setImportId('import_1');
         $this->em->persist($entity2);
 
