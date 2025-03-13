@@ -52,8 +52,8 @@ class InseeImportCommand extends Command
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
         $io = new SymfonyStyle($input, $output);
-        $purge = (bool)$input->getOption('purge');
-        $force = (bool)$input->getOption('force');
+        $purge = (bool) $input->getOption('purge');
+        $force = (bool) $input->getOption('force');
         $target = strtolower($input->getOption('target'));
 
         // If purge is requested but --force is not provided, abort
@@ -90,7 +90,7 @@ class InseeImportCommand extends Command
         $output->writeln("Import ID is {$this->inseeService->getImportId()}");
 
         // Turn off Doctrine's default SQL logger to save memory
-        $this->em->getConnection()->getConfiguration()?->setSQLLogger();
+        $this->em->getConnection()->getConfiguration()->setSQLLogger();
 
         // If purge is requested, execute it before importing
         if ($purge) {
