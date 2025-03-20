@@ -108,6 +108,12 @@ class InseeCommune1943 extends BaseEntity implements ImportableEntityInterface
         return $this->nomAvecArticle;
     }
 
+    // Alias to match the property in InseeCommune. keep.
+    public function getNomEnClairAvecArticle(): ?string
+    {
+        return $this->nomAvecArticle;
+    }
+
     public function setNomAvecArticle(?string $nomAvecArticle): void
     {
         $this->nomAvecArticle = $nomAvecArticle;

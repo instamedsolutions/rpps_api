@@ -74,8 +74,6 @@ class InseeService extends ImporterService
 
         $this->em->flush();
 
-        $this->printFinalStats();
-
         return true;
     }
 
@@ -99,7 +97,7 @@ class InseeService extends ImporterService
         }
     }
 
-    private function printFinalStats(): void
+    public function printFinalStats(): void
     {
         $this->output->writeln([
             '',

@@ -20,4 +20,13 @@ class InseePaysRepository extends ServiceEntityRepository
     {
         parent::__construct($registry, InseePays::class);
     }
+
+    public function searchByName(string $search): array
+    {
+        return $this->createQueryBuilder('p')
+            ->where('p.libelleCog LIKE :search')
+            ->setParameter('search', "%$search%")
+            ->getQuery()
+            ->getResult();
+    }
 }

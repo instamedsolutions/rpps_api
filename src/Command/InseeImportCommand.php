@@ -130,6 +130,8 @@ class InseeImportCommand extends Command
             $io->success('Pays 1943 import completed successfully.');
         }
 
+        $this->inseeService->printFinalStats();
+
         // End time + total execution time
         $endTime = new DateTime();
         $io->writeln("<comment>{$endTime->format('d-m-Y G:i:s')} - Stop processing</comment>");

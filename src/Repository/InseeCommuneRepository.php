@@ -20,4 +20,13 @@ class InseeCommuneRepository extends ServiceEntityRepository
     {
         parent::__construct($registry, InseeCommune::class);
     }
+
+    public function searchByName(string $search): array
+    {
+        return $this->createQueryBuilder('c')
+            ->where('c.nomEnClair LIKE :search')
+            ->setParameter('search', "%$search%")
+            ->getQuery()
+            ->getResult();
+    }
 }

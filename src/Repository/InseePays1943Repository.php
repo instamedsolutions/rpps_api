@@ -3,6 +3,7 @@
 namespace App\Repository;
 
 use App\Entity\InseePays1943;
+use DateTime;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
@@ -19,5 +20,22 @@ class InseePays1943Repository extends ServiceEntityRepository
     public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, InseePays1943::class);
+    }
+
+    /**
+     * Note : might consider searching also the libelleOfficiel field.
+     *
+     * Search for countries matching a name that existed at a given date.
+     */
+    public function searchByNameAndDate(string $search, DateTime $date): array
+    {
+        return $this->createQueryBuilder('p')
+            ->where('p.libelleCog LIKE :search')
+            ->andWhere('(p.dateDebut IS NULL OR p.dateDebut <= :date)')
+            ->andWhere('(p.dateFin IS NULL OR p.dateFin >= :date)')
+            ->setParameter('search', "%$search%")
+            ->setParameter('date', $date)
+            ->getQuery()
+            ->getResult();
     }
 }
