@@ -1,5 +1,5 @@
 run-command:
-	docker-compose exec rpps-database php bin/console $(command)
+	docker-compose exec rpps-database php bin/console $(command) --profile
 
 
 include Makefile.import

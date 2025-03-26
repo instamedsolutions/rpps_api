@@ -39,6 +39,10 @@ class PointType extends Type
      */
     public function convertToDatabaseValue($value, AbstractPlatform $platform)
     {
+        if (is_string($value)) {
+            return $value;
+        }
+
         if (null === $value) {
             return [];
         }
@@ -53,7 +57,7 @@ class PointType extends Type
 
         // For MySQL, produce an expression MySQL understands as geometry
         // e.g. ST_GeomFromText('POINT(lon lat)')
-        return sprintf("ST_GeomFromText('POINT(%F %F)')", $lon, $lat);
+        return sprintf("ST_GeomFromText('POINT(%F %F)',4326)", $lon, $lat);
     }
 
     public function convertToPHPValueSQL($sqlExpr, $platform): string
