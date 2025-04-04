@@ -4,6 +4,7 @@ env:
   PHP_VERSION: 8.3
   DATABASE_URL: "/var/test_db.sqlite"
   DATABASE_ENGINE: "pdo_sqlite"
+
 on:
   pull_request:
     branches:
@@ -19,16 +20,16 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
 
       - name: Cache Composer dependencies
-        uses: actions/cache@v2
+        uses: actions/cache@v3
         with:
           path: /tmp/composer-cache
           key: ${{ runner.os }}-${{ hashFiles('**/composer.lock') }}
 
       - name: Install dependencies
-        uses: php-actions/composer@v6
+        uses: php-actions/composer@v7
         with:
           args: --ignore-platform-reqs
           php_version: ${{ env.PHP_VERSION }}
@@ -36,7 +37,7 @@ jobs:
       - name: Build test db
         uses: ./.github/actions/create-test-db
 
-      - uses: php-actions/phpunit@v3
+      - uses: php-actions/phpunit@v4
         name: phpunit
         with:
           php_extensions: xdebug mbstring xml iconv intl
