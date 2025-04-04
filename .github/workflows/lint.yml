@@ -1,39 +1,39 @@
 name: Lint
 
-on: [push]
+on: [ push ]
 
 jobs:
-    build:
-        runs-on: ubuntu-latest
-        steps:
-            -   name: Checkout
-                uses: actions/checkout@v2
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
 
-            -   name: Setup PHP
-                uses: shivammathur/setup-php@v2
-                with:
-                    extensions: calendar, dom, exif, fileinfo, gd, http, imagick, intl, json, openssl, tidy, xml, zip
-                    php-version: 8.3
-                    tools: composer:v2
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          extensions: calendar, dom, exif, fileinfo, gd, http, imagick, intl, json, openssl, tidy, xml, zip
+          php-version: 8.3
+          tools: composer:v2
 
-            -   name: Validate composer.json and composer.lock
-                run: composer validate
+      - name: Validate composer.json and composer.lock
+        run: composer validate
 
-            -   name: Cache composer dependencies
-                uses: actions/cache@v1
-                with:
-                    path: vendor
-                    key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
-                    restore-keys: ${{ runner.os }}-composer-
+      - name: Cache composer dependencies
+        uses: actions/cache@v3
+        with:
+          path: vendor
+          key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
+          restore-keys: ${{ runner.os }}-composer-
 
-            -   name: Install Composer dependencies
-                run: composer install --prefer-dist --no-progress --no-scripts
+      - name: Install Composer dependencies
+        run: composer install --prefer-dist --no-progress --no-scripts
 
-            -   name: PHP-CBF
-                run: ./vendor/bin/phpcbf src/ --runtime-set ignore_warnings_on_exit true
+      - name: PHP-CBF
+        run: ./vendor/bin/phpcbf src/ --runtime-set ignore_warnings_on_exit true
 
-            -   name: PHPCS
-                run: ./vendor/bin/phpcs --runtime-set ignore_warnings_on_exit true src
+      - name: PHPCS
+        run: ./vendor/bin/phpcs --runtime-set ignore_warnings_on_exit true src
 
-            -   name: PHPStan
-                run: ./vendor/bin/phpstan analyse -c phpstan.neon -l 6 src/
+      - name: PHPStan
+        run: ./vendor/bin/phpstan analyse -c phpstan.neon -l 6 src/
