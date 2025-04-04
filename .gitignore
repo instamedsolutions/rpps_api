@@ -39,3 +39,5 @@ public/ExtractionMonoTable_CAT18_ToutePopulation_202307251217 (1).zip
 /.php-cs-fixer.php
 /.php-cs-fixer.cache
 ###< friendsofphp/php-cs-fixer ###
+
+*.sql
