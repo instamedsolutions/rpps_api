@@ -28,7 +28,7 @@ class InseeCommune1943Repository extends ServiceEntityRepository
             ->where('c.nomTypographie LIKE :search')
             ->andWhere('(c.dateDebut IS NULL OR c.dateDebut <= :date)')
             ->andWhere('(c.dateFin IS NULL OR c.dateFin >= :date)')
-            ->setParameter('search', "%$search%")
+            ->setParameter('search', "$search%")
             ->setParameter('date', $date)
             ->getQuery()
             ->getResult();

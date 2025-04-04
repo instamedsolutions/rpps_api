@@ -25,7 +25,7 @@ class InseeCommuneRepository extends ServiceEntityRepository
     {
         return $this->createQueryBuilder('c')
             ->where('c.nomEnClair LIKE :search')
-            ->setParameter('search', "%$search%")
+            ->setParameter('search', "$search%")
             ->getQuery()
             ->getResult();
     }
