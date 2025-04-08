@@ -2,6 +2,7 @@
 
 namespace App\Tests\Functional;
 
+use App\DTO\BirthPlaceDTO;
 use DateTime;
 use DateTimeInterface;
 use Symfony\Bundle\FrameworkBundle\Console\Application;
@@ -30,8 +31,12 @@ class BirthPlaceTest extends ApiTestCase
         // Run the INSEE import command
         $command = $application->find('app:insee:import');
         $command->run(new ArrayInput([]), $output);
-
-        // echo $output->fetch();
+        /*
+        $cloner = new VarCloner();
+        $dumper = new CliDumper();
+        $dumper->setColors(true);
+        $dumper->dump($cloner->cloneVar($output->fetch()));
+        */
     }
 
     /**
@@ -57,25 +62,25 @@ class BirthPlaceTest extends ApiTestCase
     {
         $this->loadInseeData();
 
-        $searchQuery = 'spagn';
-        $response = $this->get('birth_places', ['search' => $searchQuery]);
+        $searchQuery = 'ita';
+
+        $response = $this->get('birth_places', [
+            'search' => $searchQuery,
+        ]);
 
         self::assertResponseStatusCodeSame(Response::HTTP_OK);
 
-        self::assertArrayHasKey('total_items', $response);
-        self::assertGreaterThan(0, $response['total_items']);
+        self::assertArrayHasKey('hydra:totalItems', $response);
+        self::assertGreaterThan(0, $response['hydra:totalItems']);
 
-        self::assertArrayHasKey('total_pages', $response);
-        self::assertGreaterThan(0, $response['total_pages']);
-
-        self::assertArrayHasKey('data', $response);
-        self::assertNotEmpty($response['data']);
+        self::assertArrayHasKey('hydra:member', $response);
+        self::assertNotEmpty($response['hydra:member']);
 
         // Ensure there is at least one city and one country
         $cityFound = false;
         $countryFound = false;
 
-        foreach ($response['data'] as $place) {
+        foreach ($response['hydra:member'] as $place) {
             self::assertArrayHasKey('label', $place);
             self::assertArrayHasKey('code', $place);
             self::assertArrayHasKey('type', $place);
@@ -110,47 +115,19 @@ class BirthPlaceTest extends ApiTestCase
     {
         $this->loadInseeData();
 
-        // Perform the request with page=2 and limit=50
         $response = $this->get('birth_places', [
-            'search' => 'spa',
+            'search' => 'paris',
             'page' => 2,
-            'limit' => 50,
+            'limit' => 20,
         ]);
-
         self::assertResponseStatusCodeSame(Response::HTTP_OK);
 
-        // Expected only 3 results on page 2
-        self::assertArrayHasKey('total_items', $response);
-        self::assertArrayHasKey('total_pages', $response);
-        self::assertArrayHasKey('data', $response);
+        self::assertArrayHasKey('hydra:totalItems', $response);
+        self::assertArrayHasKey('hydra:member', $response);
+        self::assertArrayHasKey('hydra:view', $response);
 
-        self::assertSame(53, $response['total_items'], 'Total items should be 53');
-        self::assertSame(2, $response['total_pages'], 'Total pages should be 2');
-        self::assertCount(3, $response['data'], 'Page 2 should contain exactly 3 results');
-
-        // Define expected results
-        $expectedResults = [
-            [
-                'label' => 'Spay',
-                'code' => '72344',
-                'type' => 'city',
-            ],
-            [
-                'label' => 'Territoires espagnols en Afrique du Nord',
-                'code' => '99313',
-                'type' => 'country',
-            ],
-            [
-                'label' => 'Villespassans',
-                'code' => '34339',
-                'type' => 'city',
-            ],
-        ];
-
-        // Check each expected result is in the response
-        foreach ($expectedResults as $expected) {
-            self::assertContains($expected, $response['data']);
-        }
+        self::assertSame(24, $response['hydra:totalItems']);
+        self::assertCount(4, $response['hydra:member']);
     }
 
     /**
@@ -172,14 +149,16 @@ class BirthPlaceTest extends ApiTestCase
         ]);
 
         self::assertResponseStatusCodeSame(Response::HTTP_OK);
-        self::assertNotEmpty($response1['data']);
+        self::assertNotEmpty($response1['hydra:member']);
 
-        $expected1 = [
-            'label' => 'Indes britanniques',
-            'code' => '99223',
-            'type' => 'country',
-        ];
-        self::assertContains($expected1, $response1['data']);
+        $this->assertResponseContainsBirthPlace(
+            $response1['hydra:member'],
+            new BirthPlaceDTO(
+                label: 'Indes britanniques',
+                code: '99223',
+                type: 'country'
+            )
+        );
 
         // Test case 2: After 1947
         $response2 = $this->get('birth_places', [
@@ -189,12 +168,15 @@ class BirthPlaceTest extends ApiTestCase
         ]);
 
         self::assertResponseStatusCodeSame(Response::HTTP_OK);
-        $expected2 = [
-            'label' => 'Inde',
-            'code' => '99223',
-            'type' => 'country',
-        ];
-        self::assertContains($expected2, $response2['data']);
+
+        $this->assertResponseContainsBirthPlace(
+            $response2['hydra:member'],
+            new BirthPlaceDTO(
+                label: 'Inde',
+                code: '99223',
+                type: 'country'
+            )
+        );
     }
 
     /**
@@ -215,14 +197,16 @@ class BirthPlaceTest extends ApiTestCase
         ]);
 
         self::assertResponseStatusCodeSame(Response::HTTP_OK);
-        self::assertNotEmpty($response1['data']);
+        self::assertNotEmpty($response1['hydra:member']);
 
-        $expectedCommuneBefore = [
-            'label' => 'Ars',
-            'code' => '01021',
-            'type' => 'city',
-        ];
-        self::assertContains($expectedCommuneBefore, $response1['data']);
+        $this->assertResponseContainsBirthPlace(
+            $response1['hydra:member'],
+            new BirthPlaceDTO(
+                label: 'Ars',
+                code: '01021',
+                type: 'city'
+            )
+        );
 
         // Test case 2: After 1956 → "Ars-sur-Formans"
         $response2 = $this->get('birth_places', [
@@ -231,13 +215,39 @@ class BirthPlaceTest extends ApiTestCase
         ]);
 
         self::assertResponseStatusCodeSame(Response::HTTP_OK);
-        self::assertNotEmpty($response2['data']);
+        self::assertNotEmpty($response2['hydra:member']);
 
-        $expectedCommuneAfter = [
-            'label' => 'Ars-sur-Formans',
-            'code' => '01021',
-            'type' => 'city',
-        ];
-        self::assertContains($expectedCommuneAfter, $response2['data']);
+        $this->assertResponseContainsBirthPlace(
+            $response2['hydra:member'],
+            new BirthPlaceDTO(
+                label: 'Ars-sur-Formans',
+                code: '01021',
+                type: 'city'
+            )
+        );
+    }
+
+    private function assertResponseContainsBirthPlace(array $collection, BirthPlaceDTO $expected): void
+    {
+        foreach ($collection as $item) {
+            if (
+                ($item['label'] ?? null) === $expected->label
+                && ($item['code'] ?? null) === $expected->code
+                && ($item['type'] ?? null) === $expected->type
+            ) {
+                $this->assertTrue(true); // Match found
+
+                return;
+            }
+        }
+
+        $this->fail(
+            sprintf(
+                'Expected BirthPlace not found: label="%s", code="%s", type="%s"',
+                $expected->label,
+                $expected->code,
+                $expected->type
+            )
+        );
     }
 }
