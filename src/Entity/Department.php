@@ -32,7 +32,7 @@ class Department extends BaseEntity implements ImportableEntityInterface
     private ?Region $region = null;
 
     #[ORM\OneToOne(targetEntity: City::class)]
-    #[ORM\JoinColumn(nullable: true)]
+    #[ORM\JoinColumn(nullable: true, onDelete: 'SET NULL')]
     private ?City $chefLieu = null;
 
     #[Groups(['read'])]

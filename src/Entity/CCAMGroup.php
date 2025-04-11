@@ -82,6 +82,7 @@ class CCAMGroup extends BaseEntity implements ImportableEntityInterface
 
     #[Groups(['ccam_group:read'])]
     #[ORM\ManyToOne(targetEntity: CCAMGroup::class, cascade: ['persist'], fetch: 'EXTRA_LAZY', inversedBy: 'children')]
+    #[ORM\JoinColumn(nullable: true, onDelete: 'SET NULL')]
     protected ?CCAMGroup $parent = null;
 
     /**

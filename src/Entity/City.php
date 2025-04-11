@@ -96,7 +96,7 @@ class City extends BaseEntity implements ImportableEntityInterface
 
     #[Groups(['city:item:read'])]
     #[ORM\ManyToOne(inversedBy: 'cities')]
-    #[ORM\JoinColumn(nullable: false)]
+    #[ORM\JoinColumn(nullable: false, onDelete: 'CASCADE')]
     private ?Department $department = null;
 
     #[Groups(['read'])]
@@ -117,6 +117,7 @@ class City extends BaseEntity implements ImportableEntityInterface
     #[Groups(['read'])]
     #[MaxDepth(1)]
     #[ORM\ManyToOne(targetEntity: self::class, fetch: 'EXTRA_LAZY', inversedBy: 'subCities')]
+    #[ORM\JoinColumn(nullable: true, onDelete: 'CASCADE')]
     private ?self $mainCity = null;
 
     #[ORM\OneToMany(mappedBy: 'mainCity', targetEntity: self::class, cascade: ['persist', 'remove'], fetch: 'EXTRA_LAZY')]
