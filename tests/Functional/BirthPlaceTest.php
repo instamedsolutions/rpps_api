@@ -47,8 +47,11 @@ class BirthPlaceTest extends ApiTestCase
      */
     public function testGetBirthPlaceRequiredParameters(): void
     {
-        $this->get('birth_places');
-        self::assertResponseStatusCodeSame(Response::HTTP_BAD_REQUEST);
+        $result = $this->get('birth_places');
+        self::assertResponseStatusCodeSame(Response::HTTP_OK);
+        
+        $this->assertCount(0,$result['hydra:member']);
+        
     }
 
     /**

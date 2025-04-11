@@ -46,3 +46,4 @@ jobs:
           args: --coverage-text --testdox
         env:
           XDEBUG_MODE: coverage
+          PHP_MEMORY_LIMIT: 1024M

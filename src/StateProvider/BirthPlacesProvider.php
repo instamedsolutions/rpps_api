@@ -13,7 +13,6 @@ use Exception;
 use LogicException;
 use RuntimeException;
 use Symfony\Component\HttpFoundation\RequestStack;
-use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
 
 final readonly class BirthPlacesProvider implements ProviderInterface
 {
@@ -44,7 +43,7 @@ final readonly class BirthPlacesProvider implements ProviderInterface
         $limit = max(1, min(100, (int) $request->query->get('limit', 30)));
 
         if (!$search) {
-            throw new BadRequestHttpException('Missing parameter: search');
+            return new DtoPaginator([], $page, $limit);
         }
 
         $parsedDate = null;
