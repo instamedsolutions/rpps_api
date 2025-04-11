@@ -49,12 +49,13 @@ class BirthPlaceTest extends ApiTestCase
     {
         $result = $this->get('birth_places');
         self::assertResponseStatusCodeSame(Response::HTTP_OK);
-        
+
         $this->assertCount(0,$result['hydra:member']);
-        
+
     }
 
     /**
+     *
      * @throws ClientExceptionInterface
      * @throws RedirectionExceptionInterface
      * @throws ServerExceptionInterface
