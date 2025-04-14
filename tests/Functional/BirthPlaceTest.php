@@ -5,10 +5,6 @@ namespace App\Tests\Functional;
 use App\DTO\BirthPlaceDTO;
 use DateTime;
 use DateTimeInterface;
-use Symfony\Bundle\FrameworkBundle\Console\Application;
-use Symfony\Component\Console\Exception\ExceptionInterface;
-use Symfony\Component\Console\Input\ArrayInput;
-use Symfony\Component\Console\Output\BufferedOutput;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Contracts\HttpClient\Exception\ClientExceptionInterface;
 use Symfony\Contracts\HttpClient\Exception\RedirectionExceptionInterface;
@@ -17,28 +13,6 @@ use Symfony\Contracts\HttpClient\Exception\TransportExceptionInterface;
 
 class BirthPlaceTest extends ApiTestCase
 {
-    /**
-     * @throws ExceptionInterface
-     */
-    protected function loadInseeData(): void
-    {
-        self::bootKernel();
-        $application = new Application(self::$kernel);
-        $application->setAutoExit(false);
-
-        $output = new BufferedOutput();
-
-        // Run the INSEE import command
-        $command = $application->find('app:insee:import');
-        $command->run(new ArrayInput([]), $output);
-        /*
-        $cloner = new VarCloner();
-        $dumper = new CliDumper();
-        $dumper->setColors(true);
-        $dumper->dump($cloner->cloneVar($output->fetch()));
-        */
-    }
-
     /**
      * @throws ClientExceptionInterface
      * @throws RedirectionExceptionInterface
@@ -50,22 +24,17 @@ class BirthPlaceTest extends ApiTestCase
         $result = $this->get('birth_places');
         self::assertResponseStatusCodeSame(Response::HTTP_OK);
 
-        $this->assertCount(0,$result['hydra:member']);
-
+        $this->assertCount(0, $result['hydra:member']);
     }
 
     /**
-     *
      * @throws ClientExceptionInterface
      * @throws RedirectionExceptionInterface
      * @throws ServerExceptionInterface
      * @throws TransportExceptionInterface
-     * @throws ExceptionInterface
      */
     public function testGetBirthPlaceWithNoDate(): void
     {
-        $this->loadInseeData();
-
         $searchQuery = 'ita';
 
         $response = $this->get('birth_places', [
@@ -113,16 +82,13 @@ class BirthPlaceTest extends ApiTestCase
      * @throws RedirectionExceptionInterface
      * @throws ServerExceptionInterface
      * @throws TransportExceptionInterface
-     * @throws ExceptionInterface
      */
     public function testPaginationForBirthPlaces(): void
     {
-        $this->loadInseeData();
-
         $response = $this->get('birth_places', [
             'search' => 'paris',
             'page' => 2,
-            'limit' => 20,
+            'limit' => 2,
         ]);
         self::assertResponseStatusCodeSame(Response::HTTP_OK);
 
@@ -130,8 +96,8 @@ class BirthPlaceTest extends ApiTestCase
         self::assertArrayHasKey('hydra:member', $response);
         self::assertArrayHasKey('hydra:view', $response);
 
-        self::assertSame(24, $response['hydra:totalItems']);
-        self::assertCount(4, $response['hydra:member']);
+        self::assertSame(5, $response['hydra:totalItems']);
+        self::assertCount(2, $response['hydra:member']);
     }
 
     /**
@@ -139,12 +105,9 @@ class BirthPlaceTest extends ApiTestCase
      * @throws RedirectionExceptionInterface
      * @throws ServerExceptionInterface
      * @throws TransportExceptionInterface
-     * @throws ExceptionInterface
      */
     public function testBirthPlacesWithDateFilter(): void
     {
-        $this->loadInseeData();
-
         // Test case 1 : Before 1947 → "Indes britanniques"
         $response1 = $this->get('birth_places', [
             'search' => 'Inde',
@@ -188,12 +151,9 @@ class BirthPlaceTest extends ApiTestCase
      * @throws RedirectionExceptionInterface
      * @throws ServerExceptionInterface
      * @throws TransportExceptionInterface
-     * @throws ExceptionInterface
      */
     public function testBirthPlacesWithDateFilterForCommunes(): void
     {
-        $this->loadInseeData();
-
         // Test case 1: Before 1956 → "Ars"
         $response1 = $this->get('birth_places', [
             'search' => 'Ars',
