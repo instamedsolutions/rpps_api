@@ -9,7 +9,7 @@ cim11_modifiers:
   laterality: 'Latéralité'
   hasCausingCondition: 'Condition causale'
   histopathology: 'Histopathologie'
-  hasSeverity: 'Sévérité'
+  hasSeverity: 'Stade'
   hasAlternativeSeverity1: 'Sévérité'
   hasAlternativeSeverity2: 'Etat'
   timeInLife: 'Période de la vie'
