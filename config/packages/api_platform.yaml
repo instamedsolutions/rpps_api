@@ -10,11 +10,10 @@ api_platform:
   http_cache:
     public: true
 
-
-
   mapping:
     paths:
       - '%kernel.project_dir%/src/Entity'
+      - '%kernel.project_dir%/src/DTO'
   defaults:
     pagination_client_items_per_page: true
     pagination_maximum_items_per_page: 500
