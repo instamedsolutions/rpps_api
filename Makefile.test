@@ -12,3 +12,6 @@ sync-test-metadata-storage: ## Ensures that the metadata storage is at the lates
 
 phpunit:
 	docker-compose run --rm rpps-database ./vendor/bin/phpunit --testdox
+
+mytest:
+	docker-compose run --rm rpps-database ./vendor/bin/phpunit --testdox --group=mygroup

@@ -1,0 +1,466 @@
+COG,CRPAY,LIBCOG,LIBENR,DATE_DEBUT,DATE_FIN
+99100,,France,République française,1943-01-01,
+99101,,Danemark,Royaume du Danemark,1943-01-01,
+99102,99101,Islande,Royaume d’Islande,1943-01-01,1944-06-17
+99102,,Islande,République d’Islande,1944-06-17,2022-10-12
+99102,,Islande,Islande,2022-10-12,
+99103,,Norvège,Royaume de Norvège,1943-01-01,
+99104,,Suède,Royaume de Suède,1943-01-01,
+99105,,Finlande,République de Finlande,1943-01-01,
+99106,,Estonie,République d’Estonie,1991-08-20,
+99107,,Lettonie,République de Lettonie,1991-11-08,
+99108,,Lituanie,République de Lituanie,1990-03-10,
+99109,,Allemagne,Allemagne,1943-01-01,1949-05-23
+99109,,Allemagne,République fédérale d’Allemagne,1990-10-03,
+99110,,Autriche,Autriche,1943-01-01,1945-04-27
+99110,,Autriche,République d’Autriche,1945-04-27,
+99111,,Bulgarie,Royaume de Bulgarie,1943-01-01,1946-09-15
+99111,,Bulgarie,République populaire de Bulgarie,1946-09-15,1990-11-15
+99111,,Bulgarie,République de Bulgarie,1990-11-15,
+99112,,Hongrie,République de Hongrie,1943-01-01,1949-08-20
+99112,,Hongrie,République populaire de Hongrie,1949-08-20,1989-10-23
+99112,,Hongrie,République de Hongrie,1989-10-23,2012-01-01
+99112,,Hongrie,Hongrie,2012-01-01,
+99113,,Liechtenstein,Principauté du Liechtenstein,1943-01-01,
+99114,,Roumanie,Royaume de Roumanie,1943-01-01,1947-12-30
+99114,,Roumanie,République populaire roumaine,1947-12-30,1965-06-28
+99114,,Roumanie,République socialiste de Roumanie,1965-06-28,1989-12-22
+99114,,Roumanie,Roumanie,1989-12-22,
+99115,,Bohème,Bohème,1943-01-01,1945-04-01
+99115,,Tchécoslovaquie,République tchécoslovaque,1945-04-01,1948-05-09
+99115,,Tchécoslovaquie,République populaire tchécoslovaque,1948-05-09,1960-07-11
+99115,,Tchécoslovaquie,République socialiste tchécoslovaque,1960-07-11,1990-04-23
+99115,,Tchécoslovaquie,République fédérale tchèque et slovaque,1990-04-23,1993-01-01
+99116,,Moravie,Moravie,1943-01-01,1945-04-01
+99116,,République tchèque,République tchèque,1993-01-01,2019-04-21
+99116,,Tchéquie,République tchèque,2019-04-21,
+99117,,Slovaquie,État slovaque,1943-01-01,1945-04-01
+99117,,Slovaquie,République slovaque,1993-01-01,
+99118,99119,Bosnie-Herzégovine,Bosnie-Herzégovine,1943-01-01,1945-10-29
+99118,,Bosnie-Herzégovine,République de Bosnie-Herzégovine,1992-03-01,1995-12-14
+99118,,Bosnie-Herzégovine,Bosnie-Herzégovine,1995-12-14,
+99119,,Croatie,État indépendant croate,1943-01-01,1945-10-29
+99119,,Croatie,République de Croatie,1991-06-25,
+99120,99121,Monténégro,Gouvernorat du Monténégro,1943-01-01,1945-10-29
+99120,,Monténégro,Monténégro,2006-06-08,
+99121,,Serbie,Serbie,1943-01-01,1945-11-29
+99121,,Yougoslavie,République fédérative socialiste de Yougoslavie,1945-11-29,1992-04-27
+99121,,Yougoslavie,République fédérative de Yougoslavie,1992-04-27,2003-02-04
+99121,,Serbie-et-Monténégro,Communauté d’États de Serbie-et-Monténégro,2003-02-04,2006-06-08
+99121,,Serbie,République de Serbie,2006-06-08,
+99122,,Pologne,République de Pologne,1943-01-01,1952-07-22
+99122,,Pologne,République populaire de Pologne,1952-07-22,1989-12-31
+99122,,Pologne,République de Pologne,1989-12-31,
+99123,,URSS,Union des républiques socialistes soviétiques,1943-01-01,1991-12-25
+99123,,Russie,Fédération de Russie,1991-12-25,
+99124,99208,Turquie d’Europe,Turquie d’Europe,1943-01-01,1966-01-01
+99125,,Albanie,Royaume albanais,1943-01-01,1944-11-28
+99125,,Albanie,Gouvernement démocratique d’Albanie,1944-11-28,1946-01-10
+99125,,Albanie,République populaire d’Albanie,1946-01-10,1976-12-28
+99125,,Albanie,République populaire socialiste d’Albanie,1976-12-28,1991-04-29
+99125,,Albanie,République d’Albanie,1991-04-29,
+99126,,Grèce,Royaume de Grèce,1943-01-01,1974-12-08
+99126,,Grèce,République hellénique,1974-12-08,
+99127,,Italie,Royaume d’Italie,1943-01-01,1946-06-02
+99127,,Italie,République italienne,1946-06-02,
+99128,,Saint-Marin,République de Saint-Marin,1943-01-01,
+99129,,Vatican,État de la Cité du Vatican,1943-01-01,2019-04-21
+99129,,Vatican,Saint-Siège ou Vatican,2019-04-21,
+99130,,Andorre,Principauté d’Andorre,1943-01-01,
+99131,,Belgique,Royaume de Belgique,1943-01-01,
+99132,,Royaume-Uni,Royaume-Uni de Grande-Bretagne et d’Irlande du Nord,1943-01-01,
+99133,99132,Territoires britanniques en Méditerranée,"Gibraltar ; Malte, Gozo ; Chypre",1943-01-01,1960-10-01
+99133,99132,Territoires britanniques en Méditerranée,"Gibraltar ; Malte, Gozo ; Akrotiri ; Dhekelia",1960-10-01,1964-09-21
+99133,99132,Territoires britanniques en Méditerranée,"Gibraltar, Akrotiri, Dhekelia",1964-09-21,
+99134,,Espagne,État espagnol,1943-01-01,1975-11-22
+99134,,Espagne,Royaume d’Espagne,1975-11-22,
+99135,,Pays-Bas,Royaume des Pays-Bas,1943-01-01,
+99136,,Irlande,Irlande,1943-01-01,
+99137,,Luxembourg,Grand-Duché du Luxembourg,1943-01-01,
+99138,,Monaco,Principauté de Monaco,1943-01-01,
+99139,,Portugal,République portugaise,1943-01-01,
+99140,,Suisse,Confédération suisse,1943-01-01,
+99141,,Allemagne de l’Est,République démocratique allemande,1949-05-23,1990-10-03
+99142,,Allemagne de l’Ouest,République fédérale d’Allemagne,1949-05-23,1990-10-03
+99143,,Chypre,République de Chypre,1960-10-01,1994-01-01
+99144,,Malte,État de Malte,1964-09-21,1974-12-13
+99144,,Malte,République de Malte,1974-12-13,
+99145,,Slovénie,République de Slovénie,1991-06-25,
+99148,,Biélorussie,République de Biélorussie,1991-08-25,
+99151,,Moldavie,République de Moldavie,1991-08-27,
+99155,,Ukraine,Ukraine,1991-08-24,
+99156,,Macédoine,Ancienne république yougoslave de Macédoine,1991-09-08,2019-02-12
+99156,,Macédoine du Nord,République de Macédoine du Nord,2019-02-12,
+99157,,Kosovo,République du Kosovo,2007-02-08,
+99158,99101,Féroé,Îles Féroé,1943-01-01,
+99159,99103,Territoires norvégiens en Atlantique Nord,"Île Jan-Mayen, Svalbard",1943-01-01,
+99160,99105,Åland,Îles Åland,1943-01-01,
+99161,99132,Dépendances de la Couronne britannique,"Île de Man, Jersey, Guernesey",1943-01-01,
+99201,,Arabie saoudite,Royaume d’Arabie saoudite,1943-01-01,
+99202,,Yémen,Royaume mutawakkilite du Yémen,1943-01-01,1962-09-27
+99202,,Yémen du Nord,République arabe du Yémen,1962-09-27,1990-01-01
+99203,,Irak,Royaume d’Irak,1943-01-01,1958-07-14
+99203,,Irak,République d’Irak,1958-07-14,
+99204,,Iran,État impérial d’Iran,1943-01-01,1979-04-01
+99204,,Iran,République islamique d’Iran,1979-04-01,
+99205,99100,Liban,Liban,1943-01-01,1943-11-22
+99205,,Liban,République libanaise,1943-11-22,
+99206,99100,Syrie,Syrie,1943-01-01,1946-04-17
+99206,,Syrie,République syrienne,1946-04-17,1958-02-22
+99206,,Syrie,République arabe syrienne,1961-09-28,
+99207,99132,Palestine,Palestine mandataire,1943-01-01,1948-05-14
+99207,,Israël,État d’Israël,1948-05-14,
+99208,,Turquie,République de Turquie,1943-01-01,
+99209,99123,Sibérie,Sibérie,1943-01-01,1943-01-01
+99210,99123,Turkestan russe,Turkestan russe,1943-01-01,1943-01-01
+99211,99123,Kamtchatcka,Kamtchatcka,1943-01-01,1943-01-01
+99212,,Afghanistan,Royaume d’Afghanistan,1943-01-01,1973-01-01
+99212,,Afghanistan,République d’Afghanistan,1973-01-01,1978-01-01
+99212,,Afghanistan,République démocratique d’Afghanistan,1978-01-01,1987-01-01
+99212,,Afghanistan,République d’Afghanistan,1987-01-01,1992-01-01
+99212,,Afghanistan,État islamique d’Afghanistan,1992-01-01,2002-01-01
+99212,,Afghanistan,État transitoire islamique d’Afghanistan,2002-01-01,2004-01-01
+99212,,Afghanistan,République islamique d’Afghanistan,2004-01-01,
+99213,99132,Bélouchistan,Bélouchistan,1943-01-01,1947-08-14
+99213,,Pakistan,Dominion du Pakistan,1947-08-14,1956-03-23
+99213,,Pakistan,République islamique du Pakistan,1956-03-23,
+99214,,Bhoutan,Royaume du Bhoutan,1949-08-08,
+99215,,Népal,Royaume du Népal,1943-01-01,2008-05-28
+99215,,Népal,République démocratique fédérale du Népal,2008-05-28,2020-12-14
+99215,,Népal,Népal,2020-12-14,
+99216,,Chine,République de Chine,1943-01-01,1949-10-01
+99216,,Chine,République populaire de Chine,1949-10-01,
+99217,,Japon,Japon,1943-01-01,
+99218,99217,Mandchoukouo,Mandchoukouo,1943-01-01,1945-08-18
+99219,,Thaïlande,Royaume de Thaïlande,1943-01-01,
+99220,99404,Îles Philippines et Guam,Îles Philippines et Guam,1943-01-01,1946-07-04
+99220,,Philippines,République des Philippines,1946-07-04,
+99221,99132,Territoires britanniques au Proche-Orient,"Aden, Périm, Socotra, Koweït, Hadramaout, Bahreïn, Qatar, Mascate et Oman, États de la Trêve",1943-01-01,1961-06-19
+99221,99132,Territoires britanniques au Proche-Orient,"Aden, Périm, Socotra, Hadramaout, Bahreïn, Qatar, Mascate et Oman, États de la Trêve",1961-06-19,1962-04-04
+99221,99132,Territoires britanniques au Proche-Orient,"Périm, Bahreïn, Qatar, Mascate et Oman, États de la Trêve",1962-04-04,1967-11-30
+99221,99132,Territoires britanniques au Proche-Orient,"Bahreïn, Qatar, Mascate et Oman, États de la Trêve",1967-11-30,1970-08-09
+99221,99132,Territoires britanniques au Proche-Orient,"Bahreïn, Qatar, États de la Trêve",1970-08-09,1971-08-14
+99221,99132,Territoires britanniques au Proche-Orient,"Qatar, États de la Trêve",1971-08-14,1971-09-03
+99221,99132,Territoires britanniques au Proche-Orient,États de la Trêve,1971-09-03,1971-12-02
+99222,99132,Transjordanie,Transjordanie,1943-01-01,1946-01-01
+99222,,Jordanie,Royaume hachémite de Jordanie,1946-01-01,
+99223,99132,Indes britanniques,"Inde, Ceylan, Balouchistan britannique",1943-01-01,1947-08-14
+99223,,Inde,Dominion de l’Inde,1947-08-14,1950-01-26
+99223,,Inde,République de l’Inde,1950-01-26,
+99224,99132,Birmanie,Birmanie,1943-01-01,1948-01-04
+99224,,Birmanie,Union de Birmanie,1948-01-04,1974-01-04
+99224,,Birmanie,République socialiste de l’Union de Birmanie,1974-01-04,1988-09-23
+99224,,Birmanie,Union de Birmanie,1988-09-23,2010-10-21
+99224,,Birmanie,République de l’Union de Birmanie,2010-10-21,
+99225,99132,Bornéo britannique,"Brunei, Bornéo du Nord, Sarawak, Labuan",1943-01-01,1946-07-15
+99225,99132,Bornéo britannique,"Brunei, Bornéo du Nord, Sarawak",1946-07-15,1963-09-16
+99225,99132,Brunei,Brunei,1963-09-16,1984-01-01
+99225,,Brunei,Negara Brunei Darussalam,1984-01-01,2019-04-21
+99225,,Brunei,Brunei Darussalam,2019-04-21,
+99226,99132,Établissements des détroits,"Singapour, Penang, Malacca, Wellesley",1943-01-01,1946-04-01
+99226,99132,Singapour,Singapour,1946-04-01,1959-01-01
+99226,99132,Singapour,État autonome de Singapour,1959-01-01,1963-09-16
+99226,,Singapour,République de Singapour,1965-08-09,
+99227,99132,États malais fédérés,"Perak, Selangor, Negri Sembilan, Pahang",1943-01-01,1946-04-01
+99227,99132,Malaisie,Union malaise,1946-04-01,1948-01-31
+99227,99132,Malaisie,Fédération de Malaisie,1948-01-31,1957-08-31
+99227,,Malaisie,Fédération de Malaisie,1957-08-31,1963-09-16
+99227,,Malaisie,Malaisie,1963-09-16,
+99228,99132,États malais non fédérés,"Johore, Kédah, Kélankan, Perles, Terenggannu",1943-01-01,1946-04-01
+99229,99132,Îles britanniques de l’Océan Indien,"Îles Maldives, îles Laquedives, îles Cocos, île Christmas",1943-01-01,1947-08-14
+99229,99132,Îles britanniques de l’Océan Indien,"Îles Maldives, îles Cocos, île Christmas",1947-08-14,1955-11-23
+99229,99132,Îles britanniques de l’Océan Indien,"Îles Maldives, île Christmas",1955-11-23,1958-10-01
+99229,99132,Maldives,Îles Maldives,1958-10-01,1965-07-26
+99229,,Maldives,République des Maldives,1965-07-26,
+99230,99132,Hong Kong,Hong Kong,1943-01-01,1997-07-01
+99230,99216,Hong Kong,Hong Kong,1997-07-01,
+99231,99135,Indes néerlandaises,"Java, Sumatra, Bornéo (partie néerlandaise), Célèbes, Moluques, Nouvelle-Guinée (partie néerlandaise), Timor (partie néerlandaise), îles de la Sonde",1943-01-01,1945-01-01
+99231,,Indonésie,République d’Indonésie,1945-01-01,
+99232,99139,Territoires portugais en Asie,"Goa, Macao, Timor portugais",1943-01-01,1961-12-19
+99232,99139,Territoires portugais en Asie,"Macao, Timor portugais",1961-12-19,1975-01-01
+99232,99139,Macao,Macao,1975-01-01,1999-12-20
+99232,99216,Macao,Macao,1999-12-20,
+99233,99132,Fédération d’Arabie du Sud,Fédération d’Arabie du Sud,1962-04-04,1967-11-30
+99233,,Yémen du Sud,République démocratique populaire du Yémen,1967-11-30,1990-01-01
+99234,,Cambodge,Royaume du Cambodge,1953-11-09,
+99235,99132,Ceylan,Ceylan,1943-01-01,1948-02-04
+99235,,Ceylan,Dominion de Ceylan,1948-02-04,1975-01-01
+99235,,Sri Lanka,République démocratique socialiste du Sri Lanka,1975-01-01,
+99236,,Chine nationaliste (Formose),Chine nationaliste,1949-10-01,1985-01-01
+99236,,Taïwan,Taïwan,1985-01-01,
+99237,,Corée,Corée,1945-08-18,1953-01-01
+99238,,Corée du Nord,République populaire démocratique de Corée,1953-01-01,
+99239,,Corée du Sud,République de Corée,1953-01-01,
+99240,,Koweït,État du Koweït,1961-06-19,
+99241,,Laos,Royaume du Laos,1953-10-22,1975-12-02
+99241,,Laos,République démocratique populaire lao,1975-12-02,
+99242,,Mongolie,République populaire de Mongolie,1945-10-20,1992-02-12
+99242,,Mongolie,Mongolie,1992-02-12,
+99243,,Vietnam,République socialiste du Vietnam,1976-07-02,
+99244,,Vietnam du Nord,République démocratique du Vietnam,1954-07-20,1976-07-02
+99245,,Vietnam du Sud,République du Vietnam,1954-07-20,1976-07-02
+99246,,Bangladesh,République populaire du Bangladesh,1971-03-16,
+99247,,Émirats arabes unis,Émirats arabes unis,1971-12-02,
+99248,,Qatar,État du Qatar,1971-09-03,
+99249,,Bahreïn,État de Bahreïn,1971-08-14,2002-02-14
+99249,,Bahreïn,Royaume de Bahreïn,2002-02-14,
+99250,,Oman,Sultanat d’Oman,1970-08-09,
+99251,,Yémen,République du Yémen,1990-01-01,
+99252,,Arménie,République d’Arménie,1991-09-21,
+99253,,Azerbaïdjan,République d’Azerbaïdjan,1991-08-30,
+99254,,Chypre,République de Chypre,1994-01-01,
+99255,,Géorgie,État de Géorgie,1991-04-09,1995-10-17
+99255,,Géorgie,Géorgie,1995-10-17,
+99256,,Kazakhstan,République du Kazakhstan,1991-12-16,
+99257,,Kirghizstan,République kirghize,1991-08-31,
+99258,,Ouzbékistan,République d’Ouzbékistan,1991-08-31,
+99259,,Tadjikistan,République du Tadjikistan,1991-09-09,
+99260,,Turkménistan,Turkménistan,1991-10-27,
+99261,,Palestine,Palestine,1948-05-14,1988-11-15
+99261,,Palestine,État de Palestine,1988-11-15,
+99262,,Timor oriental,République démocratique du Timor oriental,2002-05-20,
+99263,99132,Protectorat d’Arabie du Sud,"Hadramaout, Socotra",1962-04-04,1967-11-30
+99264,99135,Nouvelle-Guinée néerlandaise,Nouvelle-Guinée néerlandaise,1962-01-01,1963-05-01
+99265,99501,Territoires australiens de l’océan Indien,"Îles Ashmore-et-Cartier, territoire antarctique australien",1943-01-01,1947-01-01
+99265,99501,Territoires australiens de l’océan Indien,"Îles Ashmore-et-Cartier, territoire antarctique australien, îles Heard-et-MacDonald",1947-01-01,1955-11-23
+99265,99501,Territoires australiens de l’océan Indien,"Îles Ashmore-et-Cartier, territoire antarctique australien, îles Heard-et-MacDonald, îles Cocos",1955-11-23,1958-10-01
+99265,99501,Territoires australiens de l’océan Indien,"Îles Ashmore-et-Cartier, territoire antarctique australien, îles Heard-et-MacDonald, îles Cocos, île Christmas",1958-10-01,
+99301,,Égypte,Royaume d’Égypte,1943-01-01,1953-06-18
+99301,,Égypte,République d’Égypte,1953-06-18,1958-02-22
+99301,,République arabe unie,République arabe unie,1958-02-22,1971-09-02
+99301,,Égypte,République arabe d’Égypte,1971-09-02,
+99302,,Libéria,République du Libéria,1943-01-01,
+99303,,Union sud-africaine,Union sud-africaine,1943-01-01,1966-01-01
+99303,,Afrique du Sud,République d’Afrique du Sud,1966-01-01,
+99304,99132,Territoires britanniques en Afrique occidentale,"Gambie, Sierra Leone, Côte de l’Or, Nigéria",1943-01-01,1957-03-06
+99304,99132,Territoires britanniques en Afrique occidentale,"Gambie, Sierra Leone, Nigéria",1957-03-06,1960-10-01
+99304,99132,Territoires britanniques en Afrique occidentale,"Gambie, Sierra Leone",1960-10-01,1961-04-27
+99304,99132,Gambie,Gambie,1961-04-27,1965-02-18
+99304,,Gambie,République de Gambie,1965-02-18,
+99305,99132,Cameroun et Togo britanniques,Cameroun et Togoland britanniques,1943-01-01,1957-03-06
+99305,99132,Cameroun britannique,Cameroun britannique,1957-03-06,1961-10-01
+99306,99132,Territoires britanniques de l’océan Atlantique,"Îles Sainte-Hélène, Ascension, Tristan-da-Cunha",1943-01-01,
+99307,99132,"Soudan anglo-égyptien, Kenya, Ouganda","Soudan anglo-égyptien, Kenya, Ouganda",1943-01-01,1956-01-01
+99307,99132,"Kenya, Ouganda","Kenya, Ouganda",1956-01-01,1962-10-09
+99307,99132,Kenya,Kenya,1962-10-09,1963-12-12
+99308,99132,Territoires britanniques de l’océan Indien,"Somalie britannique (Somaliland) ; Zanzibar ; île Maurice ; îles Seychelles, Amirantes ; îles Chagos",1943-01-01,1960-07-01
+99308,99132,Territoires britanniques de l’océan Indien,"Zanzibar ; île Maurice ; îles Seychelles, Amirantes ; îles Chagos",1960-07-01,1963-12-10
+99308,99132,Territoires britanniques de l’océan Indien,"Île Maurice ; îles Seychelles, Amirantes ; îles Chagos",1963-12-10,1968-03-12
+99308,99132,Territoires britanniques de l’océan Indien,"Îles Seychelles, Amirantes ; îles Chagos",1968-03-12,1976-06-29
+99308,99132,Chagos,Îles Chagos,1976-06-29,
+99309,99132,Tanganyika,Tanganyika,1943-01-01,1961-12-09
+99309,,Tanganyika,Royaume du Tanganyika,1961-12-09,1962-12-09
+99309,,Tanganyika,République du Tanganyika,1962-12-09,1964-04-26
+99309,,Tanzanie,République unie de Tanzanie,1964-04-26,
+99310,99132,Territoires britanniques en Afrique australe,"Rhodésie du Nord, Rhodésie du Sud, Nyassaland, Bechuanaland, Basutoland, Swaziland",1943-01-01,1964-07-06
+99310,99132,Territoires britanniques en Afrique australe,"Rhodésie du Nord, Rhodésie du Sud, Bechuanaland, Basutoland, Swaziland",1964-07-06,1964-10-24
+99310,99132,Territoires britanniques en Afrique australe,"Rhodésie du Sud, Bechuanaland, Basutoland, Swaziland",1964-10-24,1966-09-30
+99310,99132,Territoires britanniques en Afrique australe,"Rhodésie du Sud, Basutoland, Swaziland",1966-09-30,1966-10-04
+99310,99132,Territoires britanniques en Afrique australe,"Rhodésie du Sud, Swaziland",1966-10-04,1968-09-06
+99310,99132,Rhodésie du Sud,Rhodésie du Sud,1968-09-06,1980-04-17
+99310,,Zimbabwe,République du Zimbabwe,1980-04-17,
+99311,99303,Sud-Ouest africain,Sud-Ouest africain,1943-01-01,1968-06-12
+99311,99303,Namibie,Namibie,1968-06-12,1990-03-21
+99311,,Namibie,République de Namibie,1990-03-21,
+99312,99131,Congo belge,"Congo, Ruanda-Urundi",1943-01-01,1960-06-30
+99312,,République du Congo,République du Congo,1960-06-30,1965-01-01
+99312,,République démocratique du Congo,République démocratique du Congo,1965-01-01,1971-01-01
+99312,,Zaïre,République du Zaïre,1971-01-01,1997-01-01
+99312,,République démocratique du Congo,République démocratique du Congo,1997-01-01,
+99313,99134,Territoires espagnols en Afrique du Nord,"Maroc espagnol, Ifni, Seguia el-Hamra, Rio de Oro, Ceuta, Melilla, Présides",1943-01-01,1956-03-02
+99313,99134,Territoires espagnols en Afrique du Nord,"Cap Juby, Ifni, Seguia el-Hamra, Rio de Oro, Ceuta, Melilla, Présides",1956-03-02,1958-01-12
+99313,99134,Territoires espagnols en Afrique du Nord,"Ifni, Sahara espagnol, Ceuta, Melilla, Présides",1958-01-12,1968-10-12
+99313,99134,Territoires espagnols en Afrique du Nord,"Ifni, Sahara espagnol, Ceuta, Melilla, Présides, îles Canaries",1968-10-12,1969-06-30
+99313,99134,Territoires espagnols en Afrique du Nord,"Sahara espagnol, Ceuta, Melilla, Présides, îles Canaries",1969-06-30,1976-01-01
+99313,99134,Territoires espagnols en Afrique du Nord,"Ceuta, Melilla, Présides, îles Canaries",1976-01-01,
+99314,99134,Guinée espagnole et îles Canaries,Guinée espagnole et îles Canaries,1943-01-01,1968-10-12
+99314,,Guinée équatoriale,République de Guinée équatoriale,1968-10-12,
+99315,,Éthiopie,Empire éthiopien,1943-01-01,1975-03-21
+99315,,Éthiopie,Gouvernement militaire provisoire de l’Éthiopie socialiste,1975-03-21,1987-09-10
+99315,,Éthiopie,République démocratique populaire d’Éthiopie,1987-09-10,1991-05-28
+99315,,Éthiopie,République d’Éthiopie,1991-05-28,1995-08-22
+99315,,Éthiopie,République démocratique fédérale d’Éthiopie,1995-08-22,
+99316,99127,Libye,Libye (Cyrénaïque),1943-01-01,1951-12-24
+99316,,Libye,Royaume de Libye,1951-12-24,1969-12-01
+99316,,Libye,République arabe libyenne,1969-12-01,1977-03-02
+99316,,Libye,Jamahiriya arabe libyenne populaire et socialiste,1977-03-02,2011-10-23
+99316,,Libye,État de Libye,2011-10-23,
+99317,,Érythrée,Érythrée,1943-01-01,1962-01-01
+99317,,Érythrée,État d’Érythrée,1993-05-24,
+99318,99127,Somalie italienne,Somalie italienne,1943-01-01,1960-07-01
+99318,,Somalie,République somalie,1960-07-01,1969-10-21
+99318,,Somalie,République démocratique somalie,1969-10-21,1991-07-21
+99318,,Somalie,Somalie,1991-07-21,2012-08-20
+99318,,Somalie,République fédérale de Somalie,2012-08-20,
+99319,99139,Territoires portugais de l’océan Atlantique,"Açores ; Angola, Cabinda ; îles du Cap Vert ; Madère ; Guinée portugaise ; Sao Tomé, Principe",1943-01-01,1974-09-10
+99319,99139,Territoires portugais de l’océan Atlantique,"Açores ; Angola, Cabinda ; îles du Cap Vert ; Madère ; Sao Tomé, Principe",1974-09-10,1975-07-05
+99319,99139,Territoires portugais de l’océan Atlantique,"Açores ; Angola, Cabinda ; Madère ; Sao Tomé, Principe",1975-07-05,1975-07-12
+99319,99139,Territoires portugais de l’océan Atlantique,"Açores ; Angola, Cabinda ; Madère",1975-07-12,1975-11-11
+99319,99139,Territoires portugais de l’océan Atlantique,"Açores, Madère",1975-11-11,
+99320,99139,Mozambique,Mozambique,1943-01-01,1975-06-25
+99321,99131,Ruanda-Urundi,Ruanda-Urundi,1960-06-30,1962-07-01
+99321,,Burundi,Royaume du Burundi,1962-07-01,1966-11-29
+99321,,Burundi,République du Burundi,1966-11-29,
+99322,,Cameroun,République du Cameroun,1961-10-01,
+99323,,Centrafrique,République centrafricaine,1960-08-13,1976-12-04
+99323,,Centrafrique,Empire centrafricain,1976-12-04,1979-09-21
+99323,,Centrafrique,République centrafricaine,1979-09-21,
+99324,,Congo,République du Congo,1960-08-15,1969-12-31
+99324,,Congo,République populaire du Congo,1969-12-31,1992-03-15
+99324,,Congo,République du Congo,1992-03-15,
+99325,,Tanger,Zone internationale de Tanger,1943-01-01,1956-10-29
+99326,,Côte d’Ivoire,République de Côte d’Ivoire,1960-08-07,
+99327,,Dahomey,République du Dahomey,1960-08-01,1975-11-30
+99327,,Bénin,République du Bénin,1975-11-30,
+99328,,Gabon,République gabonaise,1960-08-17,
+99329,,Ghana,République du Ghana,1957-03-06,
+99330,,Guinée,République de Guinée,1958-10-02,
+99331,,Haute-Volta,République de Haute-Volta,1960-08-05,1984-08-04
+99331,,Burkina,Burkina Faso,1984-08-04,
+99332,,Kenya,République du Kenya,1963-12-12,
+99333,,Madagascar,République de Madagascar,1960-06-26,
+99334,,Malawi,République du Malawi,1964-07-06,
+99335,,Fédération du Mali,Fédération du Mali,1960-06-22,1960-09-22
+99335,,Mali,République du Mali,1960-09-22,
+99336,,Mauritanie,République islamique de Mauritanie,1960-11-28,
+99337,,Niger,République du Niger,1960-08-03,
+99338,,Nigéria,République fédérale du Nigéria,1960-10-01,
+99339,,Ouganda,République d’Ouganda,1962-10-09,
+99340,,Rwanda,République du Rwanda,1962-07-01,
+99341,,Sénégal,République du Sénégal,1960-08-20,
+99342,,Sierra Leone,République de Sierra Leone,1961-04-27,
+99343,,Soudan,République du Soudan,1956-01-01,
+99344,,Tchad,République du Tchad,1960-08-11,
+99345,,Togo,République togolaise,1960-04-27,
+99346,,Zambie,République de Zambie,1964-10-24,
+99347,,Botswana,République du Botswana,1966-09-30,
+99348,,Lesotho,Royaume du Lesotho,1966-10-04,
+99349,,Soudan du Sud,République du Soudan du Sud,2011-07-09,
+99350,,Maroc,Royaume du Maroc,1956-03-02,
+99351,,Tunisie,République tunisienne,1956-03-20,
+99352,,Algérie,République algérienne démocratique et populaire,1962-07-05,
+99362,,Zanzibar,République populaire de Zanzibar,1963-12-10,1964-04-26
+99363,99103,Terres australes norvégiennes,"Île Bouvet, île Pierre-Ier, terre de la Reine-Maud",1943-01-01,
+99389,,Sahara occidental,Sahara occidental,1994-01-01,
+99390,,Maurice,République de Maurice,1968-03-12,
+99391,,Swaziland,Royaume du Swaziland,1968-09-06,
+99392,,Guinée-Bissao,République de Guinée-Bissao,1974-09-10,
+99393,,Mozambique,République du Mozambique,1975-06-25,
+99394,,Sao Tomé-et-Principe,République démocratique de Sao Tomé-et-Principe,1975-07-12,
+99395,,Angola,République populaire d’Angola,1975-11-11,1992-08-26
+99395,,Angola,République d’Angola,1992-08-26,
+99396,,Cap-Vert,République du Cap-Vert,1975-07-05,
+99397,,Comores,État comorien,1975-07-06,1978-10-05
+99397,,Comores,République fédérale islamique des Comores,1978-10-05,2001-12-23
+99397,,Comores,Union des Comores,2001-12-23,
+99398,,Seychelles,République des Seychelles,1976-06-29,
+99399,,Djibouti,République de Djibouti,1977-06-27,
+99401,,Canada,Canada,1943-01-01,
+99402,99132,Terre-Neuve,Terre-Neuve,1943-01-01,1949-03-31
+99403,99132,Labrador,Labrador,1943-01-01,1949-03-31
+99404,,États-Unis,États-Unis d’Amérique,1943-01-01,
+99405,,Mexique,États-Unis du Mexique,1943-01-01,
+99406,,Costa Rica,République du Costa Rica,1943-01-01,
+99407,,Cuba,République de Cuba,1943-01-01,
+99408,,République dominicaine,République dominicaine,1943-01-01,
+99409,,Guatemala,République du Guatemala,1943-01-01,
+99410,,Haïti,République d’Haïti,1943-01-01,
+99411,,Honduras,République du Honduras,1943-01-01,
+99412,,Nicaragua,République du Nicaragua,1943-01-01,
+99413,,Panama,République du Panama,1943-01-01,
+99414,,Salvador,République du Salvador,1943-01-01,
+99415,,Argentine,République argentine,1943-01-01,
+99416,,Brésil,République fédérative du Brésil,1943-01-01,
+99417,,Chili,République du Chili,1943-01-01,
+99418,,Bolivie,République de Bolivie,1943-01-01,2010-01-22
+99418,,Bolivie,État plurinational de Bolivie,2010-01-22,
+99419,,Colombie,République de Colombie,1943-01-01,
+99420,,Équateur,République d’Équateur,1943-01-01,
+99421,,Paraguay,République du Paraguay,1943-01-01,
+99422,,Pérou,République du Pérou,1943-01-01,
+99423,,Uruguay,République orientale de l’Uruguay,1943-01-01,
+99424,,Vénézuéla,République bolivarienne du Vénézuéla,1943-01-01,
+99425,99132,Territoires britanniques dans les Antilles et Bermudes,Bahamas ; Barbade ; Fédération des Îles-sous-le-Vent ; Fédération des Îles-du-Vent ; îles Caïmans ; îles Turks-et-Caïcos,1943-01-01,1956-07-01
+99425,99132,Territoires britanniques dans les Antilles et Bermudes,Bahamas ; Barbade ; Territoire des Îles-sous-le-Vent ; Fédération des Îles-du-Vent ; îles Caïmans ; îles Turks-et-Caïcos ; îles Vierges britanniques,1956-07-01,1958-01-03
+99425,99132,Territoires britanniques dans les Antilles et Bermudes,Fédération des Indes occidentales,1958-01-03,1962-08-31
+99425,99132,Territoires britanniques dans les Antilles et Bermudes,"Antigua, Barbuda ; Bahamas, Turks-et-Caïcos ; Barbade ; Caïmans ; Grenade ; Dominique ; Montserrat ; St-Christophe-Niévès-Anguilla ; Ste-Lucie ; St-Vincent, Grenadines ; Vierges brit. ; Bermudes",1962-08-31,1966-11-30
+99425,99132,Territoires britanniques dans les Antilles et Bermudes,"Antigua, Barbuda ; Bahamas, Turks-et-Caïcos ; îles Caïmans ; Grenade ; Dominique ; Montserrat ; St-Christophe-Niévès-Anguilla ; Ste-Lucie ; St-Vincent, Grenadines ; îles Vierges brit. ; Bermudes",1966-11-30,1973-07-10
+99425,99132,Territoires britanniques dans les Antilles et Bermudes,"Antigua, Barbuda ; Turks-et-Caïcos ; îles Caïmans ; Grenade ; Dominique ; Montserrat ; St-Christophe-Niévès-Anguilla ; Ste-Lucie ; St-Vincent, Grenadines ; îles Vierges britanniques ; Bermudes",1973-07-10,1974-02-07
+99425,99132,Territoires britanniques dans les Antilles et Bermudes,"Antigua, Barbuda ; îles Turks-et-Caïcos ; îles Caïmans ; Dominique ; Montserrat ; Saint-Christophe-Niévès-Anguilla ; Sainte-Lucie ; Saint-Vincent, Grenadines ; îles Vierges britanniques ; Bermudes",1974-02-07,1978-11-03
+99425,99132,Territoires britanniques dans les Antilles et Bermudes,"Antigua, Barbuda ; îles Turks-et-Caïcos ; îles Caïmans ; Montserrat ; Saint-Christophe-Niévès-Anguilla ; Sainte-Lucie ; Saint-Vincent, îles Grenadines ; îles Vierges britanniques ; Bermudes",1978-11-03,1979-02-22
+99425,99132,Territoires britanniques dans les Antilles et Bermudes,"Antigua, Barbuda ; îles Turks-et-Caïcos ; îles Caïmans ; Montserrat ; Saint-Christophe-Niévès-Anguilla ; Saint-Vincent, îles Grenadines ; îles Vierges britanniques ; Bermudes",1979-02-22,1979-10-27
+99425,99132,Territoires britanniques dans les Antilles et Bermudes,"Antigua, Barbuda ; îles Turks-et-Caïcos ; îles Caïmans ; Montserrat ; Saint-Christophe-Niévès-Anguilla ; îles Vierges britanniques ; Bermudes",1979-10-27,1981-11-01
+99425,99132,Territoires britanniques dans les Antilles et Bermudes,"Îles Turks-et-Caïcos, îles Caïmans, Montserrat, Saint-Christophe-Niévès-Anguilla, îles Vierges britanniques, Bermudes",1981-11-01,1983-09-19
+99425,99132,Territoires britanniques dans les Antilles et Bermudes,"Îles Turks-et-Caïcos, îles Caïmans, Montserrat, Anguilla, îles Vierges britanniques, Bermudes",1983-09-19,
+99426,99132,"Jamaïque, Bermudes, Trinité-et-Tobago","Jamaïque, Bermudes, Trinité-et-Tobago",1943-01-01,1962-08-31
+99426,,Jamaïque,Jamaïque,1962-08-31,
+99427,99132,Territoires britanniques dans l’océan Atlantique Sud,"Îles Malouines, territoire antarctique britannique, Géorgie-du-Sud-et-les-îles-Sandwich-du-Sud",1943-01-01,
+99428,99132,Guyane britannique,Guyane britannique,1943-01-01,1966-01-01
+99428,,Guyana,République coopérative du Guyana,1966-01-01,
+99429,99132,Honduras britannique,Honduras britannique,1943-01-01,1981-01-01
+99429,,Bélize,Bélize,1981-01-01,
+99430,99101,Groenland,Groenland,1943-01-01,
+99431,99135,Territoires néerlandais en Amérique,"Îles Curaçao, Aruba, Bonaire, Saint-Martin (partie néerlandaise), Saint-Eustache, Saba ; Suriname",1943-01-01,1975-11-25
+99431,99135,Territoires néerlandais en Amérique,"Îles Curaçao, Aruba, Bonaire, Saint-Martin (partie néerlandaise), Saint-Eustache, Saba",1975-11-25,2010-10-10
+99431,99135,Aruba,Aruba,2010-10-10,
+99432,99404,Territoires des États-Unis en Amérique,"Alaska, zone du canal de Panama, Porto Rico, îles Vierges des États-Unis",1943-01-01,1959-01-03
+99432,99404,Territoires des États-Unis en Amérique,"Zone du canal de Panama, Porto Rico, îles Vierges des États-Unis",1959-01-03,1999-12-31
+99432,99404,Territoires des États-Unis en Amérique,"Porto Rico, îles Vierges des États-Unis",1999-12-31,
+99433,,Trinité-et-Tobago,République de Trinité-et-Tobago,1962-08-31,
+99434,,Barbade,Barbade,1966-11-30,
+99435,,Grenade,Grenade,1974-02-07,
+99436,,Bahamas,Commonwealth des Bahamas,1973-07-10,
+99437,,Suriname,République du Suriname,1975-11-25,
+99438,,Dominique,Commonwealth de Dominique,1978-11-03,
+99439,,Sainte-Lucie,Sainte-Lucie,1979-02-22,
+99440,,Saint-Vincent-et-les-Grenadines,Saint-Vincent-et-les-Grenadines,1979-10-27,
+99441,,Antigua-et-Barbuda,Antigua-et-Barbuda,1981-11-01,
+99442,,Saint-Christophe-et-Niévès,Fédération de Saint-Christophe-et-Niévès,1983-09-19,
+99443,99135,"Bonaire, Saint-Eustache, Saba","Bonaire, Saint-Eustache, Saba",2010-10-10,
+99444,99135,Curaçao,Curaçao,2010-10-10,
+99445,99135,Saint-Martin (partie néerlandaise),Saint-Martin (partie néerlandaise),2010-10-10,
+99446,99415,Antarctique argentin,Antarctique argentin,1943-01-01,
+99447,99417,Territoire chilien de l’Antarctique,Territoire chilien de l’Antarctique,1943-01-01,
+99501,,Australie,Commonwealth d’Australie,1943-01-01,
+99502,,Nouvelle-Zélande,Nouvelle-Zélande,1943-01-01,
+99503,99132,Territoires britanniques en Océanie,"Îles Phoenix, îles Gilbert, îles de la Ligne, Banaba ; îles Ellice ; îles Fidji, Rotuma ; îles Salomon ; Pitcairn ; îles Tonga ; Nouvelles-Hébrides (condominium franco-britannique)",1943-01-01,1970-06-04
+99503,99132,Territoires britanniques en Océanie,"Îles Phoenix, îles Gilbert, îles de la Ligne, Banaba ; îles Ellice ; îles Fidji, Rotuma ; îles Salomon ; Pitcairn ; Nouvelles-Hébrides (condominium franco-britannique)",1970-06-04,1970-10-10
+99503,99132,Territoires britanniques en Océanie,"Îles Phoenix, îles Gilbert, îles de la Ligne, Banaba ; îles Ellice ; îles Salomon ; Pitcairn ; Nouvelles-Hébrides (condominium franco-britannique)",1970-10-10,1978-07-07
+99503,99132,Territoires britanniques en Océanie,"Îles Phoenix, îles Gilbert, îles de la Ligne, Banaba ; îles Ellice ; Pitcairn ; Nouvelles-Hébrides (condominium franco-britannique)",1978-07-07,1978-10-01
+99503,99132,Territoires britanniques en Océanie,"Îles Phoenix, îles Gilbert, îles de la Ligne, Banaba ; Pitcairn ; Nouvelles-Hébrides (condominium franco-britannique)",1978-10-01,1979-07-12
+99503,99132,Territoires britanniques en Océanie,"Pitcairn, Nouvelles-Hébrides (condominium franco-britannique)",1979-07-12,1980-07-30
+99503,99132,Pitcairn,Pitcairn,1980-07-30,
+99504,99404,Îles Hawaï,Îles Hawaï,1943-01-01,1959-08-21
+99505,99404,Territoires des États-Unis en Océanie,"Îles Marshall, Mariannes du Nord, Carolines, Phoenix (partie américaine), Palaos, Samoa de l’Est, îles de la Ligne (partie américaine), îles mineures éloignées des États-Unis",1943-01-01,1946-07-04
+99505,99404,Territoires des États-Unis en Océanie,"Îles Marshall, Mariannes du Nord, Carolines, Phoenix (partie américaine), Palaos, Samoa de l’Est, îles de la Ligne (partie américaine), îles mineures éloignées des États-Unis, Guam",1946-07-04,1979-07-12
+99505,99404,Territoires des États-Unis en Océanie,"Îles Marshall, îles Mariannes du Nord, îles Carolines, îles Palaos, îles Samoa de l’Est, îles mineures éloignées des États-Unis, Guam",1979-07-12,1990-12-22
+99505,99404,Territoires des États-Unis en Océanie,"Îles Mariannes du Nord, îles Palaos, Guam, îles Samoa américaines, îles mineures éloignées des États-Unis",1990-12-22,1994-10-01
+99505,99404,Territoires des États-Unis en Océanie,"Îles Mariannes du Nord, Guam, îles Samoa américaines, îles mineures éloignées des États-Unis",1994-10-01,
+99506,99135,Nouvelle-Guinée néerlandaise,Nouvelle-Guinée néerlandaise,1943-01-01,1962-01-01
+99506,,Samoa occidentales,État indépendant des Samoa occidentales,1962-01-01,1997-07-04
+99506,,Samoa,État indépendant des Samoa,1997-07-04,
+99507,,Nauru,République de Nauru,1968-01-31,
+99508,,Fidji,République des îles Fidji,1970-10-10,2019-04-21
+99508,,Fidji,République des Fidji,2019-04-21,
+99509,,Tonga,Royaume des Tonga,1970-06-04,
+99510,,Papouasie-Nouvelle-Guinée,Papouasie-Nouvelle-Guinée,1975-09-16,2019-04-21
+99510,,Papouasie-Nouvelle-Guinée,État indépendant de Papouasie-Nouvelle-Guinée,2019-04-21,
+99511,,Tuvalu,Tuvalu,1978-10-01,
+99512,,Salomon,Îles Salomon,1978-07-07,
+99513,,Kiribati,République des Kiribati,1979-07-12,
+99514,,Vanuatu,République du Vanuatu,1980-07-30,
+99515,,Marshall,République des îles Marshall,1990-12-22,
+99516,,Micronésie,États fédérés de Micronésie,1990-12-22,
+99517,,Palaos,République des Palaos,1994-10-01,
+99519,99502,Territoires de la Nouvelle-Zélande,"Îles Cook, Niue, îles de l’Union, dépendance de Ross",1943-01-01,1946-01-01
+99519,99502,Territoires de la Nouvelle-Zélande,"Îles Cook, Niue, îles Tokelau, dépendance de Ross",1946-01-01,1965-08-04
+99519,99502,Territoires de la Nouvelle-Zélande,"Niue, îles Tokelau, dépendance de Ross",1965-08-04,1974-10-19
+99519,99502,Territoires de la Nouvelle-Zélande,"Îles Tokelau, dépendance de Ross",1974-10-19,1977-01-01
+99519,99502,Territoires de la Nouvelle-Zélande,"Tokelau, dépendance de Ross",1977-01-01,
+99520,99502,Cook,Îles Cook,1965-08-04,
+99521,99502,Niue,Niue,1974-10-19,
+99522,99501,Territoires de l’Australie en Océanie,"Papouasie, Nouvelle-Guinée, île Norfolk",1943-01-01,1949-07-01
+99522,99501,Territoires de l’Australie en Océanie,"Papouasie-Nouvelle-Guinée, île Norfolk",1949-07-01,1969-09-30
+99522,99501,Territoires de l’Australie en Océanie,"Papouasie-Nouvelle-Guinée, île Norfolk, îles de la mer de Corail",1969-09-30,1975-09-16
+99522,99501,Territoires de l’Australie en Océanie,"Île Norfolk, îles de la mer de Corail",1975-09-16,
+99699,,Antarctique,Antarctique,1943-01-01,
