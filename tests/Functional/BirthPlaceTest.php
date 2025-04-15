@@ -58,13 +58,14 @@ class BirthPlaceTest extends ApiTestCase
             self::assertArrayHasKey('code', $place);
             self::assertArrayHasKey('type', $place);
 
-            // Ensure the label contains the search query (case-insensitive)
-            self::assertStringContainsStringIgnoringCase(
-                $searchQuery,
-                $place['label'],
-                "Each result should contain '$searchQuery' in the label"
-            );
-
+            if( $place['label'] !== 'INCONNU') {
+                // Ensure the label contains the search query (case-insensitive)
+                self::assertStringContainsStringIgnoringCase(
+                    $searchQuery,
+                    $place['label'],
+                    "Each result should contain '$searchQuery' in the label"
+                );
+            }
             if ('city' === $place['type']) {
                 $cityFound = true;
             } elseif ('country' === $place['type']) {
@@ -96,7 +97,7 @@ class BirthPlaceTest extends ApiTestCase
         self::assertArrayHasKey('hydra:member', $response);
         self::assertArrayHasKey('hydra:view', $response);
 
-        self::assertSame(5, $response['hydra:totalItems']);
+        self::assertSame(6, $response['hydra:totalItems']);
         self::assertCount(2, $response['hydra:member']);
     }
 

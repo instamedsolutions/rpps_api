@@ -64,6 +64,10 @@ final readonly class BirthPlacesProvider implements ProviderInterface
             static fn ($a, $b) => strcmp($a->label, $b->label)
         );
 
+        $unknown = new BirthPlaceDTO('INCONNU', '99999', 'unknown');
+
+        $results[] = $unknown;
+
         return new DtoPaginator($results, $page, $limit);
     }
 }
