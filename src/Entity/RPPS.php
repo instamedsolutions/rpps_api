@@ -197,6 +197,9 @@ class RPPS extends BaseEntity implements ImportableEntityInterface
     #[ORM\Column(type: 'float', nullable: true)]
     protected ?float $latitude = null;
 
+    #[ORM\Column(type: 'text', nullable: true)]
+    protected ?string $originalAddress = null;
+
     #[ORM\Column(type: PointType::POINT, nullable: false)]
     private array $coordinates = [];
 
@@ -637,5 +640,15 @@ class RPPS extends BaseEntity implements ImportableEntityInterface
     public function setCoordinates(array $coordinates): void
     {
         $this->coordinates = $coordinates;
+    }
+
+    public function getOriginalAddress(): ?string
+    {
+        return $this->originalAddress;
+    }
+
+    public function setOriginalAddress(?string $originalAddress): void
+    {
+        $this->originalAddress = $originalAddress;
     }
 }

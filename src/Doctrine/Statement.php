@@ -13,6 +13,10 @@ class Statement extends BaseStatement
 
     public function bindValue($param, $value, $type = ParameterType::STRING)
     {
+        if (is_string($value) && str_starts_with($value, 'ST_GeomFromText')) {
+            $value = $this->connexion->fetchOne("SELECT $value;");
+        }
+
         if ($this->connexion && PointType::POINT === $type) {
             $lat = $value['latitude'] ?? 0;
             $lng = $value['longitude'] ?? 0;

@@ -211,6 +211,14 @@ class RPPSService extends ImporterService
         $rpps->setZipcode($data[35]);
         $rpps->setCity($data[37]);
 
+        $originalAddress = $data[28] . ' ' . $data[31] . ' ' . $data[32] . ' ' . $data[33] . ' ' . $data[35] . ' ' . $data[37];
+
+        if ($originalAddress !== $rpps->getOriginalAddress()) {
+            $rpps->setLatitude(null);
+            $rpps->setLongitude(null);
+        }
+        $rpps->setOriginalAddress($originalAddress);
+
         $cityEntity = $this->findCityEntity($data[35], $data[37]);
         if ($cityEntity) {
             $rpps->setCityEntity($cityEntity);
@@ -231,6 +239,9 @@ class RPPSService extends ImporterService
         $rpps->setImportId($this->getImportId());
 
         $this->entities[$rpps->getIdRpps()] = $rpps;
+
+        $this->em->persist($rpps);
+        $this->em->flush();
 
         return $rpps;
     }

@@ -39,7 +39,6 @@ services:
         resource: '../src/Controller/'
         tags: ['controller.service_arguments']
 
-
     App\Service\FileProcessor:
         arguments:
             $projectDir: '%kernel.project_dir%'
