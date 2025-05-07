@@ -50,11 +50,6 @@ class PointType extends Type
         $lon = (float) ($value['longitude'] ?? 0);
         $lat = (float) ($value['latitude'] ?? 0);
 
-        if (0 == $lon && 0 == $lat) {
-            $lon = 0;
-            $lat = 0;
-        }
-
         if ('sqlite' === $platform->getName()) {
             // Just store "POINT(lon lat)" as TEXT
             return sprintf('POINT(%F %F)', $lon, $lat);

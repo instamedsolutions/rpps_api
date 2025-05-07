@@ -70,7 +70,7 @@ class PointWrapper extends Connection
                 $stmt = $this->prepare($sql);
 
                 if ($types) {
-                    $this->_bindTypedValues($stmt, $params, $types);
+                    $this->bindTypedValues($stmt, $params, $types);
                     $stmt->execute();
                 } else {
                     $stmt->execute($params);
@@ -108,8 +108,10 @@ class PointWrapper extends Connection
      * @param array<int, int|string|Type|null>|array<string, int|string|Type|null> $types  Parameter types
      *
      * @return void
+     *
+     * This is based on bindTypedValues
      */
-    private function _bindTypedValues($stmt, array $params, array $types)
+    private function bindTypedValues($stmt, array $params, array $types)
     {
         // Check whether parameters are positional or named. Mixing is not allowed, just like in PDO.
         if (is_int(key($params))) {
