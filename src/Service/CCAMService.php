@@ -105,6 +105,12 @@ class CCAMService extends FileParserService
             $this->currentCCAM->setModifiers($this->parseModifier($data));
         }
 
+        if ($this->isAnesthetistData($data)) {
+            $anesthesistRates = $this->parseAnesthetistRates($data);
+            $this->currentCCAM->setAnesthetistRate1($anesthesistRates[0]);
+            $this->currentCCAM->setAnesthetistRate2($anesthesistRates[1]);
+        }
+
         if ($this->currentCCAM) {
             $this->currentCCAM->addDescriptionLine($data[2]);
             $this->currentCCAM->setGroup($this->currentGroup);
@@ -115,6 +121,19 @@ class CCAMService extends FileParserService
         }
 
         return $this->currentCCAM;
+    }
+
+    protected function isAnesthetistData(array $data): bool
+    {
+        return 'anesthésie' === $data[2];
+    }
+
+    protected function parseAnesthetistRates(array $data): array
+    {
+        return [
+            $this->parseRate($data[5]),
+            $this->parseRate($data[6]),
+        ];
     }
 
     protected function isModifier(array $data): bool
@@ -166,6 +185,8 @@ class CCAMService extends FileParserService
 
     protected function getFile(): string
     {
+        // Fetch the latest version here and transform it into a CSV manually
+        // https://www.ameli.fr/accueil-de-la-ccam/telechargement/version-actuelle/index.php
         return "$this->projectDir/data/ccam.csv";
     }
 }

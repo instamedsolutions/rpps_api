@@ -29,7 +29,7 @@ use Symfony\Component\Serializer\Annotation\MaxDepth;
     shortName: 'Ccam',
     operations: [
         new GetCollection(
-            order: ['name' => 'ASC'],
+            order: ['code' => 'ASC'],
         ),
         new Get(
             provider: DefaultItemDataProvider::class
@@ -104,6 +104,30 @@ class CCAM extends BaseEntity implements ImportableEntityInterface
     #[Groups(['read'])]
     #[ORM\Column(type: 'float', nullable: true)]
     protected ?float $rate2 = null;
+
+    #[ApiProperty(
+        description: 'The price rate for the anesthesists in secteur 1',
+        required: true,
+        openapiContext: [
+            'type' => 'number',
+            'example' => 33.56,
+        ]
+    )]
+    #[Groups(['read'])]
+    #[ORM\Column(type: 'float', nullable: true)]
+    protected ?float $anesthetistRate1 = null;
+
+    #[ApiProperty(
+        description: 'The price rate for anesthesists the secteur 2',
+        required: true,
+        openapiContext: [
+            'type' => 'number',
+            'example' => 33.56,
+        ]
+    )]
+    #[Groups(['read'])]
+    #[ORM\Column(type: 'float', nullable: true)]
+    protected ?float $anesthetistRate2 = null;
 
     #[ApiProperty(
         description: 'The group the CCAM is a part of',
@@ -210,6 +234,26 @@ class CCAM extends BaseEntity implements ImportableEntityInterface
     public function setRate2(?float $rate2): void
     {
         $this->rate2 = $rate2;
+    }
+
+    public function getAnesthetistRate1(): ?float
+    {
+        return $this->anesthetistRate1;
+    }
+
+    public function setAnesthetistRate1(?float $anesthetistRate1): void
+    {
+        $this->anesthetistRate1 = $anesthetistRate1;
+    }
+
+    public function getAnesthetistRate2(): ?float
+    {
+        return $this->anesthetistRate2;
+    }
+
+    public function setAnesthetistRate2(?float $anesthetistRate2): void
+    {
+        $this->anesthetistRate2 = $anesthetistRate2;
     }
 
     public function getGroup(): ?CCAMGroup
