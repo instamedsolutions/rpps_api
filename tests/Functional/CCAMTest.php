@@ -56,6 +56,37 @@ class CCAMTest extends ApiTestCase
      * @throws ServerExceptionInterface
      * @throws TransportExceptionInterface
      */
+    public function testFilterDataById() : void
+    {
+        $data = $this->get("ccams", ['id' => "AHQP001"]);
+
+        $this->assertResponseStatusCodeSame(Response::HTTP_OK);
+        $this->assertEquals(
+            "Électromyographie par électrode de surface, sans enregistrement vidéo",
+            $data['hydra:member'][0]['name']
+        );
+        $this->assertEquals("AHQP001", $data['hydra:member'][0]['code']);
+        $this->assertEquals("01.01", $data['hydra:member'][0]['group']['code']);
+        $this->assertEquals("Actes diagnostiques sur le système nerveux", $data['hydra:member'][0]['group']['name']);
+
+        $this->assertCount(1, $data['hydra:member']);
+
+
+        $data = $this->get("ccams", ['id' => [
+            "AHQP001","AHQB026"
+        ]]);
+
+        $this->assertResponseStatusCodeSame(Response::HTTP_OK);
+
+        $this->assertCount(2, $data['hydra:member']);
+    }
+
+    /**
+     * @throws ClientExceptionInterface
+     * @throws RedirectionExceptionInterface
+     * @throws ServerExceptionInterface
+     * @throws TransportExceptionInterface
+     */
     public function testGetData()
     {
         $data = $this->get("ccams/AHQB026");

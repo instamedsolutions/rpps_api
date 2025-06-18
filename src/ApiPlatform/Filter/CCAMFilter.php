@@ -5,6 +5,7 @@ namespace App\ApiPlatform\Filter;
 use ApiPlatform\Doctrine\Orm\Filter\AbstractFilter;
 use ApiPlatform\Doctrine\Orm\Util\QueryNameGeneratorInterface;
 use ApiPlatform\Metadata\Operation;
+use App\Entity\BaseEntity;
 use Doctrine\ORM\QueryBuilder;
 use Exception;
 
@@ -37,7 +38,13 @@ final class CCAMFilter extends AbstractFilter
             return;
         }
 
-        $this->addSearchFilter($queryBuilder, $value);
+        if ('search' === $property) {
+            $this->addSearchFilter($queryBuilder, $value);
+        }
+
+        if ('id' === $property) {
+            $this->addIdSearchFilter($queryBuilder, $value);
+        }
     }
 
     /**
@@ -58,6 +65,22 @@ final class CCAMFilter extends AbstractFilter
 
         $queryBuilder->setParameter($full, "%$value%");
         $queryBuilder->setParameter($start, "$value%");
+
+        return $queryBuilder;
+    }
+
+    protected function addIdSearchFilter(QueryBuilder $queryBuilder, string|array|null $value): QueryBuilder
+    {
+        $alias = $queryBuilder->getRootAliases()[0];
+
+        if (is_array($value)) {
+            $value = array_map([BaseEntity::class, 'parseId'], $value);
+            $queryBuilder->andWhere("$alias.id IN (:ids) OR $alias.code IN (:ids)");
+            $queryBuilder->setParameter('ids', $value);
+        } else {
+            $queryBuilder->andWhere("$alias.id = :id or $alias.code = :id");
+            $queryBuilder->setParameter('id', BaseEntity::parseId($value));
+        }
 
         return $queryBuilder;
     }

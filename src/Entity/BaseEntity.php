@@ -50,5 +50,13 @@ abstract class BaseEntity implements Entity, Stringable
         $this->createdDate = $createdDate;
     }
 
+    #[ApiProperty(readable: false, writable: false)]
+    public static function parseId(string $id): string
+    {
+        $id = explode('/', $id);
+
+        return $id[count($id) - 1];
+    }
+
     abstract public function __toString(): string;
 }
