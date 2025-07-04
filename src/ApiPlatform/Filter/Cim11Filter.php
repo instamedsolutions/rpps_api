@@ -70,71 +70,70 @@ final class Cim11Filter extends AbstractFilter
     /**
      * @throws Exception
      */
-    protected function addSearchFilter(QueryBuilder $queryBuilder, ?string $value, array $languages = []): QueryBuilder
+    protected function addSearchFilter(QueryBuilder $qb, ?string $value, array $languages = []): QueryBuilder
     {
-        $alias = $queryBuilder->getRootAliases()[0];
-
-        $cleanValue = trim($value);
-
-        // Generate a unique parameter name to avoid collisions with other filters
-        $start = $this->queryNameGenerator->generateParameterName('search');
-        $full = $this->queryNameGenerator->generateParameterName('search');
-
-        $exact = $this->queryNameGenerator->generateParameterName('exact');
-
-        $defaultLanguage = (new Cim11())->getDefaultLanguage();
-
-        // Prepare tokens to ignore word order
-        $tokens = array_filter(explode(' ', $cleanValue));
-        $tokens = array_map(fn ($token) => $this->cleanValue($token), $tokens);
-        $useFull = false;
-
-        if (in_array($defaultLanguage, $languages)) {
-            $or = ["$alias.code = :$exact", "$alias.code LIKE :$start"];
-
-            if ($tokens) {
-                $andParts = [];
-                foreach ($tokens as $token) {
-                    $param = $this->queryNameGenerator->generateParameterName('token');
-                    $andParts[] = "($alias.name LIKE :$param OR $alias.synonyms LIKE :$param)";
-                    $queryBuilder->setParameter($param, "%$token%");
-                }
-                $or[] = '(' . implode(' AND ', $andParts) . ')';
-            } else {
-                $or[] = "$alias.name LIKE :$full";
-                $or[] = "$alias.synonyms LIKE :$full";
-                $useFull = true;
-            }
-
-            $queryBuilder->andWhere(new Orx($or));
+        if (!$value) {
+            return $qb;
         }
 
-        foreach ($languages as $language) {
-            if ($language !== $defaultLanguage) {
-                $queryBuilder
-                    ->leftJoin("$alias.translations", "tr_$language", Join::WITH, "tr_$language.lang = :tr_$language");
+        $alias = $qb->getRootAliases()[0];
+        $clean = $this->cleanValue(trim($value));
+        $defaultLang = (new Cim11())->getDefaultLanguage();
+        $langs = $languages ?: [$defaultLang];
 
-                $or = [
-                    "$alias.code = :$exact",
-                    "$alias.code LIKE :$start",
-                    "tr_$language.field = 'name' AND tr_$language.translation LIKE :$full",
-                    "tr_$language.field = 'synonyms' AND tr_$language.translation LIKE :$full",
+        $pExact = $this->queryNameGenerator->generateParameterName('exact');
+        $pStart = $this->queryNameGenerator->generateParameterName('start');
+
+        $qb->setParameter($pExact, $clean)
+            ->setParameter($pStart, $clean . '%');
+
+        $tokens = array_filter(array_map([$this, 'cleanValue'], explode(' ', $value)));
+
+        $languageClauses = [];  // will be OR‑ed together
+
+        foreach ($langs as $lang) {
+            if ($lang === $defaultLang) {
+                $clauses = [
+                    "$alias.code = :$pExact",
+                    "$alias.code LIKE :$pStart",
                 ];
 
-                $queryBuilder->andWhere(new Orx($or));
-                $queryBuilder->setParameter("tr_$language", $language);
+                if ($tokens) {
+                    $and = [];
+                    foreach ($tokens as $tok) {
+                        $p = $this->queryNameGenerator->generateParameterName('tok');
+                        $qb->setParameter($p, "%$tok%");
+                        $and[] = "($alias.name LIKE :$p OR $alias.synonyms LIKE :$p)";
+                    }
+                    $clauses[] = '(' . implode(' AND ', $and) . ')';
+                } else {
+                    $pFull = $this->queryNameGenerator->generateParameterName('full');
+                    $qb->setParameter($pFull, "%$clean%");
+                    $clauses[] = "$alias.name LIKE :$pFull";
+                    $clauses[] = "$alias.synonyms LIKE :$pFull";
+                }
+
+                $languageClauses[] = '(' . implode(' OR ', $clauses) . ')';
+            } else {
+                $qb->leftJoin("$alias.translations", "tr_$lang", Join::WITH, "tr_$lang.lang = :lang_$lang")
+                    ->setParameter("lang_$lang", $lang);
+
+                $trs = [];
+                foreach ($tokens ?: [$clean] as $frag) {
+                    $p = $this->queryNameGenerator->generateParameterName('frag');
+                    $qb->setParameter($p, "%$frag%");
+                    $trs[] = "tr_$lang.translation LIKE :$p";
+                }
+
+                $languageClauses[] =
+                    "(tr_$lang.field IN ('name','synonyms') AND (" . implode(' AND ', $trs) . '))';
             }
         }
 
-        $cleanValue = $this->cleanValue($cleanValue);
+        // a record can match in *any* language
+        $qb->andWhere(new Orx($languageClauses));
 
-        if ($useFull) {
-            $queryBuilder->setParameter($full, "%$cleanValue%");
-        }
-        $queryBuilder->setParameter($start, "$cleanValue%");
-        $queryBuilder->setParameter($exact, "$cleanValue");
-
-        return $queryBuilder;
+        return $qb;
     }
 
     public function getDescription(string $resourceClass): array

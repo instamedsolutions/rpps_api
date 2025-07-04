@@ -1,4 +1,6 @@
-FROM rpps-api-base
+ARG BASE_IMAGE='staging'
+
+FROM ghcr.io/instamedsolutions/rpps_api-base:${BASE_IMAGE}
 
 # Copie du code et config Apache / PHP
 COPY --chown=www-data:www-data . /var/www/html/
