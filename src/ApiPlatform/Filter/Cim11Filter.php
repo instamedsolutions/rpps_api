@@ -87,6 +87,7 @@ final class Cim11Filter extends AbstractFilter
         // Prepare tokens to ignore word order
         $tokens = array_filter(explode(' ', $cleanValue));
         $tokens = array_map(fn ($token) => $this->cleanValue($token), $tokens);
+        $useFull = false;
 
         if (in_array($defaultLanguage, $languages)) {
             $or = ["$alias.code = :$exact", "$alias.code LIKE :$start"];
@@ -102,6 +103,7 @@ final class Cim11Filter extends AbstractFilter
             } else {
                 $or[] = "$alias.name LIKE :$full";
                 $or[] = "$alias.synonyms LIKE :$full";
+                $useFull = true;
             }
 
             $queryBuilder->andWhere(new Orx($or));
@@ -126,7 +128,9 @@ final class Cim11Filter extends AbstractFilter
 
         $cleanValue = $this->cleanValue($cleanValue);
 
-        $queryBuilder->setParameter($full, "%$cleanValue%");
+        if ($useFull) {
+            $queryBuilder->setParameter($full, "%$cleanValue%");
+        }
         $queryBuilder->setParameter($start, "$cleanValue%");
         $queryBuilder->setParameter($exact, "$cleanValue");
 
