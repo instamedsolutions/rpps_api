@@ -36,6 +36,14 @@ class Cim11sTest extends ApiTestCase
         $this->assertEquals('2C6Y', $data['hydra:member'][0]['code']);
 
         $this->assertCount(1, $data['hydra:member']);
+
+        // Order of words should not matter
+        $data = $this->get('cim11s', ['search' => 'sein cancer']);
+
+        $this->assertResponseStatusCodeSame(Response::HTTP_OK);
+        $this->assertEquals('Autres tumeurs malignes du sein', $data['hydra:member'][0]['name']);
+
+        $this->assertCount(1, $data['hydra:member']);
     }
 
     /**

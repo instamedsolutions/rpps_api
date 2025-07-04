@@ -74,7 +74,7 @@ final class Cim11Filter extends AbstractFilter
     {
         $alias = $queryBuilder->getRootAliases()[0];
 
-        $value = str_replace(' ', '%', trim($value));
+        $cleanValue = trim($value);
 
         // Generate a unique parameter name to avoid collisions with other filters
         $start = $this->queryNameGenerator->generateParameterName('search');
@@ -84,8 +84,27 @@ final class Cim11Filter extends AbstractFilter
 
         $defaultLanguage = (new Cim11())->getDefaultLanguage();
 
+        // Prepare tokens to ignore word order
+        $tokens = array_filter(explode(' ', $cleanValue));
+        $tokens = array_map(fn ($token) => $this->cleanValue($token), $tokens);
+
         if (in_array($defaultLanguage, $languages)) {
-            $queryBuilder->andWhere("$alias.code = :$exact OR $alias.name LIKE :$full OR $alias.code LIKE :$start OR $alias.synonyms LIKE :$full");
+            $or = ["$alias.code = :$exact", "$alias.code LIKE :$start"];
+
+            if ($tokens) {
+                $andParts = [];
+                foreach ($tokens as $token) {
+                    $param = $this->queryNameGenerator->generateParameterName('token');
+                    $andParts[] = "($alias.name LIKE :$param OR $alias.synonyms LIKE :$param)";
+                    $queryBuilder->setParameter($param, "%$token%");
+                }
+                $or[] = '(' . implode(' AND ', $andParts) . ')';
+            } else {
+                $or[] = "$alias.name LIKE :$full";
+                $or[] = "$alias.synonyms LIKE :$full";
+            }
+
+            $queryBuilder->andWhere(new Orx($or));
         }
 
         foreach ($languages as $language) {
@@ -105,11 +124,11 @@ final class Cim11Filter extends AbstractFilter
             }
         }
 
-        $value = $this->cleanValue($value);
+        $cleanValue = $this->cleanValue($cleanValue);
 
-        $queryBuilder->setParameter($full, "%$value%");
-        $queryBuilder->setParameter($start, "$value%");
-        $queryBuilder->setParameter($exact, "$value");
+        $queryBuilder->setParameter($full, "%$cleanValue%");
+        $queryBuilder->setParameter($start, "$cleanValue%");
+        $queryBuilder->setParameter($exact, "$cleanValue");
 
         return $queryBuilder;
     }
