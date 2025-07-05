@@ -12,6 +12,8 @@ use Symfony\Contracts\HttpClient\Exception\TransportExceptionInterface;
 class Cim11sTest extends ApiTestCase
 {
     /**
+     *
+     * @group now
      * @throws ClientExceptionInterface
      * @throws RedirectionExceptionInterface
      * @throws ServerExceptionInterface
@@ -34,6 +36,22 @@ class Cim11sTest extends ApiTestCase
         $this->assertEquals('Autres tumeurs malignes du sein', $data['hydra:member'][0]['name']);
         $this->assertEquals('C50.9', $data['hydra:member'][0]['cim10Code']);
         $this->assertEquals('2C6Y', $data['hydra:member'][0]['code']);
+
+        $this->assertCount(1, $data['hydra:member']);
+
+        // Order of words should not matter
+        $data = $this->get('cim11s', ['search' => 'sein cancer']);
+
+        $this->assertResponseStatusCodeSame(Response::HTTP_OK);
+        $this->assertEquals('Autres tumeurs malignes du sein', $data['hydra:member'][0]['name']);
+
+        $this->assertCount(1, $data['hydra:member']);
+
+        // Order of words should not matter
+        $data = $this->get('cim11s', ['search' => 'sein malignes tumeurs']);
+
+        $this->assertResponseStatusCodeSame(Response::HTTP_OK);
+        $this->assertEquals('Autres tumeurs malignes du sein', $data['hydra:member'][0]['name']);
 
         $this->assertCount(1, $data['hydra:member']);
     }
