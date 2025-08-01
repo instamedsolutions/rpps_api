@@ -3,6 +3,7 @@
 namespace App\DTO;
 
 use ApiPlatform\Metadata\ApiResource;
+use ApiPlatform\Metadata\Get;
 use ApiPlatform\Metadata\GetCollection;
 use App\StateProvider\BirthPlacesProvider;
 use Symfony\Component\Serializer\Annotation\Groups;
@@ -12,6 +13,11 @@ use Symfony\Component\Serializer\Annotation\Groups;
     operations: [
         new GetCollection(
             uriTemplate: '/birth_places',
+            normalizationContext: ['groups' => ['read']],
+            provider: BirthPlacesProvider::class
+        ),
+        new Get(
+            uriTemplate: '/birth_places/{code}',
             normalizationContext: ['groups' => ['read']],
             provider: BirthPlacesProvider::class
         ),

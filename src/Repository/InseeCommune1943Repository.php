@@ -33,4 +33,17 @@ class InseeCommune1943Repository extends ServiceEntityRepository
             ->getQuery()
             ->getResult();
     }
+
+    public function findOneByCodeAndDate(string $code, DateTime $date): ?InseeCommune1943
+    {
+        return $this->createQueryBuilder('c')
+            ->where('c.codeCommune = :code')
+            ->andWhere('(c.dateDebut IS NULL OR c.dateDebut <= :date)')
+            ->andWhere('(c.dateFin IS NULL OR c.dateFin >= :date)')
+            ->setParameter('code', $code)
+            ->setParameter('date', $date)
+            ->setMaxResults(1)
+            ->getQuery()
+            ->getOneOrNullResult();
+    }
 }

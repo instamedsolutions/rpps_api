@@ -25,7 +25,7 @@ final readonly class BirthPlacesProvider implements ProviderInterface
     public function provide(Operation $operation, array $uriVariables = [], array $context = []): object|array|null
     {
         if (!$operation instanceof GetCollection) {
-            throw new RuntimeException('This operation is not supported');
+            return $this->provideItem($operation, $uriVariables, $context);
         }
 
         if (BirthPlaceDTO::class !== $operation->getClass()) {
@@ -69,5 +69,18 @@ final readonly class BirthPlacesProvider implements ProviderInterface
         $results[] = $unknown;
 
         return new DtoPaginator($results, $page, $limit);
+    }
+
+    private function provideItem(Operation $operation, array $uriVariables = [], array $context = []): ?object
+    {
+        if (BirthPlaceDTO::class !== $operation->getClass()) {
+            return null;
+        }
+
+        if (!isset($uriVariables['code'])) {
+            throw new RuntimeException('Missing "code" in URI variables');
+        }
+
+        return $this->birthPlaceService->getBirthPlaceByCode($uriVariables['code'], $context['filters']['filters'] ?? null);
     }
 }

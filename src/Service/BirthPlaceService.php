@@ -13,6 +13,7 @@ use App\Repository\InseePays1943Repository;
 use App\Repository\InseePaysRepository;
 use DateTime;
 use Doctrine\ORM\EntityManagerInterface;
+use Exception;
 
 class BirthPlaceService
 {
@@ -36,6 +37,48 @@ class BirthPlaceService
         return $this->mapResultsToDTO($communeResults, $paysResults);
     }
 
+    public function getBirthPlaceByCode(string $code, ?string $dateOfBirth): ?BirthPlaceDTO
+    {
+        if ($dateOfBirth) {
+            try {
+                $dateOfBirth = new DateTime($dateOfBirth);
+            } catch (Exception $e) {
+                // If the date is invalid, we ignore it and proceed with the search
+                $dateOfBirth = null;
+            }
+        }
+
+        if ($dateOfBirth) {
+            $communeRepo = $this->em->getRepository(InseeCommune1943::class);
+            $paysRepo = $this->em->getRepository(InseePays1943::class);
+        } else {
+            $communeRepo = $this->em->getRepository(InseeCommune::class);
+            $paysRepo = $this->em->getRepository(InseePays::class);
+        }
+
+        if ($dateOfBirth) {
+            // @phpstan-ignore-next-line
+            $commune = $communeRepo->findOneByCodeAndDate($code, $dateOfBirth);
+        } else {
+            $commune = $communeRepo->findOneBy(['codeCommune' => $code]);
+        }
+        if ($commune) {
+            return $this->buildDto($commune);
+        }
+
+        if ($dateOfBirth) {
+            // @phpstan-ignore-next-line
+            $pays = $paysRepo->findOneByCodeAndDate($code, $dateOfBirth);
+        } else {
+            $pays = $paysRepo->findOneBy(['codePays' => $code]);
+        }
+        if ($pays) {
+            return $this->buildDto($pays);
+        }
+
+        return null;
+    }
+
     /**
      * Search for birthplaces filtered by date.
      */
@@ -55,28 +98,41 @@ class BirthPlaceService
     /**
      * Convert results to DTO format.
      */
+    /**
+     * @param InseeCommune[]|InseeCommune1943[] $communeResults
+     * @param InseePays[]|InseePays1943[]       $paysResults
+     */
     private function mapResultsToDTO(array $communeResults, array $paysResults): array
     {
         $dtoResults = [];
 
         // Map communes
         foreach ($communeResults as $commune) {
-            $dtoResults[] = new BirthPlaceDTO(
-                label: $commune->getNomEnClairAvecArticle(),
-                code: $commune->getCodeCommune(),
-                type: 'city'
-            );
+            $dtoResults[] = $this->buildDto($commune);
         }
 
         // Map countries
         foreach ($paysResults as $pays) {
-            $dtoResults[] = new BirthPlaceDTO(
-                label: $pays->getLibelleCog(),
-                code: $pays->getCodePays(),
-                type: 'country'
-            );
+            $dtoResults[] = $this->buildDto($pays);
         }
 
         return $dtoResults;
+    }
+
+    private function buildDto(InseeCommune|InseeCommune1943|InseePays|InseePays1943 $entity): BirthPlaceDTO
+    {
+        if ($entity instanceof InseeCommune || $entity instanceof InseeCommune1943) {
+            return new BirthPlaceDTO(
+                label: $entity->getNomEnClairAvecArticle(),
+                code: $entity->getCodeCommune(),
+                type: 'city'
+            );
+        }
+
+        return new BirthPlaceDTO(
+            label: $entity->getLibelleCog(),
+            code: $entity->getCodePays(),
+            type: 'country'
+        );
     }
 }
