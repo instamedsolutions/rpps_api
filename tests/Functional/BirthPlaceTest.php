@@ -192,6 +192,58 @@ class BirthPlaceTest extends ApiTestCase
         );
     }
 
+
+    /**
+     * @group now
+     *
+     * @return void
+     * @throws ClientExceptionInterface
+     * @throws RedirectionExceptionInterface
+     * @throws ServerExceptionInterface
+     * @throws TransportExceptionInterface
+     */
+    public function testGetOneBirthPlaceByCode() : void
+    {
+        $code = '01021'; // Ars-sur-Formans
+        $response = $this->get('birth_places/' . $code);
+
+        self::assertResponseStatusCodeSame(Response::HTTP_OK);
+        self::assertArrayHasKey('label', $response);
+        self::assertArrayHasKey('code', $response);
+        self::assertArrayHasKey('type', $response);
+
+        self::assertSame('Ars-sur-Formans', $response['label']);
+        self::assertSame($code, $response['code']);
+        self::assertSame('city', $response['type']);
+
+
+        $response = $this->get('birth_places/' . $code,[
+            'dateOfBirth' => (new DateTime('1950-01-01'))->format(DateTimeInterface::ATOM),
+        ]);
+
+        self::assertResponseStatusCodeSame(Response::HTTP_OK);
+        self::assertArrayHasKey('label', $response);
+        self::assertArrayHasKey('code', $response);
+        self::assertArrayHasKey('type', $response);
+
+        self::assertSame('Ars', $response['label']);
+        self::assertSame($code, $response['code']);
+        self::assertSame('city', $response['type']);
+
+        // Get for country
+
+        $code = '99223'; // Inde
+        $response = $this->get('birth_places/' . $code);
+        self::assertResponseStatusCodeSame(Response::HTTP_OK);
+        self::assertArrayHasKey('label', $response);
+        self::assertArrayHasKey('code', $response);
+        self::assertArrayHasKey('type', $response);
+        self::assertSame('Inde', $response['label']);
+        self::assertSame($code, $response['code']);
+        self::assertSame('country', $response['type']);
+
+    }
+
     private function assertResponseContainsBirthPlace(array $collection, BirthPlaceDTO $expected): void
     {
         foreach ($collection as $item) {
