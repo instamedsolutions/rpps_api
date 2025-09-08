@@ -8,6 +8,9 @@ include Makefile.dev
 include Makefile.prod
 include Makefile.test
 
+export-docs:
+	docker-compose exec rpps-database php bin/console api:openapi:export > docs/openai.json
+
 run: ## Runs all application's containers
 	docker-compose up
 

@@ -1,6 +1,7 @@
 
 ###> symfony/framework-bundle ###
 /docs
+!/docs/index.html
 /.env.local
 .env.local.php
 .env.local.bk
