@@ -84,8 +84,6 @@ class RppsImport extends Command
 
             $output->writeln("Import id was {$this->rppsService->getImportId()}");
 
-            $this->rppsService->loadTestData();
-
             return Command::SUCCESS;
         } catch (Exception $e) {
             error_log($e->getMessage());
