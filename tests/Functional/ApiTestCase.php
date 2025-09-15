@@ -19,6 +19,7 @@ use App\DataFixtures\LoadInseePays1943;
 use App\DataFixtures\LoadNGAP;
 use App\DataFixtures\LoadRegion;
 use App\DataFixtures\LoadRPPS;
+use App\DataFixtures\LoadRPPSAddress;
 use App\DataFixtures\LoadSpecialty;
 use App\Entity\City;
 use App\Entity\Specialty;
@@ -59,6 +60,7 @@ abstract class ApiTestCase extends \ApiPlatform\Symfony\Bundle\Test\ApiTestCase
         LoadInseeCommune1943::class,
         LoadInseePays::class,
         LoadInseePays1943::class,
+        LoadRPPSAddress::class,
     ];
 
     protected function setUp(): void
@@ -281,5 +283,12 @@ abstract class ApiTestCase extends \ApiPlatform\Symfony\Bundle\Test\ApiTestCase
     protected function getCity(string $canonical = 'paris'): ?City
     {
         return $this->em->getRepository(City::class)->findOneBy(['canonical' => $canonical]);
+    }
+
+    protected function assertArrayHasKeys(array $array, array $keys): void
+    {
+        foreach ($keys as $key) {
+            $this->assertArrayHasKey($key, $array, "Missing key: $key");
+        }
     }
 }
