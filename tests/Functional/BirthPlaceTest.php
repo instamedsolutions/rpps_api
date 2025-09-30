@@ -102,6 +102,9 @@ class BirthPlaceTest extends ApiTestCase
     }
 
     /**
+     *
+     * @group now
+     *
      * @throws ClientExceptionInterface
      * @throws RedirectionExceptionInterface
      * @throws ServerExceptionInterface
@@ -145,6 +148,27 @@ class BirthPlaceTest extends ApiTestCase
                 type: 'country'
             )
         );
+
+
+        // Test case 1 : Before 1943, it should use the 1943 rule → "Indes britanniques"
+        $response1 = $this->get('birth_places', [
+            'search' => 'Inde',
+            'dateOfBirth' => (new DateTime('1933-01-01'))->format(DateTimeInterface::ATOM),
+            'limit' => 50,
+        ]);
+
+        self::assertResponseStatusCodeSame(Response::HTTP_OK);
+        self::assertNotEmpty($response1['hydra:member']);
+
+        $this->assertResponseContainsBirthPlace(
+            $response1['hydra:member'],
+            new BirthPlaceDTO(
+                label: 'Indes britanniques',
+                code: '99223',
+                type: 'country'
+            )
+        );
+
     }
 
     /**
