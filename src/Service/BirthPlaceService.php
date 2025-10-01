@@ -84,6 +84,14 @@ class BirthPlaceService
      */
     public function searchBirthPlacesByDate(string $search, DateTime $date): array
     {
+        // seuil INSEE : 1er janvier 1943
+        $threshold = new DateTime('1943-01-01');
+
+        if ($date < $threshold) {
+            $date = $threshold;
+        }
+
+        // sinon, DOB >= 1943 → interroger la base historique avec dates
         /** @var InseeCommune1943Repository $commune1943Repository */
         $commune1943Repository = $this->em->getRepository(InseeCommune1943::class);
         /** @var InseePays1943Repository $pays1943Repository */
