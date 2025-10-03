@@ -37,7 +37,7 @@ use Symfony\Component\Serializer\Annotation\Groups;
         ),
     ],
 )]
-#[ApiFilter(SpecialtyFilter::class, properties: ['search', 'by_rpps', 'excluded_specialties'])]
+#[ApiFilter(SpecialtyFilter::class, properties: ['search', 'by_rpps', 'is_paramedical', 'excluded_specialties'])]
 class Specialty extends BaseEntity implements ImportableEntityInterface, TranslatableEntityInterface
 {
     use ImportIdTrait;

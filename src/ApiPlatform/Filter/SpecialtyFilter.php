@@ -32,6 +32,10 @@ final class SpecialtyFilter extends AbstractFilter
             return;
         }
 
+        if ('is_paramedical' === $property) {
+            $this->addParamedicalFilter($queryBuilder, $value);
+        }
+
         if (!$value) {
             return;
         }
@@ -47,6 +51,21 @@ final class SpecialtyFilter extends AbstractFilter
         if ('by_rpps' === $property) {
             $this->addSortByRppsCount($queryBuilder);
         }
+    }
+
+    protected function addParamedicalFilter(QueryBuilder $queryBuilder, mixed $value): QueryBuilder
+    {
+        $value = filter_var($value, FILTER_VALIDATE_BOOLEAN, FILTER_NULL_ON_FAILURE);
+
+        if (null === $value) {
+            return $queryBuilder;
+        }
+
+        $rootAlias = $queryBuilder->getRootAliases()[0];
+        $queryBuilder->andWhere("$rootAlias.isParamedical = :isParamedical");
+        $queryBuilder->setParameter('isParamedical', $value);
+
+        return $queryBuilder;
     }
 
     protected function addExcludedSpecialtiesFilter(QueryBuilder $queryBuilder, string|array $value): QueryBuilder

@@ -12,6 +12,9 @@ use Symfony\Contracts\HttpClient\Exception\TransportExceptionInterface;
 class SpecialtyTest extends ApiTestCase
 {
     /**
+     *
+     * @group now2
+     *
      * @throws ClientExceptionInterface
      * @throws RedirectionExceptionInterface
      * @throws ServerExceptionInterface
@@ -24,10 +27,21 @@ class SpecialtyTest extends ApiTestCase
         $this->assertCollectionKeyContains(
             $data['hydra:member'],
             'name',
-            ['Allergologie', 'Anatomie Et Cytologie Pathologiques', 'Biologie', 'Cardiologie']
+            ['Allergologie', 'Anatomie Et Cytologie Pathologiques', 'Biologie', 'Cardiologie',
+                'Assistant Dentaire', 'Assistant Social']
         );
         $this->assertCollectionKeyContains($data['hydra:member'], 'specialistName', ['Cardiologue']);
         $this->assertCollectionKeyContains($data['hydra:member'], 'canonical', ['chirurgie-general']);
+
+        $data = $this->get('specialties?is_paramedical=false');
+
+        $this->assertResponseStatusCodeSame(Response::HTTP_OK);
+        $this->assertCollectionKeyNotContains(
+            $data['hydra:member'],
+            'name',
+            ['Assistant Dentaire', 'Assistant Social']
+        );
+
     }
 
     /**
