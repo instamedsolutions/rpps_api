@@ -103,8 +103,6 @@ class BirthPlaceTest extends ApiTestCase
 
     /**
      *
-     * @group now
-     *
      * @throws ClientExceptionInterface
      * @throws RedirectionExceptionInterface
      * @throws ServerExceptionInterface

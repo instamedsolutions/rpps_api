@@ -46,6 +46,12 @@ final class Cim11Filter extends AbstractFilter
             return;
         }
 
+        if ('cim10Code' === $property) {
+            $this->addCim10Code($queryBuilder, $value);
+
+            return;
+        }
+
         if ('ids' === $property) {
             $this->addIdsFilter($queryBuilder, $value);
         }
@@ -63,6 +69,20 @@ final class Cim11Filter extends AbstractFilter
 
         $queryBuilder->andWhere("$alias.id IN (:ids) OR $alias.code IN (:ids)");
         $queryBuilder->setParameter('ids', $ids);
+
+        return $queryBuilder;
+    }
+
+    protected function addCim10Code(QueryBuilder $queryBuilder, string $value): QueryBuilder
+    {
+        $alias = $queryBuilder->getRootAliases()[0];
+
+        if (!$value) {
+            return $queryBuilder;
+        }
+
+        $queryBuilder->andWhere("$alias.cim10Code = :cim10Code");
+        $queryBuilder->setParameter('cim10Code', $value);
 
         return $queryBuilder;
     }

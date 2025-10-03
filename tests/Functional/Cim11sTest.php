@@ -13,7 +13,6 @@ class Cim11sTest extends ApiTestCase
 {
     /**
      *
-     * @group now
      * @throws ClientExceptionInterface
      * @throws RedirectionExceptionInterface
      * @throws ServerExceptionInterface
@@ -54,6 +53,15 @@ class Cim11sTest extends ApiTestCase
         $this->assertEquals('Autres tumeurs malignes du sein', $data['hydra:member'][0]['name']);
 
         $this->assertCount(1, $data['hydra:member']);
+
+        // Order of words should not matter
+        $data = $this->get('cim11s', ['cim10Code' => 'J00']);
+
+        $this->assertResponseStatusCodeSame(Response::HTTP_OK);
+
+        $this->assertCount(1, $data['hydra:member']);
+        $this->assertEquals('Rhinopharyngite aigüe', $data['hydra:member'][0]['name']);
+
     }
 
     /**
