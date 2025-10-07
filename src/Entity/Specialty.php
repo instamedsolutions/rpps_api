@@ -16,6 +16,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Serializer\Annotation\Groups;
+use Symfony\Component\Serializer\Attribute\SerializedName;
 
 #[ORM\Entity(repositoryClass: SpecialtyRepository::class)]
 #[ORM\Index(columns: ['name'], name: 'specialty_name_index')]
@@ -112,6 +113,8 @@ class Specialty extends BaseEntity implements ImportableEntityInterface, Transla
         $this->specialistName = $specialistName;
     }
 
+    #[Groups(['read'])]
+    #[SerializedName('isParamedical')]
     public function isParamedical(): bool
     {
         return $this->isParamedical;
