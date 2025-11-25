@@ -13,6 +13,8 @@ use App\Doctrine\Types\PointType;
 use App\Entity\Traits\ImportIdTrait;
 use App\Repository\RPPSRepository;
 use App\StateProvider\DefaultItemDataProvider;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Exception;
 use libphonenumber\PhoneNumber;
@@ -22,11 +24,18 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Serializer\Annotation\Groups;
 use Symfony\Component\Serializer\Annotation\SerializedName;
 
-// TODO - remove this index when the migration to specialtyEntity is done.  @Bastien
+// TODO: Keep until API/search use specialtyEntity only; remove when legacy specialty string is dropped.
 #[ORM\Index(columns: ['specialty'], name: 'specialty_index')]
-#[ApiFilter(RPPSFilter::class, properties: ['search', 'first_letter', 'city', 'specialty', 'demo', 'latitude', 'longitude', 'excluded_rpps'])]
+#[ApiFilter(
+    RPPSFilter::class,
+    // NOTE: city/specialty/latitude/longitude rely on legacy fields that will be flattened by the normalizer.
+    // TODO: once API/search use RPPSAddress + city/coordinates directly, realign/remap filters and
+    //       drop legacy reliance here.
+    properties: ['search', 'first_letter', 'city', 'specialty', 'demo', 'latitude', 'longitude', 'excluded_rpps']
+)]
 #[ORM\Entity(repositoryClass: RPPSRepository::class)]
 #[ORM\Table(name: 'rpps')]
+// TODO: Keep until API/search use RPPSAddress only; remove when legacy coordinates are dropped.
 #[ORM\Index(columns: ['coordinates'], name: 'idx_coordinates')]
 #[ORM\Index(columns: ['last_name'], name: 'last_name_index')]
 #[ORM\Index(columns: ['full_name'], name: 'full_name_index')]
@@ -120,7 +129,6 @@ class RPPS extends BaseEntity implements ImportableEntityInterface
             'deprecated' => true,
         ]
     )]
-    #[Groups(['read'])]
     #[ORM\Column(type: 'string', length: 255, nullable: true)]
     protected ?string $specialty = null;
 
@@ -133,6 +141,10 @@ class RPPS extends BaseEntity implements ImportableEntityInterface
     #[ORM\JoinColumn(nullable: true)]
     private ?Specialty $specialtyEntity = null;
 
+    /**
+     * @deprecated Backward compatibility for the mobile app. This field is now stored in RPPSAddress.
+     *             Can be removed once the mobile app is updated to consume addresses from RPPSAddress.
+     */
     #[ApiProperty(
         description: 'The address of the doctor',
         required: false,
@@ -141,10 +153,13 @@ class RPPS extends BaseEntity implements ImportableEntityInterface
             'example' => '12 Rue de Paris',
         ]
     )]
-    #[Groups(['read'])]
     #[ORM\Column(type: 'string', length: 255, nullable: true)]
     protected ?string $address = null;
 
+    /**
+     * @deprecated Backward compatibility for the mobile app. This field is now stored in RPPSAddress.
+     *             Can be removed once the mobile app is updated to consume addresses from RPPSAddress.
+     */
     #[ApiProperty(
         description: 'The address extension of the doctor',
         required: false,
@@ -153,10 +168,13 @@ class RPPS extends BaseEntity implements ImportableEntityInterface
             'example' => 'BP 75',
         ]
     )]
-    #[Groups(['read'])]
     #[ORM\Column(type: 'string', length: 255, nullable: true)]
     protected ?string $addressExtension = null;
 
+    /**
+     * @deprecated Backward compatibility for the mobile app. This field is now stored in RPPSAddress.
+     *             Can be removed once the mobile app is updated to consume addresses from RPPSAddress.
+     */
     #[ApiProperty(
         description: 'The postal code of the doctor',
         required: false,
@@ -165,12 +183,12 @@ class RPPS extends BaseEntity implements ImportableEntityInterface
             'example' => '75019',
         ]
     )]
-    #[Groups(['read'])]
     #[ORM\Column(type: 'string', length: 255, nullable: true)]
     protected ?string $zipcode = null;
 
     /**
-     * @deprecated use $cityEntity instead
+     * @deprecated Backward compatibility for the mobile app. This field is now stored in RPPSAddress.
+     *             Can be removed once the mobile app is updated to consume addresses from RPPSAddress.
      */
     #[ApiProperty(
         description: 'Deprecated. The city of the doctor, use cityEntity instead.',
@@ -181,10 +199,13 @@ class RPPS extends BaseEntity implements ImportableEntityInterface
             'deprecated' => true,
         ]
     )]
-    #[Groups(['read'])]
     #[ORM\Column(type: 'string', length: 255, nullable: true)]
     protected ?string $city = null;
 
+    /**
+     * @deprecated Backward compatibility for the mobile app. This field is now stored in RPPSAddress.
+     *             Can be removed once the mobile app is updated to consume addresses from RPPSAddress.
+     */
     #[ApiProperty(
         description: 'The latitude of the doctor',
         required: false,
@@ -193,16 +214,27 @@ class RPPS extends BaseEntity implements ImportableEntityInterface
             'example' => 48.8566,
         ]
     )]
-    #[Groups(['read'])]
     #[ORM\Column(type: 'float', nullable: true)]
     protected ?float $latitude = null;
 
+    /**
+     * @deprecated Backward compatibility for the mobile app. This field is now stored in RPPSAddress.
+     *             Can be removed once the mobile app is updated to consume addresses from RPPSAddress.
+     */
     #[ORM\Column(type: 'text', nullable: true)]
     protected ?string $originalAddress = null;
 
+    /**
+     * @deprecated Backward compatibility for the mobile app. This field is now stored in RPPSAddress.
+     *             Can be removed once the mobile app is updated to consume addresses from RPPSAddress.
+     */
     #[ORM\Column(type: PointType::POINT, nullable: false)]
     private array $coordinates = [];
 
+    /**
+     * @deprecated Backward compatibility for the mobile app. This field is now stored in RPPSAddress.
+     *             Can be removed once the mobile app is updated to consume addresses from RPPSAddress.
+     */
     #[ApiProperty(
         description: 'The latitude of the doctor',
         required: false,
@@ -211,12 +243,11 @@ class RPPS extends BaseEntity implements ImportableEntityInterface
             'example' => 48.8566,
         ]
     )]
-    #[Groups(['read'])]
     #[ORM\Column(type: 'float', nullable: true)]
     protected ?float $longitude = null;
 
     #[ApiProperty(
-        description: 'The city entity of the doctor, with more detailed information such as population and coordinates.',
+        description: 'The city entity of the doctor, with more detailed information such as population and coordinates',
         required: false,
     )]
     #[Groups(['read'])]
@@ -281,6 +312,21 @@ class RPPS extends BaseEntity implements ImportableEntityInterface
     #[ApiProperty(readable: false, writable: false)]
     #[ORM\Column(type: 'string', length: 255, nullable: false)]
     private ?string $fullNameInversed = null;
+
+    #[Groups(['read'])]
+    #[ORM\OneToMany(
+        mappedBy: 'rpps',
+        targetEntity: RPPSAddress::class,
+        cascade: ['persist', 'remove'],
+        orphanRemoval: true
+    )]
+    private Collection $addresses;
+
+    public function __construct()
+    {
+        parent::__construct();
+        $this->addresses = new ArrayCollection();
+    }
 
     public function getCanonical(): ?string
     {
@@ -398,11 +444,9 @@ class RPPS extends BaseEntity implements ImportableEntityInterface
     }
 
     /**
-     * @param string|PhoneNumber|null $number
-     *
      * @return $this
      */
-    public function setPhoneNumber($number): self
+    public function setPhoneNumber(PhoneNumber|string|null $number): self
     {
         if (!$number) {
             $this->phoneNumber = null;
@@ -481,7 +525,7 @@ class RPPS extends BaseEntity implements ImportableEntityInterface
     #[SerializedName('fullName')]
     public function getFullNameWithTitle(): string
     {
-        return trim((string) "{$this->shortTitle()} {$this->getFirstName()} {$this->getLastName()}");
+        return trim("{$this->shortTitle()} {$this->getFirstName()} {$this->getLastName()}");
     }
 
     public function getFullNameInversed(): ?string
@@ -609,8 +653,8 @@ class RPPS extends BaseEntity implements ImportableEntityInterface
     {
         $this->latitude = $latitude;
         $this->coordinates = [
-            'latitude' => $latitude ?? 0,
-            'longitude' => $this->longitude ?? 0,
+            'latitude' => $latitude ?? 0.0,
+            'longitude' => $this->longitude ?? 0.0,
         ];
     }
 
@@ -627,8 +671,8 @@ class RPPS extends BaseEntity implements ImportableEntityInterface
     {
         $this->longitude = $longitude;
         $this->coordinates = [
-            'latitude' => $this->latitude ?? 0,
-            'longitude' => $longitude ?? 0,
+            'latitude' => $this->latitude ?? 0.0,
+            'longitude' => $longitude ?? 0.0,
         ];
     }
 
@@ -650,5 +694,33 @@ class RPPS extends BaseEntity implements ImportableEntityInterface
     public function setOriginalAddress(?string $originalAddress): void
     {
         $this->originalAddress = $originalAddress;
+    }
+
+    /**
+     * @return Collection<int, RPPSAddress>
+     */
+    public function getAddresses(): Collection
+    {
+        return $this->addresses;
+    }
+
+    public function addAddress(RPPSAddress $rppsAddress): static
+    {
+        if (!$this->addresses->contains($rppsAddress)) {
+            $this->addresses->add($rppsAddress);
+            $rppsAddress->setRpps($this);
+        }
+
+        return $this;
+    }
+
+    public function removeAddress(RPPSAddress $rPPSAddress): static
+    {
+        // set the owning side to null (unless already changed)
+        if ($this->addresses->removeElement($rPPSAddress) && $rPPSAddress->getRpps() === $this) {
+            $rPPSAddress->setRpps(null);
+        }
+
+        return $this;
     }
 }
