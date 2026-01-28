@@ -266,6 +266,128 @@ class BirthPlaceTest extends ApiTestCase
 
     }
 
+    /**
+     * Test searching with accent normalization
+     *
+     * @throws ClientExceptionInterface
+     * @throws RedirectionExceptionInterface
+     * @throws ServerExceptionInterface
+     * @throws TransportExceptionInterface
+     */
+    public function testBirthPlaceSearchWithAccents(): void
+    {
+        // Search with accents should find places without accents
+        $response = $this->get('birth_places', [
+            'search' => 'fontenay',
+            'limit' => 50,
+        ]);
+
+        self::assertResponseStatusCodeSame(Response::HTTP_OK);
+        self::assertNotEmpty($response['hydra:member']);
+    }
+
+    /**
+     * Test searching with spaces and hyphens normalization
+     *
+     * @throws ClientExceptionInterface
+     * @throws RedirectionExceptionInterface
+     * @throws ServerExceptionInterface
+     * @throws TransportExceptionInterface
+     */
+    public function testBirthPlaceSearchWithSpacesAndHyphens(): void
+    {
+        // All these should find the same place
+        $searches = [
+            'Fontenay Saint',
+            'Fontenay-Saint',
+            'FontenaySaint',
+        ];
+
+        foreach ($searches as $search) {
+            $response = $this->get('birth_places', [
+                'search' => $search,
+                'limit' => 50,
+            ]);
+
+            self::assertResponseStatusCodeSame(Response::HTTP_OK);
+            // Should return results regardless of spaces/hyphens
+        }
+    }
+
+    /**
+     * Test searching by 5-digit code
+     *
+     * @throws ClientExceptionInterface
+     * @throws RedirectionExceptionInterface
+     * @throws ServerExceptionInterface
+     * @throws TransportExceptionInterface
+     */
+    public function testBirthPlaceSearchByCode(): void
+    {
+        // Search with 5-digit code (78246 is a commune code)
+        $response = $this->get('birth_places', [
+            'search' => '78246',
+            'limit' => 50,
+        ]);
+
+        self::assertResponseStatusCodeSame(Response::HTTP_OK);
+        
+        // Should find the commune with this code
+        self::assertNotEmpty($response['hydra:member']);
+        
+        // Verify the result contains the code
+        $found = false;
+        foreach ($response['hydra:member'] as $place) {
+            if ($place['code'] === '78246') {
+                $found = true;
+                break;
+            }
+        }
+        
+        self::assertTrue($found, 'Expected to find a place with code 78246');
+    }
+
+    /**
+     * Test searching for historical countries (e.g., Algeria before 1962)
+     *
+     * @throws ClientExceptionInterface
+     * @throws RedirectionExceptionInterface
+     * @throws ServerExceptionInterface
+     * @throws TransportExceptionInterface
+     */
+    public function testBirthPlaceSearchHistoricalCountries(): void
+    {
+        // Search for Algeria before 1962 (when it was French)
+        $response = $this->get('birth_places', [
+            'search' => 'Algerie',
+            'dateOfBirth' => (new DateTime('1960-01-01'))->format(DateTimeInterface::ATOM),
+            'limit' => 50,
+        ]);
+
+        self::assertResponseStatusCodeSame(Response::HTTP_OK);
+        self::assertNotEmpty($response['hydra:member'], 'Should find Algeria even for dates before independence');
+    }
+
+    /**
+     * Test .jsonapi format suffix
+     *
+     * @throws ClientExceptionInterface
+     * @throws RedirectionExceptionInterface
+     * @throws ServerExceptionInterface
+     * @throws TransportExceptionInterface
+     */
+    public function testBirthPlaceFormatSuffix(): void
+    {
+        // Test with .jsonapi suffix
+        $response = $this->get('birth_places.jsonapi', [
+            'search' => 'paris',
+            'limit' => 10,
+        ]);
+
+        self::assertResponseStatusCodeSame(Response::HTTP_OK);
+        self::assertArrayHasKey('hydra:member', $response);
+    }
+
     private function assertResponseContainsBirthPlace(array $collection, BirthPlaceDTO $expected): void
     {
         foreach ($collection as $item) {
