@@ -17,6 +17,8 @@ use Doctrine\Persistence\ManagerRegistry;
  */
 class InseePays1943Repository extends ServiceEntityRepository
 {
+    use SearchNormalizationTrait;
+
     public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, InseePays1943::class);
@@ -39,19 +41,6 @@ class InseePays1943Repository extends ServiceEntityRepository
             ->setParameter('search', "%$normalizedSearch%")
             ->getQuery()
             ->getResult();
-    }
-
-    /**
-     * Normalize search term by removing accents, spaces, and hyphens
-     */
-    private function normalizeSearchTerm(string $search): string
-    {
-        // Remove accents
-        $search = iconv('UTF-8', 'ASCII//TRANSLIT//IGNORE', $search);
-        // Remove spaces and hyphens
-        $search = str_replace([' ', '-'], '', $search);
-        
-        return $search;
     }
 
     public function findByCodeAndDate(string $code, DateTime $date): array
