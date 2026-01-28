@@ -226,7 +226,7 @@ class BirthPlaceTest extends ApiTestCase
      */
     public function testGetOneBirthPlaceByCode() : void
     {
-        $code = '01021'; // Ars-sur-Formans
+        $code = '75056'; // Paris
         $response = $this->get('birth_places/' . $code);
 
         self::assertResponseStatusCodeSame(Response::HTTP_OK);
@@ -234,11 +234,12 @@ class BirthPlaceTest extends ApiTestCase
         self::assertArrayHasKey('code', $response);
         self::assertArrayHasKey('type', $response);
 
-        self::assertSame('Ars-sur-Formans', $response['label']);
+        self::assertSame('Paris', $response['label']);
         self::assertSame($code, $response['code']);
         self::assertSame('city', $response['type']);
 
-
+        // Test with date for historical commune (Ars)
+        $code = '01021'; // Ars-sur-Formans (only in historical data)
         $response = $this->get('birth_places/' . $code,[
             'dateOfBirth' => (new DateTime('1950-01-01'))->format(DateTimeInterface::ATOM),
         ]);
@@ -339,9 +340,9 @@ class BirthPlaceTest extends ApiTestCase
      */
     public function testBirthPlaceSearchByCode(): void
     {
-        // Search with 5-digit code (01021 is Ars-sur-Formans from fixtures)
+        // Search with 5-digit code (75056 is Paris from fixtures)
         $response = $this->get('birth_places', [
-            'search' => '01021',
+            'search' => '75056',
             'limit' => 50,
         ]);
 
@@ -353,14 +354,14 @@ class BirthPlaceTest extends ApiTestCase
         // Verify the result contains the code
         $found = false;
         foreach ($response['hydra:member'] as $place) {
-            if ($place['code'] === '01021') {
+            if ($place['code'] === '75056') {
                 $found = true;
                 self::assertSame('city', $place['type']);
                 break;
             }
         }
         
-        self::assertTrue($found, 'Expected to find a place with code 01021');
+        self::assertTrue($found, 'Expected to find a place with code 75056');
     }
 
     /**
@@ -385,7 +386,7 @@ class BirthPlaceTest extends ApiTestCase
     }
 
     /**
-     * Test .jsonapi format suffix
+     * Test jsonapi format via Accept header
      *
      * @throws ClientExceptionInterface
      * @throws RedirectionExceptionInterface
@@ -394,11 +395,11 @@ class BirthPlaceTest extends ApiTestCase
      */
     public function testBirthPlaceFormatSuffix(): void
     {
-        // Test with .jsonapi suffix
-        $response = $this->get('birth_places.jsonapi', [
+        // Test with Accept header for jsonapi format
+        $response = $this->get('birth_places', [
             'search' => 'paris',
             'limit' => 10,
-        ]);
+        ], false, ['Accept' => 'application/vnd.api+json']);
 
         self::assertResponseStatusCodeSame(Response::HTTP_OK);
         // JSONAPI format uses different structure than JSON-LD
