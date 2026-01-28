@@ -32,14 +32,12 @@ class InseePays1943Repository extends ServiceEntityRepository
      */
     public function searchByNameAndDate(string $search, DateTime $date): array
     {
-        // Normalize both the database field and search term by removing spaces and hyphens
+        // Normalize hyphens to spaces at the SQL level for flexible matching
         // MySQL collations are typically accent-insensitive by default (utf8mb4_unicode_ci)
-        $normalizedSearch = $this->normalizeSearchTerm($search);
-        
         return $this->createQueryBuilder('p')
-            ->where('REPLACE(REPLACE(LOWER(p.libelleCog), \'-\', \'\'), \' \', \'\') LIKE LOWER(:search)')
+            ->where('REPLACE(p.libelleCog, \'-\', \' \') LIKE :search')
             // Date constraints removed to allow historical country searches (e.g., Algeria before 1962)
-            ->setParameter('search', "%$normalizedSearch%")
+            ->setParameter('search', '%' . str_replace('-', ' ', $search) . '%')
             ->getQuery()
             ->getResult();
     }
