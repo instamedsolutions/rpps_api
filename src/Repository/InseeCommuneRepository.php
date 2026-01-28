@@ -23,9 +23,34 @@ class InseeCommuneRepository extends ServiceEntityRepository
 
     public function searchByName(string $search): array
     {
+        // Normalize the search: remove accents, replace spaces/hyphens with SQL wildcards
+        $normalizedSearch = $this->normalizeSearchTerm($search);
+        
         return $this->createQueryBuilder('c')
-            ->where('c.nomEnClair LIKE :search')
-            ->setParameter('search', "$search%")
+            ->where('LOWER(REPLACE(REPLACE(c.nomEnClair, \'-\', \'\'), \' \', \'\')) LIKE LOWER(:search)')
+            ->setParameter('search', "$normalizedSearch%")
+            ->getQuery()
+            ->getResult();
+    }
+
+    /**
+     * Normalize search term by removing accents, spaces, and hyphens
+     */
+    private function normalizeSearchTerm(string $search): string
+    {
+        // Remove accents
+        $search = iconv('UTF-8', 'ASCII//TRANSLIT//IGNORE', $search);
+        // Remove spaces and hyphens
+        $search = str_replace([' ', '-'], '', $search);
+        
+        return $search;
+    }
+
+    public function findByCode(string $code): array
+    {
+        return $this->createQueryBuilder('c')
+            ->where('c.codeCommune = :code')
+            ->setParameter('code', $code)
             ->getQuery()
             ->getResult();
     }

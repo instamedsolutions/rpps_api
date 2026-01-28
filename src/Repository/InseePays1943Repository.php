@@ -26,14 +26,42 @@ class InseePays1943Repository extends ServiceEntityRepository
      * Note : might consider searching also the libelleOfficiel field.
      *
      * Search for countries matching a name that existed at a given date.
+     * No longer enforces date constraints - allows searching for historical countries.
      */
     public function searchByNameAndDate(string $search, DateTime $date): array
     {
+        // Normalize the search: remove accents, replace spaces/hyphens with SQL wildcards
+        $normalizedSearch = $this->normalizeSearchTerm($search);
+        
         return $this->createQueryBuilder('p')
-            ->where('p.libelleCog LIKE :search')
+            ->where('LOWER(REPLACE(REPLACE(p.libelleCog, \'-\', \'\'), \' \', \'\')) LIKE LOWER(:search)')
+            // Date constraints removed to allow historical country searches (e.g., Algeria before 1962)
+            ->setParameter('search', "%$normalizedSearch%")
+            ->getQuery()
+            ->getResult();
+    }
+
+    /**
+     * Normalize search term by removing accents, spaces, and hyphens
+     */
+    private function normalizeSearchTerm(string $search): string
+    {
+        // Remove accents
+        $search = iconv('UTF-8', 'ASCII//TRANSLIT//IGNORE', $search);
+        // Remove spaces and hyphens
+        $search = str_replace([' ', '-'], '', $search);
+        
+        return $search;
+    }
+
+    public function findByCodeAndDate(string $code, DateTime $date): array
+    {
+        return $this->createQueryBuilder('p')
+            ->where('p.codePays = :code')
+            // Keep date constraints for find by code
             ->andWhere('(p.dateDebut IS NULL OR p.dateDebut <= :date)')
             ->andWhere('(p.dateFin IS NULL OR p.dateFin >= :date)')
-            ->setParameter('search', "%$search%")
+            ->setParameter('code', $code)
             ->setParameter('date', $date)
             ->getQuery()
             ->getResult();

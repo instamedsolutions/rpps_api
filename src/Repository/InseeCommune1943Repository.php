@@ -24,11 +24,39 @@ class InseeCommune1943Repository extends ServiceEntityRepository
 
     public function searchByNameAndDate(string $search, DateTime $date): array
     {
+        // Normalize the search: remove accents, replace spaces/hyphens with SQL wildcards
+        $normalizedSearch = $this->normalizeSearchTerm($search);
+        
         return $this->createQueryBuilder('c')
-            ->where('c.nomTypographie LIKE :search')
+            ->where('LOWER(REPLACE(REPLACE(c.nomTypographie, \'-\', \'\'), \' \', \'\')) LIKE LOWER(:search)')
             ->andWhere('(c.dateDebut IS NULL OR c.dateDebut <= :date)')
             ->andWhere('(c.dateFin IS NULL OR c.dateFin >= :date)')
-            ->setParameter('search', "$search%")
+            ->setParameter('search', "$normalizedSearch%")
+            ->setParameter('date', $date)
+            ->getQuery()
+            ->getResult();
+    }
+
+    /**
+     * Normalize search term by removing accents, spaces, and hyphens
+     */
+    private function normalizeSearchTerm(string $search): string
+    {
+        // Remove accents
+        $search = iconv('UTF-8', 'ASCII//TRANSLIT//IGNORE', $search);
+        // Remove spaces and hyphens
+        $search = str_replace([' ', '-'], '', $search);
+        
+        return $search;
+    }
+
+    public function findByCodeAndDate(string $code, DateTime $date): array
+    {
+        return $this->createQueryBuilder('c')
+            ->where('c.codeCommune = :code')
+            ->andWhere('(c.dateDebut IS NULL OR c.dateDebut <= :date)')
+            ->andWhere('(c.dateFin IS NULL OR c.dateFin >= :date)')
+            ->setParameter('code', $code)
             ->setParameter('date', $date)
             ->getQuery()
             ->getResult();
