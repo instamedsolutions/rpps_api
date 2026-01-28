@@ -27,16 +27,17 @@ class InseePays1943Repository extends ServiceEntityRepository
     /**
      * Note : might consider searching also the libelleOfficiel field.
      *
-     * Search for countries matching a name that existed at a given date.
-     * No longer enforces date constraints - allows searching for historical countries.
+     * Search for countries matching a name.
+     * Date constraints removed to allow searching for historical countries (e.g., Algeria before 1962).
      */
     public function searchByNameAndDate(string $search, DateTime $date): array
     {
-        // Normalize the search: remove accents, replace spaces/hyphens with SQL wildcards
+        // Normalize both the database field and search term by removing spaces and hyphens
+        // MySQL collations are typically accent-insensitive by default (utf8mb4_unicode_ci)
         $normalizedSearch = $this->normalizeSearchTerm($search);
         
         return $this->createQueryBuilder('p')
-            ->where('LOWER(REPLACE(REPLACE(p.libelleCog, \'-\', \'\'), \' \', \'\')) LIKE LOWER(:search)')
+            ->where('REPLACE(REPLACE(LOWER(p.libelleCog), \'-\', \'\'), \' \', \'\') LIKE LOWER(:search)')
             // Date constraints removed to allow historical country searches (e.g., Algeria before 1962)
             ->setParameter('search', "%$normalizedSearch%")
             ->getQuery()

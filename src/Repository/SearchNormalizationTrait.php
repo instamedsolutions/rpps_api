@@ -5,27 +5,14 @@ namespace App\Repository;
 trait SearchNormalizationTrait
 {
     /**
-     * Normalize search term by removing accents, spaces, and hyphens
+     * Normalize search term by removing spaces and hyphens
+     * 
+     * Note: Accent normalization is handled by MySQL's collation (utf8mb4_unicode_ci)
+     * which is accent-insensitive by default, so we don't need to remove accents here.
      */
     private function normalizeSearchTerm(string $search): string
     {
-        // Remove accents using transliterator if available
-        if (extension_loaded('intl')) {
-            $transliterator = \Transliterator::createFromRules(
-                ':: Any-Latin; :: Latin-ASCII; :: NFD; :: [:Nonspacing Mark:] Remove; :: NFC;',
-                \Transliterator::FORWARD
-            );
-            if ($transliterator) {
-                $search = $transliterator->transliterate($search);
-            }
-        } else {
-            // Fallback to iconv if intl extension is not available
-            $search = iconv('UTF-8', 'ASCII//TRANSLIT//IGNORE', $search) ?: $search;
-        }
-        
         // Remove spaces and hyphens
-        $search = str_replace([' ', '-'], '', $search);
-        
-        return $search;
+        return str_replace([' ', '-'], '', $search);
     }
 }

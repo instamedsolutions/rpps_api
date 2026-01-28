@@ -25,11 +25,12 @@ class InseeCommuneRepository extends ServiceEntityRepository
 
     public function searchByName(string $search): array
     {
-        // Normalize the search: remove accents, replace spaces/hyphens with SQL wildcards
+        // Normalize both the database field and search term by removing spaces and hyphens
+        // MySQL collations are typically accent-insensitive by default (utf8mb4_unicode_ci)
         $normalizedSearch = $this->normalizeSearchTerm($search);
         
         return $this->createQueryBuilder('c')
-            ->where('LOWER(REPLACE(REPLACE(c.nomEnClair, \'-\', \'\'), \' \', \'\')) LIKE LOWER(:search)')
+            ->where('REPLACE(REPLACE(LOWER(c.nomEnClair), \'-\', \'\'), \' \', \'\') LIKE LOWER(:search)')
             ->setParameter('search', "$normalizedSearch%")
             ->getQuery()
             ->getResult();

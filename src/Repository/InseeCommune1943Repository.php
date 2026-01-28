@@ -26,11 +26,12 @@ class InseeCommune1943Repository extends ServiceEntityRepository
 
     public function searchByNameAndDate(string $search, DateTime $date): array
     {
-        // Normalize the search: remove accents, replace spaces/hyphens with SQL wildcards
+        // Normalize both the database field and search term by removing spaces and hyphens
+        // MySQL collations are typically accent-insensitive by default (utf8mb4_unicode_ci)
         $normalizedSearch = $this->normalizeSearchTerm($search);
         
         return $this->createQueryBuilder('c')
-            ->where('LOWER(REPLACE(REPLACE(c.nomTypographie, \'-\', \'\'), \' \', \'\')) LIKE LOWER(:search)')
+            ->where('REPLACE(REPLACE(LOWER(c.nomTypographie), \'-\', \'\'), \' \', \'\') LIKE LOWER(:search)')
             ->andWhere('(c.dateDebut IS NULL OR c.dateDebut <= :date)')
             ->andWhere('(c.dateFin IS NULL OR c.dateFin >= :date)')
             ->setParameter('search', "$normalizedSearch%")
