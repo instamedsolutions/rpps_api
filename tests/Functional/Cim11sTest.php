@@ -55,7 +55,7 @@ class Cim11sTest extends ApiTestCase
         $this->assertCount(1, $data['hydra:member']);
 
         // Order of words should not matter
-        $data = $this->get('cim11s', ['cim10Code' => 'J00']);
+        $data = $this->get('cim11s', ['cim10_code' => 'J00']);
 
         $this->assertResponseStatusCodeSame(Response::HTTP_OK);
 
