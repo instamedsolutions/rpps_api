@@ -58,7 +58,7 @@ class BirthPlaceTest extends ApiTestCase
             self::assertArrayHasKey('code', $place);
             self::assertArrayHasKey('type', $place);
 
-            if ($place['label'] !== 'INCONNU') {
+            if ('INCONNU' !== $place['label']) {
                 // Ensure the label contains the search query (case-insensitive)
                 self::assertStringContainsStringIgnoringCase(
                     $searchQuery,
@@ -102,7 +102,6 @@ class BirthPlaceTest extends ApiTestCase
     }
 
     /**
-     *
      * @throws ClientExceptionInterface
      * @throws RedirectionExceptionInterface
      * @throws ServerExceptionInterface
@@ -146,7 +145,6 @@ class BirthPlaceTest extends ApiTestCase
                 type: 'country'
             )
         );
-
 
         // Test case 1 : Before 1943, it should use the 1943 rule → "Indes britanniques"
         $response1 = $this->get('birth_places', [
@@ -213,9 +211,7 @@ class BirthPlaceTest extends ApiTestCase
         );
     }
 
-
     /**
-     * @return void
      * @throws ClientExceptionInterface
      * @throws RedirectionExceptionInterface
      * @throws ServerExceptionInterface
@@ -264,7 +260,7 @@ class BirthPlaceTest extends ApiTestCase
     }
 
     /**
-     * Test searching with accent normalization
+     * Test searching with accent normalization.
      *
      * @throws ClientExceptionInterface
      * @throws RedirectionExceptionInterface
@@ -285,7 +281,7 @@ class BirthPlaceTest extends ApiTestCase
         // Verify we found Paris in the results
         $foundParis = false;
         foreach ($response['hydra:member'] as $place) {
-            if (stripos($place['label'], 'Paris') !== false) {
+            if (false !== stripos($place['label'], 'Paris')) {
                 $foundParis = true;
                 break;
             }
@@ -294,7 +290,7 @@ class BirthPlaceTest extends ApiTestCase
     }
 
     /**
-     * Test searching with spaces and hyphens normalization
+     * Test searching with spaces and hyphens normalization.
      *
      * @throws ClientExceptionInterface
      * @throws RedirectionExceptionInterface
@@ -320,14 +316,14 @@ class BirthPlaceTest extends ApiTestCase
             self::assertNotEmpty($response['hydra:member'], "Should return results for search: $search");
 
             // Store first results to compare
-            if ($firstResults === null) {
+            if (null === $firstResults) {
                 $firstResults = $response['hydra:member'];
             }
         }
     }
 
     /**
-     * Test searching by 5-digit code
+     * Test searching by 5-digit code.
      *
      * @throws ClientExceptionInterface
      * @throws RedirectionExceptionInterface
@@ -350,7 +346,7 @@ class BirthPlaceTest extends ApiTestCase
         // Verify the result contains the code
         $found = false;
         foreach ($response['hydra:member'] as $place) {
-            if ($place['code'] === '75056') {
+            if ('75056' === $place['code']) {
                 $found = true;
                 self::assertSame('city', $place['type']);
                 break;
@@ -361,7 +357,7 @@ class BirthPlaceTest extends ApiTestCase
     }
 
     /**
-     * Test searching for historical countries (e.g., Algeria before 1962)
+     * Test searching for historical countries (e.g., Algeria before 1962).
      *
      * @throws ClientExceptionInterface
      * @throws RedirectionExceptionInterface
@@ -382,7 +378,7 @@ class BirthPlaceTest extends ApiTestCase
     }
 
     /**
-     * Test jsonapi format via Accept header
+     * Test jsonapi format via Accept header.
      *
      * @throws ClientExceptionInterface
      * @throws RedirectionExceptionInterface
