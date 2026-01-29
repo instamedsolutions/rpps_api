@@ -17,6 +17,8 @@ use Doctrine\Persistence\ManagerRegistry;
  */
 class InseeCommune1943Repository extends ServiceEntityRepository
 {
+    use SearchNormalizationTrait;
+
     public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, InseeCommune1943::class);
@@ -24,11 +26,25 @@ class InseeCommune1943Repository extends ServiceEntityRepository
 
     public function searchByNameAndDate(string $search, DateTime $date): array
     {
+        // Normalize hyphens to spaces at the SQL level for flexible matching
+        // MySQL collations are typically accent-insensitive by default (utf8mb4_unicode_ci)
         return $this->createQueryBuilder('c')
-            ->where('c.nomTypographie LIKE :search')
+            ->where('REPLACE(c.nomTypographie, \'-\', \' \') LIKE :search')
             ->andWhere('(c.dateDebut IS NULL OR c.dateDebut <= :date)')
             ->andWhere('(c.dateFin IS NULL OR c.dateFin >= :date)')
-            ->setParameter('search', "$search%")
+            ->setParameter('search', '%' . str_replace('-', ' ', $search) . '%')
+            ->setParameter('date', $date)
+            ->getQuery()
+            ->getResult();
+    }
+
+    public function findByCodeAndDate(string $code, DateTime $date): array
+    {
+        return $this->createQueryBuilder('c')
+            ->where('c.codeCommune = :code')
+            ->andWhere('(c.dateDebut IS NULL OR c.dateDebut <= :date)')
+            ->andWhere('(c.dateFin IS NULL OR c.dateFin >= :date)')
+            ->setParameter('code', $code)
             ->setParameter('date', $date)
             ->getQuery()
             ->getResult();
