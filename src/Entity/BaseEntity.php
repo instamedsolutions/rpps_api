@@ -8,10 +8,10 @@ use DateTimeInterface;
 use Doctrine\ORM\Mapping as ORM;
 use Stringable;
 use Symfony\Component\Serializer\Annotation\Groups;
+use Symfony\Component\Serializer\Attribute\SerializedName;
 
 abstract class BaseEntity implements Entity, Stringable
 {
-    #[Groups(['read'])]
     #[ORM\Id]
     /** @phpstan-ignore-next-line  */
     #[ORM\GeneratedValue(strategy: 'UUID')]
@@ -59,4 +59,23 @@ abstract class BaseEntity implements Entity, Stringable
     }
 
     abstract public function __toString(): string;
+
+    #[SerializedName('id')]
+    #[Groups(['read'])]
+    public function getEntityId() : string
+    {
+        $prefix = self::getPrefix();
+
+        $id = str_replace("-","",$this->getId());
+
+        return strtolower("{$prefix}_{$id}");
+
+    }
+
+    public static function getPrefix() : string
+    {
+        $classParts = explode('\\', static::class);
+        return substr(strtolower($classParts[count($classParts) -1]),0,3);
+    }
+
 }

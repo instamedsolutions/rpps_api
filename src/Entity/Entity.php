@@ -13,4 +13,9 @@ interface Entity
     public function setCreatedDate(?DateTimeInterface $createdDate): void;
 
     public function __toString(): string;
+
+    public function getEntityId() : string;
+
+    public static function getPrefix() : string;
+
 }
