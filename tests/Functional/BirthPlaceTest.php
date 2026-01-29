@@ -58,7 +58,7 @@ class BirthPlaceTest extends ApiTestCase
             self::assertArrayHasKey('code', $place);
             self::assertArrayHasKey('type', $place);
 
-            if( $place['label'] !== 'INCONNU') {
+            if ($place['label'] !== 'INCONNU') {
                 // Ensure the label contains the search query (case-insensitive)
                 self::assertStringContainsStringIgnoringCase(
                     $searchQuery,
@@ -166,7 +166,6 @@ class BirthPlaceTest extends ApiTestCase
                 type: 'country'
             )
         );
-
     }
 
     /**
@@ -216,15 +215,13 @@ class BirthPlaceTest extends ApiTestCase
 
 
     /**
-     * @group now
-     *
      * @return void
      * @throws ClientExceptionInterface
      * @throws RedirectionExceptionInterface
      * @throws ServerExceptionInterface
      * @throws TransportExceptionInterface
      */
-    public function testGetOneBirthPlaceByCode() : void
+    public function testGetOneBirthPlaceByCode(): void
     {
         $code = '75056'; // Paris
         $response = $this->get('birth_places/' . $code);
@@ -240,7 +237,7 @@ class BirthPlaceTest extends ApiTestCase
 
         // Test with date for historical commune (Ars)
         $code = '01021'; // Ars-sur-Formans (only in historical data)
-        $response = $this->get('birth_places/' . $code,[
+        $response = $this->get('birth_places/' . $code, [
             'dateOfBirth' => (new DateTime('1950-01-01'))->format(DateTimeInterface::ATOM),
         ]);
 
@@ -264,7 +261,6 @@ class BirthPlaceTest extends ApiTestCase
         self::assertSame('Canada', $response['label']);
         self::assertSame($code, $response['code']);
         self::assertSame('country', $response['type']);
-
     }
 
     /**
@@ -285,7 +281,7 @@ class BirthPlaceTest extends ApiTestCase
 
         self::assertResponseStatusCodeSame(Response::HTTP_OK);
         self::assertNotEmpty($response['hydra:member']);
-        
+
         // Verify we found Paris in the results
         $foundParis = false;
         foreach ($response['hydra:member'] as $place) {
@@ -322,7 +318,7 @@ class BirthPlaceTest extends ApiTestCase
 
             self::assertResponseStatusCodeSame(Response::HTTP_OK);
             self::assertNotEmpty($response['hydra:member'], "Should return results for search: $search");
-            
+
             // Store first results to compare
             if ($firstResults === null) {
                 $firstResults = $response['hydra:member'];
@@ -347,10 +343,10 @@ class BirthPlaceTest extends ApiTestCase
         ]);
 
         self::assertResponseStatusCodeSame(Response::HTTP_OK);
-        
+
         // Should find the commune with this code
         self::assertNotEmpty($response['hydra:member']);
-        
+
         // Verify the result contains the code
         $found = false;
         foreach ($response['hydra:member'] as $place) {
@@ -360,7 +356,7 @@ class BirthPlaceTest extends ApiTestCase
                 break;
             }
         }
-        
+
         self::assertTrue($found, 'Expected to find a place with code 75056');
     }
 
