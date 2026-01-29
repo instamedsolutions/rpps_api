@@ -13,8 +13,6 @@ class SpecialtyTest extends ApiTestCase
 {
     /**
      *
-     * @group now2
-     *
      * @throws ClientExceptionInterface
      * @throws RedirectionExceptionInterface
      * @throws ServerExceptionInterface

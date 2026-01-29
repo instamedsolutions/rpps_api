@@ -81,6 +81,15 @@ final readonly class BirthPlacesProvider implements ProviderInterface
             throw new RuntimeException('Missing "code" in URI variables');
         }
 
-        return $this->birthPlaceService->getBirthPlaceByCode($uriVariables['code'], $context['filters']['filters'] ?? null);
+        $request = $this->requestStack->getCurrentRequest();
+        if (!$request) {
+            throw new LogicException('No current request available');
+        }
+
+        $dateOfBirth = $request->query->get('dateOfBirth');
+
+        $code = explode('.', $uriVariables['code'])[0];
+
+        return $this->birthPlaceService->getBirthPlaceByCode($code, $dateOfBirth);
     }
 }

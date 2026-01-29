@@ -31,8 +31,14 @@ class BirthPlaceService
         /** @var InseePaysRepository $paysRepository */
         $paysRepository = $this->em->getRepository(InseePays::class);
 
-        $communeResults = $communeRepository->searchByName($search);
-        $paysResults = $paysRepository->searchByName($search);
+        // Check if search is a 5-digit code
+        if (preg_match('/^\d{5}$/', $search)) {
+            $communeResults = $communeRepository->findByCode($search);
+            $paysResults = $paysRepository->findByCode($search);
+        } else {
+            $communeResults = $communeRepository->searchByName($search);
+            $paysResults = $paysRepository->searchByName($search);
+        }
 
         return $this->mapResultsToDTO($communeResults, $paysResults);
     }
@@ -42,7 +48,7 @@ class BirthPlaceService
         if ($dateOfBirth) {
             try {
                 $dateOfBirth = new DateTime($dateOfBirth);
-            } catch (Exception $e) {
+            } catch (Exception) {
                 // If the date is invalid, we ignore it and proceed with the search
                 $dateOfBirth = null;
             }
@@ -97,8 +103,14 @@ class BirthPlaceService
         /** @var InseePays1943Repository $pays1943Repository */
         $pays1943Repository = $this->em->getRepository(InseePays1943::class);
 
-        $communeResults = $commune1943Repository->searchByNameAndDate($search, $date);
-        $paysResults = $pays1943Repository->searchByNameAndDate($search, $date);
+        // Check if search is a 5-digit code
+        if (preg_match('/^\d{5}$/', $search)) {
+            $communeResults = $commune1943Repository->findByCodeAndDate($search, $date);
+            $paysResults = $pays1943Repository->findByCodeAndDate($search, $date);
+        } else {
+            $communeResults = $commune1943Repository->searchByNameAndDate($search, $date);
+            $paysResults = $pays1943Repository->searchByNameAndDate($search, $date);
+        }
 
         return $this->mapResultsToDTO($communeResults, $paysResults);
     }

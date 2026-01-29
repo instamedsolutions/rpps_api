@@ -17,6 +17,8 @@ use Doctrine\Persistence\ManagerRegistry;
  */
 class InseePays1943Repository extends ServiceEntityRepository
 {
+    use SearchNormalizationTrait;
+
     public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, InseePays1943::class);
@@ -25,15 +27,29 @@ class InseePays1943Repository extends ServiceEntityRepository
     /**
      * Note : might consider searching also the libelleOfficiel field.
      *
-     * Search for countries matching a name that existed at a given date.
+     * Search for countries matching a name.
+     * Date constraints removed to allow searching for historical countries (e.g., Algeria before 1962).
      */
     public function searchByNameAndDate(string $search, DateTime $date): array
     {
+        // Normalize hyphens to spaces at the SQL level for flexible matching
+        // MySQL collations are typically accent-insensitive by default (utf8mb4_unicode_ci)
         return $this->createQueryBuilder('p')
-            ->where('p.libelleCog LIKE :search')
+            ->where('REPLACE(p.libelleCog, \'-\', \' \') LIKE :search')
+            // Date constraints removed to allow historical country searches (e.g., Algeria before 1962)
+            ->setParameter('search', '%' . str_replace('-', ' ', $search) . '%')
+            ->getQuery()
+            ->getResult();
+    }
+
+    public function findByCodeAndDate(string $code, DateTime $date): array
+    {
+        return $this->createQueryBuilder('p')
+            ->where('p.codePays = :code')
+            // Keep date constraints for find by code
             ->andWhere('(p.dateDebut IS NULL OR p.dateDebut <= :date)')
             ->andWhere('(p.dateFin IS NULL OR p.dateFin >= :date)')
-            ->setParameter('search', "%$search%")
+            ->setParameter('code', $code)
             ->setParameter('date', $date)
             ->getQuery()
             ->getResult();

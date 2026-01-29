@@ -16,6 +16,8 @@ use Doctrine\Persistence\ManagerRegistry;
  */
 class InseePaysRepository extends ServiceEntityRepository
 {
+    use SearchNormalizationTrait;
+
     public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, InseePays::class);
@@ -23,9 +25,20 @@ class InseePaysRepository extends ServiceEntityRepository
 
     public function searchByName(string $search): array
     {
+        // Normalize hyphens to spaces at the SQL level for flexible matching
+        // MySQL collations are typically accent-insensitive by default (utf8mb4_unicode_ci)
         return $this->createQueryBuilder('p')
-            ->where('p.libelleCog LIKE :search')
-            ->setParameter('search', "%$search%")
+            ->where('REPLACE(p.libelleCog, \'-\', \' \') LIKE :search')
+            ->setParameter('search', '%' . str_replace('-', ' ', $search) . '%')
+            ->getQuery()
+            ->getResult();
+    }
+
+    public function findByCode(string $code): array
+    {
+        return $this->createQueryBuilder('p')
+            ->where('p.codePays = :code')
+            ->setParameter('code', $code)
             ->getQuery()
             ->getResult();
     }
