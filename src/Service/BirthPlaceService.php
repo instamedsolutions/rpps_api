@@ -48,7 +48,7 @@ class BirthPlaceService
         if ($dateOfBirth) {
             try {
                 $dateOfBirth = new DateTime($dateOfBirth);
-            } catch (Exception $e) {
+            } catch (Exception) {
                 // If the date is invalid, we ignore it and proceed with the search
                 $dateOfBirth = null;
             }

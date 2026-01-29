@@ -8,13 +8,13 @@ use Doctrine\ORM\Query\SqlWalker;
 use Doctrine\ORM\Query\TokenType;
 
 /**
- * ReplaceFunction ::= "REPLACE" "(" StringPrimary "," StringPrimary "," StringPrimary ")"
+ * ReplaceFunction ::= "REPLACE" "(" StringPrimary "," StringPrimary "," StringPrimary ")".
  */
 class ReplaceFunction extends FunctionNode
 {
-    public $subject;
-    public $search;
-    public $replace;
+    public mixed $subject;
+    public mixed $search;
+    public mixed $replace;
 
     public function parse(Parser $parser): void
     {

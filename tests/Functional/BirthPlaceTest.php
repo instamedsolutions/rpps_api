@@ -97,7 +97,7 @@ class BirthPlaceTest extends ApiTestCase
         self::assertArrayHasKey('hydra:member', $response);
         self::assertArrayHasKey('hydra:view', $response);
 
-        self::assertSame(6, $response['hydra:totalItems']);
+        self::assertSame(7, $response['hydra:totalItems']);
         self::assertCount(2, $response['hydra:member']);
     }
 
@@ -255,13 +255,13 @@ class BirthPlaceTest extends ApiTestCase
 
         // Get for country
 
-        $code = '99223'; // Inde
+        $code = '99401'; // Canada
         $response = $this->get('birth_places/' . $code);
         self::assertResponseStatusCodeSame(Response::HTTP_OK);
         self::assertArrayHasKey('label', $response);
         self::assertArrayHasKey('code', $response);
         self::assertArrayHasKey('type', $response);
-        self::assertSame('Inde', $response['label']);
+        self::assertSame('Canada', $response['label']);
         self::assertSame($code, $response['code']);
         self::assertSame('country', $response['type']);
 
