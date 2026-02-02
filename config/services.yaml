@@ -111,6 +111,6 @@ services:
                     - Symfony\Component\HttpKernel\Exception\UnauthorizedHttpException
                     - Symfony\Component\HttpKernel\Exception\BadRequestHttpException
                     - Symfony\Component\HttpKernel\Exception\NotAcceptableHttpException
-                    - ApiPlatform\Core\Bridge\Symfony\Validator\Exception\ValidationException
-                    - ApiPlatform\Core\Exception\ItemNotFoundException
+                    - ApiPlatform\Validator\Exception\ValidationException
+                    - ApiPlatform\Exception\ItemNotFoundException
                     - ReflectionException
