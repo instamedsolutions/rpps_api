@@ -24,14 +24,12 @@ class PointWrapper extends Connection
     {
         try {
             $stmt = new Statement($sql, $this);
-            if ($this->getDriver()->getDatabasePlatform() instanceof MySqlPlatform) {
+            if ($this->getDatabasePlatform() instanceof MySqlPlatform) {
                 $stmt->connexion = $this;
             }
         } catch (Throwable $e) {
             $this->handleExceptionDuringQuery($e, $sql);
         }
-
-        $stmt->setFetchMode($this->defaultFetchMode);
 
         return $stmt;
     }
@@ -58,11 +56,6 @@ class PointWrapper extends Connection
      */
     public function executeStatement($sql, array $params = [], array $types = [])
     {
-        $logger = $this->_config->getSQLLogger();
-        if ($logger) {
-            $logger->startQuery($sql, $params, $types);
-        }
-
         try {
             if ($params) {
                 [$sql, $params, $types] = SQLParserUtils::expandListParameters($sql, $params, $types);
@@ -87,10 +80,6 @@ class PointWrapper extends Connection
                 $params,
                 $types
             );
-        }
-
-        if ($logger) {
-            $logger->stopQuery();
         }
 
         return $result;

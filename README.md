@@ -4,7 +4,7 @@
 
 This project contains all scripts to fetch and store data as well as a fully functioning API to fetch this data.
 
-The project is based on **PHP 8.3**,  **[API-Platform 3.4](https://api-platform.com/docs/v2.5/distribution/)** and **[Symfony 6.4](https://symfony.com/)**
+The project is based on **PHP 8.3+**,  **[API-Platform 4.2](https://api-platform.com/)** and **[Symfony 7.4](https://symfony.com/)**
 
 Live API is available at [https://data.instamed.fr](https://data.instamed.fr).
 
