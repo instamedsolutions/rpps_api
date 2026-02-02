@@ -74,8 +74,7 @@
       "composer/package-versions-deprecated": false,
       "symfony/flex": true,
       "php-http/discovery": true
-    },
-    "secure-http": false
+    }
   },
   "autoload": {
     "psr-4": {
@@ -113,10 +112,5 @@
       "allow-contrib": false,
       "require": "7.4.*"
     }
-  },
-  "repositories": [{
-    "name": "packagist.org",
-    "type": "composer",
-    "url": "https://repo.packagist.org"
-  }]
+  }
 }
