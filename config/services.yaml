@@ -101,16 +101,3 @@ services:
         arguments:
             $projectDir: '%kernel.project_dir%'
 
-    Sentry\Integration\IgnoreErrorsIntegration:
-        arguments:
-            $options:
-                ignore_exceptions:
-                    - Symfony\Component\HttpKernel\Exception\NotFoundHttpException
-                    - Symfony\Component\Security\Core\Exception\AuthenticationException
-                    - Symfony\Component\Security\Core\Exception\AccessDeniedException
-                    - Symfony\Component\HttpKernel\Exception\UnauthorizedHttpException
-                    - Symfony\Component\HttpKernel\Exception\BadRequestHttpException
-                    - Symfony\Component\HttpKernel\Exception\NotAcceptableHttpException
-                    - ApiPlatform\Validator\Exception\ValidationException
-                    - ApiPlatform\Exception\ItemNotFoundException
-                    - ReflectionException

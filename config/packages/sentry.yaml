@@ -3,10 +3,18 @@ when@prod:
         dsn: '%env(SENTRY_DSN)%'
 
         options:
-            integrations:
-                - 'Sentry\Integration\IgnoreErrorsIntegration'
             send_default_pii: true
             in_app_exclude:
                 - '%kernel.cache_dir%'
                 - '%kernel.project_dir%/vendor'
             traces_sample_rate: 0.01
+            ignore_exceptions:
+                - Symfony\Component\HttpKernel\Exception\NotFoundHttpException
+                - Symfony\Component\Security\Core\Exception\AuthenticationException
+                - Symfony\Component\Security\Core\Exception\AccessDeniedException
+                - Symfony\Component\HttpKernel\Exception\UnauthorizedHttpException
+                - Symfony\Component\HttpKernel\Exception\BadRequestHttpException
+                - Symfony\Component\HttpKernel\Exception\NotAcceptableHttpException
+                - ApiPlatform\Validator\Exception\ValidationException
+                - ApiPlatform\Exception\ItemNotFoundException
+                - ReflectionException

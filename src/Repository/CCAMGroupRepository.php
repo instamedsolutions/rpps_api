@@ -4,6 +4,7 @@ namespace App\Repository;
 
 use App\Entity\CCAMGroup;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\DBAL\LockMode;
 use Doctrine\ORM\NonUniqueResultException;
 use Doctrine\Persistence\ManagerRegistry;
 
@@ -28,7 +29,7 @@ class CCAMGroupRepository extends ServiceEntityRepository
      *
      * @throws NonUniqueResultException
      */
-    public function find($id, $lockMode = null, $lockVersion = null): ?CCAMGroup
+    public function find(mixed $id,LockMode | int | null $lockMode = null, ?int $lockVersion = null): ?CCAMGroup
     {
         if (null === $id || 0 === $id) {
             return null;

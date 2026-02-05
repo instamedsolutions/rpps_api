@@ -1,8 +1,8 @@
-ARG PHP_VERSION=8.3
+ARG PHP_VERSION=8.5
 
-FROM php:${PHP_VERSION}-apache-bookworm AS rpps-base
+FROM php:${PHP_VERSION}-apache AS rpps-base
 
-ENV DEBIAN_FRONTEND noninteractive
+ENV DEBIAN_FRONTEND=noninteractive
 
 RUN apt-get update --fix-missing
 RUN apt-get install -y curl nano unzip
@@ -40,7 +40,7 @@ RUN apt-get update \
 		libxml2-dev
 
 RUN apt install -y libcurl3-dev
-RUN docker-php-ext-install pdo_mysql zip opcache
+RUN docker-php-ext-install pdo_mysql zip
 
 ADD https://github.com/mlocati/docker-php-extension-installer/releases/latest/download/install-php-extensions /usr/local/bin/
 RUN chmod +x /usr/local/bin/install-php-extensions && sync && \

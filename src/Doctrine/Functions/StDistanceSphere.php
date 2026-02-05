@@ -13,7 +13,7 @@ class StDistanceSphere extends FunctionNode
     public PointFunction $firstPoint;
     public PathExpression $secondPoint;
 
-    public function parse(Parser $parser)
+    public function parse(Parser $parser) : void
     {
         $parser->match(TokenType::T_IDENTIFIER); // Matches ST_Distance_Sphere
         $parser->match(TokenType::T_OPEN_PARENTHESIS); // Matches (
@@ -27,7 +27,7 @@ class StDistanceSphere extends FunctionNode
         $parser->match(TokenType::T_CLOSE_PARENTHESIS); // Matches )
     }
 
-    public function getSql(SqlWalker $sqlWalker)
+    public function getSql(SqlWalker $sqlWalker) : string
     {
         return 'ST_Distance_Sphere(' .
             $this->firstPoint->dispatch($sqlWalker) . ', ' .

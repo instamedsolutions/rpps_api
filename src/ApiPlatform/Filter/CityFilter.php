@@ -19,13 +19,13 @@ final class CityFilter extends AbstractFilter
     protected ?QueryNameGeneratorInterface $queryNameGenerator = null;
 
     public function __construct(
-        protected ManagerRegistry $managerRegistry,
+        ?ManagerRegistry $managerRegistry,
         private readonly RequestStack $requestStack,
         ?LoggerInterface $logger = null,
-        protected ?array $properties = null,
-        protected ?NameConverterInterface $nameConverter = null,
+        ?array $properties = null,
+        ?NameConverterInterface $nameConverter = null,
     ) {
-        parent::__construct($this->managerRegistry, $logger, $properties, $nameConverter);
+        parent::__construct($managerRegistry, $logger, $properties, $nameConverter);
     }
 
     /**
