@@ -4,6 +4,7 @@ namespace App\Repository;
 
 use App\Entity\Disease;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\DBAL\LockMode;
 use Doctrine\ORM\NonUniqueResultException;
 use Doctrine\Persistence\ManagerRegistry;
 
@@ -28,7 +29,7 @@ class DiseaseRepository extends ServiceEntityRepository
      *
      * @throws NonUniqueResultException
      */
-    public function find($id, $lockMode = null, $lockVersion = null): ?Disease
+    public function find(mixed $id,LockMode | int | null $lockMode = null, ?int $lockVersion = null): ?Disease
     {
         if (null === $id || 0 === $id) {
             return null;

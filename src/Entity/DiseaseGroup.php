@@ -47,10 +47,7 @@ class DiseaseGroup extends BaseEntity implements ImportableEntityInterface
     #[ApiProperty(
         description: 'The unique CIS Id in the government database',
         required: true,
-        openapiContext: [
-            'type' => 'string',
-            'example' => '1',
-        ]
+        schema: ['type' => 'string', 'example' => '1'],
     )]
     #[Groups(['read'])]
     #[ORM\Column(type: 'string', unique: true)]
@@ -60,10 +57,7 @@ class DiseaseGroup extends BaseEntity implements ImportableEntityInterface
     #[ApiProperty(
         description: 'The name of the disease group',
         required: true,
-        openapiContext: [
-            'type' => 'string',
-            'example' => 'Certaines maladies infectieuses et parasitaires',
-        ]
+        schema: ['type' => 'string', 'example' => 'Certaines maladies infectieuses et parasitaires'],
     )]
     #[Groups(['read'])]
     #[ORM\Column(type: 'string', length: 255)]

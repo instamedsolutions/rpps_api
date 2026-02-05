@@ -14,7 +14,7 @@ class MBRContains extends FunctionNode
     public PathExpression $point2;
 
     // Parse the SQL arguments
-    public function parse(Parser $parser)
+    public function parse(Parser $parser) : void
     {
         $parser->match(TokenType::T_IDENTIFIER); // MBRContains
         $parser->match(TokenType::T_OPEN_PARENTHESIS); // (
@@ -27,7 +27,7 @@ class MBRContains extends FunctionNode
     }
 
     // Generate SQL output for this function
-    public function getSql(SqlWalker $sqlWalker)
+    public function getSql(SqlWalker $sqlWalker) : string
     {
         return 'MBRContains(' .
             $this->point1->dispatch($sqlWalker) . ', ' .

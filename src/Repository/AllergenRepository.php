@@ -4,8 +4,10 @@ namespace App\Repository;
 
 use App\Entity\Allergen;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\DBAL\LockMode;
 use Doctrine\ORM\NonUniqueResultException;
 use Doctrine\Persistence\ManagerRegistry;
+use Symfony\Component\Validator\Constraints\All;
 
 /**
  * @method Allergen|null findOneBy(array $criteria, array $orderBy = null)
@@ -30,7 +32,7 @@ class AllergenRepository extends ServiceEntityRepository
      *
      * @throws NonUniqueResultException
      */
-    public function find($id, $lockMode = null, $lockVersion = null)
+    public function find(mixed $id,LockMode | int | null $lockMode = null, ?int $lockVersion = null): ?All
     {
         if (null === $id || 0 === $id) {
             return null;

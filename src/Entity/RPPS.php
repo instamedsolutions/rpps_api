@@ -60,11 +60,7 @@ class RPPS extends BaseEntity implements ImportableEntityInterface
     #[ApiFilter(SearchFilter::class, strategy: 'exact')]
     #[ApiProperty(
         description: 'The unique RPPS identifier of the medic',
-        required: false,
-        openapiContext: [
-            'type' => 'string',
-            'example' => '810003820189',
-        ]
+        schema: ['type' => 'string', 'example' => '810003820189'],
     )]
     #[Groups(['read'])]
     #[ORM\Column(type: 'string', unique: true, nullable: true)]
@@ -72,11 +68,7 @@ class RPPS extends BaseEntity implements ImportableEntityInterface
 
     #[ApiProperty(
         description: 'The civility of the doctor',
-        required: false,
-        openapiContext: [
-            'type' => 'string',
-            'example' => 'Docteur',
-        ]
+        schema: ['type' => 'string', 'example' => 'Docteur'],
     )]
     #[Groups(['read'])]
     #[ORM\Column(type: 'string', length: 255, nullable: true)]
@@ -85,11 +77,7 @@ class RPPS extends BaseEntity implements ImportableEntityInterface
     #[ApiFilter(SearchFilter::class, strategy: 'istart')]
     #[ApiProperty(
         description: 'The last name of the doctor',
-        required: false,
-        openapiContext: [
-            'type' => 'string',
-            'example' => 'RENE',
-        ]
+        schema: ['type' => 'string', 'example' => 'RENE'],
     )]
     #[Groups(['read'])]
     #[ORM\Column(type: 'string', length: 255, nullable: true)]
@@ -98,11 +86,7 @@ class RPPS extends BaseEntity implements ImportableEntityInterface
     #[ApiFilter(SearchFilter::class, strategy: 'istart')]
     #[ApiProperty(
         description: 'The first name of the doctor',
-        required: false,
-        openapiContext: [
-            'type' => 'string',
-            'example' => 'Marc',
-        ]
+        schema: ['type' => 'string', 'example' => 'Marc'],
     )]
     #[Groups(['read'])]
     #[ORM\Column(type: 'string', length: 255, nullable: true)]
@@ -113,12 +97,8 @@ class RPPS extends BaseEntity implements ImportableEntityInterface
      */
     #[ApiProperty(
         description: 'Deprecated. The specialty of the doctor. Use specialtyEntity instead.',
-        required: false,
-        openapiContext: [
-            'type' => 'string',
-            'example' => 'Médecin',
-            'deprecated' => true,
-        ]
+        deprecationReason: 'Use specialtyEntity instead',
+        schema: ['type' => 'string', 'example' => 'Médecin'],
     )]
     #[Groups(['read'])]
     #[ORM\Column(type: 'string', length: 255, nullable: true)]
@@ -135,11 +115,7 @@ class RPPS extends BaseEntity implements ImportableEntityInterface
 
     #[ApiProperty(
         description: 'The address of the doctor',
-        required: false,
-        openapiContext: [
-            'type' => 'string',
-            'example' => '12 Rue de Paris',
-        ]
+        schema: ['type' => 'string', 'example' => '12 Rue de Paris'],
     )]
     #[Groups(['read'])]
     #[ORM\Column(type: 'string', length: 255, nullable: true)]
@@ -147,11 +123,7 @@ class RPPS extends BaseEntity implements ImportableEntityInterface
 
     #[ApiProperty(
         description: 'The address extension of the doctor',
-        required: false,
-        openapiContext: [
-            'type' => 'string',
-            'example' => 'BP 75',
-        ]
+        schema: ['type' => 'string', 'example' => 'BP 75'],
     )]
     #[Groups(['read'])]
     #[ORM\Column(type: 'string', length: 255, nullable: true)]
@@ -159,11 +131,7 @@ class RPPS extends BaseEntity implements ImportableEntityInterface
 
     #[ApiProperty(
         description: 'The postal code of the doctor',
-        required: false,
-        openapiContext: [
-            'type' => 'string',
-            'example' => '75019',
-        ]
+        schema: ['type' => 'string', 'example' => '75019'],
     )]
     #[Groups(['read'])]
     #[ORM\Column(type: 'string', length: 255, nullable: true)]
@@ -174,12 +142,8 @@ class RPPS extends BaseEntity implements ImportableEntityInterface
      */
     #[ApiProperty(
         description: 'Deprecated. The city of the doctor, use cityEntity instead.',
-        required: false,
-        openapiContext: [
-            'type' => 'string',
-            'example' => 'Paris',
-            'deprecated' => true,
-        ]
+        deprecationReason: 'Use cityEntity instead',
+        schema: ['type' => 'string', 'example' => 'Paris'],
     )]
     #[Groups(['read'])]
     #[ORM\Column(type: 'string', length: 255, nullable: true)]
@@ -187,11 +151,7 @@ class RPPS extends BaseEntity implements ImportableEntityInterface
 
     #[ApiProperty(
         description: 'The latitude of the doctor',
-        required: false,
-        openapiContext: [
-            'type' => 'number',
-            'example' => 48.8566,
-        ]
+        schema: ['type' => 'number', 'example' => 48.8566],
     )]
     #[Groups(['read'])]
     #[ORM\Column(type: 'float', nullable: true)]
@@ -205,11 +165,7 @@ class RPPS extends BaseEntity implements ImportableEntityInterface
 
     #[ApiProperty(
         description: 'The latitude of the doctor',
-        required: false,
-        openapiContext: [
-            'type' => 'number',
-            'example' => 48.8566,
-        ]
+        schema: ['type' => 'number', 'example' => 48.8566],
     )]
     #[Groups(['read'])]
     #[ORM\Column(type: 'float', nullable: true)]
@@ -217,7 +173,6 @@ class RPPS extends BaseEntity implements ImportableEntityInterface
 
     #[ApiProperty(
         description: 'The city entity of the doctor, with more detailed information such as population and coordinates.',
-        required: false,
     )]
     #[Groups(['read'])]
     #[ORM\ManyToOne(targetEntity: City::class, fetch: 'EXTRA_LAZY')]
@@ -226,11 +181,7 @@ class RPPS extends BaseEntity implements ImportableEntityInterface
 
     #[ApiProperty(
         description: 'The phone number of the doctor',
-        required: false,
-        openapiContext: [
-            'type' => 'string',
-            'example' => '+33144955555',
-        ]
+        schema: ['type' => 'string', 'example' => '+33144955555'],
     )]
     #[AssertPhoneNumber(defaultRegion: 'FR')]
     #[Groups(['read'])]
@@ -239,11 +190,7 @@ class RPPS extends BaseEntity implements ImportableEntityInterface
 
     #[ApiProperty(
         description: 'The email of the doctor',
-        required: false,
-        openapiContext: [
-            'type' => 'string',
-            'example' => 'jean.doe@free.fr',
-        ]
+        schema: ['type' => 'string', 'example' => 'jean.doe@free.fr'],
     )]
     #[ApiFilter(SearchFilter::class, strategy: 'istart')]
     #[ORM\Column(type: 'string', length: 255, nullable: true)]
@@ -252,11 +199,7 @@ class RPPS extends BaseEntity implements ImportableEntityInterface
 
     #[ApiProperty(
         description: 'The Finess number of the doctor',
-        required: false,
-        openapiContext: [
-            'type' => 'string',
-            'example' => '740787791',
-        ]
+        schema: ['type' => 'string', 'example' => '740787791'],
     )]
     #[Groups(['read'])]
     #[ORM\Column(type: 'string', length: 255, nullable: true)]
@@ -264,11 +207,7 @@ class RPPS extends BaseEntity implements ImportableEntityInterface
 
     #[ApiProperty(
         description: 'The CPS number of the doctor',
-        required: false,
-        openapiContext: [
-            'type' => 'string',
-            'example' => '2800089831',
-        ]
+        schema: ['type' => 'string', 'example' => '2800089831'],
     )]
     #[Groups(['read'])]
     #[ORM\Column(type: 'string', length: 255, nullable: true)]

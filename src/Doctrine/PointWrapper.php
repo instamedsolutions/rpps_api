@@ -20,7 +20,7 @@ class PointWrapper extends Connection
         parent::__construct($params, $driver, $config, $eventManager);
     }
 
-    public function prepare($sql)
+    public function prepare(string $sql) : Statement
     {
         try {
             $stmt = new Statement($sql, $this);

@@ -4,6 +4,7 @@ namespace App\Repository;
 
 use App\Entity\CCAM;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\DBAL\LockMode;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
@@ -18,7 +19,7 @@ class CCAMRepository extends ServiceEntityRepository
         parent::__construct($registry, CCAM::class);
     }
 
-    public function find($id, $lockMode = null, $lockVersion = null): ?CCAM
+    public function find(mixed $id,LockMode | int | null $lockMode = null, ?int $lockVersion = null): ?CCAM
     {
         if (null === $id || 0 === $id) {
             return null;

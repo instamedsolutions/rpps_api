@@ -41,10 +41,7 @@ class NGAP extends BaseEntity implements ImportableEntityInterface
     #[ApiProperty(
         description: 'The uniq code of the NGAP',
         required: true,
-        openapiContext: [
-            'type' => 'string',
-            'example' => 'AAD',
-        ]
+        schema: ['type' => 'string', 'example' => 'AAD'],
     )]
     #[ApiFilter(SearchFilter::class, strategy: SearchFilterInterface::STRATEGY_EXACT)]
     #[Groups(['read'])]
@@ -54,10 +51,7 @@ class NGAP extends BaseEntity implements ImportableEntityInterface
     #[ApiProperty(
         description: 'The description of the NGAP',
         required: true,
-        openapiContext: [
-            'type' => 'string',
-            'example' => 'Autres accessoires traitement à domicile (Titre I Chapitre I de la LPP)',
-        ]
+        schema: ['type' => 'string', 'example' => 'Autres accessoires traitement à domicile (Titre I Chapitre I de la LPP)'],
     )]
     #[ApiFilter(SearchFilter::class, strategy: SearchFilterInterface::STRATEGY_START)]
     #[Groups(['read'])]
