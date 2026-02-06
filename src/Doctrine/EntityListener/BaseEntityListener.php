@@ -12,7 +12,7 @@ class BaseEntityListener
     {
         $entity = $event->getEntity();
 
-        if (!($entity instanceof BaseEntity)) {
+        if (!$entity instanceof BaseEntity) {
             return;
         }
 

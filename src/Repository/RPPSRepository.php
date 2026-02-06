@@ -29,7 +29,7 @@ class RPPSRepository extends ServiceEntityRepository
      *
      * @throws NonUniqueResultException
      */
-    public function find(mixed $id,LockMode | int | null $lockMode = null, ?int $lockVersion = null): ?RPPS
+    public function find(mixed $id, LockMode|int|null $lockMode = null, ?int $lockVersion = null): ?RPPS
     {
         if (null === $id || 0 === $id) {
             return null;

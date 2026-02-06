@@ -29,7 +29,7 @@ class CCAMGroupRepository extends ServiceEntityRepository
      *
      * @throws NonUniqueResultException
      */
-    public function find(mixed $id,LockMode | int | null $lockMode = null, ?int $lockVersion = null): ?CCAMGroup
+    public function find(mixed $id, LockMode|int|null $lockMode = null, ?int $lockVersion = null): ?CCAMGroup
     {
         if (null === $id || 0 === $id) {
             return null;

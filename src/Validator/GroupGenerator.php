@@ -10,7 +10,7 @@ use function Symfony\Component\String\u;
 
 final class GroupGenerator
 {
-    public function __construct(protected RequestStack $requestStack)
+    public function __construct(private RequestStack $requestStack)
     {
     }
 

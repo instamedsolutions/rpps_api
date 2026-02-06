@@ -164,11 +164,9 @@ class CityRepository extends ServiceEntityRepository
      * @param null $lockMode
      * @param null $lockVersion
      *
-     * @return City|null
-     *
      * @throws NonUniqueResultException
      */
-    public function find(mixed $id,LockMode | int | null $lockMode = null, ?int $lockVersion = null): ?City
+    public function find(mixed $id, LockMode|int|null $lockMode = null, ?int $lockVersion = null): ?City
     {
         if (null === $id || 0 === $id) {
             return null;
