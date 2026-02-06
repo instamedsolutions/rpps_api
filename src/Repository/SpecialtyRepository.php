@@ -21,7 +21,7 @@ class SpecialtyRepository extends ServiceEntityRepository
         parent::__construct($registry, Specialty::class);
     }
 
-    public function find(mixed $id,LockMode | int | null $lockMode = null, ?int $lockVersion = null): ?Specialty
+    public function find(mixed $id, LockMode|int|null $lockMode = null, ?int $lockVersion = null): ?Specialty
     {
         if (null === $id || 0 === $id) {
             return null;

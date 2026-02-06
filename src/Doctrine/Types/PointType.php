@@ -4,6 +4,7 @@ namespace App\Doctrine\Types;
 
 use Doctrine\DBAL\Platforms\AbstractPlatform;
 use Doctrine\DBAL\Platforms\MySqlPlatform;
+use Doctrine\DBAL\Platforms\SqlitePlatform;
 use Doctrine\DBAL\Types\Type;
 
 class PointType extends Type
@@ -13,7 +14,7 @@ class PointType extends Type
     public function getSQLDeclaration(array $column, AbstractPlatform $platform): string
     {
         // If SQLite, store as TEXT. If MySQL, store as POINT.
-        return 'sqlite' === $platform->getName() ? 'TEXT' : 'POINT';
+        return $platform instanceof SqlitePlatform ? 'TEXT' : 'POINT';
     }
 
     /**
@@ -50,7 +51,7 @@ class PointType extends Type
         $lon = (float) ($value['longitude'] ?? 0);
         $lat = (float) ($value['latitude'] ?? 0);
 
-        if ('sqlite' === $platform->getName()) {
+        if ($platform instanceof SqlitePlatform) {
             // Just store "POINT(lon lat)" as TEXT
             return sprintf('POINT(%F %F)', $lon, $lat);
         }

@@ -11,7 +11,7 @@ use Symfony\Component\HttpFoundation\RequestStack;
 
 final class DefaultItemDataProvider implements ProviderInterface
 {
-    public function __construct(protected readonly RequestStack $requestStack, protected EntityManagerInterface $em)
+    public function __construct(private EntityManagerInterface $em)
     {
     }
 

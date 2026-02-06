@@ -19,7 +19,7 @@ class NGAPRepository extends ServiceEntityRepository
         parent::__construct($registry, NGAP::class);
     }
 
-    public function find(mixed $id,LockMode | int | null $lockMode = null, ?int $lockVersion = null): ?NGAP
+    public function find(mixed $id, LockMode|int|null $lockMode = null, ?int $lockVersion = null): ?NGAP
     {
         if (null === $id || 0 === $id) {
             return null;

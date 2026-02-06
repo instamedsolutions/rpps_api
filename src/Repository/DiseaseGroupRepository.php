@@ -30,7 +30,7 @@ class DiseaseGroupRepository extends ServiceEntityRepository
      *
      * @throws NonUniqueResultException
      */
-    public function find(mixed $id,LockMode | int | null $lockMode = null, ?int $lockVersion = null): ?Allergen
+    public function find(mixed $id, LockMode|int|null $lockMode = null, ?int $lockVersion = null): ?Allergen
     {
         if (null === $id || 0 === $id) {
             return null;

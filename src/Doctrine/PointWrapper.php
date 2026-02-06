@@ -3,15 +3,14 @@
 namespace App\Doctrine;
 
 use Doctrine\Common\EventManager;
+use Doctrine\DBAL\Cache\QueryCacheProfile;
 use Doctrine\DBAL\Configuration;
 use Doctrine\DBAL\Connection;
 use Doctrine\DBAL\Driver;
 use Doctrine\DBAL\Exception;
 use Doctrine\DBAL\ParameterType;
 use Doctrine\DBAL\Platforms\MySqlPlatform;
-use Doctrine\DBAL\SQLParserUtils;
 use Doctrine\DBAL\Types\Type;
-use Throwable;
 
 class PointWrapper extends Connection
 {
@@ -20,15 +19,11 @@ class PointWrapper extends Connection
         parent::__construct($params, $driver, $config, $eventManager);
     }
 
-    public function prepare(string $sql) : Statement
+    public function prepare(string $sql): Statement
     {
-        try {
-            $stmt = new Statement($sql, $this);
-            if ($this->getDatabasePlatform() instanceof MySqlPlatform) {
-                $stmt->connexion = $this;
-            }
-        } catch (Throwable $e) {
-            $this->handleExceptionDuringQuery($e, $sql);
+        $stmt = new Statement($sql, $this);
+        if ($this->getDatabasePlatform() instanceof MySqlPlatform) {
+            $stmt->connexion = $this;
         }
 
         return $stmt;
@@ -56,33 +51,31 @@ class PointWrapper extends Connection
      */
     public function executeStatement($sql, array $params = [], array $types = [])
     {
-        try {
-            if ($params) {
-                [$sql, $params, $types] = SQLParserUtils::expandListParameters($sql, $params, $types);
+        if ($params) {
+            $stmt = $this->prepare($sql);
 
-                $stmt = $this->prepare($sql);
-
-                if ($types) {
-                    $this->bindTypedValues($stmt, $params, $types);
-                    $stmt->execute();
-                } else {
-                    $stmt->execute($params);
-                }
-
-                $result = $stmt->rowCount();
+            if ($types) {
+                $this->bindTypedValues($stmt, $params, $types);
+                $result = $stmt->executeQuery();
             } else {
-                $result = $this->exec($sql);
+                $result = $stmt->executeQuery($params);
             }
-        } catch (Throwable $e) {
-            $this->handleExceptionDuringQuery(
-                $e,
-                $sql,
-                $params,
-                $types
-            );
+
+            $result = $result->rowCount();
+        } else {
+            $result = $this->executeQuery($sql);
         }
 
         return $result;
+    }
+
+    public function executeQuery(
+        $sql,
+        array $params = [],
+        $types = [],
+        ?QueryCacheProfile $qcp = null,
+    ): \Doctrine\DBAL\Result {
+        return parent::executeQuery($sql, $params, $types, $qcp);
     }
 
     /**
@@ -92,7 +85,7 @@ class PointWrapper extends Connection
      * @internal duck-typing used on the $stmt parameter to support driver statements as well as
      *           raw PDOStatement instances
      *
-     * @param Driver\Statement                                                     $stmt   Prepared statement
+     * @param Statement                                                            $stmt   Prepared statement
      * @param array<int, mixed>|array<string, mixed>                               $params Statement parameters
      * @param array<int, int|string|Type|null>|array<string, int|string|Type|null> $types  Parameter types
      *
