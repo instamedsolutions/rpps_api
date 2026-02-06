@@ -60,10 +60,7 @@ class Disease extends BaseEntity implements ImportableEntityInterface
     #[ApiProperty(
         description: 'The unique CIM-10 Id in the international database',
         required: true,
-        openapiContext: [
-            'type' => 'string',
-            'example' => '66595239',
-        ]
+        schema: ['type' => 'string', 'example' => '66595239'],
     )]
     #[Groups(['read'])]
     #[ORM\Column(type: 'string', unique: true)]
@@ -72,10 +69,7 @@ class Disease extends BaseEntity implements ImportableEntityInterface
     #[ApiProperty(
         description: 'The name of the disease',
         required: true,
-        openapiContext: [
-            'type' => 'string',
-            'example' => 'PANTOPRAZOLE KRKA 40 mg, comprimé gastro-résistant',
-        ]
+        schema: ['type' => 'string', 'example' => 'PANTOPRAZOLE KRKA 40 mg, comprimé gastro-résistant'],
     )]
     #[ApiFilter(SearchFilter::class, strategy: SearchFilterInterface::STRATEGY_START)]
     #[Groups(['read'])]

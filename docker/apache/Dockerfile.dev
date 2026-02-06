@@ -1,6 +1,7 @@
 ARG BASE_IMAGE='staging'
 
-FROM ghcr.io/instamedsolutions/rpps_api-base:${BASE_IMAGE}
+#FROM ghcr.io/instamedsolutions/rpps_api-base:${BASE_IMAGE}
+FROM rpps-base
 
 # Copie du code et config Apache / PHP
 COPY --chown=www-data:www-data . /var/www/html/
@@ -16,11 +17,11 @@ RUN openssl req -x509 -nodes -days 365 -newkey rsa:2048 \
 USER www-data
 
 # Installation des dépendances, assets, etc.
-RUN composer install --dev --no-interaction --optimize-autoloader --no-progress && \
-    php bin/console assets:install --symlink && \
+# RUN composer install --dev --no-interaction --optimize-autoloader --no-progress && \
+#    php bin/console assets:install --symlink && \
     # On recrée le lien vers phpunit si besoin
-    if [ -e /var/www/html/bin/phpunit ]; then rm /var/www/html/bin/phpunit; fi && \
-    ln -s /var/www/html/vendor/bin/phpunit /var/www/html/bin/phpunit
+#    if [ -e /var/www/html/bin/phpunit ]; then rm /var/www/html/bin/phpunit; fi && \
+#    ln -s /var/www/html/vendor/bin/phpunit /var/www/html/bin/phpunit
 
 # On repasse en root
 USER root

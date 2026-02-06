@@ -6,7 +6,6 @@ namespace App\EventListener;
 
 use ApiPlatform\Metadata\Resource\Factory\ResourceMetadataCollectionFactoryInterface;
 use ApiPlatform\State\Util\OperationRequestInitiatorTrait;
-use ApiPlatform\Symfony\Util\RequestAttributesExtractor;
 use Symfony\Component\HttpKernel\Event\RequestEvent;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
@@ -33,11 +32,7 @@ final class RppsLatitudeLongitudeOperationOptimizerListener
     {
         $request = $event->getRequest();
 
-        if (!($attributes = RequestAttributesExtractor::extractAttributes($request)) || !$attributes['receive']) {
-            return;
-        }
-
-        if ('_api_/rpps{._format}_get_collection' != $request->get('_route')) {
+        if ('_api_/rpps{._format}_get_collection' != $request->attributes->get('_route')) {
             return;
         }
 

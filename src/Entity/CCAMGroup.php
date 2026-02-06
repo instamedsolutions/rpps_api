@@ -43,12 +43,7 @@ class CCAMGroup extends BaseEntity implements ImportableEntityInterface
     #[ApiProperty(
         description: 'The unique code in the government database',
         required: true,
-        openapiContext: [
-            'openapi_context' => [
-                'type' => 'string',
-                'example' => '01',
-            ],
-        ]
+        schema: ['type' => 'string', 'example' => '01'],
     )]
     #[ApiFilter(SearchFilter::class, strategy: 'exact')]
     #[Groups(['read'])]
@@ -59,10 +54,7 @@ class CCAMGroup extends BaseEntity implements ImportableEntityInterface
     #[ApiProperty(
         description: 'The name of the disease group',
         required: true,
-        openapiContext: [
-            'type' => 'string',
-            'example' => 'Certaines maladies infectieuses et parasitaires',
-        ]
+        schema: ['type' => 'string', 'example' => 'Certaines maladies infectieuses et parasitaires'],
     )]
     #[Groups(['read'])]
     #[ORM\Column(type: 'string', length: 255)]
@@ -71,10 +63,7 @@ class CCAMGroup extends BaseEntity implements ImportableEntityInterface
     #[ApiProperty(
         description: 'The description of the disease group',
         required: true,
-        openapiContext: [
-            'type' => 'string',
-            'example' => 'Certaines maladies infectieuses et parasitaires',
-        ]
+        schema: ['type' => 'string', 'example' => 'Certaines maladies infectieuses et parasitaires'],
     )]
     #[Groups(['ccam_groups:item:read'])]
     #[ORM\Column(type: 'text', nullable: true)]

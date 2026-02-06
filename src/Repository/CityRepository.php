@@ -5,6 +5,7 @@ namespace App\Repository;
 use App\Entity\City;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\DBAL\Driver\Exception;
+use Doctrine\DBAL\LockMode;
 use Doctrine\ORM\NonUniqueResultException;
 use Doctrine\Persistence\ManagerRegistry;
 
@@ -163,11 +164,9 @@ class CityRepository extends ServiceEntityRepository
      * @param null $lockMode
      * @param null $lockVersion
      *
-     * @return City|null
-     *
      * @throws NonUniqueResultException
      */
-    public function find($id, $lockMode = null, $lockVersion = null)
+    public function find(mixed $id, LockMode|int|null $lockMode = null, ?int $lockVersion = null): ?City
     {
         if (null === $id || 0 === $id) {
             return null;

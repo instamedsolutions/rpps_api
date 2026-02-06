@@ -91,7 +91,7 @@ class TranslatableEntityNormalizer implements ContextAwareNormalizerInterface, C
 
     private function getAlreadyCalledId(mixed $object): string
     {
-        if (!($object instanceof TranslatableEntityInterface)) {
+        if (!$object instanceof TranslatableEntityInterface) {
             return self::ALREADY_CALLED;
         }
         $class = $object::class;

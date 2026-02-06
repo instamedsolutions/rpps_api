@@ -12,7 +12,7 @@ class STMakeEnvelope extends FunctionNode
     public PointFunction $point1;
     public PointFunction $point2;
 
-    public function parse(Parser $parser)
+    public function parse(Parser $parser): void
     {
         $parser->match(TokenType::T_IDENTIFIER); // ST_MakeEnvelope
         $parser->match(TokenType::T_OPEN_PARENTHESIS); // (
@@ -25,7 +25,7 @@ class STMakeEnvelope extends FunctionNode
         $parser->match(TokenType::T_CLOSE_PARENTHESIS); // )
     }
 
-    public function getSql(SqlWalker $sqlWalker)
+    public function getSql(SqlWalker $sqlWalker): string
     {
         return 'ST_MakeEnvelope(' .
             $this->point1->dispatch($sqlWalker) . ', ' .

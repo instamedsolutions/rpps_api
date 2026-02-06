@@ -6,6 +6,7 @@ use ApiPlatform\Metadata\ApiFilter;
 use ApiPlatform\Metadata\ApiResource;
 use ApiPlatform\Metadata\Get;
 use ApiPlatform\Metadata\GetCollection;
+use ApiPlatform\OpenApi\Model\Operation as OpenApiOperation;
 use App\ApiPlatform\Filter\SpecialtyFilter;
 use App\Entity\Traits\ImportIdTrait;
 use App\Entity\Traits\TranslatableTrait;
@@ -29,10 +30,10 @@ use Symfony\Component\Serializer\Attribute\SerializedName;
         new Get(provider: DefaultItemDataProvider::class),
         new Get(
             uriTemplate: '/specialties/{id}/similar{._format}',
-            openapiContext: [
-                'summary' => 'Get similar specialties linked to this specialty',
-                'description' => 'Returns a list of specialties linked via the specialties field',
-            ],
+            openapi: new OpenApiOperation(
+                summary: 'Get similar specialties linked to this specialty',
+                description: 'Returns a list of specialties linked via the specialties field',
+            ),
             name: 'get_similar_specialties',
             provider: SimilarSpecialtiesProvider::class,
         ),

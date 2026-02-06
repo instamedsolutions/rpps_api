@@ -20,7 +20,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
-use Symfony\Component\Serializer\Annotation\Groups;
+use Symfony\Component\Serializer\Attribute\Groups;
 
 #[ORM\Entity(repositoryClass: Cim11Repository::class)]
 #[ApiFilter(Cim11Filter::class, properties: ['search', 'ids', 'cim10Code'])]
@@ -55,10 +55,7 @@ class Cim11 extends BaseEntity implements TranslatableEntityInterface, Importabl
     #[ApiProperty(
         description: 'The unique CIM-10 Id in the international database',
         required: true,
-        openapiContext: [
-            'type' => 'string',
-            'example' => '1A00',
-        ]
+        schema: ['type' => 'string', 'example' => '1A00'],
     )]
     #[Groups(['read'])]
     #[ORM\Column(type: 'string', length: 16, unique: true)]
@@ -67,10 +64,7 @@ class Cim11 extends BaseEntity implements TranslatableEntityInterface, Importabl
     #[ApiProperty(
         description: 'The name of the disease',
         required: true,
-        openapiContext: [
-            'type' => 'string',
-            'example' => 'Choléra',
-        ]
+        schema: ['type' => 'string', 'example' => 'Choléra'],
     )]
     #[ApiFilter(SearchFilter::class, strategy: SearchFilterInterface::STRATEGY_START)]
     #[Groups(['read'])]

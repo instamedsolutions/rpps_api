@@ -22,13 +22,13 @@ final class RPPSFilter extends AbstractFilter
 
     public function __construct(
         private readonly EntityManagerInterface $em,
-        protected ManagerRegistry $managerRegistry,
+        ?ManagerRegistry $managerRegistry,
         private readonly RequestStack $requestStack,
         ?LoggerInterface $logger = null,
         protected ?array $properties = null,
         protected ?NameConverterInterface $nameConverter = null,
     ) {
-        parent::__construct($this->managerRegistry, $logger, $properties, $nameConverter);
+        parent::__construct($managerRegistry, $logger, $properties, $nameConverter);
     }
 
     protected ?QueryNameGeneratorInterface $queryNameGenerator = null;

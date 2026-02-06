@@ -7,21 +7,18 @@ use DateTime;
 use DateTimeInterface;
 use Doctrine\ORM\Mapping as ORM;
 use Stringable;
+use Symfony\Bridge\Doctrine\IdGenerator\UuidGenerator;
 use Symfony\Component\Serializer\Annotation\Groups;
 
 abstract class BaseEntity implements Entity, Stringable
 {
     #[Groups(['read'])]
     #[ORM\Id]
-    /** @phpstan-ignore-next-line  */
-    #[ORM\GeneratedValue(strategy: 'UUID')]
+    #[ORM\GeneratedValue(strategy: 'CUSTOM')]
+    #[ORM\CustomIdGenerator(class: UuidGenerator::class)]
     #[ApiProperty(
         description: 'The id of the resource',
-        required: true,
-        openapiContext: [
-            'type' => 'string',
-            'format' => 'uuid',
-        ]
+        schema: ['type' => 'string', 'format' => 'uuid'],
     )]
     #[ORM\Column(type: 'guid', unique: true)]
     protected ?string $id = null;
