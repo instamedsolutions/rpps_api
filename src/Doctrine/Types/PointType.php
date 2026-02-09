@@ -3,7 +3,7 @@
 namespace App\Doctrine\Types;
 
 use Doctrine\DBAL\Platforms\AbstractPlatform;
-use Doctrine\DBAL\Platforms\MySqlPlatform;
+use Doctrine\DBAL\Platforms\MySQLPlatform;
 use Doctrine\DBAL\Platforms\SqlitePlatform;
 use Doctrine\DBAL\Types\Type;
 
@@ -63,7 +63,7 @@ class PointType extends Type
 
     public function convertToPHPValueSQL($sqlExpr, $platform): string
     {
-        if ($platform instanceof MySqlPlatform) {
+        if ($platform instanceof MySQLPlatform) {
             // So the query uses ST_AsText(coordinates) AS coordinates
             // which yields "POINT(x y)" to parse in convertToPHPValue()
             return sprintf('ST_AsText(%s)', $sqlExpr);
@@ -78,7 +78,7 @@ class PointType extends Type
      */
     public function convertToDatabaseValueSQL($sqlExpr, AbstractPlatform $platform): string
     {
-        if ($platform instanceof MySqlPlatform) {
+        if ($platform instanceof MySQLPlatform) {
             return sprintf('ST_GeomFromText(%s)', $sqlExpr);
         }
 

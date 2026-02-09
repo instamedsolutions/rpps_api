@@ -20,7 +20,7 @@ use Symfony\Component\Serializer\Annotation\MaxDepth;
 
 // http://www.cpam21.fr/Flashs/flashs/Medecins/Docs/SC506_fichesCCAM.pdf
 #[ApiFilter(CCAMFilter::class, properties: ['search', 'id'])]
-#[ApiFilter(SearchFilter::class, properties: ['category.code', 'group.code'])]
+#[ApiFilter(SearchFilter::class, properties: ['category.code' => 'exact', 'group.code' => 'exact'])]
 #[ORM\Entity(repositoryClass: CCAMRepository::class)]
 #[ORM\Table(name: 'ccam')]
 #[ORM\Index(columns: ['code'], name: 'ccam_index')]

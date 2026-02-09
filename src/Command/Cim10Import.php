@@ -6,6 +6,7 @@ use App\Service\DiseaseService;
 use DateTime;
 use Doctrine\ORM\EntityManagerInterface;
 use Exception;
+use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
@@ -14,16 +15,14 @@ use Symfony\Component\Console\Output\OutputInterface;
 /**
  * Command to import file in empty database.
  **/
+#[AsCommand(name: 'app:cim10:import')]
 class Cim10Import extends Command
 {
-    // the name of the command (the part after "bin/console")
-    protected static $defaultName = 'app:cim10:import';
-
     protected string $projectDir;
 
     public function __construct(protected DiseaseService $diseaseService, protected EntityManagerInterface $em)
     {
-        parent::__construct(self::$defaultName);
+        parent::__construct();
     }
 
     protected function configure(): void

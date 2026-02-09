@@ -6,6 +6,7 @@ use App\Service\DrugService;
 use DateTime;
 use Doctrine\ORM\EntityManagerInterface;
 use Exception;
+use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
@@ -14,14 +15,12 @@ use Symfony\Component\Console\Output\OutputInterface;
 /**
  * Command to import file in empty database.
  **/
+#[AsCommand(name: 'app:drugs:import')]
 class DrugsImport extends Command
 {
-    // the name of the command (the part after "bin/console")
-    protected static $defaultName = 'app:drugs:import';
-
     public function __construct(protected DrugService $drugService, protected EntityManagerInterface $em)
     {
-        parent::__construct(self::$defaultName);
+        parent::__construct();
     }
 
     protected function configure(): void

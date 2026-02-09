@@ -99,7 +99,7 @@ class CityRepository extends ServiceEntityRepository
     ';
 
         $stmt = $conn->prepare($sql);
-        $stmt->execute([
+        $result = $stmt->executeQuery([
             'latitude' => $latitude,
             'longitude' => $longitude,
             'regionId' => $regionId,
@@ -107,7 +107,7 @@ class CityRepository extends ServiceEntityRepository
             'cityId' => $city->getId(),
         ]);
 
-        $results = $stmt->fetchAllAssociative();
+        $results = $result->fetchAllAssociative();
 
         if (!$results) {
             return [];
@@ -138,13 +138,13 @@ class CityRepository extends ServiceEntityRepository
     ';
 
         $stmt = $conn->prepare($sql);
-        $stmt->execute([
+        $result = $stmt->executeQuery([
             'inseeCode' => $inseeCode,
             'postalCode' => $zipCode,
             'zipCode' => json_encode($zipCode), // Make sure to JSON-encode the zip code
         ]);
 
-        $results = $stmt->fetchAllAssociative();
+        $results = $result->fetchAllAssociative();
 
         if (!$results) {
             return [];

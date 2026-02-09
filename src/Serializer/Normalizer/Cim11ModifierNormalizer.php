@@ -3,13 +3,12 @@
 namespace App\Serializer\Normalizer;
 
 use App\Entity\Cim11Modifier;
-use Symfony\Component\Serializer\Normalizer\CacheableSupportsMethodInterface;
-use Symfony\Component\Serializer\Normalizer\ContextAwareNormalizerInterface;
 use Symfony\Component\Serializer\Normalizer\NormalizerAwareInterface;
 use Symfony\Component\Serializer\Normalizer\NormalizerAwareTrait;
+use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
-class Cim11ModifierNormalizer implements ContextAwareNormalizerInterface, CacheableSupportsMethodInterface, NormalizerAwareInterface
+class Cim11ModifierNormalizer implements NormalizerInterface, NormalizerAwareInterface
 {
     use NormalizerAwareTrait;
 
@@ -20,18 +19,18 @@ class Cim11ModifierNormalizer implements ContextAwareNormalizerInterface, Cachea
     }
 
     /**
-     * @param Cim11Modifier $object
+     * @param Cim11Modifier $data
      */
-    public function normalize($object, ?string $format = null, array $context = []): array
+    public function normalize(mixed $data, ?string $format = null, array $context = []): array
     {
         $context[self::ALREADY_CALLED] = true;
 
-        $object->setName($this->translator->trans("cim11_modifiers.{$object->getType()->name}", [], 'message'));
+        $data->setName($this->translator->trans("cim11_modifiers.{$data->getType()->name}", [], 'message'));
 
-        return $this->normalizer->normalize($object, $format, $context);
+        return $this->normalizer->normalize($data, $format, $context);
     }
 
-    public function supportsNormalization($data, ?string $format = null, $context = []): bool
+    public function supportsNormalization(mixed $data, ?string $format = null, array $context = []): bool
     {
         if (isset($context[self::ALREADY_CALLED])) {
             return false;
@@ -44,8 +43,10 @@ class Cim11ModifierNormalizer implements ContextAwareNormalizerInterface, Cachea
         return true;
     }
 
-    public function hasCacheableSupportsMethod(): bool
+    public function getSupportedTypes(?string $format): array
     {
-        return false;
+        return [
+            Cim11Modifier::class => false,
+        ];
     }
 }

@@ -22,17 +22,17 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Serializer\Annotation\Groups;
 use Symfony\Component\Serializer\Annotation\SerializedName;
 
-// TODO - remove this index when the migration to specialtyEntity is done.  @Bastien
-#[ORM\Index(columns: ['specialty'], name: 'specialty_index')]
 #[ApiFilter(RPPSFilter::class, properties: ['search', 'first_letter', 'city', 'specialty', 'demo', 'latitude', 'longitude', 'excluded_rpps'])]
 #[ORM\Entity(repositoryClass: RPPSRepository::class)]
-#[ORM\Table(name: 'rpps')]
-#[ORM\Index(columns: ['coordinates'], name: 'idx_coordinates')]
-#[ORM\Index(columns: ['last_name'], name: 'last_name_index')]
-#[ORM\Index(columns: ['full_name'], name: 'full_name_index')]
-#[ORM\Index(columns: ['full_name_inversed'], name: 'full_name_inversed_index')]
-#[ORM\Index(columns: ['id_rpps'], name: 'rpps_index')]
-#[ORM\Index(columns: ['canonical'], name: 'canonical_index')]
+#[ORM\Table(name: 'rpps', indexes: [
+    new ORM\Index(columns: ['specialty'], name: 'specialty_index'),
+    new ORM\Index(columns: ['coordinates'], name: 'idx_coordinates'),
+    new ORM\Index(columns: ['last_name'], name: 'last_name_index'),
+    new ORM\Index(columns: ['full_name'], name: 'full_name_index'),
+    new ORM\Index(columns: ['full_name_inversed'], name: 'full_name_inversed_index'),
+    new ORM\Index(columns: ['id_rpps'], name: 'rpps_index'),
+    new ORM\Index(columns: ['canonical'], name: 'canonical_index'),
+])]
 #[UniqueEntity('idRpps')]
 #[ApiResource(
     shortName: 'Rpps',

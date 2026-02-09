@@ -24,7 +24,6 @@ use Symfony\Component\Serializer\Annotation\MaxDepth;
 
 #[ApiFilter(RangeFilter::class, properties: ['hierarchyLevel'])]
 #[ApiFilter(DiseaseFilter::class, properties: ['search'])]
-#[ApiFilter(SearchFilter::class, properties: ['category.cim', 'group.cim'])]
 #[ORM\Entity(repositoryClass: DiseaseRepository::class)]
 #[ORM\Table(name: 'diseases')]
 #[ORM\Index(columns: ['cim'], name: 'diseases_index')]

@@ -8,8 +8,7 @@ use Symfony\Component\Routing\Attribute\Route;
 
 class MainController extends AbstractController
 {
-    #[Route(path: '/', name: 'main')]
-    #[Route(path: '/index.html', name: 'index')]
+    #[Route(path: ['/', '/index.html'], name: 'main')]
     public function index(): Response
     {
         return $this->redirectToRoute('api_entrypoint');

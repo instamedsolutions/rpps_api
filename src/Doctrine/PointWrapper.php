@@ -3,13 +3,12 @@
 namespace App\Doctrine;
 
 use Doctrine\Common\EventManager;
-use Doctrine\DBAL\Cache\QueryCacheProfile;
 use Doctrine\DBAL\Configuration;
 use Doctrine\DBAL\Connection;
 use Doctrine\DBAL\Driver;
 use Doctrine\DBAL\Exception;
 use Doctrine\DBAL\ParameterType;
-use Doctrine\DBAL\Platforms\MySqlPlatform;
+use Doctrine\DBAL\Statement;
 use Doctrine\DBAL\Types\Type;
 
 class PointWrapper extends Connection
@@ -21,12 +20,14 @@ class PointWrapper extends Connection
 
     public function prepare(string $sql): Statement
     {
+        return parent::prepare($sql);
+        /*
         $stmt = new Statement($sql, $this);
         if ($this->getDatabasePlatform() instanceof MySqlPlatform) {
             $stmt->connexion = $this;
         }
 
-        return $stmt;
+        return $customStmt;*/
     }
 
     /**
@@ -69,15 +70,6 @@ class PointWrapper extends Connection
         return $result;
     }
 
-    public function executeQuery(
-        $sql,
-        array $params = [],
-        $types = [],
-        ?QueryCacheProfile $qcp = null,
-    ): \Doctrine\DBAL\Result {
-        return parent::executeQuery($sql, $params, $types, $qcp);
-    }
-
     /**
      * Binds a set of parameters, some or all of which are typed with a PDO binding type
      * or DBAL mapping type, to a given statement.
@@ -93,7 +85,7 @@ class PointWrapper extends Connection
      *
      * This is based on bindTypedValues
      */
-    private function bindTypedValues($stmt, array $params, array $types)
+    private function bindTypedValues(Statement $stmt, array $params, array $types)
     {
         // Check whether parameters are positional or named. Mixing is not allowed, just like in PDO.
         if (is_int(key($params))) {

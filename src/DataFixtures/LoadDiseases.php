@@ -3,6 +3,7 @@
 namespace App\DataFixtures;
 
 use App\Entity\Disease;
+use App\Entity\DiseaseGroup;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use Doctrine\Common\DataFixtures\FixtureInterface;
@@ -21,8 +22,8 @@ class LoadDiseases extends Fixture implements DependentFixtureInterface, Fixture
 
         $disease = new Disease();
         $disease->setCim('A00');
-        $disease->setGroup($this->getReference(LoadDiseaseGroups::GROUP));
-        $disease->setCategory($this->getReference(LoadDiseaseGroups::CATEGORY));
+        $disease->setGroup($this->getReference(LoadDiseaseGroups::GROUP, DiseaseGroup::class));
+        $disease->setCategory($this->getReference(LoadDiseaseGroups::CATEGORY, DiseaseGroup::class));
         $disease->setName('Cholera');
         $disease->setHierarchyLevel(3);
         $disease->setImportId('import_1');
@@ -31,8 +32,8 @@ class LoadDiseases extends Fixture implements DependentFixtureInterface, Fixture
 
         $disease2 = new Disease();
         $disease2->setCim('A000');
-        $disease2->setGroup($this->getReference(LoadDiseaseGroups::GROUP));
-        $disease2->setCategory($this->getReference(LoadDiseaseGroups::CATEGORY));
+        $disease2->setGroup($this->getReference(LoadDiseaseGroups::GROUP, DiseaseGroup::class));
+        $disease2->setCategory($this->getReference(LoadDiseaseGroups::CATEGORY, DiseaseGroup::class));
         $disease2->setName('A Vibrio cholerae 01, biovar cholerae');
         $disease2->setHierarchyLevel(4);
         $disease2->setParent($disease);

@@ -28,3 +28,8 @@ doctrine:
                 MBRContains: App\Doctrine\Functions\MBRContains
                 ST_MakeEnvelope: App\Doctrine\Functions\STMakeEnvelope
                 REPLACE: App\Doctrine\Functions\ReplaceFunction
+            numeric_functions:
+                ACOS: App\Doctrine\Functions\Acos
+                COS: App\Doctrine\Functions\Cos
+                SIN: App\Doctrine\Functions\Sin
+                RADIANS: App\Doctrine\Functions\Radians

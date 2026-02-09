@@ -34,6 +34,7 @@ final class SpecialtyFilter extends AbstractFilter
 
         if ('is_paramedical' === $property) {
             $this->addParamedicalFilter($queryBuilder, $value);
+            return;
         }
 
         if (!$value) {
@@ -101,7 +102,6 @@ final class SpecialtyFilter extends AbstractFilter
 
     protected function addSortByRppsCount(QueryBuilder $queryBuilder): void
     {
-        // sort by main and name
         $rootAlias = $queryBuilder->getRootAliases()[0];
 
         $queryBuilder->addOrderBy("$rootAlias.main", 'DESC');
