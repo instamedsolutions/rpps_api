@@ -24,9 +24,9 @@ use App\Entity\City;
 use App\Entity\Specialty;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\Common\DataFixtures\Executor\ORMExecutor;
+use Doctrine\Common\DataFixtures\Loader;
 use Doctrine\Common\DataFixtures\Purger\ORMPurger;
 use Doctrine\ORM\EntityManagerInterface;
-use Symfony\Bridge\Doctrine\DataFixtures\ContainerAwareLoader;
 use Symfony\Component\VarDumper\Cloner\VarCloner;
 use Symfony\Component\VarDumper\Dumper\CliDumper;
 use Symfony\Component\VarDumper\VarDumper;
@@ -74,7 +74,7 @@ abstract class ApiTestCase extends \ApiPlatform\Symfony\Bundle\Test\ApiTestCase
 
         $this->em = $doctrine->getManager();
 
-        $loader = new ContainerAwareLoader($kernel->getContainer());
+        $loader = new Loader();
 
         $purger = new ORMPurger($this->em);
         $purger->purge();

@@ -153,7 +153,7 @@ class RPPSService extends ImporterService
     {
         $rpps = $this->entities[$data[1]] ?? $this->repository->find($data[1]);
 
-        if (!($rpps instanceof RPPS)) {
+        if (!$rpps instanceof RPPS) {
             $rpps = new RPPS();
         }
 

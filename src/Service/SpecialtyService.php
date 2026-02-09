@@ -146,13 +146,12 @@ class SpecialtyService extends ImporterService
     public function purgeAllSpecialties(): void
     {
         // Set the specialtyEntity field to null for all RPPS entities
-        $this->em->createQuery('UPDATE App\Entity\RPPS r SET r.specialtyEntity = NULL')->execute();
+
+        $this->em->getConnection()->executeQuery('UPDATE rpps SET specialty_entity_id = NULL');
 
         // Clear the specialty_links table
         $this->em->getConnection()->executeStatement('DELETE FROM specialty_links');
-
-        // Delete all specialty records
-        $this->em->createQuery('DELETE FROM App\Entity\Specialty')->execute();
+        $this->em->getConnection()->executeStatement('DELETE FROM specialty');
 
         $this->output->writeln('<info>All specialties have been purged, RPPS specialtyEntity fields cleared, and specialty_links table cleared.</info>');
     }

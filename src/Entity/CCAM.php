@@ -20,7 +20,8 @@ use Symfony\Component\Serializer\Annotation\MaxDepth;
 
 // http://www.cpam21.fr/Flashs/flashs/Medecins/Docs/SC506_fichesCCAM.pdf
 #[ApiFilter(CCAMFilter::class, properties: ['search', 'id'])]
-#[ApiFilter(SearchFilter::class, properties: ['category.code', 'group.code'])]
+/** @phpstan-ignore-next-line  */
+#[ApiFilter(SearchFilter::class, properties: ['category.code' => 'exact', 'group.code' => 'exact'])]
 #[ORM\Entity(repositoryClass: CCAMRepository::class)]
 #[ORM\Table(name: 'ccam')]
 #[ORM\Index(columns: ['code'], name: 'ccam_index')]
@@ -45,10 +46,7 @@ class CCAM extends BaseEntity implements ImportableEntityInterface
     #[ApiProperty(
         description: 'The uniq code of the CCAM',
         required: true,
-        openapiContext: [
-            'type' => 'string',
-            'example' => '66595239',
-        ]
+        schema: ['type' => 'string', 'example' => '66595239'],
     )]
     #[ApiFilter(SearchFilter::class, strategy: SearchFilterInterface::STRATEGY_EXACT)]
     #[Groups(['read'])]
@@ -58,10 +56,7 @@ class CCAM extends BaseEntity implements ImportableEntityInterface
     #[ApiProperty(
         description: 'The name of the CCAM',
         required: true,
-        openapiContext: [
-            'type' => 'string',
-            'example' => 'Électromyographie par électrode de surface, avec enregistrement vidéo',
-        ]
+        schema: ['type' => 'string', 'example' => 'Électromyographie par électrode de surface, avec enregistrement vidéo'],
     )]
     #[ApiFilter(SearchFilter::class, strategy: SearchFilterInterface::STRATEGY_START)]
     #[Groups(['read'])]
@@ -71,10 +66,7 @@ class CCAM extends BaseEntity implements ImportableEntityInterface
     #[ApiProperty(
         description: 'The description of the CCAM',
         required: true,
-        openapiContext: [
-            'type' => 'string',
-            'example' => 'Électromyographie par électrode de surface, avec enregistrement vidéo',
-        ]
+        schema: ['type' => 'string', 'example' => 'Électromyographie par électrode de surface, avec enregistrement vidéo'],
     )]
     #[ApiFilter(SearchFilter::class, strategy: SearchFilterInterface::STRATEGY_START)]
     #[Groups(['ccam:item:read'])]
@@ -84,10 +76,7 @@ class CCAM extends BaseEntity implements ImportableEntityInterface
     #[ApiProperty(
         description: 'The price rate for the secteur 1',
         required: true,
-        openapiContext: [
-            'type' => 'number',
-            'example' => 33.56,
-        ]
+        schema: ['type' => 'number', 'example' => 33.56],
     )]
     #[Groups(['read'])]
     #[ORM\Column(type: 'float', nullable: true)]
@@ -96,10 +85,7 @@ class CCAM extends BaseEntity implements ImportableEntityInterface
     #[ApiProperty(
         description: 'The price rate for the secteur 2',
         required: true,
-        openapiContext: [
-            'type' => 'number',
-            'example' => 33.56,
-        ]
+        schema: ['type' => 'number', 'example' => 33.56],
     )]
     #[Groups(['read'])]
     #[ORM\Column(type: 'float', nullable: true)]
@@ -108,10 +94,7 @@ class CCAM extends BaseEntity implements ImportableEntityInterface
     #[ApiProperty(
         description: 'The price rate for the anesthesists in secteur 1',
         required: true,
-        openapiContext: [
-            'type' => 'number',
-            'example' => 33.56,
-        ]
+        schema: ['type' => 'number', 'example' => 33.56],
     )]
     #[Groups(['read'])]
     #[ORM\Column(type: 'float', nullable: true)]
@@ -120,10 +103,7 @@ class CCAM extends BaseEntity implements ImportableEntityInterface
     #[ApiProperty(
         description: 'The price rate for anesthesists the secteur 2',
         required: true,
-        openapiContext: [
-            'type' => 'number',
-            'example' => 33.56,
-        ]
+        schema: ['type' => 'number', 'example' => 33.56],
     )]
     #[Groups(['read'])]
     #[ORM\Column(type: 'float', nullable: true)]
@@ -132,10 +112,6 @@ class CCAM extends BaseEntity implements ImportableEntityInterface
     #[ApiProperty(
         description: 'The group the CCAM is a part of',
         required: true,
-        openapiContext: [
-            '$ref' => '#/components/schemas/CCAMGroup',
-            'example' => '66595239',
-        ]
     )]
     #[Groups(['ccam:read'])]
     #[MaxDepth(1)]
@@ -146,10 +122,6 @@ class CCAM extends BaseEntity implements ImportableEntityInterface
     #[ApiProperty(
         description: 'The category the CCAM is a part of',
         required: true,
-        openapiContext: [
-            '$ref' => '#/components/schemas/CCAMGroup',
-            'example' => '66595239',
-        ]
     )]
     #[MaxDepth(1)]
     #[Groups(['ccam:item:read'])]
@@ -164,10 +136,7 @@ class CCAM extends BaseEntity implements ImportableEntityInterface
     #[ApiProperty(
         description: 'The unique regroupement code in the government database',
         required: true,
-        openapiContext: [
-            'type' => 'string',
-            'example' => 'ADE',
-        ]
+        schema: ['type' => 'string', 'example' => 'ADE'],
     )]
     #[Groups(['read'])]
     #[ApiFilter(SearchFilter::class, strategy: SearchFilterInterface::STRATEGY_EXACT)]

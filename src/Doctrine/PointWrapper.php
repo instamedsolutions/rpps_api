@@ -8,10 +8,8 @@ use Doctrine\DBAL\Connection;
 use Doctrine\DBAL\Driver;
 use Doctrine\DBAL\Exception;
 use Doctrine\DBAL\ParameterType;
-use Doctrine\DBAL\Platforms\MySqlPlatform;
-use Doctrine\DBAL\SQLParserUtils;
+use Doctrine\DBAL\Statement;
 use Doctrine\DBAL\Types\Type;
-use Throwable;
 
 class PointWrapper extends Connection
 {
@@ -20,20 +18,16 @@ class PointWrapper extends Connection
         parent::__construct($params, $driver, $config, $eventManager);
     }
 
-    public function prepare($sql)
+    public function prepare(string $sql): Statement
     {
-        try {
-            $stmt = new Statement($sql, $this);
-            if ($this->getDriver()->getDatabasePlatform() instanceof MySqlPlatform) {
-                $stmt->connexion = $this;
-            }
-        } catch (Throwable $e) {
-            $this->handleExceptionDuringQuery($e, $sql);
+        return parent::prepare($sql);
+        /*
+        $stmt = new Statement($sql, $this);
+        if ($this->getDatabasePlatform() instanceof MySqlPlatform) {
+            $stmt->connexion = $this;
         }
 
-        $stmt->setFetchMode($this->defaultFetchMode);
-
-        return $stmt;
+        return $customStmt;*/
     }
 
     /**
@@ -58,39 +52,19 @@ class PointWrapper extends Connection
      */
     public function executeStatement($sql, array $params = [], array $types = [])
     {
-        $logger = $this->_config->getSQLLogger();
-        if ($logger) {
-            $logger->startQuery($sql, $params, $types);
-        }
+        if ($params) {
+            $stmt = $this->prepare($sql);
 
-        try {
-            if ($params) {
-                [$sql, $params, $types] = SQLParserUtils::expandListParameters($sql, $params, $types);
-
-                $stmt = $this->prepare($sql);
-
-                if ($types) {
-                    $this->bindTypedValues($stmt, $params, $types);
-                    $stmt->execute();
-                } else {
-                    $stmt->execute($params);
-                }
-
-                $result = $stmt->rowCount();
+            if ($types) {
+                $this->bindTypedValues($stmt, $params, $types);
+                $result = $stmt->executeQuery();
             } else {
-                $result = $this->exec($sql);
+                $result = $stmt->executeQuery($params);
             }
-        } catch (Throwable $e) {
-            $this->handleExceptionDuringQuery(
-                $e,
-                $sql,
-                $params,
-                $types
-            );
-        }
 
-        if ($logger) {
-            $logger->stopQuery();
+            $result = $result->rowCount();
+        } else {
+            $result = $this->executeQuery($sql);
         }
 
         return $result;
@@ -103,7 +77,7 @@ class PointWrapper extends Connection
      * @internal duck-typing used on the $stmt parameter to support driver statements as well as
      *           raw PDOStatement instances
      *
-     * @param Driver\Statement                                                     $stmt   Prepared statement
+     * @param Statement                                                            $stmt   Prepared statement
      * @param array<int, mixed>|array<string, mixed>                               $params Statement parameters
      * @param array<int, int|string|Type|null>|array<string, int|string|Type|null> $types  Parameter types
      *
@@ -111,7 +85,7 @@ class PointWrapper extends Connection
      *
      * This is based on bindTypedValues
      */
-    private function bindTypedValues($stmt, array $params, array $types)
+    private function bindTypedValues(Statement $stmt, array $params, array $types)
     {
         // Check whether parameters are positional or named. Mixing is not allowed, just like in PDO.
         if (is_int(key($params))) {

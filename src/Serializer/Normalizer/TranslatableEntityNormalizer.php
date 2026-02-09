@@ -4,38 +4,37 @@ namespace App\Serializer\Normalizer;
 
 use App\Entity\TranslatableEntityInterface;
 use Symfony\Component\Serializer\Exception\ExceptionInterface;
-use Symfony\Component\Serializer\Normalizer\CacheableSupportsMethodInterface;
-use Symfony\Component\Serializer\Normalizer\ContextAwareNormalizerInterface;
 use Symfony\Component\Serializer\Normalizer\NormalizerAwareInterface;
 use Symfony\Component\Serializer\Normalizer\NormalizerAwareTrait;
+use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
 
-class TranslatableEntityNormalizer implements ContextAwareNormalizerInterface, CacheableSupportsMethodInterface, NormalizerAwareInterface
+class TranslatableEntityNormalizer implements NormalizerInterface, NormalizerAwareInterface
 {
     use NormalizerAwareTrait;
 
     public const string ALREADY_CALLED = 'TRANSLATABLE_ENTITY_ALREADY_CALLED';
 
     /**
-     * @param TranslatableEntityInterface $object
+     * @param TranslatableEntityInterface $data
      *
      * @throws ExceptionInterface
      */
-    public function normalize(mixed $object, ?string $format = null, array $context = []): array
+    public function normalize(mixed $data, ?string $format = null, array $context = []): array
     {
-        $context[self::getAlreadyCalledId($object)] = true;
+        $context[self::getAlreadyCalledId($data)] = true;
 
         if (!isset($context['languages'])) {
-            return $this->normalizer->normalize($object, $format, $context);
+            return $this->normalizer->normalize($data, $format, $context);
         }
 
         // Get the default language from the object
-        $defaultLanguage = $object->getDefaultLanguage();
+        $defaultLanguage = $data->getDefaultLanguage();
 
         if ($context['languages'][0] === $defaultLanguage) {
-            return $this->normalizer->normalize($object, $format, $context);
+            return $this->normalizer->normalize($data, $format, $context);
         }
 
-        $translations = $object->getTranslationsForLangs($context['languages']);
+        $translations = $data->getTranslationsForLangs($context['languages']);
 
         $oldValues = [];
         foreach ($translations as $key => $value) {
@@ -43,9 +42,9 @@ class TranslatableEntityNormalizer implements ContextAwareNormalizerInterface, C
             $getter = 'get' . ucfirst($key);
 
             // Check if the method exists in the object
-            if (method_exists($object, $getter)) {
+            if (method_exists($data, $getter)) {
                 // Call the getter method dynamically
-                $oldValues[$key] = $object->$getter();
+                $oldValues[$key] = $data->$getter();
             } else {
                 // Handle the case where the getter does not exist
                 $oldValues[$key] = null;
@@ -53,26 +52,26 @@ class TranslatableEntityNormalizer implements ContextAwareNormalizerInterface, C
 
             // Similarly, build and call the setter method
             $setter = 'set' . ucfirst($key);
-            if (method_exists($object, $setter)) {
+            if (method_exists($data, $setter)) {
                 if ('synonyms' === $key) {
-                    $object->$setter([$value]);
+                    $data->$setter([$value]);
                 } else {
-                    $object->$setter($value);
+                    $data->$setter($value);
                 }
             }
         }
 
-        $data = $this->normalizer->normalize($object, $format, $context);
+        $result = $this->normalizer->normalize($data, $format, $context);
 
         // This is used to make sure we don't persist some bad values later on
         foreach ($oldValues as $key => $value) {
             $setter = 'set' . ucfirst($key);
-            if (method_exists($object, $setter)) {
-                $object->$setter($value);
+            if (method_exists($data, $setter)) {
+                $data->$setter($value);
             }
         }
 
-        return $data;
+        return $result;
     }
 
     public function supportsNormalization(mixed $data, ?string $format = null, array $context = []): bool
@@ -91,7 +90,7 @@ class TranslatableEntityNormalizer implements ContextAwareNormalizerInterface, C
 
     private function getAlreadyCalledId(mixed $object): string
     {
-        if (!($object instanceof TranslatableEntityInterface)) {
+        if (!$object instanceof TranslatableEntityInterface) {
             return self::ALREADY_CALLED;
         }
         $class = $object::class;
@@ -99,8 +98,10 @@ class TranslatableEntityNormalizer implements ContextAwareNormalizerInterface, C
         return self::ALREADY_CALLED . $class . $object->getId();
     }
 
-    public function hasCacheableSupportsMethod(): bool
+    public function getSupportedTypes(?string $format): array
     {
-        return false;
+        return [
+            TranslatableEntityInterface::class => false,
+        ];
     }
 }

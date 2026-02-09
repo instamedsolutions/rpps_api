@@ -22,9 +22,7 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Serializer\Annotation\Groups;
 use Symfony\Component\Serializer\Annotation\MaxDepth;
 
-#[ApiFilter(RangeFilter::class, properties: ['hierarchyLevel'])]
 #[ApiFilter(DiseaseFilter::class, properties: ['search'])]
-#[ApiFilter(SearchFilter::class, properties: ['category.cim', 'group.cim'])]
 #[ORM\Entity(repositoryClass: DiseaseRepository::class)]
 #[ORM\Table(name: 'diseases')]
 #[ORM\Index(columns: ['cim'], name: 'diseases_index')]
@@ -60,10 +58,7 @@ class Disease extends BaseEntity implements ImportableEntityInterface
     #[ApiProperty(
         description: 'The unique CIM-10 Id in the international database',
         required: true,
-        openapiContext: [
-            'type' => 'string',
-            'example' => '66595239',
-        ]
+        schema: ['type' => 'string', 'example' => '66595239'],
     )]
     #[Groups(['read'])]
     #[ORM\Column(type: 'string', unique: true)]
@@ -72,10 +67,7 @@ class Disease extends BaseEntity implements ImportableEntityInterface
     #[ApiProperty(
         description: 'The name of the disease',
         required: true,
-        openapiContext: [
-            'type' => 'string',
-            'example' => 'PANTOPRAZOLE KRKA 40 mg, comprimé gastro-résistant',
-        ]
+        schema: ['type' => 'string', 'example' => 'PANTOPRAZOLE KRKA 40 mg, comprimé gastro-résistant'],
     )]
     #[ApiFilter(SearchFilter::class, strategy: SearchFilterInterface::STRATEGY_START)]
     #[Groups(['read'])]

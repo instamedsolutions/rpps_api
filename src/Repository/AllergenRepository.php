@@ -4,6 +4,7 @@ namespace App\Repository;
 
 use App\Entity\Allergen;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\DBAL\LockMode;
 use Doctrine\ORM\NonUniqueResultException;
 use Doctrine\Persistence\ManagerRegistry;
 
@@ -26,11 +27,9 @@ class AllergenRepository extends ServiceEntityRepository
      * @param null $lockMode
      * @param null $lockVersion
      *
-     * @return Allergen|null
-     *
      * @throws NonUniqueResultException
      */
-    public function find($id, $lockMode = null, $lockVersion = null)
+    public function find(mixed $id, LockMode|int|null $lockMode = null, ?int $lockVersion = null): ?Allergen
     {
         if (null === $id || 0 === $id) {
             return null;

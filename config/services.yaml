@@ -6,11 +6,11 @@
 parameters:
     env(RPPS_URL): 'https://annuaire.sante.fr/web/site-pro/extractions-publiques?p_p_id=abonnementportlet_WAR_Inscriptionportlet_INSTANCE_gGMT6fhOPMYV&p_p_lifecycle=2&p_p_state=normal&p_p_mode=view&p_p_cacheability=cacheLevelPage&_abonnementportlet_WAR_Inscriptionportlet_INSTANCE_gGMT6fhOPMYV_nomFichier=PS_LibreAcces_202406110900.zip'
     env(CPS_URL): 'https://service.annuaire.sante.fr/annuaire-sante-webservices/V300/services/extraction/Porteurs_CPS_CPF'
-    env(DRUGS_URL_CIS_BDPM): 'http://base-donnees-publique.medicaments.gouv.fr/telechargement.php?fichier=CIS_bdpm.txt'
-    env(DRUGS_URL_CIS_CIP_BDPM): 'http://base-donnees-publique.medicaments.gouv.fr/telechargement.php?fichier=CIS_CIP_bdpm.txt'
-    env(DRUGS_URL_CIS_CPD_BDPM): 'http://base-donnees-publique.medicaments.gouv.fr/telechargement.php?fichier=CIS_CPD_bdpm.txt'
-    env(DRUGS_URL_CIS_GENER_BDPM): 'http://base-donnees-publique.medicaments.gouv.fr/telechargement.php?fichier=CIS_GENER_bdpm.txt'
-    env(DRUGS_URL_CIS_InfoImportantes): 'http://base-donnees-publique.medicaments.gouv.fr/telechargement.php?fichier=CIS_InfoImportantes.txt'
+    env(DRUGS_URL_CIS_BDPM): 'https://base-donnees-publique.medicaments.gouv.fr/download/file/CIS_bdpm.txt'
+    env(DRUGS_URL_CIS_CIP_BDPM): 'https://base-donnees-publique.medicaments.gouv.fr/download/file/CIS_CIP_bdpm.txt'
+    env(DRUGS_URL_CIS_CPD_BDPM): 'https://base-donnees-publique.medicaments.gouv.fr/download/file/CIS_CPD_bdpm.txt'
+    env(DRUGS_URL_CIS_GENER_BDPM): 'https://base-donnees-publique.medicaments.gouv.fr/download/file/CIS_GENER_bdpm.txt'
+    env(DRUGS_URL_CIS_InfoImportantes): 'https://base-donnees-publique.medicaments.gouv.fr/download/file/CIS_InfoImportantes.txt'
     env(CIM_10_URL): 'https://www.bfs.admin.ch/bfsstatic/dam/assets/15023315/master'
     env(DATABASE_ENGINE): "mysql"
     env(DATABASE_URL): '%env(DATABASE_ENGINE)%://%env(DATABASE_USER)%:%env(DATABASE_PASSWORD)%@%env(DATABASE_HOST)%:%env(DATABASE_PORT)%/%env(DATABASE_NAME)%?serverVersion=8.0&charset=utf8'
@@ -101,16 +101,3 @@ services:
         arguments:
             $projectDir: '%kernel.project_dir%'
 
-    Sentry\Integration\IgnoreErrorsIntegration:
-        arguments:
-            $options:
-                ignore_exceptions:
-                    - Symfony\Component\HttpKernel\Exception\NotFoundHttpException
-                    - Symfony\Component\Security\Core\Exception\AuthenticationException
-                    - Symfony\Component\Security\Core\Exception\AccessDeniedException
-                    - Symfony\Component\HttpKernel\Exception\UnauthorizedHttpException
-                    - Symfony\Component\HttpKernel\Exception\BadRequestHttpException
-                    - Symfony\Component\HttpKernel\Exception\NotAcceptableHttpException
-                    - ApiPlatform\Core\Bridge\Symfony\Validator\Exception\ValidationException
-                    - ApiPlatform\Core\Exception\ItemNotFoundException
-                    - ReflectionException

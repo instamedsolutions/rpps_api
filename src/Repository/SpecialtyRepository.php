@@ -4,6 +4,7 @@ namespace App\Repository;
 
 use App\Entity\Specialty;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\DBAL\LockMode;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
@@ -20,7 +21,7 @@ class SpecialtyRepository extends ServiceEntityRepository
         parent::__construct($registry, Specialty::class);
     }
 
-    public function find($id, $lockMode = null, $lockVersion = null): ?Specialty
+    public function find(mixed $id, LockMode|int|null $lockMode = null, ?int $lockVersion = null): ?Specialty
     {
         if (null === $id || 0 === $id) {
             return null;

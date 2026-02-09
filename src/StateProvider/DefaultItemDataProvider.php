@@ -7,11 +7,10 @@ use ApiPlatform\Metadata\Operation;
 use ApiPlatform\State\ProviderInterface;
 use Doctrine\ORM\EntityManagerInterface;
 use Exception;
-use Symfony\Component\HttpFoundation\RequestStack;
 
 final class DefaultItemDataProvider implements ProviderInterface
 {
-    public function __construct(protected readonly RequestStack $requestStack, protected EntityManagerInterface $em)
+    public function __construct(private EntityManagerInterface $em)
     {
     }
 

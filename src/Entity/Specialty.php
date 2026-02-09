@@ -6,6 +6,7 @@ use ApiPlatform\Metadata\ApiFilter;
 use ApiPlatform\Metadata\ApiResource;
 use ApiPlatform\Metadata\Get;
 use ApiPlatform\Metadata\GetCollection;
+use ApiPlatform\OpenApi\Model\Operation as OpenApiOperation;
 use App\ApiPlatform\Filter\SpecialtyFilter;
 use App\Entity\Traits\ImportIdTrait;
 use App\Entity\Traits\TranslatableTrait;
@@ -16,12 +17,15 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Serializer\Annotation\Groups;
+use Symfony\Component\Serializer\Attribute\MaxDepth;
 use Symfony\Component\Serializer\Attribute\SerializedName;
 
 #[ORM\Entity(repositoryClass: SpecialtyRepository::class)]
-#[ORM\Index(columns: ['name'], name: 'specialty_name_index')]
-#[ORM\Index(columns: ['is_paramedical', 'id'], name: 'idx_specialty_composite')]
-#[ORM\Index(columns: ['is_paramedical'], name: 'specialty_is_paramedical_index')]
+#[ORM\Table(name: 'specialty', indexes: [
+    new ORM\Index(columns: ['name'], name: 'specialty_name_index'),
+    new ORM\Index(columns: ['is_paramedical', 'id'], name: 'idx_specialty_composite'),
+    new ORM\Index(columns: ['is_paramedical'], name: 'specialty_is_paramedical_index'),
+])]
 #[ApiResource(
     shortName: 'Specialty',
     operations: [
@@ -29,10 +33,10 @@ use Symfony\Component\Serializer\Attribute\SerializedName;
         new Get(provider: DefaultItemDataProvider::class),
         new Get(
             uriTemplate: '/specialties/{id}/similar{._format}',
-            openapiContext: [
-                'summary' => 'Get similar specialties linked to this specialty',
-                'description' => 'Returns a list of specialties linked via the specialties field',
-            ],
+            openapi: new OpenApiOperation(
+                summary: 'Get similar specialties linked to this specialty',
+                description: 'Returns a list of specialties linked via the specialties field',
+            ),
             name: 'get_similar_specialties',
             provider: SimilarSpecialtiesProvider::class,
         ),
@@ -62,6 +66,7 @@ class Specialty extends BaseEntity implements ImportableEntityInterface, Transla
 
     #[ORM\ManyToMany(targetEntity: self::class, inversedBy: 'specialties')]
     #[ORM\JoinTable(name: 'specialty_links')]
+    #[MaxDepth(maxDepth: 1)]
     private Collection $specialties;
 
     #[ORM\Column(type: 'boolean', nullable: false, options: ['default' => false])]

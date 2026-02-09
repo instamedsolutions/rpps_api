@@ -6,6 +6,7 @@ use App\Service\NGAPService;
 use DateTime;
 use Doctrine\ORM\EntityManagerInterface;
 use Exception;
+use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
@@ -13,16 +14,14 @@ use Symfony\Component\Console\Output\OutputInterface;
 /**
  * Command to import file in empty database.
  **/
+#[AsCommand(name: 'app:ngap:import')]
 class NGAPImport extends Command
 {
-    // the name of the command (the part after "bin/console")
-    protected static $defaultName = 'app:ngap:import';
-
     public function __construct(
         protected readonly NGAPService $ngapService,
         protected readonly EntityManagerInterface $em,
     ) {
-        parent::__construct(self::$defaultName);
+        parent::__construct();
     }
 
     protected function configure(): void

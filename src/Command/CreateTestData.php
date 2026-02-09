@@ -6,6 +6,7 @@ use App\Entity\RPPS;
 use App\Service\RPPSService;
 use Doctrine\ORM\EntityManagerInterface;
 use Faker\Factory;
+use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
@@ -14,16 +15,14 @@ use Symfony\Component\Console\Output\OutputInterface;
 /**
  * Command to import file in empty database.
  */
+#[AsCommand(name: 'app:test:create')]
 class CreateTestData extends Command
 {
-    // the name of the command (the part after "bin/console")
-    protected static $defaultName = 'app:test:create';
-
     public function __construct(
         private readonly RPPSService $service,
         private readonly EntityManagerInterface $em,
     ) {
-        parent::__construct(self::$defaultName);
+        parent::__construct();
     }
 
     protected function configure(): void

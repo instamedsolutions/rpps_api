@@ -5,6 +5,7 @@ namespace App\Repository;
 use App\Entity\City;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\DBAL\Driver\Exception;
+use Doctrine\DBAL\LockMode;
 use Doctrine\ORM\NonUniqueResultException;
 use Doctrine\Persistence\ManagerRegistry;
 
@@ -98,7 +99,7 @@ class CityRepository extends ServiceEntityRepository
     ';
 
         $stmt = $conn->prepare($sql);
-        $stmt->execute([
+        $result = $stmt->executeQuery([
             'latitude' => $latitude,
             'longitude' => $longitude,
             'regionId' => $regionId,
@@ -106,7 +107,7 @@ class CityRepository extends ServiceEntityRepository
             'cityId' => $city->getId(),
         ]);
 
-        $results = $stmt->fetchAllAssociative();
+        $results = $result->fetchAllAssociative();
 
         if (!$results) {
             return [];
@@ -137,13 +138,13 @@ class CityRepository extends ServiceEntityRepository
     ';
 
         $stmt = $conn->prepare($sql);
-        $stmt->execute([
+        $result = $stmt->executeQuery([
             'inseeCode' => $inseeCode,
             'postalCode' => $zipCode,
             'zipCode' => json_encode($zipCode), // Make sure to JSON-encode the zip code
         ]);
 
-        $results = $stmt->fetchAllAssociative();
+        $results = $result->fetchAllAssociative();
 
         if (!$results) {
             return [];
@@ -163,11 +164,9 @@ class CityRepository extends ServiceEntityRepository
      * @param null $lockMode
      * @param null $lockVersion
      *
-     * @return City|null
-     *
      * @throws NonUniqueResultException
      */
-    public function find($id, $lockMode = null, $lockVersion = null)
+    public function find(mixed $id, LockMode|int|null $lockMode = null, ?int $lockVersion = null): ?City
     {
         if (null === $id || 0 === $id) {
             return null;

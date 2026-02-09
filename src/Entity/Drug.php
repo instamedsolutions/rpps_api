@@ -48,10 +48,7 @@ class Drug extends BaseEntity implements ImportableEntityInterface
     #[ApiProperty(
         description: 'The unique CIS Id in the government database',
         required: true,
-        openapiContext: [
-            'type' => 'string',
-            'example' => '66595239',
-        ]
+        schema: ['type' => 'string', 'example' => '66595239'],
     )]
     #[Groups(['read'])]
     #[ORM\Column(type: 'string', unique: true, nullable: true)]
@@ -61,10 +58,7 @@ class Drug extends BaseEntity implements ImportableEntityInterface
     #[ApiProperty(
         description: 'The name of the drug',
         required: true,
-        openapiContext: [
-            'type' => 'string',
-            'example' => 'PANTOPRAZOLE KRKA 40 mg, comprimé gastro-résistant',
-        ]
+        schema: ['type' => 'string', 'example' => 'PANTOPRAZOLE KRKA 40 mg, comprimé gastro-résistant'],
     )]
     #[ORM\Column(type: 'string', length: 255)]
     protected ?string $name = null;
@@ -72,10 +66,7 @@ class Drug extends BaseEntity implements ImportableEntityInterface
     #[ApiProperty(
         description: 'The pharmaceutical form of the drug',
         required: true,
-        openapiContext: [
-            'type' => 'string',
-            'example' => 'comprimé gastro-résistant(e)',
-        ]
+        schema: ['type' => 'string', 'example' => 'comprimé gastro-résistant(e)'],
     )]
     #[Groups(['read'])]
     #[ORM\Column(type: 'string', length: 255, nullable: true)]
@@ -84,13 +75,7 @@ class Drug extends BaseEntity implements ImportableEntityInterface
     #[ApiProperty(
         description: 'The administration form of the drug',
         required: true,
-        openapiContext: [
-            'type' => 'array',
-            'items' => [
-                'type' => 'string',
-                'example' => 'comprimé gastro-résistant(e)',
-            ],
-        ]
+        schema: ['type' => 'array', 'items' => ['type' => 'string', 'example' => 'comprimé gastro-résistant(e)']],
     )]
     #[Groups(['read'])]
     #[ORM\Column(type: 'array', nullable: true)]
@@ -99,10 +84,7 @@ class Drug extends BaseEntity implements ImportableEntityInterface
     #[ApiProperty(
         description: 'The pharmaceutical company owning the drug',
         required: false,
-        openapiContext: [
-            'type' => 'string',
-            'example' => ' BIOGARAN',
-        ]
+        schema: ['type' => 'string', 'example' => ' BIOGARAN'],
     )]
     #[Groups(['read'])]
     #[ORM\Column(type: 'string', length: 255, nullable: true)]
@@ -111,10 +93,7 @@ class Drug extends BaseEntity implements ImportableEntityInterface
     #[ApiProperty(
         description: 'The packaging of the drug',
         required: false,
-        openapiContext: [
-            'type' => 'string',
-            'example' => 'plaquette(s) thermoformée(s) aluminium de 28 comprimé(s)',
-        ]
+        schema: ['type' => 'string', 'example' => 'plaquette(s) thermoformée(s) aluminium de 28 comprimé(s)'],
     )]
     #[Groups(['read'])]
     #[ORM\Column(type: 'string', length: 255, nullable: true)]
@@ -123,13 +102,7 @@ class Drug extends BaseEntity implements ImportableEntityInterface
     #[ApiProperty(
         description: 'The percentage reimbursed of the drug',
         required: false,
-        openapiContext: [
-            'type' => 'array',
-            'items' => [
-                'type' => 'string',
-                'example' => ['65%'],
-            ],
-        ]
+        schema: ['type' => 'array', 'items' => ['type' => 'string', 'example' => '65%']],
     )]
     #[Groups(['drugs:item:read'])]
     #[ORM\Column(type: 'array', nullable: true)]
@@ -138,10 +111,7 @@ class Drug extends BaseEntity implements ImportableEntityInterface
     #[ApiProperty(
         description: 'The price of the drug',
         required: false,
-        openapiContext: [
-            'type' => 'float',
-            'example' => 3.90,
-        ]
+        schema: ['type' => 'number', 'example' => 3.90],
     )]
     #[Groups(['drugs:item:read'])]
     #[ORM\Column(type: 'float', nullable: true)]
@@ -150,10 +120,7 @@ class Drug extends BaseEntity implements ImportableEntityInterface
     #[ApiProperty(
         description: 'The generic label of the drug',
         required: false,
-        openapiContext: [
-            'type' => 'string',
-            'example' => 'liste II',
-        ]
+        schema: ['type' => 'string', 'example' => 'liste II'],
     )]
     #[Groups(['drugs:item:read'])]
     #[ORM\Column(type: 'string', nullable: true)]
@@ -161,10 +128,7 @@ class Drug extends BaseEntity implements ImportableEntityInterface
 
     #[ApiProperty(
         required: true,
-        openapiContext: [
-            'type' => 'string',
-            'example' => 'PANTOPRAZOLE SODIQUE SESQUIHYDRATE équivalant à PANTOPRAZOLE 40 mg - EUPANTOL 40 mg, comprimé gastro-résistant - INIPOMP 40 mg, comprimé gastro-résistant - PANTIPP 40 mg, comprimé gastro-résistant.',
-        ]
+        schema: ['type' => 'string', 'example' => 'PANTOPRAZOLE SODIQUE SESQUIHYDRATE équivalant à PANTOPRAZOLE 40 mg - EUPANTOL 40 mg, comprimé gastro-résistant - INIPOMP 40 mg, comprimé gastro-résistant - PANTIPP 40 mg, comprimé gastro-résistant.'],
     )]
     #[Groups(['drugs:item:read'])]
     #[ORM\Column(type: 'text', nullable: true)]
@@ -172,25 +136,20 @@ class Drug extends BaseEntity implements ImportableEntityInterface
 
     #[ApiProperty(
         required: true,
-        openapiContext: [
-            'type' => 'int',
-            'example' => '143',
-        ]
+        schema: ['type' => 'integer', 'example' => 143],
     )]
     #[Groups(['drugs:item:read'])]
     #[ORM\Column(type: 'integer', nullable: true)]
     protected ?int $genericGroupId = null;
 
-    #[ApiProperty(required: true, openapiContext: [
-        'type' => 'int',
-        'enum' => [
-            Drug::GENERIC_LABEL_GENERIC,
-            Drug::GENERIC_LABEL_PRINCEPS,
-            Drug::GENERIC_LABEL_GENERIC_BY_COMPLEMENTARITY_POSOLOGIC,
-            Drug::GENERIC_LABEL_GENERIC_SUBSTITUABLE,
+    #[ApiProperty(
+        required: true,
+        schema: [
+            'type' => 'integer',
+            'enum' => [1, 2, 3],
+            'example' => 2,
         ],
-        'example' => Drug::GENERIC_LABEL_GENERIC,
-    ])]
+    )]
     #[Groups(['drugs:item:read'])]
     #[ORM\Column(type: 'smallint', nullable: true)]
     protected ?int $genericLabel = null;
@@ -274,7 +233,7 @@ class Drug extends BaseEntity implements ImportableEntityInterface
 
     public function setPresentationLabel(?string $presentationLabel): void
     {
-        $this->presentationLabel = $presentationLabel;
+        $this->presentationLabel = mb_substr($presentationLabel, 0, 254);
     }
 
     public function getReimbursementRates(): ?array

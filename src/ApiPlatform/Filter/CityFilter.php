@@ -5,6 +5,7 @@ namespace App\ApiPlatform\Filter;
 use ApiPlatform\Doctrine\Orm\Filter\AbstractFilter;
 use ApiPlatform\Doctrine\Orm\Util\QueryNameGeneratorInterface;
 use ApiPlatform\Metadata\Operation;
+use Doctrine\DBAL\Platforms\SqlitePlatform;
 use Doctrine\ORM\QueryBuilder;
 use Doctrine\Persistence\ManagerRegistry;
 use Exception;
@@ -19,13 +20,13 @@ final class CityFilter extends AbstractFilter
     protected ?QueryNameGeneratorInterface $queryNameGenerator = null;
 
     public function __construct(
-        protected ManagerRegistry $managerRegistry,
+        ?ManagerRegistry $managerRegistry,
         private readonly RequestStack $requestStack,
         ?LoggerInterface $logger = null,
-        protected ?array $properties = null,
-        protected ?NameConverterInterface $nameConverter = null,
+        ?array $properties = null,
+        ?NameConverterInterface $nameConverter = null,
     ) {
-        parent::__construct($this->managerRegistry, $logger, $properties, $nameConverter);
+        parent::__construct($managerRegistry, $logger, $properties, $nameConverter);
     }
 
     /**
@@ -95,19 +96,32 @@ final class CityFilter extends AbstractFilter
 
         $rootAlias = $queryBuilder->getRootAliases()[0];
 
-        // Apply the more accurate distance filter
-        $queryBuilder->andWhere(
-            'ST_Distance_Sphere(POINT(:longitude, :latitude), ' . $rootAlias . '.coordinates) < :distance'
-        );
+        $isSqlite = $queryBuilder->getEntityManager()->getConnection()->getDriver()->getDatabasePlatform() instanceof SqlitePlatform;
+        if ($isSqlite) { // SQLite
+            $queryBuilder->addSelect('
+                (6371 * ACOS(COS(RADIANS(:latitude)) * COS(RADIANS(' . $rootAlias . '.latitude)) * COS(RADIANS(' . $rootAlias . '.longitude) - RADIANS(:longitude)) + SIN(RADIANS(:latitude)) * SIN(RADIANS(' . $rootAlias . '.latitude)))) AS HIDDEN distance_calculated
+            ');
+            $queryBuilder->andWhere(
+                'distance_calculated < :distance'
+            );
+            $queryBuilder->addOrderBy(
+                'distance_calculated',
+                'ASC'
+            );
+        } else { // PostgreSQL/MySQL (or other DBs with GIS support)
+            $queryBuilder->andWhere(
+                'ST_Distance_Sphere(POINT(:longitude, :latitude), ' . $rootAlias . '.coordinates) < :distance'
+            );
+            $queryBuilder->orderBy(
+                'ST_Distance_Sphere(POINT(:longitude, :latitude), ' . $rootAlias . '.coordinates)',
+                'ASC'
+            );
+        }
+
         // Set parameters
         $queryBuilder->setParameter('latitude', (float) $latitude);
         $queryBuilder->setParameter('longitude', (float) $longitude);
         $queryBuilder->setParameter('distance', (float) $distance * 1000);
-
-        $queryBuilder->orderBy(
-            'ST_Distance_Sphere(POINT(:longitude, :latitude), ' . $rootAlias . '.coordinates)',
-            'ASC'
-        );
 
         return $queryBuilder;
     }

@@ -7,6 +7,9 @@ api_platform:
   enable_docs: true
   enable_re_doc: true
 
+  serializer:
+    hydra_prefix: true
+
   http_cache:
     public: true
 

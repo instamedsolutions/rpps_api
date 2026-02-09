@@ -47,10 +47,7 @@ class Allergen extends BaseEntity implements TranslatableEntityInterface
     #[ApiProperty(
         description: 'The unique code of the allergen',
         required: true,
-        openapiContext: [
-            'type' => 'string',
-            'example' => '01',
-        ]
+        schema: ['type' => 'string', 'example' => '01'],
     )]
     #[ApiFilter(SearchFilter::class, strategy: 'exact')]
     #[Groups(['read'])]
@@ -60,10 +57,7 @@ class Allergen extends BaseEntity implements TranslatableEntityInterface
     #[ApiProperty(
         description: 'The name of the allergen',
         required: true,
-        openapiContext: [
-            'type' => 'string',
-            'example' => 'Corn',
-        ]
+        schema: ['type' => 'string', 'example' => 'Corn'],
     )]
     #[ApiFilter(SearchFilter::class, strategy: 'istart')]
     #[Groups(['read'])]
@@ -73,10 +67,7 @@ class Allergen extends BaseEntity implements TranslatableEntityInterface
     #[ApiProperty(
         description: 'The parent group of the allergen',
         required: true,
-        openapiContext: [
-            'type' => 'string',
-            'example' => 'Pollens de graminées',
-        ]
+        schema: ['type' => 'string', 'example' => 'Pollens de graminées'],
     )]
     #[Groups(['read'])]
     #[ORM\Column(name: 'allergen_group', type: 'string', length: 255)]

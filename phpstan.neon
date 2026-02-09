@@ -1,8 +1,6 @@
 parameters:
     level: 7
     reportUnmatchedIgnoredErrors: false
-    checkMissingIterableValueType: false
-    checkGenericClassInNonGenericObjectType: false
 
     excludePaths:
         - '%currentWorkingDirectory%/src/Fixtures/*'
@@ -13,4 +11,8 @@ parameters:
         - '%currentWorkingDirectory%/src/Command/Tests/*'
         - '%currentWorkingDirectory%/tests/*'
 
-    ignoreErrors: []
+    ignoreErrors:
+        -
+            identifier: missingType.iterableValue
+        -
+            identifier: missingType.generics
