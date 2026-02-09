@@ -34,6 +34,7 @@ final class SpecialtyFilter extends AbstractFilter
 
         if ('is_paramedical' === $property) {
             $this->addParamedicalFilter($queryBuilder, $value);
+
             return;
         }
 

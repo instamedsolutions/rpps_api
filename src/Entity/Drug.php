@@ -233,7 +233,7 @@ class Drug extends BaseEntity implements ImportableEntityInterface
 
     public function setPresentationLabel(?string $presentationLabel): void
     {
-        $this->presentationLabel = $presentationLabel;
+        $this->presentationLabel = mb_substr($presentationLabel, 0, 254);
     }
 
     public function getReimbursementRates(): ?array

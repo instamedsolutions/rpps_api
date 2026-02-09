@@ -2,7 +2,6 @@
 
 namespace App\Repository;
 
-use App\Entity\Allergen;
 use App\Entity\DiseaseGroup;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\DBAL\LockMode;
@@ -30,7 +29,7 @@ class DiseaseGroupRepository extends ServiceEntityRepository
      *
      * @throws NonUniqueResultException
      */
-    public function find(mixed $id, LockMode|int|null $lockMode = null, ?int $lockVersion = null): ?Allergen
+    public function find(mixed $id, LockMode|int|null $lockMode = null, ?int $lockVersion = null): ?DiseaseGroup
     {
         if (null === $id || 0 === $id) {
             return null;

@@ -85,13 +85,13 @@ class DrugService extends ImporterService
 
         $drug->setPresentationLabel($data[2]);
 
-        if ($data[8]) {
+        if ($data[8] ?? null) {
             $drug->setReimbursementRates(explode(';', (string) $data[8]));
         } else {
             $drug->setReimbursementRates(null);
         }
 
-        if ($data[9]) {
+        if ($data[9] ?? null) {
             $data[9] = floatval(str_replace(',', '', (string) $data[9]));
             $data[9] /= 100;
             $drug->setPrice($data[9]);
@@ -116,7 +116,7 @@ class DrugService extends ImporterService
         }
 
         $drug->setPrescriptionConditions($data[1]);
-        $drug->importId = $this->getImportId();
+        $drug->setImportId($this->getImportId());
 
         return $drug;
     }

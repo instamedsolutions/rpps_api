@@ -35,7 +35,7 @@ class NGAPService extends FileParserService
         }
 
         $ngap->description = $data[1];
-        $ngap->importId = $this->getImportId();
+        $ngap->setImportId($this->getImportId());
 
         $this->em->persist($ngap);
         $this->em->flush();

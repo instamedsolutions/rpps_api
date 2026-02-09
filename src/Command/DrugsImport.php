@@ -67,6 +67,7 @@ class DrugsImport extends Command
         } catch (Exception $e) {
             error_log($e->getMessage());
             $output->writeln($e->getMessage());
+            $output->writeln($e->getTraceAsString());
 
             return Command::FAILURE;
         }

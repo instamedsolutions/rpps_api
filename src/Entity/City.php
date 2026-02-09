@@ -52,7 +52,9 @@ use Symfony\Component\Serializer\Annotation\MaxDepth;
     paginationClientEnabled: true,
     paginationPartial: true,
 )]
+/** @phpstan-ignore-next-line  */
 #[ApiFilter(SearchFilter::class, properties: ['name' => 'partial'])]
+/** @phpstan-ignore-next-line  */
 #[ApiFilter(OrderFilter::class, properties: ['population' => 'DESC'], arguments: ['orderParameterName' => '_orderBy'])]
 class City extends BaseEntity implements ImportableEntityInterface
 {

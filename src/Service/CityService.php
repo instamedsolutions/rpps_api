@@ -690,39 +690,39 @@ class CityService extends ImporterService
     public function purgeAllData(): void
     {
         // Step 0: Clear all City references in RPPS
-        $this->em->createQuery('UPDATE App\Entity\RPPS r SET r.cityEntity = NULL')->execute();
+        $this->em->getConnection()->executeStatement('UPDATE rpps SET city_entity_id = NULL');
         $this->output->writeln('<info>Cleared all city references in RPPS.</info>');
 
         // Step 1: Clear all chef-lieu references in departments
-        $this->em->createQuery('UPDATE App\Entity\Department d SET d.chefLieu = NULL')->execute();
+        $this->em->getConnection()->executeStatement('UPDATE department SET chef_lieu_id = NULL');
         $this->output->writeln('<info>Cleared all chef-lieu references in departments.</info>');
 
         // Step 2: Delete subcities first to avoid foreign key constraint violations
-        $this->em->createQuery('DELETE FROM App\Entity\City c WHERE c.mainCity IS NOT NULL')->execute();
+        $this->em->getConnection()->executeStatement('DELETE FROM city WHERE main_city_id IS NOT NULL');
         $this->output->writeln('<info>All subcities have been purged.</info>');
 
         // Step 3: Delete main cities after subcities
-        $this->em->createQuery('DELETE FROM App\Entity\City c WHERE c.mainCity IS NULL')->execute();
+        $this->em->getConnection()->executeStatement('DELETE FROM city WHERE main_city_id IS NULL');
         $this->output->writeln('<info>All main cities have been purged.</info>');
 
         // Step 4: Delete all department data
-        $this->em->createQuery('DELETE FROM App\Entity\Department')->execute();
+        $this->em->getConnection()->executeStatement('DELETE FROM department');
         $this->output->writeln('<info>All departments have been purged.</info>');
 
         // Step 5: Delete all region data
-        $this->em->createQuery('DELETE FROM App\Entity\Region')->execute();
+        $this->em->getConnection()->executeStatement('DELETE FROM region');
         $this->output->writeln('<info>All regions have been purged.</info>');
     }
 
     public function purgePopulation(): void
     {
-        $this->em->createQuery('UPDATE App\Entity\City c SET c.population = NULL')->execute();
+        $this->em->getConnection()->executeStatement('UPDATE city SET population = NULL');
         $this->output->writeln('<info>Population data purged for all cities.</info>');
     }
 
     public function purgeCoordinates(): void
     {
-        $this->em->createQuery('UPDATE App\Entity\City c SET c.latitude = NULL, c.longitude = NULL')->execute();
+        $this->em->getConnection()->executeStatement('UPDATE city SET latitude = NULL, longitude = NULL');
         $this->output->writeln('<info>Coordinate data purged for all cities.</info>');
     }
 

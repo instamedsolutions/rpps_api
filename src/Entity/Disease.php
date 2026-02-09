@@ -22,7 +22,6 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Serializer\Annotation\Groups;
 use Symfony\Component\Serializer\Annotation\MaxDepth;
 
-#[ApiFilter(RangeFilter::class, properties: ['hierarchyLevel'])]
 #[ApiFilter(DiseaseFilter::class, properties: ['search'])]
 #[ORM\Entity(repositoryClass: DiseaseRepository::class)]
 #[ORM\Table(name: 'diseases')]

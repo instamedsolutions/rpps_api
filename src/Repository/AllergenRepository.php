@@ -7,7 +7,6 @@ use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\DBAL\LockMode;
 use Doctrine\ORM\NonUniqueResultException;
 use Doctrine\Persistence\ManagerRegistry;
-use Symfony\Component\Validator\Constraints\All;
 
 /**
  * @method Allergen|null findOneBy(array $criteria, array $orderBy = null)
@@ -27,8 +26,6 @@ class AllergenRepository extends ServiceEntityRepository
     /**
      * @param null $lockMode
      * @param null $lockVersion
-     *
-     * @return Allergen|null
      *
      * @throws NonUniqueResultException
      */

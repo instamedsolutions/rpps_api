@@ -14,8 +14,6 @@ class TranslatableEntityNormalizer implements NormalizerInterface, NormalizerAwa
 
     public const string ALREADY_CALLED = 'TRANSLATABLE_ENTITY_ALREADY_CALLED';
 
-    public static $i = 0;
-
     /**
      * @param TranslatableEntityInterface $data
      *
@@ -24,8 +22,6 @@ class TranslatableEntityNormalizer implements NormalizerInterface, NormalizerAwa
     public function normalize(mixed $data, ?string $format = null, array $context = []): array
     {
         $context[self::getAlreadyCalledId($data)] = true;
-
-        self::$i++;
 
         if (!isset($context['languages'])) {
             return $this->normalizer->normalize($data, $format, $context);
@@ -80,7 +76,6 @@ class TranslatableEntityNormalizer implements NormalizerInterface, NormalizerAwa
 
     public function supportsNormalization(mixed $data, ?string $format = null, array $context = []): bool
     {
-
         if (isset($context[self::getAlreadyCalledId($data)])) {
             return false;
         }
