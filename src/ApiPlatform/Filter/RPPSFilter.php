@@ -7,8 +7,8 @@ use ApiPlatform\Doctrine\Orm\Util\QueryNameGeneratorInterface;
 use ApiPlatform\Metadata\Operation;
 use App\Entity\City;
 use App\Entity\Specialty;
+use Doctrine\DBAL\Platforms\MySqlPlatform;
 use Doctrine\ORM\EntityManagerInterface;
-use Doctrine\ORM\Query\Expr\Join;
 use Doctrine\ORM\QueryBuilder;
 use Doctrine\Persistence\ManagerRegistry;
 use Exception;
@@ -94,21 +94,31 @@ final class RPPSFilter extends AbstractFilter
         /** @var City|null $city */
         $city = $this->em->getRepository(City::class)->findOneBy(['canonical' => $value]);
 
+        // if city not found, force an empty result set
         if (!$city) {
+            $queryBuilder->andWhere('1 = 2');
+
             return;
         }
 
         $rootAlias = $queryBuilder->getRootAliases()[0];
 
+        // Use RPPSAddress -> City relation instead of legacy RPPS.cityEntity
+        // Ensure we don't duplicate RPPS rows if multiple addresses match
+        $queryBuilder->distinct();
+        $queryBuilder
+            ->innerJoin("$rootAlias.addresses", 'addr')
+            ->innerJoin('addr.city', 'city');
+
         if ($city->getSubCities()->toArray()) {
-            $queryBuilder->innerJoin("$rootAlias.cityEntity", 'city', Join::WITH, 'city.canonical IN (:cityId)');
-            $queryBuilder->setParameter('cityId', [
+            $queryBuilder->andWhere('city.canonical IN (:cityCanonicalList)');
+            $queryBuilder->setParameter('cityCanonicalList', [
                 $value,
-                ...array_map(fn (City $city) => $city->getCanonical(), $city->getSubCities()->toArray()),
+                ...array_map(static fn (City $c) => $c->getCanonical(), $city->getSubCities()->toArray()),
             ]);
         } else {
-            $queryBuilder->innerJoin("$rootAlias.cityEntity", 'city', Join::WITH, 'city.canonical = :cityId');
-            $queryBuilder->setParameter('cityId', $value);
+            $queryBuilder->andWhere('city.canonical = :cityCanonical');
+            $queryBuilder->setParameter('cityCanonical', $value);
         }
     }
 
@@ -161,14 +171,17 @@ final class RPPSFilter extends AbstractFilter
         $value = $this->cleanValue($value);
 
         if (str_contains($value, '%')) {
-            $result = $this->em->getConnection()->fetchFirstColumn('(SELECT id FROM rpps WHERE full_name LIKE :search
+            $result = $this->em->getConnection()->fetchFirstColumn(
+                '(SELECT id FROM rpps WHERE full_name LIKE :search
  LIMIT 500)
 UNION
 (SELECT id FROM rpps WHERE full_name_inversed LIKE :search
  LIMIT 500)
-LIMIT 500;', [
-                'search' => "$value%",
-            ]);
+LIMIT 500;',
+                [
+                    'search' => "$value%",
+                ]
+            );
 
             $queryBuilder->andWhere("$alias.id IN (:result)");
             $queryBuilder->setParameter('result', $result);
@@ -200,16 +213,19 @@ LIMIT 500;', [
         return $queryBuilder;
     }
 
-    public function addLatitudeFilter(QueryBuilder $queryBuilder, ?string $latitude, ?Operation &$operation): QueryBuilder
-    {
+    public function addLatitudeFilter(
+        QueryBuilder $queryBuilder,
+        ?string $latitude,
+        ?Operation &$operation,
+    ): QueryBuilder {
         $request = $this->requestStack->getCurrentRequest();
         $longitude = $request?->query->get('longitude');
 
         if (!$latitude || !$longitude) {
             return $queryBuilder;
         }
-        $operation = $operation->withPaginationClientEnabled(false);
-        $operation = $operation->withPaginationClientPartial(true);
+        $operation = $operation?->withPaginationClientEnabled(false);
+        $operation = $operation?->withPaginationClientPartial(true);
 
         $request->attributes->set('_api_operation', $operation);
 
@@ -229,32 +245,51 @@ LIMIT 500;', [
         $minLng = (float) $longitude - (float) $lngOffset;
         $maxLng = (float) $longitude + (float) $lngOffset;
 
-        // Add bounding box condition using the POINT function
-        $queryBuilder->andWhere(
-            'MBRContains(ST_MakeEnvelope(POINT(:minLng, :minLat), POINT(:maxLng, :maxLat)), ' . $rootAlias . '.coordinates) = true'
-        );
+        $queryBuilder->distinct();
 
-        // Apply the more accurate distance filter
-        $queryBuilder->andWhere(
-            "ST_Distance_Sphere(POINT(:longitude, :latitude), $rootAlias.coordinates) < :distance"
-        )
-            ->addSelect(
-                "ST_Distance_Sphere(POINT(:longitude, :latitude), $rootAlias.coordinates) AS HIDDEN distance"
+        // Join RPPS -> RPPSAddress for coordinates
+        $queryBuilder->innerJoin($rootAlias . '.addresses', 'addr');
+
+        $platform = $this->em->getConnection()->getDatabasePlatform();
+
+        if ($platform instanceof MySqlPlatform) {
+            // TODO NOT TESTED !
+            // MySQL path: use POINT/MBRContains/ST_Distance_Sphere on RPPSAddress.coordinates
+            $queryBuilder->andWhere(
+                'MBRContains(ST_MakeEnvelope(POINT(:minLng, :minLat), POINT(:maxLng, :maxLat)), addr.coordinates) = 1'
             );
 
-        // Set parameters
-        $queryBuilder->setParameter('latitude', (float) $latitude);
-        $queryBuilder->setParameter('longitude', (float) $longitude);
-        $queryBuilder->setParameter('distance', (float) $distance);
-        $queryBuilder->setParameter('minLat', $minLat);
-        $queryBuilder->setParameter('maxLat', $maxLat);
-        $queryBuilder->setParameter('minLng', $minLng);
-        $queryBuilder->setParameter('maxLng', $maxLng);
+            $queryBuilder
+                ->andWhere('ST_Distance_Sphere(POINT(:longitude, :latitude), addr.coordinates) < :distance')
+                ->addSelect('ST_Distance_Sphere(POINT(:longitude, :latitude), addr.coordinates) AS HIDDEN distance');
 
-        //    $queryBuilder->orderBy(
-        //        'distance',
-        //        'ASC'
-        //    );
+            $queryBuilder->setParameter('latitude', (float) $latitude);
+            $queryBuilder->setParameter('longitude', (float) $longitude);
+            $queryBuilder->setParameter('distance', (float) $distance);
+            $queryBuilder->setParameter('minLat', $minLat);
+            $queryBuilder->setParameter('maxLat', $maxLat);
+            $queryBuilder->setParameter('minLng', $minLng);
+            $queryBuilder->setParameter('maxLng', $maxLng);
+        } else {
+            $queryBuilder
+                ->andWhere('addr.latitude IS NOT NULL')
+                ->andWhere('addr.longitude IS NOT NULL')
+                ->andWhere(
+                    '(addr.latitude BETWEEN :minLat AND :maxLat AND addr.longitude BETWEEN :minLng AND :maxLng)
+                     OR (ABS(addr.latitude - :latExact) < 1e-5 AND ABS(addr.longitude - :lngExact) < 1e-5)'
+                );
+
+            // Set only the parameters used by this branch
+            $queryBuilder->setParameter('minLat', $minLat);
+            $queryBuilder->setParameter('maxLat', $maxLat);
+            $queryBuilder->setParameter('minLng', $minLng);
+            $queryBuilder->setParameter('maxLng', $maxLng);
+            $queryBuilder->setParameter('latExact', (float) $latitude);
+            $queryBuilder->setParameter('lngExact', (float) $longitude);
+        }
+
+        // Keep ordering optional
+        // $queryBuilder->addOrderBy('distance', 'ASC');
 
         return $queryBuilder;
     }
@@ -284,7 +319,7 @@ LIMIT 500;', [
 
         // If true or 1, returns true
         // if false or 0 returns false
-        // Else, incorrect value : returns null
+        // Else, incorrect value: returns null
         return in_array($string, ['1', 'true']) ? true : (in_array($string, ['0', 'false']) ? false : null);
     }
 
@@ -326,7 +361,7 @@ LIMIT 500;', [
                     'type' => 'array',
                     'required' => false,
                     'swagger' => [
-                        'description' => 'Exclude specific RPPS numbers from the result set. Provide one or more RPPS numbers.',
+                        'description' => 'Exclude given RPPS numbers from the result. Provide one or more RPPS numbers',
                         'type' => 'array',
                         'items' => [
                             'type' => 'string',
